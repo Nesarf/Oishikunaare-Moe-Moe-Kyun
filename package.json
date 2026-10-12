@@ -39,7 +39,8 @@
     "check:ascii": "node scripts/check-ascii.mjs",
     "check:version": "node scripts/check-version.mjs",
     "verify": "npm run check:ascii && npm run check:version && npm run build && npm run selfcheck && npm run acceptance",
-    "acceptance": "node test/acceptance.mjs"
+    "acceptance": "node test/acceptance.mjs",
+    "audit:session": "node scripts/audit-session.mjs"
   },
   "license": "MIT",
   "repository": {
