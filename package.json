@@ -19,12 +19,14 @@
     "./package.json": "./package.json"
   },
   "files": [
+    "CHANGELOG.md",
     "LICENSE",
     "README.md",
     "README.zh-CN.md",
     "cordis.patch.yml",
     "lib",
     "rules",
+    "scripts",
     "src",
     "test"
   ],

@@ -468,6 +468,20 @@ check('a config file on disk reaches the section, and survives further edits', (
   fs.rmSync(home, { recursive: true, force: true });
 });
 
+check('package.json ships what the installed copy needs', () => {
+  // Twice now a tool has been added to the working tree and left out of the published package, and
+  // both times the first sign was a cannot-find-module from an installed copy. This is the assertion
+  // that would have caught both.
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  const shipped = new Set(pkg.files ?? []);
+  for (const entry of ['lib', 'src', 'rules', 'scripts', 'test', 'cordis.patch.yml', 'README.md', 'README.zh-CN.md']) {
+    assert.ok(shipped.has(entry), `${entry} is part of the package and must be listed in files`);
+  }
+  for (const file of ['scripts/check-text.mjs', 'scripts/audit-session.mjs', 'rules/kaomoji.json', 'test/acceptance.mjs']) {
+    assert.ok(shipped.has(file.split('/')[0]), `${file} needs its directory shipped`);
+    assert.ok(fs.existsSync(path.join(ROOT, file)), `${file} should exist`);
+  }
+});
 check('dshHome prefers the environment over the profile default', () => {
   const saved = process.env.DSH_HOME;
   process.env.DSH_HOME = 'E:/tmp-home';
