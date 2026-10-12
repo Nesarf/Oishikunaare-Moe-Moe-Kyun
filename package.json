@@ -1,0 +1,54 @@
+{
+  "name": "TastyLineOut",
+  "version": "0.1.0",
+  "description": "Output house rules for every DeepSeek Harness agent: no check-mark or cross glyphs in replies or written files, and a light kaomoji habit in conversation - one global prompt section, all presets, all workspaces.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "prompt",
+    "house-rules",
+    "system-prompt",
+    "kaomoji",
+    "output-discipline"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "rules",
+    "cordis.patch.yml",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "selfcheck": "node test/selfcheck.mjs",
+    "check:ascii": "node scripts/check-ascii.mjs",
+    "check:version": "node scripts/check-version.mjs",
+    "verify": "npm run check:ascii && npm run check:version && npm run build && npm run selfcheck"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nesarf/TastyLineOut.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nesarf/TastyLineOut/issues"
+  },
+  "homepage": "https://github.com/Nesarf/TastyLineOut#readme",
+  "engines": {
+    "node": ">=20"
+  }
+}

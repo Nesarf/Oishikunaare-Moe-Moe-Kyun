@@ -1,0 +1,31 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # No install step: this plugin has no dependencies, and the point of CI here is to prove the
+      # invariants hold on a machine that never had a node_modules directory.
+      - name: ASCII invariant
+        run: node scripts/check-ascii.mjs
+      - name: Version sync
+        run: node scripts/check-version.mjs
+      - name: Build lib/index.js
+        run: node scripts/build.mjs
+      - name: Selfcheck
+        run: node test/selfcheck.mjs
+      - name: Built artifact differs from a fresh build
+        run: git diff --exit-code -- lib/index.js

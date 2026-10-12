@@ -1,0 +1,5 @@
+# TastyLineOut bundle patch: inserts its row into the web plugin roster.
+# Install with: dsh plugin --profile web add github:Nesarf/TastyLineOut
+- insert:
+    - id: TastyLineOut
+      name: TastyLineOut
