@@ -433,6 +433,149 @@ export function offendingGlyphs(text) {
   return [...found];
 }
 
+/** Default cap on self-check notices per session, so a determined run cannot loop on warning itself. */
+const DEFAULT_SELFCHECK_MAX = 3;
+
+/**
+ * Judge a single authored text, applying the exemptions that keep the check from crying wolf.
+ *
+ * Exempt: fenced code and inline code, where an example or a library name is data rather than the
+ * author's voice; and the codepoint references the rule itself asks for (`U+2713` beside a glyph).
+ * Everything else - prose and thinking alike - is the author's voice and is judged.
+ * @param {string} text - the authored text.
+ * @returns {string[]} the offending code points, empty when the text passes.
+ */
+export function judgeAuthoredText(text) {
+  if (typeof text !== 'string' || text === '') return [];
+  const blanked = text
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`\n]*`/g, ' ')
+    .replace(/U\+[0-9A-Fa-f]{4,6}/g, ' ');
+  return offendingGlyphs(blanked);
+}
+
+/**
+ * Pull the authored text out of whatever shape a content part takes.
+ * @param {unknown} content - a message's content, as a string or a list of parts.
+ * @returns {Array<{ kind: string, text: string }>} text parts labelled by the channel they came from.
+ */
+export function authoredParts(content) {
+  if (typeof content === 'string') return [{ kind: 'text', text: content }];
+  if (!Array.isArray(content)) return [];
+  const out = [];
+  for (const part of content) {
+    if (typeof part === 'string') { out.push({ kind: 'text', text: part }); continue; }
+    if (!part || typeof part !== 'object') continue;
+    const kind = typeof part.type === 'string' ? part.type : '';
+    // Only channels the model authored. Tool results, file contents and fetched pages are the world
+    // talking, and the rule tells the agent not to relay them - it does not hold it responsible for
+    // what a test runner prints.
+    if (kind !== 'text' && kind !== 'thinking' && kind !== 'reasoning') continue;
+    if (typeof part.text === 'string') out.push({ kind, text: part.text });
+    else if (typeof part.content === 'string') out.push({ kind, text: part.content });
+  }
+  return out;
+}
+
+/**
+ * Find banned glyphs in the assistant's own recent output.
+ * @param {Array<{ source?: { kind?: string }, id?: unknown, content?: unknown }>} messages - the step's messages.
+ * @returns {{ key: string, where: string, glyphs: string[] } | null} the newest offending message, or null.
+ */
+export function findBannedInMessages(messages) {
+  if (!Array.isArray(messages)) return null;
+  for (let index = messages.length - 1; index >= 0; index--) {
+    const message = messages[index];
+    if (!message || typeof message !== 'object') continue;
+    if (message.source?.kind !== 'assistant') continue;
+    for (const part of authoredParts(message.content)) {
+      const glyphs = judgeAuthoredText(part.text);
+      if (glyphs.length === 0) continue;
+      const key = `${message.id ?? index}:${part.kind}:${glyphs.join(',')}:${part.text.length}`;
+      return { key, where: part.kind, glyphs };
+    }
+  }
+  return null;
+}
+
+/**
+ * Compose the notice the agent sees when its own output broke the rule.
+ *
+ * It names the code points and never prints the glyphs, for the same reason the rule does: a warning
+ * that shows the offending character is another copy of the thing being banned.
+ * @param {{ where: string, glyphs: string[] }} finding - what was found.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @returns {string} the notice text.
+ */
+export function selfCheckNotice(finding, locale) {
+  const list = finding.glyphs.join(', ');
+  if (locale === 'zh') {
+    return [
+      `\u3010\u8f93\u51fa\u7b26\u53f7\u7eaa\u5f8b\u00b7\u81ea\u68c0\u3011\u4f60\u4e0a\u4e00\u6761\u56de\u590d\u7684${finding.where === 'thinking' ? '\u601d\u8003' : '\u6b63\u6587'}\u91cc\u51fa\u73b0\u4e86\u5bf9\u9519\u6807\u8bb0\u7c7b\u7b26\u53f7\uff08${list}\uff09\uff0c\u8fdd\u53cd\u4e86\u7eaa\u5f8b\u3002`,
+      '\u63a5\u4e0b\u6765\u7684\u8f93\u51fa\u8bf7\u6539\u7528\u7eaf\u6587\u5b57\u8868\u8fbe\uff08\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u3001\u6210\u529f / \u5931\u8d25\uff09\uff0c\u601d\u8003\u91cc\u540c\u6837\u4e0d\u8981\u7528\uff1b\u672c\u6761\u63d0\u9192\u4e0d\u9700\u8981\u56de\u5e94\u3002',
+    ].join('');
+  }
+  return `OUTPUT SYMBOL DISCIPLINE - SELF-CHECK. Your previous reply carried judgement-mark glyphs (${list})`
+    + ` in its ${finding.where === 'thinking' ? 'thinking' : 'text'}, which the rule forbids. Use words from here on`
+    + ' (pass / fail, works / broken), including in your thinking. No reply to this notice is needed.';
+}
+
+/**
+ * Build the self-check hook: notice a violation the way a reviewer would, at the next step.
+ *
+ * The rules are a prompt, and a prompt has no teeth on its own. This runs on `agent/pre-step`, which
+ * fires before each model step with the conversation in hand, so a breach is caught while it is still
+ * the newest thing in context and the notice can steer the next step. It never edits history: it adds
+ * one notice ahead of the step's own messages.
+ *
+ * Each offending message is notified once, and the session has a notice budget; past it the breaches
+ * are counted in the log and nothing is injected, because a hook that keeps talking becomes the noise.
+ * @param {object} options - resolved inputs.
+ * @param {number} options.max - notices per session.
+ * @param {() => { locale: string, enabled: boolean }} options.resolve - current rule state.
+ * @param {(message: string) => void} [options.warn] - warning sink.
+ * @param {(message: string) => void} [options.log] - info sink.
+ * @returns {(input: object, next: () => Promise<unknown>) => Promise<unknown>} the hook.
+ */
+export function makeSelfCheckHook(options) {
+  const notified = new Set();
+  const counts = new Map();
+  return async (input, next) => {
+    let decision;
+    try {
+      decision = await next();
+    } catch (error) {
+      options.warn?.(`self-check could not observe the step: ${error?.message ?? error}`);
+      return undefined;
+    }
+    try {
+      if (!decision || decision.kind !== 'enter' || input?.signal?.aborted) return decision;
+      const state = options.resolve();
+      if (!state.enabled) return decision;
+      const finding = findBannedInMessages(decision.messages);
+      if (!finding || notified.has(finding.key)) return decision;
+      const sessionId = input?.agent?.session?.id ?? 'unknown';
+      const used = counts.get(sessionId) ?? 0;
+      if (used >= options.max) {
+        if (!notified.has(`suppressed:${sessionId}`)) {
+          notified.add(`suppressed:${sessionId}`);
+          options.log?.(`session ${sessionId}: ${options.max} notice(s) already sent, further breaches logged only`);
+        }
+        return decision;
+      }
+      notified.add(finding.key);
+      counts.set(sessionId, used + 1);
+      const text = selfCheckNotice(finding, state.locale);
+      const notice = { source: { kind: 'user' }, content: [{ type: 'text', text }] };
+      options.log?.(`session ${sessionId}: notice ${used + 1}/${options.max} for ${finding.glyphs.join(', ')} in ${finding.where}`);
+      return { ...decision, messages: [notice, ...(decision.messages ?? [])] };
+    } catch (error) {
+      options.warn?.(`self-check failed: ${error?.message ?? error}`);
+      return decision;
+    }
+  };
+}
+
 /**
  * Register the house-rules section.
  * @param {import('cordis').Context} ctx - plugin context (profile / agent plane).
@@ -489,4 +632,30 @@ export function apply(ctx, config) {
       }),
     'TastyLineOut: house rules section',
   );
+
+  // The self-check is the teeth. The rules above are a prompt, and a prompt cannot notice anything;
+  // this observes each step and, when the agent's own output broke the rule, puts one notice in front
+  // of the next step. Same event the disk-guard plugin uses; `next` is called exactly once.
+  if (initial.selfCheck !== false && typeof ctx.on === 'function') {
+    const max = typeof initial.selfCheckMax === 'number' && initial.selfCheckMax >= 0
+      ? Math.floor(initial.selfCheckMax)
+      : DEFAULT_SELFCHECK_MAX;
+    const hook = makeSelfCheckHook({
+      max,
+      resolve: () => {
+        const state = resolve();
+        return { enabled: state.enabled, locale: state.locale };
+      },
+      warn,
+      log: (message) => {
+        try {
+          ctx.logger?.info?.(`[house-rules] ${message}`);
+        } catch {
+          /* logging is not the point */
+        }
+      },
+    });
+    ctx.on('agent/pre-step', hook);
+    ctx.logger?.info?.(`[house-rules] self-check on: up to ${max} notice(s) per session`);
+  }
 }

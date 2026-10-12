@@ -67,6 +67,7 @@ required - with no file at all the two rules above are injected in English.
 - `kaomojiLibraryMax` caps how many faces reach the prompt (default 60).
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
 - `enabled: false` empties the section, so nothing is injected.
+- `selfCheck` (default true) and `selfCheckMax` (default 3) control the self-check below.
 
 ### The kaomoji library
 
@@ -93,6 +94,19 @@ counts the rest instead of printing them - a stable prefix, which also keeps the
 cacheable. The file path is always named, so an agent that wants the remainder can read it. For scale:
 the Chinese rendering of all 59 faces is about 1000 characters, the English about 1600.
 
+### The self-check: rules with teeth
+
+A prompt cannot notice anything, so the plugin also watches. It subscribes to `agent/pre-step`, which
+fires before each model step, and looks at what the agent itself just said. When its own prose or
+thinking carries a banned glyph, one notice goes in front of the next step: it names the code points
+and asks for words instead. Nothing in history is edited.
+
+- Judged: text and thinking the model authored. Not judged: tool results, file contents, fetched pages
+  - the rule tells the agent not to relay those, it does not blame it for what a runner prints.
+- Exempt: fenced and inline code, and the code-point references the rule itself asks for.
+- Once per offending message, with a notice budget per session (three by default); past the budget,
+  breaches are logged and nothing is injected.
+- `selfCheck: false` turns it off; `selfCheckMax` sets the budget.
 ### Why editing that file needs no restart
 
 The section registers `text` as a **function**. The prompt registry calls it while assembling the

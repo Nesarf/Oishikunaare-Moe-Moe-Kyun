@@ -225,6 +225,100 @@ check('the frequency floor is stated in both shipped locales', () => {
   assert.ok(mod.packagedRules('zh').rules.kaomoji.includes('\u6bcf\u4e94\u53e5\u81f3\u5c11\u4e00\u4e2a'));
 });
 
+// --- the self-check: the teeth ------------------------------------------------------------
+
+const CHECK = String.fromCodePoint(0x2713);
+const CROSS = String.fromCodePoint(0x2717);
+
+check('the judge reads prose and thinking, and stays quiet about code and code-point names', () => {
+  assert.deepEqual(mod.judgeAuthoredText(`all good ${CHECK}`), ['U+2713']);
+  assert.deepEqual(mod.judgeAuthoredText('pass / fail, nothing else'), []);
+  assert.deepEqual(mod.judgeAuthoredText(''), []);
+  // An example inside code is data, not the author's voice.
+  assert.deepEqual(mod.judgeAuthoredText('```\n' + CHECK + ' ok\n```'), []);
+  assert.deepEqual(mod.judgeAuthoredText('the runner printed `' + CHECK + '`'), []);
+  // And the rule itself asks for code-point references, which must not trip the check.
+  assert.deepEqual(mod.judgeAuthoredText('U+2713 is banned'), []);
+  assert.deepEqual(mod.judgeAuthoredText('named U+2713 and printed ' + CHECK), ['U+2713']);
+});
+
+check('only the assistant own channels are judged', () => {
+  const parts = mod.authoredParts([
+    { type: 'text', text: `mine ${CHECK}` },
+    { type: 'thinking', text: `thinking ${CROSS}` },
+    { type: 'tool-result', text: `tool said ${CHECK}` },
+    { type: 'image', data: 'ignored' },
+  ]);
+  assert.deepEqual(parts.map((p) => p.kind), ['text', 'thinking'], 'tool results are the world talking');
+});
+
+check('a breach in the newest assistant message is found; tool and user messages are not', () => {
+  const messages = [
+    { source: { kind: 'user' }, content: [{ type: 'text', text: `user wrote ${CHECK}` }] },
+    { source: { kind: 'tool' }, content: [{ type: 'text', text: `runner printed ${CHECK}` }] },
+    { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'clean reply' }] },
+  ];
+  assert.equal(mod.findBannedInMessages(messages), null, 'no assistant breach here');
+  messages.push({ id: 'm2', source: { kind: 'assistant' }, content: [{ type: 'thinking', text: `counted ${CROSS}` }] });
+  const found = mod.findBannedInMessages(messages);
+  assert.ok(found);
+  assert.deepEqual(found.glyphs, ['U+2717']);
+  assert.equal(found.where, 'thinking');
+  assert.equal(mod.findBannedInMessages([]), null);
+  assert.equal(mod.findBannedInMessages(undefined), null);
+});
+
+check('the notice names code points and never prints the glyph', () => {
+  const zh = mod.selfCheckNotice({ where: 'text', glyphs: ['U+2713'] }, 'zh');
+  const en = mod.selfCheckNotice({ where: 'thinking', glyphs: ['U+2717'] }, 'en');
+  assert.ok(zh.includes('U+2713'));
+  assert.ok(en.includes('SELF-CHECK'));
+  assert.deepEqual(mod.offendingGlyphs(zh + en), [], 'a warning that shows the glyph is another copy of it');
+});
+
+check('the hook injects one notice per breach, and respects its budget', async () => {
+  const notices = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 2,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+    log: (m) => notices.push(m),
+  });
+  const breach = (id) => ({ id, source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] });
+  const step = (messages) => hook({ agent: { session: { id: 's1' } }, messages }, async () => ({ kind: 'enter', messages }));
+
+  const first = await step([breach('m1')]);
+  assert.equal(first.messages.length, 2, 'the notice goes in front of the step messages');
+  assert.equal(first.messages[0].source.kind, 'user');
+  assert.ok(first.messages[0].content[0].text.includes('SELF-CHECK'));
+
+  const again = await step([breach('m1')]);
+  assert.equal(again.messages.length, 1, 'the same message is not notified twice');
+
+  const second = await step([breach('m1'), breach('m2')]);
+  assert.equal(second.messages.length, 3, 'a new message gets its own notice');
+
+  const third = await step([breach('m1'), breach('m2'), breach('m3')]);
+  assert.equal(third.messages.length, 3, 'past the budget nothing is injected');
+  assert.ok(notices.some((n) => n.includes('logged only')), 'and the suppression is recorded');
+
+  const clean = await step([{ id: 'm9', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'all good' }] }]);
+  assert.equal(clean.messages.length, 1);
+});
+
+check('the hook leaves disabled sessions and aborted steps alone', async () => {
+  const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
+  const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });
+  const disabled = await off({ agent: { session: { id: 's' } }, messages: [breach] }, async () => ({ kind: 'enter', messages: [breach] }));
+  assert.equal(disabled.messages.length, 1, 'a disabled section means no self-check either');
+
+  const on = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: true, locale: 'en' }) });
+  const aborted = await on({ agent: { session: { id: 's' } }, messages: [breach], signal: { aborted: true } }, async () => ({ kind: 'enter', messages: [breach] }));
+  assert.equal(aborted.messages.length, 1);
+
+  const stopped = await on({ agent: { session: { id: 's' } }, messages: [breach] }, async () => ({ kind: 'stop' }));
+  assert.equal(stopped.kind, 'stop', 'a non-enter decision passes through untouched');
+});
+
 check('editing the config file changes the prompt on the next read, with no restart', () => {
   const home = tempHome();
   const file = path.join(home, 'agent-house-rules.json');

@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.2.0 - 2026-10-12
+
+- The rules now have teeth. A prompt cannot notice anything, so the plugin also subscribes to
+  `agent/pre-step` - which fires before each model step with the conversation in hand - and looks at
+  what the agent itself just said. When its own prose or thinking carries a banned glyph, one notice
+  is placed in front of the next step naming the code points and asking for words instead.
+- It judges only channels the model authored: text and thinking. Tool results, file contents and
+  fetched pages are the world talking, and the rule tells the agent not to relay them rather than
+  holding it responsible for what a test runner prints.
+- Exemptions keep it from crying wolf: fenced code and inline code (an example is data), and the
+  code-point references the rule itself asks for. A warning that printed the offending glyph would
+  be another copy of the thing being banned, so the notice names code points only.
+- Each offending message is notified once, and a session has a notice budget (three by default).
+  Past it, breaches are logged and nothing is injected, because a hook that keeps talking becomes
+  the noise it exists to reduce. `selfCheck: false` turns the whole thing off, `selfCheckMax` sets
+  the budget.
+
+  Honest limit: the notice path is covered by unit tests that feed it synthetic messages, but no
+  live breach has been observed yet - two attempts to make a model emit a banned glyph on purpose
+  were both refused, which is the prompt rule working rather than the check being proven.
 ## 0.1.4 - 2026-10-12
 
 - The symbol ban was too narrow to be hard. An audit against the wider judgement-mark family
