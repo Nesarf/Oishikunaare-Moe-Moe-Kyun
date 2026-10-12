@@ -469,6 +469,55 @@ check('the hook speaks up when replies in a row carry no face', async () => {
   assert.equal(again.messages.length, 1, 'the run is announced once, not every step');
 });
 
+check('the newest bare reply is found, and structure is not one', () => {
+  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const face = '(\u30fb\u03c9\u30fb)';
+
+  assert.equal(mod.newestBareReply([mk('Two sentences. No face.')]), 'Two sentences. No face.');
+  assert.equal(mod.newestBareReply([mk('fine ' + face)]), null, 'a face clears it');
+  assert.equal(mod.newestBareReply([]), null);
+  assert.equal(mod.newestBareReply(undefined), null);
+  assert.equal(mod.newestBareReply([mk('| a | b |\\n| - | - |')]), null, 'a table is not bare prose');
+  assert.equal(mod.newestBareReply([mk('- one\\n- two')]), null, 'bullets are structure too');
+  // Only the newest assistant message counts, whatever sits behind it.
+  assert.equal(mod.newestBareReply([mk('old ' + face), mk('new and bare.')]), 'new and bare.');
+});
+
+check('the steer notice asks for the reply again, in either locale', () => {
+  const zh = mod.steerNotice('zh');
+  const en = mod.steerNotice('en');
+  assert.ok(zh.includes('\u6700\u540e\u4e00\u6b65'), 'the zh text names the lever');
+  assert.ok(en.includes('one more pass'), 'the en text names it');
+  assert.ok(zh !== en && zh.includes('\u989c\u6587\u5b57') && en.includes('kaomoji'));
+  assert.ok(en.includes('same content'), 'and asks for the same reply rather than an appendix');
+});
+
+check('the steer decider is guarded on every side', () => {
+  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const bare = [mk('Two sentences. No face.')];
+  const faced = [mk('fine (\u30fb\u03c9\u30fb)')];
+  const state = { enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() };
+  const agentFor = (messages) => ({
+    session: { id: 'steer-unit', deriveMessages: () => messages },
+    steer: () => {},
+  });
+  const build = (enabled, max) => mod.makeSteerDecider({ enabled, max, resolve: () => state });
+
+  assert.equal(build(false, 5)({ agent: agentFor(bare), turn: 1, signal: {} }), null, 'off means off');
+  assert.equal(build(true, 5)({ agent: agentFor(faced), turn: 1, signal: {} }), null, 'a faced reply is left alone');
+  assert.equal(build(true, 5)({ agent: agentFor(bare), turn: 1, signal: { aborted: true } }), null, 'an aborted turn is left alone');
+  assert.equal(build(true, 5)({ agent: { session: { id: 's', deriveMessages: () => bare } }, turn: 1, signal: {} }), null, 'an agent without steer is left alone');
+  assert.equal(build(true, 5)({ agent: agentFor([]), turn: 1, signal: {} }), null, 'an empty transcript steers nothing');
+
+  const disabled = mod.makeSteerDecider({ enabled: true, max: 5, resolve: () => ({ ...state, enabled: false }) });
+  assert.equal(disabled({ agent: agentFor(bare), turn: 1, signal: {} }), null, 'a disabled section means no steering');
+
+  const one = build(true, 1);
+  assert.ok(one({ agent: agentFor(bare), turn: 7, signal: {} }) !== null, 'the first bare turn steers');
+  assert.equal(one({ agent: agentFor(bare), turn: 7, signal: {} }), null, 'never twice in one turn');
+  assert.equal(one({ agent: agentFor(bare), turn: 8, signal: {} }), null, 'and never past the session budget');
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

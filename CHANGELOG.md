@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.8.0 - 2026-10-13
+
+- The first two levers are both after the fact: the prompt section is read at assembly, and the pre-step
+  notice lands at the start of the NEXT step. So a turn that closes with prose and no kaomoji is noticed
+  only once it is already sent. DSH exposes one channel that is not after the fact - `agent/turn-stopping`
+  is awaited before the boundary commits, and a listener that steers keeps the turn open for one more
+  step - so the reminder can arrive while the reply is still the thing being written.
+- `kaomojiSteer` (default **false**) turns it on; `kaomojiSteerMax` (default 1) caps the extra passes per
+  session. Off by default because a steer costs a model step, and because the rule itself says a forced
+  kaomoji is worse than none: this is a lever to reach for when the habit demonstrably is not landing,
+  not a default behaviour nobody chose.
+- It is guarded on five sides: the newest reply has to be bare prose, the turn gets one steer at most,
+  the session gets its budget, a disabled section steers nothing, and a turn that already breached the
+  symbol or emoji rule is left to that rule. Structure still exempts - a reply made of tables or bullets
+  is exactly where the rule asks for none, so it is never steered for being face-less.
+- The steering text asks for the reply it just gave rather than an appendix, in both locales, because
+  appended chatter would be worse than the miss.
+- Scope note: this lever is about the kaomoji habit only. The symbol ban and the emoji ban keep their own
+  notices and their own budgets; a turn is never steered twice over two rules.
+- test/selfcheck.mjs grows from 45 checks to 48 and test/acceptance.mjs from 14 to 17: the bare-reply
+  reader, the notice, every guard on the decider, that nothing registers while the switch is off, and
+  that a bare turn is steered exactly once within budget.
+
 ## 0.7.1 - 2026-10-13
 
 - The kaomoji floor was met in 4 of 207 replies across a full session, and the newest 25 replies

@@ -268,5 +268,56 @@ check('check-text judges a string the way the hook does', async () => {
   const allowed = run(['--text', 'all good, in words']);
   assert.equal(allowed.status, 0);
 });
+
+check('the steer lever stays off unless the config asks for it', async () => {
+  const off = makeHost();
+  mod.apply(off.ctx, { home: tempHome({ locale: 'en' }), shippedLibrary: SHIPPED });
+  assert.equal(off.listening('agent/turn-stopping'), false, 'nothing is registered by default');
+  assert.equal(off.logs.some((l) => l.includes('steer on')), false, 'and nothing is logged about it');
+});
+
+check('the steer lever keeps a bare turn open, once, within its budget', async () => {
+  const host = makeHost();
+  mod.apply(host.ctx, { home: tempHome({ locale: 'en', kaomojiSteer: true, kaomojiSteerMax: 1 }), shippedLibrary: SHIPPED });
+  assert.equal(host.listening('agent/turn-stopping'), true, 'the boundary is watched');
+  assert.ok(host.logs.some((l) => l.includes('steer on')), 'and the switch is reported at boot');
+
+  // Two short sentences with no face at all: the floor asks for one, so this turn is bare.
+  const conversation = [{ source: { kind: 'assistant' }, content: [{ type: 'text', text: 'First sentence. Second sentence.' }] }];
+  const steered = [];
+  const agent = {
+    session: { id: 'acc-steer', deriveMessages: () => conversation },
+    steer: (message) => steered.push(message),
+  };
+  const emit = (turn) => host.emit('agent/turn-stopping', { agent, turn, signal: new AbortController().signal }, () => undefined);
+
+  await emit(1);
+  assert.equal(steered.length, 1, 'one steer keeps the turn open for another step');
+  assert.equal(steered[0].source.kind, 'user');
+  assert.ok(steered[0].content[0].text.includes('one more pass'), 'and it asks for the reply again');
+
+  await emit(1);
+  assert.equal(steered.length, 1, 'the same turn is never steered twice');
+  await emit(2);
+  assert.equal(steered.length, 1, 'the session budget stops further passes');
+});
+
+check('the steer lever leaves a shaped reply alone', async () => {
+  const host = makeHost();
+  mod.apply(host.ctx, { home: tempHome({ locale: 'en', kaomojiSteer: true, kaomojiSteerMax: 3 }), shippedLibrary: SHIPPED });
+  const steered = [];
+  const emit = (text, turn) => host.emit('agent/turn-stopping', {
+    agent: { session: { id: 'acc-shaped', deriveMessages: () => [{ source: { kind: 'assistant' }, content: [{ type: 'text', text }] }] }, steer: (m) => steered.push(m) },
+    turn,
+    signal: new AbortController().signal,
+  }, () => undefined);
+
+  await emit('| a | b |\n| - | - |', 1);
+  assert.equal(steered.length, 0, 'a reply made of a table is where the rule asks for none');
+  await emit('- bullet one\n- bullet two', 2);
+  assert.equal(steered.length, 0, 'a reply made of bullets is structure too');
+  await emit('A single plain sentence.', 3);
+  assert.equal(steered.length, 1, 'a single plain sentence is bare, and gets the extra pass');
+});
 console.log(`\n${failures === 0 ? 'all acceptance checks pass' : failures + ' acceptance check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

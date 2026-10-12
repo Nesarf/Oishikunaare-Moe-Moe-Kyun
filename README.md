@@ -127,6 +127,15 @@ and asks for words instead. Nothing in history is edited.
   The run notice says so directly instead of repeating the floor arithmetic.
 - `selfCheck: false` turns it off; `selfCheckMax` sets the symbol budget, `kaomojiCheckMax` (5) the
   kaomoji one and `emojiCheckMax` (2) the emoji one, so a strict rule cannot spend a soft rule budget.
+- The last lever is opt-in: **`kaomojiSteer`** (default false) watches `agent/turn-stopping`, and when a
+  turn is about to close with prose and no kaomoji at all it steers one short message that keeps the turn
+  open for another step, so the reminder arrives while the reply is still being written rather than at the
+  start of the next one. `kaomojiSteerMax` (default 1) caps the extra passes per session. It is off by
+  default because a steer costs a model step and a forced kaomoji is worse than none - reach for it when
+  the habit demonstrably is not landing. Five guards apply: bare prose only, one steer per turn, a session
+  budget, nothing while the section is disabled, and nothing on a turn that already breached the symbol or
+  emoji rule. Structure still exempts, so a reply made of tables or bullets is never steered for being
+  face-less.
 
 ### What each judge does with an exception, and how the strict one seeds itself
 
