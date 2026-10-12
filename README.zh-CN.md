@@ -127,9 +127,19 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 - 本机**明文配置语言为中文**：`E:\dsh-home\agent-house-rules.json` 内容是
   `{"locale": "zh", "enabled": true}`。删掉这个文件就会退回英文内置默认。
 - 本机 `$DSH_HOME` 为 `E:\dsh-home`。
-- **本机 git 只能走 SSH 到 github.com**（HTTPS 会 connect timeout），因此全局配置了传输替换：
-  `git config --global url."git@github.com:".insteadOf "https://github.com/"`。
-  记录下来的 URL 仍是 HTTPS 形态，所以换台机器照样能装；只有本机这一步走 SSH。
+- **本机的出网兜底是 mihomo**（MAOMAOYUNAPP 内置的 `mihomo-windows-386`）。可用代理口是
+  `127.0.0.1:10090`（也就是 Windows 系统代理里登记的那个口）。注意别把 `9790` 当代理：
+  那是 mihomo 自己的 API（`GET /` 返回 `{"hello":"mihomo"}`），**不接 CONNECT**，
+  拿它当代理只会拿到 405。本机未开 TUN（默认路由仍在 WLAN 网关上），所以兜底只有两条路：
+  显式代理，或系统代理。
+  已落地的配置：`git config --global http.proxy http://127.0.0.1:10090`，
+  以及 `$DSH_HOME/.env` 里的 `HTTP_PROXY` / `HTTPS_PROXY` / `NO_PROXY`。
+  实测证据：`git ls-remote` 的 `GIT_CURL_VERBOSE` 里出现
+  `Establishing HTTP proxy tunnel to github.com:443`；`curl -x http://127.0.0.1:10090
+  https://api.github.com/` 返回 200 且比直连更快。
+  > 早先这个位置写的是「本机只能走 SSH，所以全局加了 `url.insteadOf` 传输替换」。
+  > 那条已经不成立：替换只是绕开了当时那次连接被重置，用代理才是正解，
+  > 现在 `.insteadOf` 已移除，git 与 pnpm 都能直接走 HTTPS。
 - 验收方式（不需要宿主日志，DSH 默认不落盘）：用 headless 起一次真启动并加一个临时 overlay，
   见上文「确认运行中的宿主真的收到了纪律」。本机已于 2026-10-12 用这条路验证通过：
   agent 复述出了中文规则原文与码位清单，且回答本身不含任何被禁符号。
