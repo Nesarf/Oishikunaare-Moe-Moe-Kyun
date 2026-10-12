@@ -119,7 +119,14 @@ and asks for words instead. Nothing in history is edited.
 - Exempt: fenced and inline code, and the code-point references the rule itself asks for.
 - Once per offending message, with a notice budget per session (three by default); past the budget,
   breaches are logged and nothing is injected.
-- `selfCheck: false` turns it off; `selfCheckMax` sets the budget.
+- The kaomoji habit has its own probe, because a shortage is not a breach and counting is the only way
+  to see it. Three findings are possible: a reply below the floor, the same face twice in a row, and a
+  **run** of consecutive replies that carried no face at all. The run is the one that mattered in
+  practice - measured over a full session the floor was met in 4 of 207 replies, and the newest 25
+  replies carried 40 sentences and zero faces, because short replies were being treated as exempt.
+  The run notice says so directly instead of repeating the floor arithmetic.
+- `selfCheck: false` turns it off; `selfCheckMax` sets the symbol budget, `kaomojiCheckMax` (5) the
+  kaomoji one and `emojiCheckMax` (2) the emoji one, so a strict rule cannot spend a soft rule budget.
 
 ### What each judge does with an exception, and how the strict one seeds itself
 

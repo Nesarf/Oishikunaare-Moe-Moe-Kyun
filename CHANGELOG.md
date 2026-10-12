@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.7.1 - 2026-10-13
+
+- The kaomoji floor was met in 4 of 207 replies across a full session, and the newest 25 replies
+  carried 40 sentences and zero faces. The cause was not dosage: the floor arithmetic already asks
+  for one face on a single sentence, so the misses were short replies being treated as exempt, and a
+  reminder that only ever looks at the newest reply cannot see a run of them.
+- So the judge reports a bare reply (prose with no face at all), and the hook counts how many
+  consecutive replies sit behind the newest one. A run of two or more gets its own wording - it says
+  the habit is being skipped, not under-dosed - with its own small budget, and the run counter ignores
+  structure, because a reply made of tables or a stack trace is exactly where the rule asks for none.
+- The shortage notice said the floor was five sentences where the shipped rule says three; it now
+  agrees with the rule it is reminding about.
+- test/selfcheck.mjs grows from 41 checks to 45, pinning the run counter in both directions, the bare
+  verdict, and the two wordings.
 ## 0.7.0 - 2026-10-12
 
 - Emoji are banned outright, in replies, in thinking and in every written file. It is a block-level

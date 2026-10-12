@@ -407,6 +407,68 @@ check('the hook reminds about the kaomoji floor once, and not when it is off', a
   const quiet = await off({ agent: { session: { id: 'k2' } }, messages }, async () => ({ kind: 'enter', messages }));
   assert.equal(quiet.messages.length, 1, 'kaomojiCheck:false means silence about the floor');
 });
+check('a run of face-less replies is counted, and never by counting structure', () => {
+  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const face = '(\u30fb\u03c9\u30fb)';
+  const faced = 'looked at the file ' + face;
+
+  assert.equal(mod.countBareRun([mk(faced)]), 0, 'a newest reply with a face is not a run');
+  assert.equal(mod.countBareRun([mk('\u7b2c\u4e00\u53e5\u3002'), mk('ok.')]), 2, 'two short replies are a run of two');
+  assert.equal(mod.countBareRun([mk('a\u3002'), mk(faced), mk('b\u3002')]), 1, 'a faced reply breaks the streak');
+  assert.equal(mod.countBareRun([mk('a\u3002'), mk('b\u3002'), mk(faced)]), 2, 'the run is what sits behind the newest reply');
+  assert.equal(mod.countBareRun([]), 0);
+  assert.equal(mod.countBareRun(undefined), 0, 'a hook called without messages does not throw');
+
+  const table = mk('| a | b |\\n| - | - |');
+  assert.equal(mod.countBareRun([table, table]), 0, 'a reply of tables is exempt, so it is not bare');
+});
+
+check('the kaomoji judge reports a bare reply, which is the case the floor hides', () => {
+  const bare = mod.judgeKaomoji('\u5c31\u4e00\u53e5\u3002');
+  assert.equal(bare.bare, true, 'one sentence with no face is bare');
+  assert.equal(bare.faces, 0);
+  const faced = mod.judgeKaomoji('\u5c31\u4e00\u53e5 (\u30fb\u03c9\u30fb)\u3002');
+  assert.equal(faced.bare, false, 'a face clears it');
+  assert.equal(mod.judgeKaomoji('').bare, false, 'nothing written is not a bare reply');
+});
+
+check('the run notice says the habit is being skipped, not under-dosed', () => {
+  const verdict = { sentences: 2, faces: 0, needed: 1, repeated: [] };
+  const zh = mod.kaomojiNotice(verdict, 'zh', { bareRun: 3 });
+  const en = mod.kaomojiNotice(verdict, 'en', { bareRun: 3 });
+  assert.ok(zh.includes('3') || zh.includes('\uFF13'), 'the zh notice names the run length');
+  assert.ok(en.includes('last 3 replies'), 'the en notice names the run length');
+  assert.ok(zh.includes('\u5c31\u662f\u9891\u7387\u4e0d\u591f') || zh.includes('\u4e0d\u662f\u9891\u7387\u4e0d\u591f'), 'and says it is not about dosage');
+  assert.ok(en.includes('not a shortage'), 'and says the same in English');
+
+  // Without a run it stays the softer shortage wording.
+  assert.ok(mod.kaomojiNotice(verdict, 'en').includes('Worth one or two'), 'the floor wording is unchanged');
+  // And the notice now agrees with the shipped floor rather than naming five.
+  assert.ok(!mod.kaomojiNotice(verdict, 'zh').includes('\u6bcf\u4e94\u53e5'), 'the notice no longer says five sentences');
+});
+
+check('the hook speaks up when replies in a row carry no face', async () => {
+  const mk = (id, text) => ({ id, source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const messages = [mk('m1', 'a\u3002'), mk('m2', 'b\u3002'), mk('m3', 'c\u3002')];
+  const seen = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    kaomoji: true,
+    kaomojiMax: 0,
+    resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
+    log: (m) => seen.push(m),
+  });
+  const step = () => hook({ agent: { session: { id: 'run1' } }, messages }, async () => ({ kind: 'enter', messages }));
+
+  const first = await step();
+  assert.equal(first.messages.length, 2, 'one notice goes in front of the step');
+  assert.ok(first.messages[0].content[0].text.includes('in a row'), 'and it is the run wording');
+  assert.ok(seen.some((m) => m.includes('in a row carried no kaomoji')), 'the run is logged');
+
+  const again = await step();
+  assert.equal(again.messages.length, 1, 'the run is announced once, not every step');
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

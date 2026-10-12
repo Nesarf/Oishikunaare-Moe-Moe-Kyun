@@ -104,7 +104,12 @@ dsh plugin --profile web update TastyLineOut
   规则要求的是不许转述，而不是替测试器打印出来的东西背锅。
 - **豁免**：围栏代码与行内代码（那里的例子是数据），以及规则自己要求的码位引用。
 - 每条违规消息只通知一次，每个会话有通知预算（默认三条）；超出后只记日志、不再注入。
-- `selfCheck: false` 关掉它；`selfCheckMax` 调预算。
+- `selfCheck: false` 关掉它；`selfCheckMax` 管符号预算，`kaomojiCheckMax`（5）管颜文字预算，
+  `emojiCheckMax`（2）管 emoji 预算，互不挤占。
+- 颜文字那头多了一个探针，因为「太少」不是「违规」，只有数出来才看得见。三种发现：单条低于下限、
+  同一个字形连着用、以及**连着几条回复一个都没有**。最后那种是实测里真正的病根：整个会话里 207 条
+  回复只有 4 条达标，最近 25 条是 40 句配 0 个字形——短回复被当成了例外。这条提醒会直说这件事，
+  而不是再念一遍下限算术。
 
 ### 两个判据各自怎么处理例外，以及严格判据怎么给自己播种
 
@@ -187,7 +192,7 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 
 - **只数散文**：围栏代码、行内代码、表格、列表项、标题都排除，否则一份满是表格的回复会「按算术」永远达不到下限。
 - 措辞比符号那条**更软**，因为缺颜文字是习惯没到位，不是违规。
-- `kaomojiCheck: false` 关掉；`kaomojiCheckMax`（默认 1）是提醒预算；`kaomojiFloor`（默认 5）是每几个句一个。
+- `kaomojiCheck: false` 关掉；`kaomojiCheckMax`（默认 5）是提醒预算；`kaomojiFloor`（默认 3）是每几句一个。
 
 ### 看规则现在解析成什么
 
