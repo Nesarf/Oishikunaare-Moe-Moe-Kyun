@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.6.0 - 2026-10-12
+
+- The kaomoji floor is raised from one per five sentences to one per three, and text now says two
+  sentences or more carries one while four or five carrying two reads right. The old sentence was
+  reachable by a reply that showed a single face and called it done.
+- The reminder budget goes from one per session to four. That was the real defect: a single reminder
+  fired early and never again, so the rule had exactly one chance to change anything. Measured before
+  the change: one kaomoji per 22.5 sentences, floor met in 3 of 162 messages.
+- Verification pins the words and the judge together: the shipped locales must say three, and the
+  judge default must agree, because a floor that says three while the judge asks for five is a rule
+  that quietly stops being the rule it claims to be. Both live settings are read per turn, so the
+  stricter floor applies from the next step; the rule text needs a host restart.
 ## 0.5.0 - 2026-10-12
 
 - The kaomoji rule got the check the symbol rule already had, because measurement said it needed one:

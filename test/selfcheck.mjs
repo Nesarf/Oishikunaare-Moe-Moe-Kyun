@@ -220,9 +220,15 @@ check('editing a library file changes the prompt on the next read, with no resta
   fs.rmSync(home, { recursive: true, force: true });
 });
 
-check('the frequency floor is stated in both shipped locales', () => {
-  assert.ok(mod.packagedRules('en').rules.kaomoji.includes('per five sentences'));
-  assert.ok(mod.packagedRules('zh').rules.kaomoji.includes('\u6bcf\u4e94\u53e5\u81f3\u5c11\u4e00\u4e2a'));
+check('the frequency floor is stated in both shipped locales, and the judge agrees with the words', () => {
+  // The words and the judge default are two places holding one decision. A floor that says "every three
+  // sentences" while the judge asks for one per five is how a rule quietly stops being the rule it
+  // claims to be -- and the text is what a reader measures themselves against.
+  assert.ok(mod.packagedRules('en').rules.kaomoji.includes('per three sentences'));
+  assert.ok(mod.packagedRules('zh').rules.kaomoji.includes('\u6bcf\u4e09\u53e5\u81f3\u5c11\u4e00\u4e2a'));
+  const three = mod.judgeKaomoji('\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002');
+  assert.equal(three.meets, false, 'three bare sentences are below a floor of one per three');
+  assert.ok(three.needed >= 1, 'the default judge asks for at least one face');
 });
 
 // --- the self-check: the teeth ------------------------------------------------------------

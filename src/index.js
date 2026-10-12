@@ -79,8 +79,8 @@ const PACKAGED = {
     ].join('\n'),
     kaomoji: [
       'KAOMOJI HABIT. Use Japanese-style emoticons (kaomoji) in conversation, and in your own thinking as',
-      'well. This is a floor, not a garnish: at least one kaomoji per five sentences, so a reply of five',
-      'sentences or more carries at least one. Place them at the end of a sentence or paragraph, never',
+      'well. This is a floor, not a garnish: at least one kaomoji per three sentences, and any reply of two',
+      'sentences or more carries one; four or five sentences carrying two reads right. Place them at the end',
       'stacked, and never wedged next to a stack trace, a table of numbers, or a serious conclusion - those',
       'places take none at all.',
       'Rotate faces rather than reusing one: a palette ships with this rule, and the same face twice in a row',
@@ -109,7 +109,7 @@ const PACKAGED = {
     ].join('\n'),
     kaomoji: [
       '\u3010\u989C\u6587\u5B57\u4E60\u60EF\u3011\u5728\u5BF9\u8BDD\u91CC\u3001\u4EE5\u53CA\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\uFF0C\u90FD\u7528\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8FD9\u662F**\u4E0B\u9650\u800C\u4E0D\u662F\u70B9\u7F00**\uFF1A',
-      '\u6BCF\u4E94\u53E5\u81F3\u5C11\u4E00\u4E2A\uFF0C\u6240\u4EE5\u4E94\u53E5\u4EE5\u4E0A\u7684\u56DE\u590D\u81F3\u5C11\u5E26\u4E00\u4E2A\uFF1B\u653E\u5728\u53E5\u672B\u6216\u6BB5\u672B\uFF0C\u4E0D\u5806\u780C\u3002',
+      '\u6BCF\u4E09\u53E5\u81F3\u5C11\u4E00\u4E2A\uFF1B\u4E24\u53E5\u4EE5\u4E0A\u7684\u56DE\u590D\u81F3\u5C11\u5E26\u4E00\u4E2A\uFF0C\u56DB\u4E94\u53E5\u5E26\u4E24\u4E2A\u624D\u50CF\u4E0A\u8BDD\u3002\u653E\u5728\u53E5\u672B\u6216\u6BB5\u672B\uFF0C\u4E0D\u5806\u780C\u3002',
       '\u5DE5\u5177\u62A5\u9519\u3001\u4E25\u8083\u7ED3\u8BBA\u3001\u6210\u6BB5\u7684\u4EE3\u7801\u6216\u6570\u636E\u65C1\u8FB9\u4E00\u4E2A\u90FD\u4E0D\u8981\u6302\u3002',
       '\u6362\u7740\u7528\uFF0C\u4E0D\u8981\u53CD\u590D\u7528\u540C\u4E00\u4E2A\uFF1A\u672C\u89C4\u5219\u968F\u9644\u4E00\u4EFD\u989C\u6587\u5B57\u5E93\uFF0C\u540C\u4E00\u4E2A\u5B57\u5F62\u8FDE\u7740\u51FA\u73B0\u4E24\u6B21\u5C31\u50CF\u62BD\u52A8\u3002',
       '\u81EA\u7136\u4ECD\u7136\u4F18\u5148\u4E8E\u9891\u7E41\uFF1A\u4E0D\u5408\u573A\u5408\u7684\u989C\u6587\u5B57\uFF0C\u6BD4\u6CA1\u6709\u66F4\u7CDF\u3002',
@@ -747,7 +747,7 @@ const faceKey = (face) => face.replace(/^[\u0028\uFF08]|[\u0029\uFF09]$/g, '').r
  * @returns {{ sentences: number, faces: number, needed: number, meets: boolean, repeated: string[] }} the verdict.
  */
 export function judgeKaomoji(text, options = {}) {
-  const floor = Number.isFinite(options.floor) && options.floor > 0 ? Math.floor(options.floor) : 5;
+  const floor = Number.isFinite(options.floor) && options.floor > 0 ? Math.floor(options.floor) : 3;
   const prose = proseOnly(text);
   const sentences = proseSentences(prose);
   const faces = findKaomoji(prose);
@@ -852,7 +852,7 @@ export function makeSelfCheckHook(options) {
       // The kaomoji rule: a shortage rather than a breach, and it has its own small budget, because a
       // hook that repeats itself about a missing habit becomes the noise it exists to reduce.
       if (options.kaomoji !== false) {
-        const floor = Number.isFinite(options.kaomojiFloor) && options.kaomojiFloor > 0 ? Math.floor(options.kaomojiFloor) : 5;
+        const floor = Number.isFinite(options.kaomojiFloor) && options.kaomojiFloor > 0 ? Math.floor(options.kaomojiFloor) : 3;
         for (let index = messages.length - 1; index >= 0; index--) {
           const message = messages[index];
           if (message?.source?.kind !== 'assistant') continue;
@@ -954,8 +954,8 @@ export function apply(ctx, config) {
     const hook = makeSelfCheckHook({
       max,
       kaomoji: initial.kaomojiCheck !== false,
-      kaomojiFloor: typeof initial.kaomojiFloor === 'number' ? initial.kaomojiFloor : 5,
-      kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 1,
+      kaomojiFloor: typeof initial.kaomojiFloor === 'number' ? initial.kaomojiFloor : 3,
+      kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 4,
       // The judge travels with the rules: it is rebuilt whenever the config or the palette changes, so
       // switching mode mid-session takes effect on the next step instead of needing a restart.
       resolve: () => {
