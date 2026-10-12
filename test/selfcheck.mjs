@@ -79,6 +79,26 @@ check('offendingGlyphs finds banned glyphs and clears clean text', () => {
   assert.deepEqual(found, ['U+2713']);
 });
 
+check('the ban covers the whole judgement-mark family, and decorates are left alone', () => {
+  // The set the ban must cover: every glyph a test runner, a checklist, a table or a chat client
+  // reaches for when it means pass or fail. Named here so a future edit cannot quietly shrink it -
+  // this is the audit, pinned.
+  const mustCover = [
+    0x2713, 0x2714, 0x2717, 0x2718, 0x2705, 0x274c, 0x274e, 0x2611, 0x2612, 0x00d7,
+    0x2715, 0x2716, 0x221a, 0x221b, 0x271d, 0x2720,
+    0x1f44d, 0x1f44e, 0x1f44c, 0x270a, 0x270b, 0x270c, 0x26aa, 0x26ab, 0x2b1b, 0x2b1c,
+  ];
+  const found = new Set(mod.offendingGlyphs(mustCover.map((cp) => String.fromCodePoint(cp)).join('')).map((s) => Number.parseInt(s.slice(2), 16)));
+  const missing = mustCover.filter((cp) => !found.has(cp)).map((cp) => 'U+' + cp.toString(16).toUpperCase().padStart(4, '0'));
+  assert.deepEqual(missing, [], `the ban should cover these: ${missing.join(', ')}`);
+
+  // Decoration is not judgement: the palette uses hearts, notes and stars, so the ban must not
+  // swallow them, or the library becomes a violation of the rule that ships it.
+  for (const cp of [0x2665, 0x266a, 0x2727, 0x2606, 0x2605, 0x2666, 0x266b]) {
+    assert.deepEqual(mod.offendingGlyphs(String.fromCodePoint(cp)), [], `U+${cp.toString(16).toUpperCase()} should stay allowed`);
+  }
+});
+
 check('buildRules text never carries a banned glyph (en and zh)', () => {
   for (const locale of ['en', 'zh', 'zh-CN', 'ja', '']) {
     const built = mod.buildRules({ userConfig: { locale }, loadRulesFile: () => null });
@@ -132,7 +152,9 @@ check('append is added last', () => {
 
 check('an empty rule disables only that rule', () => {
   const built = mod.buildRules({ userConfig: { locale: 'en', kaomoji: '' } });
-  assert.ok(!/kaomoji/i.test(built.text));
+  // The ban rule now mentions the word kaomoji (it exempts decorative marks inside one), so the
+  // assertion has to look for the rule's own opening rather than the word.
+  assert.ok(!built.text.includes('KAOMOJI HABIT'));
   assert.ok(built.text.includes('U+2713'));
 });
 

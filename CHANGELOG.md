@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.4 - 2026-10-12
+
+- The symbol ban was too narrow to be hard. An audit against the wider judgement-mark family
+  found the code-point list covered 9 glyphs and missed 19: the multiplication signs a table uses
+  for no, the squared variant of the cross, tick-shaped roots, and the hand emoji. The list now
+  names 26, and the audit is pinned as a test so a future edit cannot quietly shrink it.
+- Decorative marks are exempt on purpose: a heart, a note or a star inside a kaomoji is not a
+  judgement, and the shipped palette uses them. The test asserts both directions.
+- Scope now names tool output: a test runner, a table or a web page that hands over these glyphs
+  must be reported in words rather than pasted through, because the transcript is context.
+  Markdown task-list checkboxes are named too, for the same reason.
+- The rule states its own weakness instead of hiding it: naming what is banned is what a reader
+  can act on, an allow-list would be tighter, and that is the honest next step.
 ## 0.1.3 - 2026-10-12
 
 - The kaomoji rule became a floor instead of a garnish: at least one kaomoji per five sentences, so

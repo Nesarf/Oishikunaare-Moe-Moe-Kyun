@@ -56,14 +56,24 @@ const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PACKAGED = {
   en: {
     bannedSymbols: [
-      'OUTPUT SYMBOL DISCIPLINE. Do not use check-mark or cross glyphs in a reply, do not use them in any file you write,',
-      'and do not use them in your own thinking either - the thinking transcript is context too, and it is re-read on later turns.',
-      'The set meant here is the judgement-mark family: U+2713 / U+2714 (check marks), U+2717 / U+2718 (crosses),',
-      'U+2705 (white heavy check mark), U+274C (cross mark), U+2611 / U+2612 (ballot box with check or with X),',
-      'and U+00D7 used as a judgement mark. In other words: the little pictures that mean pass or fail - none of them.',
-      'Reason: they pollute context and regression parameters. A file written today, and a thought recorded today, are both',
-      'read back into context later, so the ban covers files and thinking, not just replies.',
-      'Say it in words instead: pass / fail, works / broken, applied / not applied, yes / no, or just a normal sentence.',
+      'OUTPUT SYMBOL DISCIPLINE. This covers your reply, your own thinking, every file you write, and any',
+      'tool output you relay - a transcript is context, and context is read back.',
+      'The judgement-mark family, named by code point so the rule itself does not carry the glyphs:',
+      'U+2713 / U+2714 (check marks), U+2717 / U+2718 (crosses), U+2705 / U+274C / U+274E (heavy and squared',
+      'variants), U+2611 / U+2612 (ballot boxes), U+00D7 / U+2715 / U+2716 (multiplication signs used as a no),',
+      'U+221A / U+221B (tick-shaped roots), U+271D / U+2720 (crosses), U+1F44D / U+1F44E / U+1F44C / U+270A /',
+      'U+270B / U+270C (hand signs), U+26AA / U+26AB / U+2B1B / U+2B1C (circles and squares). None of these.',
+      'Decorative marks are fine where they decorate: a heart, a note or a star inside a kaomoji is not a',
+      'judgement, and the palette below uses them.',
+      'Do not relay them either. When a test runner, a table or a web page hands you these glyphs, say what',
+      'they mean in words ("all 12 pass", "column 3 is empty") instead of pasting them through; to refer to',
+      'one, name its code point as this rule does.',
+      'Reason: they pollute context and regression parameters, and a file written today is read back later.',
+      'On why this is a list of what is banned rather than an allow-list: a reader can act on the ban, and the',
+      'list is audited against a wider candidate set by the test suite. An allow-list would be tighter, and is',
+      'the honest next step rather than a claim this list already makes.',
+      'Say it in words instead: pass / fail, works / broken, applied / not applied, yes / no, or a sentence.',
+      'This includes Markdown task lists: no checkbox glyphs there either, since they land in the transcript.',
     ].join('\n'),
     kaomoji: [
       'KAOMOJI HABIT. Use Japanese-style emoticons (kaomoji) in conversation, and in your own thinking as',
@@ -79,11 +89,21 @@ const PACKAGED = {
   },
   zh: {
     bannedSymbols: [
-      '\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u3011\u56DE\u590D\u91CC\u4E0D\u8981\u7528\uFF0C\u4F60\u5199\u51FA\u7684\u6587\u4EF6\u91CC\u4E0D\u8981\u7528\uFF0C\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\u4E5F\u4E0D\u8981\u7528 \u2014\u2014 \u601D\u8003\u8FC7\u7A0B\u540C\u6837\u662F\u4E0A\u4E0B\u6587\uFF0C\u540E\u9762\u7684\u8F6E\u6B21\u4F1A\u518D\u8BFB\u5230\u5B83\u3002\u6240\u6307\u662F\u300C\u5BF9\u9519\u6807\u8BB0\u7C7B\u300D\u7B26\u53F7\uFF1A',
-      'U+2713 / U+2714\uff08\u5bf9\u52fe\uff09\u3001U+2717 / U+2718\uff08\u53c9\uff09\u3001U+2705\uff08\u767d\u8272\u7c97\u5bf9\u52fe\uff09\u3001U+274C\uff08\u53c9\u53f7\uff09\u3001U+2611 / U+2612\uff08\u5e26\u6846\u5bf9\u52fe\u4e0e\u53c9\uff09\uff0c',
-      '\u4ee5\u53ca U+00D7 \u4e58\u53f7\u5f53\u5bf9\u9519\u7b26\u53f7\u7528\u65f6\u3002\u6362\u53e5\u8bdd\u8bf4\uff1a\u5c4f\u5e55\u4e0a\u90a3\u4e9b\u8868\u793a\u300c\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u300d\u7684\u56fe\u5f62\u7b26\u53f7\uff0c\u4e00\u4e2a\u90fd\u4e0d\u8981\u51fa\u73b0\u3002',
-      '\u7406\u7531\u662F\u5B83\u4EEC\u4F1A\u6C61\u67D3\u4E0A\u4E0B\u6587\u4E0E\u56DE\u5F52\u53C2\u6570 \u2014\u2014 \u5199\u51FA\u7684\u6587\u4EF6\u3001\u8BB0\u4E0B\u7684\u601D\u8003\uFF0C\u65E5\u540E\u90FD\u4F1A\u88AB\u8BFB\u56DE\u4E0A\u4E0B\u6587\uFF0C\u6240\u4EE5\u6587\u4EF6\u4E0E\u601D\u8003\u91CC\u540C\u6837\u4E0D\u8BB8\u7528\u3002',
-      '\u6539\u7528\u7eaf\u6587\u5b57\u8868\u8fbe\uff1a\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u3001\u6210\u529f / \u5931\u8d25\u3001\u5df2\u751f\u6548 / \u672a\u751f\u6548\u3001\u662f / \u5426\uff0c\u6216\u76f4\u63a5\u7528\u6b63\u5e38\u53e5\u5b50\u8bf4\u660e\u3002',
+      '\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u3011\u8FD9\u4E00\u6761\u7BA1\u56DB\u5904\uFF1A\u4F60\u7684\u56DE\u590D\u3001\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u3001\u4F60\u5199\u51FA\u7684\u4EFB\u4F55\u6587\u4EF6\uFF0C\u4EE5\u53CA\u4F60\u8F6C\u8FF0\u7684\u5DE5\u5177\u8F93\u51FA\u3002',
+      '\u8F6C\u5F55\u672C\u8EAB\u5C31\u662F\u4E0A\u4E0B\u6587\uFF0C\u800C\u4E0A\u4E0B\u6587\u4F1A\u88AB\u8BFB\u56DE\u6765\u3002',
+      '\u6240\u6307\u662F\u300C\u5BF9\u9519\u6807\u8BB0\u7C7B\u300D\u7B26\u53F7\u3002\u8FD9\u91CC\u53EA\u70B9\u540D\u7801\u4F4D\uFF0C\u597D\u8BA9\u89C4\u5219\u672C\u8EAB\u4E0D\u643A\u5E26\u8FD9\u4E9B\u5B57\u5F62\uFF1A',
+      'U+2713 / U+2714\uFF08\u5BF9\u52FE\uFF09\u3001U+2717 / U+2718\uFF08\u53C9\uFF09\u3001U+2705 / U+274C / U+274E\uFF08\u7C97\u4F53\u4E0E\u65B9\u6846\u53D8\u4F53\uFF09\u3001',
+      'U+2611 / U+2612\uFF08\u5E26\u6846\u52FE\u53C9\uFF09\u3001U+00D7 / U+2715 / U+2716\uFF08\u5F53\u4F5C\u5426\u5B9A\u7528\u7684\u4E58\u53F7\uFF09\u3001U+221A / U+221B\uFF08\u52FE\u5F62\u7684\u6839\u53F7\uFF09\u3001',
+      'U+271D / U+2720\uFF08\u5341\u5B57\uFF09\u3001U+1F44D / U+1F44E / U+1F44C / U+270A / U+270B / U+270C\uFF08\u624B\u52BF\u8868\u60C5\uFF09\u3001',
+      'U+26AA / U+26AB / U+2B1B / U+2B1C\uFF08\u5706\u70B9\u4E0E\u65B9\u5757\uFF09\u3002\u4EE5\u4E0A\u4E00\u4E2A\u90FD\u4E0D\u8981\u51FA\u73B0\u3002',
+      '\u7EAF\u88C5\u9970\u7684\u7B26\u53F7\u53EF\u4EE5\u7528\u5728\u8BE5\u7528\u7684\u5730\u65B9\uFF1A\u989C\u6587\u5B57\u91CC\u7684\u7231\u5FC3\u3001\u97F3\u7B26\u3001\u661F\u661F\u4E0D\u662F\u5224\u65AD\uFF0C\u4E0B\u9762\u90A3\u4EFD\u989C\u6587\u5B57\u5E93\u5C31\u5728\u7528\u5B83\u4EEC\u3002',
+      '\u4E5F\u4E0D\u8BB8\u8F6C\u8FF0\uFF1A\u6D4B\u8BD5\u8F93\u51FA\u3001\u8868\u683C\u3001\u7F51\u9875\u628A\u8FD9\u7C7B\u5B57\u5F62\u9012\u5230\u4F60\u624B\u4E0A\u65F6\uFF0C\u7528\u6587\u5B57\u8BF4\u6E05\u5B83\u7684\u610F\u601D\uFF08\u300C12 \u9879\u5168\u8FC7\u300D\u300C\u7B2C 3 \u5217\u662F\u7A7A\u7684\u300D\uFF09\uFF0C',
+      '\u800C\u4E0D\u662F\u628A\u5B83\u4EEC\u7167\u642C\u8FDB\u6765\u3002\u786E\u5B9E\u9700\u8981\u6307\u4EE3\u67D0\u4E2A\u5B57\u5F62\u65F6\uFF0C\u5C31\u50CF\u672C\u6761\u4E00\u6837\u70B9\u5B83\u7684\u7801\u4F4D\u3002',
+      '\u7406\u7531\u662F\u5B83\u4EEC\u4F1A\u6C61\u67D3\u4E0A\u4E0B\u6587\u4E0E\u56DE\u5F52\u53C2\u6570 \u2014\u2014 \u4ECA\u5929\u5199\u51FA\u7684\u6587\u4EF6\u3001\u4ECA\u5929\u8BB0\u4E0B\u7684\u601D\u8003\uFF0C\u65E5\u540E\u90FD\u4F1A\u88AB\u8BFB\u56DE\u4E0A\u4E0B\u6587\u3002',
+      '\u4E3A\u4EC0\u4E48\u662F\u7981\u7528\u5217\u8868\u800C\u4E0D\u662F\u5141\u8BB8\u5217\u8868\uFF1A\u80FD\u88AB\u8BFB\u8005\u636E\u4EE5\u884C\u52A8\u7684\u662F\u300C\u7981\u4EC0\u4E48\u300D\uFF0C\u800C\u8FD9\u4EFD\u5217\u8868\u7531\u6D4B\u8BD5\u5BF9\u7740\u66F4\u5BBD\u7684\u5019\u9009\u96C6\u5BA1\u8BA1\u3002',
+      '\u5141\u8BB8\u5217\u8868\u4F1A\u66F4\u4E25\u5BC6\uFF0C\u90A3\u662F\u8BDA\u5B9E\u7684\u4E0B\u4E00\u6B65\uFF0C\u4E0D\u662F\u8FD9\u4EFD\u5217\u8868\u5DF2\u7ECF\u505A\u5230\u7684\u627F\u8BFA\u3002',
+      '\u6539\u7528\u7EAF\u6587\u5B57\u8868\u8FBE\uFF1A\u901A\u8FC7 / \u4E0D\u901A\u8FC7\u3001\u6210\u529F / \u5931\u8D25\u3001\u5DF2\u751F\u6548 / \u672A\u751F\u6548\u3001\u662F / \u5426\uFF0C\u6216\u76F4\u63A5\u7528\u6B63\u5E38\u53E5\u5B50\u8BF4\u660E\u3002',
+      '\u8FD9\u4E5F\u5305\u62EC Markdown \u4EFB\u52A1\u6E05\u5355 \u2014\u2014 \u90A3\u91CC\u7684\u590D\u9009\u6846\u5B57\u5F62\u540C\u6837\u4E0D\u8BB8\u7528\uFF0C\u5B83\u4EEC\u4E00\u6837\u4F1A\u843D\u8FDB\u8F6C\u5F55\u3002',
     ].join('\n'),
     kaomoji: [
       '\u3010\u989C\u6587\u5B57\u4E60\u60EF\u3011\u5728\u5BF9\u8BDD\u91CC\u3001\u4EE5\u53CA\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\uFF0C\u90FD\u7528\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8FD9\u662F**\u4E0B\u9650\u800C\u4E0D\u662F\u70B9\u7F00**\uFF1A',
@@ -97,8 +117,26 @@ const PACKAGED = {
   },
 };
 
-/** The glyphs the ban names by code point. Used only to name them in text, never to print them. */
-const JUDGEMENT_CODEPOINTS = ['U+2713', 'U+2714', 'U+2717', 'U+2718', 'U+2705', 'U+274C', 'U+2611', 'U+2612', 'U+00D7'];
+/**
+ * The glyphs the ban names by code point. Used only to name them in text, never to print them.
+ *
+ * The list is deliberately wider than the four a test runner emits: a table that means "no" reaches
+ * for the multiplication signs, a checklist for the squared variants, and a chat client for the hand
+ * emoji. Decorative marks (heart, note, star) are absent on purpose - the kaomoji palette uses them,
+ * and a judgement is not what they mean.
+ */
+const JUDGEMENT_CODEPOINTS = [
+  // the two marks a test runner or a checklist actually emits
+  'U+2713', 'U+2714', 'U+2717', 'U+2718',
+  // boxed, squared and heavy variants of the same pair
+  'U+2705', 'U+274C', 'U+274E', 'U+2611', 'U+2612', 'U+00D7',
+  // the multiplication signs a table uses to mean no
+  'U+2715', 'U+2716',
+  // tick-shaped maths and crosses
+  'U+221A', 'U+221B', 'U+271D', 'U+2720',
+  // binary-shape emoji and geometric marks that stand in for pass or fail
+  'U+1F44D', 'U+1F44E', 'U+1F44C', 'U+270A', 'U+270B', 'U+270C', 'U+26AA', 'U+26AB', 'U+2B1B', 'U+2B1C',
+];
 
 /**
  * Resolve `$DSH_HOME`, falling back to the platform's usual location.
