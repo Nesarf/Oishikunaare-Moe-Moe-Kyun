@@ -23,9 +23,7 @@ jobs:
         run: node scripts/check-ascii.mjs
       - name: Version sync
         run: node scripts/check-version.mjs
-      - name: Build lib/index.js
-        run: node scripts/build.mjs
+      - name: lib/index.js is not stale
+        run: node scripts/build.mjs --check
       - name: Selfcheck
         run: node test/selfcheck.mjs
-      - name: Built artifact differs from a fresh build
-        run: git diff --exit-code -- lib/index.js
