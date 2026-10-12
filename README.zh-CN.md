@@ -116,7 +116,7 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 - section 通过 `ctx.effect(...)` 里的 `ctx.systemPrompt.section()` 注册，卸载插件时会干净地摘掉。
 - `apply()` 接受行配置里的 `home`、`configFile`、`rulesDir` 三个输入，自检就是靠它们指向临时目录的。
 
-## 当前本机部署（0.1.0）
+## 当前本机部署
 
 作者本机（Windows）的实际情况，供日后对照：
 

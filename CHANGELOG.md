@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.1.1 - 2026-10-12
+
+- The rules now name the thinking transcript explicitly. It is context too: a thought recorded on
+  one turn is re-read on the next, so both disciplines cover thinking and not only replies -
+  symbol discipline states it, and kaomoji scope became "replies AND your own thinking",
+  because thinking is where the work happens and the last place that should sound like a machine.
+- Kaomoji dosage raised. The first wording capped it at "at most one or two in a single reply",
+  which reads as a ceiling and produced a habit that barely showed. It now says one or two is the
+  norm and three in a longer reply is natural - a baseline rather than a limit.
+
 ## 0.1.0 - 2026-10-12
 
 First release.
