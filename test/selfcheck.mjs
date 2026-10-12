@@ -497,5 +497,147 @@ check('dshHome prefers the environment over the profile default', () => {
   if (saved !== undefined) process.env.DSH_HOME = saved;
 });
 
+check('the emoji judge names real emoji and waves decoration through', () => {
+  // Assembled from code points so this test file stays readable without printing a picture.
+  const face = String.fromCodePoint(0x1f600);
+  const thumb = String.fromCodePoint(0x1f44d);
+  const wrench = String.fromCodePoint(0x1f527);
+  const skin = String.fromCodePoint(0x1f44d, 0x1f3fd);
+  const heart = String.fromCodePoint(0x2665);
+  const star = String.fromCodePoint(0x2605);
+  const note = String.fromCodePoint(0x266a);
+  const flower = String.fromCodePoint(0x273f);
+
+  assert.deepEqual(mod.offendingEmoji('plain text'), [], 'prose carries nothing to report');
+  assert.deepEqual(mod.offendingEmoji(face), ['U+1F600']);
+  assert.deepEqual(mod.offendingEmoji(thumb), ['U+1F44D']);
+  assert.deepEqual(mod.offendingEmoji(wrench), ['U+1F527'], 'an object emoji is still an emoji');
+  assert.deepEqual(mod.offendingEmoji(skin), ['U+1F44D', 'U+1F3FD'], 'the skin tone modifier is named too');
+  assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0xfe0f)), ['U+FE0F'], 'a bare variation selector is a breach');
+
+  // The palette is made of these, so the ban cannot refuse them without refusing its own library.
+  assert.deepEqual(mod.offendingEmoji(heart), [], 'a heart is decoration');
+  assert.deepEqual(mod.offendingEmoji(star), [], 'a star is decoration');
+  assert.deepEqual(mod.offendingEmoji(note), [], 'a note is decoration');
+  assert.deepEqual(mod.offendingEmoji(flower), [], 'a flower is decoration');
+  // And a kaomoji full of them passes whole.
+  assert.deepEqual(mod.offendingEmoji('(' + heart + '\u03c9' + heart + ')'), []);
+
+  // A code point named in prose is the rule talking, and a fenced block is someone else's output.
+  assert.deepEqual(mod.judgeEmoji('the block U+1F600 is banned'), [], 'U+XXXX in prose is not a picture');
+  assert.deepEqual(mod.judgeEmoji('\u0060\u0060\u0060\n' + face + '\n\u0060\u0060\u0060'), [], 'a fenced block is not the reply');
+  assert.deepEqual(mod.judgeEmoji('inline ' + '\u0060' + face + '\u0060' + ' span'), [], 'an inline span is not the reply');
+  assert.deepEqual(mod.judgeEmoji('a ' + thumb + ' here'), ['U+1F44D']);
+});
+
+check('both shipped locales ban emoji by block, and never print one', () => {
+  for (const locale of ['en', 'zh']) {
+    const rule = mod.packagedRules(locale).rules.kaomoji;
+    assert.ok(/U\+1F300/.test(rule), locale + ': the pictograph blocks are named');
+    assert.ok(/U\+1F600/.test(rule), locale + ': the face block is named');
+    assert.ok(/U\+1F680/.test(rule), locale + ': the transport block is named');
+    assert.ok(/U\+1F3FB/.test(rule), locale + ': the skin tone modifiers are named');
+    assert.ok(/U\+FE0F/.test(rule), locale + ': the variation selector is named');
+    assert.ok(/U\+200D/.test(rule), locale + ': the zero width joiner is named');
+    assert.deepEqual(mod.offendingEmoji(rule), [], locale + ': the rule text carries no emoji of its own');
+    assert.ok(rule.toLowerCase().includes('emoji'), locale + ': the ban says what it is about');
+  }
+});
+
+check('the hook notices emoji, keeps its own budget, and stays off when asked', async () => {
+  const face = String.fromCodePoint(0x1f600);
+  const messages = [{ id: 'e1', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'hello ' + face }] }];
+  const seen = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    emojiMax: 1,
+    resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() }),
+    log: (m) => seen.push(m),
+  });
+  const step = () => hook({ agent: { session: { id: 'e1' } }, messages }, async () => ({ kind: 'enter', messages }));
+
+  const first = await step();
+  assert.equal(first.messages.length, 2, 'one emoji notice goes in front of the step');
+  assert.ok(first.messages[0].content[0].text.includes('EMOJI BAN'), 'the notice names the rule');
+  assert.ok(first.messages[0].content[0].text.includes('U+1F600'), 'and names the code point, not the picture');
+  assert.ok(!first.messages[0].content[0].text.includes(face), 'the notice never reprints the glyph');
+
+  const again = await step();
+  assert.equal(again.messages.length, 1, 'the same breach is not announced twice past its budget');
+  assert.ok(seen.some((m) => m.includes('emoji notice')), 'the notice is logged');
+
+  const off = mod.makeSelfCheckHook({
+    max: 3,
+    emoji: false,
+    resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() }),
+  });
+  const quiet = await off({ agent: { session: { id: 'e2' } }, messages }, async () => ({ kind: 'enter', messages }));
+  assert.equal(quiet.messages.length, 1, 'emojiCheck:false means silence about emoji');
+});
+
+check('the emoji notice speaks the configured locale', () => {
+  const finding = { where: 'text', glyphs: ['U+1F600'] };
+  const zh = mod.emojiNotice(finding, 'zh');
+  const en = mod.emojiNotice(finding, 'en');
+  assert.ok(zh.includes('U+1F600') && en.includes('U+1F600'), 'both name the code point');
+  assert.ok(zh !== en, 'the two locales are not the same sentence');
+  assert.ok(!zh.includes(String.fromCodePoint(0x1f600)) && !en.includes(String.fromCodePoint(0x1f600)));
+  const second = mod.emojiNotice(finding, 'en', { attempt: 2 });
+  assert.ok(second.includes('#2'), 'a repeated reminder says which one it is');
+});
+
+check('the shipped library holds more than a thousand faces, all usable', () => {
+  const library = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const faces = library.categories.flatMap((c) => c.faces.map((f) => f.face));
+  assert.ok(library.categories.length >= 10, 'the library is grouped by mood, not one pile');
+  assert.ok(faces.length >= 1000, 'the library promises at least a thousand faces, found ' + faces.length);
+  assert.equal(new Set(faces).size, faces.length, 'no face may appear twice');
+  for (const category of library.categories) {
+    assert.ok(category.faces.length > 0, category.id + ' is empty');
+    assert.ok(typeof category.use === 'string' && category.use !== '', category.id + ' needs a use line');
+    assert.ok(typeof category.useZh === 'string' && category.useZh !== '', category.id + ' needs a zh use line');
+    assert.ok(category.labelZh && category.labelZh !== '', category.id + ' needs a zh label');
+  }
+  for (const entry of library.categories.flatMap((c) => c.faces)) {
+    assert.ok(entry.feel !== '' && entry.feelZh !== '', entry.face + ' needs both annotations');
+    assert.ok(entry.face.length >= 3 && entry.face.length <= 18, entry.face + ' is outside the length window');
+    assert.ok(/[^\x00-\x7f]/.test(entry.face), entry.face + ' is plain ASCII, so it is not a face');
+    const open = [...entry.face].filter((ch) => ch === '(' || ch === '\uFF08').length;
+    const shut = [...entry.face].filter((ch) => ch === ')' || ch === '\uFF09').length;
+    assert.equal(open, shut, entry.face + ' has unbalanced brackets');
+    assert.deepEqual(mod.offendingEmoji(entry.face), [], entry.face + ' carries something the emoji ban refuses');
+  }
+});
+
+check('the prompt block honours its ceiling and still names the file', () => {
+  const library = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const normalized = mod.normalizeLibrary(library);
+  const total = normalized.reduce((n, c) => n + c.faces.length, 0);
+
+  // A bracketed run is either a face or its annotation, so the ceiling is asserted on the block's own
+  // promise: the tail is counted, and a ceiling with room for everything says so instead of omitting.
+  const capped = mod.renderKaomojiLibrary(normalized, 'X:/kaomoji.json', { locale: 'en', max: 40 });
+  assert.ok(capped.includes('X:/kaomoji.json'), 'the file path is always named, so the rest is reachable');
+  const tail = /not shown \((\d+) more\)/.exec(capped);
+  assert.ok(tail, 'the tail is counted rather than silently dropped');
+  assert.equal(Number(tail[1]), total - 40, 'the count says how many were left out');
+  assert.ok(!capped.includes('full set ('), 'a capped block does not claim to be the full set');
+  assert.equal(capped.split('\n').length, 3, 'a tight ceiling is a heading, the first category, and the tally');
+
+  const whole = mod.renderKaomojiLibrary(normalized, 'X:/kaomoji.json', { locale: 'en', max: total });
+  assert.ok(whole.includes('full set (' + total + ' faces)'), 'a ceiling that fits everything says so');
+  assert.ok(!/not shown/.test(whole), 'and omits nothing');
+  assert.ok(whole.length > capped.length, 'a bigger ceiling prints more');
+
+  // The collapsed rendering is the escape hatch for a reader who wants the shapes without the prose.
+  // Counted by looking each face up rather than by splitting on spaces, because a face may itself
+  // carry a space (a fullwidth dozing mark does) and a whitespace count would lie about the total.
+  const compact = mod.renderKaomojiLibrary(normalized, 'X:/kaomoji.json', { locale: 'en', collapse: true });
+  const missing = normalized.flatMap((c) => c.faces.map((f) => f.face)).filter((face) => !compact.includes(face));
+  assert.deepEqual(missing, [], 'collapsed mode prints every face');
+  // A face may hold its own bracket, so the annotations are checked by their words instead.
+  assert.ok(!compact.includes('(upturned)') && !compact.includes(' eyes + '), 'and none of the annotations');
+});
+
 console.log(`\n${failures === 0 ? 'all checks pass' : failures + ' check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

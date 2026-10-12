@@ -10,16 +10,22 @@ that joins that standing scope: every preset, every workspace, every new convers
 too. That is the whole point of doing it here rather than in fifteen preset files - a preset is a copy,
 and a copy is a thing that drifts.
 
-Two rules ship today.
+Three rules ship today.
 
 1. **Symbol discipline** - no check-mark or cross judgement glyphs, in a reply or in a file the agent
    writes. Those glyphs pollute context and regression parameters, and a file written today is read
    back into context tomorrow, so the ban covers files and not just replies. Say it in words instead:
    pass / fail, works / broken, applied / not applied, yes / no.
-2. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
-   floor rather than as garnish: at least one per five sentences, so a reply of five sentences or
-   more carries at least one. Faces rotate rather than repeat, and places that take none take none -
-   a stack trace, a table of numbers, a serious conclusion.
+2. **No emoji** - zero, in replies, in the agent's own thinking and in every file it writes. The ban
+   is by block rather than by character list (pictographs, faces, transport, Miscellaneous Symbols,
+   the geometric shapes that carry emoji presentation, plus the variation selector, the zero width
+   joiner and the skin tone modifiers), because a list would need regenerating every Unicode release
+   and would still be incomplete. Decoration is carved out - a heart, a note, a star, a sparkle, a
+   flower - so the ban admits exactly the code points the loaded palette uses.
+3. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
+   floor rather than as garnish: at least one per three sentences, and any reply of two sentences or
+   more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none
+   take none - a stack trace, a table of numbers, a serious conclusion.
 
 ## Install
 
@@ -44,14 +50,14 @@ dsh plugin --profile web update TastyLineOut
 ## Configure
 
 `$DSH_HOME/agent-house-rules.json` is read **on every model step**, not just at boot. Nothing is
-required - with no file at all the two rules above are injected in English.
+required - with no file at all the three rules above are injected in English.
 
 ```json
 {
   "locale": "zh",
   "bannedSymbols": "replace the whole ban with your own wording",
   "kaomoji": "",
-  "append": "one more rule, added after the two above",
+  "append": "one more rule, added after the three above",
   "enabled": true
 }
 ```
@@ -64,19 +70,22 @@ required - with no file at all the two rules above are injected in English.
 - `kaomojiLibrary` picks the palette: `true`/absent for the shipped library, `false` to leave it out,
   a path or a list of paths for your own. **A list replaces the shipped file** - name the shipped path
   too if you want both.
-- `kaomojiLibraryMax` caps how many faces reach the prompt (default 60).
+- `kaomojiLibraryMax` caps how many faces reach the prompt (default 140).
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
 - `enabled: false` empties the section, so nothing is injected.
 - `selfCheck` (default true) and `selfCheckMax` (default 3) control the self-check below.
+- `emojiCheck` (default true), `emojiCheckMax` (default 2) and `emojiAllowExtra` control the emoji
+  ban and its notice budget.
 - `selfCheckMode`: `"deny"` (default) names the judgement-mark family and lets the rest through;
   `"allow"` permits only plainly-textual blocks and refuses everything else. `allowExtra` names
   characters or code points the allow-list should also accept.
 
 ### The kaomoji library
 
-`rules/kaomoji.json` ships 59 faces across nine moods (cheerful, calm, wry, troubled, shy,
-determined, puzzled, tired, affection), each with the mood it carries and a short label. The library
-is rendered into the prompt under the two rules, so an agent has a palette to draw from instead of
+`rules/kaomoji.json` ships 1150 faces across fourteen moods (cheerful, calm, wry, troubled, shy,
+determined, puzzled, tired, affection, fullwidth and framed, with arms, decorated, blushing and
+sweating, classic faces), each with the mood it carries and a short label. The library
+is rendered into the prompt under the rules, so an agent has a palette to draw from instead of
 reusing one face until it reads as a tic. Labels exist in both languages: `feel`/`use`/`label` are the
 English rendering, `feelZh`/`useZh`/`labelZh` the Chinese one.
 
@@ -95,7 +104,8 @@ shape:
 The prompt is not free, so the renderer takes faces in category order up to `kaomojiLibraryMax` and
 counts the rest instead of printing them - a stable prefix, which also keeps the prompt prefix
 cacheable. The file path is always named, so an agent that wants the remainder can read it. For scale:
-the Chinese rendering of all 59 faces is about 1000 characters, the English about 1600.
+the Chinese rendering of all 1150 faces is about 20 000 characters, which is exactly why the
+ceiling exists: the default 140 carries about 2400 characters of palette.
 
 ### The self-check: rules with teeth
 

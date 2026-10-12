@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.7.0 - 2026-10-12
+
+- Emoji are banned outright, in replies, in thinking and in every written file. It is a block-level
+  ban rather than a character list (pictographs, faces, transport, Miscellaneous Symbols, the
+  geometric shapes that carry emoji presentation, plus the variation selector, the zero width joiner
+  and the skin tone modifiers), because a list would need regenerating every Unicode release and
+  would still be incomplete. Decoration is carved out: a heart, a note, a star, a sparkle, a flower
+  and a solar mark are what the palette is made of, so the ban admits exactly the code points the
+  loaded library uses - a judge that refuses its own palette is broken, not strict.
+- The emoji ban has teeth of the same kind the symbol ban has: a breach in the newest assistant
+  message injects one notice at the next step, naming the code points and never reprinting the
+  glyph. It keeps its own budget (emojiCheckMax, default 2) so it cannot spend the symbol budget,
+  and emojiCheck: false turns it off. emojiAllowExtra admits further decorative marks.
+- The kaomoji library goes from 59 faces to 1150, in 14 mood categories. It is generated rather
+  than hand-written: scripts/gen-kaomoji.mjs composes each face from parts real kaomoji use (omega
+  and dot eyes, the de and tsu mouths, arabic and kannada marks, raised-sweat and hand signs), so a
+  combination reads like something a person wrote, and every axis entry carries its own annotation
+  so a face description is those annotations joined. Four gates keep it honest: uniqueness across
+  categories, a length window, at least one non-ASCII character, and balanced brackets.
+- The library would have been forty thousand faces without a cap, which is not a library anybody
+  reads. Each category now samples its candidates evenly against a quota, so the file lands at a
+  size a person can go through and every mood is represented.
+- The prompt ceiling for the library goes from 60 faces to 140 (kaomojiLibraryMax), because a
+  1150-face palette needs room to be a palette. A stable prefix keeps the prompt cacheable, the tail
+  is counted rather than printed, and the block still names the file so the rest stays reachable.
+- The kaomoji reminder budget goes from 4 per session to 5, aimed at the same measured problem the
+  last two releases chased: one face per 22.5 sentences where the rule asks for one per three.
+- scripts/gen-rules-json.mjs now generates rules/en.json and rules/zh.json from the packaged
+  constants, and npm run verify fails when either the locale files or the library drift from what
+  their sources produce. Two hand-kept copies of one decision is one copy too many.
+- test/selfcheck.mjs grows from 35 checks to 41, pinning the emoji judge, the decorative carve-out,
+  the notice and its budget, the block-level wording in both locales, and every promise the library
+  makes about itself.
 ## 0.6.0 - 2026-10-12
 
 - The kaomoji floor is raised from one per five sentences to one per three, and text now says two

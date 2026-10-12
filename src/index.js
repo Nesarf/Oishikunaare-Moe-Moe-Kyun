@@ -80,13 +80,22 @@ const PACKAGED = {
     kaomoji: [
       'KAOMOJI HABIT. Use Japanese-style emoticons (kaomoji) in conversation, and in your own thinking as',
       'well. This is a floor, not a garnish: at least one kaomoji per three sentences, and any reply of two',
-      'sentences or more carries one; four or five sentences carrying two reads right. Place them at the end',
-      'stacked, and never wedged next to a stack trace, a table of numbers, or a serious conclusion - those',
-      'places take none at all.',
+      'sentences or more carries one. Aim higher than the floor - four or five sentences carrying two or three',
+      'reads right, and a long reply should carry one in most paragraphs. Place them at the end of a sentence or',
+      'paragraph rather than stacked, and never wedged next to a stack trace, a table of numbers, or a serious',
+      'conclusion - those places take none at all.',
       'Rotate faces rather than reusing one: a palette ships with this rule, and the same face twice in a row',
       'reads as a tic. Natural still beats frequent: a face that does not fit is worse than none.',
       'Note: Western text emoticons such as the colon-parenthesis kind do not count; the ask is the Japanese kind.',
       'Scope: replies AND your own thinking. Never in file contents, code, commands, or commit messages.',
+      'EMOJI ARE NOT KAOMOJI, and one is already a breach. Zero emoji, every turn, in replies, in your own',
+      'thinking, and in every file you write. Named by block so the rule carries no glyph itself:',
+      'the pictographs U+1F300-1F5FF, U+1F900-1F9FF and U+1FA70-1FAFF, the faces U+1F600-1F64F, the',
+      'transport and map symbols U+1F680-1F6FF, Miscellaneous Symbols U+2600-26FF, and the geometric shapes',
+      'and arrows that carry emoji presentation U+2B00-2BFF - together with the variation selector U+FE0F,',
+      'the zero width joiner U+200D and the skin tone modifiers U+1F3FB-1F3FF.',
+      'Where an emoji would go, put a face from the library below, or use words.',
+      'Relaying emoji someone else sent is not a licence: report them in words.',
     ].join('\n'),
   },
   zh: {
@@ -109,12 +118,18 @@ const PACKAGED = {
     ].join('\n'),
     kaomoji: [
       '\u3010\u989C\u6587\u5B57\u4E60\u60EF\u3011\u5728\u5BF9\u8BDD\u91CC\u3001\u4EE5\u53CA\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\uFF0C\u90FD\u7528\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8FD9\u662F**\u4E0B\u9650\u800C\u4E0D\u662F\u70B9\u7F00**\uFF1A',
-      '\u6BCF\u4E09\u53E5\u81F3\u5C11\u4E00\u4E2A\uFF1B\u4E24\u53E5\u4EE5\u4E0A\u7684\u56DE\u590D\u81F3\u5C11\u5E26\u4E00\u4E2A\uFF0C\u56DB\u4E94\u53E5\u5E26\u4E24\u4E2A\u624D\u50CF\u4E0A\u8BDD\u3002\u653E\u5728\u53E5\u672B\u6216\u6BB5\u672B\uFF0C\u4E0D\u5806\u780C\u3002',
+      '\u6BCF\u4E09\u53E5\u81F3\u5C11\u4E00\u4E2A\uFF1B\u4E24\u53E5\u4EE5\u4E0A\u7684\u56DE\u590D\u81F3\u5C11\u5E26\u4E00\u4E2A\u3002\u76EE\u6807\u662F\u9AD8\u4E8E\u4E0B\u9650\uFF1A\u56DB\u4E94\u53E5\u5E26\u4E24\u4E09\u4E2A\uFF0C\u957F\u56DE\u590D\u6BCF\u4E2A\u6BB5\u843D\u91CC\u90FD\u8BE5\u6709\u4E00\u4E2A\u3002',
       '\u5DE5\u5177\u62A5\u9519\u3001\u4E25\u8083\u7ED3\u8BBA\u3001\u6210\u6BB5\u7684\u4EE3\u7801\u6216\u6570\u636E\u65C1\u8FB9\u4E00\u4E2A\u90FD\u4E0D\u8981\u6302\u3002',
       '\u6362\u7740\u7528\uFF0C\u4E0D\u8981\u53CD\u590D\u7528\u540C\u4E00\u4E2A\uFF1A\u672C\u89C4\u5219\u968F\u9644\u4E00\u4EFD\u989C\u6587\u5B57\u5E93\uFF0C\u540C\u4E00\u4E2A\u5B57\u5F62\u8FDE\u7740\u51FA\u73B0\u4E24\u6B21\u5C31\u50CF\u62BD\u52A8\u3002',
       '\u81EA\u7136\u4ECD\u7136\u4F18\u5148\u4E8E\u9891\u7E41\uFF1A\u4E0D\u5408\u573A\u5408\u7684\u989C\u6587\u5B57\uFF0C\u6BD4\u6CA1\u6709\u66F4\u7CDF\u3002',
       '\u6CE8\u610F\uFF1A\u5B57\u9762\u7684 `:)` `:D` \u8FD9\u7C7B\u897F\u5F0F\u8868\u60C5\u4E0D\u7B97\uFF0C\u8981\u7684\u662F\u65E5\u5F0F\u989C\u6587\u5B57\u3002',
       '\u8303\u56F4\uFF1A**\u5BF9\u8BDD\u56DE\u590D\u4E0E\u4F60\u81EA\u5DF1\u7684\u601D\u8003**\u91CC\u90FD\u7528 \u2014\u2014 \u601D\u8003\u624D\u662F\u505A\u4E8B\u7684\u5730\u65B9\uFF0C\u6700\u4E0D\u8BE5\u50CF\u673A\u5668\u3002\u5199\u8FDB\u6587\u4EF6\u7684\u5185\u5BB9\u3001\u4EE3\u7801\u3001\u547D\u4EE4\u3001\u63D0\u4EA4\u4FE1\u606F\u4E00\u5F8B\u4E0D\u7528\u3002',
+      '\u3010\u7981 emoji\u3011\uFF0C\u4E00\u6761\u4E00\u6761\u6765\uFF1Aemoji \u4E0D\u662F\u989C\u6587\u5B57\uFF0C\u51FA\u73B0\u4E00\u4E2A\u5C31\u7B97\u7834\u4F8B\u3002\u56DE\u590D\u91CC\u3001\u4F60\u7684\u601D\u8003\u91CC\u3001\u4F60\u5199\u51FA\u7684\u4EFB\u4F55\u6587\u4EF6\u91CC\uFF0C\u4E00\u5F8B\u4E3A\u96F6\u3002',
+      '\u6309\u533A\u5757\u70B9\u540D\uFF0C\u597D\u8BA9\u89C4\u5219\u672C\u8EAB\u4E0D\u643A\u5E26\u8FD9\u4E9B\u5B57\u5F62\uFF1Apictograph U+1F300-1F5FF\u3001U+1F900-1F9FF\u3001U+1FA70-1FAFF\uFF0C\u8868\u60C5\u8138 U+1F600-1F64F\uFF0C',
+      '\u4EA4\u901A\u4E0E\u5730\u56FE\u7B26\u53F7 U+1F680-1F6FF\uFF0CMiscellaneous Symbols U+2600-26FF\uFF0C\u4EE5\u53CA\u5E26 emoji \u5448\u73B0\u7684\u51E0\u4F55\u56FE\u5F62\u4E0E\u7BAD\u5934 U+2B00-2BFF\uFF1B',
+      '\u8FDE\u540C\u53D8\u4F53\u9009\u62E9\u7B26 U+FE0F\u3001\u96F6\u5BBD\u8FDE\u63A5\u7B26 U+200D \u4E0E\u80A4\u8272\u4FEE\u9970\u7B26 U+1F3FB-1F3FF\u3002',
+      '\u60F3\u653E\u4E00\u4E2A emoji \u7684\u5730\u65B9\uFF0C\u6539\u6210\u4E0B\u9762\u90A3\u4EFD\u989C\u6587\u5B57\u5E93\u91CC\u7684\u4E00\u4E2A\u5B57\u5F62\uFF0C\u6216\u8005\u76F4\u63A5\u7528\u6587\u5B57\u8BF4\u3002',
+      '\u522B\u4EBA\u53D1\u6765\u7684 emoji \u4E5F\u4E0D\u80FD\u7167\u642C \u2014\u2014 \u8981\u8F6C\u8FF0\u5C31\u7528\u6587\u5B57\u8BF4\u660E\u3002',
     ].join('\n'),
   },
 };
@@ -224,8 +239,14 @@ export function buildRules(options) {
   return { text, locale: chosen.locale, enabled: user.enabled !== false && text !== '', sources };
 }
 
-/** Default ceiling on how many faces reach the prompt, so a grown library cannot bloat every step. */
-const DEFAULT_KAOMOJI_MAX = 60;
+/**
+ * Default ceiling on how many faces reach the prompt.
+ *
+ * The shipped library holds more than a thousand, and printing all of them would cost every step of
+ * every session for a list nobody reads end to end. A stable prefix keeps the prompt cacheable, and the
+ * block always names the file, so an agent that wants the rest can read it.
+ */
+const DEFAULT_KAOMOJI_MAX = 140;
 /** Opening of the library block, in each shipped locale's language. */
 const LIBRARY_HEADING = {
   en: 'KAOMOJI LIBRARY. Faces by the mood they carry; this is a palette to draw from, not a list to recite.',
@@ -433,6 +454,10 @@ export function makeRulesResolver(options) {
         enabled: assembled.enabled && text !== '',
         library: library.reduce((n, c) => n + c.faces.length, 0),
         judge,
+        // Decorative code points the palette actually uses, plus any the user named: the emoji ban
+        // admits these so a heart or a star inside a face is not read as a picture.
+        emojiAllow: new Set([...deriveAllowedCodePoints('', library), ...named]),
+        emoji: user.emojiCheck !== false,
         leak: judge.mode === 'allow' ? judgeText(text, judge) : [],
       };
     }
@@ -441,11 +466,71 @@ export function makeRulesResolver(options) {
 }
 
 /**
+ * The emoji blocks, as ranges rather than a list of characters.
+ *
+ * A list would need regenerating every Unicode release and would still be incomplete; the blocks are
+ * what the ban actually means. Deliberately absent are the marks the kaomoji palette decorates with -
+ * a heart, a note, a star and a sparkle are decoration, and the faces below are made of them.
+ *
+ * U+200D is here because a zero width joiner is only ever used to build an emoji sequence in prose;
+ * the variation selector is here for the same reason, since it exists to force emoji presentation.
+ */
+/**
  * Report whether a text carries any of the glyphs the ban names. Exported because it is the
  * assertion that keeps this plugin honest about its own wording.
  * @param {string} text - text to inspect.
  * @returns {string[]} the offending code points, empty when clean.
  */
+const EMOJI_RANGES = [
+  [0x1f300, 0x1f5ff], // Misc Symbols and Pictographs
+  [0x1f600, 0x1f64f], // Emoticons
+  [0x1f680, 0x1f6ff], // Transport and Map Symbols
+  [0x1f900, 0x1f9ff], // Supplemental Symbols and Pictographs
+  [0x1fa70, 0x1faff], // Symbols and Pictographs Extended-A
+  [0x2600, 0x26ff], // Miscellaneous Symbols
+  [0x2b00, 0x2bff], // Miscellaneous Symbols and Arrows
+  [0xfe0f, 0xfe0f], // variation selector-16, the one that asks for emoji presentation
+  [0x200d, 0x200d], // zero width joiner, only used to build emoji sequences
+  [0x1f3fb, 0x1f3ff], // skin tone modifiers
+  [0x2049, 0x2049], // exclamation question mark
+  [0x203c, 0x203c], // double exclamation mark
+];
+
+/**
+ * Decorative marks that live inside the emoji blocks but mean decoration rather than a picture.
+ *
+ * Without this the ban would refuse the palette it ships: a heart, a star, a note, a sparkle and a
+ * flower are what the faces are made of, and the symbol rule already calls them decoration. A user
+ * who extends the palette can admit their own marks through `emojiAllowExtra`.
+ */
+const EMOJI_DECOR = new Set([0x2605, 0x2606, 0x2609, 0x2661, 0x2665, 0x266a, 0x2727, 0x273f, 0x2740, 0x0f1a]);
+
+/** A code point as the six-character name the notices print. */
+const cpName = (cp) => 'U+' + cp.toString(16).toUpperCase().padStart(4, '0');
+
+/**
+ * Report the emoji a text carries, as code points.
+ *
+ * A range check rather than a character list: the ban is about blocks, and blocks are stable across
+ * Unicode releases in a way a hand-maintained list is not. Decorative marks from the palette and any
+ * the user named are admitted, in that order of precedence.
+ * @param {string} text - text to inspect.
+ * @param {{ allow?: Set<number> }} [options] - decorative code points to admit.
+ * @returns {string[]} the offending code points, empty when clean.
+ */
+export function offendingEmoji(text, options = {}) {
+  if (typeof text !== 'string' || text === '') return [];
+  const allow = options.allow instanceof Set ? options.allow : null;
+  const found = new Set();
+  for (const ch of text) {
+    const cp = ch.codePointAt(0);
+    if (EMOJI_DECOR.has(cp)) continue;
+    if (allow && allow.has(cp)) continue;
+    if (EMOJI_RANGES.some(([lo, hi]) => cp >= lo && cp <= hi)) found.add(cpName(cp));
+  }
+  return [...found];
+}
+
 export function offendingGlyphs(text) {
   const codes = new Set(JUDGEMENT_CODEPOINTS.map((cp) => Number.parseInt(cp.slice(2), 16)));
   const found = new Set();
@@ -615,6 +700,68 @@ export function authoredParts(content) {
     else if (typeof part.content === 'string') out.push({ kind, text: part.content });
   }
   return out;
+}
+
+/**
+ * Judge a text for emoji, blanking the same regions the glyph judge blanks: a fenced block or an inline
+ * span is usually someone else's output, and a code point named as U+XXXX in prose is the rule talking.
+ * @param {string} text - the text to judge.
+ * @returns {string[]} the offending code points, empty when the text passes.
+ */
+export function judgeEmoji(text, options = {}) {
+  if (typeof text !== 'string' || text === '') return [];
+  const blanked = text
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`[^`\n]*`/g, ' ')
+    .replace(/U\+[0-9A-Fa-f]{4,6}/g, ' ');
+  return offendingEmoji(blanked, options);
+}
+
+/**
+ * Find emoji in the assistant's own recent output. Same walk as the glyph check, different alphabet.
+ * @param {Array<{ source?: { kind?: string }, id?: unknown, content?: unknown }>} messages - the step's messages.
+ * @returns {{ key: string, where: string, glyphs: string[] } | null} the newest offending message, or null.
+ */
+export function findEmojiInMessages(messages, judgeOptions = {}) {
+  if (!Array.isArray(messages)) return null;
+  for (let index = messages.length - 1; index >= 0; index--) {
+    const message = messages[index];
+    if (!message || typeof message !== 'object') continue;
+    if (message.source?.kind !== 'assistant') continue;
+    for (const part of authoredParts(message.content)) {
+      const glyphs = judgeEmoji(part.text, judgeOptions);
+      if (glyphs.length === 0) continue;
+      const key = `emoji:${message.id ?? index}:${part.kind}:${glyphs.join(',')}:${part.text.length}`;
+      return { key, where: part.kind, glyphs };
+    }
+  }
+  return null;
+}
+/**
+ * Compose the notice for emoji. Same voice as the symbol notice, and the same rule about never
+ * printing the offending thing: naming the code points is the whole point.
+ * @param {{ where: string, glyphs: string[] }} finding - what was found.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @param {{ attempt?: number }} [options] - which reminder this is.
+ * @returns {string} the notice text.
+ */
+export function emojiNotice(finding, locale, options = {}) {
+  const list = finding.glyphs.join(', ');
+  const where = finding.where === 'thinking' ? (locale === 'zh' ? '\u601D\u8003' : 'thinking') : (locale === 'zh' ? '\u6B63\u6587' : 'text');
+  const attempt = Number.isFinite(options.attempt) && options.attempt > 1 ? Math.floor(options.attempt) : 1;
+  if (locale === 'zh') {
+    const head = `\u3010\u7981 emoji\u00B7\u81EA\u68C0${attempt > 1 ? `\u7B2C ${attempt} \u6B21` : ''}\u3011\u4F60\u4E0A\u4E00\u6761\u56DE\u590D\u7684${where}\u91CC\u51FA\u73B0\u4E86 emoji\uFF08${list}\uFF09\uFF0C\u8FD9\u4E00\u7C7B\u4E00\u4E2A\u90FD\u4E0D\u8BE5\u6709\u3002`;
+    const body = attempt === 1
+      ? '\u63A5\u4E0B\u6765\u60F3\u653E\u4E00\u4E2A emoji \u7684\u5730\u65B9\uFF0C\u6362\u6210\u989C\u6587\u5B57\u5E93\u91CC\u7684\u4E00\u4E2A\u5B57\u5F62\uFF0C\u6216\u8005\u76F4\u63A5\u7528\u6587\u5B57\u8BF4\uFF1B\u601D\u8003\u91CC\u540C\u6837\u3002\u672C\u6761\u63D0\u9192\u4E0D\u9700\u8981\u56DE\u5E94\u3002'
+      : '\u8FD9\u662F\u7B2C\u4E8C\u6B21\u63D0\u9192\uFF0C\u8BF4\u660E\u4E0A\u4E00\u6B21\u6CA1\u843D\u5B9E\uFF1A\u5199\u5B8C\u4E4B\u524D\u5148\u770B\u4E00\u773C\u6709\u6CA1\u6709\u8FD9\u51E0\u4E2A\u7801\u4F4D\u3002';
+    return head + body;
+  }
+  const head = `EMOJI BAN - SELF-CHECK${attempt > 1 ? ` #${attempt}` : ''}. Your previous reply carried emoji (${list}) in its ${where}. None are allowed.`;
+  const body = attempt === 1
+    ? ' Where an emoji would go, put a face from the library or use words, including in your thinking.'
+      + ' No reply to this notice is needed.'
+    : ' Second reminder, so the first did not land: before sending, check the code points above are absent.';
+  return head + body;
 }
 
 /**
@@ -812,7 +959,9 @@ export function makeSelfCheckHook(options) {
   const notified = new Set();
   const counts = new Map();
   const kaomojiCounts = new Map();
+  const emojiCounts = new Map();
   const kaomojiMax = Number.isFinite(options.kaomojiMax) && options.kaomojiMax >= 0 ? Math.floor(options.kaomojiMax) : 1;
+  const emojiMax = Number.isFinite(options.emojiMax) && options.emojiMax >= 0 ? Math.floor(options.emojiMax) : 2;
   return async (input, next) => {
     let decision;
     try {
@@ -846,6 +995,26 @@ export function makeSelfCheckHook(options) {
             exclusion: state.judge?.exclusion ?? '',
           }));
           options.log?.(`session ${sessionId}: symbol notice ${used + 1}/${options.max} for ${finding.glyphs.join(', ')} in ${finding.where}`);
+        }
+      }
+
+      // The emoji rule: same shape as the symbol rule, its own alphabet and its own budget, because it
+      // is the one breach a reader sees instantly and the one a model reaches for most casually.
+      if (options.emoji !== false) {
+        const finding = findEmojiInMessages(messages, { allow: state.emojiAllow });
+        if (finding && !notified.has(finding.key)) {
+          const used = emojiCounts.get(sessionId) ?? 0;
+          if (used >= emojiMax) {
+            if (!notified.has(`emoji-suppressed:${sessionId}`)) {
+              notified.add(`emoji-suppressed:${sessionId}`);
+              options.log?.(`session ${sessionId}: ${emojiMax} emoji notice(s) already sent, further breaches logged only`);
+            }
+          } else {
+            notified.add(finding.key);
+            emojiCounts.set(sessionId, used + 1);
+            notices.push(emojiNotice(finding, state.locale, { attempt: used + 1 }));
+            options.log?.(`session ${sessionId}: emoji notice ${used + 1}/${emojiMax} for ${finding.glyphs.join(', ')} in ${finding.where}`);
+          }
         }
       }
 
@@ -955,12 +1124,19 @@ export function apply(ctx, config) {
       max,
       kaomoji: initial.kaomojiCheck !== false,
       kaomojiFloor: typeof initial.kaomojiFloor === 'number' ? initial.kaomojiFloor : 3,
-      kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 4,
+      kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 5,
+      emoji: initial.emojiCheck !== false,
+      emojiMax: typeof initial.emojiCheckMax === 'number' ? initial.emojiCheckMax : 2,
       // The judge travels with the rules: it is rebuilt whenever the config or the palette changes, so
       // switching mode mid-session takes effect on the next step instead of needing a restart.
       resolve: () => {
         const state = resolve();
-        return { enabled: state.enabled, locale: state.locale, judge: state.judge };
+        return {
+          enabled: state.enabled,
+          locale: state.locale,
+          judge: state.judge,
+          emojiAllow: state.emojiAllow,
+        };
       },
       warn,
       log: (message) => {
