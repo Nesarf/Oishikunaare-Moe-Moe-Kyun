@@ -13,6 +13,10 @@
 - Selfcheck grew to 15 checks, covering the function-valued section, a config edit landing on the
   next read, a locale switch dropping the previous language, and a broken file being reported
   rather than swallowed.
+  Verified live rather than by reading the code: a headless host was started with the config set to
+  one value, the config was rewritten mid-run, and on its next step the agent reported the new text
+  appearing in its own system prompt - it did not read any file to find it, and it said so. So an
+  edit lands in a session that was already running, not only in sessions started afterwards.
 ## 0.1.1 - 2026-10-12
 
 - The rules now name the thinking transcript explicitly. It is context too: a thought recorded on
