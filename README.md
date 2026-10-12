@@ -195,6 +195,38 @@ The rules reached the prompt when the agent's answer contains wording only this 
 code-point list, or the kaomoji dosage line), and the answer itself carries none of the banned glyphs.
 
 
+### The kaomoji floor is checked too
+
+The symbol rule has teeth; the kaomoji floor now does as well, because measuring said it needed them -
+an audit found one face per 26 sentences where the rule asks for one per five. The hook counts the prose
+of the newest reply and reminds when the floor is missed, or when the same face lands twice in a row.
+
+- Only prose counts: fenced blocks, inline code, tables, bullets and headings are set aside, so a reply
+  full of tables does not become unwinnable by arithmetic.
+- The wording is softer than the symbol notice, because a shortage is a slipped habit and not a breach.
+- `kaomojiCheck: false` turns it off; `kaomojiCheckMax` (default 1) sets the reminder budget;
+  `kaomojiFloor` (default 5) is the sentences per face.
+
+### Seeing what the rules resolve to
+
+```sh
+npm run check:text -- --status              # config, locale, judge, seed, floor
+npm run check:text -- --text "some words"   # judge a string, exit 1 when refused
+echo "some words" | npm run check:text      # or from stdin
+```
+
+It reads the same files the plugin reads and calls the same judge, so its verdict is the hook verdict.
+
+### Auditing a session after the fact
+
+```sh
+npm run audit:session                # newest session of this workspace
+npm run audit:session -- --json      # machine-readable
+```
+
+It decodes a DSH session log frame by frame and reports, per assistant message, the prose sentences, the
+faces, and how many banned code points landed in prose versus inside quoted code. It measures with the
+plugin own prose and face detection, so the audit and the hook cannot disagree.
 ### Two checks, in two files
 
 - `test/selfcheck.mjs` calls the exported functions directly: the logic, the rules, the library.

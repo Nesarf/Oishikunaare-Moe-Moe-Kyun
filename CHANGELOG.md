@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.5.0 - 2026-10-12
+
+- The kaomoji rule got the check the symbol rule already had, because measurement said it needed one:
+  auditing this repository own session found one kaomoji per 26 sentences where the rule asks for one
+  per five, and the floor met in 0 of 58 messages. The hook now counts the prose of the newest reply
+  and reminds when the floor is missed or a face repeats back to back. Structure is not counted -
+  fenced blocks, inline code, tables, bullets and headings are set aside, so a reply full of tables does
+  not become unwinnable by arithmetic. The wording is deliberately softer than the symbol notice: a
+  shortage is a slipped habit, not a breach. `kaomojiCheck: false` turns it off, `kaomojiCheckMax`
+  (default 1) sets its reminder budget, `kaomojiFloor` (default 5) the sentences per face.
+- `scripts/audit-session.mjs` now measures with the plugin own prose and face detection rather than its
+  own copy, so the audit and the hook cannot drift apart. On the same session the sentence estimate fell
+  from 630 to 340 once structure was removed, and the ratio held: about one face per 26 sentences.
+- The example exception is tightened. The rule already said to name code points instead of printing
+  glyphs; it now says explicitly that printing one to explain the rule, or to show that it is banned, is
+  also refused - only a person asking for the glyphs by name gets them printed.
+- `scripts/check-text.mjs` (npm run check:text) reports what the rules currently resolve to - config,
+  locale, rule length, palette size, which judge and its list or seed, the self-check settings and the
+  floor - and judges a string from argv or stdin against the same judge the hook uses.
 ## 0.4.0 - 2026-10-12
 
 - The strict judge seeds itself from what the plugin actually ships. Turning on allow mode used to

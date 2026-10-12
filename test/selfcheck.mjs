@@ -343,6 +343,64 @@ check('a later notice says something different from the first', () => {
   assert.notEqual(firstZh, secondZh);
   for (const text of [first, second, firstZh, secondZh]) assert.deepEqual(mod.offendingGlyphs(text), []);
 });
+check('the kaomoji judge counts prose, not structure', () => {
+  // Six CJK sentences in a row with no face: the shortage case.
+  const bare = '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002\u7b2c\u56db\u53e5\u3002\u7b2c\u4e94\u53e5\u3002\u7b2c\u516d\u53e5\u3002';
+  const verdict = mod.judgeKaomoji(bare);
+  assert.ok(verdict.sentences >= 5, 'six sentences should count as at least five');
+  assert.equal(verdict.faces, 0);
+  assert.ok(verdict.needed >= 1);
+  assert.equal(verdict.meets, false, 'a reply with no face is below the floor');
+
+  // Structure is not prose: a table row, a bullet and a fenced block do not raise the bar.
+  const structural = '| a | b |\n| - | - |\n- bullet\n```\ncode\n```';
+  assert.equal(mod.proseSentences(mod.proseOnly(structural)), 0);
+  assert.equal(mod.judgeKaomoji(structural).meets, true, 'nothing to decorate means nothing owed');
+
+  // An ordinary parenthetical is not a face, or (see below) would satisfy the floor.
+  assert.deepEqual(mod.findKaomoji('(see below)'), []);
+  assert.deepEqual(mod.findKaomoji('(x)'), []);
+  assert.deepEqual(mod.findKaomoji('face (\u30fb\u03c9\u30fb) here'), ['(\u30fb\u03c9\u30fb)']);
+  assert.deepEqual(mod.findKaomoji('\uff08\u30fb\u03c9\u30fb\uff09fullwidth'), ['\uff08\u30fb\u03c9\u30fb\uff09']);
+});
+
+check('a face repeated back to back is reported', () => {
+  const twice = mod.judgeKaomoji('\u8fde\u7740\u4e24\u4e2a (^_^) \u7136\u540e (^_^) \u518d\u6765');
+  assert.equal(twice.faces, 2);
+  assert.deepEqual(twice.repeated, ['(^_^)'], 'the same face twice reads as a tic');
+  const varied = mod.judgeKaomoji('\u6362\u7740\u7528 (^_^) \u548c (\u30fb\u03c9\u30fb)');
+  assert.deepEqual(varied.repeated, []);
+});
+
+check('the kaomoji notice is softer than the symbol one, and escalates', () => {
+  const verdict = { sentences: 12, faces: 1, needed: 3, repeated: [] };
+  const first = mod.kaomojiNotice(verdict, 'en', { attempt: 1 });
+  const second = mod.kaomojiNotice(verdict, 'en', { attempt: 2 });
+  assert.ok(first.includes('KAOMOJI HABIT'));
+  assert.ok(first.includes('12'), 'it should say what was counted');
+  assert.ok(first.includes('not a rule broken'), 'a shortage is a slipped habit, and the wording should say so');
+  assert.ok(second.includes('#2'));
+  assert.notEqual(first, second);
+  const zh = mod.kaomojiNotice(verdict, 'zh', { attempt: 1 });
+  assert.ok(zh.includes('\u4e60\u60ef\u6ca1\u5230\u4f4d'));
+  for (const t of [first, second, zh]) assert.deepEqual(mod.offendingGlyphs(t), []);
+});
+
+check('the hook reminds about the kaomoji floor once, and not when it is off', async () => {
+  const bare = '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002\u7b2c\u56db\u53e5\u3002\u7b2c\u4e94\u53e5\u3002\u7b2c\u516d\u53e5\u3002';
+  const messages = [{ id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: bare }] }];
+  const hook = mod.makeSelfCheckHook({ max: 3, kaomoji: true, kaomojiMax: 1, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
+  const step = () => hook({ agent: { session: { id: 'k1' } }, messages }, async () => ({ kind: 'enter', messages }));
+  const first = await step();
+  assert.equal(first.messages.length, 2, 'one reminder goes in');
+  assert.ok(first.messages[0].content[0].text.includes('KAOMOJI HABIT'));
+  const second = await step();
+  assert.equal(second.messages.length, 1, 'the same shortage is not repeated past its budget');
+
+  const off = mod.makeSelfCheckHook({ max: 3, kaomoji: false, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
+  const quiet = await off({ agent: { session: { id: 'k2' } }, messages }, async () => ({ kind: 'enter', messages }));
+  assert.equal(quiet.messages.length, 1, 'kaomojiCheck:false means silence about the floor');
+});
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

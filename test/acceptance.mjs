@@ -236,5 +236,37 @@ check('a repeated reminder says something the first one did not', async () => {
   assert.ok(second.content[0].text.includes('#2'), 'and should say which reminder it is');
   fs.rmSync(home, { recursive: true, force: true });
 });
+check('the kaomoji reminder reaches the model on a real step', async () => {
+  const host = makeHost();
+  const bare = '\u7B2C\u4E00\u53E5\u3002\u7B2C\u4E8C\u53E5\u3002\u7B2C\u4E09\u53E5\u3002\u7B2C\u56DB\u53E5\u3002\u7B2C\u4E94\u53E5\u3002\u7B2C\u516D\u53E5\u3002';
+  const messages = [assistant('m1', [{ type: 'text', text: bare }])];
+  const { decision } = await runStep(host, messages, { locale: 'en' });
+  const kaomojiNotice = (decision?.messages ?? []).find((m) => m?.content?.[0]?.text?.includes('KAOMOJI HABIT'));
+  assert.ok(kaomojiNotice, 'a shortage should produce its own notice');
+  assert.equal(decision.messages[0], kaomojiNotice, 'and reach the model ahead of the conversation');
+});
+
+check('switching the kaomoji check off leaves the floor unmentioned', async () => {
+  const host = makeHost();
+  const bare = '\u7B2C\u4E00\u53E5\u3002\u7B2C\u4E8C\u53E5\u3002\u7B2C\u4E09\u53E5\u3002\u7B2C\u56DB\u53E5\u3002\u7B2C\u4E94\u53E5\u3002\u7B2C\u516D\u53E5\u3002';
+  const messages = [assistant('m1', [{ type: 'text', text: bare }])];
+  const { decision } = await runStep(host, messages, { locale: 'en', kaomojiCheck: false });
+  assert.equal((decision?.messages ?? []).some((m) => m?.content?.[0]?.text?.includes('KAOMOJI HABIT')), false);
+});
+
+check('check-text judges a string the way the hook does', async () => {
+  const { spawnSync } = await import('node:child_process');
+  const script = path.join(ROOT, 'scripts', 'check-text.mjs');
+  const run = (args, env) => spawnSync(process.execPath, [script, ...args], { cwd: ROOT, env: { ...process.env, ...env }, encoding: 'utf8' });
+  const status = run(['--status']);
+  assert.equal(status.status, 0);
+  assert.ok(status.stdout.includes('judge:'), 'status should report the judge');
+  assert.ok(status.stdout.includes('kaomoji floor'), 'and the floor');
+  const refused = run(['--text', 'all good ' + CHECK]);
+  assert.equal(refused.status, 1, 'a glyph the ban names should come back as a refusal');
+  assert.ok(refused.stdout.includes('U+2713'));
+  const allowed = run(['--text', 'all good, in words']);
+  assert.equal(allowed.status, 0);
+});
 console.log(`\n${failures === 0 ? 'all acceptance checks pass' : failures + ' acceptance check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

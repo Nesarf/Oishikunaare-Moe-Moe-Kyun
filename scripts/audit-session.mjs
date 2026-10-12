@@ -38,12 +38,11 @@ const bannedCodes = new Set(
   ).map((cp) => Number.parseInt(cp.slice(2), 16)),
 );
 
-/** Sentence estimate: end punctuation, plus paragraph breaks. Long code blocks count as prose here. */
-const sentenceCount = (text) => Math.max(1, (text.match(/[.!?]+[\s"'\u201d\u2019)\]]|[\u3002\uff01\uff1f\u2026]+|\n{2,}/g) ?? []).length);
+/** Sentence count comes from the plugin, so the audit and the hook cannot disagree. */
+const sentenceCount = (text) => mod.proseSentences(mod.proseOnly(text));
 
-/** A kaomoji is a bracketed run with no CJK letters in it; that keeps prose parentheses out. */
-const kaomojiOf = (text) => (text.match(/[\u0028\uFF08][^\uFF09\n]{1,16}[\u0029\uFF09]/g) ?? [])
-  .filter((face) => !/[\u4e00-\u9fff]/.test(face));
+/** Face detection comes from the plugin for the same reason. */
+const kaomojiOf = (text) => mod.findKaomoji(mod.proseOnly(text));
 
 /** Where the ban does not reach: fenced code and inline code. */
 function exemptions(text) {
