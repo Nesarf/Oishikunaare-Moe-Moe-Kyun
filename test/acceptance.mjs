@@ -206,5 +206,35 @@ check('a hook that throws does not take the step down with it', async () => {
   fs.rmSync(home, { recursive: true, force: true });
 });
 
+check('switching the judge mid-session takes effect on the next step', async () => {
+  const host = makeHost();
+  const home = tempHome({ locale: 'zh' });
+  const file = path.join(home, 'agent-house-rules.json');
+  mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${SPARKLES}` }])];
+  const first = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
+  assert.equal(noticeOf(first), undefined, 'the deny judge has no reason to object to a sparkle');
+  // Flip the judge the way a user would: edit the config. No restart and no re-mount.
+  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', selfCheckMode: 'allow' }), 'utf8');
+  const second = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
+  assert.ok(noticeOf(second), 'the strict judge should notice the same message on the next step');
+  fs.rmSync(home, { recursive: true, force: true });
+});
+
+check('a repeated reminder says something the first one did not', async () => {
+  const host = makeHost();
+  const home = tempHome({ locale: 'en' });
+  mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const step = (id) => {
+    const messages = [assistant(id, [{ type: 'text', text: `bad ${CHECK}` }])];
+    return host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
+  };
+  const first = noticeOf(await step('m1'));
+  const second = noticeOf(await step('m2'));
+  assert.ok(first && second, 'both steps should be noticed');
+  assert.notEqual(first.content[0].text, second.content[0].text, 'the second should not be the same sentence');
+  assert.ok(second.content[0].text.includes('#2'), 'and should say which reminder it is');
+  fs.rmSync(home, { recursive: true, force: true });
+});
 console.log(`\n${failures === 0 ? 'all acceptance checks pass' : failures + ' acceptance check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

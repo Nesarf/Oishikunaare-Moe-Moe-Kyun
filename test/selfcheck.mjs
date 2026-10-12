@@ -305,6 +305,44 @@ check('the hook injects one notice per breach, and respects its budget', async (
   assert.equal(clean.messages.length, 1);
 });
 
+check('the strict judge is seeded from what the plugin actually ships', () => {
+  const categories = mod.normalizeLibrary(JSON.parse(fs.readFileSync(SHIPPED, 'utf8')));
+  const zh = mod.packagedRules('zh').rules;
+  const text = [zh.bannedSymbols, zh.kaomoji].join(String.fromCharCode(10));
+
+  const derived = mod.deriveAllowedCodePoints(text, categories);
+  assert.ok(derived.size > 100, 'the rules and palette together use plenty of characters');
+  // A palette glyph the strict blocks would otherwise refuse: the derivation is what saves it.
+  const heart = String.fromCodePoint(0x2665);
+  assert.ok(derived.has(0x2665));
+  assert.deepEqual(mod.judgeText(heart, { mode: 'allow' }), ['U+2665'], 'a plain allow-list refuses the palette');
+  assert.deepEqual(mod.judgeText(heart, { mode: 'allow', derived }), [], 'the derived seed admits it');
+  // And it does not become a blanket amnesty: an emoji is still refused.
+  assert.deepEqual(mod.judgeText(String.fromCodePoint(0x1f680), { mode: 'allow', derived }), ['U+1F680']);
+  // The plugin must not flag its own text when the strict judge is on.
+  assert.deepEqual(mod.judgeText(text, { mode: 'allow', derived }), []);
+});
+
+check('allowExtra names exceptions in both modes', () => {
+  const check = String.fromCodePoint(0x2713);
+  // allow mode: admits what the strict blocks would refuse.
+  assert.deepEqual(mod.judgeText(String.fromCodePoint(0x1f680), { mode: 'allow', allowExtra: 'U+1F680' }), []);
+  // deny mode: withdraws a glyph from the judgement list, for someone who really needs it.
+  assert.deepEqual(mod.judgeText(check, { mode: 'deny', allowExtra: 'U+2713' }), []);
+  assert.deepEqual(mod.judgeText(check, { mode: 'deny' }), ['U+2713']);
+});
+
+check('a later notice says something different from the first', () => {
+  const finding = { where: 'text', glyphs: ['U+2713'] };
+  const first = mod.selfCheckNotice(finding, 'en', { attempt: 1, exclusion: 'U+2713' });
+  const second = mod.selfCheckNotice(finding, 'en', { attempt: 2, exclusion: 'U+2713' });
+  const firstZh = mod.selfCheckNotice(finding, 'zh', { attempt: 1 });
+  const secondZh = mod.selfCheckNotice(finding, 'zh', { attempt: 2 });
+  assert.notEqual(first, second, 'the second notice should not be the same sentence again');
+  assert.ok(second.includes('#2'));
+  assert.notEqual(firstZh, secondZh);
+  for (const text of [first, second, firstZh, secondZh]) assert.deepEqual(mod.offendingGlyphs(text), []);
+});
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

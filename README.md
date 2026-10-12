@@ -110,6 +110,18 @@ and asks for words instead. Nothing in history is edited.
 - Once per offending message, with a notice budget per session (three by default); past the budget,
   breaches are logged and nothing is injected.
 - `selfCheck: false` turns it off; `selfCheckMax` sets the budget.
+
+### What each judge does with an exception, and how the strict one seeds itself
+
+- Allow mode derives its seed from the assembled rules and every loaded palette face, recomputed on
+  each resolve. Without that it would refuse the very characters it ships - a strict judge that cannot
+  read its own palette is not strict, it is broken. A face added at runtime is covered on the next step.
+- `allowExtra` admits characters under allow mode, and withdraws them from the judgement list under
+  deny mode. In deny mode that also rewrites the list the agent reads, so an exception is stated in the
+  instruction rather than only applied in the checker.
+- The judge travels with the rules rather than being frozen at registration, so switching mode, editing
+  the palette or naming an exception lands on the next step of a session that is already running.
+
 ### Why editing that file needs no restart
 
 The section registers `text` as a **function**. The prompt registry calls it while assembling the

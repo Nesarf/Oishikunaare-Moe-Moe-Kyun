@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0 - 2026-10-12
+
+- The strict judge seeds itself from what the plugin actually ships. Turning on allow mode used to
+  refuse the plugin own text: the rules name characters in prose and the palette is made of faces, so
+  a judge that had not read them flagged the thing it had just shipped. The seed is derived from the
+  assembled rules and every loaded face, and recomputed on each resolve, so a face added at runtime
+  is covered too. A strict judge that cannot read its own palette is not strict, it is broken.
+- Both judges now travel with the rules instead of being frozen at registration, which makes the mode
+  switchable mid-session: edit selfCheckMode and the next step is judged by the other one, in a
+  session that was already running. Same for the palette and for allowExtra.
+- allowExtra means something in each mode. Under allow it admits a character the strict blocks refuse;
+  under deny it withdraws a character from the judgement list, which also rewrites the list the agent
+  reads - so an exception is stated in the instruction, not only applied in the checker.
+- A repeated reminder stops repeating itself. The second notice in a session says which reminder it is,
+  names the scope it is holding the agent to, and asks for the change before the code point is written
+  rather than after. A fixed sentence invites a fixed response.
 ## 0.3.0 - 2026-10-12
 
 - Two judges, one switch. `selfCheckMode: "allow"` stops naming what is forbidden and permits only
