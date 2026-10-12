@@ -68,6 +68,9 @@ required - with no file at all the two rules above are injected in English.
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
 - `enabled: false` empties the section, so nothing is injected.
 - `selfCheck` (default true) and `selfCheckMax` (default 3) control the self-check below.
+- `selfCheckMode`: `"deny"` (default) names the judgement-mark family and lets the rest through;
+  `"allow"` permits only plainly-textual blocks and refuses everything else. `allowExtra` names
+  characters or code points the allow-list should also accept.
 
 ### The kaomoji library
 
@@ -178,6 +181,15 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 
 The rules reached the prompt when the agent's answer contains wording only this plugin ships (the
 code-point list, or the kaomoji dosage line), and the answer itself carries none of the banned glyphs.
+
+
+### Two checks, in two files
+
+- `test/selfcheck.mjs` calls the exported functions directly: the logic, the rules, the library.
+- `test/acceptance.mjs` runs the plugin the way a host does: a small event dispatcher registers
+  handlers with `ctx.on` and chains them through `next()`, `apply()` mounts the plugin onto it, and
+  real steps are driven through. It is what proves a breach on a step turns into a notice reaching
+  the model - against the built artifact, so it proves the build too. Both run in `npm run verify`.
 
 ## Notes
 

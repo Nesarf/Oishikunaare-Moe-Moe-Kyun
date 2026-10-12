@@ -437,6 +437,82 @@ export function offendingGlyphs(text) {
 const DEFAULT_SELFCHECK_MAX = 3;
 
 /**
+ * Blocks that may appear in a reply when the judge runs in allow-list mode.
+ *
+ * An allow-list is the tighter judge: instead of naming what a person must not write, it permits only
+ * what is plainly text - the ASCII a terminal prints, Latin letters and accents, General Punctuation,
+ * currency, CJK and its punctuation, fullwidth forms, arrows for logic, maths for arithmetic, box
+ * drawing for a terminal example, and yin-yang.
+ *
+ * Deliberately outside: the pictograph, emoji, dingbat and Miscellaneous Symbols blocks (which is
+ * where every judgement glyph and hand emoji lives), Geometric Shapes (where the circle and square
+ * markers live), and Letterlike Symbols (where the tick-shaped square root lives). Also outside are
+ * the combining-mark blocks, because an accent used to build a look-alike is exactly the evasion this
+ * mode exists to close.
+ */
+const ALLOW_RANGES = [
+  [0x0009, 0x000a], // tab, newline
+  [0x000d, 0x000d], // carriage return
+  [0x0020, 0x007e], // printable ASCII
+  [0x00a1, 0x00ff], // Latin-1 letters and punctuation, excluding no-break space
+  [0x2010, 0x2027], // General Punctuation: dashes, quotes, ellipsis
+  [0x2030, 0x205e], // per mille through the low quotes
+  [0x20a0, 0x20bf], // Currency Symbols
+  [0x2190, 0x21ff], // Arrows
+  [0x2200, 0x22ff], // Mathematical Operators
+  [0x2500, 0x257f], // Box Drawing
+  [0x3000, 0x303f], // CJK punctuation and symbols
+  [0x3040, 0x30ff], // Hiragana, Katakana
+  [0x3400, 0x4dbf], // CJK Extension A
+  [0x4e00, 0x9fff], // CJK Unified Ideographs
+  [0xf900, 0xfaff], // CJK Compatibility Ideographs
+  [0xff01, 0xff5e], // Fullwidth forms
+  // Greek: the omega a kaomoji mouth is made of, and the maths letters near it
+  [0x0370, 0x03ff],
+  [0x262f, 0x262f], // yin yang, the one Miscellaneous Symbol worth keeping
+];
+
+/** Parse a config value that names characters or code points into a set of code points. */
+function parseAllowExtra(value) {
+  const out = new Set();
+  const entries = typeof value === 'string' ? [value] : Array.isArray(value) ? value : [];
+  for (const entry of entries) {
+    if (typeof entry !== 'string') continue;
+    const text = entry.trim();
+    if (text === '') continue;
+    const codePoint = /^U\+([0-9A-Fa-f]{4,6})$/.exec(text);
+    if (codePoint) { out.add(Number.parseInt(codePoint[1], 16)); continue; }
+    for (const ch of text) if (ch !== ' ') out.add(ch.codePointAt(0));
+  }
+  return out;
+}
+
+/**
+ * Judge a text against the configured mode.
+ *
+ * `deny` (default) names the judgement-mark family and lets everything else through. `allow` permits
+ * only the blocks above plus `allowExtra`, which is tighter and also blunter: a rare legitimate
+ * character has to be named to be usable, and that is the trade rather than a hidden cost.
+ * @param {string} text - the text to judge.
+ * @param {{ mode?: 'deny' | 'allow', allowExtra?: string | string[] }} [options] - judge configuration.
+ * @returns {string[]} the offending code points, empty when the text passes.
+ */
+export function judgeText(text, options = {}) {
+  if (typeof text !== 'string' || text === '') return [];
+  const mode = options.mode === 'allow' ? 'allow' : 'deny';
+  if (mode === 'deny') return offendingGlyphs(text);
+  const extra = parseAllowExtra(options.allowExtra);
+  const found = new Set();
+  for (const ch of text) {
+    const cp = ch.codePointAt(0);
+    if (extra.has(cp)) continue;
+    if (ALLOW_RANGES.some(([lo, hi]) => cp >= lo && cp <= hi)) continue;
+    found.add('U+' + cp.toString(16).toUpperCase().padStart(4, '0'));
+  }
+  return [...found];
+}
+
+/**
  * Judge a single authored text, applying the exemptions that keep the check from crying wolf.
  *
  * Exempt: fenced code and inline code, where an example or a library name is data rather than the
@@ -445,13 +521,13 @@ const DEFAULT_SELFCHECK_MAX = 3;
  * @param {string} text - the authored text.
  * @returns {string[]} the offending code points, empty when the text passes.
  */
-export function judgeAuthoredText(text) {
+export function judgeAuthoredText(text, judgeOptions = {}) {
   if (typeof text !== 'string' || text === '') return [];
   const blanked = text
     .replace(/```[\s\S]*?```/g, ' ')
     .replace(/`[^`\n]*`/g, ' ')
     .replace(/U\+[0-9A-Fa-f]{4,6}/g, ' ');
-  return offendingGlyphs(blanked);
+  return judgeText(blanked, judgeOptions);
 }
 
 /**
@@ -482,14 +558,14 @@ export function authoredParts(content) {
  * @param {Array<{ source?: { kind?: string }, id?: unknown, content?: unknown }>} messages - the step's messages.
  * @returns {{ key: string, where: string, glyphs: string[] } | null} the newest offending message, or null.
  */
-export function findBannedInMessages(messages) {
+export function findBannedInMessages(messages, judgeOptions = {}) {
   if (!Array.isArray(messages)) return null;
   for (let index = messages.length - 1; index >= 0; index--) {
     const message = messages[index];
     if (!message || typeof message !== 'object') continue;
     if (message.source?.kind !== 'assistant') continue;
     for (const part of authoredParts(message.content)) {
-      const glyphs = judgeAuthoredText(part.text);
+      const glyphs = judgeAuthoredText(part.text, judgeOptions);
       if (glyphs.length === 0) continue;
       const key = `${message.id ?? index}:${part.kind}:${glyphs.join(',')}:${part.text.length}`;
       return { key, where: part.kind, glyphs };
@@ -552,7 +628,7 @@ export function makeSelfCheckHook(options) {
       if (!decision || decision.kind !== 'enter' || input?.signal?.aborted) return decision;
       const state = options.resolve();
       if (!state.enabled) return decision;
-      const finding = findBannedInMessages(decision.messages);
+      const finding = findBannedInMessages(decision.messages, state.judge);
       if (!finding || notified.has(finding.key)) return decision;
       const sessionId = input?.agent?.session?.id ?? 'unknown';
       const used = counts.get(sessionId) ?? 0;
@@ -640,11 +716,17 @@ export function apply(ctx, config) {
     const max = typeof initial.selfCheckMax === 'number' && initial.selfCheckMax >= 0
       ? Math.floor(initial.selfCheckMax)
       : DEFAULT_SELFCHECK_MAX;
+    // The judge configuration is resolved once, like the library list: switching mode is a deliberate
+    // act that should show up in the log, not something that changes silently mid-session.
+    const judge = {
+      mode: initial.selfCheckMode === 'allow' ? 'allow' : 'deny',
+      allowExtra: initial.allowExtra,
+    };
     const hook = makeSelfCheckHook({
       max,
       resolve: () => {
         const state = resolve();
-        return { enabled: state.enabled, locale: state.locale };
+        return { enabled: state.enabled, locale: state.locale, judge };
       },
       warn,
       log: (message) => {
@@ -656,6 +738,6 @@ export function apply(ctx, config) {
       },
     });
     ctx.on('agent/pre-step', hook);
-    ctx.logger?.info?.(`[house-rules] self-check on: up to ${max} notice(s) per session`);
+    ctx.logger?.info?.(`[house-rules] self-check on: ${judge.mode === 'allow' ? 'allow-list' : 'deny-list'} judge, up to ${max} notice(s) per session`);
   }
 }

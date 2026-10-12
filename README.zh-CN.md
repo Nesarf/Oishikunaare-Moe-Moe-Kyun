@@ -61,6 +61,8 @@ dsh plugin --profile web update TastyLineOut
 - `kaomojiLibraryCollapse: true` 让每类压成一行，更省。
 - `enabled: false` 让这条 section 变空，什么都不注入。
 - `selfCheck`（默认开）与 `selfCheckMax`（默认 3）控制下面的自检。
+- `selfCheckMode`：`"deny"`（默认）点名对错标记那一族、其余放行；`"allow"` 只允许明确的文本类区块、
+  其余一律拒绝。`allowExtra` 用来把字符或码位加进允许列表。
 
 ### 颜文字库
 
@@ -158,6 +160,14 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 
 判据两条：回答里出现**只有本插件才有的措辞**（码位清单，或颜文字分寸那一行），
 并且回答本身不含任何被禁符号。
+
+
+### 两层检查，两个文件
+
+- `test/selfcheck.mjs` 直接调用导出的函数：查逻辑、规则、库。
+- `test/acceptance.mjs` 按宿主的运行方式跑插件：一个精简但忠实的事件派发器（处理器用 `ctx.on` 注册、
+  通过 `next()` 链式传递），`apply()` 把它挂上去，然后真的驱动若干步。它证明的是「某一步上出现违规，
+  会变成一条抵达模型的通知」—— 而且跑的是构建产物，所以顺带证明构建。两者都在 `npm run verify` 里。
 
 ## 说明
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.3.0 - 2026-10-12
+
+- Two judges, one switch. `selfCheckMode: "allow"` stops naming what is forbidden and permits only
+  what is plainly text: printable ASCII, Latin letters and accents, General Punctuation, currency,
+  Greek (the omega a kaomoji mouth is made of), CJK and its punctuation, fullwidth forms, arrows,
+  maths, box drawing, and yin yang. Emoji, dingbats, Geometric Shapes, Letterlike Symbols and the
+  combining-mark blocks all fall outside it - a combining accent used to build a look-alike is
+  exactly the evasion this mode closes. `allowExtra` names characters or code points to let through.
+  The trade is stated rather than hidden: a rare legitimate character has to be named to be usable.
+- An acceptance harness, `test/acceptance.mjs`, runs in `npm run verify`. It builds a small but
+  faithful event dispatcher (handlers registered with ctx.on, chained through next()), mounts the
+  plugin with apply(), drives real steps, and asserts what reaches the model. This is the proof the
+  self-check never had: a step carrying a breach now produces a notice in front of the messages,
+  in the same run that proves the build. Nine cases cover registration, the notice, clean steps,
+  a breach inside thinking, no double notice, tool output left alone, the two judges differing,
+  the off switch, and a failing inner step not being swallowed.
 ## 0.2.0 - 2026-10-12
 
 - The rules now have teeth. A prompt cannot notice anything, so the plugin also subscribes to

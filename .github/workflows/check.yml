@@ -27,3 +27,5 @@ jobs:
         run: node scripts/build.mjs --check
       - name: Selfcheck
         run: node test/selfcheck.mjs
+      - name: Acceptance harness
+        run: node test/acceptance.mjs
