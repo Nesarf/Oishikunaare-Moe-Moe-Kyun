@@ -19,13 +19,14 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "lib",
-    "src",
-    "rules",
-    "cordis.patch.yml",
+    "LICENSE",
     "README.md",
     "README.zh-CN.md",
-    "LICENSE"
+    "cordis.patch.yml",
+    "lib",
+    "rules",
+    "src",
+    "test"
   ],
   "dsh": {
     "bundle": {
