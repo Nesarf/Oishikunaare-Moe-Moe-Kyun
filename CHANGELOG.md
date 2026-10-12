@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.1.2 - 2026-10-12
+
+- The rule text is now live. The section registers `text` as a function instead of a captured
+  string, and the prompt registry evaluates it while assembling each model step - so an edit to
+  `$DSH_HOME/agent-house-rules.json` lands at the next step of every running session and every new
+  conversation, with no host restart. Before this, the text was frozen at registration and only a
+  restart could change it. The resolver stats the file and rebuilds only when the stamp moves, and
+  `enabled: false` now empties the section at read time rather than registering nothing.
+- `rules/<locale>.json` is no longer a third override layer. It is the packaged locale in data form,
+  generated from the same source as the constants, so reading both was one decision made twice.
+- Selfcheck grew to 15 checks, covering the function-valued section, a config edit landing on the
+  next read, a locale switch dropping the previous language, and a broken file being reported
+  rather than swallowed.
 ## 0.1.1 - 2026-10-12
 
 - The rules now name the thinking transcript explicitly. It is context too: a thought recorded on

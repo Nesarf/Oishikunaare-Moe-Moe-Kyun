@@ -46,7 +46,7 @@ const SECTION_NAME = 'tasty-line-out';
 /** Shipped locale used when neither the config nor the ask says otherwise. */
 const DEFAULT_LOCALE = 'en';
 
-/** Home of this module, used to find the rules directory when no override is configured. */
+/** Home of this module, kept for diagnostics: the packaged rules live in this file's own source. */
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 
 /**
@@ -123,6 +123,16 @@ function readJson(file) {
   }
 }
 
+/** Identity of a file's content as far as a cheap check can tell. */
+function stampOf(file) {
+  try {
+    const stat = fs.statSync(file, { throwIfNoEntry: false });
+    return stat ? `${stat.size}:${stat.mtimeMs}` : 'absent';
+  } catch {
+    return 'absent';
+  }
+}
+
 /**
  * Pick the shipped locale, preferring an exact match, then the language part, then the default.
  * @param {string} wanted - requested locale, for example `zh-CN`.
@@ -138,14 +148,17 @@ export function packagedRules(wanted) {
 }
 
 /**
- * Assemble the rule text from packaged defaults, a shipped file and user configuration.
+ * Assemble the rule text from the packaged locale and the user configuration.
  *
- * Precedence, lowest to highest: packaged constant, `rules/<locale>.json`, then the user file -
- * at each level a `rules` object replaces both rules wholesale, while `bannedSymbols` and `kaomoji`
- * replace one each. An empty string disables that rule only.
+ * Precedence, lowest to highest: the packaged constant for the chosen locale, then the user file -
+ * where a `rules` object replaces both rules wholesale, `bannedSymbols` and `kaomoji` replace one
+ * each, and an empty string disables that rule only.
+ *
+ * `rules/<locale>.json` is deliberately not an override layer. It exists as the shipped locales in
+ * data form, generated from the same source as the constants, so reading both would be one decision
+ * made twice; a user edits the constant or their own config, never a file the package installs.
  * @param {object} options - resolved inputs.
  * @param {object | null} options.userConfig - parsed `$DSH_HOME/agent-house-rules.json`.
- * @param {(locale: string) => object | null} options.loadRulesFile - reader for `rules/<locale>.json`.
  * @returns {{ text: string, locale: string, enabled: boolean, sources: string[] }} the assembled rules.
  */
 export function buildRules(options) {
@@ -156,14 +169,6 @@ export function buildRules(options) {
 
   let banned = chosen.rules.bannedSymbols;
   let kaomoji = chosen.rules.kaomoji;
-
-  const fromFile = options.loadRulesFile(chosen.locale);
-  if (fromFile) {
-    sources.push(`rules/${chosen.locale}.json`);
-    const merged = merge(fromFile, { bannedSymbols: banned, kaomoji }, sources);
-    banned = merged.bannedSymbols;
-    kaomoji = merged.kaomoji;
-  }
   if (user && (typeof user.rules === 'object' || typeof user.bannedSymbols === 'string' || typeof user.kaomoji === 'string')) {
     sources.push('user-config');
     const merged = merge(user, { bannedSymbols: banned, kaomoji }, sources);
@@ -196,6 +201,36 @@ function merge(layer, base, sources) {
 }
 
 /**
+ * Build a rules resolver that re-reads the user configuration whenever the file changes.
+ *
+ * This is what makes rule text live. The prompt registry evaluates a section whose `text` is a
+ * function on every model step, so a resolver here means an edit to the config file lands at the
+ * next step of every running session and every new one, with no host restart. A string `text` would
+ * be captured once at registration and would need a restart - which is exactly the wart this fixes.
+ *
+ * The stamp check keeps the hot path cheap: every step stats one small file, and only a real change
+ * re-reads and rebuilds the text.
+ * @param {object} options - resolved inputs.
+ * @param {string} options.file - user configuration path.
+ * @param {(message: string) => void} options.warn - warning sink.
+ * @returns {() => { text: string, locale: string, enabled: boolean, sources: string[] }} the resolver.
+ */
+export function makeRulesResolver(options) {
+  let stamp = null;
+  let built = null;
+  return () => {
+    const current = stampOf(options.file);
+    if (current !== stamp || built === null) {
+      stamp = current;
+      const userConfig = readJson(options.file);
+      built = buildRules({ userConfig });
+      if (userConfig === null && current !== 'absent') options.warn(`configuration at ${options.file} is unreadable; falling back to the packaged rules`);
+    }
+    return built;
+  };
+}
+
+/**
  * Report whether a text carries any of the glyphs the ban names. Exported because it is the
  * assertion that keeps this plugin honest about its own wording.
  * @param {string} text - text to inspect.
@@ -222,7 +257,6 @@ export function apply(ctx, config) {
   const configFile = typeof row.configFile === 'string' && row.configFile.trim() !== ''
     ? row.configFile.trim()
     : path.join(home, 'agent-house-rules.json');
-  const rulesDir = typeof row.rulesDir === 'string' && row.rulesDir.trim() !== '' ? row.rulesDir.trim() : path.join(HERE, '..', 'rules');
 
   const warn = (message) => {
     try {
@@ -232,28 +266,31 @@ export function apply(ctx, config) {
     }
   };
 
-  const userConfig = readJson(configFile);
-  const built = buildRules({
-    userConfig,
-    // The shipped locale files sit between the packaged constants and the user config, and the
-    // locale the row asks for selects which one is read; an explicit locale in either file still
-    // wins, because the user layer is applied after this reader.
-    loadRulesFile: (locale) => readJson(path.join(rulesDir, `${locale}.json`)),
-  });
+  // The text is a function, not a string: the prompt registry evaluates it on every model step, so
+  // a configuration edit lands at the next step of every running session without a host restart.
+  const resolve = makeRulesResolver({ file: configFile, warn });
+  const first = resolve();
 
-  if (!built.enabled) {
-    ctx.logger?.info?.('[house-rules] disabled; no rules injected');
-    return;
-  }
-
-  const leaked = offendingGlyphs(built.text);
-  if (leaked.length > 0) {
-    warn(`rule text carries banned glyphs (${leaked.join(', ')}); fix the rules file, the section still registers`);
-  }
+  // A section registering without an `enabled` check reads better than one that is silently absent,
+  // so the reason is logged once at boot even though the resolver owns the decision from then on.
+  ctx.logger?.info?.(
+    first.enabled
+      ? `[house-rules] registered ${first.text.length} characters (locale=${first.locale}, sources=${first.sources.join(' > ')})`
+      : '[house-rules] disabled; no rules injected',
+  );
 
   ctx.effect(
-    () => ctx.systemPrompt.section({ name: SECTION_NAME, order: SECTION_ORDER, text: built.text }),
+    () =>
+      ctx.systemPrompt.section({
+        name: SECTION_NAME,
+        order: SECTION_ORDER,
+        text: (context) => {
+          const built = resolve();
+          if (!built.enabled) return '';
+          void context;
+          return built.text;
+        },
+      }),
     'TastyLineOut: house rules section',
   );
-  ctx.logger?.info?.(`[house-rules] registered ${built.text.length} characters (locale=${built.locale}, sources=${built.sources.join(' > ')})`);
 }

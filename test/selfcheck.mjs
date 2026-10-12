@@ -47,7 +47,9 @@ function fakeCtx() {
       getSectionOrder: () => 50,
       section(section) {
         if (!Number.isFinite(section.order)) seen.errors.push('order is not a finite number');
-        if (typeof section.text !== 'string' || section.text === '') seen.errors.push('text is empty');
+        const kind = typeof section.text;
+        if (kind !== 'string' && kind !== 'function') seen.errors.push('text is neither a string nor a function');
+        if (kind === 'string' && section.text === '') seen.errors.push('text is empty');
         seen.sections.push(section);
         return () => {};
       },
@@ -109,64 +111,85 @@ check('registration records one section with a finite order and non-empty text',
   assert.ok(seen.logs.some((l) => l.includes('registered')));
 });
 
-check('rules file overrides a packaged rule, user config overrides the file', () => {
-  const built = mod.buildRules({
-    userConfig: { locale: 'en', kaomoji: 'USER KAOMOJI RULE' },
-    loadRulesFile: () => ({ bannedSymbols: 'FILE BANNED RULE', kaomoji: 'FILE KAOMOJI RULE' }),
-  });
-  assert.equal(built.text, 'FILE BANNED RULE\n\nUSER KAOMOJI RULE');
-  assert.ok(!built.text.includes('FILE KAOMOJI RULE'));
-  assert.deepEqual(built.sources, ['packaged:en', 'rules/en.json', 'user-config']);
-});
+check('the user config replaces one rule, then both at once', () => {
+  const zhPackaged = mod.buildRules({ userConfig: { locale: 'zh' } });
+  const one = mod.buildRules({ userConfig: { locale: 'zh', kaomoji: 'USER KAOMOJI RULE' } });
+  assert.ok(one.text.startsWith(zhPackaged.text.split('\n\n')[0]), 'the banned rule should survive a kaomoji-only override');
+  assert.ok(one.text.endsWith('USER KAOMOJI RULE'));
+  assert.deepEqual(one.sources, ['packaged:zh', 'user-config']);
 
-check('a rules object replaces both rules at once', () => {
-  const built = mod.buildRules({
-    userConfig: { locale: 'en', rules: { bannedSymbols: 'ONLY THIS', kaomoji: 'AND THIS' } },
-    loadRulesFile: () => null,
-  });
-  assert.equal(built.text, 'ONLY THIS\n\nAND THIS');
-  assert.ok(built.sources.includes('rules-object'));
+  const both = mod.buildRules({ userConfig: { locale: 'zh', rules: { bannedSymbols: 'ONLY THIS', kaomoji: 'AND THIS' } } });
+  assert.equal(both.text, 'ONLY THIS\n\nAND THIS');
+  assert.ok(both.sources.includes('rules-object'));
 });
 
 check('append is added last', () => {
-  const built = mod.buildRules({ userConfig: { locale: 'en', append: 'THIRD RULE' }, loadRulesFile: () => null });
+  const built = mod.buildRules({ userConfig: { locale: 'en', append: 'THIRD RULE' } });
   assert.ok(built.text.endsWith('THIRD RULE'));
 });
 
 check('an empty rule disables only that rule', () => {
-  const built = mod.buildRules({ userConfig: { locale: 'en', kaomoji: '' }, loadRulesFile: () => null });
+  const built = mod.buildRules({ userConfig: { locale: 'en', kaomoji: '' } });
   assert.ok(!/kaomoji/i.test(built.text));
   assert.ok(built.text.includes('U+2713'));
 });
 
-check('enabled:false registers nothing', () => {
+check('the section carries a function, so the registry re-reads it every step', () => {
+  const { ctx, seen } = fakeCtx();
+  mod.apply(ctx, { home: tempHome() });
+  assert.equal(typeof seen.sections[0].text, 'function');
+});
+
+check('editing the config file changes the prompt on the next read, with no restart', () => {
   const home = tempHome();
-  fs.writeFileSync(path.join(home, 'agent-house-rules.json'), JSON.stringify({ enabled: false }), 'utf8');
+  const file = path.join(home, 'agent-house-rules.json');
   const { ctx, seen } = fakeCtx();
   mod.apply(ctx, { home });
-  assert.equal(seen.sections.length, 0);
+  const read = () => seen.sections[0].text({});
+  assert.ok(read().includes('U+2713'), 'packaged rules should arrive first');
+  assert.ok(!read().includes('LIVE EDIT'), 'nothing should be there before the edit');
+
+  // A different byte length, so the stamp check cannot miss the change.
+  fs.writeFileSync(file, JSON.stringify({ append: 'LIVE EDIT APPLIED' }), 'utf8');
+  assert.ok(read().endsWith('LIVE EDIT APPLIED'), 'the edit should land on the next read');
+  fs.rmSync(home, { recursive: true, force: true });
+});
+
+check('enabled:false in the config empties the section at read time', () => {
+  const home = tempHome();
+  const file = path.join(home, 'agent-house-rules.json');
+  fs.writeFileSync(file, JSON.stringify({ enabled: false }), 'utf8');
+  const { ctx, seen } = fakeCtx();
+  mod.apply(ctx, { home });
   assert.ok(seen.logs.some((l) => l.includes('disabled')));
+  assert.equal(seen.sections[0].text({}), '', 'a disabled section contributes nothing');
   fs.rmSync(home, { recursive: true, force: true });
 });
 
-check('a broken config file falls back to defaults instead of throwing', () => {
+check('a broken config file falls back to the packaged rules instead of throwing', () => {
   const home = tempHome();
-  fs.writeFileSync(path.join(home, 'agent-house-rules.json'), '{ this is not JSON', 'utf8');
+  const file = path.join(home, 'agent-house-rules.json');
+  fs.writeFileSync(file, '{ this is not JSON', 'utf8');
   const { ctx, seen } = fakeCtx();
   mod.apply(ctx, { home });
   assert.equal(seen.sections.length, 1);
-  assert.ok(seen.sections[0].text.includes('U+2713'));
+  assert.ok(seen.sections[0].text({}).includes('U+2713'));
+  assert.ok(seen.logs.some((l) => l.includes('unreadable')), 'a broken file should be reported, not swallowed');
   fs.rmSync(home, { recursive: true, force: true });
 });
 
-check('a config file on disk reaches the section', () => {
+check('a config file on disk reaches the section, and survives further edits', () => {
   const home = tempHome();
-  fs.writeFileSync(path.join(home, 'agent-house-rules.json'), JSON.stringify({ locale: 'zh', append: 'APPENDED' }), 'utf8');
+  const file = path.join(home, 'agent-house-rules.json');
+  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', append: 'APPENDED' }), 'utf8');
   const { ctx, seen } = fakeCtx();
   mod.apply(ctx, { home });
-  assert.equal(seen.sections.length, 1);
-  assert.ok(seen.sections[0].text.endsWith('APPENDED'));
-  assert.ok(seen.sections[0].text.includes('\u3010'));
+  const read = () => seen.sections[0].text({});
+  assert.ok(read().endsWith('APPENDED'));
+  assert.ok(read().includes('\u3010'));
+  fs.writeFileSync(file, JSON.stringify({ locale: 'en' }), 'utf8');
+  assert.ok(!read().includes('\u3010'), 'switching locale should drop the Chinese text');
+  assert.ok(!read().includes('APPENDED'), 'and drop an override that is no longer configured');
   fs.rmSync(home, { recursive: true, force: true });
 });
 

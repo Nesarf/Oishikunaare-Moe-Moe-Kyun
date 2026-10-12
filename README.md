@@ -43,8 +43,8 @@ dsh plugin --profile web update TastyLineOut
 
 ## Configure
 
-`$DSH_HOME/agent-house-rules.json` is read at boot. Nothing is required - with no file at all the two
-rules above are injected in English.
+`$DSH_HOME/agent-house-rules.json` is read **on every model step**, not just at boot. Nothing is
+required - with no file at all the two rules above are injected in English.
 
 ```json
 {
@@ -61,26 +61,37 @@ rules above are injected in English.
 - `bannedSymbols` and `kaomoji` replace one rule each. An empty string disables that rule only.
 - `rules: { "bannedSymbols": "...", "kaomoji": "..." }` replaces both at once.
 - `append` is an extra block, placed last.
-- `enabled: false` registers nothing at all.
+- `enabled: false` empties the section, so nothing is injected.
 
-Three layers apply in order, each overriding the one before: the packaged text in `src/index.js`, then
-`rules/<locale>.json` beside this plugin, then your config file. A config file that is missing or
-malformed falls back to the packaged defaults - a broken rules file must never keep a host from
-booting, because this plugin's job is to make every other agent behave.
+### Why editing that file needs no restart
+
+The section registers `text` as a **function**. The prompt registry calls it while assembling the
+prompt for each model step, so whatever the file says at that moment is what the agent is given.
+Edit the file and the next step of every running session - and every new conversation - reads the new
+wording, with no host restart. Setting `enabled: false` likewise takes effect from the next step.
+
+The resolver stats the file and only re-reads it when the stamp (size and mtime) changes, so a step
+pays one `stat` and nothing more.
+
+Two layers apply, highest last: the packaged text in `src/index.js` for the chosen locale, then your
+config file. `rules/<locale>.json` is **not** a third layer - see below. A config file that is missing
+or malformed falls back to the packaged rules, and a malformed one is also warned about, because a
+broken rules file must never keep a host from booting.
 
 ## Where the rule text comes from
 
 `rules/en.json` and `rules/zh.json` hold the shipped locales as data, generated from the same source
-that ships the fallback. To reword the Chinese rule without touching code, edit `rules/zh.json` in a
-clone; to ship a new locale, add `rules/<tag>.json` and set `locale`.
+that ships the fallback. They are the counterpart of the constants, not an override layer: reading
+both would be one decision made twice. To reword a rule, edit the constant in `src/index.js` (and
+regenerate these files) or override it in your own config; to ship a new locale, add a key to
+`PACKAGED` and copy its text into `rules/<tag>.json`.
 
 ## Design constraint: the rule text must not carry the glyphs it bans
 
 The first cut listed the glyphs literally. An agent asked to recite the rule printed the whole set
 back into the conversation - the rule became the pollution it exists to prevent. The ban therefore
 names Unicode code points (`U+2713`, `U+2717`, ...) and never contains the characters themselves.
-`test/selfcheck.mjs` asserts this for every shipped locale, and `apply()` warns at boot if a rules
-file smuggles a glyph in.
+`test/selfcheck.mjs` asserts this for every shipped locale.
 
 An agent can still recite the code points, which is not the same as printing the glyphs but is not
 free either. The honest fix is to state the rule as an allow-list of characters rather than a ban on
