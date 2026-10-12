@@ -120,11 +120,19 @@ dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
 
 作者本机（Windows）的实际情况，供日后对照：
 
-- 本机部署的副本是 `E:\dsh-home\plugins\dsh-agent-house-rules`，以 `link:` 形式装进 web profile，
-  语言为 `zh`。本仓库是它的公开发布形态，包名与插件 id 统一为 `TastyLineOut`。
-- 本机**没有**写 `agent-house-rules.json`，走的是内置默认；要切中文需在
-  `E:\dsh-home\agent-house-rules.json` 里写 `{"locale": "zh"}`。
+- 正式来源是本仓库：`dsh plugin --profile web add github:Nesarf/TastyLineOut`，
+  在本机解析到 `E:\dsh-home\profiles\web\node_modules\TastyLineOut`，并由
+  `profiles/web/package.json` 的 bundles 装载。早期那份自建副本
+  （`plugins\dsh-agent-house-rules`，以 `link:` 装过）已从 profile 摘除，目录留作参考。
+- 本机**明文配置语言为中文**：`E:\dsh-home\agent-house-rules.json` 内容是
+  `{"locale": "zh", "enabled": true}`。删掉这个文件就会退回英文内置默认。
 - 本机 `$DSH_HOME` 为 `E:\dsh-home`。
+- **本机 git 只能走 SSH 到 github.com**（HTTPS 会 connect timeout），因此全局配置了传输替换：
+  `git config --global url."git@github.com:".insteadOf "https://github.com/"`。
+  记录下来的 URL 仍是 HTTPS 形态，所以换台机器照样能装；只有本机这一步走 SSH。
+- 验收方式（不需要宿主日志，DSH 默认不落盘）：用 headless 起一次真启动并加一个临时 overlay，
+  见上文「确认运行中的宿主真的收到了纪律」。本机已于 2026-10-12 用这条路验证通过：
+  agent 复述出了中文规则原文与码位清单，且回答本身不含任何被禁符号。
 
 ## 授权
 
