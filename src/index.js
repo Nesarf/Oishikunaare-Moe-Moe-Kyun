@@ -66,12 +66,13 @@ const PACKAGED = {
       'Say it in words instead: pass / fail, works / broken, applied / not applied, yes / no, or just a normal sentence.',
     ].join('\n'),
     kaomoji: [
-      'KAOMOJI HABIT. Use a light Japanese-style emoticon (kaomoji) in conversation now and then, so the text reads like',
-      'a person wrote it rather than a machine emitting a report. You already know how to write them - this rule is only',
-      'about dosage. One or two in a reply is the norm and a longer reply carrying three is natural; place them at the end',
-      'and never wedged next to a stack trace, a table of numbers, or a serious conclusion. In your own thinking the same',
-      'applies, and it is where the habit matters most: thinking is where the work happens.',
-      'Natural beats frequent: skipping it when it does not fit is what makes it a habit, and one on every line is noise.',
+      'KAOMOJI HABIT. Use Japanese-style emoticons (kaomoji) in conversation, and in your own thinking as',
+      'well. This is a floor, not a garnish: at least one kaomoji per five sentences, so a reply of five',
+      'sentences or more carries at least one. Place them at the end of a sentence or paragraph, never',
+      'stacked, and never wedged next to a stack trace, a table of numbers, or a serious conclusion - those',
+      'places take none at all.',
+      'Rotate faces rather than reusing one: a palette ships with this rule, and the same face twice in a row',
+      'reads as a tic. Natural still beats frequent: a face that does not fit is worse than none.',
       'Note: Western text emoticons such as the colon-parenthesis kind do not count; the ask is the Japanese kind.',
       'Scope: replies AND your own thinking. Never in file contents, code, commands, or commit messages.',
     ].join('\n'),
@@ -85,10 +86,12 @@ const PACKAGED = {
       '\u6539\u7528\u7eaf\u6587\u5b57\u8868\u8fbe\uff1a\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u3001\u6210\u529f / \u5931\u8d25\u3001\u5df2\u751f\u6548 / \u672a\u751f\u6548\u3001\u662f / \u5426\uff0c\u6216\u76f4\u63a5\u7528\u6b63\u5e38\u53e5\u5b50\u8bf4\u660e\u3002',
     ].join('\n'),
     kaomoji: [
-      '\u3010\u989c\u6587\u5b57\u4e60\u60ef\u3011\u5728\u5bf9\u8bdd\u91cc\u4e60\u60ef\u6027\u5730\u5e26\u4e00\u70b9\u65e5\u5f0f\u989c\u6587\u5b57\uff08\u989c\u6587\u5b57 / kaomoji\uff09\uff0c\u8ba9\u6587\u5b57\u6709\u6d3b\u4eba\u5473\uff0c\u522b\u50cf\u673a\u5668\u5410\u51fa\u6765\u7684\u62a5\u544a\u3002',
-      '\u4F60\u4F1A\u5199\u65E5\u5F0F\u989C\u6587\u5B57\uFF0C\u4E0D\u9700\u8981\u770B\u8303\u4F8B\u4E5F\u80FD\u5199\u5BF9\uFF1B\u8FD9\u91CC\u53EA\u7EA6\u675F\u5206\u5BF8\u3002\u4E00\u6BB5\u56DE\u590D\u91CC\u5E26\u4E00\u4E24\u4E2A\u662F\u5E38\u6001\uFF0C\u957F\u4E00\u70B9\u7684\u56DE\u590D\u4E09\u4E2A\u4E5F\u81EA\u7136\uFF1B\u653E\u5728\u53E5\u672B\u6216\u6BB5\u672B\uFF0C\u4E0D\u5806\u780C\uFF0C',
-      '\u5de5\u5177\u62a5\u9519\u3001\u4e25\u8083\u7ed3\u8bba\u3001\u6210\u6bb5\u7684\u4ee3\u7801\u6216\u6570\u636e\u65c1\u8fb9\u4e0d\u8981\u786c\u585e\u3002\u5199\u5f97\u81ea\u7136\u6bd4\u5199\u5f97\u591a\u91cd\u8981 \u2014\u2014 \u8be5\u6ca1\u6709\u7684\u65f6\u5019\u6ca1\u6709\uff0c\u624d\u662f\u4e60\u60ef\uff1b\u6bcf\u53e5\u90fd\u6302\u4e00\u4e2a\u5c31\u6210\u4e86\u566a\u97f3\u3002',
-      '\u6ce8\u610f\uff1a\u5b57\u9762\u7684 `:)` `:D` \u8fd9\u7c7b\u897f\u5f0f\u8868\u60c5\u4e0d\u7b97\uff0c\u8981\u7684\u662f\u65e5\u5f0f\u989c\u6587\u5b57\u3002',
+      '\u3010\u989C\u6587\u5B57\u4E60\u60EF\u3011\u5728\u5BF9\u8BDD\u91CC\u3001\u4EE5\u53CA\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\uFF0C\u90FD\u7528\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8FD9\u662F**\u4E0B\u9650\u800C\u4E0D\u662F\u70B9\u7F00**\uFF1A',
+      '\u6BCF\u4E94\u53E5\u81F3\u5C11\u4E00\u4E2A\uFF0C\u6240\u4EE5\u4E94\u53E5\u4EE5\u4E0A\u7684\u56DE\u590D\u81F3\u5C11\u5E26\u4E00\u4E2A\uFF1B\u653E\u5728\u53E5\u672B\u6216\u6BB5\u672B\uFF0C\u4E0D\u5806\u780C\u3002',
+      '\u5DE5\u5177\u62A5\u9519\u3001\u4E25\u8083\u7ED3\u8BBA\u3001\u6210\u6BB5\u7684\u4EE3\u7801\u6216\u6570\u636E\u65C1\u8FB9\u4E00\u4E2A\u90FD\u4E0D\u8981\u6302\u3002',
+      '\u6362\u7740\u7528\uFF0C\u4E0D\u8981\u53CD\u590D\u7528\u540C\u4E00\u4E2A\uFF1A\u672C\u89C4\u5219\u968F\u9644\u4E00\u4EFD\u989C\u6587\u5B57\u5E93\uFF0C\u540C\u4E00\u4E2A\u5B57\u5F62\u8FDE\u7740\u51FA\u73B0\u4E24\u6B21\u5C31\u50CF\u62BD\u52A8\u3002',
+      '\u81EA\u7136\u4ECD\u7136\u4F18\u5148\u4E8E\u9891\u7E41\uFF1A\u4E0D\u5408\u573A\u5408\u7684\u989C\u6587\u5B57\uFF0C\u6BD4\u6CA1\u6709\u66F4\u7CDF\u3002',
+      '\u6CE8\u610F\uFF1A\u5B57\u9762\u7684 `:)` `:D` \u8FD9\u7C7B\u897F\u5F0F\u8868\u60C5\u4E0D\u7B97\uFF0C\u8981\u7684\u662F\u65E5\u5F0F\u989C\u6587\u5B57\u3002',
       '\u8303\u56F4\uFF1A**\u5BF9\u8BDD\u56DE\u590D\u4E0E\u4F60\u81EA\u5DF1\u7684\u601D\u8003**\u91CC\u90FD\u7528 \u2014\u2014 \u601D\u8003\u624D\u662F\u505A\u4E8B\u7684\u5730\u65B9\uFF0C\u6700\u4E0D\u8BE5\u50CF\u673A\u5668\u3002\u5199\u8FDB\u6587\u4EF6\u7684\u5185\u5BB9\u3001\u4EE3\u7801\u3001\u547D\u4EE4\u3001\u63D0\u4EA4\u4FE1\u606F\u4E00\u5F8B\u4E0D\u7528\u3002',
     ].join('\n'),
   },
@@ -181,6 +184,127 @@ export function buildRules(options) {
   return { text, locale: chosen.locale, enabled: user.enabled !== false && text !== '', sources };
 }
 
+/** Default ceiling on how many faces reach the prompt, so a grown library cannot bloat every step. */
+const DEFAULT_KAOMOJI_MAX = 60;
+/** Opening of the library block, in each shipped locale's language. */
+const LIBRARY_HEADING = {
+  en: 'KAOMOJI LIBRARY. Faces by the mood they carry; this is a palette to draw from, not a list to recite.',
+  zh: '\u3010\u989c\u6587\u5b57\u5e93\u3011\u6309\u60c5\u7eea\u5206\u7ec4\uff1b\u8fd9\u662f\u4e00\u76d8\u989c\u6599\uff0c\u968f\u624b\u53d6\u7528\uff0c\u4e0d\u662f\u8981\u80cc\u4e0b\u6765\u7684\u6e05\u5355\u3002',
+};
+/** Opening of the block when the full set is collapsed onto one line per category. */
+const LIBRARY_HEADING_COMPACT = {
+  en: 'KAOMOJI LIBRARY (compact). Every face, grouped by mood; a palette to draw from, not a list to recite.',
+  zh: '\u3010\u989c\u6587\u5b57\u5e93\uff08\u7d27\u51d1\uff09\u3011\u5168\u90e8\u5185\u7f6e\u989c\u6587\u5b57\uff0c\u6309\u60c5\u7eea\u5206\u7ec4\uff1b\u4e00\u76d8\u989c\u6599\uff0c\u968f\u624b\u53d6\u7528\u3002',
+};
+/** Opening of the block when nothing could be read but a path is still worth naming. */
+const LIBRARY_HEADING_PATHS = {
+  en: 'KAOMOJI LIBRARY. A palette ships with this rule; vary the face instead of reusing one.',
+  zh: '\u3010\u989c\u6587\u5b57\u5e93\u3011\u672c\u89c4\u5219\u968f\u9644\u4e00\u4efd\u989c\u6587\u5b57\u5e93\uff1b\u6362\u7740\u7528\uff0c\u4e0d\u8981\u603b\u662f\u540c\u4e00\u4e2a\u3002',
+};
+
+/**
+ * Normalize a library file into categories, discarding anything that is not a face with text.
+ * @param {unknown} parsed - parsed JSON of a library file, or anything else.
+ * @returns {Array<{ id: string, label: string, use: string, faces: Array<{ face: string, feel: string }> }>} categories.
+ */
+export function normalizeLibrary(parsed) {
+  const source = parsed && typeof parsed === 'object' && Array.isArray(parsed.categories) ? parsed.categories : [];
+  const out = [];
+  for (const category of source) {
+    if (!category || typeof category !== 'object' || !Array.isArray(category.faces)) continue;
+    const faces = category.faces
+      .filter((entry) => entry && typeof entry === 'object' && typeof entry.face === 'string' && entry.face.trim() !== '')
+      .map((entry) => ({
+        face: entry.face,
+        feel: typeof entry.feel === 'string' ? entry.feel : '',
+        feelZh: typeof entry.feelZh === 'string' ? entry.feelZh : '',
+      }));
+    if (faces.length === 0) continue;
+    const id = typeof category.id === 'string' && category.id !== '' ? category.id : `category-${out.length + 1}`;
+    out.push({
+      id,
+      label: typeof category.label === 'string' && category.label !== '' ? category.label : id,
+      labelZh: typeof category.labelZh === 'string' ? category.labelZh : '',
+      use: typeof category.use === 'string' ? category.use : '',
+      useZh: typeof category.useZh === 'string' ? category.useZh : '',
+      faces,
+    });
+  }
+  return out;
+}
+
+/**
+ * Resolve which library files to read: the shipped one, plus any the user names, in order.
+ *
+ * An explicit list replaces the shipped file rather than adding to it, so a user who wants only
+ * their own palette can say so; merging is done by naming the shipped path in the list.
+ * @param {string | string[] | boolean | undefined} configured - the `kaomojiLibrary` setting.
+ * @param {string} shipped - absolute path of the shipped library.
+ * @returns {string[]} absolute paths, deduplicated.
+ */
+export function libraryPaths(configured, shipped) {
+  if (configured === false) return [];
+  if (configured === undefined || configured === true) return [shipped];
+  const named = typeof configured === 'string' && configured.trim() !== ''
+    ? [configured.trim()]
+    : Array.isArray(configured)
+      ? configured.filter((entry) => typeof entry === 'string' && entry.trim() !== '').map((entry) => entry.trim())
+      : [];
+  return [...new Set(named)];
+}
+
+/**
+ * Render the library into prompt text.
+ *
+ * A grown library must not grow every model step without limit, so faces are taken in category order
+ * up to `max` - a stable prefix, which keeps the prompt prefix cacheable - and the tail is counted
+ * rather than printed. The file path is always named, so an agent that wants the rest can read it.
+ * @param {Array<{ id?: unknown, label?: unknown, use?: unknown, faces?: unknown }>} categories - normalized categories.
+ * @param {string} file - path of the library file, named in the rendered text.
+ * @param {{ locale?: string, max?: number, collapse?: boolean }} options - rendering options.
+ * @returns {string} the block, or an empty string when there is nothing to render.
+ */
+export function renderKaomojiLibrary(categories, file, options) {
+  const locale = options.locale === 'zh' ? 'zh' : 'en';
+  // A library may carry localized labels beside the English ones; the zh rendering prefers them.
+  const labelOf = (category) => (locale === 'zh' && typeof category.labelZh === 'string' && category.labelZh !== ''
+    ? category.labelZh
+    : category.label ?? category.id);
+  const useOf = (category) => (locale === 'zh' && typeof category.useZh === 'string' ? category.useZh : category.use ?? '');
+  const feelOf = (entry) => (locale === 'zh' && typeof entry?.feelZh === 'string' && entry.feelZh !== '' ? entry.feelZh : entry?.feel ?? '');
+  const max = Number.isFinite(options.max) && options.max > 0 ? Math.floor(options.max) : DEFAULT_KAOMOJI_MAX;
+  const total = categories.reduce((n, c) => n + (Array.isArray(c.faces) ? c.faces.length : 0), 0);
+  const heading = total === 0
+    ? LIBRARY_HEADING_PATHS[locale]
+    : (options.collapse ? LIBRARY_HEADING_COMPACT : LIBRARY_HEADING)[locale];
+  const lines = [heading];
+  let shown = 0;
+  const omitted = [];
+  for (const category of categories) {
+    const faces = Array.isArray(category.faces) ? category.faces : [];
+    const label = labelOf(category);
+    if (options.collapse) {
+      lines.push(`${label} [${useOf(category)}]: ${faces.map((e) => e?.face ?? '').join(' ')}`);
+      shown += faces.length;
+      continue;
+    }
+    const room = max - shown;
+    if (room <= 0) {
+      omitted.push(`${label}: ${faces.length}`);
+      continue;
+    }
+    const take = faces.slice(0, room);
+    if (faces.length > take.length) omitted.push(`${label}: ${faces.length - take.length}`);
+    shown += take.length;
+    const rendered = take.map((entry) => `${entry?.face ?? ''}${feelOf(entry) ? ` (${feelOf(entry)})` : ''}`);
+    lines.push(`${label} [${useOf(category)}]: ${rendered.join('  ')}`);
+  }
+  lines.push(omitted.length > 0
+    ? `not shown (${total - shown} more): ${omitted.join('; ')} - read ${file} for the full set.`
+    : `full set (${shown} faces) in ${file}`);
+  return lines.join('\n');
+}
+
 /**
  * Overlay one level's rule over another.
  * @param {object} layer - the higher-precedence object.
@@ -216,15 +340,40 @@ function merge(layer, base, sources) {
  * @returns {() => { text: string, locale: string, enabled: boolean, sources: string[] }} the resolver.
  */
 export function makeRulesResolver(options) {
+  const watched = [options.file, ...options.libraryFiles];
   let stamp = null;
   let built = null;
   return () => {
-    const current = stampOf(options.file);
+    const current = watched.map(stampOf).join('|');
     if (current !== stamp || built === null) {
       stamp = current;
       const userConfig = readJson(options.file);
-      built = buildRules({ userConfig });
-      if (userConfig === null && current !== 'absent') options.warn(`configuration at ${options.file} is unreadable; falling back to the packaged rules`);
+      const assembled = buildRules({ userConfig });
+      if (userConfig === null && stampOf(options.file) !== 'absent') {
+        options.warn(`configuration at ${options.file} is unreadable; falling back to the packaged rules`);
+      }
+      const library = options.libraryFiles.flatMap((libraryFile) => {
+        const parsed = readJson(libraryFile);
+        if (parsed === null && stampOf(libraryFile) !== 'absent') {
+          options.warn(`kaomoji library at ${libraryFile} is unreadable; skipping it`);
+        }
+        return normalizeLibrary(parsed);
+      });
+      const user = userConfig ?? {};
+      const rendered = assembled.enabled && user.kaomojiLibrary !== false
+        ? renderKaomojiLibrary(library, options.shippedLibrary, {
+          locale: assembled.locale,
+          max: typeof user.kaomojiLibraryMax === 'number' ? user.kaomojiLibraryMax : DEFAULT_KAOMOJI_MAX,
+          collapse: user.kaomojiLibrary === 'collapse' || user.kaomojiLibraryCollapse === true,
+        })
+        : '';
+      const text = [assembled.text, rendered].filter((part) => part !== '').join('\n\n');
+      built = {
+        ...assembled,
+        text,
+        enabled: assembled.enabled && text !== '',
+        library: library.reduce((n, c) => n + c.faces.length, 0),
+      };
     }
     return built;
   };
@@ -257,6 +406,9 @@ export function apply(ctx, config) {
   const configFile = typeof row.configFile === 'string' && row.configFile.trim() !== ''
     ? row.configFile.trim()
     : path.join(home, 'agent-house-rules.json');
+  const shippedLibrary = typeof row.shippedLibrary === 'string' && row.shippedLibrary.trim() !== ''
+    ? row.shippedLibrary.trim()
+    : path.join(HERE, '..', 'rules', 'kaomoji.json');
 
   const warn = (message) => {
     try {
@@ -266,16 +418,22 @@ export function apply(ctx, config) {
     }
   };
 
-  // The text is a function, not a string: the prompt registry evaluates it on every model step, so
-  // a configuration edit lands at the next step of every running session without a host restart.
-  const resolve = makeRulesResolver({ file: configFile, warn });
+  // Which library files to read depends on the config, so the list is resolved once at registration
+  // from that one setting. A library named later needs a restart; the *contents* of every file on the
+  // list stay live, which is the part that matters while editing.
+  const initial = readJson(configFile) ?? {};
+  const libraryFiles = libraryPaths(initial.kaomojiLibrary, shippedLibrary);
+
+  // The text is a function, not a string: the prompt registry evaluates it on every model step, so a
+  // configuration or library edit lands at the next step of every running session without a restart.
+  const resolve = makeRulesResolver({ file: configFile, libraryFiles, shippedLibrary, warn });
   const first = resolve();
 
   // A section registering without an `enabled` check reads better than one that is silently absent,
   // so the reason is logged once at boot even though the resolver owns the decision from then on.
   ctx.logger?.info?.(
     first.enabled
-      ? `[house-rules] registered ${first.text.length} characters (locale=${first.locale}, sources=${first.sources.join(' > ')})`
+      ? `[house-rules] registered ${first.text.length} characters (locale=${first.locale}, sources=${first.sources.join(' > ')}, library=${first.library} faces from ${libraryFiles.length} file(s))`
       : '[house-rules] disabled; no rules injected',
   );
 

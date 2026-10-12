@@ -1,6 +1,6 @@
 {
   "name": "TastyLineOut",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Output house rules for every DeepSeek Harness agent: no check-mark or cross glyphs in replies, your own thinking, or written files, and a kaomoji habit in conversation and thinking - one global prompt section, all presets, all workspaces.",
   "keywords": [
     "dsh",

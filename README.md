@@ -16,10 +16,10 @@ Two rules ship today.
    writes. Those glyphs pollute context and regression parameters, and a file written today is read
    back into context tomorrow, so the ban covers files and not just replies. Say it in words instead:
    pass / fail, works / broken, applied / not applied, yes / no.
-2. **Kaomoji habit** - a light Japanese-style emoticon now and then in conversation, so the text reads
-   like a person wrote it. Conversation only: never in file contents, code, commands or commit
-   messages. Dosage is the point - at most one or two per reply, and none at all next to a stack trace
-   or a serious conclusion.
+2. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
+   floor rather than as garnish: at least one per five sentences, so a reply of five sentences or
+   more carries at least one. Faces rotate rather than repeat, and places that take none take none -
+   a stack trace, a table of numbers, a serious conclusion.
 
 ## Install
 
@@ -61,17 +61,48 @@ required - with no file at all the two rules above are injected in English.
 - `bannedSymbols` and `kaomoji` replace one rule each. An empty string disables that rule only.
 - `rules: { "bannedSymbols": "...", "kaomoji": "..." }` replaces both at once.
 - `append` is an extra block, placed last.
+- `kaomojiLibrary` picks the palette: `true`/absent for the shipped library, `false` to leave it out,
+  a path or a list of paths for your own. **A list replaces the shipped file** - name the shipped path
+  too if you want both.
+- `kaomojiLibraryMax` caps how many faces reach the prompt (default 60).
+- `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
 - `enabled: false` empties the section, so nothing is injected.
+
+### The kaomoji library
+
+`rules/kaomoji.json` ships 59 faces across nine moods (cheerful, calm, wry, troubled, shy,
+determined, puzzled, tired, affection), each with the mood it carries and a short label. The library
+is rendered into the prompt under the two rules, so an agent has a palette to draw from instead of
+reusing one face until it reads as a tic. Labels exist in both languages: `feel`/`use`/`label` are the
+English rendering, `feelZh`/`useZh`/`labelZh` the Chinese one.
+
+To grow it, either edit `rules/kaomoji.json` or point `kaomojiLibrary` at your own file with the same
+shape:
+
+```json
+{
+  "categories": [
+    { "id": "mine", "label": "mine", "use": "when to reach for these",
+      "faces": [{ "face": "(your face)", "feel": "what it signals" }] }
+  ]
+}
+```
+
+The prompt is not free, so the renderer takes faces in category order up to `kaomojiLibraryMax` and
+counts the rest instead of printing them - a stable prefix, which also keeps the prompt prefix
+cacheable. The file path is always named, so an agent that wants the remainder can read it. For scale:
+the Chinese rendering of all 59 faces is about 1000 characters, the English about 1600.
 
 ### Why editing that file needs no restart
 
 The section registers `text` as a **function**. The prompt registry calls it while assembling the
-prompt for each model step, so whatever the file says at that moment is what the agent is given.
-Edit the file and the next step of every running session - and every new conversation - reads the new
-wording, with no host restart. Setting `enabled: false` likewise takes effect from the next step.
+prompt for each model step, so whatever the files say at that moment is what the agent is given.
+Edit the config file or a library file and the next step of every running session - and every new
+conversation - reads the new wording, with no host restart. Setting `enabled: false` likewise takes
+effect from the next step.
 
-The resolver stats the file and only re-reads it when the stamp (size and mtime) changes, so a step
-pays one `stat` and nothing more.
+The resolver stats the config file and each library file and only re-reads them when a stamp (size and
+mtime) changes, so a step pays a few `stat` calls and nothing more.
 
 Two layers apply, highest last: the packaged text in `src/index.js` for the chosen locale, then your
 config file. `rules/<locale>.json` is **not** a third layer - see below. A config file that is missing

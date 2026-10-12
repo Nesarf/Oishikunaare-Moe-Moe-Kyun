@@ -1,0 +1,383 @@
+{
+  "name": "TastyLineOut kaomoji library",
+  "version": 3,
+  "note": "Faces grouped by the mood they carry. feel/use are English; feelZh/labelZh/useZh are the Chinese rendering. Extend it: add entries here, or point kaomojiLibrary at your own file(s).",
+  "categories": [
+    {
+      "id": "cheerful",
+      "label": "cheerful",
+      "use": "good news, a job finished, agreement",
+      "faces": [
+        {
+          "face": "(ω)",
+          "feel": "plain smile",
+          "feelZh": "基本微笑"
+        },
+        {
+          "face": "(^ω^)",
+          "feel": "bright",
+          "feelZh": "明亮"
+        },
+        {
+          "face": "(^_^)",
+          "feel": "content",
+          "feelZh": "满足"
+        },
+        {
+          "face": "(°ω°)",
+          "feel": "delighted",
+          "feelZh": "欢喜"
+        },
+        {
+          "face": "(•ω•)",
+          "feel": "sparkling",
+          "feelZh": "闪闪的"
+        },
+        {
+          "face": "\\(^ω^)/",
+          "feel": "cheering",
+          "feelZh": "欢呼"
+        },
+        {
+          "face": "╭°ω°╮",
+          "feel": "sunny",
+          "feelZh": "阳光"
+        },
+        {
+          "face": "(oωo)",
+          "feel": "surprised but glad",
+          "feelZh": "惊喜"
+        },
+        {
+          "face": "(vωv)",
+          "feel": "so glad",
+          "feelZh": "太高兴了"
+        }
+      ],
+      "labelZh": "开心",
+      "useZh": "好消息、事情办成了、表示同意"
+    },
+    {
+      "id": "calm",
+      "label": "calm",
+      "use": "explaining, confirming, a quiet aside",
+      "faces": [
+        {
+          "face": "(`·ω·´)",
+          "feel": "soft",
+          "feelZh": "柔和"
+        },
+        {
+          "face": "(·ω·)",
+          "feel": "neutral warm",
+          "feelZh": "温和"
+        },
+        {
+          "face": "(`ω´)",
+          "feel": "easy",
+          "feelZh": "轻松"
+        },
+        {
+          "face": "(ω)b",
+          "feel": "thumbs up",
+          "feelZh": "竖拇指"
+        },
+        {
+          "face": "(·_·)",
+          "feel": "deadpan",
+          "feelZh": "面无表情"
+        },
+        {
+          "face": "(°_°)",
+          "feel": "blank",
+          "feelZh": "放空"
+        },
+        {
+          "face": "(✧ω✧)",
+          "feel": "quietly pleased",
+          "feelZh": "暗自高兴"
+        }
+      ],
+      "labelZh": "平和",
+      "useZh": "讲解、确认、随口一句"
+    },
+    {
+      "id": "wry",
+      "label": "wry",
+      "use": "a small joke, a shrug, an ironic note",
+      "faces": [
+        {
+          "face": "(•_•)",
+          "feel": "dry",
+          "feelZh": "干巴巴"
+        },
+        {
+          "face": "(ω;)",
+          "feel": "sheepish",
+          "feelZh": "讪笑"
+        },
+        {
+          "face": "(`_´)",
+          "feel": "resigned",
+          "feelZh": "认命"
+        },
+        {
+          "face": "(;ω;)",
+          "feel": "awkward",
+          "feelZh": "尴尬"
+        },
+        {
+          "face": "(o_o)",
+          "feel": "tired of this",
+          "feelZh": "受够了"
+        },
+        {
+          "face": "(ω))",
+          "feel": "unimpressed",
+          "feelZh": "不为所动"
+        },
+        {
+          "face": "(々ω々)",
+          "feel": "sighing",
+          "feelZh": "叹气"
+        },
+        {
+          "face": "(ω•ω)",
+          "feel": "wry smile",
+          "feelZh": "苦笑"
+        }
+      ],
+      "labelZh": "苦笑",
+      "useZh": "开个小玩笑、耸耸肩、带点自嘲"
+    },
+    {
+      "id": "troubled",
+      "label": "troubled",
+      "use": "a bug, a failure, bad news",
+      "faces": [
+        {
+          "face": "(`;ω;´)",
+          "feel": "worried",
+          "feelZh": "担心"
+        },
+        {
+          "face": "(;`ω´)",
+          "feel": "troubled",
+          "feelZh": "困扰"
+        },
+        {
+          "face": "(ω;);",
+          "feel": "sweating",
+          "feelZh": "冒汗"
+        },
+        {
+          "face": "(`ω´);",
+          "feel": "awkward",
+          "feelZh": "尴尬"
+        },
+        {
+          "face": "o(>_<)o",
+          "feel": "shocked",
+          "feelZh": "震惊"
+        },
+        {
+          "face": "(°ω°);",
+          "feel": "startled",
+          "feelZh": "一惊"
+        },
+        {
+          "face": "(>_<)",
+          "feel": "grimace",
+          "feelZh": "咧嘴"
+        }
+      ],
+      "labelZh": "出状况",
+      "useZh": "出 bug、失败了、坏消息"
+    },
+    {
+      "id": "shy",
+      "label": "shy",
+      "use": "a compliment, an admission, a soft moment",
+      "faces": [
+        {
+          "face": "(*/ω\\*)",
+          "feel": "blushing",
+          "feelZh": "脸红"
+        },
+        {
+          "face": "(`•ω•´)",
+          "feel": "shy",
+          "feelZh": "害羞"
+        },
+        {
+          "face": "(*·ω·*)",
+          "feel": "soft blush",
+          "feelZh": "微红"
+        },
+        {
+          "face": "(*ω*)",
+          "feel": "quietly happy",
+          "feelZh": "悄悄开心"
+        },
+        {
+          "face": "(•_•)/",
+          "feel": "shuffling",
+          "feelZh": "不好意思"
+        }
+      ],
+      "labelZh": "害羞",
+      "useZh": "被夸、认个小错、柔软的时刻"
+    },
+    {
+      "id": "determined",
+      "label": "determined",
+      "use": "a fix landed, a plan committed, resolve",
+      "faces": [
+        {
+          "face": "(•°ω°•)",
+          "feel": "focused",
+          "feelZh": "专注"
+        },
+        {
+          "face": "(oωo)9",
+          "feel": "on it",
+          "feelZh": "交给我"
+        },
+        {
+          "face": "\\(•ω•)/",
+          "feel": "ready",
+          "feelZh": "准备好了"
+        },
+        {
+          "face": "(ω)9",
+          "feel": "thumbs up",
+          "feelZh": "竖拇指"
+        },
+        {
+          "face": "(°ω°)7",
+          "feel": "gritty",
+          "feelZh": "咬紧牙"
+        },
+        {
+          "face": "(>ω<)b",
+          "feel": "set",
+          "feelZh": "定下来"
+        }
+      ],
+      "labelZh": "有干劲",
+      "useZh": "修好了、定下方案、下决心"
+    },
+    {
+      "id": "puzzled",
+      "label": "puzzled",
+      "use": "an odd result, an open question",
+      "faces": [
+        {
+          "face": "(•_•?)",
+          "feel": "puzzled",
+          "feelZh": "疑惑"
+        },
+        {
+          "face": "(°ω°?)",
+          "feel": "confused",
+          "feelZh": "困惑"
+        },
+        {
+          "face": "(?ω?)",
+          "feel": "unsure",
+          "feelZh": "拿不准"
+        },
+        {
+          "face": "(`•_•´?)",
+          "feel": "thinking",
+          "feelZh": "思考中"
+        },
+        {
+          "face": "(·_·?)",
+          "feel": "sceptical",
+          "feelZh": "存疑"
+        },
+        {
+          "face": "(o_o?)",
+          "feel": "wait what",
+          "feelZh": "等等什么"
+        }
+      ],
+      "labelZh": "困惑",
+      "useZh": "结果奇怪、问题还没答案"
+    },
+    {
+      "id": "tired",
+      "label": "tired",
+      "use": "a long job, a late hour",
+      "faces": [
+        {
+          "face": "(=_=)",
+          "feel": "sleepy",
+          "feelZh": "犯困"
+        },
+        {
+          "face": "(ーωー)",
+          "feel": "drained",
+          "feelZh": "没电了"
+        },
+        {
+          "face": "(__)zzZ",
+          "feel": "asleep",
+          "feelZh": "睡着了"
+        },
+        {
+          "face": "(ω)zZ",
+          "feel": "drowsy",
+          "feelZh": "打瞌睡"
+        },
+        {
+          "face": "(·_·)z",
+          "feel": "flat",
+          "feelZh": "平了"
+        },
+        {
+          "face": "(u_u)",
+          "feel": "worn out",
+          "feelZh": "累垮"
+        }
+      ],
+      "labelZh": "疲惫",
+      "useZh": "长任务、深夜"
+    },
+    {
+      "id": "affection",
+      "label": "affection",
+      "use": "thanks, warmth, a shared win",
+      "faces": [
+        {
+          "face": "(♥ω♥)",
+          "feel": "fond",
+          "feelZh": "亲昵"
+        },
+        {
+          "face": "(♪ω♪)",
+          "feel": "humming",
+          "feelZh": "哼着歌"
+        },
+        {
+          "face": "(♥°ω°♥)",
+          "feel": "warm",
+          "feelZh": "暖暖的"
+        },
+        {
+          "face": "(☆ω☆)",
+          "feel": "delighted",
+          "feelZh": "欢喜"
+        },
+        {
+          "face": "(♥_♥)",
+          "feel": "smitten",
+          "feelZh": "心动了"
+        }
+      ],
+      "labelZh": "亲昵",
+      "useZh": "道谢、温暖、一起赢了"
+    }
+  ]
+}

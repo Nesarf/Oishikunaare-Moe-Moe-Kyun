@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.1.3 - 2026-10-12
+
+- The kaomoji rule became a floor instead of a garnish: at least one kaomoji per five sentences, so
+  a reply of five sentences or more carries at least one. The previous wording said one or two is
+  the norm, which still left the habit invisible in practice.
+- A kaomoji library ships: `rules/kaomoji.json` holds 59 unique faces across nine moods, each with
+  the mood it carries. It is rendered into the prompt under the rules, so an agent draws from a
+  palette rather than reusing one face. Labels carry both languages (`feel`/`use`/`label` and
+  `feelZh`/`useZh`/`labelZh`).
+- Grow it without touching code: edit that file, or point `kaomojiLibrary` at your own library file(s).
+  A list replaces the shipped file; `kaomojiLibraryMax` caps how many faces reach the prompt, and
+  the remainder is counted rather than printed, which keeps the prompt prefix stable and cacheable.
+  `kaomojiLibraryCollapse` puts each category on one line.
+- Library files are watched like the config file, so a face added at runtime lands on the next model
+  step of every running session.
 ## 0.1.2 - 2026-10-12
 
 - The rule text is now live. The section registers `text` as a function instead of a captured
