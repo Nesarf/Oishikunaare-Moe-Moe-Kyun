@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.9.4 - 2026-10-14
+
+- A notice now names this plugin as its producer (`source.kind = "plugin:Oishikunaare-Moe-Moe-Kyun"`)
+  instead of claiming the literal `user`. The `role` stays `user`, because that is the turn the model
+  has to obey; the kind was a borrowed identity with a cost that has a name. The disk-guard rule that
+  prepends its path discipline picks its target as "the first message whose `source.kind` is `user`",
+  and this plugin places its notice at the front of the step's messages - so the discipline block was
+  written into the notice, and two plugins' notices came to share one message. A producer-owned kind is
+  also what the session format asks for: the retired literal `plugin` is refused at write time so that
+  a reader can tell who produced a message, and borrowing `user` defeats exactly that.
+- test/selfcheck.mjs and test/acceptance.mjs assert the producer identity instead of `user`, on both
+  paths that hand a notice over: the `agent/pre-step` hook and the steer lever.
+
 ## 0.9.3 - 2026-10-14
 
 - The manifest now says which DSH line this is built against: `peerDependencies["@deepseek-ai/dsh"] =

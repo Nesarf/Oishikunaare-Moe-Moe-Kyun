@@ -44,6 +44,18 @@ const SECTION_ORDER = 50;
 /** Stable section name, so a composition can find or replace it. */
 const SECTION_NAME = 'tasty-line-out';
 
+/**
+ * Producer identity for every notice this plugin injects into a session.
+ *
+ * The session format requires a producer-owned `source.kind`: the retired literal "plugin" is refused
+ * at write time, and borrowing an identity that belongs to somebody else is how two plugins come to
+ * share one message. `user` is exactly such a borrowed identity, and the cost has a name: another
+ * plugin that looks for "the first message the user sent" finds a notice. The disk-guard rule that
+ * prepends its path discipline to that message selects its target with `source.kind === 'user'`, so a
+ * notice claiming to be user input is where its bullet lands - two plugins' notices in one message.
+ */
+const PRODUCER_KIND = `plugin:${name}`;
+
 /** Shipped locale used when neither the config nor the ask says otherwise. */
 const DEFAULT_LOCALE = 'en';
 
@@ -1335,14 +1347,18 @@ export function voiceNotice(locale, voice) {
  * fails validation on the next load ("session event at seq N message must have role \"user\"", which
  * surfaces as "stored session is corrupt") and, once it is in the request history, the provider
  * rejects the whole request with "missing field `role`". The same shape goes to `agent.steer`.
+ *
+ * The `role` stays `user` because that is the turn the model has to obey; the `source.kind` is this
+ * plugin's own producer identity, because the notice is not something the reader typed. Keeping those
+ * two apart is what lets another plugin tell the reader's message from an injected one.
  * @param {string} text - the notice text.
- * @returns {{ id: string, role: 'user', source: { kind: 'user' }, content: Array<{ type: 'text', text: string }> }} the message.
+ * @returns {{ id: string, role: 'user', source: { kind: string }, content: Array<{ type: 'text', text: string }> }} the message.
  */
 export function noticeMessage(text) {
   return {
     id: randomUUID(),
     role: 'user',
-    source: { kind: 'user' },
+    source: { kind: PRODUCER_KIND },
     content: [{ type: 'text', text }],
   };
 }

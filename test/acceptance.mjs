@@ -308,7 +308,7 @@ check('the steer lever keeps a bare turn open, once, within its budget', async (
 
   await emit(1);
   assert.equal(steered.length, 1, 'one steer keeps the turn open for another step');
-  assert.equal(steered[0].source.kind, 'user');
+  assert.equal(steered[0].source.kind, `plugin:${mod.name}`, 'a steered notice carries the same producer identity');
   assert.ok(steered[0].content[0].text.includes('one more pass'), 'and it asks for the reply again');
 
   await emit(1);

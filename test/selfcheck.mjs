@@ -294,7 +294,7 @@ check('the hook injects one notice per breach, and respects its budget', async (
 
   const first = await step([breach('m1')]);
   assert.equal(first.messages.length, 2, 'the notice goes in front of the step messages');
-  assert.equal(first.messages[0].source.kind, 'user');
+  assert.equal(first.messages[0].source.kind, `plugin:${mod.name}`, 'the notice names this plugin as its producer, not the reader');
   assert.ok(first.messages[0].content[0].text.includes('SELF-CHECK'));
 
   const again = await step([breach('m1')]);
