@@ -87,7 +87,7 @@ function makeHost() {
 
 /** A throwaway DSH home, so configuration behaviour is exercised end to end. */
 function tempHome(config) {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tastylineout-acc-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'oishikunaare-moe-acc-'));
   if (config !== undefined) fs.writeFileSync(path.join(dir, 'agent-house-rules.json'), JSON.stringify(config), 'utf8');
   return dir;
 }
@@ -132,6 +132,21 @@ check('a real step carrying a breach gets a notice in front of the messages', as
   assert.equal(decision.messages[0], notice, 'and it should be first');
   assert.ok(notice.content[0].text.includes('U+2713'), 'naming the code point');
   assert.equal(decision.messages.length, messages.length + 1, 'history is added to, never rewritten');
+});
+
+check('a notice is a complete user message, not a bare payload', async () => {
+  const host = makeHost();
+  const messages = [assistant('m1', [{ type: 'text', text: `all good ${CHECK}` }])];
+  const { decision } = await runStep(host, messages, { locale: 'zh' });
+  const notice = noticeOf(decision);
+  assert.ok(notice, 'a notice should reach the model');
+  // A pre-step hook's message is recorded as the durable `user/message` payload verbatim, so an
+  // object without a role is a session the validator refuses on the next load and a request the
+  // provider rejects with "missing field `role`" - the whole history fails, not just this notice.
+  assert.equal(notice.role, 'user', 'the recorded event needs the role the validator requires');
+  assert.equal(notice.source?.kind, 'user', 'and the source the transcript shows');
+  assert.ok(typeof notice.id === 'string' && notice.id.length > 0, 'and an identity of its own');
+  assert.notEqual(notice.id, messages[0].id, 'which is not borrowed from the conversation');
 });
 
 check('a clean step is left exactly as it was', async () => {

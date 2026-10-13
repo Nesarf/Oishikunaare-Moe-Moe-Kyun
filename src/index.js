@@ -27,12 +27,13 @@
  * @module Oishikunaare-Moe-Moe-Kyun
  */
 
+import { randomUUID } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /** Cordis plugin name. */
-export const name = 'TastyLineOut';
+export const name = 'Oishikunaare-Moe-Moe-Kyun';
 
 /** The prompt registry this row contributes to. */
 export const inject = ['systemPrompt'];
@@ -1324,6 +1325,28 @@ export function voiceNotice(locale, voice) {
   return `MOE VOICE - this conversation: ${voice?.id} (${label}). Markers: ${markers}. Keep the same voice throughout, do not rotate it, and do not treat it as a suffix to staple on - it is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is needed.`;
 }
 
+/**
+ * Wrap one notice as the user message the harness will record for it.
+ *
+ * A `pre-step` hook returns messages that the agent loop appends to the session verbatim
+ * (`session.append('user/message', message, { surfaceOp: 'append' })`), so this object *is* the
+ * durable event payload and has to carry everything a user message carries. A notice built as
+ * `{ source, content }` alone is recorded as an invalid `user/message`: the stored session then
+ * fails validation on the next load ("session event at seq N message must have role \"user\"", which
+ * surfaces as "stored session is corrupt") and, once it is in the request history, the provider
+ * rejects the whole request with "missing field `role`". The same shape goes to `agent.steer`.
+ * @param {string} text - the notice text.
+ * @returns {{ id: string, role: 'user', source: { kind: 'user' }, content: Array<{ type: 'text', text: string }> }} the message.
+ */
+export function noticeMessage(text) {
+  return {
+    id: randomUUID(),
+    role: 'user',
+    source: { kind: 'user' },
+    content: [{ type: 'text', text }],
+  };
+}
+
 export function makeSelfCheckHook(options) {
   const notified = new Set();
   const counts = new Map();
@@ -1454,7 +1477,7 @@ export function makeSelfCheckHook(options) {
       }
 
       if (notices.length === 0) return decision;
-      const injected = notices.map((text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] }));
+      const injected = notices.map((text) => noticeMessage(text));
       return { ...decision, messages: [...injected, ...messages] };
     } catch (error) {
       options.warn?.(`self-check failed: ${error?.message ?? error}`);
@@ -1594,7 +1617,7 @@ export function apply(ctx, config) {
         const text = decide(payload);
         if (text === null) return;
         try {
-          payload.agent.steer({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+          payload.agent.steer(noticeMessage(text));
           ctx.logger?.info?.('[house-rules] turn stopped without a kaomoji; steered one more pass');
         } catch (error) {
           warn(`steering failed: ${error?.message ?? error}`);

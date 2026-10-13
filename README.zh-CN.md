@@ -1,4 +1,4 @@
-# TastyLineOut
+# Oishikunaare-Moe-Moe-Kyun
 
 > English documentation: [README.md](README.md)
 
@@ -72,10 +72,10 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 ```sh
 # 从 GitHub 直装
-dsh plugin --profile web add github:Nesarf/TastyLineOut
+dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 
-# 或从本地克隆装
-git clone https://github.com/Nesarf/TastyLineOut
+# 或从本地克隆装（克隆目录叫什么都可以；本机保持历史目录名 E:/TastyLineOut）
+git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/TastyLineOut
 
 # 然后重启 dsh web —— 插件行在启动时装载
@@ -85,7 +85,7 @@ dsh plugin --profile web add link:E:/TastyLineOut
 commit 上。
 
 ```sh
-dsh plugin --profile web update TastyLineOut
+dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## 配置
@@ -226,8 +226,8 @@ DSH 宿主**默认不往磁盘写宿主日志**，所以「去日志里找」不
 ```sh
 cat > $DSH_HOME/house-rules-verify.yml <<'YML'
 - insert:
-    - id: TastyLineOut
-      name: TastyLineOut
+    - id: Oishikunaare-Moe-Moe-Kyun
+      name: Oishikunaare-Moe-Moe-Kyun
 YML
 
 dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \
@@ -283,10 +283,12 @@ npm run audit:session -- --json      # 机器可读
 
 作者本机（Windows）的实际情况，供日后对照：
 
-- 正式来源是本仓库：`dsh plugin --profile web add github:Nesarf/TastyLineOut`，
-  在本机解析到 `E:\dsh-home\profiles\web\node_modules\TastyLineOut`，并由
+- 正式来源是本仓库：`dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun`，
+  在本机解析到 `E:\dsh-home\profiles\web\node_modules\Oishikunaare-Moe-Moe-Kyun`，并由
   `profiles/web/package.json` 的 bundles 装载。早期那份自建副本
   （`plugins\dsh-agent-house-rules`，以 `link:` 装过）已从 profile 摘除，目录留作参考。
+- 本地克隆目录保留历史名 `E:\TastyLineOut`（仓库与包名都已改为 Oishikunaare-Moe-Moe-Kyun）；
+  上面「从本地克隆装」里的 `link:E:/TastyLineOut` 指的就是这个目录。
 - 本机**明文配置语言为中文**：`E:\dsh-home\agent-house-rules.json` 内容是
   `{"locale": "zh", "enabled": true}`。删掉这个文件就会退回英文内置默认。
 - 本机 `$DSH_HOME` 为 `E:\dsh-home`。

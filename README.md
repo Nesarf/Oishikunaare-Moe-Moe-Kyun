@@ -1,4 +1,4 @@
-# TastyLineOut
+# Oishikunaare-Moe-Moe-Kyun
 
 > Chinese documentation: [README.zh-CN.md](README.zh-CN.md)
 
@@ -84,10 +84,10 @@ To add a voice, edit the shipped table or point the layer at your own copy:
 
 ```sh
 # from GitHub (fastest path, no registry round trip)
-dsh plugin --profile web add github:Nesarf/TastyLineOut
+dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 
-# or from a clone
-git clone https://github.com/Nesarf/TastyLineOut
+# or from a clone (a checkout may live anywhere; this machine keeps it at E:/TastyLineOut)
+git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/TastyLineOut
 
 # restart dsh web - plugin rows load at boot
@@ -97,7 +97,7 @@ Upgrading an installed copy needs `update`, not `add`: `add` reports "resolution
 leaves the lockfile on the old commit.
 
 ```sh
-dsh plugin --profile web update TastyLineOut
+dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## Configure
@@ -262,8 +262,8 @@ was given:
 ```sh
 cat > $DSH_HOME/house-rules-verify.yml <<'YML'
 - insert:
-    - id: TastyLineOut
-      name: TastyLineOut
+    - id: Oishikunaare-Moe-Moe-Kyun
+      name: Oishikunaare-Moe-Moe-Kyun
 YML
 
 dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.2 - 2026-10-14
+
+- A notice is now a complete user message instead of a bare payload. The `agent/pre-step` hook returns
+  messages the agent loop records verbatim as the durable `user/message` event and appends to the
+  request history, so an object carrying only `source` and `content` produced a stored session the
+  loader refuses ("session event at seq N message must have role \"user\"", which the host reports as a
+  corrupt session) and then a request the provider rejects ("missing field `role`") - the whole
+  history, not just the notice. `noticeMessage()` stamps `id`, `role` and `source.kind` for the hook
+  and for the kaomoji steer lever alike, and test/acceptance.mjs holds the shape.
+- The rename reached the surfaces a reader sees. Both READMEs, the LICENSE line and every install,
+  upgrade and verification-overlay command now say **Oishikunaare-Moe-Moe-Kyun**, and the plugin's own
+  `name` follows the package and the roster row. The prompt section key stays `tasty-line-out`: it is
+  an internal handle that a composition may already be matching on, and no reader ever sees it.
+
 ## 0.9.1 - 2026-10-13
 
 - The moe layer gained a voice mode that actually varies between agents. A survey of the 15 presets on

@@ -62,7 +62,7 @@ function fakeCtx() {
 
 /** A throwaway DSH home, so configuration behaviour is tested end to end rather than mocked. */
 function tempHome() {
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tastylineout-'));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'oishikunaare-moe-'));
   return dir;
 }
 
