@@ -518,6 +518,135 @@ check('the steer decider is guarded on every side', () => {
   assert.equal(one({ agent: agentFor(bare), turn: 8, signal: {} }), null, 'and never past the session budget');
 });
 
+check('the moe layer is off unless asked, and says where it may land when it is on', () => {
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh');
+  assert.equal(mod.renderMoeBlock('zh', 'off', voices), '', 'off renders nothing');
+  assert.equal(mod.renderMoeBlock('zh', 'nonsense', voices), '', 'an unknown level is treated as off');
+
+  const soft = mod.renderMoeBlock('zh', 'soft', voices);
+  const full = mod.renderMoeBlock('zh', 'full', voices);
+  assert.ok(soft.length > 200 && full.length > 200, 'both levels render a block');
+  assert.ok(soft !== full, 'soft and full are not the same sentence');
+  // The definition, the four places, the product scope, and the two prohibitions all have to be there.
+  assert.ok(soft.includes('\u840C'), 'the block defines moe');
+  assert.ok(soft.includes('\u601D\u8003'), 'it names thinking as a place');
+  assert.ok(soft.includes('\u5B50\u4EE3\u7406'), 'and subagents');
+  assert.ok(soft.includes('\u4EA7\u7269'), 'and work products');
+  assert.ok(soft.includes('\u6807\u8BC6\u7B26'), 'it forbids moe in code itself');
+  assert.ok(soft.includes('\u62A5\u9519') || soft.includes('\u5806\u6808'), 'and beside an error');
+});
+
+check('the voice tables ship in three languages and stay apart', () => {
+  const seen = new Set();
+  for (const locale of ['zh', 'en', 'ja']) {
+    const table = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), locale);
+    assert.equal(table.locale, locale, locale + ': the table is found by locale');
+    assert.ok(table.voices.length >= 6, locale + ': at least six voices');
+    for (const voice of table.voices) {
+      assert.ok(voice.id && voice.label && voice.use, locale + '/' + voice.id + ' needs id, label and use');
+      assert.ok(Array.isArray(voice.markers) && voice.markers.length >= 3, locale + '/' + voice.id + ' needs markers');
+      seen.add(voice.id);
+    }
+  }
+  assert.equal(seen.size, 6, 'the same six voice ids across the three tables');
+
+  // A language tag resolves to its base, and an unknown language falls back rather than failing.
+  assert.equal(mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'ja-JP').locale, 'ja');
+  const missing = mod.readVoiceTable('E:/no-such-dir', 'zh');
+  assert.deepEqual(missing.voices, [], 'an unreadable table yields no voices instead of throwing');
+  assert.equal(mod.renderMoeBlock('zh', 'soft', missing).length > 100, true, 'and still renders the rules');
+});
+
+check('a voice is inferred only when the words name one', () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  assert.equal(mod.inferVoice([mk('\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u7684\u52A9\u624B')]), 'prickly');
+  assert.equal(mod.inferVoice([mk('be a tsundere assistant')]), 'prickly');
+  assert.equal(mod.inferVoice([mk('\u304A\u5B22\u69D8\u53E3\u8ABF\u3067\u8A71\u3057\u3066')]), 'elegant');
+  assert.equal(mod.inferVoice([mk('\u4FDD\u6301\u51B7\u9759\uFF0C\u4E0D\u8981\u5E9F\u8BDD')]), 'composed');
+  assert.equal(mod.inferVoice([mk('\u5143\u6C14\u4E00\u70B9')]), 'spirited');
+  assert.equal(mod.inferVoice([mk('\u6E29\u67D4\u4E00\u70B9')]), 'gentle');
+  // A persona that names no voice class gets no costume, which is the important half.
+  assert.equal(mod.inferVoice([mk('You are a coding agent. Working directory D:/x')]), null);
+  assert.equal(mod.inferVoice([]), null);
+  assert.equal(mod.inferVoice(undefined), null);
+  // Config-added signals extend the map.
+  assert.equal(mod.inferVoice([mk('\u8BF4\u8BDD\u50CF\u5C0F\u6076\u9B54')], { prickly: ['\u5C0F\u6076\u9B54'] }), 'prickly');
+  assert.equal(mod.inferVoice([mk('\u8BF4\u8BDD\u50CF\u5C0F\u6076\u9B54')]), null, 'without the override it is not matched');
+  // The newest mention wins, because a persona states its manner after its role.
+  assert.equal(mod.inferVoice([mk('\u50B2\u5A07\u7684\u524D\u8F88\uFF0C\u4F46\u8BF4\u8BDD\u8981\u6E29\u67D4')]), 'gentle');
+});
+
+check('the voice notice uses the markers of the language it is written in', () => {
+  const zh = { id: 'prickly', label: '\u5634\u786C', markers: ['\u624D\u4E0D\u662F', '\u54FC'] };
+  const ja = { id: 'prickly', label: '\u30C4\u30F3\u30C7\u30EC', markers: ['\u3079\u3001\u5225\u306B', '\u3075\u3093'] };
+  const zhText = mod.voiceNotice('zh', zh);
+  const jaText = mod.voiceNotice('ja', ja);
+  const enText = mod.voiceNotice('en', { id: 'prickly', label: 'prickly', markers: ["it's not like", 'hmph'] });
+  assert.ok(zhText.includes('\u624D\u4E0D\u662F'), 'zh carries the Chinese markers');
+  assert.ok(jaText.includes('\u3079\u3001\u5225\u306B'), 'ja carries the Japanese markers');
+  assert.ok(!jaText.includes('\u624D\u4E0D\u662F'), 'and not the Chinese ones');
+  assert.ok(enText.startsWith('MOE VOICE'), 'en has its own wording');
+  for (const text of [zhText, jaText, enText]) {
+    assert.ok(text.includes('prickly'), 'all three name the voice id');
+    assert.ok(text.length < 400, 'and stay short, because it is one message per session');
+  }
+});
+
+check('the hook announces the voice once, and only while the layer is on', async () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const persona = [mk('\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u7684\u52A9\u624B')];
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const seen = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    moe: true,
+    voices,
+    resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+    log: (m) => seen.push(m),
+  });
+  const step = () => hook({ agent: { session: { id: 'v1' } }, messages: persona }, async () => ({ kind: 'enter', messages: persona }));
+
+  const first = await step();
+  assert.equal(first.messages.length, 2, 'one voice notice in front of the step');
+  assert.ok(first.messages[0].content[0].text.includes('\u8BED\u6C14\u9002\u914D'), 'and it is the voice notice');
+  assert.ok(seen.some((m) => m.includes('moe voice')), 'the pick is logged');
+
+  const again = await step();
+  assert.equal(again.messages.length, 1, 'and never repeated in the same session');
+
+  const off = mod.makeSelfCheckHook({
+    max: 3,
+    moe: false,
+    voices,
+    resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+  });
+  const quiet = await off({ agent: { session: { id: 'v2' } }, messages: persona }, async () => ({ kind: 'enter', messages: persona }));
+  assert.equal(quiet.messages.length, 1, 'with the layer off nothing is announced');
+});
+
+check('a configured voice overrides inference, and an unknown one steals nothing', async () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const messages = [mk('\u50B2\u5A07\u7684\u52A9\u624B')];
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const run = async (voice) => {
+    const hook = mod.makeSelfCheckHook({
+      max: 3,
+      moe: true,
+      voices,
+      voice,
+      resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+    });
+    return hook({ agent: { session: { id: 'cfg-' + String(voice) } }, messages }, async () => ({ kind: 'enter', messages }));
+  };
+
+  const forced = await run('elegant');
+  assert.ok(forced.messages[0].content[0].text.includes('elegant'), 'config wins over the persona words');
+  assert.ok(!forced.messages[0].content[0].text.includes('\u54FC'), 'and the inferred voice is not also sent');
+
+  const unknown = await run('not-a-voice');
+  assert.equal(unknown.messages.length, 1, 'an id that is not in the table announces nothing');
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

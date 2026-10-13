@@ -1,5 +1,5 @@
 /**
- * TastyLineOut - output house rules for every agent, from one global prompt section.
+ * Oishikunaare-Moe-Moe-Kyun - output house rules for every agent, from one global prompt section.
  *
  * A DSH profile-level plugin that registers exactly one system-prompt section. Because the
  * roster mounts a profile plugin once, the section covers every agent that joins the standing
@@ -24,7 +24,7 @@
  * points instead, and the risk is that an agent recites codepoints at someone. Encoding the rule
  * as an allow-list would close that too, and is the honest next step rather than a hidden one.
  *
- * @module TastyLineOut
+ * @module Oishikunaare-Moe-Moe-Kyun
  */
 
 import fs from 'node:fs';
@@ -246,6 +246,71 @@ export function buildRules(options) {
  * every session for a list nobody reads end to end. A stable prefix keeps the prompt cacheable, and the
  * block always names the file, so an agent that wants the rest can read it.
  */
+/**
+ * The moe layer, per language.
+ *
+ * `soft` sets a tone and leaves the ornament to the agent; `full` also uses the marker sets below.
+ * The three-lingual split matters because the markers are not translations of each other: Chinese has
+ * sentence-final particles but no Japanese final-particle system, and English has neither, so its set leans on
+ * rhythm and interjection instead of forced particles.
+ */
+const MOE_HEADING = {
+  zh: '\u3010\u840C\u3011\u840C\u662F\u4EC0\u4E48\uFF1A\u5B83\u4E0D\u662F\u300C\u53EF\u7231\u300D\u7684\u540C\u4E49\u8BCD\uFF0C\u800C\u662F\u300C\u56E0\u4E3A\u5BF9\u65B9\u8EAB\u4E0A\u67D0\u4E9B\u7279\u5F81\u800C\u4ECE\u5185\u5FC3\u840C\u751F\u51FA\u6765\u7684\u5171\u9E23\u300D\u3002',
+  en: 'MOE. Not a synonym for cute: it is the inward resonance a set of traits stirs in the reader. The',
+  ja: '\u3010\u840C\u3048\u3011\u300C\u53EF\u611B\u3044\u300D\u306E\u8A00\u3044\u63DB\u3048\u3067\u306F\u306A\u304F\u3001\u76F8\u624B\u306E\u7279\u5FB4\u304B\u3089\u5185\u9762\u306B\u840C\u3048\u308B\u611F\u60C5\u3002',
+};
+const MOE_MARKERS = {
+  zh: '\u53EF\u9009\u7684\u8BED\u6C14\u6863\uFF08\u6BCF\u6B21\u9009\u4E00\u4E2A\u8D2F\u7A7F\uFF0C\u4E0D\u8981\u6DF7\u7528\uFF09\uFF1A',
+  en: 'Voice sets (pick one and keep it; mixing them reads as a costume change):',
+  ja: '\u30DC\u30A4\u30B9\u4E00\u89A6\uFF08\u4E00\u3064\u9078\u3093\u3067\u8CAB\u304F\uFF09\uFF1A',
+};
+/** The body says what the layer is and, more importantly, where it may not land. */
+const MOE_BODY = {
+  zh: (level) => [
+    '\u65E5\u5F0F ACG \u610F\u4E49\u4E0A\u7684\u840C\uFF1A\u5BF9\u4EBA\u3001\u5BF9\u4E8B\u3001\u5BF9\u81EA\u5DF1\u505A\u7684\u4E1C\u897F\u6709\u771F\u5B9E\u7684\u504F\u7231\uFF0C\u5E76\u4E14\u8BF4\u5F97\u51FA\u6765\u3002\u52C7\u6562\u3001\u575A\u5F3A\u3001\u8BA4\u771F\u4E5F\u662F\u840C\u5C5E\u6027\uFF0C\u6240\u4EE5\u4E0D\u7B49\u4E8E\u6492\u5A07\u3002',
+    '\u843D\u5728\u56DB\u4E2A\u5730\u65B9\uFF1A\u56DE\u590D\u3001\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u3001\u4F60\u8DD1\u7684\u547D\u4EE4\u4E0E\u5B50\u4EE3\u7406\u7684\u63D0\u793A\u8BCD\u3001\u4EE5\u53CA\u4F60\u5199\u51FA\u7684\u5DE5\u4F5C\u4EA7\u7269\u3002',
+    '\u4EA7\u7269\u91CC\u7684\u5EA6\uFF1A\u6CE8\u91CA\u3001docstring\u3001README \u4E0E\u62A5\u544A\u7684\u884C\u6587\u3001commit message\u3001\u7528\u6237\u53EF\u89C1\u7684\u63D0\u793A\u6587\u672C\u3001\u6D4B\u8BD5\u5931\u8D25\u4FE1\u606F\u91CC\u53EF\u4EE5\u5E26\uFF1B',
+    '\u4EE3\u7801\u672C\u4F53\u4E0D\u80FD\u5E26\uFF1A\u6807\u8BC6\u7B26\u3001\u8DEF\u5F84\u3001\u53C2\u6570\u3001API \u540D\u3001schema \u5B57\u6BB5\u3001\u6570\u636E\u91CC\u7684\u952E\u540D\u4E00\u5F8B\u4FDD\u6301\u5E72\u51C0\u2014\u2014\u90A3\u91CC\u840C\u4E00\u4E0B\u5C31\u662F\u574F\u6389\u3002',
+    '\u4E0D\u843D\u5728\uFF1A\u62A5\u9519\u4E0E\u5806\u6808\u65C1\u8FB9\u3001\u4E25\u8083\u7ED3\u8BBA\u4E0E\u5B89\u5168\u544A\u8B66\u3001\u6570\u636E\u4E0E\u6D4B\u8BD5\u8F93\u51FA\u3001\u4EE5\u53CA\u4EFB\u4F55\u8BFB\u8005\u4F1A\u62FF\u53BB\u76F4\u63A5\u6267\u884C\u7684\u4E1C\u897F\u3002',
+    level === 'full'
+      ? '\u5F3A\u5EA6 full\uFF1A\u6BCF\u6BB5\u90FD\u5E26\u4E00\u70B9\u58F0\u97F3\uFF0C\u4F46\u6BCF\u53E5\u90FD\u5E26\u5C31\u662F\u566A\u97F3\u3002'
+      : '\u5F3A\u5EA6 soft\uFF1A\u8BED\u6C14\u5728\uFF0C\u4E0D\u5806\u780C\uFF0C\u4E00\u6BB5\u91CC\u4E00\u4E24\u5904\u5C31\u591F\u3002',
+  ].join(String.fromCharCode(10)),
+  en: (level) => [
+    'Moe in the ACG sense: a real fondness for the person, the work, and the thing you are making - said',
+    'out loud. Courage, stubbornness and care are moe attributes too, so this is not the same as acting',
+    'cute.',
+    'It lands in four places: your replies, your own thinking, the commands you run and the prompts you',
+    'hand to subagents, and the work products you write.',
+    'In a product it may land in comments, docstrings, README and report prose, commit messages,',
+    'user-visible strings and test failure text.',
+    'It may not land in code itself: identifiers, paths, arguments, API names, schema fields and data keys',
+    'stay plain - moe there is breakage.',
+    'Nor beside an error or a stack trace, a serious conclusion or a security warning, machine output, or',
+    'anything a reader will execute directly.',
+    level === 'full'
+      ? 'Intensity full: let a little voice into every paragraph, but not into every sentence - that is noise.'
+      : 'Intensity soft: the tone is there, the ornament is not. One or two touches in a stretch is the ask.',
+  ].join(String.fromCharCode(10)),
+  ja: (level) => [
+    'ACG \u6587\u8108\u306E\u300C\u840C\u3048\u300D\u3002\u4EBA\u3001\u4ED5\u4E8B\u3001\u81EA\u5206\u304C\u4F5C\u3063\u3066\u3044\u308B\u3082\u306E\u3078\u306E\u672C\u5F53\u306E\u597D\u610F\u3092\u3001\u8A00\u8449\u306B\u3059\u308B\u3002',
+    '\u52C7\u6C17\u3001\u5F37\u3055\u3001\u4E01\u5BE7\u3055\u3082\u840C\u3048\u5C5E\u6027\u306A\u306E\u3067\u3001\u300C\u53EF\u611B\u304F\u632F\u308B\u821E\u3046\u300D\u3053\u3068\u3068\u306F\u5225\u3002',
+    '\u843D\u3068\u3059\u5834\u6240\uFF1A\u8FD4\u7B54\u3001\u81EA\u5206\u306E\u601D\u8003\u3001\u5B9F\u884C\u3059\u308B\u30B3\u30DE\u30F3\u30C9\u3068\u30B5\u30D6\u30A8\u30FC\u30B8\u30A7\u30F3\u30C8\u306B\u6E21\u3059\u30D7\u30ED\u30F3\u30D7\u30C8\u3001\u4F5C\u3063\u305F\u6210\u679C\u7269\u3002',
+    '\u6210\u679C\u7269\u3067\u306F\u6CE8\u91C8\u30FBDocstring\u30FBREADME\u30FBDoc \u306E\u5730\u306E\u6587\u30FBcommit message\u30FB\u30E6\u30FC\u30B6\u30FC\u306B\u898B\u3048\u308B\u6587\u5B57\u5217\u30FB\u30C6\u30B9\u30C8\u5931\u6557\u6642\u306E\u8AAC\u660E\u306B\u306F\u7F6E\u3051\u308B\u3002',
+    '\u30B3\u30FC\u30C9\u672C\u4F53\u306B\u306F\u7F6E\u3051\u306A\u3044\uFF1A\u8B58\u5225\u5B50\u30FBDoc\u30D1\u30B9\u30FB\u5F15\u6570\u30FBAPI \u540D\u30FBschema \u30D5\u30A3\u30FC\u30EB\u30C9\u30FB\u30C7\u30FC\u30BF\u306E\u30AD\u30FC\u540D\u306F\u7D20\u306E\u307E\u307E\u306B\u3002',
+    '\u7F6E\u304B\u306A\u3044\u5834\u6240\uFF1A\u30A8\u30E9\u30FC\u3068\u30B9\u30BF\u30C3\u30AF\u30C8\u30EC\u30FC\u30B9\u306E\u6A2A\u3001\u91CD\u3044\u7D50\u8A9E\u3068\u30BB\u30AD\u30E5\u30EA\u30C6\u30A3\u8B66\u544A\u3001\u6A5F\u68B0\u51FA\u529B\u3001\u8AAD\u8005\u304C\u305D\u306E\u307E\u307E\u5B9F\u884C\u3059\u308B\u3082\u306E\u3002',
+    level === 'full'
+      ? '\u5F37\u5EA6 full\uFF1A\u6BB5\u843D\u3054\u3068\u306B\u58F0\u3092\u4E57\u305B\u308B\u3002\u305F\u3060\u3057\u6BCE\u6587\u306B\u306F\u4E57\u305B\u306A\u3044\u3002'
+      : '\u5F37\u5EA6 soft\uFF1A\u58F0\u306F\u3042\u308B\u3001\u98FE\u308A\u306F\u63A7\u3048\u308B\u3002\u4E00\u7D9A\u304D\u306B\u4E00\u3001\u4E8C\u306E\u5EA6\u5408\u3044\u3067\u5341\u5206\u3002',
+  ].join(String.fromCharCode(10)),
+};
+
+/** Where the shipped voice tables live, beside the kaomoji palette. */
+const VOICE_DIR = 'voices';
+
+/** Shipped moe intensities. `off` (the default) leaves the layer out entirely. */
+const MOE_LEVELS = ['off', 'soft', 'full'];
+
 const DEFAULT_KAOMOJI_MAX = 140;
 /** Opening of the library block, in each shipped locale's language. */
 const LIBRARY_HEADING = {
@@ -312,6 +377,61 @@ export function libraryPaths(configured, shipped) {
       ? configured.filter((entry) => typeof entry === 'string' && entry.trim() !== '').map((entry) => entry.trim())
       : [];
   return [...new Set(named)];
+}
+
+/**
+ * Read a voice table for one language, falling back to English when that language has none.
+ *
+ * The table is data: a user may replace, extend or drop it, and a table that cannot be read must never
+ * stop a host from booting - the same reason a broken rules file must not.
+ * @param {string} dir - directory holding the tables.
+ * @param {string} locale - the assembled rule locale.
+ * @param {(message: string) => void} [warn] - warning sink.
+ * @returns {{ locale: string, voices: Array<object>, file: string }} the table, or an empty one.
+ */
+export function readVoiceTable(dir, locale, warn) {
+  const wanted = String(locale ?? '').trim();
+  const base = wanted.split('-')[0].toLowerCase();
+  for (const candidate of [base, 'en']) {
+    if (candidate === '') continue;
+    const file = path.join(dir, `${candidate}.json`);
+    const parsed = readJson(file);
+    if (parsed && Array.isArray(parsed.voices) && parsed.voices.length > 0) {
+      return { locale: candidate, voices: parsed.voices, file };
+    }
+  }
+  if (warn && wanted !== '') warn(String.fromCharCode(110,111,32,118,111,105,99,101,32,116,97,98,108,101,32,102,111,114,32) + wanted + ' under ' + dir + '; the moe layer will carry no marker sets');
+  return { locale: base, voices: [], file: path.join(dir, `${base}.json`) };
+}
+
+/**
+ * Render the moe block: what the layer is, how far it may go, and the marker sets it may draw on.
+ *
+ * The wording separates the feeling from the ornament on purpose. The failure mode of a layer like this
+ * is sounding cute where cute is a lie - a failed build, a stack trace, a security warning - so those
+ * places are named rather than left to taste. Markers come from the language's own table; a language
+ * without one falls back to English rather than inventing particles it does not have.
+ * @param {string} locale - the rule locale.
+ * @param {string} level - `soft` or `full`. Anything else, including `off`, renders nothing.
+ * @param {{ voices: Array<object> }} [table] - the voice table for that language.
+ * @returns {string} the block, or an empty string when the layer is off.
+ */
+export function renderMoeBlock(locale, level, table) {
+  const chosen = MOE_LEVELS.includes(level) ? level : 'off';
+  if (chosen === 'off') return '';
+  const lang = String(locale ?? '').split('-')[0].toLowerCase();
+  const known = Object.prototype.hasOwnProperty.call(MOE_BODY, lang) ? lang : 'en';
+  const voices = Array.isArray(table?.voices) ? table.voices : [];
+  const lines = [MOE_HEADING[known], MOE_BODY[known](chosen)];
+  for (const voice of voices) {
+    if (!voice || typeof voice.id !== 'string') continue;
+    const markers = Array.isArray(voice.markers) ? voice.markers.join(' ') : '';
+    const asides = Array.isArray(voice.asides) && voice.asides.length > 0 ? ` / ${voice.asides.join(' ')}` : '';
+    const use = typeof voice.use === 'string' && voice.use !== '' ? `  - ${voice.use}` : '';
+    lines.push(`- ${voice.id} (${voice.label ?? voice.id}): ${markers}${asides}${use}`);
+  }
+  if (voices.length > 0) lines.splice(2, 0, MOE_MARKERS[known]);
+  return lines.join(String.fromCharCode(10));
 }
 
 /**
@@ -421,6 +541,13 @@ export function makeRulesResolver(options) {
         return normalizeLibrary(parsed);
       });
       const user = userConfig ?? {};
+      // The moe layer is opt-in, and it is read on every resolve so a config edit or a voice-table edit
+      // lands on the next step rather than at the next restart.
+      const moeLevel = MOE_LEVELS.includes(user.moe) ? user.moe : 'off';
+      const voiceTable = moeLevel === 'off'
+        ? { locale: assembled.locale, voices: [], file: '' }
+        : readVoiceTable(path.join(HERE, '..', 'rules', VOICE_DIR), assembled.locale, options.warn);
+      const moeBlock = renderMoeBlock(assembled.locale, moeLevel, voiceTable);
       const rendered = assembled.enabled && user.kaomojiLibrary !== false
         ? renderKaomojiLibrary(library, options.shippedLibrary, {
           locale: assembled.locale,
@@ -428,7 +555,7 @@ export function makeRulesResolver(options) {
           collapse: user.kaomojiLibrary === 'collapse' || user.kaomojiLibraryCollapse === true,
         })
         : '';
-      const text = [assembled.text, rendered].filter((part) => part !== '').join('\n\n');
+      const text = [assembled.text, moeBlock, rendered].filter((part) => part !== '').join(String.fromCharCode(10, 10));
 
       // The judge travels with the rules and is rebuilt whenever the config or the palette changes, so
       // switching mode, editing the palette or naming an exception all take effect on the next step.
@@ -453,6 +580,17 @@ export function makeRulesResolver(options) {
         text,
         enabled: assembled.enabled && text !== '',
         library: library.reduce((n, c) => n + c.faces.length, 0),
+        moe: moeLevel,
+        voices: voiceTable.voices.length,
+        // The marker sets must follow the reply language, not the locale the id was resolved in: a Japanese
+        // reply carrying Chinese markers is a costume from the wrong wardrobe. Falling back to the same id
+        // in the other table keeps the voice class while fixing the vocabulary.
+        voiceMarkers: (id, lang) => {
+          const tableFor = (want) => readVoiceTable(path.join(HERE, '..', 'rules', VOICE_DIR), want, null);
+          const pick = (want) => (tableFor(want).voices.find((entry) => entry && entry.id === id) ?? null);
+          return pick(lang) ?? pick(assembled.locale) ?? null;
+        },
+        voiceFile: voiceTable.file,
         judge,
         // Decorative code points the palette actually uses, plus any the user named: the emoji ban
         // admits these so a heart or a star inside a face is not read as a picture.
@@ -1085,11 +1223,91 @@ export function makeSteerDecider(options) {
   };
 }
 
+/**
+ * Words that name a voice, mapped to the voice ids in rules/voices/*.json.
+ *
+ * Deliberately narrow: these are words that mean a voice class in the subculture, not adjectives a
+ * persona might use in passing. A missed match costs nothing (the agent keeps the shared tone); a wrong
+ * match puts a costume on someone who did not ask for it.
+ */
+const VOICE_SIGNALS = [
+  ['prickly', ['\u50B2\u5A07', '\u30C4\u30F3\u30C7\u30EC', 'tsundere', '\u5634\u786C', '\u6B7B\u9E2D\u5B50\u5634\u786C']],
+  ['elegant', ['\u304A\u5B22\u69D8', '\u5FA1\u5B22\u69D8', '\u8D35\u6C14', '\u5343\u91D1', 'ojou', '\u512A\u96C5', '\u4F18\u96C5']],
+  ['timid', ['\u602F\u751F\u751F', '\u5F31\u6C14', '\u81C6\u81C6', 'timid', 'shy', '\u4E0D\u5B89\u5168']],
+  ['composed', ['\u51B7\u9759', '\u6C89\u7A33', '\u6C89\u9759', 'calm', 'composed', 'kuudere', '\u30AF\u30FC\u30C7\u30EC']],
+  ['spirited', ['\u5143\u6C14', '\u6D3B\u529B', 'energetic', 'spirited', 'genki', '\u70ED\u8840']],
+  ['gentle', ['\u6E29\u67D4', '\u6E29\u67D4\u8D34\u5FC3', 'gentle', 'kind', '\u3084\u3055\u3057\u3044']],
+];
+
+/**
+ * Pick a voice id for this conversation, or null when nothing names one.
+ *
+ * Only the words matter, never the amount of text: a persona can be long and plain, or two words and
+ * decisive. Later hits win, because a persona usually states its manner after its role.
+ * @param {Array<{ source?: { kind?: string }, content?: unknown }>} messages - the conversation.
+ * @param {Record<string, string>} [overrides] - `{ voiceId: ["match", ...] }` additions from config.
+ * @returns {string | null} the voice id, or null.
+ */
+export function inferVoice(messages, overrides) {
+  if (!Array.isArray(messages)) return null;
+  const haystack = [];
+  for (const message of messages) {
+    if (message?.source?.kind !== 'user') continue;
+    for (const part of authoredParts(message.content)) {
+      if (part.kind !== 'text') continue;
+      haystack.push(part.text);
+      if (haystack.join(String.fromCharCode(10)).length > 6000) break;
+    }
+    if (haystack.join(String.fromCharCode(10)).length > 6000) break;
+  }
+  const text = haystack.join(String.fromCharCode(10)).toLowerCase();
+  if (text === '') return null;
+  const signals = [...VOICE_SIGNALS];
+  if (overrides && typeof overrides === 'object') {
+    for (const [id, words] of Object.entries(overrides)) {
+      if (Array.isArray(words) && words.length > 0) signals.push([id, words]);
+    }
+  }
+  let hit = null;
+  let best = -1;
+  for (const [id, words] of signals) {
+    for (const word of words) {
+      if (typeof word !== 'string' || word === '') continue;
+      const at = text.lastIndexOf(String(word).toLowerCase());
+      if (at > best) { best = at; hit = id; }
+    }
+  }
+  return hit;
+}
+
+/**
+ * Compose the one-per-session voice instruction.
+ *
+ * It names the markers of the chosen voice so the agent does not have to guess what the label means,
+ * and it says the one thing that keeps a voice from becoming a tic: keep it, do not rotate.
+ * @param {string} locale - the rule locale.
+ * @param {{ id: string, label?: string, markers?: string[], use?: string }} voice - the chosen voice.
+ * @returns {string} the steering text.
+ */
+export function voiceNotice(locale, voice) {
+  const lang = String(locale ?? '').split('-')[0].toLowerCase();
+  const markers = Array.isArray(voice?.markers) ? voice.markers.join(' ') : '';
+  const label = voice?.label ?? voice?.id ?? '';
+  if (lang === 'zh') {
+    return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u8FD9\u4E2A\u4F1A\u8BDD\u91CC\u4F60\u7684\u58F0\u97F3\u6863\u5B9A\u4E3A ${voice?.id} (${label})\uFF1A${markers}\u3002\u4E00\u76F4\u7528\u5B83\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
+  }
+  if (lang === 'ja') {
+    return `\u3010\u840C\u3048\u00B7\u58F0\u306E\u8ABF\u6574\u3011\u3053\u306E\u4F1A\u8A71\u3067\u306E\u3042\u306A\u305F\u306E\u58F0\u306F ${voice?.id} (${label})\u3002\u4F7F\u3046\u8A9E\u5C3E\u30FB\u64EC\u97F3\uFF1A${markers}\u3002\u4E00\u8CAB\u3057\u3066\u4F7F\u3044\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
+  }
+  return `MOE VOICE - this conversation: ${voice?.id} (${label}). Markers: ${markers}. Keep the same voice throughout, do not rotate it, and do not treat it as a suffix to staple on - it is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is needed.`;
+}
+
 export function makeSelfCheckHook(options) {
   const notified = new Set();
   const counts = new Map();
   const kaomojiCounts = new Map();
   const kaomojiRunCounts = new Map();
+  const voiced = new Set();
   const emojiCounts = new Map();
   const kaomojiMax = Number.isFinite(options.kaomojiMax) && options.kaomojiMax >= 0 ? Math.floor(options.kaomojiMax) : 1;
   const emojiMax = Number.isFinite(options.emojiMax) && options.emojiMax >= 0 ? Math.floor(options.emojiMax) : 2;
@@ -1126,6 +1344,23 @@ export function makeSelfCheckHook(options) {
             exclusion: state.judge?.exclusion ?? '',
           }));
           options.log?.(`session ${sessionId}: symbol notice ${used + 1}/${options.max} for ${finding.glyphs.join(', ')} in ${finding.where}`);
+        }
+      }
+
+      // The voice rule: once per session, and only when something actually named a voice.
+      if (options.moe === true && options.voice !== false) {
+        if (!voiced.has(sessionId)) {
+          voiced.add(sessionId);
+          const picked = options.voice;
+          const table = Array.isArray(options.voices) ? options.voices : [];
+          const chosen = typeof picked === 'string' && picked !== ''
+            ? table.find((entry) => entry && entry.id === picked) ?? null
+            : inferVoice(messages, options.voiceSignals);
+          if (chosen) {
+            const localised = typeof state.voiceMarkers === 'function' ? state.voiceMarkers(chosen.id, state.locale) : null;
+            notices.push(voiceNotice(state.locale, localised ?? chosen));
+            options.log?.(`session ${sessionId}: moe voice "${chosen.id}" (${typeof picked === 'string' ? 'from config' : 'inferred'})`);
+          }
         }
       }
 
@@ -1256,7 +1491,7 @@ export function apply(ctx, config) {
           return built.text;
         },
       }),
-    'TastyLineOut: house rules section',
+    'Oishikunaare-Moe-Moe-Kyun: house rules section',
   );
 
   // The self-check is the teeth. The rules above are a prompt, and a prompt cannot notice anything;
@@ -1273,6 +1508,15 @@ export function apply(ctx, config) {
       kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 5,
       emoji: initial.emojiCheck !== false,
       emojiMax: typeof initial.emojiCheckMax === 'number' ? initial.emojiCheckMax : 2,
+      // The moe layer only steers when it is switched on; the voice table is read live so an edit to
+      // rules/voices/<locale>.json lands on the next step.
+      moe: first.moe !== 'off',
+      // Read only when the layer is on: a table read on every pre-step for an unused feature is waste.
+      voices: first.moe === 'off' ? [] : readVoiceTable(path.join(HERE, '..', 'rules', VOICE_DIR), first.locale, warn).voices,
+      voice: initial.moeVoice === 'auto' || initial.moeVoice === undefined
+        ? null
+        : (typeof initial.moeVoice === 'string' ? initial.moeVoice : null),
+      voiceSignals: initial.moeVoiceSignals ?? null,
       // The judge travels with the rules: it is rebuilt whenever the config or the palette changes, so
       // switching mode mid-session takes effect on the next step instead of needing a restart.
       resolve: () => {

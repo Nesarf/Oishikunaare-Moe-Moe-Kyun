@@ -8,7 +8,7 @@
  *      escaped non-ASCII, while the rest of the file may not. This is what lets a bilingual rule
  *      ship from an ASCII source tree - the same idea as mega-index-map's sensitive-pattern
  *      exception, applied to prompt copy instead of a regex.
- *   2. `rules/*.json` and `README.zh-CN.md`, the localized content and the one localized document:
+ *   2. `rules/*.json` (including `rules/voices/*.json`) and `README.zh-CN.md`: the localized data layer
  *      prose in Chinese is the point of those files.
  *
  * Anything else carrying a non-ASCII character fails the check. Rationale: an ASCII source tree
@@ -42,6 +42,8 @@ const describe = (ch) => `"${ch}" U+${ch.codePointAt(0).toString(16).toUpperCase
 /** Collect the offending characters of one file, with the file-relative reason. */
 function scanFile(file) {
   const rel = path.relative(ROOT, file).replace(/\\/g, '/');
+  // rules/*.json is the localized data layer: the kaomoji palette and the voice tables are made of
+  // non-ASCII on purpose, and a user is expected to edit or replace them.
   if (rel === 'README.zh-CN.md' || rel.startsWith('rules/')) return [];
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   const findings = [];

@@ -27,6 +27,50 @@ Three rules ship today.
    more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none
    take none - a stack trace, a table of numbers, a serious conclusion.
 
+## The moe layer (optional)
+
+Off by default. When switched on it is not a coat of cuteness: moe in the ACG sense is the inward
+resonance a set of traits stirs in the reader, and courage or stubbornness are moe attributes as much
+as softness is. The layer asks an agent to speak with one consistent voice and to be visibly fond of
+the work, and then it says exactly where that may and may not land.
+
+```json
+{
+  "moe": "soft",
+  "moeVoice": "auto"
+}
+```
+
+- `moe`: `off` (default) | `soft` | `full`. `soft` sets the tone; `full` also leans on the marker sets.
+- `moeVoice`: `auto` infers a voice from the words of the session and stays silent when nothing names
+  one. A voice id (`gentle`, `spirited`, `composed`, `timid`, `prickly`, `elegant`) fixes it instead.
+- `moeVoiceSignals`: `{ "prickly": ["my own word"] }` extends the inference map.
+
+Where it lands: replies, the agent's own thinking, the commands it runs and the prompts it hands to
+subagents, and the work products it writes - comments, docstrings, README and report prose, commit
+messages, user-visible strings, test failure text. Where it does not: code itself (identifiers, paths,
+arguments, API names, schema fields, data keys), and anywhere beside an error, a stack trace, a serious
+conclusion, a security warning, machine output, or something a reader will execute directly.
+
+### Voices, in three languages
+
+`rules/voices/{zh,en,ja}.json` ship six voices each. The markers come from the speech-tic examples on
+Moegirlpedia's kuchiguse entry rather than from an impression of the subculture, and the three sets are
+not translations of one another - Chinese has sentence-final particles but no Japanese final-particle
+system, and English has neither, so its set leans on rhythm and interjection instead of forcing
+particles it does not have. A reply is given the markers of the language it is written in.
+
+To add a voice, edit the shipped table or point the layer at your own copy:
+
+```json
+{
+  "voices": [
+    { "id": "mine", "label": "mine", "feel": "what it sounds like",
+      "markers": ["one", "two"], "asides": ["occasionally"], "use": "when it fits" }
+  ]
+}
+```
+
 ## Install
 
 ```sh

@@ -1,5 +1,5 @@
-# TastyLineOut bundle patch: inserts its row into the web plugin roster.
-# Install with: dsh plugin --profile web add github:Nesarf/TastyLineOut
+# Oishikunaare-Moe-Moe-Kyun bundle patch: inserts its row into the web plugin roster.
+# Install with: dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 - insert:
-    - id: TastyLineOut
-      name: TastyLineOut
+    - id: Oishikunaare-Moe-Moe-Kyun
+      name: Oishikunaare-Moe-Moe-Kyun

@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.9.0 - 2026-10-13
+
+- The repository and the package are now **Oishikunaare-Moe-Moe-Kyun**. The install row, the package
+  name, the library's own name field and every repository URL changed with it; the prompt section name
+  (`tasty-line-out`) and the plugin's internal `name` stayed put, because changing them would invalidate
+  the installed row and every test that finds the section by name without making anything clearer.
+- **A moe layer**, off by default. It is defined from the subculture rather than from the word's drift
+  into a synonym for cute: moe is the inward resonance a set of traits stirs in the reader, the source is
+  explicit that courage and stubbornness are moe attributes too, so the layer is not "sound cute" - it is speaking as
+  someone with a consistent voice, being visibly fond of the work, and letting the work carry the care.
+- It lands in four places and is fenced out of two. In: replies, the agent's own thinking, the commands
+  it runs and the prompts it hands to subagents, and the work products it writes - where comments,
+  docstrings, README and report prose, commit messages, user-visible strings and test failure text may
+  carry it. Out: code itself (identifiers, paths, arguments, API names, schema fields and data keys stay
+  plain, because moe there is breakage), and anywhere beside an error, a stack trace, a serious
+  conclusion, a security warning, machine output, or something the reader will execute directly.
+- **Tri-lingual.** `rules/voices/{zh,en,ja}.json` ship six voices each (gentle, spirited, composed,
+  timid, prickly, elegant), and their markers are lifted from the speech-tic examples on Moegirlpedia's
+  kuchiguse entry - the onomatopoeic tics, the sentence-final particles, the star and note marks. The
+  three sets are not translations of one another: Chinese has sentence-final particles but no Japanese
+  final-particle system, and English has neither, so its set leans on rhythm and interjection rather than
+  forcing particles it does not have. A reply in one language is given the markers of *that* language,
+  not of the locale the voice was resolved in.
+- **Per-agent adaptation**, both ways. `moeVoice: "auto"` (the default) infers a voice from the words of
+  the session - tsundere / tsundere / tsundere, genki, reisei, ojou-sama and friends - and stays silent when nothing
+  names one, because a wrong voice is worse than a plain one. `moeVoice: "elegant"` fixes it, and
+  `moeVoiceSignals` extends the mapping with a user's own words.
+- The voice instruction is injected once per session rather than printed into the shared prompt block: the
+  block is registered once and shared, while the hook has the agent and its conversation in hand. Cost is
+  one short message per session, and the table is only read while the layer is on.
+- `moe: "off" | "soft" | "full"` (default off) is the switch. Off by default because a layer that changes
+  how every agent in a profile sounds is a taste decision, and a taste decision ships as an opt-in.
+- The allow-list judge reads the new block as language rather than as a leak: its seed is derived from the
+  block and the tables, so Japanese kana in a marker set is admitted and nothing in the layer trips its
+  own rule.
+- `test/selfcheck.mjs` grows from 48 checks to 54, covering the off-by-default switch, the four places and
+  both prohibitions, the three tables and their fallbacks, inference in all three languages (including the
+  silence when nothing matches), the localised markers, the once-per-session injection, and a configured
+  voice overriding inference.
+- Housekeeping: `scripts/gen-voices.mjs` generates the tables and `check:generated` now fails when they
+  drift, so `npm run gen` covers all three data layers.
+
 ## 0.8.0 - 2026-10-13
 
 - The first two levers are both after the fact: the prompt section is read at assembly, and the pre-step

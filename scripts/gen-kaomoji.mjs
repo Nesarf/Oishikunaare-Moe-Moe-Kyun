@@ -538,7 +538,7 @@ for (const [face, fe, fz] of CLASSIC) {
 
 // ---------------------------------------------------------------- sample and write
 const render = () => ({
-  name: 'TastyLineOut kaomoji library',
+  name: 'Oishikunaare-Moe-Moe-Kyun kaomoji library',
   version: 4,
   note: 'Faces grouped by the mood they carry. feel/use are English; feelZh/labelZh/useZh are the Chinese rendering. Extend it: add entries here, or point kaomojiLibrary at your own file(s).',
   categories: CATS.map((c) => ({
