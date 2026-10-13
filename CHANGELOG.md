@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.9.1 - 2026-10-13
+
+- The moe layer gained a voice mode that actually varies between agents. A survey of the 15 presets on
+  one machine showed inference over the conversation firing for 3 of them, and the reason is structural:
+  a persona lives in the system prompt, the plugin sees only the session, and a preset's own words are
+  names rather than voice classes. `moeVoice: "rotate"` holds each session to a stable voice chosen by
+  hashing its session id - no configuration, no guessing, and distinct sessions sound distinct.
+- So `moeVoice` now has three modes: `auto` (infer, silent when nothing names a voice), `rotate` (stable
+  per session), or a voice id (pin one for everyone). `auto` still wins when a persona does name a voice.
+- `scripts/persona-signals.mjs` reads each preset's persona.md and prints the words that identify it, for
+  anyone who wants to extend `moeVoiceSignals` by hand. It is a survey tool, not a wired-in bridge: the
+  tokens it finds are names, and a name does not tell the layer how someone should sound.
+- test/selfcheck.mjs grows from 54 checks to 56: rotation stability and spread, and all three modes
+  behaviour including that a pinned id beats the words in the session.
+- Verified against DSH 0.2.0-rc.2: the host boots clean with the plugin loaded, `agent/pre-step` and
+  `agent/turn-stopping` both fire (the session log shows the emoji notice, the kaomoji reminder, the
+  run-of-bare-replies probe and the steer), and no contract drift surfaced in the host logs.
+
 ## 0.9.0 - 2026-10-13
 
 - The repository and the package are now **Oishikunaare-Moe-Moe-Kyun**. The install row, the package

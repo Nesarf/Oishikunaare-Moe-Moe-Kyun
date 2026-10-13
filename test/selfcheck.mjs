@@ -647,6 +647,51 @@ check('a configured voice overrides inference, and an unknown one steals nothing
   assert.equal(unknown.messages.length, 1, 'an id that is not in the table announces nothing');
 });
 
+check('a rotated voice is stable per session and varied between sessions', () => {
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const first = mod.rotateVoice('session-a', voices);
+  assert.ok(first && typeof first.id === 'string', 'a session gets a voice');
+  assert.equal(mod.rotateVoice('session-a', voices).id, first.id, 'and keeps it on the next call');
+
+  const ids = new Set();
+  for (let i = 0; i < 40; i += 1) ids.add(mod.rotateVoice('session-' + i, voices).id);
+  assert.equal(ids.size, voices.length, 'over many sessions every voice is reached');
+
+  assert.equal(mod.rotateVoice('s', []), null, 'an empty table rotates nothing');
+  assert.equal(mod.rotateVoice('s', undefined), null);
+  assert.equal(mod.rotateVoice(undefined, voices).id.length > 0, true, 'a missing session id still resolves');
+});
+
+check('the three voice modes do what their names say', async () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const run = async (voice, messages, sessionId) => {
+    const hook = mod.makeSelfCheckHook({
+      max: 3,
+      moe: true,
+      voices,
+      voice,
+      resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+    });
+    const out = await hook({ agent: { session: { id: sessionId } }, messages }, async () => ({ kind: 'enter', messages }));
+    return out.messages.length > 1 ? out.messages[0].content[0].text : null;
+  };
+
+  const silent = await run('auto', [mk('You are a coding agent, working directory E:/x')], 'm1');
+  assert.equal(silent, null, 'auto stays silent when nothing names a voice');
+
+  const inferred = await run('auto', [mk('\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u7684\u52A9\u624B')], 'm2');
+  assert.ok(inferred.includes('prickly'), 'auto follows the words when they do name one');
+
+  const rotated = await run('rotate', [mk('plain instructions, no voice words at all')], 'm3');
+  assert.ok(rotated && rotated.includes('\u8BED\u6C14\u9002\u914D'), 'rotate speaks even with no words to go on');
+  const rotatedAgain = await run('rotate', [mk('plain instructions, no voice words at all')], 'm3');
+  assert.equal(rotated, rotatedAgain, 'and the same session gets the same voice');
+
+  const pinned = await run('composed', [mk('\u50B2\u5A07\u4E00\u70B9')], 'm4');
+  assert.ok(pinned.includes('composed'), 'a pinned id wins over the words in the session');
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

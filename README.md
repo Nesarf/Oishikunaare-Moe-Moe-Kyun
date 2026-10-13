@@ -42,8 +42,17 @@ the work, and then it says exactly where that may and may not land.
 ```
 
 - `moe`: `off` (default) | `soft` | `full`. `soft` sets the tone; `full` also leans on the marker sets.
-- `moeVoice`: `auto` infers a voice from the words of the session and stays silent when nothing names
-  one. A voice id (`gentle`, `spirited`, `composed`, `timid`, `prickly`, `elegant`) fixes it instead.
+- `moeVoice` has three modes. `auto` (the default) infers a voice from the words of the session and
+  stays silent when nothing names one. `rotate` gives every session a stable voice of its own by
+  hashing the session id, so each agent sounds distinct and consistent with no configuration and no
+  guessing. A voice id (`gentle`, `spirited`, `composed`, `timid`, `prickly`, `elegant`) pins one voice
+  for everyone.
+
+  A note on what "per agent" can mean here: the plugin cannot see which preset an agent came from, and
+  a persona lives in the system prompt rather than in the session, so inference over a conversation
+  fires only when the words name a voice class. Measured on one machine: 3 of 15 presets. `rotate` is
+  the honest answer - it cannot know the agent, but it can hold a session to one voice, and distinct
+  sessions sounding distinct is the observable half of the requirement.
 - `moeVoiceSignals`: `{ "prickly": ["my own word"] }` extends the inference map.
 
 Where it lands: replies, the agent's own thinking, the commands it runs and the prompts it hands to

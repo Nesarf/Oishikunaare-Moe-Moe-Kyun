@@ -1281,6 +1281,28 @@ export function inferVoice(messages, overrides) {
 }
 
 /**
+ * Pick a voice for a session by hashing its id: stable for that session, different between sessions.
+ *
+ * This is what "per agent" can honestly mean here. The plugin cannot see which preset an agent came
+ * from, so it cannot read a persona - but a session is an identity it does hold, and a session held to
+ * one voice is the observable half of the requirement. A hash keeps it deterministic, so the same
+ * session never changes voice halfway through.
+ * @param {string} sessionId - the session identity.
+ * @param {Array<{ id?: string }>} voices - the table to choose from.
+ * @returns {object | null} the chosen voice, or null when there is nothing to choose from.
+ */
+export function rotateVoice(sessionId, voices) {
+  const list = Array.isArray(voices) ? voices.filter((voice) => voice && typeof voice.id === 'string') : [];
+  if (list.length === 0) return null;
+  const text = String(sessionId ?? '');
+  let hash = 0;
+  for (let i = 0; i < text.length; i += 1) {
+    hash = (hash * 31 + text.charCodeAt(i)) % 2147483647;
+  }
+  return list[hash % list.length];
+}
+
+/**
  * Compose the one-per-session voice instruction.
  *
  * It names the markers of the chosen voice so the agent does not have to guess what the label means,
@@ -1353,13 +1375,17 @@ export function makeSelfCheckHook(options) {
           voiced.add(sessionId);
           const picked = options.voice;
           const table = Array.isArray(options.voices) ? options.voices : [];
-          const chosen = typeof picked === 'string' && picked !== ''
-            ? table.find((entry) => entry && entry.id === picked) ?? null
-            : inferVoice(messages, options.voiceSignals);
+          const mode = typeof picked === 'string' && picked !== '' ? picked : 'auto';
+          const chosen = mode === 'rotate'
+            ? rotateVoice(sessionId, table)
+            : (mode === 'auto'
+              ? inferVoice(messages, options.voiceSignals)
+              : table.find((entry) => entry && entry.id === mode) ?? null);
           if (chosen) {
             const localised = typeof state.voiceMarkers === 'function' ? state.voiceMarkers(chosen.id, state.locale) : null;
             notices.push(voiceNotice(state.locale, localised ?? chosen));
-            options.log?.(`session ${sessionId}: moe voice "${chosen.id}" (${typeof picked === 'string' ? 'from config' : 'inferred'})`);
+            const how = mode === 'rotate' ? 'rotated by session' : (mode === 'auto' ? 'inferred' : 'pinned by config');
+            options.log?.(`session ${sessionId}: moe voice ${chosen.id} (${how})`);
           }
         }
       }
@@ -1513,9 +1539,10 @@ export function apply(ctx, config) {
       moe: first.moe !== 'off',
       // Read only when the layer is on: a table read on every pre-step for an unused feature is waste.
       voices: first.moe === 'off' ? [] : readVoiceTable(path.join(HERE, '..', 'rules', VOICE_DIR), first.locale, warn).voices,
-      voice: initial.moeVoice === 'auto' || initial.moeVoice === undefined
-        ? null
-        : (typeof initial.moeVoice === 'string' ? initial.moeVoice : null),
+      // null means the default inference; 'rotate' and a voice id are passed straight through.
+      voice: initial.moeVoice === undefined || initial.moeVoice === null
+        ? 'auto'
+        : (typeof initial.moeVoice === 'string' && initial.moeVoice !== '' ? initial.moeVoice : 'auto'),
       voiceSignals: initial.moeVoiceSignals ?? null,
       // The judge travels with the rules: it is rebuilt whenever the config or the palette changes, so
       // switching mode mid-session takes effect on the next step instead of needing a restart.
