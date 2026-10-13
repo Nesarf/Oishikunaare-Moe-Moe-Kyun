@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.3 - 2026-10-14
+
+- The manifest now says which DSH line this is built against: `peerDependencies["@deepseek-ai/dsh"] =
+  ">=0.2.0-rc.2 <0.3.0-0"`, with the peer marked optional in `peerDependenciesMeta` so a package
+  manager does not try to install a second runtime beside the host's. The range is asserted against
+  `0.2.0-rc.2` with semver rather than assumed, because a range that does not match is reported as a
+  version conflict - an error, not a warning - and a plugin under a quarantine policy is switched off
+  by what an auditor finds.
+- `engines` is not the field that carries this. A host auditor reads a `@deepseek-ai/dsh*`
+  peerDependency or its own `dshCompat.dsh`, and only ever validates `engines.node`; a manifest with
+  no DSH range at all is reported as "compatibility unknown" regardless of what `engines` says.
+
 ## 0.9.2 - 2026-10-14
 
 - A notice is now a complete user message instead of a bare payload. The `agent/pre-step` hook returns
