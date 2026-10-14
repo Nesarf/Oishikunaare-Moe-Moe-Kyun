@@ -181,15 +181,21 @@ plus pure functions, so they are reachable three more ways:
 
 | entry | how | what it is for |
 | --- | --- | --- |
-| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. |
+| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` emits a paste-ready block for the rules files other harnesses read. |
 | MCP server | `node adapters/mcp.mjs` (or `npm run mcp`) | any client that speaks MCP: `mmk_rules` fetches the section for the system prompt, `mmk_check` judges a draft on all three alphabets, `mmk_notice` renders one notice. Nothing here assumes a particular agent. |
-| modules | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | writing another adapter. The DSH plugin, the CLI and the MCP server are all thin layers over that one file. |
+| Claude Code hook | `node adapters/claude-code.mjs` (or `npm run claude-code --print-config`) | the correction, not just the rules: on `Stop` a breach answers `{"decision":"block","reason":<notice>}`, on `UserPromptSubmit` and `SessionStart` it answers with `hookSpecificOutput.additionalContext`. Budgeted once per session, fails open, and a stop the hook itself caused is never blocked again. |
+| modules | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |
 
 `mmk review` reads a transcript and judges its newest authored message. Three readers ship: this
 package's own `dsh` artifacts (zstd framed, header plus event rows), Claude Code's `cc` transcript
 envelopes (where a thinking block carries its text under `thinking`, which the reader normalizes), and
 a plain `jsonl` of messages - the lowest common denominator, and the format to write a new adapter
 against.
+
+`npm run bench:thinking` is the other half of the thinking-language rule: it measures the character mix
+of the reasoning channel in real transcripts, because prose in a prompt is not evidence. The first
+baseline on the machine this was written on: 3.3% CJK against 96.7% Latin over 306 sessions and 52,376
+reasoning messages.
 
 One rule separates the two halves, and it is not a style preference: **judging and sending are
 different jobs**. `src/portable.mjs` never writes anything - no message is appended, no transcript is

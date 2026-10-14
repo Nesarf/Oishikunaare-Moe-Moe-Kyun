@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.11.0 - 2026-10-14
+
+- **A Claude Code hook adapter** (`adapters/claude-code.mjs`). The hook payload arrives as JSON on
+  stdin - including `transcript_path` - and the answer is a JSON decision on stdout, so the adapter is
+  only the translation between those two facts; the judges and the notice wording come from
+  `src/portable.mjs`. `Stop` answers `{"decision":"block","reason":...}` (the turn stays open with the
+  notice as its reason), `UserPromptSubmit` and `SessionStart` answer with `hookSpecificOutput
+  .additionalContext`. `--print-config` prints the `settings.json` fragment, `--mode` covers the shapes
+  the contract has used instead of assuming one, and `--budget` (default 1 per session) keeps a hook
+  from becoming the noise it exists to remove. Two rules it lives by: **a stop this hook caused is
+  never blocked again** (`stop_hook_active`), and **every failure fails open** - a discipline hook is
+  never a reason a session cannot continue. `--dry-run` prints the decision without touching the
+  counter.
+- **`mmk rules --format md`**: the rule section as a paste-ready markdown block for the rules files
+  other harnesses read (CLAUDE.md, AGENTS.md, GEMINI.md), with a generated-by line so nobody edits the
+  copy by hand.
+- **`bench/thinking-language.mjs`**: the measurement the thinking-language rule needs in order to be
+  more than prose. It reads real session artifacts through the `dsh` reader and reports the character
+  mix of the reasoning channel (Han, kana, Latin, other), per window and per session. First baseline on
+  this machine: **3.3% CJK / 96.7% Latin** over 306 sessions and 52,376 reasoning messages, with 268 of
+  306 sessions Latin-dominant - and by window, 21.3% CJK in the hour before the rule shipped, 21.9%
+  while it was live, 1.4% in the hours after the plugin was disabled. The samples are small and the
+  session mix differs between windows, so that last comparison is a correlation to keep watching, not a
+  result: the bench exists so the next measurement is like for like.
+- Two more cases in `test/portable.mjs` (twelve now): the adapter's decision, its budget, its
+  fail-open paths and its markdown drop-in.
+
 ## 0.10.0 - 2026-10-14
 
 - **The rules no longer need this harness, or any single agent.** The judges, the rule text, the

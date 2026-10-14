@@ -148,6 +148,9 @@ function messageFromEvent(row, index) {
     role: message.role,
     source: message.source ?? null,
     content: normalizeContent(message.content),
+    // Carried because a caller measuring a session over time needs it, and the row has it anyway.
+    time: Number.isFinite(row.time) ? row.time : null,
+    seq: Number.isFinite(row.seq) ? row.seq : null,
   };
 }
 

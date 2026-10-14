@@ -1,6 +1,6 @@
 {
   "name": "Oishikunaare-Moe-Moe-Kyun",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Output house rules and an optional moe layer for every DeepSeek Harness agent: no check-mark or cross glyphs, no emoji, a kaomoji habit, and - when switched on - a tri-lingual moe voice over replies, thinking, commands, subagents and the work products themselves. One global prompt section, so every preset, workspace and subagent obeys without a single preset edit.",
   "keywords": [
     "dsh",
@@ -59,6 +59,8 @@
     "test:portable": "node test/portable.mjs",
     "mmk": "node bin/mmk.mjs",
     "mcp": "node adapters/mcp.mjs",
+    "claude-code": "node adapters/claude-code.mjs",
+    "bench:thinking": "node bench/thinking-language.mjs",
     "audit:session": "node scripts/audit-session.mjs",
     "check:text": "node scripts/check-text.mjs",
     "gen:voices": "node scripts/gen-voices.mjs"

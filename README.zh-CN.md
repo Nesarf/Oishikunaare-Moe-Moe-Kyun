@@ -147,13 +147,18 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 | 入口 | 怎么用 | 给谁用 |
 | --- | --- | --- |
-| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本 |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 直接产出能贴进别家规则文件的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
-| 模块 | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server 全都薄薄地架在这一个文件上 |
+| Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
+| 模块 | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
 
 `mmk review` 读一份会话记录，判它最新的一条「模型自己写的」消息。自带三个读取器：本包自己的
 `dsh` 产物（zstd 分帧、头行 + 事件行）、Claude Code 的 `cc` 记录信封（它的思考块把文本放在
 `thinking` 字段里，由读取器归一化）、以及最朴素的 `jsonl`（一行一条消息）—— 写新适配器就照它写。
+
+`npm run bench:thinking` 是「思考语言纪律」的另一半：它实测真实记录里 reasoning 通道的文字构成，
+因为提示词里的散文不算证据。写它那台机器上的第一条基线：306 条会话、52376 条带 reasoning 的消息，
+**CJK 3.3% / 拉丁 96.7%**。
 
 两边分开的规则只有一条，而且它不是风格偏好：**判断和送达是两件事**。
 `src/portable.mjs` 什么都不写 —— 不追加消息、不改记录、不建文件。往会话里放提醒的风险由做这件事的
