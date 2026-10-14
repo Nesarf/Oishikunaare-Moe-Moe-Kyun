@@ -954,6 +954,49 @@ check('a preset mapping takes effect on the next step, with no restart', async (
   fs.rmSync(home, { recursive: true, force: true });
 });
 
+check('the hook\'s contract: only the step travels back, and only user messages are added', async () => {
+  // The failure this pins down, at the level of the hook itself: the judged list is the conversation,
+  // and handing that list back wrote the whole conversation into the log as user/message events.
+  const warnings = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    // The subject is the contract, not the judges: isolate it from the kaomoji/emoji rules so the
+    // only message added is the symbol notice.
+    kaomoji: false,
+    emoji: false,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+    warn: (m) => warnings.push(m),
+  });
+  const authored = { id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
+  const step = { id: 'u2', role: 'user', source: { kind: 'user', rpcId: 'r1' }, content: [{ type: 'text', text: 'the next request' }] };
+  const conversation = [step, authored];
+  const out = await hook(
+    { agent: { session: { id: 'contract', deriveMessages: () => conversation } }, messages: [step] },
+    async () => ({ kind: 'enter', messages: [step] }),
+  );
+  assert.equal(out.messages.length, 2, 'the notice plus the step, nothing else');
+  assert.equal(out.messages[0].role, 'user', 'the added notice is a user message');
+  assert.deepEqual(out.messages.slice(1), [step], 'and the step is the one the host proposed');
+  assert.equal(out.messages.some((m) => m.id === 'a1'), false, 'the assistant reply never travels back');
+});
+
+check('a message this hook did not add is reported, never rewritten or dropped', async () => {
+  const warnings = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+    warn: (m) => warnings.push(m),
+  });
+  const authored = { id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
+  const foreign = { id: 'f1', role: 'tool', toolCallId: 'c1', source: { kind: 'tool', callId: 'c1' }, content: [{ type: 'text', text: 'out' }] };
+  const out = await hook(
+    { agent: { session: { id: 'foreign' } }, messages: [authored] },
+    async () => ({ kind: 'enter', messages: [foreign] }),
+  );
+  assert.deepEqual(out.messages.slice(-1), [foreign], 'a foreign message is passed through untouched');
+  assert.ok(warnings.some((m) => m.includes('not user messages') && m.includes('tool')), 'and named, with its producer kind');
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

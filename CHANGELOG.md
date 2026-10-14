@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.9.10 - 2026-10-14
+
+- **The self-check hook no longer sends the conversation back to the host.** 0.9.6 taught the judge to
+  read the session, because an agent's own reply is never in the step's inbox payload - that part was
+  right. What it left behind was the return: the hook handed back the *observed* list (up to
+  `OBSERVE_WINDOW` session messages, see `observedMessages`) instead of the step it was given, and the
+  agent loop appends every returned entry as a `user/message` event verbatim. The whole tail - system
+  prompt, assistant replies, tool results - therefore landed in the log under a user envelope while
+  keeping its own roles, and the v4 validator refused that session on the next load
+  (`session event at seq N message must have role ...`). On the machine where this shipped that was
+  **8 sessions and 585 records**, and the shot was fired by the voice notice: the host restarted at
+  17:37:53 with 0.9.6 loaded, and the first notice at 17:43:39 copied 60 records into a resumed
+  session. The wire now carries `[...notices, ...decision.messages]` - reading the conversation and
+  sending the conversation are two different things.
+- **The hook carries its own contract, not just a corrected line.** Every message this plugin adds
+  must be a `user` message, because that is the only role this path can write; a notice built any other
+  way is withheld and the step is sent without it. Messages the hook did *not* add are reported with
+  their producer kind and passed through untouched - dropping another producer's injection is not this
+  plugin's call, and the host-side guard (`dsh-prestep-audit`) is the layer that refuses to write them
+  at all.
+- **Two regression cases** in `test/selfcheck.mjs`: a hook whose session holds the conversation returns
+  the notice plus the step and nothing else, and a foreign non-user message is named in the log while
+  still travelling. `test/acceptance.mjs` gained the same assertion on the case that already had the
+  right fixture - "the check reads the session, not the step's inbox" - which is the case that should
+  have caught this the first time. Verified the other way round too: restoring the old line makes the
+  new assertion fail.
+
 ## 0.9.9 - 2026-10-14
 
 - **A fourth discipline: the language an agent thinks in.** Mount the plugin and the agent thinks and

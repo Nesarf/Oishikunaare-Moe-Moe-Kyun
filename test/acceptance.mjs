@@ -180,6 +180,12 @@ check("the check reads the session, not the step's inbox", async () => {
   const notice = noticeOf(decision);
   assert.ok(notice, 'a breach only the session can see still has to be noticed');
   assert.equal(decision.messages[0], notice, 'and still lands in front of the step');
+  // The judged list is the conversation, but the *returned* list is the step: the host records every
+  // returned message as a `user/message` event verbatim, so handing the conversation back copies the
+  // system prompt and the agent's own replies into the log under a user envelope, and the session
+  // stops loading. Reading the session and sending the session are two different things.
+  assert.equal(decision.messages.some((m) => m.id === 'u1' || m.id === 'a1'), false, 'no history travels back on the wire');
+  assert.ok(decision.messages.includes(inbox[0]), 'and the step the host proposed is still there');
 });
 
 check('a notice is a complete user message, not a bare payload', async () => {
