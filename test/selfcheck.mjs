@@ -22,14 +22,17 @@ const SHIPPED = path.join(ROOT, 'rules', 'kaomoji.json');
 const mod = await import(pathToFileURL(path.join(ROOT, 'lib', 'index.js')).href);
 
 let failures = 0;
+/**
+ * Record one case; every case is run, and awaited, before the summary is printed.
+ *
+ * The check used to call `fn()` and print "pass" on the next line. Cases here are asynchronous one
+ * after another, so every assertion following an `await` ran after its label was already on screen,
+ * and a failure landed as an unhandled rejection that `process.exit` cut short. Recording and running
+ * them in order is what makes the label mean something.
+ */
+const pending = [];
 const check = (label, fn) => {
-  try {
-    fn();
-    console.log(`pass  ${label}`);
-  } catch (error) {
-    failures++;
-    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
-  }
+  pending.push({ label, fn });
 };
 
 /** A context exposing only the surface this plugin touches, recording what was registered. */
@@ -262,10 +265,10 @@ check('a breach in the newest assistant message is found; tool and user messages
   const messages = [
     { source: { kind: 'user' }, content: [{ type: 'text', text: `user wrote ${CHECK}` }] },
     { source: { kind: 'tool' }, content: [{ type: 'text', text: `runner printed ${CHECK}` }] },
-    { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'clean reply' }] },
+    { id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'clean reply' }] },
   ];
   assert.equal(mod.findBannedInMessages(messages), null, 'no assistant breach here');
-  messages.push({ id: 'm2', source: { kind: 'assistant' }, content: [{ type: 'thinking', text: `counted ${CROSS}` }] });
+  messages.push({ id: 'm2', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'thinking', text: `counted ${CROSS}` }] });
   const found = mod.findBannedInMessages(messages);
   assert.ok(found);
   assert.deepEqual(found.glyphs, ['U+2717']);
@@ -286,10 +289,14 @@ check('the hook injects one notice per breach, and respects its budget', async (
   const notices = [];
   const hook = mod.makeSelfCheckHook({
     max: 2,
+    // The subject is the symbol budget. The kaomoji and emoji rules have their own cases, and a
+    // one-sentence reply with no face would otherwise add a notice of its own to this step.
+    kaomoji: false,
+    emoji: false,
     resolve: () => ({ enabled: true, locale: 'en' }),
     log: (m) => notices.push(m),
   });
-  const breach = (id) => ({ id, source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] });
+  const breach = (id) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] });
   const step = (messages) => hook({ agent: { session: { id: 's1' } }, messages }, async () => ({ kind: 'enter', messages }));
 
   const first = await step([breach('m1')]);
@@ -307,7 +314,7 @@ check('the hook injects one notice per breach, and respects its budget', async (
   assert.equal(third.messages.length, 3, 'past the budget nothing is injected');
   assert.ok(notices.some((n) => n.includes('logged only')), 'and the suppression is recorded');
 
-  const clean = await step([{ id: 'm9', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'all good' }] }]);
+  const clean = await step([{ id: 'm9', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'all good' }] }]);
   assert.equal(clean.messages.length, 1);
 });
 
@@ -394,7 +401,7 @@ check('the kaomoji notice is softer than the symbol one, and escalates', () => {
 
 check('the hook reminds about the kaomoji floor once, and not when it is off', async () => {
   const bare = '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002\u7b2c\u56db\u53e5\u3002\u7b2c\u4e94\u53e5\u3002\u7b2c\u516d\u53e5\u3002';
-  const messages = [{ id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: bare }] }];
+  const messages = [{ id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: bare }] }];
   const hook = mod.makeSelfCheckHook({ max: 3, kaomoji: true, kaomojiMax: 1, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
   const step = () => hook({ agent: { session: { id: 'k1' } }, messages }, async () => ({ kind: 'enter', messages }));
   const first = await step();
@@ -408,7 +415,7 @@ check('the hook reminds about the kaomoji floor once, and not when it is off', a
   assert.equal(quiet.messages.length, 1, 'kaomojiCheck:false means silence about the floor');
 });
 check('a run of face-less replies is counted, and never by counting structure', () => {
-  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const face = '(\u30fb\u03c9\u30fb)';
   const faced = 'looked at the file ' + face;
 
@@ -448,29 +455,31 @@ check('the run notice says the habit is being skipped, not under-dosed', () => {
 });
 
 check('the hook speaks up when replies in a row carry no face', async () => {
-  const mk = (id, text) => ({ id, source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const mk = (id, text) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const messages = [mk('m1', 'a\u3002'), mk('m2', 'b\u3002'), mk('m3', 'c\u3002')];
   const seen = [];
   const hook = mod.makeSelfCheckHook({
     max: 3,
     kaomoji: true,
     kaomojiMax: 0,
+    // The emoji rule has its own case; here it would answer first on the same reply.
+    emoji: false,
     resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
     log: (m) => seen.push(m),
   });
   const step = () => hook({ agent: { session: { id: 'run1' } }, messages }, async () => ({ kind: 'enter', messages }));
 
   const first = await step();
-  assert.equal(first.messages.length, 2, 'one notice goes in front of the step');
+  assert.equal(first.messages.length, messages.length + 1, 'one notice goes in front of the step');
   assert.ok(first.messages[0].content[0].text.includes('in a row'), 'and it is the run wording');
   assert.ok(seen.some((m) => m.includes('in a row carried no kaomoji')), 'the run is logged');
 
   const again = await step();
-  assert.equal(again.messages.length, 1, 'the run is announced once, not every step');
+  assert.equal(again.messages.length, messages.length, 'the run is announced once, not every step');
 });
 
 check('the newest bare reply is found, and structure is not one', () => {
-  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const face = '(\u30fb\u03c9\u30fb)';
 
   assert.equal(mod.newestBareReply([mk('Two sentences. No face.')]), 'Two sentences. No face.');
@@ -493,7 +502,7 @@ check('the steer notice asks for the reply again, in either locale', () => {
 });
 
 check('the steer decider is guarded on every side', () => {
-  const mk = (text) => ({ source: { kind: 'assistant' }, content: [{ type: 'text', text }] });
+  const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const bare = [mk('Two sentences. No face.')];
   const faced = [mk('fine (\u30fb\u03c9\u30fb)')];
   const state = { enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() };
@@ -693,7 +702,7 @@ check('the three voice modes do what their names say', async () => {
 });
 
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
-  const breach = { id: 'm1', source: { kind: 'assistant' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
+  const breach = { id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });
   const disabled = await off({ agent: { session: { id: 's' } }, messages: [breach] }, async () => ({ kind: 'enter', messages: [breach] }));
   assert.equal(disabled.messages.length, 1, 'a disabled section means no self-check either');
@@ -831,11 +840,13 @@ check('both shipped locales ban emoji by block, and never print one', () => {
 
 check('the hook notices emoji, keeps its own budget, and stays off when asked', async () => {
   const face = String.fromCodePoint(0x1f600);
-  const messages = [{ id: 'e1', source: { kind: 'assistant' }, content: [{ type: 'text', text: 'hello ' + face }] }];
+  const messages = [{ id: 'e1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'hello ' + face }] }];
   const seen = [];
   const hook = mod.makeSelfCheckHook({
     max: 3,
     emojiMax: 1,
+    // The kaomoji rule would answer too: a short reply with no face is exactly its subject.
+    kaomoji: false,
     resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() }),
     log: (m) => seen.push(m),
   });
@@ -854,6 +865,9 @@ check('the hook notices emoji, keeps its own budget, and stays off when asked', 
   const off = mod.makeSelfCheckHook({
     max: 3,
     emoji: false,
+    // Switched off for the same reason as above: silence about emoji is the assertion here, and the
+    // kaomoji rule is a different question about the same reply.
+    kaomoji: false,
     resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: new Set() }),
   });
   const quiet = await off({ agent: { session: { id: 'e2' } }, messages }, async () => ({ kind: 'enter', messages }));
@@ -924,5 +938,14 @@ check('the prompt block honours its ceiling and still names the file', () => {
   assert.ok(!compact.includes('(upturned)') && !compact.includes(' eyes + '), 'and none of the annotations');
 });
 
+for (const { label, fn } of pending) {
+  try {
+    await fn();
+    console.log(`pass  ${label}`);
+  } catch (error) {
+    failures++;
+    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
+  }
+}
 console.log(`\n${failures === 0 ? 'all checks pass' : failures + ' check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

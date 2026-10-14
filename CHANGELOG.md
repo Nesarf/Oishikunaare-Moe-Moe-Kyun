@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.9.7 - 2026-10-14
+
+- **The reason no notice was ever produced is the source kind, and 0.9.6 found only half of it.** A
+  live transcript writes a model message as `role: 'assistant'` with
+  `source: { kind: 'model', provider, model }` - read off 717 records of a real session log. Every
+  check here tested `message.source?.kind !== 'assistant'` and skipped all of them, so the judges never
+  saw a single reply. A shared `isAuthoredMessage()` reads the role first and accepts both spellings,
+  and the five call sites use it. On the same transcript, `findBannedInMessages` found a breach in 0 of
+  4 sampled messages before the fix and 1 of 4 after - which is what judging each part directly finds.
+- 0.9.6 was right about the other half and stays. The pre-step payload is `UserMessage[]`: the host's
+  own pre-step audit shows a fresh session's first step carrying five messages, every one of them role
+  `user` (voice notice, AGENTS.md, the disk-guard block, the runtime snapshot, the skill catalogue).
+  Reading the session is therefore necessary as well - a resumed session can carry the conversation,
+  a new one cannot.
+- `moeVoice: "auto"` resolved a voice id where everything downstream expected a table entry, so the
+  notice it injected named nothing: no id in the log line, no markers in the text. It looks the id up
+  in the table now, and the case asserting "auto follows the words" passes for the first time.
+- `test/selfcheck.mjs` had the same una-awaited `check()` the acceptance harness had, so its eight
+  asynchronous cases were equally unproven. With the cases awaited, four were wrong: three asked the
+  symbol, kaomoji and emoji judges about a step the other two rules also answered, and one asserted a
+  message count that did not match its own fixture.
+- Both suites now build their assistant messages in the shape a live transcript uses - the shape this
+  plugin had been testing for under the wrong spelling.
+
 ## 0.9.6 - 2026-10-14
 
 - The self-check reads the conversation now, instead of the step's inbox. `agent/pre-step` hands over

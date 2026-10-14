@@ -34,24 +34,15 @@ const SPARKLES = String.fromCodePoint(0x2728);
 let failures = 0;
 const pending = [];
 /**
- * Record one case, and run it before the summary is printed.
+ * Record one case; every case is run, and awaited, before the summary is printed.
  *
- * Every case here is asynchronous - a step is driven through the dispatcher - so the promise is kept
- * and awaited at the end. An earlier revision called `fn()` and printed "pass" on the next line,
- * which put the label on screen before the first `await` inside the case had even resolved and let a
- * failed assertion land as an unhandled rejection that `process.exit` cut short. Eighteen cases
- * reported green that way, and not one of them was proven.
+ * Every case here is asynchronous - a step is driven through the dispatcher - and the check used to
+ * call `fn()` and print "pass" on the next line. That put the label on screen before the first
+ * `await` inside the case had resolved, and let a failed assertion land as an unhandled rejection
+ * that `process.exit` cut short: nineteen cases reported green without being proven.
  */
 const check = (label, fn) => {
-  pending.push((async () => {
-    try {
-      await fn();
-      console.log(`pass  ${label}`);
-    } catch (error) {
-      failures++;
-      console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
-    }
-  })());
+  pending.push({ label, fn });
 };
 
 /**
@@ -107,8 +98,14 @@ function tempHome(config) {
 /** The step decision the host would produce: enter, with the conversation to send. */
 const enterWith = (messages) => async () => ({ kind: 'enter', messages });
 
-/** An assistant message in the shape the real transcript uses. */
-const assistant = (id, parts) => ({ id, source: { kind: 'assistant' }, content: parts });
+/**
+ * An assistant message in the shape a real transcript uses.
+ *
+ * Verified against a live session log: `role: 'assistant'`, `source: { kind: 'model', provider, model }`.
+ * The earlier fixture here said `source: { kind: 'assistant' }` - which is the shape this plugin tested
+ * for and the shape the host never writes, so every case that relied on it was proving a fiction.
+ */
+const assistant = (id, parts) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: parts });
 
 /** A user message in the shape the real transcript uses. */
 const userMessage = (id, text) => ({ id, source: { kind: 'user' }, role: 'user', content: [{ type: 'text', text }] });
@@ -347,7 +344,7 @@ check('the steer lever keeps a bare turn open, once, within its budget', async (
   assert.ok(host.logs.some((l) => l.includes('steer on')), 'and the switch is reported at boot');
 
   // Two short sentences with no face at all: the floor asks for one, so this turn is bare.
-  const conversation = [{ source: { kind: 'assistant' }, content: [{ type: 'text', text: 'First sentence. Second sentence.' }] }];
+  const conversation = [{ role: 'assistant', source: { kind: 'model' }, content: [{ type: 'text', text: 'First sentence. Second sentence.' }] }];
   const steered = [];
   const agent = {
     session: { id: 'acc-steer', deriveMessages: () => conversation },
@@ -371,7 +368,7 @@ check('the steer lever leaves a shaped reply alone', async () => {
   mod.apply(host.ctx, { home: tempHome({ locale: 'en', kaomojiSteer: true, kaomojiSteerMax: 3 }), shippedLibrary: SHIPPED });
   const steered = [];
   const emit = (text, turn) => host.emit('agent/turn-stopping', {
-    agent: { session: { id: 'acc-shaped', deriveMessages: () => [{ source: { kind: 'assistant' }, content: [{ type: 'text', text }] }] }, steer: (m) => steered.push(m) },
+    agent: { session: { id: 'acc-shaped', deriveMessages: () => [{ role: 'assistant', source: { kind: 'model' }, content: [{ type: 'text', text }] }] }, steer: (m) => steered.push(m) },
     turn,
     signal: new AbortController().signal,
   }, () => undefined);
@@ -383,6 +380,14 @@ check('the steer lever leaves a shaped reply alone', async () => {
   await emit('A single plain sentence.', 3);
   assert.equal(steered.length, 1, 'a single plain sentence is bare, and gets the extra pass');
 });
-await Promise.all(pending);
+for (const { label, fn } of pending) {
+  try {
+    await fn();
+    console.log(`pass  ${label}`);
+  } catch (error) {
+    failures++;
+    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
+  }
+}
 console.log(`\n${failures === 0 ? 'all acceptance checks pass' : failures + ' acceptance check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

@@ -854,6 +854,25 @@ export function authoredParts(content) {
 }
 
 /**
+ * Whether a message is one the model authored.
+ *
+ * The kind is what DSH actually writes, not what the field name suggests: a live transcript carries
+ * `role: 'assistant'` with `source: { kind: 'model', provider, model }`. A judge that looked for the
+ * literal `'assistant'` therefore skipped every reply it existed to read - the rule was live, the
+ * judge was correct, and the shape it tested for was not the shape on the wire. The literal is still
+ * accepted because older transcripts and hand-built fixtures carry it; the role is checked first,
+ * because every v4 message carries one.
+ *
+ * @param {{ role?: string, source?: { kind?: string } }} message - a message from a conversation.
+ * @returns {boolean} true when this is the model's own output.
+ */
+export function isAuthoredMessage(message) {
+  if (!message || typeof message !== 'object') return false;
+  if (message.role === 'assistant') return true;
+  return message.source?.kind === 'assistant' || message.source?.kind === 'model';
+}
+
+/**
  * Judge a text for emoji, blanking the same regions the glyph judge blanks: a fenced block or an inline
  * span is usually someone else's output, and a code point named as U+XXXX in prose is the rule talking.
  * @param {string} text - the text to judge.
@@ -878,7 +897,7 @@ export function findEmojiInMessages(messages, judgeOptions = {}) {
   for (let index = messages.length - 1; index >= 0; index--) {
     const message = messages[index];
     if (!message || typeof message !== 'object') continue;
-    if (message.source?.kind !== 'assistant') continue;
+    if (!isAuthoredMessage(message)) continue;
     for (const part of authoredParts(message.content)) {
       const glyphs = judgeEmoji(part.text, judgeOptions);
       if (glyphs.length === 0) continue;
@@ -925,7 +944,7 @@ export function findBannedInMessages(messages, judgeOptions = {}) {
   for (let index = messages.length - 1; index >= 0; index--) {
     const message = messages[index];
     if (!message || typeof message !== 'object') continue;
-    if (message.source?.kind !== 'assistant') continue;
+    if (!isAuthoredMessage(message)) continue;
     for (const part of authoredParts(message.content)) {
       const glyphs = judgeAuthoredText(part.text, judgeOptions);
       if (glyphs.length === 0) continue;
@@ -1139,7 +1158,7 @@ export function countBareRun(messages) {
   let started = false;
   for (let index = messages.length - 1; index >= 0; index -= 1) {
     const message = messages[index];
-    if (message?.source?.kind !== 'assistant') continue;
+    if (!isAuthoredMessage(message)) continue;
     const parts = authoredParts(message.content).filter((part) => part.kind === 'text');
     if (parts.length === 0) continue;
     const verdict = judgeKaomoji(parts.map((part) => part.text).join(String.fromCharCode(10)));
@@ -1165,7 +1184,7 @@ export function newestBareReply(messages) {
   if (!Array.isArray(messages)) return null;
   for (let index = messages.length - 1; index >= 0; index -= 1) {
     const message = messages[index];
-    if (message?.source?.kind !== 'assistant') continue;
+    if (!isAuthoredMessage(message)) continue;
     const parts = authoredParts(message.content).filter((part) => part.kind === 'text');
     if (parts.length === 0) return null;
     const text = parts.map((part) => part.text).join(String.fromCharCode(10));
@@ -1467,7 +1486,10 @@ export function makeSelfCheckHook(options) {
           const chosen = mode === 'rotate'
             ? rotateVoice(sessionId, table)
             : (mode === 'auto'
-              ? inferVoice(messages, options.voiceSignals)
+              // `inferVoice` answers with an id, and everything below reads the table entry - its id
+              // for the log line, its markers for the notice. Passing the raw id through made `auto`
+              // resolve to a voice with no markers, so the notice it injected named nothing.
+              ? table.find((entry) => entry && entry.id === inferVoice(messages, options.voiceSignals)) ?? null
               : table.find((entry) => entry && entry.id === mode) ?? null);
           if (chosen) {
             const localised = typeof state.voiceMarkers === 'function' ? state.voiceMarkers(chosen.id, state.locale) : null;
@@ -1504,7 +1526,7 @@ export function makeSelfCheckHook(options) {
         const floor = Number.isFinite(options.kaomojiFloor) && options.kaomojiFloor > 0 ? Math.floor(options.kaomojiFloor) : 3;
         for (let index = messages.length - 1; index >= 0; index--) {
           const message = messages[index];
-          if (message?.source?.kind !== 'assistant') continue;
+          if (!isAuthoredMessage(message)) continue;
           const parts = authoredParts(message.content).filter((part) => part.kind === 'text');
           if (parts.length === 0) break;
           const text = parts.map((part) => part.text).join('\n');
