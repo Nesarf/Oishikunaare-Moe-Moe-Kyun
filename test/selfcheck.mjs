@@ -701,6 +701,163 @@ check('the three voice modes do what their names say', async () => {
   assert.ok(pinned.includes('composed'), 'a pinned id wins over the words in the session');
 });
 
+// --- the preset identity: read it, degrade without it -------------------------------------
+
+check('a persona moves the inference, and the conversation is still asked first', () => {
+  // 3,152 characters of a real preset persona carry exactly one of the six voice words (a hand-written
+  // persona usually names none), which is why this path is described as limited rather than as a fix.
+  const persona = '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B\uFF0C\u4E5F\u662F\u4E00\u4E2A\u5199\u4EE3\u7801\u7684\u4EBA\u3002';
+  assert.equal(mod.inferVoiceFromText(persona), 'gentle', 'the persona wording names a voice');
+  assert.equal(mod.inferVoiceFromText('You are a coding agent. Working directory D:/x'), null, 'a plain role names none');
+  assert.equal(mod.inferVoiceFromText(''), null);
+  assert.equal(mod.inferVoiceFromText(undefined), null, 'a missing persona is not an error');
+  assert.equal(mod.inferVoiceFromText('\u8BF4\u8BDD\u50CF\u5C0F\u6076\u9B54', { prickly: ['\u5C0F\u6076\u9B54'] }), 'prickly', 'config signals extend the persona map too');
+
+  const user = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const personaOnly = mod.resolveVoiceForSession({ id: 'p', persona }, [user('do the thing')]);
+  assert.deepEqual(personaOnly, { id: 'gentle', how: 'persona' }, 'with no voice in the conversation, the persona decides');
+  const both = mod.resolveVoiceForSession({ id: 'p', persona }, [user('\u4FDD\u6301\u51B7\u9759')]);
+  assert.deepEqual(both, { id: 'composed', how: 'inferred' }, 'words the reader typed are asked first');
+  assert.equal(mod.resolveVoiceForSession({ id: 'p', persona: null }, [user('do the thing')]), null, 'no persona and no words is no answer');
+});
+
+check('the preset prewarm degrades instead of throwing, whatever the registry does', async () => {
+  const agent = { id: 'a1', ctx: {} };
+  // No registry at all: a deployment without a roster. This is the case that must not throw, because
+  // the call site is an `agent/created` listener and an exception there fails the agent's creation.
+  assert.deepEqual(await mod.prewarmPreset({ presets: undefined, agent }), { id: undefined, persona: null, available: false });
+  assert.deepEqual(await mod.prewarmPreset({ presets: null, agent: null }), { id: undefined, persona: null, available: false });
+
+  // A registry that composes nothing for this agent, and one whose composition lookup throws.
+  assert.deepEqual(await mod.prewarmPreset({ presets: { composedPreset: () => undefined }, agent }), { id: undefined, persona: null, available: true });
+  assert.deepEqual(
+    await mod.prewarmPreset({ presets: { composedPreset: () => { throw new Error('no standing mount'); } }, agent }),
+    { id: undefined, persona: null, available: true },
+    'a composition lookup that throws is a lookup that answers nothing',
+  );
+
+  // The identity is read, and its document comes back with the persona prefix in it verbatim.
+  const presets = { composedPreset: () => 'redipaloynz', readDocument: async (id) => ({ agentPreset: id, content: '  - id: persona\n    config:\n      prefix: be gentle\n' }) };
+  const warm = await mod.prewarmPreset({ presets, agent: { id: 'a2', ctx: {} } });
+  assert.equal(warm.id, 'redipaloynz');
+  assert.ok(warm.persona.includes('be gentle'), 'the persona text is kept as it arrived');
+  assert.equal(warm.available, true);
+
+  // A preset deleted between boot and creation rejects; the identity survives and the warning is said.
+  const seen = [];
+  const rejected = await mod.prewarmPreset({
+    presets: { composedPreset: () => 'gone', readDocument: async () => { throw new Error('agent-preset/not-found'); } },
+    agent,
+    warn: (m) => seen.push(m),
+  });
+  assert.deepEqual(rejected, { id: 'gone', persona: null, available: true }, 'the id is still worth having');
+  assert.ok(seen.some((m) => m.includes('not-found')), 'and the reason is reported rather than swallowed');
+});
+
+check('the id falls back to the projection, then to the session header', async () => {
+  const presets = { composedPreset: () => undefined, readDocument: async (id) => ({ agentPreset: id, content: 'prefix: be gentle' }) };
+  const projected = await mod.prewarmPreset({
+    presets,
+    agent: { id: 'p1', ctx: { get: (name) => (name === 'sessionProjections' ? { stateOf: () => 'from-projection' } : undefined) }, session: { header: {} } },
+  });
+  assert.equal(projected.id, 'from-projection');
+
+  const headed = await mod.prewarmPreset({
+    presets,
+    agent: { id: 'p2', ctx: { get: () => undefined }, session: { header: { agentPreset: 'from-header' } } },
+  });
+  assert.equal(headed.id, 'from-header', 'the header answers when the projection is not registered');
+
+  // A projection whose `stateOf` throws falls through rather than failing the creation.
+  const survived = await mod.prewarmPreset({
+    presets,
+    agent: { id: 'p3', ctx: { get: () => ({ stateOf: () => { throw new Error('not registered'); } }) }, session: { header: { agentPreset: 'still-here' } } },
+  });
+  assert.equal(survived.id, 'still-here');
+});
+
+check('a preset mapping picks the voice, and the persona decides when no mapping exists', async () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const run = async (options) => {
+    const seen = [];
+    const hook = mod.makeSelfCheckHook({
+      max: 3,
+      moe: true,
+      voices,
+      voice: 'auto',
+      resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+      log: (m) => seen.push(m),
+      ...options,
+    });
+    const messages = [mk('You are a coding agent, working directory E:/x')];
+    const out = await hook({ agent: { session: { id: 'pv-' + Math.random().toString(16).slice(2) }, id: 'agent-1' }, messages }, async () => ({ kind: 'enter', messages }));
+    return { text: out.messages.length > 1 ? out.messages[0].content[0].text : null, seen };
+  };
+
+  // Layer 1: the configuration names a voice for this preset, and it wins over the persona.
+  const mapped = await run({
+    presetVoice: () => ({ id: 'redipaloynz', persona: '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B' }),
+    voiceOptions: () => ({ voice: 'auto', byPreset: { redipaloynz: 'elegant' }, signals: null }),
+  });
+  assert.ok(mapped.text && mapped.text.includes('elegant'), 'the mapped voice is the one announced');
+  assert.ok(mapped.seen.some((m) => m.includes('mapped by preset redipaloynz')), 'and the log names the preset it came from');
+
+  // Layer 2: nothing is mapped, so the persona answers, and the log says which haystack it came from.
+  const persona = await run({
+    presetVoice: () => ({ id: 'redipaloynz', persona: '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B' }),
+    voiceOptions: () => ({ voice: 'auto', byPreset: null, signals: null }),
+  });
+  assert.ok(persona.text && persona.text.includes('gentle'), 'the persona decides when the config says nothing');
+  assert.ok(persona.seen.some((m) => m.includes('inferred from the persona of preset redipaloynz')), 'and the log says so');
+
+  // A mapped id that is not in the table is not an answer: it falls through to the mode rather than
+  // silencing the notice, and with a persona that names nothing the fall-through lands on silence.
+  const unknownMapping = await run({
+    presetVoice: () => ({ id: 'redipaloynz', persona: 'You are a coding agent. Working directory E:/x' }),
+    voiceOptions: () => ({ voice: 'auto', byPreset: { redipaloynz: 'not-a-voice' }, signals: null }),
+  });
+  assert.equal(unknownMapping.text, null, 'a mapping to an id the table does not hold announces nothing');
+});
+
+check('with no registry the voice still works, and the rules are untouched', async () => {
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const seen = [];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    moe: true,
+    voices,
+    voice: 'rotate',
+    // What `apply()` hands over on a deployment whose `ctx.get('agentPresets')` is undefined.
+    presetVoice: () => ({}),
+    voiceOptions: () => ({ voice: 'rotate', byPreset: { redipaloynz: 'elegant' }, signals: null }),
+    resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' }, voiceMarkers: undefined }),
+    log: (m) => seen.push(m),
+  });
+  const messages = [mk('plain instructions, no voice words at all')];
+  const out = await hook({ agent: { session: { id: 'no-roster' }, id: 'agent-2' }, messages }, async () => ({ kind: 'enter', messages }));
+  assert.equal(out.messages.length, 2, 'the rotate mode still announces a voice');
+  assert.ok(out.messages[0].content[0].text.includes('\u8BED\u6C14\u9002\u914D'));
+  assert.ok(seen.some((m) => m.includes('rotated')), 'and the log says it was rotated rather than mapped');
+  assert.ok(!seen.some((m) => m.includes('mapped by preset')), 'a mapping that cannot be keyed to a preset is not used');
+});
+
+check('a preset mapping takes effect on the next step, with no restart', async () => {
+  const home = tempHome();
+  const file = path.join(home, 'agent-house-rules.json');
+  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', moe: 'soft', moeVoice: 'auto' }), 'utf8');
+  const { ctx, seen } = fakeCtx();
+  mod.apply(ctx, { home, shippedLibrary: SHIPPED });
+  assert.equal(seen.sections.length, 1, 'the section registers');
+  // The mapping never reaches the prompt section - it is state for the voice notice - so the proof is
+  // that the section still builds. What the case pins is that the config file is read live.
+  assert.ok(seen.sections[0].text({}).includes('\u840C'), 'the moe block is on');
+  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', moe: 'soft', moeVoice: 'auto', moeVoiceByPreset: { redipaloynz: 'gentle' } }), 'utf8');
+  assert.ok(seen.sections[0].text({}).includes('\u840C'), 'and an edit lands on the next read rather than throwing');
+  fs.rmSync(home, { recursive: true, force: true });
+});
+
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

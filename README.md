@@ -42,24 +42,59 @@ the work, and then it says exactly where that may and may not land.
 ```
 
 - `moe`: `off` (default) | `soft` | `full`. `soft` sets the tone; `full` also leans on the marker sets.
-- `moeVoice` has three modes. `auto` (the default) infers a voice from the words of the session and
-  stays silent when nothing names one. `rotate` gives every session a stable voice of its own by
-  hashing the session id, so each agent sounds distinct and consistent with no configuration and no
-  guessing. A voice id (`gentle`, `spirited`, `composed`, `timid`, `prickly`, `elegant`) pins one voice
-  for everyone.
-
-  A note on what "per agent" can mean here: the plugin cannot see which preset an agent came from, and
-  a persona lives in the system prompt rather than in the session, so inference over a conversation
-  fires only when the words name a voice class. Measured on one machine: 3 of 15 presets. `rotate` is
-  the honest answer - it cannot know the agent, but it can hold a session to one voice, and distinct
-  sessions sounding distinct is the observable half of the requirement.
-- `moeVoiceSignals`: `{ "prickly": ["my own word"] }` extends the inference map.
+- `moeVoice` has three modes. `auto` (the default) infers a voice from the persona of the agent's preset
+  and then from the words of the session, and stays silent when neither names one. `rotate` gives every
+  session a stable voice of its own by hashing the session id, so each agent sounds distinct and
+  consistent with no configuration and no guessing. A voice id (`gentle`, `spirited`, `composed`,
+  `timid`, `prickly`, `elegant`) pins one voice for everyone.
+- `moeVoiceByPreset`: `{ "redipaloynz": "gentle" }` names a voice for one preset. This is the layer that
+  beats the other two, and it is the only one that is exact - see the section below for what the plugin
+  can and cannot know about the agent behind a session.
+- `moeVoiceSignals`: `{ "prickly": ["my own word"] }` extends the inference map, for both the persona
+  and the conversation.
 
 Where it lands: replies, the agent's own thinking, the commands it runs and the prompts it hands to
 subagents, and the work products it writes - comments, docstrings, README and report prose, commit
 messages, user-visible strings, test failure text. Where it does not: code itself (identifiers, paths,
 arguments, API names, schema fields, data keys), and anywhere beside an error, a stack trace, a serious
 conclusion, a security warning, machine output, or something a reader will execute directly.
+
+### How the voice is chosen, and where the preset comes in
+
+Three layers, highest first, and the log line always says which one answered:
+
+1. **`moeVoiceByPreset`** - the configuration names a voice for this preset id, so the answer is exact.
+   The log reads `moe voice gentle (mapped by preset redipaloynz)`. A mapped id that is not in the voice
+   table is not an answer, and falls through rather than silencing the notice.
+2. **The preset's own persona** - `moe voice gentle (inferred from the persona of preset redipaloynz)`.
+   Read this half honestly: the six voice words (`gentle`, `spirited`, `composed`, `timid`, `prickly`,
+   `elegant` and their Chinese and Japanese equivalents) are subculture vocabulary, and a hand-written
+   persona usually contains none of them. Measured on this machine: **4 of 13 presets** have a persona
+   that names a voice class - most say nothing about manner at all. This layer is therefore **limited,
+   but better than guessing from a conversation**: a persona is a standing instruction, while a
+   conversation is whatever the reader happened to type. When it misses, layer 3 still picks a voice.
+3. **The `moeVoice` mode**, unchanged: `rotate` (`rotated`), `auto` over the session's own words
+   (`inferred`), or a pinned id (`pinned`). This is what runs when the first two name nothing, which is
+   the common case.
+
+The identity comes from the `agentPresets` service, asked for with `ctx.get('agentPresets')`. It is
+deliberately **not** in `export const inject`: a declared dependency on the preset registry would make
+this plugin fail to load at all on a deployment that has no roster, which would take the three rules
+down with it. With no registry the preset layers are simply absent and everything above still works.
+The id is read in three places, best first: the live composition (`composedPreset`), the `agentPreset`
+session projection, and finally the session header.
+
+The persona is read once per agent on `agent/created`, from `presets.readDocument(id)`. That document
+is a YAML dump and the persona `prefix` sits in it verbatim (measured here: documents of 6.2-9.1 KB,
+carrying persona prefixes of 444-3152 characters); the plugin **scans that text for keywords instead
+of parsing it**, because a YAML parser is a runtime dependency and this package keeps none. Everything
+in that listener is inside a `try`/`catch`: an exception thrown there fails the creation of the agent,
+and a house-rules plugin is never a reason a session cannot start. A preset that was deleted between
+boot and creation makes `readDocument` reject with `agent-preset/not-found`; the identity is kept, the
+persona is dropped, and the voice falls back to layer 3.
+
+**A configuration edit needs no restart** - the mapping is re-read on every model step, like the rule
+text itself. A **new version of the plugin does**: its code is loaded when the host boots.
 
 ### Voices, in three languages
 
@@ -125,6 +160,8 @@ required - with no file at all the three rules above are injected in English.
   too if you want both.
 - `kaomojiLibraryMax` caps how many faces reach the prompt (default 140).
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
+- `moeVoiceByPreset: { "redipaloynz": "gentle" }` names a moe voice for one agent preset. The mapping is
+  re-read on every step, so adding it needs no restart. See "How the voice is chosen" above.
 - `enabled: false` empties the section, so nothing is injected.
 - `selfCheck` (default true) and `selfCheckMax` (default 3) control the self-check below.
 - `emojiCheck` (default true), `emojiCheckMax` (default 2) and `emojiAllowExtra` control the emoji
@@ -325,6 +362,10 @@ plugin own prose and face detection, so the audit and the hook cannot disagree.
   the plugin removes it cleanly.
 - `apply()` reads its three inputs from the row config when given (`home`, `configFile`, `rulesDir`),
   which is what the selfcheck uses to point at throwaway directories.
+- The `agentPresets` service and the `agent/created` event are both **optional**: they are asked for at
+  mount and every answer - a missing service, a missing projection, a rejection from `readDocument`, an
+  event with no agent in it - degrades to the behaviour this plugin had before it knew about presets.
+  A configuration edit lands on the next model step; a new plugin version needs the host restarted.
 
 ## License
 

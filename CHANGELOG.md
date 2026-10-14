@@ -1,5 +1,43 @@
 # Changelog
 
+## 0.9.8 - 2026-10-14
+
+- **The plugin can see which agent preset a session is composed from, and the voice follows it.** The
+  identity comes from `ctx.get('agentPresets')` - asked for, never declared in `inject`: a plugin that
+  hard-depends on the preset registry is a plugin that fails to load at all on a deployment without a
+  roster, so the service is optional and its absence is a degradation rather than a startup error.
+- Three sources are tried, best first: `presets.composedPreset(agent.ctx)` for the live composition,
+  then the `agentPreset` session projection (`ctx.get('sessionProjections').stateOf(session, ...)`,
+  initialised from the session header and advanced by selection events), then `header.agentPreset`.
+  Every lookup is guarded and a failure in one falls through to the next.
+- The persona is read once per agent, on `agent/created`, from `await presets.readDocument(id)` - the
+  `content` field is a YAML dump with the persona `prefix` in it verbatim (measured on the 13 presets
+  of this machine: documents of 6.2-9.1 KB carrying persona prefixes of 444-3152 characters, and the
+  prefix is present in the dump character for character). The text is scanned for keywords rather than
+  parsed: a YAML parser is a runtime dependency and this package keeps none. The whole body of that
+  listener is wrapped, because an exception in `agent/created` **fails the creation of the agent**; a
+  `readDocument` rejection (a preset deleted between boot and creation throws
+  `agent-preset/not-found`) degrades to "the identity is known, the persona is not".
+- `moeVoiceByPreset` is the new configuration key: `{ "redipaloynz": "gentle" }` names a voice for one
+  preset. The voice decision is now three layers, highest first: **the configuration map**
+  (`mapped`), **the preset's own persona** (`persona`), then the `moeVoice` modes exactly as they were
+  (`rotated` / `inferred` / `pinned`). A mapped id that is not in the voice table falls through to the
+  mode rather than silencing the notice. The log line names the preset and the source, for example
+  `session <id>: moe voice gentle (mapped by preset redipaloynz)`.
+- Honest about the middle layer: the six voice words are subculture vocabulary, and a hand-written
+  persona usually contains none of them. Across the presets on this machine the signal fires for some
+  and not for others - one older preset's persona names a voice class, another's names nothing. Persona
+  inference is therefore "limited but better than guessing from a conversation" - when it misses, the
+  configured mode still picks a voice, exactly as in 0.9.7.
+- The voice notice is still injected by the `agent/pre-step` hook, once per session. Nothing was added
+  to the prompt section: a voice instruction there would be re-sent on every model step.
+- Reading the configuration moved into the resolver for the voice keys too (`moeVoice`,
+  `moeVoiceSignals`, `moeVoiceByPreset`), so adding a mapping to
+  `$DSH_HOME/agent-house-rules.json` lands on the next model step. The one thing that still needs a
+  host restart is the plugin's own code: a new version is loaded at boot.
+- `apply()` no longer depends on `agent/created` existing, and both events are guarded, so a host
+  without them, an event without an agent, and a disposed agent all pass through without a warning.
+
 ## 0.9.7 - 2026-10-14
 
 - **The reason no notice was ever produced is the source kind, and 0.9.6 found only half of it.** A

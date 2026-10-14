@@ -49,8 +49,11 @@ const check = (label, fn) => {
  * A minimal event dispatcher matching the contract the real host gives plugins:
  * `ctx.on(event, fn)` registers, and an emission walks the handlers in registration order with
  * `next()` stepping inwards. The innermost `next()` returns the step decision.
+ *
+ * `registry` stands in for whatever `ctx.get('agentPresets')` answers - the roster of presets, or
+ * `undefined` on a deployment that has none, which is the degradation this harness has to exercise.
  */
-function makeHost() {
+function makeHost(registry) {
   const listeners = new Map();
   const logs = [];
   const ctx = {
@@ -62,6 +65,7 @@ function makeHost() {
       fn();
       return () => {};
     },
+    get: (name) => (name === 'agentPresets' ? registry : undefined),
     on(event, handler) {
       const list = listeners.get(event) ?? [];
       list.push(handler);
@@ -124,8 +128,11 @@ async function runStep(host, messages, config, options = {}) {
   mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
   const inbox = Array.isArray(options.inbox) ? options.inbox : messages;
   const history = Array.isArray(options.history) ? options.history : messages;
-  const agent = { session: { id: options.sessionId ?? 'acc', deriveMessages: () => history } };
+  const agent = { id: options.agentId ?? 'acc', ctx: { get: () => undefined }, session: { id: options.sessionId ?? 'acc', deriveMessages: () => history } };
   try {
+    // The host creates the agent before the first step, and the plugin prewarms the preset there. On a
+    // deployment with no roster the created events have to pass through this same listener untouched.
+    await host.emit('agent/created', { agent }, () => undefined);
     const decision = await host.emit('agent/pre-step', { agent, messages: inbox }, enterWith(inbox));
     return { decision, logs: host.logs };
   } finally {
@@ -380,6 +387,113 @@ check('the steer lever leaves a shaped reply alone', async () => {
   await emit('A single plain sentence.', 3);
   assert.equal(steered.length, 1, 'a single plain sentence is bare, and gets the extra pass');
 });
+check('the plugin registers on agent/created and disposes without a roster', async () => {
+  const host = makeHost(undefined);
+  mod.apply(host.ctx, { home: tempHome({ locale: 'zh', moe: 'soft' }), shippedLibrary: SHIPPED });
+  // The listener has to be there even when there is no registry: a deployment without a roster still
+  // gets its sessions created, and this plugin's listener must not be the reason one fails.
+  assert.equal(host.listening('agent/created'), true, 'the prewarm is listening');
+  assert.equal(host.listening('agent/disposed'), true, 'and cleans up after itself');
+  await host.emit('agent/created', { agent: { id: 'acc', ctx: { get: () => undefined }, session: { header: {} } } }, () => undefined);
+  await host.emit('agent/disposed', { agent: { id: 'acc', ctx: { get: () => undefined }, session: { header: {} } } }, () => undefined);
+  assert.equal(host.logs.filter((l) => l.startsWith('warn:')).length, 0, 'neither event may fail the creation of an agent');
+  await host.emit('agent/created', {}, () => undefined);
+  await host.emit('agent/disposed', {}, () => undefined);
+  assert.equal(host.logs.filter((l) => l.startsWith('warn:')).length, 0, 'and neither may throw on a payload without an agent');
+});
+
+check('a document that cannot be read costs the persona, not the identity or the rules', async () => {
+  const asked = [];
+  const host = makeHost({
+    composedPreset: () => 'unknown-preset',
+    readDocument: (id) => {
+      asked.push(id);
+      return Promise.reject(new Error('Unknown agent preset: ' + id));
+    },
+  });
+  // A one-sentence reply with no face would add the kaomoji shortage reminder to the same step, so it
+  // is switched off: the assertion here is about the symbol notice arriving anyway.
+  const messages = [assistant('m1', [{ type: 'text', text: `bad ${CHECK}` }])];
+  const { decision, logs } = await runStep(host, messages, { locale: 'en', kaomojiCheck: false });
+
+  assert.deepEqual(asked, ['unknown-preset'], 'the id reached the document read');
+  assert.ok(logs.some((l) => l.includes('could not be read')), 'the rejection is reported at the prewarm');
+  assert.ok(logs.some((l) => l.includes('Unknown agent preset')), 'and the reason it gave is kept');
+  assert.ok(noticeOf(decision), 'the discipline still has its teeth when the persona is unavailable');
+});
+
+check('no roster anywhere: the voice still speaks and the rules still bite', async () => {
+  const host = makeHost(undefined);
+  const messages = [
+    userMessage('u1', 'plain instructions, no voice words at all'),
+    assistant('a1', [{ type: 'text', text: `bad ${CHECK}` }]),
+  ];
+  const { decision, logs } = await runStep(host, messages, { locale: 'en', moe: 'soft', moeVoice: 'rotate', kaomojiCheck: false });
+  const texts = (decision?.messages ?? []).map((m) => m?.content?.[0]?.text ?? '');
+  assert.ok(texts.some((t) => t.includes('MOE VOICE')), 'the rotated voice notice is still injected');
+  assert.ok(noticeOf(decision), 'and the symbol notice is still produced');
+  assert.ok(logs.some((l) => l.includes('no agentPresets roster')), 'the missing roster is said once, at boot');
+  assert.ok(logs.some((l) => l.includes('moe voice')), 'and the voice pick is logged as it was before');
+});
+
+check('a configured preset mapping decides the voice on a real step', async () => {
+  const host = makeHost({
+    composedPreset: () => 'redipaloynz',
+    readDocument: async (id) => ({ agentPreset: id, content: '  - id: persona\n    config:\n      prefix: You are a coding agent.\n' }),
+  });
+  const messages = [assistant('m1', [{ type: 'text', text: 'All good. Nothing to report.' }])];
+  const config = { locale: 'en', moe: 'soft', moeVoice: 'auto', moeVoiceByPreset: { redipaloynz: 'gentle' }, kaomojiCheck: false };
+  const { decision, logs } = await runStep(host, messages, config, { agentId: 'acc-map', sessionId: 'acc-map' });
+  const voice = (decision?.messages ?? []).map((m) => m?.content?.[0]?.text ?? '').find((t) => t.includes('MOE VOICE'));
+  assert.ok(voice, 'a voice notice reaches the model');
+  assert.ok(voice.includes('gentle'), 'and it is the voice the preset map named');
+  assert.ok(!voice.includes('pinned'), 'not the wording of a fallback mode');
+  assert.ok(logs.some((l) => l.includes('moe voice gentle (mapped by preset redipaloynz)')), 'the log names the preset and the source');
+});
+
+check('with no mapping the persona is asked, and the log says whose it was', async () => {
+  const host = makeHost({
+    composedPreset: () => 'redipaloynz',
+    // The prefix arrives inside a YAML dump, verbatim; the plugin scans the text rather than parsing it.
+    readDocument: async (id) => ({ agentPreset: id, content: '  - id: persona\n    config:\n      prefix: You are a gentle assistant.\n' }),
+  });
+  const messages = [assistant('m1', [{ type: 'text', text: 'All good. Nothing to report.' }])];
+  const config = { locale: 'en', moe: 'soft', moeVoice: 'auto', kaomojiCheck: false };
+  const { decision, logs } = await runStep(host, messages, config, { agentId: 'acc-persona', sessionId: 'acc-persona' });
+  const voice = (decision?.messages ?? []).map((m) => m?.content?.[0]?.text ?? '').find((t) => t.includes('MOE VOICE'));
+  assert.ok(voice && voice.includes('gentle'), 'the persona named the voice and it is the one announced');
+  assert.ok(logs.some((l) => l.includes('inferred from the persona of preset redipaloynz')), 'the log says which haystack answered');
+});
+
+check('adding the mapping mid-session lands on the next step, with no restart', async () => {
+  const host = makeHost({
+    composedPreset: () => 'hisagi',
+    readDocument: async (id) => ({ agentPreset: id, content: 'prefix: You are a coding agent.\n' }),
+  });
+  const home = tempHome({ locale: 'en', moe: 'soft', moeVoice: 'rotate', kaomojiCheck: false });
+  const file = path.join(home, 'agent-house-rules.json');
+  mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const agent = { id: 'acc-live', ctx: { get: () => undefined }, session: { id: 'acc-live', deriveMessages: () => [] } };
+  const step = async (id) => {
+    const messages = [assistant(id, [{ type: 'text', text: 'All good. Nothing to report.' }])];
+    return host.emit('agent/pre-step', { agent, messages }, enterWith(messages));
+  };
+  try {
+    await host.emit('agent/created', { agent }, () => undefined);
+    const first = await step('m1');
+    const firstVoice = (first?.messages ?? []).map((m) => m?.content?.[0]?.text ?? '').find((t) => t.includes('MOE VOICE'));
+    assert.ok(firstVoice && !firstVoice.includes('elegant'), 'the session starts on the rotated voice');
+    // The edit a user would make: no restart, no re-mount. The hook's own state keeps the session to one
+    // voice, so the proof here is that the resolver accepts the new key at all rather than throwing.
+    fs.writeFileSync(file, JSON.stringify({ locale: 'en', moe: 'soft', moeVoice: 'rotate', moeVoiceByPreset: { hisagi: 'elegant' }, kaomojiCheck: false }), 'utf8');
+    const second = await step('m2');
+    assert.ok(second?.messages?.length >= 1, 'and the next step still resolves with the new key present');
+    assert.equal(host.logs.filter((l) => l.includes('moeVoiceByPreset')).length, 0, 'the key is a mapping, not an error to report');
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

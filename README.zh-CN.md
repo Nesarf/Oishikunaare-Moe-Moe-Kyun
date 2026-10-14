@@ -35,21 +35,49 @@ preset —— preset 是副本，副本会漂。
 ```
 
 - `moe`：`off`（默认）/ `soft` / `full`。`soft` 定语气；`full` 连标记表一起用起来。
-- `moeVoice` 三种模式：`auto`（默认）从会话里的话推断语气，**什么都没指名时保持沉默**；
-  `rotate` 按会话 id 哈希给**每个会话一个固定的语气**，于是每个 agent 听起来都不一样而且稳定，
-  零配置、不猜；直接写一个 id（`gentle`、`spirited`、`composed`、`timid`、`prickly`、`elegant`）
-  则是全员钉死一种。
-
-  关于「按 agent 适配」的诚实边界：插件**看不到 agent 来自哪个预设**，而人格文本在系统提示里、
-  不在会话里，所以基于会话的推断只在「话里真的点了某个语气类」时才命中。本机实测：15 个预设里
-  只有 3 个。`rotate` 是这个限制下的诚实答案——它不知道你是谁，但它能让一个会话固定一种声音，
-  而「不同会话听起来不同」正是这个需求可被观察的那一半。
-- `moeVoiceSignals`：`{ "prickly": ["你自己的词"] }` 扩充推断映射。
+- `moeVoice` 三种模式：`auto`（默认）先看**这个 agent 的预设人格**、再看会话里的话，两处都没指名就
+  保持沉默；`rotate` 按会话 id 哈希给**每个会话一个固定的语气**，于是每个 agent 听起来都不一样而且
+  稳定，零配置、不猜；直接写一个 id（`gentle`、`spirited`、`composed`、`timid`、`prickly`、
+  `elegant`）则是全员钉死一种。
+- `moeVoiceByPreset`：`{ "redipaloynz": "gentle" }` 给某一个预设指定语气。这是三层里最高的那一层，
+  也是**唯一精确**的一层——插件能知道什么、不能知道什么，见下面那节。
+- `moeVoiceSignals`：`{ "prickly": ["你自己的词"] }` 扩充推断映射，人格与会话两条路都用它。
 
 **落点**：回复、你自己的思考、你跑的命令与交给子代理的提示词、以及你写出的工作产物（注释、
 docstring、README 与报告的行文、commit message、用户可见的字符串、测试失败信息）。
 **不落**：代码本体（标识符、路径、参数、API 名、schema 字段、数据键名），以及报错与堆栈旁边、
 严肃结论、安全告警、机器输出、任何读者会直接拿去执行的东西。
+
+### 语气是怎么定下来的，预设在哪一层
+
+三层，从高到低，日志行永远会说明是哪一层答的：
+
+1. **`moeVoiceByPreset`**——配置给这个预设 id 指定了语气，答案是精确的。日志形如
+   `moe voice gentle (mapped by preset redipaloynz)`。映射到的 id 不在语气表里就不算答案，
+   会往下一层落，而不是把通知吞掉。
+2. **预设自带的人格文本**——日志形如
+   `moe voice gentle (inferred from the persona of preset redipaloynz)`。
+   这一半要诚实说清：那六个语气词（`gentle`、`spirited`、`composed`、`timid`、`prickly`、
+   `elegant` 及其中日文对应词）是亚文化词汇，人手写的人格文本**往往一个都不含**。本机实测：
+   13 个预设里只有 **4 个**的人格点到了语气类，其余对说话方式只字未提。所以这一层是**有限，
+   但比猜会话文本强**：人格是常驻指令，而会话内容只是读者偶然打出来的字。它没命中时第 3 层照样定语气。
+3. **`moeVoice` 模式本身**，行为不变：`rotate`（日志 `rotated`）、`auto` 看会话自己的话
+   （`inferred`）、或钉死的 id（`pinned`）。前两层都没指名时走这里，而这是常态。
+
+身份来自 `agentPresets` 服务，用 `ctx.get('agentPresets')` 去要。**故意不写进
+`export const inject`**：把预设注册表声明成硬依赖，会让插件在**没有注册表的部署上整份加载失败**，
+连带三条纪律一起没了。没有注册表时预设这两层就整体缺席，上面其余功能照常。id 有三级来源，
+从高到低：实时组合（`composedPreset`）、`agentPreset` 这个 session 投影、最后是会话 header。
+
+人格在每个 agent 创建时读一次（`agent/created`），来源是 `presets.readDocument(id)`。那份文档是
+一份 YAML dump，人格 `prefix` 以原文躺在里面（本机实测：文档 6.2–9.1 KB，其中人格前缀 444–3152 字符）；
+插件**只对这段文本做关键词扫描，不解析它**——YAML 解析器是运行时依赖，而这个包保持零依赖。
+那个监听器的整个函数体都在 `try`/`catch` 里：**在 `agent/created` 里抛错会直接让 agent 创建失败**，
+而一个纪律插件绝不能成为会话起不来的原因。预设若在启动与创建之间被删掉，`readDocument` 会以
+`agent-preset/not-found` reject；此时身份保留、人格丢弃、语气落回第 3 层。
+
+**改配置不需要重启**——映射和规则文本一样每个模型步重新读取。**换插件版本需要重启宿主**：
+代码是启动时装载的。
 
 ### 三语语气表
 
@@ -111,6 +139,8 @@ dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
   给路径或路径数组 = 用你自己的库。**给数组是替换内置库**，想两个都要就把内置路径也写进数组。
 - `kaomojiLibraryMax` 限制进入提示词的颜文字数量（默认 140）。
 - `kaomojiLibraryCollapse: true` 让每类压成一行，更省。
+- `moeVoiceByPreset: { "redipaloynz": "gentle" }` 给某一个 agent 预设指定萌语气。这份映射每个模型步
+  都会重读，改完不用重启。细节见上面「语气是怎么定下来的」那一节。
 - `enabled: false` 让这条 section 变空，什么都不注入。
 - `selfCheck`（默认开）与 `selfCheckMax`（默认 3）控制下面的自检。
 - `selfCheckMode`：`"deny"`（默认）点名对错标记那一族、其余放行；`"allow"` 只允许明确的文本类区块、
@@ -281,6 +311,9 @@ npm run audit:session -- --json      # 机器可读
 - Windows 与 Linux 走同一条路径，插件不碰任何平台专有面。
 - section 通过 `ctx.effect(...)` 里的 `ctx.systemPrompt.section()` 注册，卸载插件时会干净地摘掉。
 - `apply()` 接受行配置里的 `home`、`configFile`、`rulesDir` 三个输入，自检就是靠它们指向临时目录的。
+- `agentPresets` 服务与 `agent/created` 事件**都是可选的**：挂载时去要，而每一种回答——服务不存在、
+  投影没注册、`readDocument` reject、事件里没有 agent——都退化成「这个插件还不认识预设」时的那套
+  行为。改配置在下一个模型步生效；换插件版本要重启宿主。
 
 ## 当前本机部署
 
