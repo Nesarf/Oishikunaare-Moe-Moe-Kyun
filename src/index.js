@@ -983,6 +983,28 @@ export function findEmojiInMessages(messages, judgeOptions = {}) {
 /**
  * Compose the notice for emoji. Same voice as the symbol notice, and the same rule about never
  * printing the offending thing: naming the code points is the whole point.
+/**
+ * The channel a finding came from, said the way the notice should say it.
+ *
+ * The two channels are the model's own prose and its thinking, and the label matters: a notice that
+ * says "your text" about a breach in the thinking channel sends the reader looking in the wrong place.
+ * The kind written to a transcript is `reasoning` (that is what DSH writes for a thinking block) while
+ * older transcripts and hand-built fixtures say `thinking`, so both are the thinking channel. Testing
+ * for the literal `'thinking'` alone is why the distinction never fired in practice: the wire said
+ * `reasoning`, the notice said text, and the reader was told to check the wrong channel.
+ * @param {string} where - the block kind a judge reported.
+ * @param {string} locale - the locale the notice is written in.
+ * @returns {string} the label to print.
+ */
+function channelLabel(where, locale) {
+  const thinking = where === 'thinking' || where === 'reasoning';
+  if (locale === 'zh') return thinking ? '\u601D\u8003' : '\u6B63\u6587';
+  return thinking ? 'thinking' : 'text';
+}
+
+/**
+ * Compose the notice for emoji. Same voice as the symbol notice, and the same rule about never
+ * printing the offending thing: naming the code points is the whole point.
  * @param {{ where: string, glyphs: string[] }} finding - what was found.
  * @param {string} locale - the locale the rules were assembled in.
  * @param {{ attempt?: number }} [options] - which reminder this is.
@@ -990,7 +1012,7 @@ export function findEmojiInMessages(messages, judgeOptions = {}) {
  */
 export function emojiNotice(finding, locale, options = {}) {
   const list = finding.glyphs.join(', ');
-  const where = finding.where === 'thinking' ? (locale === 'zh' ? '\u601D\u8003' : 'thinking') : (locale === 'zh' ? '\u6B63\u6587' : 'text');
+  const where = channelLabel(finding.where, locale);
   const attempt = Number.isFinite(options.attempt) && options.attempt > 1 ? Math.floor(options.attempt) : 1;
   if (locale === 'zh') {
     const head = `\u3010\u7981 emoji\u00B7\u81EA\u68C0${attempt > 1 ? `\u7B2C ${attempt} \u6B21` : ''}\u3011\u4F60\u4E0A\u4E00\u6761\u56DE\u590D\u7684${where}\u91CC\u51FA\u73B0\u4E86 emoji\uFF08${list}\uFF09\uFF0C\u8FD9\u4E00\u7C7B\u4E00\u4E2A\u90FD\u4E0D\u8BE5\u6709\u3002`;
@@ -1039,7 +1061,7 @@ export function findBannedInMessages(messages, judgeOptions = {}) {
  */
 export function selfCheckNotice(finding, locale, options = {}) {
   const list = finding.glyphs.join(', ');
-  const where = finding.where === 'thinking' ? (locale === 'zh' ? '\u601d\u8003' : 'thinking') : (locale === 'zh' ? '\u6b63\u6587' : 'text');
+  const where = channelLabel(finding.where, locale);
   const attempt = Number.isFinite(options.attempt) && options.attempt > 1 ? Math.floor(options.attempt) : 1;
   const exclusion = typeof options.exclusion === 'string' && options.exclusion !== '' ? options.exclusion : '';
   if (locale === 'zh') {

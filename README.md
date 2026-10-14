@@ -2,13 +2,26 @@
 
 > Chinese documentation: [README.zh-CN.md](README.zh-CN.md)
 
-Output house rules for every agent in a DeepSeek Harness profile, delivered as one global system
-prompt section.
+Output house rules for an AI agent: one core, and four ways to reach it. The rules are about how an
+agent writes - judgement glyphs, emoji, the kaomoji habit, the language it thinks in - and none of that
+is specific to one harness, so the package is not either.
 
-A profile-level plugin is mounted once by the roster, so the section it registers reaches every agent
-that joins that standing scope: every preset, every workspace, every new conversation, and subagents
-too. That is the whole point of doing it here rather than in fifteen preset files - a preset is a copy,
-and a copy is a thing that drifts.
+| entry | what it is | how it is wired |
+| --- | --- | --- |
+| **CLI** `mmk` | `rules`, `lib`, `check`, `notice`, `voice`, `review`, `wire` | a shell, a git hook, CI, or a person asking whether a line would be refused. Exit 3 means a breach |
+| **MCP server** | `mmk_rules`, `mmk_check`, `mmk_notice` and the `mmk://rules` resource | any MCP client, no assumption about which agent is on the other side |
+| **Claude Code hook** | corrects a breach while the turn is still open | `Stop` answers `{"decision":"block","reason":<notice>}`, `UserPromptSubmit` and `SessionStart` attach context |
+| **DSH plugin** | one global system prompt section for a whole profile | mounted once by the roster, so it reaches every preset, workspace, conversation and subagent |
+| **modules** | `oishikunaare-moe-moe-kyun/portable`, `/transcripts` | writing another adapter: all of the above are thin layers over those two files |
+
+`mmk wire <target>` prints the wiring for a specific place - the hook block, the MCP client block, the
+`AGENTS.md` / `CLAUDE.md` / `GEMINI.md` rules block, the DSH plugin row - with real paths filled in.
+
+The DSH plugin row is worth explaining, because it is the anti-drift argument: a profile-level plugin is
+mounted once by the roster, so the section it registers reaches every agent that joins that standing
+scope - every preset, every workspace, every new conversation, and subagents too. That is why it is done
+there rather than in fifteen preset files: a preset is a copy, and a copy is a thing that drifts. The
+other entries exist because the same rules are worth having where no such roster exists.
 
 Four rules ship today.
 
@@ -181,7 +194,7 @@ plus pure functions, so they are reachable three more ways:
 
 | entry | how | what it is for |
 | --- | --- | --- |
-| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` emits a paste-ready block for the rules files other harnesses read. |
+| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>`, `mmk wire <target>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` and `mmk wire <target>` emit paste-ready blocks. |
 | MCP server | `node adapters/mcp.mjs` (or `npm run mcp`) | any client that speaks MCP: `mmk_rules` fetches the section for the system prompt, `mmk_check` judges a draft on all three alphabets, `mmk_notice` renders one notice. Nothing here assumes a particular agent. |
 | Claude Code hook | `node adapters/claude-code.mjs` (or `npm run claude-code --print-config`) | the correction, not just the rules: on `Stop` a breach answers `{"decision":"block","reason":<notice>}`, on `UserPromptSubmit` and `SessionStart` it answers with `hookSpecificOutput.additionalContext`. Budgeted once per session, fails open, and a stop the hook itself caused is never blocked again. |
 | modules | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |

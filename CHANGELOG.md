@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.13.0 - 2026-10-14
+
+- **The README now says what the package is: one core, four entries.** The documentation still opened
+  with "output house rules for every agent in a DeepSeek Harness profile", which stopped being the whole
+  truth when the CLI, the MCP server and the Claude Code hook landed. Both READMEs (and the package
+  description) now lead with the four entries and explain why the DSH row still exists - a profile-level
+  plugin is mounted once by the roster, so it is the anti-drift entry, not the only one.
+- **`mmk wire <target>`**: the last mile, printed. `claude-code` prints the hooks block for
+  `settings.json`, `mcp` prints the `mcpServers` block, `agents-md` / `claude-md` / `gemini-md` print the
+  rules block named for that file, and `dsh` prints the plugin row - each with the real path filled in
+  and a one-line note about what it does. `mmk wire` with no target lists them.
+- **The symbol and emoji notices name the channel they actually found.** Both tested
+  `finding.where === 'thinking'`, but a transcript writes `reasoning` for a thinking block, so the
+  distinction never fired: a breach in the thinking channel was reported as "your text", which sends the
+  reader looking in the wrong place. Both kinds now count as the thinking channel, with a case pinning
+  it (`test/selfcheck.mjs`).
+- **A guard's own rule, kept by the guard**: `dsh-prestep-audit` 0.2.1 no longer records every
+  `agent/request` by default (`diagnostics.requests` turns it back on). Recording each request broke the
+  plugin's own promise - "only interesting things are written" - and on this machine the log reached 1.9
+  MB of request lines while the illegal rows were zero. The switch is covered by a test (25 now).
+
 ## 0.12.0 - 2026-10-14
 
 - **The package is now `oishikunaare-moe-moe-kyun` - lowercase, because npm requires it.** npm's own

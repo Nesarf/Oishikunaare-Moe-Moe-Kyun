@@ -31,6 +31,7 @@ import {
   voiceFor,
 } from '../src/portable.mjs';
 import { readTranscript } from '../src/transcripts.mjs';
+import { wireTargets } from '../src/wire.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const USAGE = `mmk - moe house rules, harness free
@@ -39,6 +40,7 @@ usage: mmk <command> [options]
 
 commands
   rules                 print the prompt section a host should inject (--format text|md)
+  wire [target]         print the wiring for one place (run with no target to list them)
   lib                   print only the kaomoji palette block
   check                 judge one text, and report what it carries
   notice                render the notice for a named finding
@@ -165,6 +167,28 @@ if (command === 'rules') {
   } else if (format === 'text') out(built.text);
   else fail(`unknown --format "${format}" (text, md)`);
   process.exit(built.enabled ? 0 : 3);
+}
+
+if (command === 'wire') {
+  // The last mile: every harness wants the same thing said in its own file. Printing the exact block,
+  // with real paths filled in, is the difference between "there is an adapter" and "it is wired up".
+  // The table itself lives in src/wire.mjs, the one module allowed to name another program's files.
+  const here = path.join(HERE, '..').replace(/\\/g, '/');
+  const targets = wireTargets({ here, version: version(), rules: state.resolve().text });
+  const wanted = value('target') ?? rest[0];
+  if (wanted === undefined) {
+    if (has('json')) json(Object.fromEntries(Object.entries(targets).map(([name, entry]) => [name, { file: entry.file, note: entry.note }])));
+    else {
+      out('usage: mmk wire <target>');
+      for (const [name, entry] of Object.entries(targets)) out(`  ${name.padEnd(12)} ${entry.file} - ${entry.note}`);
+    }
+    process.exit(0);
+  }
+  const target = targets[wanted];
+  if (target === undefined) fail(`unknown wire target "${wanted}" (run: mmk wire)`);
+  if (has('json')) json({ target: wanted, file: target.file, note: target.note, block: target.block });
+  else out(`# ${wanted} -> ${target.file}\n# ${target.note}\n\n${target.block}`);
+  process.exit(0);
 }
 
 if (command === 'lib') {

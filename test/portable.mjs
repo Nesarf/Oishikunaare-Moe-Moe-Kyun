@@ -222,6 +222,29 @@ check('the rules block drops into a markdown rules file', () => {
   assert.ok(md.stdout.includes('U+2713'), 'and carries the shipped rules');
 });
 
+check('mmk wire prints the wiring for a target, with real paths', () => {
+  const cli = path.join(ROOT, 'bin', 'mmk.mjs');
+  const list = spawnSync(process.execPath, [cli, 'wire'], { encoding: 'utf8' });
+  assert.equal(list.status, 0);
+  for (const target of ['claude-code', 'mcp', 'agents-md', 'dsh']) assert.ok(list.stdout.includes(target), `the list names ${target}`);
+
+  const mcp = JSON.parse(spawnSync(process.execPath, [cli, 'wire', 'mcp', '--json'], { encoding: 'utf8' }).stdout);
+  const mcpBlock = JSON.parse(mcp.block);
+  const args = mcpBlock.mcpServers['moe-house-rules'].args;
+  assert.ok(args[0].endsWith('/adapters/mcp.mjs'), 'the path points at the adapter');
+  assert.equal(args[0].includes('\\'), false, 'and is written as a portable slash path');
+
+  const hook = JSON.parse(spawnSync(process.execPath, [cli, 'wire', 'claude-code', '--json'], { encoding: 'utf8' }).stdout);
+  const hooks = JSON.parse(hook.block).hooks;
+  assert.ok(hooks.Stop && hooks.UserPromptSubmit && hooks.SessionStart, 'all three events are wired');
+  assert.ok(hooks.Stop[0].hooks[0].command.includes('claude-code.mjs'));
+
+  const rules = spawnSync(process.execPath, [cli, 'wire', 'agents-md'], { encoding: 'utf8' });
+  assert.ok(rules.stdout.includes('AGENTS.md') && rules.stdout.includes('U+2713'), 'a rules file gets the rules');
+
+  assert.equal(spawnSync(process.execPath, [cli, 'wire', 'nonsense'], { encoding: 'utf8' }).status, 2, 'an unknown target is a usage error');
+});
+
 // ---------------------------------------------------------------------------
 
 for (const { title, fn } of checks) {

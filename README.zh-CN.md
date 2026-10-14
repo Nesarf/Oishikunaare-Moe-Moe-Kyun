@@ -2,11 +2,24 @@
 
 > English documentation: [README.md](README.md)
 
-给 DSH profile 里**所有 agent** 的输出纪律（house rules），以一条全局 system prompt section 的形式下发。
+给 AI agent 的输出纪律（house rules）：**一个内核，四条入口**。这些纪律讲的是 agent 怎么写东西 ——
+对错标记符号、emoji、颜文字习惯、思考用什么语言 —— 它们本来就不属于某一个宿主，所以这个包也不属于。
 
-profile 级插件由 roster 只挂载一次，因此它注册的这条 section 覆盖所有加入该 standing scope 的
-agent：全部 preset、全部工作区、每个新会话，连 subagent 一起。这也是为什么要做成插件而不是改
-preset —— preset 是副本，副本会漂。
+| 入口 | 是什么 | 怎么接 |
+| --- | --- | --- |
+| **CLI** `mmk` | `rules`、`lib`、`check`、`notice`、`voice`、`review`、`wire` | shell、git hook、CI，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规 |
+| **MCP server** | `mmk_rules`、`mmk_check`、`mmk_notice` 三个工具 + `mmk://rules` 资源 | 任何会说 MCP 的客户端，不假设对面是哪一个 agent |
+| **Claude Code 钩子** | 在回合还开着的时候就纠正 | `Stop` 回 `{"decision":"block","reason":<通知>}`，`UserPromptSubmit` 与 `SessionStart` 附带上下文 |
+| **DSH 插件** | 给整个 profile 一条全局 system prompt section | 由 roster 只挂载一次，覆盖全部 preset、工作区、新会话与 subagent |
+| **模块** | `oishikunaare-moe-moe-kyun/portable`、`/transcripts` | 自己写适配器的人：上面每一个都是薄薄地架在这两个文件上 |
+
+`mmk wire <target>` 会把某个地方要用的接法直接打出来 —— 钩子块、MCP 客户端块、
+`AGENTS.md` / `CLAUDE.md` / `GEMINI.md` 的规则块、DSH 的插件行 —— 路径都填成真实路径。
+
+DSH 那一条值得解释一句，因为它是「防漂」的论据：profile 级插件由 roster 只挂载一次，因此它注册的
+section 覆盖所有加入该 standing scope 的 agent —— 全部 preset、全部工作区、每个新会话，连 subagent 一起。
+这也是为什么要做成插件而不是改 preset：preset 是副本，副本会漂。另外三条入口存在的理由是：
+同样的纪律在没有这种 roster 的地方也值得有。
 
 当前内置四条纪律：
 
@@ -147,7 +160,7 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 | 入口 | 怎么用 | 给谁用 |
 | --- | --- | --- |
-| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 直接产出能贴进别家规则文件的段落 |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
 | 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
