@@ -32,6 +32,14 @@
  * The documented hook contract is per-event and has moved between releases, so `--mode` exists rather
  * than one hard-coded shape: a caller that knows its version wins, and `auto` picks the shape each
  * event documents today.
+ *
+ * **Verification status, stated plainly.** This adapter was written from the published contract and is
+ * exercised against recorded payloads in `adapters/fixtures/claude-code/` (`npm run test:adapters`). It
+ * has never been run against a live Claude Code, because this machine does not have one. That is a real
+ * limitation rather than a formality: the contract has moved between releases, and the community reports
+ * event shapes that disagree with the documentation. When a real invocation becomes available, record
+ * its stdin JSON as a fixture and the gap closes by itself; until then, treat this adapter as documented
+ * but unverified, and prefer the CLI or the MCP server where the client can be checked locally.
  */
 import fs from 'node:fs';
 import os from 'node:os';

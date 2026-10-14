@@ -1,0 +1,20 @@
+{
+  "name": "prompt-submit-breach",
+  "harness": "claude-code",
+  "note": "UserPromptSubmit gets context rather than a block: the documented shape for this event is hookSpecificOutput.additionalContext, and the adapter must pick it without being told.",
+  "payload": {
+    "session_id": "fixture-prompt-submit",
+    "hook_event_name": "UserPromptSubmit",
+    "prompt": "carry on",
+    "transcript_path": "<TMP>/prompt-submit.jsonl"
+  },
+  "transcript": [
+    { "type": "assistant", "sessionId": "fixture-prompt-submit", "uuid": "p1", "message": { "role": "assistant", "content": [{ "type": "text", "text": "the previous reply used \u2717 by mistake (^_^)" }] } }
+  ],
+  "args": ["--state", "<TMP>/state-prompt"],
+  "expect": {
+    "status": 0,
+    "stdoutKeys": { "hookSpecificOutput": { "hookEventName": "UserPromptSubmit" } },
+    "stdoutContains": ["U+2717"]
+  }
+}

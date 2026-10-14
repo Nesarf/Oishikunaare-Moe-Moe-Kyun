@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.14.0 - 2026-10-14
+
+- **Adapters are verified by recorded payloads, and the unverified one says so.** There is no second
+  harness on the machine this was written on - no Claude Code, no Codex, no MCP-capable editor; the
+  `gemini` on PATH is that machine's own one-shot API wrapper, not an agent - so an adapter for another
+  harness cannot be checked against that harness. What it *can* be checked against is a recorded
+  invocation: `adapters/fixtures/<harness>/*.json` hold the stdin JSON, the transcript it points at and
+  the expected decision, and `npm run test:adapters` replays all of them (part of `verify` now). Four
+  fixtures cover the Claude Code adapter's events, including `stop_hook_active`, which must exit silently
+  or the hook loops.
+- **The README states what is verified where**, because "written from the documentation" and "seen a
+  live client" are not the same claim: the DSH plugin is in production on that machine, the CLI does real
+  work there, the MCP server's protocol half is checked locally, and the Claude Code hook is labelled
+  **documented contract plus fixtures only**. The same label is on `mmk wire claude-code` and in the
+  adapter's own header, so it travels with the artifact instead of waiting to be discovered.
+- **What this settles about writing more harnesses.** Adding an adapter from memory is how a project
+  grows code that looks authoritative and has never run; the fixture directory is the cheap path instead -
+  when someone can run the client, one recorded payload closes the gap. The portability split stays
+  because it is already paid for and because the failure this project was rescued from lived in the DSH
+  write path, not in the judging core; but no adapter is written for a harness nobody here can run.
+
 ## 0.13.0 - 2026-10-14
 
 - **The README now says what the package is: one core, four entries.** The documentation still opened

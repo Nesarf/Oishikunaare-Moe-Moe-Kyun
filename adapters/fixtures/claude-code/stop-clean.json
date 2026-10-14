@@ -1,0 +1,15 @@
+{
+  "name": "stop-clean",
+  "harness": "claude-code",
+  "note": "A Stop hook on a reply that breaks nothing must say nothing at all: a hook that always answers is noise, and an exit status that is not 0 would fail the session.",
+  "payload": {
+    "session_id": "fixture-stop-clean",
+    "hook_event_name": "Stop",
+    "transcript_path": "<TMP>/stop-clean.jsonl"
+  },
+  "transcript": [
+    { "type": "assistant", "sessionId": "fixture-stop-clean", "uuid": "c1", "message": { "role": "assistant", "content": [{ "type": "text", "text": "One sentence with a face (^_^) in it." }] } }
+  ],
+  "args": ["--state", "<TMP>/state-clean"],
+  "expect": { "status": 0, "stdout": "" }
+}

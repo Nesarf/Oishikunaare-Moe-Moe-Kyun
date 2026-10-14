@@ -25,7 +25,7 @@ export function wireTargets({ here, version, rules }) {
   return {
     'claude-code': {
       file: '.claude/settings.json (project) or ~/.claude/settings.json (user)',
-      note: 'Merge the hooks block. Stop corrects a breach while the turn is still open; the other two attach the rules.',
+      note: 'Merge the hooks block. Stop corrects a breach while the turn is still open; the other two attach the rules. Verification status: documented contract plus recorded fixtures, not yet run against a live client.',
       block: JSON.stringify({
         hooks: {
           SessionStart: [{ hooks: [{ type: 'command', command: hook }] }],

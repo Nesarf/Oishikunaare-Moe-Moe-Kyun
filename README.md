@@ -17,6 +17,25 @@ is specific to one harness, so the package is not either.
 `mmk wire <target>` prints the wiring for a specific place - the hook block, the MCP client block, the
 `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` rules block, the DSH plugin row - with real paths filled in.
 
+### What is verified where
+
+An entry that has never met the thing it is written for is not the same as one that has, and the
+difference is worth stating instead of implying. This table is the honest version.
+
+| entry | how it is verified |
+| --- | --- |
+| DSH plugin | In production on the machine this was written on: mounted in a live profile, and its rules and self-check are visible in real sessions |
+| CLI `mmk` | Used on that machine for real work - auditing a session, answering whether a line would be refused - and exercised by `test/portable.mjs` |
+| MCP server | The protocol is checked locally: a handshake, `tools/list`, every tool called, `resources/read`. The client half depends on the client |
+| Claude Code hook | **Documented contract plus recorded fixtures only** (`npm run test:adapters`); never run against a live Claude Code, because none is installed here. The contract has moved between releases, so treat this one as a candidate rather than a supported entry |
+| rules files (`mmk wire ...-md`) | The block is generated from the same resolved rules the plugin serves, so the text is verified; whether a given program reads that file is its own documentation |
+
+When a harness that is not on this machine does become available, the way to close the gap is one
+recorded payload: save the stdin JSON a hook actually receives as `adapters/fixtures/<harness>/<case>.json`
+and `npm run test:adapters` replays it. That is what the fixture directory is for, and it is why adding
+an adapter is cheap once someone can run the client - and why writing five of them from memory would not
+be.
+
 The DSH plugin row is worth explaining, because it is the anti-drift argument: a profile-level plugin is
 mounted once by the roster, so the section it registers reaches every agent that joins that standing
 scope - every preset, every workspace, every new conversation, and subagents too. That is why it is done

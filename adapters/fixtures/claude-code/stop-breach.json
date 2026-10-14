@@ -1,0 +1,21 @@
+{
+  "name": "stop-breach",
+  "harness": "claude-code",
+  "note": "A Stop hook sees a reply carrying a banned judgement glyph and answers with a block decision that names the code point and never prints the glyph. The glyph is written as \\u2713 so the fixture file stays ASCII: it decodes to the character at runtime, which is what the adapter must judge.",
+  "payload": {
+    "session_id": "fixture-stop-breach",
+    "hook_event_name": "Stop",
+    "transcript_path": "<TMP>/stop-breach.jsonl"
+  },
+  "transcript": [
+    { "type": "user", "sessionId": "fixture-stop-breach", "uuid": "u1", "message": { "role": "user", "content": "do the thing" } },
+    { "type": "assistant", "sessionId": "fixture-stop-breach", "uuid": "u2", "message": { "role": "assistant", "content": [{ "type": "text", "text": "done, all \u2713 clear" }] } }
+  ],
+  "args": ["--state", "<TMP>/state-breach", "--locale", "en"],
+  "expect": {
+    "status": 0,
+    "stdoutKeys": { "decision": "block" },
+    "stdoutContains": ["U+2713", "OUTPUT SYMBOL DISCIPLINE"],
+    "stdoutExcludes": ["\u2713"]
+  }
+}

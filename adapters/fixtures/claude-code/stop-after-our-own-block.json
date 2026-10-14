@@ -1,0 +1,16 @@
+{
+  "name": "stop-after-our-own-block",
+  "harness": "claude-code",
+  "note": "The payload carries stop_hook_active: true when the stop was caused by this hook. Blocking again there is how a hook becomes an infinite loop, so the adapter must exit silently.",
+  "payload": {
+    "session_id": "fixture-stop-active",
+    "hook_event_name": "Stop",
+    "stop_hook_active": true,
+    "transcript_path": "<TMP>/stop-active.jsonl"
+  },
+  "transcript": [
+    { "type": "assistant", "sessionId": "fixture-stop-active", "uuid": "a1", "message": { "role": "assistant", "content": [{ "type": "text", "text": "still carrying \u2713 (^_^)" }] } }
+  ],
+  "args": ["--state", "<TMP>/state-active"],
+  "expect": { "status": 0, "stdout": "" }
+}
