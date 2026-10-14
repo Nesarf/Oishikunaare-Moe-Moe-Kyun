@@ -184,7 +184,7 @@ plus pure functions, so they are reachable three more ways:
 | CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` emits a paste-ready block for the rules files other harnesses read. |
 | MCP server | `node adapters/mcp.mjs` (or `npm run mcp`) | any client that speaks MCP: `mmk_rules` fetches the section for the system prompt, `mmk_check` judges a draft on all three alphabets, `mmk_notice` renders one notice. Nothing here assumes a particular agent. |
 | Claude Code hook | `node adapters/claude-code.mjs` (or `npm run claude-code --print-config`) | the correction, not just the rules: on `Stop` a breach answers `{"decision":"block","reason":<notice>}`, on `UserPromptSubmit` and `SessionStart` it answers with `hookSpecificOutput.additionalContext`. Budgeted once per session, fails open, and a stop the hook itself caused is never blocked again. |
-| modules | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |
+| modules | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |
 
 `mmk review` reads a transcript and judges its newest authored message. Three readers ship: this
 package's own `dsh` artifacts (zstd framed, header plus event rows), Claude Code's `cc` transcript
@@ -208,13 +208,24 @@ with the right exit code.
 
 ## Install
 
+The package name is **`oishikunaare-moe-moe-kyun`** - all lowercase, because npm refuses capital
+letters in a new package name (the project, the repository and the local checkout keep the display name
+`Oishikunaare-Moe-Moe-Kyun`). Nothing else changed: the same code answers to the CLI, the MCP server,
+the hook and the plugin row.
+
 ```sh
-# from GitHub (fastest path, no registry round trip)
+# as a plugin, from GitHub (fastest path, no registry round trip)
 dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+
+# as a plugin, from the registry
+dsh plugin --profile web add oishikunaare-moe-moe-kyun
 
 # or from a clone (a checkout may live anywhere; this machine keeps it at E:/Oishikunaare-Moe-Moe-Kyun)
 git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
+
+# the harness-free entries need no plugin install at all
+npx oishikunaare-moe-moe-kyun rules --format md     # or: npm i -g oishikunaare-moe-moe-kyun
 
 # restart dsh web - plugin rows load at boot
 ```
@@ -223,7 +234,9 @@ Upgrading an installed copy needs `update`, not `add`: `add` reports "resolution
 leaves the lockfile on the old commit.
 
 ```sh
-dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web update oishikunaare-moe-moe-kyun
+# a GitHub-installed copy is keyed by the spec, so this is the row that moves it:
+dsh plugin --profile web update github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## Configure
@@ -396,8 +409,8 @@ was given:
 ```sh
 cat > $DSH_HOME/house-rules-verify.yml <<'YML'
 - insert:
-    - id: Oishikunaare-Moe-Moe-Kyun
-      name: Oishikunaare-Moe-Moe-Kyun
+    - id: oishikunaare-moe-moe-kyun
+      name: oishikunaare-moe-moe-kyun
 YML
 
 dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \

@@ -150,7 +150,7 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 | CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 直接产出能贴进别家规则文件的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
-| 模块 | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
+| 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
 
 `mmk review` 读一份会话记录，判它最新的一条「模型自己写的」消息。自带三个读取器：本包自己的
 `dsh` 产物（zstd 分帧、头行 + 事件行）、Claude Code 的 `cc` 记录信封（它的思考块把文本放在
@@ -169,13 +169,23 @@ CLI 必须仍然给出正确退出码。
 
 ## 安装
 
+包名是 **`oishikunaare-moe-moe-kyun`** —— 全小写，因为 npm 不允许新建的包名里带大写字母
+（项目名、仓库名、本机克隆目录仍然保持显示名 `Oishikunaare-Moe-Moe-Kyun`）。别的什么都没变：
+同一份代码同时是 CLI、MCP server、钩子和 DSH 插件行。
+
 ```sh
-# 从 GitHub 直装
+# 作为插件，从 GitHub 直装
 dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+
+# 作为插件，从 registry 装
+dsh plugin --profile web add oishikunaare-moe-moe-kyun
 
 # 或从本地克隆装（克隆目录叫什么都可以；本机的克隆在 E:/Oishikunaare-Moe-Moe-Kyun）
 git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
+
+# 那三个「不依赖宿主」的入口根本不用装插件
+npx oishikunaare-moe-moe-kyun rules --format md     # 或：npm i -g oishikunaare-moe-moe-kyun
 
 # 然后重启 dsh web —— 插件行在启动时装载
 ```
@@ -184,7 +194,9 @@ dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
 commit 上。
 
 ```sh
-dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web update oishikunaare-moe-moe-kyun
+# 从 GitHub 装的那份是按 spec 记账的，所以移动它的是这一行：
+dsh plugin --profile web update github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## 配置
@@ -332,8 +344,8 @@ DSH 宿主**默认不往磁盘写宿主日志**，所以「去日志里找」不
 ```sh
 cat > $DSH_HOME/house-rules-verify.yml <<'YML'
 - insert:
-    - id: Oishikunaare-Moe-Moe-Kyun
-      name: Oishikunaare-Moe-Moe-Kyun
+    - id: oishikunaare-moe-moe-kyun
+      name: oishikunaare-moe-moe-kyun
 YML
 
 dsh --profile headless --patch "$DSH_HOME/house-rules-verify.yml" \

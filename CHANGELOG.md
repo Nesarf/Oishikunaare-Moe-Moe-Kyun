@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.12.0 - 2026-10-14
+
+- **The package is now `oishikunaare-moe-moe-kyun` - lowercase, because npm requires it.** npm's own
+  name validator (`validate-npm-package-name`, the one npm ships and uses) answers two different
+  questions, and this is the whole story: `Oishikunaare-Moe-Moe-Kyun` is `validForOldPackages: true`
+  but `validForNewPackages: false` ("name can no longer contain capital letters"). Names like
+  `JSONStream` (created 2011-09-23), `Base64` (2012-06-10) and `MD5` (2011-11-25) are on the registry
+  because they predate the rule and are grandfathered; a *new* name with capitals is refused, and a
+  scope does not help (both `@Nesarf/mmk` and `@nesarf/MMK` fail the same check). `CoffeeScript` is the
+  ordinary answer to this: the project keeps its capitals, the package is `coffeescript`.
+- **What changed, and what deliberately did not.** The package name, the plugin row id and module name
+  in `cordis.patch.yml`, the exported plugin `name` (which is also the `plugin:<name>` producer kind on
+  messages this plugin injects), the `/portable` and `/transcripts` specifiers, and the install/update
+  commands in both READMEs. The display name is untouched in the project title, the repository, the
+  local checkout directory, the LICENSE, the MCP `serverInfo`, and the generated-by line of
+  `mmk rules --format md`. Existing session logs keep the old `plugin:Oishikunaare-Moe-Moe-Kyun` source
+  kind they were written with, which is fine: a producer kind only has to be present and must not be
+  the retired literal `plugin`.
+- **`prepublishOnly` now runs `npm run verify`**, so a release cannot ship a tree that fails its own
+  checks, and `publishConfig.access` is explicit.
+- Verified before publishing: `npm run verify` green, `npm publish --dry-run` with no warnings, the
+  packed tarball installed into a scratch project, and the installed shim answering with no
+  configuration at all.
+
 ## 0.11.1 - 2026-10-14
 
 - **The `mmk` bin was being dropped by npm at publish time.** npm 12 (12.2.0 here) refuses a bin target

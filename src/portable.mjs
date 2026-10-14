@@ -14,7 +14,7 @@
  * Reading a conversation and sending one are different jobs: this module judges messages, and it never
  * decides how they reach a host. An adapter that appends messages carries that risk, not this file.
  *
- * @module Oishikunaare-Moe-Moe-Kyun/portable
+ * @module oishikunaare-moe-moe-kyun/portable
  */
 import fs from 'node:fs';
 import os from 'node:os';

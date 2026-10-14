@@ -36,7 +36,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 /** Cordis plugin name. */
-export const name = 'Oishikunaare-Moe-Moe-Kyun';
+export const name = 'oishikunaare-moe-moe-kyun';
 
 /** The prompt registry this row contributes to. */
 export const inject = ['systemPrompt'];

@@ -16,7 +16,7 @@
  *
  * Nothing here writes, and nothing here imports a host SDK: node builtins only.
  *
- * @module Oishikunaare-Moe-Moe-Kyun/transcripts
+ * @module oishikunaare-moe-moe-kyun/transcripts
  */
 import fs from 'node:fs';
 import zlib from 'node:zlib';
