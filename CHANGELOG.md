@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.1 - 2026-10-14
+
+- **The `mmk` bin was being dropped by npm at publish time.** npm 12 (12.2.0 here) refuses a bin target
+  written as `./bin/mmk.mjs` and removes the entry during publish, so the installed package would have
+  carried no command at all - `npx mmk` would simply not have existed, and nothing in the repository
+  would have said so. The target is now written without the `./` prefix, which npm keeps. Found by
+  packing the tarball and reading the publisher's own warnings rather than trusting the manifest.
+- Verified the way a publisher should: `npm pack`, install the tarball into a scratch project, and run
+  the installed shim with **no configuration at all** - `mmk --version`, `mmk check --quiet` (exit 3 on
+  a bare reply), `mmk rules --json` (the packaged locale and its 1150 palette faces). The tarball is 32
+  files, 221.8 kB packed and 823.7 kB unpacked, and self-contained: `bin/`, `src/`, `lib/`, `rules/` and
+  `adapters/` all ship inside it.
+
 ## 0.11.0 - 2026-10-14
 
 - **A Claude Code hook adapter** (`adapters/claude-code.mjs`). The hook payload arrives as JSON on
