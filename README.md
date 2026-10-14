@@ -163,12 +163,16 @@ ceiling exists: the default 140 carries about 2400 characters of palette.
 ### The self-check: rules with teeth
 
 A prompt cannot notice anything, so the plugin also watches. It subscribes to `agent/pre-step`, which
-fires before each model step, and looks at what the agent itself just said. When its own prose or
-thinking carries a banned glyph, one notice goes in front of the next step: it names the code points
-and asks for words instead. Nothing in history is edited.
+fires before each model step, and reads the conversation from the session - not from the step's own
+`messages`, which the host types as `UserMessage[]` and which therefore never carries the reply every
+rule here is about. When the agent's prose or thinking carries a banned glyph, one notice goes in
+front of the next step: it names the code points and asks for words instead. Nothing in history is
+edited.
 
 - Judged: text and thinking the model authored. Not judged: tool results, file contents, fetched pages
   - the rule tells the agent not to relay those, it does not blame it for what a runner prints.
+- Read per step: the last 60 messages of the session, merged with the step's own messages by identity,
+  so a long conversation is not re-judged in full and one reply cannot be judged twice.
 - Exempt: fenced and inline code, and the code-point references the rule itself asks for.
 - Once per offending message, with a notice budget per session (three by default); past the budget,
   breaches are logged and nothing is injected.

@@ -32,14 +32,26 @@ const CROSS = String.fromCodePoint(0x2717);
 const SPARKLES = String.fromCodePoint(0x2728);
 
 let failures = 0;
+const pending = [];
+/**
+ * Record one case, and run it before the summary is printed.
+ *
+ * Every case here is asynchronous - a step is driven through the dispatcher - so the promise is kept
+ * and awaited at the end. An earlier revision called `fn()` and printed "pass" on the next line,
+ * which put the label on screen before the first `await` inside the case had even resolved and let a
+ * failed assertion land as an unhandled rejection that `process.exit` cut short. Eighteen cases
+ * reported green that way, and not one of them was proven.
+ */
 const check = (label, fn) => {
-  try {
-    fn();
-    console.log(`pass  ${label}`);
-  } catch (error) {
-    failures++;
-    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
-  }
+  pending.push((async () => {
+    try {
+      await fn();
+      console.log(`pass  ${label}`);
+    } catch (error) {
+      failures++;
+      console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
+    }
+  })());
 };
 
 /**
@@ -98,12 +110,26 @@ const enterWith = (messages) => async () => ({ kind: 'enter', messages });
 /** An assistant message in the shape the real transcript uses. */
 const assistant = (id, parts) => ({ id, source: { kind: 'assistant' }, content: parts });
 
-/** Drive one step through a host and report what would reach the model. */
-async function runStep(host, messages, config) {
+/** A user message in the shape the real transcript uses. */
+const userMessage = (id, text) => ({ id, source: { kind: 'user' }, role: 'user', content: [{ type: 'text', text }] });
+
+/**
+ * Drive one step through a host and report what would reach the model.
+ *
+ * A real host sends `messages: UserMessage[]` - the claimed inbox batch plus the assembled context -
+ * and the agent's own reply lives in the session, never in that payload. `inbox` and `history` are
+ * therefore separate here as well. Passing one list uses it for both, which is the shape an earlier
+ * version of this harness used for every case; it is kept for the cases whose subject is the judge
+ * itself, while the wire is exercised by its own case below.
+ */
+async function runStep(host, messages, config, options = {}) {
   const home = tempHome(config);
   mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const inbox = Array.isArray(options.inbox) ? options.inbox : messages;
+  const history = Array.isArray(options.history) ? options.history : messages;
+  const agent = { session: { id: options.sessionId ?? 'acc', deriveMessages: () => history } };
   try {
-    const decision = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
+    const decision = await host.emit('agent/pre-step', { agent, messages: inbox }, enterWith(inbox));
     return { decision, logs: host.logs };
   } finally {
     fs.rmSync(home, { recursive: true, force: true });
@@ -126,12 +152,30 @@ check('the plugin registers on agent/pre-step at mount', async () => {
 check('a real step carrying a breach gets a notice in front of the messages', async () => {
   const host = makeHost();
   const messages = [assistant('m1', [{ type: 'text', text: `all good ${CHECK}` }])];
-  const { decision } = await runStep(host, messages, { locale: 'zh' });
+  // The subject here is the symbol notice; the kaomoji rule has its own case, and a one-sentence
+  // reply with no face would otherwise add a second notice to this step.
+  const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false });
   const notice = noticeOf(decision);
   assert.ok(notice, 'a notice should reach the model');
   assert.equal(decision.messages[0], notice, 'and it should be first');
   assert.ok(notice.content[0].text.includes('U+2713'), 'naming the code point');
   assert.equal(decision.messages.length, messages.length + 1, 'history is added to, never rewritten');
+});
+
+check("the check reads the session, not the step's inbox", async () => {
+  // The shape a real host sends: `messages` is UserMessage[] - the claimed inbox batch plus the
+  // assembled context - and the agent's own reply is in the session, never in that payload. Reading
+  // the payload alone is why this plugin's rules were live in the prompt and silent in practice.
+  const host = makeHost();
+  const history = [
+    userMessage('u1', 'do the thing'),
+    assistant('a1', [{ type: 'text', text: `done ${CHECK}` }]),
+  ];
+  const inbox = [userMessage('u2', 'and the next one')];
+  const { decision } = await runStep(host, inbox, { locale: 'zh' }, { history });
+  const notice = noticeOf(decision);
+  assert.ok(notice, 'a breach only the session can see still has to be noticed');
+  assert.equal(decision.messages[0], notice, 'and still lands in front of the step');
 });
 
 check('a notice is a complete user message, not a bare payload', async () => {
@@ -144,7 +188,7 @@ check('a notice is a complete user message, not a bare payload', async () => {
   // object without a role is a session the validator refuses on the next load and a request the
   // provider rejects with "missing field `role`" - the whole history fails, not just this notice.
   assert.equal(notice.role, 'user', 'the recorded event needs the role the validator requires');
-  assert.equal(notice.source?.kind, 'user', 'and the source the transcript shows');
+  assert.equal(notice.source?.kind, `plugin:${mod.name}`, 'and the producer that owns it, not a borrowed identity');
   assert.ok(typeof notice.id === 'string' && notice.id.length > 0, 'and an identity of its own');
   assert.notEqual(notice.id, messages[0].id, 'which is not borrowed from the conversation');
 });
@@ -190,13 +234,15 @@ check('what a tool printed is not held against the agent', async () => {
 
 check('allow-list mode notices a glyph the deny list never named', async () => {
   const host = makeHost();
-  const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${THUMBS_UP}` }])];
-  const off = await runStep(makeHost(), messages, { locale: 'zh' });
-  assert.equal(noticeOf(off.decision), undefined, 'deny mode allows the hand emoji family only after 0.1.4 - use one it still misses');
-  const on = await runStep(host, messages, { locale: 'zh', selfCheckMode: 'allow' });
+  const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${SPARKLES}` }])];
+  // The emoji check has its own, correct opinion about a sparkle, and the kaomoji rule its own about
+  // a face-less sentence. This case is about the symbol judge, so both are switched off.
+  const off = await runStep(makeHost(), messages, { locale: 'zh', emojiCheck: false, kaomojiCheck: false });
+  assert.equal(noticeOf(off.decision), undefined, 'the deny list never names this one, so deny mode is silent');
+  const on = await runStep(host, messages, { locale: 'zh', emojiCheck: false, kaomojiCheck: false, selfCheckMode: 'allow' });
   const notice = noticeOf(on.decision);
   assert.ok(notice, 'allow mode should catch a glyph outside its permitted blocks');
-  assert.ok(notice.content[0].text.includes('U+1F44D'));
+  assert.ok(notice.content[0].text.includes('U+2728'));
 });
 
 check('switching the self-check off leaves the step untouched', async () => {
@@ -208,14 +254,15 @@ check('switching the self-check off leaves the step untouched', async () => {
   assert.ok(!host.listening('agent/pre-step'), 'nor register a handler at all');
 });
 
-check('a hook that throws does not take the step down with it', async () => {
+check('a failing inner step is not swallowed', async () => {
   const host = makeHost();
-  const home = tempHome({ locale: 'zh' });
+  const home = tempHome({ locale: 'zh', emojiCheck: false });
   mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
   // A decision that is not an enter passes through untouched, which is what a stop looks like.
   const stopped = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } } }, async () => ({ kind: 'stop' }));
   assert.equal(stopped.kind, 'stop');
-  // And an inner failure surfaces rather than being swallowed by the notice path.
+  // And an inner failure surfaces rather than being swallowed by the notice path: a hook that ate it
+  // would leave the loop holding `undefined` where a step decision belongs.
   await assert.rejects(() => host.emit('agent/pre-step', { agent: { session: { id: 'acc' } } }, async () => { throw new Error('inner boom'); }));
   assert.ok(host.logs.some((l) => l.includes('could not observe the step')), 'and is reported');
   fs.rmSync(home, { recursive: true, force: true });
@@ -223,14 +270,16 @@ check('a hook that throws does not take the step down with it', async () => {
 
 check('switching the judge mid-session takes effect on the next step', async () => {
   const host = makeHost();
-  const home = tempHome({ locale: 'zh' });
+  // The emoji and kaomoji checks belong to other cases; here either would answer first and hide the
+  // judge switch this case is about.
+  const home = tempHome({ locale: 'zh', emojiCheck: false, kaomojiCheck: false });
   const file = path.join(home, 'agent-house-rules.json');
   mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
   const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${SPARKLES}` }])];
   const first = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
   assert.equal(noticeOf(first), undefined, 'the deny judge has no reason to object to a sparkle');
   // Flip the judge the way a user would: edit the config. No restart and no re-mount.
-  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', selfCheckMode: 'allow' }), 'utf8');
+  fs.writeFileSync(file, JSON.stringify({ locale: 'zh', selfCheckMode: 'allow', emojiCheck: false, kaomojiCheck: false }), 'utf8');
   const second = await host.emit('agent/pre-step', { agent: { session: { id: 'acc' } }, messages }, enterWith(messages));
   assert.ok(noticeOf(second), 'the strict judge should notice the same message on the next step');
   fs.rmSync(home, { recursive: true, force: true });
@@ -334,5 +383,6 @@ check('the steer lever leaves a shaped reply alone', async () => {
   await emit('A single plain sentence.', 3);
   assert.equal(steered.length, 1, 'a single plain sentence is bare, and gets the extra pass');
 });
+await Promise.all(pending);
 console.log(`\n${failures === 0 ? 'all acceptance checks pass' : failures + ' acceptance check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);

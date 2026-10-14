@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.9.6 - 2026-10-14
+
+- The self-check reads the conversation now, instead of the step's inbox. `agent/pre-step` hands over
+  `messages: UserMessage[]` - the claimed inbox batch plus the assembled context - and an assistant
+  message is never in it. Every rule here judges the agent's own reply, so a hook that read only that
+  payload had nothing to judge: the section was live, both judges were correct, and no notice was ever
+  produced. Measured on this machine before the fix, across 448 session logs and 1.6M records: 10,298
+  banned code points in prose and 26,049 in thinking, against zero symbol notices and zero emoji
+  notices. The one notice that did reach models was the voice notice, which reads no message list at
+  all - which is exactly why it was the only rule still working.
+- The observation is the session tail (`deriveMessages()`, last 60 messages) merged with the step's own
+  messages by identity, so a message already in the session is not judged twice and a notice budget is
+  not spent twice on one reply.
+- A failing inner step is no longer swallowed. The hook caught it, logged it, and returned
+  `undefined` - which is not a step decision, and leaves the loop reading a field off nothing. The
+  failure is still reported, and is now handed back unchanged: this hook observes.
+- `test/acceptance.mjs` called `fn()` without awaiting it, so every assertion after a case's first
+  `await` ran after that case's label had already been printed, and a failure landed as an unhandled
+  rejection that `process.exit` cut short. Nineteen cases reported green without being proven. With the
+  harness awaiting them, five turned out to be wrong: an assertion still expecting the borrowed `user`
+  producer (the 0.9.4 change never reached it), a case using a constant that was never defined, two
+  cases asking the symbol judge a question the emoji and kaomoji judges answered first, and the case
+  whose subject is the bullet above.
+- `scripts/audit-session.mjs` looked only for `session.v3.jsonl.zstd` and the pre-versioned name, so on
+  a current host it found nothing and reported "no session log found". It tries the v4 name first now.
+- Verification: `test/acceptance.mjs` drives the real wire - the step's `messages` as `UserMessage[]`,
+  the reply in the session - rather than the shape this plugin had assumed it would get.
+
 ## 0.9.5 - 2026-10-14
 
 - The prompt section key now matches the package: `oishikunaare-moe-moe-kyun`. A section key is a public

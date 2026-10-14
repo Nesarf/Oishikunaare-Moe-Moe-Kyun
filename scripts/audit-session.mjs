@@ -83,10 +83,12 @@ function newestSession() {
     const dir = path.join(root, workspace);
     if (!fs.statSync(dir).isDirectory()) continue;
     for (const session of fs.readdirSync(dir)) {
-      const file = path.join(dir, session, 'session.v3.jsonl.zstd');
-      if (fs.existsSync(file)) candidates.push({ file, m: fs.statSync(file).mtimeMs });
-      const legacy = path.join(dir, session, 'session.jsonl.zstd');
-      if (fs.existsSync(legacy)) candidates.push({ file: legacy, m: fs.statSync(legacy).mtimeMs });
+      // Newest first: the v4 log is what a current host writes, and the older names stay so an
+      // archive from before the format moved is still reachable.
+      for (const name of ['session.v4.jsonl.zstd', 'session.v3.jsonl.zstd', 'session.jsonl.zstd']) {
+        const file = path.join(dir, session, name);
+        if (fs.existsSync(file)) candidates.push({ file, m: fs.statSync(file).mtimeMs });
+      }
     }
   }
   candidates.sort((a, b) => b.m - a.m);

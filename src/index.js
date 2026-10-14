@@ -1363,6 +1363,51 @@ export function noticeMessage(text) {
   };
 }
 
+/**
+ * How much of the conversation tail the self-check reads on each step.
+ *
+ * The rules only ever act on the newest reply, so the tail is where the answer is; the cap is here
+ * because the obvious wire - and the one this plugin used to read - was empty, and the honest fix
+ * is a session read, which on a long session would otherwise re-judge its whole history every step.
+ */
+const OBSERVE_WINDOW = 60;
+
+/**
+ * The messages the self-check judges: the conversation, not this step's inbox.
+ *
+ * `agent/pre-step` hands over the batch proposed for the step - the claimed inbox messages plus the
+ * assembled context - and the payload's own type says what that is: `messages: UserMessage[]`. An
+ * assistant message is never in it. A hook that read only this payload therefore could not notice the
+ * agent's own reply, which is the one thing every rule here is about: the rules were live, the judge
+ * was correct, and the wire carried nothing to judge. The session is the surface that holds both
+ * sides of the conversation, so it is the session that is read - tail-capped - and the step's own
+ * messages are appended so a notice can still see the batch it is about to sit in front of.
+ *
+ * @param {{ agent?: { session?: { deriveMessages?: () => unknown } } }} input - the hook payload.
+ * @param {{ messages?: unknown }} decision - what the chain returned for this step.
+ * @returns {unknown[]} the messages to judge.
+ */
+export function observedMessages(input, decision) {
+  const step = Array.isArray(decision?.messages) ? decision.messages : [];
+  const session = input?.agent?.session;
+  const derived = typeof session?.deriveMessages === 'function' ? session.deriveMessages() : null;
+  if (!Array.isArray(derived) || derived.length === 0) return step;
+  const tail = derived.length > OBSERVE_WINDOW ? derived.slice(-OBSERVE_WINDOW) : derived;
+  // A step's own messages can already be in the session, so the lists are merged by identity rather
+  // than concatenated: judging one message twice is how a notice budget gets spent on one reply.
+  const seen = new Set();
+  const merged = [];
+  for (const message of [...tail, ...step]) {
+    const id = typeof message?.id === 'string' ? message.id : null;
+    if (id !== null) {
+      if (seen.has(id)) continue;
+      seen.add(id);
+    }
+    merged.push(message);
+  }
+  return merged;
+}
+
 export function makeSelfCheckHook(options) {
   const notified = new Set();
   const counts = new Map();
@@ -1377,15 +1422,19 @@ export function makeSelfCheckHook(options) {
     try {
       decision = await next();
     } catch (error) {
+      // Reported, then handed back unchanged: this hook observes, and a failure it swallowed would
+      // leave the loop holding `undefined` where a step decision belongs.
       options.warn?.(`self-check could not observe the step: ${error?.message ?? error}`);
-      return undefined;
+      throw error;
     }
     try {
       if (!decision || decision.kind !== 'enter' || input?.signal?.aborted) return decision;
       const state = options.resolve();
       if (!state.enabled) return decision;
       const sessionId = input?.agent?.session?.id ?? 'unknown';
-      const messages = decision.messages ?? [];
+      // The conversation, not this step's inbox: a breach is always in the agent's own reply, and the
+      // pre-step payload is `UserMessage[]`, which never carries one. See observedMessages.
+      const messages = observedMessages(input, decision);
       const notices = [];
 
       // The symbol rule: a breach is a glyph, which is mechanical, and it has the larger budget.
