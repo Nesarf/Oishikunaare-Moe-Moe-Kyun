@@ -495,6 +495,27 @@ check('the kaomoji notice is softer than the symbol one, and escalates', () => {
   for (const t of [first, second, zh]) assert.deepEqual(mod.offendingGlyphs(t), []);
 });
 
+// Found in the real notices of one long session: the heading counted up ("self-check #4") while the
+// escalation said "this is the second reminder", because that sentence was a constant. A reminder
+// about accuracy that is itself inaccurate teaches the wrong thing, so the number is pinned here.
+check('an escalation names the reminder it really is, in both notices and both locales', () => {
+  const verdict = { sentences: 9, faces: 1, needed: 3, repeated: [] };
+  const zhThird = mod.kaomojiNotice(verdict, 'zh', { attempt: 3 });
+  const enThird = mod.kaomojiNotice(verdict, 'en', { attempt: 3 });
+  assert.ok(zhThird.includes('\u7b2c 3 \u6b21'), 'zh names the third reminder');
+  assert.ok(!zhThird.includes('\u7b2c\u4e8c\u6b21\u63d0\u9192'), 'and no longer claims to be the second');
+  assert.ok(enThird.includes('#3'), 'en names the third reminder');
+  assert.ok(!enThird.includes('Second reminder'), 'and no longer claims to be the second');
+
+  const finding = { where: 'text', glyphs: ['U+2713'] };
+  const zhSymbol = mod.selfCheckNotice(finding, 'zh', { attempt: 3 });
+  const enSymbol = mod.selfCheckNotice(finding, 'en', { attempt: 3 });
+  assert.ok(zhSymbol.includes('\u53d1\u8fc7 2 \u6b21'), 'zh counts the reminders already sent');
+  assert.ok(!zhSymbol.includes('\u6ca1\u88ab\u843d\u5b9e'), 'and stops asserting that it never landed');
+  assert.ok(!zhSymbol.includes('\uff1a\u3002'), 'and no longer ends a sentence with a colon and a full stop');
+  assert.ok(enSymbol.includes('#3') && !enSymbol.includes('the first time'), 'en does the same');
+});
+
 check('the hook reminds about the kaomoji floor once, and not when it is off', async () => {
   const bare = '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002\u7b2c\u56db\u53e5\u3002\u7b2c\u4e94\u53e5\u3002\u7b2c\u516d\u53e5\u3002';
   const messages = [{ id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: bare }] }];

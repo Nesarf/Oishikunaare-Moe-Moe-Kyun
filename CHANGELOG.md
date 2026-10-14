@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.14.1 - 2026-10-15
+
+- **The escalations name the reminder they actually are.** Found in a real session's own notices: the
+  heading counted up (self-check #4) while the closing line still said "this is the second reminder" -
+  that sentence was a constant, so every repeat after the second contradicted its own heading. Both
+  notices now use the attempt they are handed (a numbered heading and a numbered closing line), and the
+  symbol notice counts what was already sent ("N reminders already sent, and this still appears") instead
+  of asserting that the point was never taken in. A reminder about accuracy that is itself inaccurate
+  teaches the wrong thing.
+- **A colon no longer runs straight into a full stop.** With no exemption list configured the symbol
+  notice ended a sentence with a colon followed by a full stop; the exemption, when there is one, now
+  sits between the finding and the colon.
+- Both are pinned by a new case in `test/selfcheck.mjs`. Note for the next reader: that suite reads the
+  **built** copy, so a source edit shows up only after `npm run build` - which is how these two stayed
+  hidden until the built output was read back.
+
 ## 0.14.0 - 2026-10-14
 
 - **Adapters are verified by recorded payloads, and the unverified one says so.** There is no second
