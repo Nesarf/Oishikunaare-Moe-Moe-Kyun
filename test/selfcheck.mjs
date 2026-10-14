@@ -140,11 +140,16 @@ check('the user config replaces one rule, then both at once', () => {
   const zhPackaged = mod.buildRules({ userConfig: { locale: 'zh' } });
   const one = mod.buildRules({ userConfig: { locale: 'zh', kaomoji: 'USER KAOMOJI RULE' } });
   assert.ok(one.text.startsWith(zhPackaged.text.split('\n\n')[0]), 'the banned rule should survive a kaomoji-only override');
-  assert.ok(one.text.endsWith('USER KAOMOJI RULE'));
+  // A replaced kaomoji rule is replaced where it sits: the block after it is not the kaomoji rule, so the
+  // override no longer ends the text. It is still in the text, and still ahead of that later block.
+  assert.ok(one.text.includes('USER KAOMOJI RULE'), 'the override is honoured');
+  assert.ok(one.text.indexOf('USER KAOMOJI RULE') < one.text.indexOf('\u3010\u601D\u8003\u8BED\u8A00\u7EAA\u5F8B\u3011'), 'and lands where the rule it replaces sat');
   assert.deepEqual(one.sources, ['packaged:zh', 'user-config']);
 
+  // Two rules replaced at once: the pair the user supplied, then the discipline they did not supply.
   const both = mod.buildRules({ userConfig: { locale: 'zh', rules: { bannedSymbols: 'ONLY THIS', kaomoji: 'AND THIS' } } });
-  assert.equal(both.text, 'ONLY THIS\n\nAND THIS');
+  assert.ok(both.text.startsWith('ONLY THIS\n\nAND THIS'), 'the pair is still a pair');
+  assert.ok(both.text.endsWith(mod.packagedThinkingLanguage('zh').text), 'and the third rule follows, not replaced by it');
   assert.ok(both.sources.includes('rules-object'));
 });
 
@@ -153,12 +158,103 @@ check('append is added last', () => {
   assert.ok(built.text.endsWith('THIRD RULE'));
 });
 
+check('the thinking-language discipline ships in both locales, and states each half', () => {
+  // The block is the plugin's own house rule rather than a per-rule override, so it is read from its
+  // own accessor - and each assertion below pins a clause a later reword could quietly drop.
+  const en = mod.packagedThinkingLanguage('en');
+  const zh = mod.packagedThinkingLanguage('zh');
+  assert.equal(en.locale, 'en');
+  assert.equal(zh.locale, 'zh');
+  assert.equal(mod.packagedThinkingLanguage('zh-CN').locale, 'zh', 'a language tag resolves to its base');
+  assert.equal(mod.packagedThinkingLanguage('ja').locale, 'en', 'and an unknown locale falls back');
+  assert.ok(en.text.length > 400, 'the English block is a block, not a line');
+  assert.ok(zh.text.length > 150, 'and the Chinese one is a block too');
+
+  // The primary language follows the reader, and English is not the neutral metalanguage.
+  assert.ok(/user habit/i.test(en.text) && en.text.includes('Chinese'), 'the English block names the habit rule');
+  assert.ok(en.text.includes('neutral metalanguage'), 'and refuses English as the neutral default');
+  // The one case English is admitted in, with the register spelled out rather than implied.
+  assert.ok(en.text.includes('moe-fandom register'), 'the moe register is the exception');
+  assert.ok(en.text.includes('kawaii') && en.text.includes('senpai'), 'and its vocabulary is spelled out');
+  assert.ok(en.text.includes('nya~') && en.text.includes('desu wa'), 'including the fandom English');
+  assert.ok(en.text.includes('-chan'), 'and the honorifics');
+  // The reason, the accuracy guard, and the untouched no-tone discipline.
+  assert.ok(en.text.includes('do not match the habits of moe-fandom culture'), 'the reason is stated');
+  assert.ok(en.text.includes('Technical content stays accurate'), 'correctness outranks the register');
+  assert.ok(en.text.includes('commit messages'), 'and the no-tone rule for files is left alone');
+
+  // The Chinese block is the same decision in Chinese, not a translation stub.
+  assert.ok(zh.text.includes('\u601D\u8003'), 'zh: names thinking');
+  assert.ok(zh.text.includes('\u7528\u6237'), 'zh: follows the user');
+  assert.ok(zh.text.includes('\u4E2D\u6587') && zh.text.includes('\u65E5\u6587'), 'zh: names both languages');
+  assert.ok(zh.text.includes('\u4E2D\u7ACB\u7684\u5143\u8BED\u8A00'), 'zh: refuses English as the metalanguage');
+  assert.ok(zh.text.includes('\u840C\u5B85\u82F1\u6587'), 'zh: names the moe register');
+  assert.ok(zh.text.includes('kawaii') && zh.text.includes('senpai'), 'zh: and its vocabulary');
+  assert.ok(zh.text.includes('\u4E0D\u7B26\u5408\u840C\u5B85\u6587\u5316\u7684\u4E60\u60EF'), 'zh: states the reason');
+  assert.ok(zh.text.includes('\u4E0D\u5F97\u635F\u5BB3\u6B63\u786E\u6027'), 'zh: correctness outranks the register');
+  assert.ok(zh.text.includes('\u4E0D\u6539\u90A3\u6761\u7EAA\u5F8B'), 'zh: leaves the no-tone rule standing');
+
+  // Same invariant as the other two rules: every shipped locale is judged, not a sample of one.
+  for (const locale of ['en', 'zh', 'zh-CN', 'ja', '']) {
+    assert.deepEqual(mod.offendingGlyphs(mod.packagedThinkingLanguage(locale).text), [], `locale ${locale} leaked a glyph`);
+  }
+});
+
+check('the thinking-language block reaches the section, whatever the user rule does', () => {
+  for (const locale of ['en', 'zh']) {
+    const anchor = locale === 'en' ? 'THINKING LANGUAGE DISCIPLINE' : '\u3010\u601D\u8003\u8BED\u8A00\u7EAA\u5F8B\u3011';
+    const built = mod.buildRules({ userConfig: { locale } });
+    assert.equal(built.locale, locale);
+    assert.ok(built.text.includes(anchor), locale + ': the block is in the assembled section');
+    // In whole, not as a fragment: the 0.9.6 bug was a rule that reached the prompt as a substring of
+    // itself, so the shipped block and the assembled section are compared rather than sampled.
+    assert.ok(built.text.includes(mod.packagedThinkingLanguage(locale).text), locale + ': in full');
+    assert.deepEqual(mod.offendingGlyphs(built.text), [], locale + ': the whole section stays clean');
+  }
+
+  // The moe layer is a tone switch, not a language switch: mounting the plugin is what makes this rule
+  // live, so the block does not depend on `moe` or on `moeVoice` resolving to anything.
+  const built = mod.buildRules({ userConfig: { locale: 'zh', moe: 'soft' } });
+  assert.ok(built.text.includes(mod.packagedThinkingLanguage('zh').text), 'the moe layer does not gate it');
+
+  // A user rule replaces its own block and nothing else: the packaged pair is swapped out, and the
+  // language discipline - like `append` - still stands over the result.
+  const overridden = mod.buildRules({ userConfig: { locale: 'zh', rules: { bannedSymbols: 'ONLY THIS', kaomoji: 'AND THIS' } } });
+  assert.ok(overridden.text.startsWith('ONLY THIS\n\nAND THIS'), 'the override is still honoured');
+  assert.ok(overridden.text.includes('\u3010\u601D\u8003\u8BED\u8A00\u7EAA\u5F8B\u3011'), 'and does not repeal the third rule');
+  assert.ok(overridden.text.endsWith(mod.packagedThinkingLanguage('zh').text), 'which sits after the rules it may not replace');
+
+  // Disabling the section is the one lever that takes the rules away - and it works the same way as
+  // before: the text stays assembled (the resolver still holds a section), and `enabled: false` is what
+  // makes the registry inject nothing. Asserting on the flag rather than on absence is the honest
+  // reading, since the block is part of the assembled text either way.
+  const disabled = mod.buildRules({ userConfig: { locale: 'en', enabled: false } });
+  assert.equal(disabled.enabled, false, 'enabled:false still empties the section');
+  const empty = mod.buildRules({ userConfig: { locale: 'en', rules: { bannedSymbols: '', kaomoji: '' } } });
+  assert.equal(empty.text, mod.packagedThinkingLanguage('en').text, 'emptying both rules leaves the third standing alone');
+});
+
+check('a session that thinks in English is seen by the same reading the other judges use', () => {
+  // The block is prose and this file has no language judge - but the reading it relies on is the shared
+  // one, so a reply written in English must still be readable as the model's own prose rather than
+  // skipped as a tool result. This pins the role/source shape for a third judge before one exists.
+  const mk = (id, text) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
+  const messages = [mk('t1', 'Let me explain the English register. I think in English by default.')];
+  assert.ok(mod.isAuthoredMessage(messages[0]), 'an English reply is authored prose, not third-party output');
+  assert.equal(mod.findBannedInMessages(messages), null, 'and it does not trip the symbol judge');
+  const judged = mod.proseOnly(messages[0].content[0].text);
+  assert.ok(judged.includes('think in English by default'), 'the sentences are readable for any future judge');
+});
+
 check('an empty rule disables only that rule', () => {
   const built = mod.buildRules({ userConfig: { locale: 'en', kaomoji: '' } });
   // The ban rule now mentions the word kaomoji (it exempts decorative marks inside one), so the
   // assertion has to look for the rule's own opening rather than the word.
   assert.ok(!built.text.includes('KAOMOJI HABIT'));
   assert.ok(built.text.includes('U+2713'));
+  // An emptied rule is a rule switched off, not the section switched off: the third discipline is not
+  // the one being emptied, so it is still there.
+  assert.ok(built.text.includes('THINKING LANGUAGE DISCIPLINE'));
 });
 
 check('the section carries a function, so the registry re-reads it every step', () => {

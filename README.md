@@ -10,7 +10,7 @@ that joins that standing scope: every preset, every workspace, every new convers
 too. That is the whole point of doing it here rather than in fifteen preset files - a preset is a copy,
 and a copy is a thing that drifts.
 
-Three rules ship today.
+Four rules ship today.
 
 1. **Symbol discipline** - no check-mark or cross judgement glyphs, in a reply or in a file the agent
    writes. Those glyphs pollute context and regression parameters, and a file written today is read
@@ -26,6 +26,64 @@ Three rules ship today.
    floor rather than as garnish: at least one per three sentences, and any reply of two sentences or
    more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none
    take none - a stack trace, a table of numbers, a serious conclusion.
+4. **Thinking language** - think and answer in the user's own language instead of defaulting to
+   English, which is not a neutral metalanguage: a Chinese conversation reasoned about in English is
+   exactly the habit the rule exists to replace. Chinese gets Chinese with Japanese particles and
+   terminology mixed in where they fall naturally; Japanese gets Japanese. English is available in one
+   case only, the moe-fandom register - romanized Japanese words (kawaii, sugoi, moe, senpai, yabai,
+   baka), fandom English (nya~, ehehe, ufufu, desu wa, the honorifics -chan / -san / -sama), waves and
+   long vowels, alongside the kaomoji palette. Dry technical English is not that register. The reason
+   is in the rule: the grammar and the logic of English do not match the habits of moe-fandom culture.
+   It covers thinking and replies, and it never buys a fandom register with correctness - technical
+   content stays accurate. File contents, code, commands and commit messages still carry no tone.
+
+Rule 4 differs from 1-3 in one mechanical way: it is not a per-rule override. `bannedSymbols`,
+`kaomoji` and the `rules` object replace the rules they name, while the thinking-language block is
+appended after them (and before `append`), because "mount this plugin and the agent thinks in the
+user's language" is the promise of mounting it. `enabled: false` is what takes it away.
+
+## Where this package takes its material from
+
+This is a standard for **MMK itself** - the source of the markers, the palette and the prose it
+ships - not a rule the plugin hands to an agent. Nothing here is injected into a prompt.
+
+- **Taken**: moe-fandom culture of 1990-2015 - 90s bishoujo games and OVAs, 2000s galge and light
+  novels, VOCALOID and doujin music, 2000s-2010s anime, and the mid-2010s "yami-kawaii" look. The
+  traditional moe attributes stay available: tsundere, natural airhead, frail, denpa, chuunibyou,
+  keigo and the rest.
+- **Not taken**: the "jirai-kei" (landmine type) aesthetic that formed from 2018 onward and what grew
+  out of it - jirai make-up, the ryousangata look, the menhera-flavoured dependent and possessive
+  romance aesthetic. The criterion is *pragmatics and aesthetics that formed and spread after 2018*,
+  not the presence of one particular word: a term is not disqualified for being old, and a style is
+  not admitted for being spelled with old characters.
+- **Excluded outright: fandom for boys-love** (BL / danmei / yaoi) and its own vocabulary. This one is
+  unconditional, with no middle ground to argue about.
+- **Also excluded outright**: grotesque and guro material, and the fetish registers that grew beside
+  it - ryou-naissance injury content, scatological content, body modification and dismemberment of that
+  kind, and SM.
+- **The exemption that sits under those exclusions**: being explicit is not what is excluded.
+  **Ordinary R18 adult material is not something this package avoids**, and a reader should not quietly
+  widen an exclusion above to cover it.
+- **A soft preference, not a fourth exclusion: hygiene awareness.** Where the register can be chosen at
+  all, steer around - preferentially decline rather than forbid - the R18 practices that carry a
+  hygiene or safety implication (anal, oral-to-deep-throat, feet and the like) and the non-R18 material
+  derived from them (softcore barefoot aesthetics, foot-odour culture, and so on). The reason is
+  **hygiene and safety, not a moral judgement**, and this preference changes nothing above: ordinary R18
+  adult material is still not avoided. It is a leaning within that material, which is why it is worded
+  as a preference rather than as a ban.
+- The 2016-2017 stretch is deliberately not emphasised. When a call is close, the usage of 2015 is
+  the one to follow.
+
+### What the review of the shipped material found
+
+Checked on 2026-10-14 across `rules/voices/*.json` (18 marker sets, drawn from Moegirlpedia's
+kuchiguse entry since they were added), `rules/kaomoji.json` and the examples inside the rule prose: no
+hit for the jirai-kei family, for menhera / yandere vocabulary, for danmei or fandom-for-BL vocabulary,
+for the grotesque register named above, or for the practices the hygiene preference names. The only
+textual matches a keyword scan returns are the ordinary English word "small" and the identifier
+`peerDependenciesMeta` - neither is a topic. The voice tables carry a `source` field naming their
+provenance and the kaomoji generator names its own; no era field was invented for them, because a field
+added only to hold a note is a field that will drift.
 
 ## The moe layer (optional)
 
@@ -79,7 +137,7 @@ Three layers, highest first, and the log line always says which one answered:
 
 The identity comes from the `agentPresets` service, asked for with `ctx.get('agentPresets')`. It is
 deliberately **not** in `export const inject`: a declared dependency on the preset registry would make
-this plugin fail to load at all on a deployment that has no roster, which would take the three rules
+this plugin fail to load at all on a deployment that has no roster, which would take the shipped rules
 down with it. With no registry the preset layers are simply absent and everything above still works.
 The id is read in three places, best first: the live composition (`composedPreset`), the `agentPreset`
 session projection, and finally the session header.
@@ -138,14 +196,14 @@ dsh plugin --profile web update Oishikunaare-Moe-Moe-Kyun
 ## Configure
 
 `$DSH_HOME/agent-house-rules.json` is read **on every model step**, not just at boot. Nothing is
-required - with no file at all the three rules above are injected in English.
+required - with no file at all the rules above are injected in English.
 
 ```json
 {
   "locale": "zh",
   "bannedSymbols": "replace the whole ban with your own wording",
   "kaomoji": "",
-  "append": "one more rule, added after the three above",
+  "append": "one more rule, added last",
   "enabled": true
 }
 ```
@@ -155,6 +213,8 @@ required - with no file at all the three rules above are injected in English.
 - `bannedSymbols` and `kaomoji` replace one rule each. An empty string disables that rule only.
 - `rules: { "bannedSymbols": "...", "kaomoji": "..." }` replaces both at once.
 - `append` is an extra block, placed last.
+- The thinking-language rule has no key of its own: it is not one of the rules a profile authors, so
+  nothing here replaces it. See rule 4 above for why, and `enabled: false` for the way out.
 - `kaomojiLibrary` picks the palette: `true`/absent for the shipped library, `false` to leave it out,
   a path or a list of paths for your own. **A list replaces the shipped file** - name the shipped path
   too if you want both.
@@ -290,9 +350,9 @@ npm run verify     # ASCII invariant, version sync, build, selfcheck
   escapes, and `rules/*.json` plus `README.zh-CN.md`, which hold the localized content itself.
 - `scripts/check-version.mjs` - `package.json`, `CHANGELOG.md` and `README.zh-CN.md` agree on the
   version.
-- `test/selfcheck.mjs` - `apply()` against a fake cordis context: the section registers, both rules
-  reach it, locale selection and every configuration layer behave, disabling is honoured, a broken
-  config does not throw, and no shipped locale leaks a banned glyph.
+- `test/selfcheck.mjs` - `apply()` against a fake cordis context: the section registers, every shipped
+  rule reaches it, locale selection and every configuration layer behave, disabling is honoured, a
+  broken config does not throw, and no shipped locale leaks a banned glyph.
 
 ### Checking that a running host actually received the rules
 

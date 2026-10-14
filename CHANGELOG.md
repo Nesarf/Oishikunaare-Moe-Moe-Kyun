@@ -1,5 +1,65 @@
 # Changelog
 
+## 0.9.9 - 2026-10-14
+
+- **A fourth discipline: the language an agent thinks in.** Mount the plugin and the agent thinks and
+  answers in **the user's own language** - Chinese for a Chinese conversation, Japanese for a Japanese
+  one - and stops treating English as the neutral metalanguage, which is the habit the rule exists to
+  replace. The reason is in the rule text: the grammar and the logic of English do not match the habits
+  of moe-fandom culture. English is admitted in exactly one case, the **moe-fandom register** -
+  romanized Japanese words (kawaii / sugoi / moe / senpai / yabai / baka), fandom English (nya~, ehehe,
+  ufufu, desu wa, the honorifics -chan / -san / -sama), waves and long vowels, alongside the kaomoji
+  palette; dry technical English does not qualify. It covers thinking and replies, and it says out loud
+  that a fandom register may never be bought with correctness - technical content stays accurate, and
+  file contents, code, commands and commit messages still carry no tone.
+- It is shipped in **both locales** and it is **not a per-rule override**: `bannedSymbols`, `kaomoji`
+  and the `rules` object replace the rules they name, while this block is appended after them and
+  before `append` - "mount this plugin and the agent thinks in the user's language" is the promise of
+  mounting it, so a user rule that replaced the other two does not silently repeal this one.
+  `enabled: false` remains the single lever that takes the whole section away. `scripts/gen-rules-json.mjs`
+  was extended to write it into `rules/<locale>.json`, so the generated data files still carry every
+  shipped block and `check:generated` still catches drift.
+- **The material this package takes its cues from is now written down (README, both languages).** This
+  is MMK's own standard - it governs the markers, the palette and the prose **it** ships, and nothing
+  here is injected into a prompt. Taken: moe-fandom culture of **1990-2015** (90s bishoujo games and
+  OVAs, 2000s galge and light novels, VOCALOID and doujin music, 2000s-2010s anime, the mid-2010s
+  yami-kawaii look), with the traditional moe attributes still available. Not taken: the **jirai-kei**
+  aesthetic that formed from 2018 onward and its derivatives (jirai make-up, ryousangata, the
+  menhera-flavoured dependent romance aesthetic) - the criterion is pragmatics and aesthetics that
+  formed after 2018 rather than any single word. 2016-2017 is deliberately not emphasised; a close call
+  follows the usage of 2015.
+- The standard is written as a gradient rather than a flat list, and the wording carries it. **Three
+  hard exclusions**: fandom for boys-love (BL / danmei / yaoi), unconditionally; the grotesque register
+  (guro, ryou-naissance injury content, scatological content, body modification and dismemberment of
+  that kind, and SM); and the jirai-kei family, which is "not taken" rather than banned. Then **the
+  exemption sitting under them**: being explicit is not what is excluded, so **ordinary R18 adult
+  material is not avoided**, and an exclusion above must not be quietly widened to cover it.
+- Then, and deliberately as the last of the three tiers, **one soft preference - hygiene awareness.**
+  Where the register can be chosen at all, steer around rather than forbid: the R18 practices that carry
+  a hygiene or safety implication (feet, anal, deep throat and the like) and the non-R18 material
+  derived from them (softcore barefoot aesthetics, foot-odour culture, and so on). The reason is written
+  out because the wrong one would be read in: this is **hygiene and safety, not a moral judgement** - it
+  is a leaning inside adult material, not a ban on it, and it changes nothing about the R18 exemption
+  immediately above it. Ordered as exclusions, then exemption, then preference, so a reader does not
+  have to sort three kinds of statement out of one paragraph.
+- The shipped material was re-checked against that standard on 2026-10-14 - `rules/voices/*.json` (18
+  marker sets, from Moegirlpedia's kuchiguse entry since they were added), `rules/kaomoji.json`, and the
+  examples inside the rule prose - with **no hit** for any of the excluded families or for the practices
+  the hygiene preference names. A keyword scan returns only the ordinary English word "small" and the
+  identifier `peerDependenciesMeta`. The voice tables and the kaomoji generator already name their
+  provenance; no era field was invented for them.
+- `test/selfcheck.mjs` grew four cases: the new block present and non-empty in **both** locales with
+  each of its clauses pinned, the block reaching the assembled section **whatever** a user rule does
+  (including both packaged rules replaced, and `enabled: false` as the way out), `offendingGlyphs()`
+  empty for the block and for every assembled section, and an English reply still readable as authored
+  prose by the shared role/source reading the other judges use. The two existing cases whose
+  expectations the third block genuinely changed - a `kaomoji` override no longer ending the text, and
+  a two-rule override no longer being the whole text - were updated with the reason in the comment
+  rather than deleted.
+- **A host restart is required for this to take effect**: the discipline is part of the plugin's code
+  and its packaged rule table, both of which are loaded at boot. Editing
+  `$DSH_HOME/agent-house-rules.json` still lands on the next model step.
+
 ## 0.9.8 - 2026-10-14
 
 - **The plugin can see which agent preset a session is composed from, and the voice follows it.** The

@@ -6,12 +6,15 @@
  * scope: all presets, all workspaces, every new conversation, and subagents as well - without
  * touching a single preset file.
  *
- * Two rules ship today:
+ * Three rules ship today:
  *   1. Symbol discipline - no check-mark / cross judgement glyphs, in a reply or in a file the
  *      agent writes. Reason: those glyphs pollute context and regression parameters, and a file
  *      written today is read back into context tomorrow.
  *   2. Kaomoji habit - a light Japanese-style emoticon now and then in conversation, so the text
  *      reads like a person wrote it. Conversation only: never in files, code or commit messages.
+ *   3. Thinking-language discipline - think and answer in the user's own language rather than
+ *      defaulting to English, with English allowed only in the moe-fandom register. Reason: the
+ *      grammar and the logic of English do not match the habits of moe-fandom culture.
  *
  * The rule text is data, not code: `rules/<locale>.json` next to this file holds the shipped
  * locales (en, zh), and `$DSH_HOME/agent-house-rules.json` overrides file, locale, either rule,
@@ -110,6 +113,26 @@ const PACKAGED = {
       'Where an emoji would go, put a face from the library below, or use words.',
       'Relaying emoji someone else sent is not a licence: report them in words.',
     ].join('\n'),
+    thinkingLanguage: [
+      'THINKING LANGUAGE DISCIPLINE. Which language you think and answer in; live from the moment this',
+      'plugin is mounted, and independent of the moe layer (that layer sets tone, this one sets language).',
+      'The primary language follows the user habit: a user who writes Chinese gets Chinese, a user who',
+      'writes Japanese gets Japanese.',
+      'Do not treat English as the neutral metalanguage - thinking in English inside a Chinese conversation',
+      'is exactly the habit this rule exists to replace.',
+      'In a Chinese context: Chinese first, with Japanese particles and terminology mixed in where they fall',
+      'naturally. In a Japanese context: Japanese, with Chinese set phrases mixed in where they fall',
+      'naturally.',
+      'English is available in one case only: the moe-fandom register - romanized Japanese words (kawaii /',
+      'sugoi / moe / senpai / yabai / baka), ACG fandom English (nya~, ehehe, ufufu, desu wa, the honorifics',
+      '-chan / -san / -sama), waves and long vowels, alongside Japanese-style kaomoji. Dry technical English',
+      'is not that register and does not qualify.',
+      'Reason: the grammar and the logic of English do not match the habits of moe-fandom culture.',
+      'Scope: thinking AND replies - thinking is where the work happens. Technical content stays accurate: a',
+      'fandom register may never be bought with correctness.',
+      'File contents, code, commands and commit messages still carry no tone at all - this rule covers',
+      'language and register only, and does not touch that one.',
+    ].join('\n'),
   },
   zh: {
     bannedSymbols: [
@@ -143,6 +166,16 @@ const PACKAGED = {
       '\u8FDE\u540C\u53D8\u4F53\u9009\u62E9\u7B26 U+FE0F\u3001\u96F6\u5BBD\u8FDE\u63A5\u7B26 U+200D \u4E0E\u80A4\u8272\u4FEE\u9970\u7B26 U+1F3FB-1F3FF\u3002',
       '\u60F3\u653E\u4E00\u4E2A emoji \u7684\u5730\u65B9\uFF0C\u6539\u6210\u4E0B\u9762\u90A3\u4EFD\u989C\u6587\u5B57\u5E93\u91CC\u7684\u4E00\u4E2A\u5B57\u5F62\uFF0C\u6216\u8005\u76F4\u63A5\u7528\u6587\u5B57\u8BF4\u3002',
       '\u522B\u4EBA\u53D1\u6765\u7684 emoji \u4E5F\u4E0D\u80FD\u7167\u642C \u2014\u2014 \u8981\u8F6C\u8FF0\u5C31\u7528\u6587\u5B57\u8BF4\u660E\u3002',
+    ].join('\n'),
+    thinkingLanguage: [
+      '\u3010\u601D\u8003\u8BED\u8A00\u7EAA\u5F8B\u3011\u8FD9\u6761\u5904\u7406\u4F60\u7528\u4EC0\u4E48\u8BED\u8A00\u601D\u8003\u4E0E\u56DE\u7B54\uFF1B\u542F\u7528 MMK \u5C31\u751F\u6548\uFF0C\u4E0E\u8BED\u6C14\u5C42\u65E0\u5173\u3002',
+      '\u4E3B\u8BED\u8A00\u8DDF\u968F\u7528\u6237\u7684\u8BED\u8A00\u4E60\u60EF\uFF1A\u7528\u6237\u7528\u4E2D\u6587\u5C31\u7528\u4E2D\u6587\uFF0C\u7528\u65E5\u6587\u5C31\u7528\u65E5\u6587\u3002',
+      '\u4E0D\u8981\u628A\u82F1\u6587\u5F53\u4F5C\u4E2D\u7ACB\u7684\u5143\u8BED\u8A00 \u2014\u2014 \u4E2D\u6587\u4F1A\u8BDD\u91CC\u62FF\u82F1\u6587\u601D\u8003\uFF0C\u6B63\u662F\u8FD9\u6761\u8981\u6539\u6389\u7684\u4E60\u60EF\u3002',
+      '\u4E2D\u6587\u8BED\u5883\uFF1A\u4EE5\u4E2D\u6587\u4E3A\u4E3B\uFF0C\u53EF\u81EA\u7136\u6DF7\u5165\u65E5\u6587\u7684\u8BED\u6C14\u8BCD\u4E0E\u672F\u8BED\u3002\u65E5\u6587\u8BED\u5883\uFF1A\u7528\u65E5\u6587\uFF0C\u53EF\u81EA\u7136\u6DF7\u5165\u4E2D\u6587\u7684\u4E60\u60EF\u7528\u8BED\u3002',
+      '\u82F1\u6587\u53EA\u5728\u4E00\u79CD\u60C5\u51B5\u4E0B\u53EF\u7528\uFF1A\u8D70\u840C\u5B85\u82F1\u6587\u7684\u8BED\u4F53 \u2014\u2014 \u7F57\u9A6C\u5B57\u65E5\u6587\u8BCD\uFF08kawaii / sugoi / moe / senpai / yabai / baka\uFF09\u3001ACG \u5708\u7684\u82F1\u6587\u8BED\u4F53\uFF08nya~\u3001ehehe\u3001ufufu\u3001desu wa\u3001\u656C\u79F0 -chan / -san / -sama\uFF09\u3001\u6CE2\u6D6A\u7EBF\u4E0E\u62D6\u957F\u97F3\uFF0C\u914D\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u5E72\u5DF4\u5DF4\u7684\u6280\u672F\u82F1\u6587\u4E0D\u7B97\u5408\u683C\u3002',
+      '\u7406\u7531\uFF1A\u82F1\u6587\u7684\u6587\u6CD5\u4E0E\u903B\u8F91\u4E0D\u7B26\u5408\u840C\u5B85\u6587\u5316\u7684\u4E60\u60EF\u3002',
+      '\u601D\u8003\u4E0E\u56DE\u590D\u90FD\u7B97 \u2014\u2014 \u601D\u8003\u624D\u662F\u505A\u4E8B\u7684\u5730\u65B9\u3002\u4F46\u6280\u672F\u5185\u5BB9\u672C\u8EAB\u7167\u5E38\u51C6\u786E\uFF1A\u8BED\u4F53\u840C\u5316\u4E0D\u5F97\u635F\u5BB3\u6B63\u786E\u6027\u3002',
+      '\u6587\u4EF6\u5185\u5BB9\u3001\u4EE3\u7801\u3001\u547D\u4EE4\u3001\u63D0\u4EA4\u4FE1\u606F\u91CC\u7167\u65E7\u4E0D\u7528\u4EFB\u4F55\u8BED\u6C14 \u2014\u2014 \u8FD9\u6761\u53EA\u7BA1\u8BED\u8A00\u4E0E\u8BED\u4F53\uFF0C\u4E0D\u6539\u90A3\u6761\u7EAA\u5F8B\u3002',
     ].join('\n'),
   },
 };
@@ -207,7 +240,7 @@ function stampOf(file) {
 /**
  * Pick the shipped locale, preferring an exact match, then the language part, then the default.
  * @param {string} wanted - requested locale, for example `zh-CN`.
- * @returns {{ locale: string, rules: { bannedSymbols: string, kaomoji: string } }} the choice.
+ * @returns {{ locale: string, rules: { bannedSymbols: string, kaomoji: string, thinkingLanguage: string } }} the choice.
  */
 export function packagedRules(wanted) {
   const want = String(wanted ?? '').trim();
@@ -219,11 +252,32 @@ export function packagedRules(wanted) {
 }
 
 /**
+ * The packaged thinking-language discipline for a locale.
+ *
+ * This block is deliberately outside every per-rule override: it is the house rule the plugin is
+ * mounted to enforce, not a rule a profile authors, so `bannedSymbols`, `kaomoji` and the `rules`
+ * object all leave it standing and only `enabled: false` takes the whole section away. Exported
+ * because `scripts/gen-rules-json.mjs` writes it into `rules/<locale>.json` alongside the other two,
+ * and a generated file that quietly lacked a third of the shipped text would be the drift the
+ * generator exists to prevent.
+ * @param {string} wanted - requested locale, for example `zh-CN`.
+ * @returns {{ locale: string, text: string }} the resolved locale and its block.
+ */
+export function packagedThinkingLanguage(wanted) {
+  const chosen = packagedRules(wanted);
+  return { locale: chosen.locale, text: chosen.rules.thinkingLanguage };
+}
+
+/**
  * Assemble the rule text from the packaged locale and the user configuration.
  *
  * Precedence, lowest to highest: the packaged constant for the chosen locale, then the user file -
  * where a `rules` object replaces both rules wholesale, `bannedSymbols` and `kaomoji` replace one
  * each, and an empty string disables that rule only.
+ *
+ * The thinking-language discipline sits outside that ladder: it is appended after the overrides and
+ * before `append`, because "mount this plugin and the agent thinks in the user's language" is the
+ * promise this block is, and a user rule that replaced the other two does not silently repeal it.
  *
  * `rules/<locale>.json` is deliberately not an override layer. It exists as the shipped locales in
  * data form, generated from the same source as the constants, so reading both would be one decision
@@ -246,9 +300,12 @@ export function buildRules(options) {
     banned = merged.bannedSymbols;
     kaomoji = merged.kaomoji;
   }
+  // Not `chosen.rules.thinkingLanguage` any more: a locale the packaged table does not carry resolves
+  // to `en` wholesale, and reading the field off the chosen pair keeps the two answers one answer.
+  const thinking = packagedThinkingLanguage(locale).text;
 
   const extra = typeof user.append === 'string' ? user.append.trim() : '';
-  const text = [banned, kaomoji, extra].map((part) => (typeof part === 'string' ? part.trim() : '')).filter((part) => part !== '').join('\n\n');
+  const text = [banned, kaomoji, thinking, extra].map((part) => (typeof part === 'string' ? part.trim() : '')).filter((part) => part !== '').join('\n\n');
   return { text, locale: chosen.locale, enabled: user.enabled !== false && text !== '', sources };
 }
 
