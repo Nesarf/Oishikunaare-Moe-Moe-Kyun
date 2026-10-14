@@ -1,5 +1,35 @@
 # Changelog
 
+## 0.10.0 - 2026-10-14
+
+- **The rules no longer need this harness, or any single agent.** The judges, the rule text, the
+  kaomoji palette and the voice tables were always data plus pure functions - `src/index.js` imports
+  four node builtins and no host package at all - so this release adds the entries instead of rewriting
+  anything:
+  - **`mmk`, a CLI** (`bin/mmk.mjs`): `rules`, `lib`, `check`, `notice`, `voice`, `review`. Text in,
+    text or `--json` out, and an exit code a caller can branch on: 0 clean, 2 bad request, 3 a breach.
+    A shell, a git hook or a CI step can use it with nothing installed.
+  - **An MCP server** (`adapters/mcp.mjs`): `mmk_rules`, `mmk_check`, `mmk_notice` over
+    newline-delimited JSON-RPC on stdio, plus `mmk://rules` as a resource. Any client that speaks MCP
+    can fetch the section and judge its own draft without knowing what a pre-step hook is.
+  - **`src/portable.mjs`**: the harness-free facade the plugin, the CLI and the MCP server all sit on,
+    exported as `Oishikunaare-Moe-Moe-Kyun/portable`.
+  - **`src/transcripts.mjs`**: three conversation readers - this package's own `dsh` artifacts (zstd
+    framed), Claude Code's `cc` envelopes with their thinking blocks normalized, and a plain `jsonl`.
+    `mmk review --transcript` is the CLI face of them.
+- **`npm run check:portable` keeps the boundary honest**, and it is part of `verify`: no non-builtin
+  import anywhere under `src/`, `bin/` or `adapters/`; no host hook name, no `ctx.` and no host package
+  inside `src/portable.mjs`, `src/transcripts.mjs` and `bin/mmk.mjs`; and the CLI is exercised rather
+  than assumed (a clean text exits 0, a banned code point exits 3 and is named as `U+2713`).
+- **The separation is the point, not the packaging.** Judging text and sending it are different jobs:
+  `src/portable.mjs` writes nothing at all, so the class of failure that made eight sessions unloadable
+  on 2026-10-14 cannot exist in the portable half - an adapter that appends a notice owns that risk,
+  and now the adapter is small enough to read in one sitting.
+- `test/portable.mjs` adds ten cases over the new surface: the packaged rules resolve with no
+  configuration, the judges find glyph, emoji and kaomoji findings, a notice names the code point and
+  never prints the glyph, an inline code span is exempt, the voice follows the preset mapping and then
+  the persona, each reader normalizes its shape, and the CLI exit codes hold.
+
 ## 0.9.10 - 2026-10-14
 
 - **The self-check hook no longer sends the conversation back to the host.** 0.9.6 taught the judge to

@@ -140,6 +140,28 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 }
 ```
 
+## 不局限于 DSH：不装插件也能用同一套规则
+
+这个包里只有三样东西是 DSH 专属的，而且只能如此：钩子名、打包元数据、以及 `apply(ctx)` 那一行。
+判据、规则文本、颜文字库、语气表都是「数据 + 纯函数」，所以另外还有三个入口：
+
+| 入口 | 怎么用 | 给谁用 |
+| --- | --- | --- |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本 |
+| MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
+| 模块 | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server 全都薄薄地架在这一个文件上 |
+
+`mmk review` 读一份会话记录，判它最新的一条「模型自己写的」消息。自带三个读取器：本包自己的
+`dsh` 产物（zstd 分帧、头行 + 事件行）、Claude Code 的 `cc` 记录信封（它的思考块把文本放在
+`thinking` 字段里，由读取器归一化）、以及最朴素的 `jsonl`（一行一条消息）—— 写新适配器就照它写。
+
+两边分开的规则只有一条，而且它不是风格偏好：**判断和送达是两件事**。
+`src/portable.mjs` 什么都不写 —— 不追加消息、不改记录、不建文件。往会话里放提醒的风险由做这件事的
+适配器自己承担。2026-10-14 就是本包自己的一个 pre-step 钩子把「它读到的会话」当成「交给它的那一步」
+返回，八条会话因此打不开；损害出在**写入路径**上，所以这一半根本没有写入路径。
+`npm run check:portable` 守住这条界线：`src/index.js` 之外不许有宿主 import、无宿主文件里不许出现钩子名、
+CLI 必须仍然给出正确退出码。
+
 ## 安装
 
 ```sh

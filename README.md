@@ -173,6 +173,33 @@ To add a voice, edit the shipped table or point the layer at your own copy:
 }
 ```
 
+## Beyond DSH: the same rules without a plugin
+
+Only three things here are DSH specific, and all three have to be: the hook names, the bundle metadata
+and the `apply(ctx)` row. The judges, the rule text, the kaomoji palette and the voice tables are data
+plus pure functions, so they are reachable three more ways:
+
+| entry | how | what it is for |
+| --- | --- | --- |
+| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. |
+| MCP server | `node adapters/mcp.mjs` (or `npm run mcp`) | any client that speaks MCP: `mmk_rules` fetches the section for the system prompt, `mmk_check` judges a draft on all three alphabets, `mmk_notice` renders one notice. Nothing here assumes a particular agent. |
+| modules | `import { resolveState, judgeText } from 'Oishikunaare-Moe-Moe-Kyun/portable'` | writing another adapter. The DSH plugin, the CLI and the MCP server are all thin layers over that one file. |
+
+`mmk review` reads a transcript and judges its newest authored message. Three readers ship: this
+package's own `dsh` artifacts (zstd framed, header plus event rows), Claude Code's `cc` transcript
+envelopes (where a thinking block carries its text under `thinking`, which the reader normalizes), and
+a plain `jsonl` of messages - the lowest common denominator, and the format to write a new adapter
+against.
+
+One rule separates the two halves, and it is not a style preference: **judging and sending are
+different jobs**. `src/portable.mjs` never writes anything - no message is appended, no transcript is
+edited, no file is created. An adapter that puts a notice into a conversation carries that risk
+itself. On 2026-10-14 a pre-step hook in this very package returned the conversation it had *read*
+instead of the step it was handed, and eight sessions became unloadable; the damage was in the write
+path, which is why the portable half has none. `npm run check:portable` enforces the boundary: no host
+import outside `src/index.js`, no hook name inside the harness-free files, and a CLI that still answers
+with the right exit code.
+
 ## Install
 
 ```sh
