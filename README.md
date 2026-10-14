@@ -86,9 +86,9 @@ To add a voice, edit the shipped table or point the layer at your own copy:
 # from GitHub (fastest path, no registry round trip)
 dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 
-# or from a clone (a checkout may live anywhere; this machine keeps it at E:/TastyLineOut)
+# or from a clone (a checkout may live anywhere; this machine keeps it at E:/Oishikunaare-Moe-Moe-Kyun)
 git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
-dsh plugin --profile web add link:E:/TastyLineOut
+dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
 
 # restart dsh web - plugin rows load at boot
 ```

@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.5 - 2026-10-14
+
+- The prompt section key now matches the package: `oishikunaare-moe-moe-kyun`. A section key is a public
+  surface, because a composition can match or replace a section by name, so this is a breaking change for
+  anyone who pinned the pre-rename key. Nothing on this machine did: the profile patch, the home patch and
+  the plugin's own config were all checked, and none of them named the section. The pre-rename key stays in
+  this repository's git history for anyone upgrading from an older release.
+- The local checkout on this machine moved with the rename, and both READMEs now clone and link from the
+  current path.
+
 ## 0.9.4 - 2026-10-14
 
 - A notice now names this plugin as its producer (`source.kind = "plugin:Oishikunaare-Moe-Moe-Kyun"`)
@@ -36,8 +46,9 @@
   and for the kaomoji steer lever alike, and test/acceptance.mjs holds the shape.
 - The rename reached the surfaces a reader sees. Both READMEs, the LICENSE line and every install,
   upgrade and verification-overlay command now say **Oishikunaare-Moe-Moe-Kyun**, and the plugin's own
-  `name` follows the package and the roster row. The prompt section key stays `tasty-line-out`: it is
-  an internal handle that a composition may already be matching on, and no reader ever sees it.
+  `name` follows the package and the roster row. The prompt section key was left out of this pass: it is
+  an internal handle that a composition may already be matching on, no reader ever sees it, and moving it
+  was a separate and breaking step - taken in 0.9.5.
 
 ## 0.9.1 - 2026-10-13
 
@@ -61,8 +72,9 @@
 
 - The repository and the package are now **Oishikunaare-Moe-Moe-Kyun**. The install row, the package
   name, the library's own name field and every repository URL changed with it; the prompt section name
-  (`tasty-line-out`) and the plugin's internal `name` stayed put, because changing them would invalidate
-  the installed row and every test that finds the section by name without making anything clearer.
+  and the plugin's internal `name` stayed put, because changing them would invalidate the installed row
+  and every test that finds the section by name without making anything clearer. The section name
+  followed the package in 0.9.5, once the local checkout had moved too.
 - **A moe layer**, off by default. It is defined from the subculture rather than from the word's drift
   into a synonym for cute: moe is the inward resonance a set of traits stirs in the reader, the source is
   explicit that courage and stubbornness are moe attributes too, so the layer is not "sound cute" - it is speaking as
@@ -311,7 +323,7 @@
 
 First release.
 
-- One global system prompt section (`tasty-line-out`, order 50), registered from a profile-level
+- One global system prompt section (order 50), registered from a profile-level
   plugin, so it reaches every preset, every workspace, every new conversation and every subagent
   without editing a single preset file.
 - Rule 1, symbol discipline: no check-mark or cross judgement glyphs in replies or in written files.

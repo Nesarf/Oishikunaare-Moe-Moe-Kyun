@@ -127,7 +127,7 @@ check('registration records one section with a finite order and non-empty text',
   const { ctx, seen } = fakeCtx();
   mod.apply(ctx, { home: tempHome(), shippedLibrary: SHIPPED });
   assert.equal(seen.sections.length, 1);
-  assert.equal(seen.sections[0].name, 'tasty-line-out');
+  assert.equal(seen.sections[0].name, 'oishikunaare-moe-moe-kyun');
   assert.deepEqual(seen.errors, []);
   assert.equal(seen.effects.length, 1);
   assert.ok(seen.logs.some((l) => l.includes('registered')));

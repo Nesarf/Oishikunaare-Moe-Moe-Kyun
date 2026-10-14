@@ -42,7 +42,7 @@ export const inject = ['systemPrompt'];
 const SECTION_ORDER = 50;
 
 /** Stable section name, so a composition can find or replace it. */
-const SECTION_NAME = 'tasty-line-out';
+const SECTION_NAME = 'oishikunaare-moe-moe-kyun';
 
 /**
  * Producer identity for every notice this plugin injects into a session.
