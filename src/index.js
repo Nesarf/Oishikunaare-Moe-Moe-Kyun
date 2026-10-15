@@ -1064,8 +1064,16 @@ export function selfCheckNotice(finding, locale, options = {}) {
   const where = channelLabel(finding.where, locale);
   const attempt = Number.isFinite(options.attempt) && options.attempt > 1 ? Math.floor(options.attempt) : 1;
   const exclusion = typeof options.exclusion === 'string' && options.exclusion !== '' ? options.exclusion : '';
+  // A repeat points back instead of re-listing: a real session's second notice spent ~200 characters
+  // reprinting all 26 matched code points that the first notice had already named. Four of them plus
+  // the count keeps the repeat honest without paying for the same list again.
+  const named = attempt === 1 || finding.glyphs.length <= 4
+    ? (locale === 'zh' ? `\uff08${list}\uff09` : ` (${list})`)
+    : locale === 'zh'
+      ? `\uff08${finding.glyphs.slice(0, 4).join(', ')} \u7b49 ${finding.glyphs.length} \u4e2a\uff0c\u5b8c\u6574\u6e05\u5355\u89c1\u7b2c 1 \u6b21\u63d0\u9192\uff09`
+      : ` (${finding.glyphs.slice(0, 4).join(', ')} and ${finding.glyphs.length - 4} more; the full list is in reminder #1)`;
   if (locale === 'zh') {
-    const head = `\u3010\u8f93\u51fa\u7b26\u53f7\u7eaa\u5f8b\u00b7\u81ea\u68c0${attempt > 1 ? `\u7b2c ${attempt} \u6b21` : ''}\u3011\u4f60\u4e0a\u4e00\u6761\u56de\u590d\u7684${where}\u91cc\u51fa\u73b0\u4e86\u5bf9\u9519\u6807\u8bb0\u7c7b\u7b26\u53f7\uff08${list}\uff09\uff0c\u8fdd\u53cd\u4e86\u7eaa\u5f8b\u3002`;
+    const head = `\u3010\u8f93\u51fa\u7b26\u53f7\u7eaa\u5f8b\u00b7\u81ea\u68c0${attempt > 1 ? `\u7b2c ${attempt} \u6b21` : ''}\u3011\u4f60\u4e0a\u4e00\u6761\u56de\u590d\u7684${where}\u91cc\u51fa\u73b0\u4e86\u5bf9\u9519\u6807\u8bb0\u7c7b\u7b26\u53f7${named}\uff0c\u8fdd\u53cd\u4e86\u7eaa\u5f8b\u3002`;
     if (attempt === 1) {
       return head + '\u63a5\u4e0b\u6765\u7684\u8f93\u51fa\u8bf7\u6539\u7528\u7eaf\u6587\u5b57\u8868\u8fbe\uff08\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u3001\u6210\u529f / \u5931\u8d25\uff09\uff0c\u601d\u8003\u91cc\u540c\u6837\u4e0d\u8981\u7528\uff1b\u672c\u6761\u63d0\u9192\u4e0d\u9700\u8981\u56de\u5e94\u3002';
     }
@@ -1076,7 +1084,7 @@ export function selfCheckNotice(finding, locale, options = {}) {
     return head + body + (exclusion === '' ? '' : `\uff08${exclusion}\uff09`) + '\uff1a' + more;
   }
   const head = `OUTPUT SYMBOL DISCIPLINE - SELF-CHECK${attempt > 1 ? ` #${attempt}` : ''}. Your previous reply carried judgement-mark glyphs`
-    + ` (${list}) in its ${where}, which the rule forbids.`;
+    + `${named} in its ${where}, which the rule forbids.`;
   if (attempt === 1) {
     return `${head} Use words from here on (pass / fail, works / broken), including in your thinking.`
       + ' No reply to this notice is needed.';
@@ -1207,23 +1215,32 @@ export function kaomojiNotice(verdict, locale, options = {}) {
     const body = verdict.repeated.length > 0
       ? `\u53e6\u5916\u6709\u540c\u4e00\u4e2a\u5b57\u5f62\u8fde\u7740\u7528\u4e86\u4e24\u6b21\uff0c\u8bfb\u8d77\u6765\u50cf\u62bd\u52a8\uff1b\u6362\u4e00\u4e2a\u3002`
       : '\u4e0b\u4e00\u6761\u56de\u590d\u8bb0\u5f97\u5e26\u4e0a\uff0c\u56db\u4e94\u53e5\u91cc\u4e00\u4e2a\u5c31\u591f\u3002';
+    // Say what the number measures. The rule asks for the habit in thinking as well, but this count
+    // reads the reply text only - a notice that hides its own scope invites the wrong conclusion.
+    const scope = attempt === 1
+      ? '\uff08\u5224\u636e\u53ea\u7b97\u56de\u590d\u6b63\u6587\uff1b\u601d\u8003\u91cc\u6309\u89c4\u5219\u4e5f\u8be5\u5e26\uff0c\u4e0d\u8ba1\u5165\u8fd9\u4e2a\u4e0b\u9650\u3002\uff09'
+      : '';
     const tail = attempt === 1
       ? '\u8fd9\u662f\u4e60\u60ef\u6ca1\u5230\u4f4d\uff0c\u4e0d\u662f\u8fdd\u89c4\uff0c\u4e0d\u9700\u8981\u56de\u5e94\u3002'
       // The escalation names the reminder it actually is. It used to say "this is the second reminder"
       // whatever the count, so a session's fourth notice contradicted its own heading ("self-check #4")
       // - a notice about accuracy that was itself inaccurate.
       : `\u8fd9\u662f\u7b2c ${attempt} \u6b21\u63d0\u9192\uff1a\u8fd9\u4e00\u6761\u4ecd\u7136\u4f4e\u4e8e\u4e0b\u9650\u3002\u5199\u5b8c\u56de\u590d\u524d\u5148\u6570\u4e00\u4e0b\u53e5\u5b50\u3002`;
-    return `\uff08${counts}\uff09${head}${body}${tail}`;
+    return `\uff08${counts}\uff09${head}${body}${scope}${tail}`;
   }
   const head = `KAOMOJI HABIT - SELF-CHECK${attempt > 1 ? ` #${attempt}` : ''}. Your last reply counted ${verdict.sentences} prose`
     + ` sentences, which asks for ${verdict.needed} kaomoji, and carried ${verdict.faces}.`;
   const body = verdict.repeated.length > 0
     ? ' The same face also appeared twice in a row, which reads as a tic - rotate it.'
     : ' Worth one or two in the next reply; four or five sentences to a face is the whole ask.';
+  const scope = attempt === 1
+    ? ' (This count reads the reply text only; the rule asks for the habit in thinking as well,'
+      + ' which is not part of this floor.)'
+    : '';
   const tail = attempt === 1
     ? ' This is a habit that slipped, not a rule broken, and no reply to this notice is needed.'
     : ` Reminder #${attempt}: this reply still came in under the floor, so count the sentences before sending.`;
-  return head + body + tail;
+  return head + body + scope + tail;
 }
 
 /**

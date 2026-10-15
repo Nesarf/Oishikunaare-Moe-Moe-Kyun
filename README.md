@@ -57,7 +57,10 @@ Four rules ship today.
 3. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
    floor rather than as garnish: at least one per three sentences, and any reply of two sentences or
    more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none
-   take none - a stack trace, a table of numbers, a serious conclusion.
+   take none - a stack trace, a table of numbers, a serious conclusion. The self-check counts the
+   **reply text** only, and the notice says so in one clause: the rule asks for the habit in thinking
+   as well, but a glyph in thinking pollutes the transcript while a missing face there does not, so the
+   floor is counted where it is visible.
 4. **Thinking language** - think and answer in the user's own language instead of defaulting to
    English, which is not a neutral metalanguage: a Chinese conversation reasoned about in English is
    exactly the habit the rule exists to replace. Chinese gets Chinese with Japanese particles and

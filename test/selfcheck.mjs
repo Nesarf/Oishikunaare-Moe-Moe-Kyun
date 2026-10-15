@@ -516,6 +516,37 @@ check('an escalation names the reminder it really is, in both notices and both l
   assert.ok(enSymbol.includes('#3') && !enSymbol.includes('the first time'), 'en does the same');
 });
 
+// A real session's second symbol notice reprinted all 26 matched code points - about 200 characters to
+// say what the first notice had already said. A repeat now names a few and points back.
+check('a repeat points back to the first notice instead of reprinting the list', () => {
+  const glyphs = [];
+  for (let i = 0; i < 26; i++) glyphs.push(`U+27${(10 + i).toString(16).toUpperCase()}`);
+  const finding = { where: 'text', glyphs };
+  const first = mod.selfCheckNotice(finding, 'en', { attempt: 1 });
+  const third = mod.selfCheckNotice(finding, 'en', { attempt: 3 });
+  assert.ok(first.includes(glyphs[0]) && first.includes(glyphs[25]), 'the first notice names the whole set');
+  assert.ok(third.includes(glyphs[0]), 'a repeat still names some of them');
+  assert.equal(third.includes(glyphs[25]), false, 'but not the whole set');
+  assert.ok(third.includes('22 more') && third.includes('reminder #1'), 'and says where the full list is');
+  assert.ok(third.length < first.length, 'so a repeat is shorter than the first notice');
+  const zhThird = mod.selfCheckNotice(finding, 'zh', { attempt: 3 });
+  assert.ok(zhThird.includes('\u7b2c 1 \u6b21\u63d0\u9192'), 'zh points back the same way');
+  assert.ok(zhThird.length < mod.selfCheckNotice(finding, 'zh', { attempt: 1 }).length);
+  const small = mod.selfCheckNotice({ where: 'text', glyphs: ['U+2713'] }, 'en', { attempt: 3 });
+  assert.ok(small.includes('(U+2713)'), 'a short set is still named in full');
+});
+
+// The kaomoji floor is counted on the reply text alone, while the rule asks for the habit in thinking
+// too. The notice says which of the two its number measures rather than leaving it to be assumed.
+check('the kaomoji notice says what its number measures', () => {
+  const verdict = { sentences: 9, faces: 1, needed: 3, repeated: [] };
+  const zhFirst = mod.kaomojiNotice(verdict, 'zh', { attempt: 1 });
+  const enFirst = mod.kaomojiNotice(verdict, 'en', { attempt: 1 });
+  assert.ok(zhFirst.includes('\u5224\u636e\u53ea\u7b97\u56de\u590d\u6b63\u6587'), 'zh states the scope');
+  assert.ok(enFirst.includes('reads the reply text only'), 'en states the scope');
+  assert.equal(mod.kaomojiNotice(verdict, 'en', { attempt: 2 }).includes('reads the reply text only'), false, 'and a repeat does not repeat it');
+});
+
 check('the hook reminds about the kaomoji floor once, and not when it is off', async () => {
   const bare = '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002\u7b2c\u56db\u53e5\u3002\u7b2c\u4e94\u53e5\u3002\u7b2c\u516d\u53e5\u3002';
   const messages = [{ id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: bare }] }];

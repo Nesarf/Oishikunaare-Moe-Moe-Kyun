@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.14.2 - 2026-10-15
+
+- **A repeat points back instead of reprinting the list.** One real session's second symbol notice spent
+  about 200 characters reprinting all 26 matched code points, which the first notice had already named.
+  A repeat now names the first four, gives the count, and says the full list is in reminder #1; a short
+  set is still named in full. Same wording in both locales.
+- **The kaomoji notice says what its number measures.** The floor is counted on the reply text, while the
+  rule asks for the habit in thinking too - the symbol and emoji judges read thinking, this one does not.
+  Rather than leave that to be assumed, the first notice states its scope in one clause. The asymmetry is
+  deliberate: a glyph in thinking pollutes the transcript, a missing face there does not, and a floor that
+  counted both would fire twice as often for the same behaviour.
+- Both pinned in `test/selfcheck.mjs` (a repeat is shorter than the first notice and still names one of
+  the code points; the scope clause appears once and not on repeats).
 ## 0.14.1 - 2026-10-15
 
 - **The escalations name the reminder they actually are.** Found in a real session's own notices: the
