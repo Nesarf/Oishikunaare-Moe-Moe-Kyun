@@ -1,0 +1,11 @@
+Oishikunaare-Moe-Moe-Kyun
+Copyright (c) 2026 Nesarf
+
+本作品依 CZGD·PL-1.0（チーズ牛丼パブリックライセンス）发布。
+协议全文见 LICENSE。SPDX: LicenseRef-CZGD-PL-1.0
+
+出处：无 —— 本作品为原创，未包含第三方代码或素材（颜文字库由本仓库的
+scripts/gen-kaomoji.mjs 生成，声音表由 scripts/gen-voices.mjs 生成）。
+
+改动说明：
+- 2026-10-16 Nesarf：授权由 MIT 改为 CZGD·PL-1.0；此前以 MIT 发布的版本仍可按 MIT 使用。

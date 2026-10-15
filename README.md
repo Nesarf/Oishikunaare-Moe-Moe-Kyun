@@ -522,4 +522,4 @@ plugin own prose and face detection, so the audit and the hook cannot disagree.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+CZGD-PL-1.0 (Cheese Gyudon Public Licence). See [LICENSE](LICENSE) and [NOTICE](NOTICE); SPDX: LicenseRef-CZGD-PL-1.0. Releases published under MIT stay available under MIT.

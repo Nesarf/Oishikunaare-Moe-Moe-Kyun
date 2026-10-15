@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.18.0 - 2026-10-16
+
+- **The licence is CZGD-PL-1.0 now** (Cheese Gyudon Public Licence, the project's own), replacing MIT.
+  The text is the authoritative copy from `E:\CZGD`, installed by that kit's own script and verified
+  against its sha256. In substance it grants what MIT did and adds two things this project wanted: an
+  explicit patent grant, and an explicit blessing of doujin and secondary creation. It is not copyleft -
+  clause 7.3 says a derivative need not use the same licence - and it does not restrict commercial use.
+  Releases published under MIT stay usable under MIT.
+- Moved together, because a half-migrated licence is worse than either: `LICENSE`, `NOTICE` (holder,
+  year, provenance, and this change), `package.json` (`SEE LICENSE IN LICENSE`, since a custom licence
+  has no SPDX id), both READMEs, the build banner (`SPDX-License-Identifier:
+  LicenseRef-CZGD-PL-1.0` reaches the generated `lib/index.js`), and `check-ascii`.
+- `check-ascii` has a third documented exception: `LICENSE` and `NOTICE` are the licensor's own words
+  (Chinese is authoritative there), the same category as `README.zh-CN.md`. Without it the licence text
+  would have failed this repository's own invariant check the moment it landed.
 ## 0.17.0 - 2026-10-15
 
 - **The same faces now ship one mood per file.** The library is 307 KB and the prompt invites a reader to

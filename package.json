@@ -1,7 +1,7 @@
 {
   "name": "oishikunaare-moe-moe-kyun",
   "displayName": "Oishikunaare-Moe-Moe-Kyun",
-  "version": "0.17.0",
+  "version": "0.18.0",
   "description": "Output house rules for an AI agent - no check-mark or cross glyphs, no emoji, a kaomoji habit, and the language it thinks in - with an optional tri-lingual moe voice layer. One core, four entries: a CLI (mmk), an MCP server, a Claude Code hook, and a DeepSeek Harness plugin that reaches every preset, workspace and subagent from one global prompt section.",
   "keywords": [
     "house-rules",
@@ -23,6 +23,7 @@
   "main": "lib/index.js",
   "files": [
     "CHANGELOG.md",
+    "NOTICE",
     "LICENSE",
     "README.md",
     "README.zh-CN.md",
@@ -72,7 +73,7 @@
     "check:text": "node scripts/check-text.mjs",
     "gen:voices": "node scripts/gen-voices.mjs"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
     "access": "public"
   },

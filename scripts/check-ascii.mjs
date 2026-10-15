@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Repository invariant: the source and every shipped document are ASCII-only, with exactly two
+ * Repository invariant: the source and every shipped document are ASCII-only, with exactly three
  * documented exceptions:
  *
  *   1. `src/index.js`, and only inside its PACKAGED locale table, which holds the localized rule
@@ -10,6 +10,8 @@
  *      exception, applied to prompt copy instead of a regex.
  *   2. `rules/*.json` (including `rules/voices/*.json`) and `README.zh-CN.md`: the localized data layer
  *      prose in Chinese is the point of those files.
+ *   3. `LICENSE` and `NOTICE`: the licence text is authoritative in Chinese, and NOTICE is the
+ *      attribution it names. Both are the licensor's words, not this repository's prose.
  *
  * Anything else carrying a non-ASCII character fails the check. Rationale: an ASCII source tree
  * survives any encoding mishap on any machine, and localized copy is data that a user may replace.
@@ -44,7 +46,9 @@ function scanFile(file) {
   const rel = path.relative(ROOT, file).replace(/\\/g, '/');
   // rules/*.json is the localized data layer: the kaomoji palette and the voice tables are made of
   // non-ASCII on purpose, and a user is expected to edit or replace them.
-  if (rel === 'README.zh-CN.md' || rel.startsWith('rules/')) return [];
+  // The licence text and its NOTICE are the licensor's own words (Chinese is authoritative there), the
+  // same category as the localized doc: data a user may read, keep or replace.
+  if (rel === 'README.zh-CN.md' || rel === 'LICENSE' || rel === 'NOTICE' || rel.startsWith('rules/')) return [];
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   const findings = [];
   lines.forEach((line, index) => {
@@ -78,4 +82,4 @@ if (findings.length > 0) {
   if (findings.length > 40) console.error(`  ... and ${findings.length - 40} more`);
   process.exit(1);
 }
-console.log('check-ascii: clean (exceptions: src PACKAGED table escapes, rules/*.json, README.zh-CN.md)');
+console.log('check-ascii: clean (exceptions: src PACKAGED table escapes, rules/*.json, README.zh-CN.md, LICENSE + NOTICE)');
