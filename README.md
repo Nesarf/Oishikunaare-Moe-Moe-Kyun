@@ -71,6 +71,11 @@ Four rules ship today.
    is in the rule: the grammar and the logic of English do not match the habits of moe-fandom culture.
    It covers thinking and replies, and it never buys a fandom register with correctness - technical
    content stays accurate. File contents, code, commands and commit messages still carry no tone.
+   This rule has its own self-check, the last of the four to get one: it reads the newest thinking block
+   against what the human in the session has been writing, and when the thinking comes back in Latin
+   while the reader writes Chinese or Japanese it says so once per drift, within a per-session budget
+   (`languageCheck` / `languageCheckMax`). The numbers that argued for building it: CJK was 21.6% of the
+   reasoning channel in one window and 2.4% in a later one, with nothing in the loop naming the drift.
 
 Rule 4 differs from 1-3 in one mechanical way: it is not a per-rule override. `bannedSymbols`,
 `kaomoji` and the `rules` object replace the rules they name, while the thinking-language block is
@@ -467,6 +472,10 @@ of the newest reply and reminds when the floor is missed, or when the same face 
 - The wording is softer than the symbol notice, because a shortage is a slipped habit and not a breach.
 - `kaomojiCheck: false` turns it off; `kaomojiCheckMax` (default 1) sets the reminder budget;
   `kaomojiFloor` (default 5) is the sentences per face.
+- The thinking-language notice is the same shape - soft, once per drift, budgeted: `languageCheck: false`
+  turns it off and `languageCheckMax` (default 3) is the per-session budget. It only speaks when both
+  sides are worth a claim: at least 120 letters of thinking, and a reader who mostly writes Chinese or
+  Japanese. A plugin's own notice is a user message too, and it is never counted as the reader's words.
 
 ### Seeing what the rules resolve to
 

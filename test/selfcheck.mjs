@@ -562,6 +562,62 @@ check('the hook reminds about the kaomoji floor once, and not when it is off', a
   const quiet = await off({ agent: { session: { id: 'k2' } }, messages }, async () => ({ kind: 'enter', messages }));
   assert.equal(quiet.messages.length, 1, 'kaomojiCheck:false means silence about the floor');
 });
+
+// Rule four was the one with no self-check at all: measured over a real session, the reasoning channel
+// drifts back to Latin (CJK 21.6% in one window, 2.4% in a later one) and nothing named the drift.
+check('the thinking-language judge needs both sides to be worth a claim', () => {
+  const latin = 'The operator asked for a restart check, so I look at the listening port, compare the pid with the one in the state file, and decide whether a second start would collide. This sentence exists only to give the judge enough Latin letters to form an opinion.';
+  const cjk = '\u5148\u770b\u7aef\u53e3\u6709\u6ca1\u6709\u4eba\u5728\u542c\uff0c\u518d\u6bd4\u5bf9\u72b6\u6001\u6587\u4ef6\u91cc\u7684 pid\uff0c\u5224\u65ad\u7b2c\u4e8c\u6b21\u542f\u52a8\u4f1a\u4e0d\u4f1a\u649e\u4e0a\u3002\u8fd9\u53e5\u8bdd\u53ea\u662f\u4e3a\u4e86\u7ed9\u5224\u636e\u8db3\u591f\u7684\u4e2d\u6587\u5b57\u6570\uff0c\u597d\u8ba9\u5b83\u5f62\u6210\u4e00\u4e2a\u5224\u65ad\u3002';
+  const readerZh = '\u73b0\u5728\u5e94\u8be5\u53ea\u6709\u8fd9\u4e00\u4e2a3080\u8fdb\u7a0b\u5728\u542c\u4e86\uff0c\u4e4b\u524d\u6211\u624b\u52a8\u62c9\u8d77\u7684\u90a3\u4e2a\u62a5\u5df2\u6709\u8fdb\u7a0b\u4e86';
+  const readerEn = 'only one listener now, the earlier manual launch said the port was taken';
+
+  assert.equal(mod.judgeThinkingLanguage(latin, readerZh).mismatch, true, 'Latin thinking for a Chinese reader is the mismatch');
+  assert.equal(mod.judgeThinkingLanguage(cjk, readerZh).mismatch, false, 'CJK thinking for a CJK reader is not');
+  assert.equal(mod.judgeThinkingLanguage(latin, readerEn).mismatch, false, 'and an English reader makes Latin thinking correct');
+  assert.equal(mod.judgeThinkingLanguage('ok, checking the port now', readerZh).mismatch, false, 'a two-word thought is never a claim');
+  assert.ok(mod.judgeThinkingLanguage(latin, readerZh).latin > 100, 'the verdict carries what it counted');
+
+  const zhNotice = mod.languageNotice(mod.judgeThinkingLanguage(latin, readerZh), 'zh', { attempt: 1 });
+  const zhThird = mod.languageNotice(mod.judgeThinkingLanguage(latin, readerZh), 'zh', { attempt: 3 });
+  assert.ok(zhNotice.includes('\u601d\u8003\u8bed\u8a00'), 'the zh notice names the rule');
+  assert.ok(zhNotice.includes('\u5224\u636e\u53ea\u770b\u6700\u65b0\u4e00\u5757\u601d\u8003'), 'and states what it measures');
+  assert.ok(zhThird.includes('\u7b2c 3 \u6b21\u63d0\u9192'), 'a repeat names the real attempt');
+  assert.ok(zhThird.length < zhNotice.length, 'and stays shorter than the first notice');
+  const enNotice = mod.languageNotice(mod.judgeThinkingLanguage(latin, readerZh), 'en', { attempt: 1 });
+  assert.ok(enNotice.includes('THINKING LANGUAGE') && enNotice.includes('no reply to this notice is needed'));
+  for (const text of [zhNotice, zhThird, enNotice]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
+});
+
+check('the hook names a thinking drift, once, and stays quiet for an English reader', async () => {
+  const reasoning = [{ type: 'reasoning', text: 'Let me think about what the operator asked: the port check comes first, then the pid comparison, and only then a decision about restarting. This block is deliberately long enough for the judge to have an opinion about its language, because a short one would be ignored.' }];
+  const assistant = { id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [...reasoning, { type: 'text', text: 'checked the port.' }] };
+  const zhUser = { id: 'u1', role: 'user', content: [{ type: 'text', text: '\u73b0\u5728\u5e94\u8be5\u53ea\u6709\u8fd9\u4e00\u4e2a3080\u8fdb\u7a0b\u5728\u542c\u4e86\uff0c\u4e4b\u524d\u6211\u624b\u52a8\u62c9\u8d77\u7684\u90a3\u4e2a\u62a5\u5df2\u6709\u8fdb\u7a0b\u4e86' }] };
+  const enUser = { id: 'u2', role: 'user', content: [{ type: 'text', text: 'only one listener now, the earlier manual launch said the port was taken' }] };
+  const notice = { id: 'n1', role: 'user', source: { kind: 'plugin:something-else' }, content: [{ type: 'text', text: '\u63d2\u4ef6\u6ce8\u5165\u7684\u4e2d\u6587\u63d0\u9192' }] };
+
+  const hook = mod.makeSelfCheckHook({ max: 5, language: true, languageMax: 1, kaomoji: false, emoji: false, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
+  const messages = [zhUser, assistant];
+  const hasNotice = (result) => result.messages.some((message) => (message.content?.[0]?.text ?? '').includes('THINKING LANGUAGE'));
+  const step = () => hook({ agent: { session: { id: 'lang1' } }, messages }, async () => ({ kind: 'enter', messages }));
+  const first = await step();
+  assert.ok(hasNotice(first), 'the language notice goes in');
+  assert.equal(first.messages.length, messages.length + 1, 'and nothing else is added');
+  const second = await step();
+  assert.equal(hasNotice(second), false, 'the same thinking block is not judged twice');
+
+  const quiet = mod.makeSelfCheckHook({ max: 5, language: true, kaomoji: false, emoji: false, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
+  const englishReader = await quiet({ agent: { session: { id: 'lang2' } }, messages: [enUser, assistant] }, async () => ({ kind: 'enter', messages: [enUser, assistant] }));
+  assert.equal(hasNotice(englishReader), false, 'an English reader gets no language reminder');
+
+  // A plugin notice is a user message too, and it is written in the session locale whatever the person
+  // writes - counting it would answer the wrong question.
+  const mixed = await quiet({ agent: { session: { id: 'lang3' } }, messages: [enUser, notice, assistant] }, async () => ({ kind: 'enter', messages: [enUser, notice, assistant] }));
+  assert.equal(hasNotice(mixed), false, 'a plugin notice does not make the reader look Chinese');
+
+  const off = mod.makeSelfCheckHook({ max: 5, language: false, kaomoji: false, emoji: false, resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }) });
+  const silent = await off({ agent: { session: { id: 'lang4' } }, messages }, async () => ({ kind: 'enter', messages }));
+  assert.equal(hasNotice(silent), false, 'language:false means silence about the drift');
+});
 check('a run of face-less replies is counted, and never by counting structure', () => {
   const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const face = '(\u30fb\u03c9\u30fb)';

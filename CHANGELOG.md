@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.15.0 - 2026-10-15
+
+- **Rule four gets the self-check it never had.** The pre-step hook pushed notices for symbols, voice,
+  emoji and kaomoji - the thinking-language discipline was prompt text and nothing else, so a long
+  session drifted back to English with nothing in the loop naming the drift. Measured before building:
+  CJK was 21.6% of the reasoning channel in one window (10-14 10:00-12:47Z) and 2.4% in a later one
+  (10-15), against a 3.3% all-session baseline.
+- The new notice reads the newest thinking block against what the human has been writing, and speaks
+  only when both sides are worth a claim: at least 120 letters of thinking, a reader who mostly writes
+  Chinese or Japanese, and thinking that is under a quarter CJK. Soft like the kaomoji notice - once per
+  drift, `languageCheckMax` (3) per session, `languageCheck: false` to turn it off - and it states what
+  it measures, because the count reads thinking rather than the reply.
+- New exports to go with it: `countScripts` (the reading the bench uses, so the notice and the
+  measurement cannot drift apart), `judgeThinkingLanguage` and `readerText` (the human's own messages:
+  a plugin notice is a user message too and is never counted as the reader's words). Three cases in
+  `test/selfcheck.mjs`: the judge's four shapes, the notice's wording, and the hook firing once and
+  staying quiet for an English reader.
 ## 0.14.2 - 2026-10-15
 
 - **A repeat points back instead of reprinting the list.** One real session's second symbol notice spent
