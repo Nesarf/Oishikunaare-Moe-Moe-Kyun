@@ -48,6 +48,10 @@ Four rules ship today.
    writes. Those glyphs pollute context and regression parameters, and a file written today is read
    back into context tomorrow, so the ban covers files and not just replies. Say it in words instead:
    pass / fail, works / broken, applied / not applied, yes / no.
+   Write for a reader who reads every sentence: normal punctuation is welcome, and the judgement belongs
+   in words. Marks must not carry the structure either - a paragraph that reads as prose beats a column
+   of markers, an item in a list should be a short sentence rather than a label, and a kaomoji is tone
+   rather than layout.
 2. **No emoji** - zero, in replies, in the agent's own thinking and in every file it writes. The ban
    is by block rather than by character list (pictographs, faces, transport, Miscellaneous Symbols,
    the geometric shapes that carry emoji presentation, plus the variation selector, the zero width

@@ -730,6 +730,31 @@ check('the symbol steer asks for the reply again, in either locale', () => {
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 
+check('the rules ask for prose a reader can follow', () => {
+  // The symbol rule used to stop at "say it in words". A reader who reads every sentence asked for more:
+  // normal punctuation is fine, and nothing may carry the structure. This is that promise, in words.
+  const en = mod.packagedRules('en').rules;
+  const zh = mod.packagedRules('zh').rules;
+  assert.ok(en.bannedSymbols.includes('normal punctuation is welcome'), 'en welcomes normal punctuation');
+  assert.ok(en.bannedSymbols.includes('a kaomoji is tone'), 'and says a kaomoji is tone, not layout');
+  assert.ok(en.bannedSymbols.includes('short sentence rather than a label'), 'and asks list items to be sentences');
+  for (const fragment of ['\u6B63\u5E38\u6807\u70B9\u7167\u5E38\u7528', '\u989C\u6587\u5B57\u662F\u8BED\u6C14']) {
+    assert.ok(zh.bannedSymbols.includes(fragment), `zh carries the same rule (${fragment})`);
+  }
+  assert.equal(mod.judgeAuthoredText(en.bannedSymbols).length, 0, 'and the rule text carries no banned glyph itself');
+  assert.equal(mod.judgeAuthoredText(zh.bannedSymbols).length, 0, 'in either locale');
+});
+
+check('every rule has both locales, and neither is a stub', () => {
+  for (const locale of ['zh', 'en']) {
+    const rules = mod.packagedRules(locale).rules;
+    for (const key of ['bannedSymbols', 'kaomoji', 'thinkingLanguage']) {
+      assert.equal(typeof rules[key], 'string', `${locale}.${key} is text`);
+      assert.ok(rules[key].length > 100, `${locale}.${key} is long enough to be a rule`);
+      assert.ok(mod.judgeAuthoredText(rules[key]).length === 0, `${locale}.${key} carries no banned glyph`);
+    }
+  }
+});
 check('the session audit reads every channel the judge reads', async () => {
   // It used to read prose only and say so ("ignoring tool calls and the reasoning channel"). Measured on
   // this machine, almost all of these code points live in the thinking channel, so that reading reported

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.21.0 - 2026-10-16
+
+- **The symbol rule now says how to write, not only what not to write.** Asked for by the reader this
+  plugin is written for: they read a reply the way they read a book or a paper - sentence by sentence -
+  so a glyph carrying a judgement is noise in the reading flow, and using a Han character to *refer* to
+  that glyph is noise too, because it is a remark about notation rather than information. Both locales of
+  the rule text now say: write for a reader who reads every sentence, normal punctuation is welcome, the
+  judgement belongs in words, marks must not carry the structure (a paragraph that reads as prose beats a
+  column of markers, a list item is a short sentence rather than a label), and a kaomoji is tone rather
+  than layout.
+- Tests: both locales carry the new rule (three English phrases and two Chinese fragments by code point),
+  the rule text itself carries no banned glyph, and a companion check asserts every rule key has text in
+  both locales and is not a stub - so a future rule cannot land in one language only.
 ## 0.20.1 - 2026-10-16
 
 - **The session audit reads every channel the ban covers now, and counts exemptions by position.** It used
