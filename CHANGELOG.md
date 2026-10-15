@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.1 - 2026-10-15
+
+- **The emoji notice had the same stale escalation the other two had.** Its heading counted up
+  ("EMOJI BAN - SELF-CHECK #3") while its closing line still said "this is the second reminder" -
+  the same constant that was already removed from the symbol and kaomoji notices, still sitting in the
+  third one because I fixed them one at a time. Both locales now name the attempt they are handed, and
+  a case in `test/selfcheck.mjs` pins it.
 ## 0.15.0 - 2026-10-15
 
 - **Rule four gets the self-check it never had.** The pre-step hook pushed notices for symbols, voice,

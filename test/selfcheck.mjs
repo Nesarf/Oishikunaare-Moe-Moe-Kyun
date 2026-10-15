@@ -538,6 +538,17 @@ check('a repeat points back to the first notice instead of reprinting the list',
 
 // The kaomoji floor is counted on the reply text alone, while the rule asks for the habit in thinking
 // too. The notice says which of the two its number measures rather than leaving it to be assumed.
+check('the emoji notice counts its reminders too', () => {
+  const finding = { where: 'text', glyphs: ['U+1F600'] };
+  const third = mod.emojiNotice(finding, 'en', { attempt: 3 });
+  const thirdZh = mod.emojiNotice(finding, 'zh', { attempt: 3 });
+  assert.ok(third.includes('#3'), 'the heading counts up');
+  assert.ok(third.includes('Reminder #3'), 'and so does the escalation');
+  assert.equal(third.includes('Second reminder'), false, 'which no longer claims to be the second');
+  assert.ok(thirdZh.includes('\u7b2c 3 \u6b21\u63d0\u9192'), 'zh names the real attempt');
+  assert.equal(thirdZh.includes('\u7b2c\u4e8c\u6b21\u63d0\u9192'), false, 'and not the second');
+  assert.ok(third.includes('U+1F600'), 'the code point is named, never the glyph');
+});
 check('the kaomoji notice says what its number measures', () => {
   const verdict = { sentences: 9, faces: 1, needed: 3, repeated: [] };
   const zhFirst = mod.kaomojiNotice(verdict, 'zh', { attempt: 1 });
