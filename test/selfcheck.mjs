@@ -1211,6 +1211,21 @@ check('package.json ships what the installed copy needs', () => {
     assert.ok(shipped.has(file.split('/')[0]), `${file} needs its directory shipped`);
     assert.ok(fs.existsSync(path.join(ROOT, file)), `${file} should exist`);
   }
+  // The licence moved from MIT to CZGD-PL-1.0 and had to move in five places at once, because a
+  // half-migrated licence state is worse than either. The shape is pinned here rather than left to
+  // memory: a later edit that sets the manifest back to an SPDX id, or drops NOTICE from the package,
+  // would be caught by this.
+  assert.equal(pkg.license, 'SEE LICENSE IN LICENSE', 'a custom licence has no SPDX id: the manifest points at the file');
+  assert.ok(shipped.has('LICENSE') && shipped.has('NOTICE'), 'the licence text and its NOTICE ship with the package');
+  const licence = fs.readFileSync(path.join(ROOT, 'LICENSE'), 'utf8');
+  assert.ok(licence.includes('CZGD'), 'LICENSE is the CZGD text, not the old one');
+  assert.ok(licence.includes('O.T.A.K.U.'), 'and it is the whole text: the spirit section is in it');
+  const notice = fs.readFileSync(path.join(ROOT, 'NOTICE'), 'utf8');
+  assert.ok(notice.includes('CZGD'), 'NOTICE names the licence');
+  assert.equal(notice.includes('SPDX:'), false, 'and claims no SPDX identifier (the licensor asked for that)');
+  for (const readme of ['README.md', 'README.zh-CN.md']) {
+    assert.ok(fs.readFileSync(path.join(ROOT, readme), 'utf8').includes('CZGD'), `${readme} names the licence`);
+  }
 });
 check('dshHome prefers the environment over the profile default', () => {
   const saved = process.env.DSH_HOME;

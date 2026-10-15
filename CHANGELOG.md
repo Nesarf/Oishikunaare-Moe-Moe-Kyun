@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.18.3 - 2026-10-16
+
+- **The licence shape is pinned by a test.** Moving to CZGD-PL-1.0 meant five places at once, and a
+  half-migrated licence state is worse than either, so `test/selfcheck.mjs` now asserts the shape: the
+  manifest says `SEE LICENSE IN LICENSE`, LICENSE and NOTICE both ship, LICENSE is the CZGD text with its
+  spirit section, NOTICE names the licence and claims no SPDX identifier, and both READMEs name it.
+- Provenance for the record: the text is the authoritative copy from `E:\CZGD`, sha256
+  `f551b95f1d273052f872190012f66963fbe8062decbd07dc8771b8e3834add45`, and this repository's copy matches
+  it byte for byte. The kit has since filed the consistency report from this workspace as R1 and fixed
+  every item (`E:\CZGD\REPORTS.txt`); the licence text itself never changed.
+- Measured while here: since the thinking-language notice shipped in 0.15.0, the reasoning channel in
+  that window holds 4.9% CJK over 1039 messages, against 2.4-2.6% in the window before it. Small sample
+  and a different session mix, so it is a hint rather than a result.
 ## 0.18.2 - 2026-10-16
 
 - **NOTICE no longer names the SPDX identifier**, matching the licensor's instruction and the kit's own
