@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.19.0 - 2026-10-16
+
+- **The hard ban got the lever that acts before the turn closes: `symbolSteer` (default on).** The
+  notices fire on `agent/pre-step`, which is after the reply is already in the transcript, and the
+  measurement says that is not enough: one session's thinking carried 2230 judgement-mark code points and
+  another 346, while the notices had long spent their per-session budget (6 to 13 of them, then silence).
+  So the same boundary the kaomoji lever uses now also asks for the reply again when the newest reply
+  still carries such a glyph in its text or its thinking: same content, glyphs written as words, and it
+  says plainly what history cannot fix - what is already in the thinking stays there, what comes next does
+  not have to. `symbolSteerMax` (default 1) caps the extra passes per session; `symbolSteer: false` turns
+  it off. The two levers share one per-turn record, so a single turn never pays for two extra steps.
+- Guards are the kaomoji lever's guards: nothing on an aborted turn, nothing while the section is
+  disabled, nothing without `agent.steer`, nothing on an empty transcript, one steer per turn, a session
+  budget, and every read of the transcript wrapped so the lever cannot take a turn down with it.
+- Tests: the notice in both locales asks for a rewrite, names the code point and the channel, and carries
+  no banned glyph itself; the decider is checked against a turn that carried a glyph, the same turn twice,
+  a spent budget, a clean reply, an aborted turn, a disabled section, a missing `agent.steer`, an empty
+  transcript, and the shared per-turn record (the kaomoji lever leaves a turn the symbol lever already
+  paid for).
+- Measured with it: across the last six hours of this machine's sessions, banned glyphs still reach
+  authored text - Mikoto-Nadenade 3133 (2230 thinking / 903 text), Sayori-Sleeping 780, the Nonbiri
+  session 361, E-DSH 14 and 28 on another. Almost all of it is in the thinking channel, which is what the
+  new lever can at least stop from growing.
 ## 0.18.3 - 2026-10-16
 
 - **The licence shape is pinned by a test.** Moving to CZGD-PL-1.0 meant five places at once, and a

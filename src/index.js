@@ -1430,6 +1430,71 @@ export function newestBareReply(messages) {
 }
 
 /**
+ * Compose the steering message for a turn that closed carrying a banned glyph.
+ *
+ * A notice at the next step arrives after the reply is already in the transcript, and the measurement
+ * says that is not enough: one session carried hundreds of these in its thinking while the notices had
+ * long spent their budget. This asks for the reply again while the turn can still be rewritten, and it
+ * says plainly what the history cannot fix - the glyphs already in the thinking stay there.
+ * @param {string[]} glyphs - the code points found, named and never printed.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @param {string} where - the channel the glyphs were in.
+ * @returns {string} the steering text.
+ */
+export function symbolSteerNotice(glyphs, locale, where = 'text') {
+  const list = Array.isArray(glyphs) ? glyphs.join(', ') : '';
+  const channel = channelLabel(where, locale);
+  if (locale === 'zh') {
+    return `\u3010\u8f93\u51fa\u7b26\u53f7\u7eaa\u5f8b\u00b7\u6700\u540e\u4e00\u6b65\u3011\u521a\u624d\u90a3\u6761\u56de\u590d\u7684${channel}\u91cc\u8fd8\u6709\u5bf9\u9519\u6807\u8bb0\u7c7b\u5b57\u5f62\uff08${list}\uff09\u3002\u8bf7\u628a\u521a\u624d\u90a3\u6761\u56de\u590d\u91cd\u5199\u4e00\u904d\uff1a\u5185\u5bb9\u4e0d\u53d8\uff0c\u628a\u90a3\u51e0\u4e2a\u5b57\u5f62\u6362\u6210\u6587\u5b57\uff08\u901a\u8fc7 / \u4e0d\u901a\u8fc7\u3001\u6210\u529f / \u5931\u8d25\uff09\uff1b\u601d\u8003\u91cc\u4e5f\u4e00\u6837\uff0c\u4ece\u73b0\u5728\u8d77\u4e0d\u8981\u518d\u7528\uff08\u5df2\u7ecf\u5199\u8fdb\u53bb\u7684\u6539\u4e0d\u4e86\uff0c\u80fd\u6539\u7684\u662f\u63a5\u4e0b\u6765\u7684\uff09\u3002\u4e0d\u8981\u8ffd\u52a0\u65b0\u7684\u8bf4\u660e\uff0c\u4e5f\u4e0d\u8981\u91cd\u590d\u81ea\u5df1\u3002`;
+  }
+  return `OUTPUT SYMBOL DISCIPLINE - one more pass. The reply you just gave still carries judgement-mark glyphs`
+    + ` in its ${channel} (${list}). Rewrite that reply: same content, with those glyphs written as words`
+    + ' (pass / fail, works / broken), and stop using them in your thinking from here as well - what is'
+    + ' already written cannot be changed, what comes next can. Do not add new explanation and do not'
+    + ' repeat yourself.';
+}
+
+/**
+ * Decide whether the turn-stop boundary should steer a reply that carries a banned glyph.
+ *
+ * Same guards as the kaomoji lever, and one difference in kind: this one is on by default, because a
+ * hard ban that a notice could not hold needs the lever that acts before the turn closes. The per-turn
+ * map is shared with the kaomoji lever, so one turn never pays for two extra steps.
+ * @param {object} options - resolved inputs, the state maps, and the config switches.
+ * @returns {(input: object) => string | null} the decision, returning the steering text or null.
+ */
+export function makeSymbolSteerDecider(options) {
+  const perTurn = options.perTurn instanceof Map ? options.perTurn : new Map();
+  const perSession = options.perSession instanceof Map ? options.perSession : new Map();
+  const max = Number.isFinite(options.max) && options.max >= 0 ? Math.floor(options.max) : 1;
+  return (input) => {
+    try {
+      if (options.enabled !== true) return null;
+      if (!input || input.signal?.aborted) return null;
+      const state = typeof options.resolve === 'function' ? options.resolve() : null;
+      if (!state || !state.enabled) return null;
+      const agent = input.agent;
+      if (!agent || typeof agent.steer !== 'function') return null;
+      const messages = typeof agent.session?.deriveMessages === 'function' ? agent.session.deriveMessages() : null;
+      if (!Array.isArray(messages) || messages.length === 0) return null;
+      const finding = findBannedInMessages(messages, state.judge);
+      if (finding === null) return null;
+      const sessionId = agent.session?.id ?? 'unknown';
+      const turn = Number.isFinite(input.turn) ? input.turn : -1;
+      if (perTurn.get(sessionId) === turn) return null;
+      const used = perSession.get(sessionId) ?? 0;
+      if (used >= max) return null;
+      perTurn.set(sessionId, turn);
+      perSession.set(sessionId, used + 1);
+      return symbolSteerNotice(finding.glyphs, state.locale, finding.where);
+    } catch (error) {
+      options.warn?.(`symbol steer check failed: ${error?.message ?? error}`);
+      return null;
+    }
+  };
+}
+
+/**
  * Compose the steering message for a turn that closed without a face.
  *
  * It asks for the reply rather than for a fresh one: appended chatter would be worse than the miss, and
@@ -2192,37 +2257,52 @@ export function apply(ctx, config) {
       `[house-rules] self-check on: ${startupJudge.mode === 'allow' ? 'allow-list' : 'deny-list'} judge, up to ${max} notice(s) per session`,
     );
 
-    // The last lever, and the only one that acts while the reply is still the thing being written. Off by
-    // default: a steer costs a model step, so it is opt-in rather than a default behaviour nobody chose.
-    if (initial.kaomojiSteer === true) {
-      const steerMax = typeof initial.kaomojiSteerMax === 'number' && initial.kaomojiSteerMax >= 0
+    // The last lever, and the only one that acts while the reply is still the thing being written. Two
+    // decisions share it: the symbol one is on by default (a hard ban that a notice could not hold needs
+    // the lever that acts before the turn closes), the kaomoji one stays opt-in (a steer costs a model
+    // step, so a habit gets a choice rather than a default nobody chose). They share one per-turn map so
+    // a single turn never pays for both.
+    const steerPerTurn = new Map();
+    const symbolSteerOn = initial.symbolSteer !== false;
+    const kaomojiSteerOn = initial.kaomojiSteer === true;
+    if (symbolSteerOn || kaomojiSteerOn) {
+      const symbolMax = typeof initial.symbolSteerMax === 'number' && initial.symbolSteerMax >= 0
+        ? Math.floor(initial.symbolSteerMax)
+        : 1;
+      const kaomojiMax = typeof initial.kaomojiSteerMax === 'number' && initial.kaomojiSteerMax >= 0
         ? Math.floor(initial.kaomojiSteerMax)
         : 1;
-      const decide = makeSteerDecider({
-        enabled: true,
-        max: steerMax,
-        resolve: () => {
-          const state = resolve();
-          return {
-            enabled: state.enabled,
-            locale: state.locale,
-            judge: state.judge,
-            emojiAllow: state.emojiAllow,
-          };
-        },
-        warn,
-      });
+      const steerState = () => {
+        const state = resolve();
+        return {
+          enabled: state.enabled,
+          locale: state.locale,
+          judge: state.judge,
+          emojiAllow: state.emojiAllow,
+        };
+      };
+      const symbolDecide = symbolSteerOn
+        ? makeSymbolSteerDecider({ enabled: true, max: symbolMax, perTurn: steerPerTurn, resolve: steerState, warn })
+        : () => null;
+      const kaomojiDecide = kaomojiSteerOn
+        ? makeSteerDecider({ enabled: true, max: kaomojiMax, perTurn: steerPerTurn, resolve: steerState, warn })
+        : () => null;
       ctx.on('agent/turn-stopping', async (payload) => {
-        const text = decide(payload);
+        const symbolText = symbolDecide(payload);
+        const text = symbolText ?? kaomojiDecide(payload);
         if (text === null) return;
         try {
           payload.agent.steer(noticeMessage(text));
-          ctx.logger?.info?.('[house-rules] turn stopped without a kaomoji; steered one more pass');
+          ctx.logger?.info?.(symbolText === null
+            ? '[house-rules] turn stopped without a kaomoji; steered one more pass'
+            : '[house-rules] turn stopped carrying a banned glyph; steered one more pass');
         } catch (error) {
           warn(`steering failed: ${error?.message ?? error}`);
         }
       });
-      ctx.logger?.info?.(`[house-rules] kaomoji steer on: at most ${steerMax} extra pass(es) per session`);
+      ctx.logger?.info?.('[house-rules] turn-stop steer on:'
+        + `${symbolSteerOn ? ` symbol (at most ${symbolMax} per session)` : ' symbol off'},`
+        + `${kaomojiSteerOn ? ` kaomoji (at most ${kaomojiMax} per session)` : ' kaomoji off'}`);
     }
   }
 }

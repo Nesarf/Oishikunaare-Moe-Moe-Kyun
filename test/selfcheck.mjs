@@ -716,6 +716,46 @@ check('the steer notice asks for the reply again, in either locale', () => {
   assert.ok(en.includes('same content'), 'and asks for the same reply rather than an appendix');
 });
 
+// The measured problem: one session's thinking carried hundreds of banned glyphs while the notices had
+// long spent their budget, because a notice arrives after the reply is already written. This lever acts
+// while the turn can still be rewritten, so it is the one that can hold a hard ban.
+check('the symbol steer asks for the reply again, in either locale', () => {
+  const glyphs = ['U+' + (0x2713).toString(16).toUpperCase()];
+  const zh = mod.symbolSteerNotice(glyphs, 'zh', 'reasoning');
+  const en = mod.symbolSteerNotice(glyphs, 'en', 'text');
+  assert.ok(zh.includes('\u91cd\u5199'), 'zh asks for a rewrite');
+  assert.ok(en.includes('Rewrite that reply'), 'en asks for a rewrite');
+  assert.ok(zh.includes(glyphs[0]) && en.includes(glyphs[0]), 'both name the code point');
+  assert.ok(zh.includes('\u601d\u8003'), 'zh names the channel it found');
+  for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
+});
+
+check('the symbol steer decider is guarded on every side', () => {
+  const bad = String.fromCodePoint(0x2713);
+  const withGlyph = [{ id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: [{ type: 'reasoning', text: 'thought ' + bad }, { type: 'text', text: 'done' }] }];
+  const bare = [{ id: 'b1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: [{ type: 'text', text: '\u7b2c\u4e00\u53e5\u3002\u7b2c\u4e8c\u53e5\u3002\u7b2c\u4e09\u53e5\u3002' }] }];
+  const agentFor = (messages) => ({ session: { id: 'symbol-steer', deriveMessages: () => messages }, steer: () => {} });
+  const state = { enabled: true, locale: 'en', judge: { mode: 'deny' }, emojiAllow: [] };
+  const decide = mod.makeSymbolSteerDecider({ enabled: true, max: 1, resolve: () => state });
+  assert.ok(decide({ agent: agentFor(withGlyph), turn: 1, signal: {} }) !== null, 'a turn that carried a glyph steers');
+  assert.equal(decide({ agent: agentFor(withGlyph), turn: 1, signal: {} }), null, 'the same turn is never steered twice');
+  assert.equal(decide({ agent: agentFor(withGlyph), turn: 2, signal: {} }), null, 'and the session budget is spent');
+  const open = mod.makeSymbolSteerDecider({ enabled: true, max: 3, resolve: () => state });
+  assert.equal(open({ agent: agentFor(bare), turn: 1, signal: {} }), null, 'a clean reply steers nothing');
+  assert.equal(open({ agent: agentFor(withGlyph), turn: 1, signal: { aborted: true } }), null, 'an aborted turn is left alone');
+  assert.equal(mod.makeSymbolSteerDecider({ enabled: true, max: 3, resolve: () => ({ ...state, enabled: false }) })({ agent: agentFor(withGlyph), turn: 1, signal: {} }), null, 'a disabled section means no steer');
+  assert.equal(mod.makeSymbolSteerDecider({ enabled: false, max: 3, resolve: () => state })({ agent: agentFor(withGlyph), turn: 1, signal: {} }), null, 'and the switch is honoured');
+  assert.equal(open({ agent: { session: { id: 'x', deriveMessages: () => withGlyph } }, turn: 1, signal: {} }), null, 'without agent.steer there is nothing to steer');
+  assert.equal(open({ agent: agentFor([]), turn: 1, signal: {} }), null, 'an empty transcript steers nothing');
+
+  // One per-turn map, shared with the kaomoji lever: after the symbol lever pays for a turn, the kaomoji
+  // lever must not make the same turn pay again.
+  const shared = new Map();
+  const symbolFirst = mod.makeSymbolSteerDecider({ enabled: true, max: 2, perTurn: shared, resolve: () => state });
+  const kaomojiSecond = mod.makeSteerDecider({ enabled: true, max: 2, perTurn: shared, resolve: () => state });
+  assert.ok(symbolFirst({ agent: agentFor(withGlyph), turn: 7, signal: {} }) !== null, 'the symbol lever steers first');
+  assert.equal(kaomojiSecond({ agent: agentFor(bare), turn: 7, signal: {} }), null, 'and the kaomoji lever leaves that turn to it');
+});
 check('the steer decider is guarded on every side', () => {
   const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const bare = [mk('Two sentences. No face.')];

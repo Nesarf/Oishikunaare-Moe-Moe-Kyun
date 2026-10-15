@@ -370,7 +370,16 @@ edited.
   The run notice says so directly instead of repeating the floor arithmetic.
 - `selfCheck: false` turns it off; `selfCheckMax` sets the symbol budget, `kaomojiCheckMax` (5) the
   kaomoji one and `emojiCheckMax` (2) the emoji one, so a strict rule cannot spend a soft rule budget.
-- The last lever is opt-in: **`kaomojiSteer`** (default false) watches `agent/turn-stopping`, and when a
+- A hard ban gets the lever that acts before the turn closes: **`symbolSteer`** (default true) watches
+  `agent/turn-stopping` too, and when the newest reply still carries judgement-mark glyphs in its text or
+  its thinking it steers one short message asking for that reply to be rewritten - same content, the
+  glyphs written as words - and says plainly what history cannot fix: what is already in the thinking
+  stays there, what comes next does not have to. `symbolSteerMax` (default 1) caps the extra passes per
+  session, and `symbolSteer: false` turns it off. It is on by default for the opposite reason to the
+  kaomoji lever, and the measurement is the argument: one session's thinking carried hundreds of these
+  while its notices had long spent their budget. A notice arrives after the reply is written; this
+  arrives while it can still be rewritten.
+- The kaomoji lever is opt-in: **`kaomojiSteer`** (default false) watches the same boundary, and when a
   turn is about to close with prose and no kaomoji at all it steers one short message that keeps the turn
   open for another step, so the reminder arrives while the reply is still being written rather than at the
   start of the next one. `kaomojiSteerMax` (default 1) caps the extra passes per session. It is off by
@@ -379,6 +388,8 @@ edited.
   budget, nothing while the section is disabled, and nothing on a turn that already breached the symbol or
   emoji rule. Structure still exempts, so a reply made of tables or bullets is never steered for being
   face-less.
+- The two levers share one per-turn record, so a single turn never pays for two extra steps: whichever
+  fires first owns that turn.
 
 ### What each judge does with an exception, and how the strict one seeds itself
 

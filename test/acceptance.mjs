@@ -343,10 +343,42 @@ check('check-text judges a string the way the hook does', async () => {
   assert.equal(allowed.status, 0);
 });
 
-check('the steer lever stays off unless the config asks for it', async () => {
+check('the steer levers are on exactly as the config says', async () => {
+  // The symbol lever is on by default: a notice arrives after the reply is written, and the measurement
+  // says that is not enough. The kaomoji lever still waits for the config to ask for it.
+  const dflt = makeHost();
+  mod.apply(dflt.ctx, { home: tempHome({ locale: 'en' }), shippedLibrary: SHIPPED });
+  assert.equal(dflt.listening('agent/turn-stopping'), true, 'the boundary is watched by default');
+  assert.ok(dflt.logs.some((l) => l.includes('steer on')), 'and the switches are reported at boot');
+  assert.ok(dflt.logs.some((l) => l.includes('symbol (at most')), 'with the symbol lever named as on');
+  assert.ok(dflt.logs.some((l) => l.includes('kaomoji off')), 'and the kaomoji lever named as off');
+
+  // A clean bare turn is left alone by the default configuration: only a glyph makes the symbol lever fire.
+  {
+    const steered = [];
+    const conversation = [{ role: 'assistant', source: { kind: 'model' }, content: [{ type: 'text', text: 'First sentence. Second sentence.' }] }];
+    const agent = { session: { id: 'acc-steer-default', deriveMessages: () => conversation }, steer: (message) => steered.push(message) };
+    await dflt.emit('agent/turn-stopping', { agent, turn: 1, signal: new AbortController().signal }, () => undefined);
+    assert.equal(steered.length, 0, 'a bare turn is not steered while the kaomoji lever is off');
+  }
+
+  // And it does fire on a reply that carries one, asking for that reply again rather than a fresh one.
+  {
+    const bad = String.fromCodePoint(0x2713);
+    const steered = [];
+    const conversation = [{ role: 'assistant', source: { kind: 'model' }, content: [{ type: 'reasoning', text: 'thought ' + bad }, { type: 'text', text: 'done' }] }];
+    const agent = { session: { id: 'acc-steer-symbol', deriveMessages: () => conversation }, steer: (message) => steered.push(message) };
+    await dflt.emit('agent/turn-stopping', { agent, turn: 5, signal: new AbortController().signal }, () => undefined);
+    assert.equal(steered.length, 1, 'a reply carrying a banned glyph is steered once');
+    assert.ok(steered[0].content[0].text.includes('Rewrite that reply'), 'and the steer asks for that reply again');
+    assert.equal(mod.offendingGlyphs(steered[0].content[0].text).length, 0, 'without printing the glyph back');
+    assert.equal(steered[0].source.kind, `plugin:${mod.name}`, 'a steered notice carries the producer identity');
+  }
+
+  // Both levers off means the boundary is not watched at all.
   const off = makeHost();
-  mod.apply(off.ctx, { home: tempHome({ locale: 'en' }), shippedLibrary: SHIPPED });
-  assert.equal(off.listening('agent/turn-stopping'), false, 'nothing is registered by default');
+  mod.apply(off.ctx, { home: tempHome({ locale: 'en', symbolSteer: false }), shippedLibrary: SHIPPED });
+  assert.equal(off.listening('agent/turn-stopping'), false, 'nothing is registered when both levers are off');
   assert.equal(off.logs.some((l) => l.includes('steer on')), false, 'and nothing is logged about it');
 });
 
