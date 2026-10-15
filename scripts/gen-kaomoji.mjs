@@ -25,6 +25,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+// The gate below uses the judge's own reading, so a face the library ships is a face the checker sees.
+import { findKaomoji } from '../src/index.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -101,6 +103,18 @@ const EYES = [
   [S(0x00a4), S(0x00a4), 'currency', '\u8D27\u5E01', 'puzzled'],
   [S(0x2192), S(0x2192), 'right arrow', '\u53F3\u7BAD\u5934', 'puzzled'],
   [S(0xff62), S(0xff62), 'corner bracket', '\u89D2\u62EC\u53F7', 'puzzled'],
+  // Added in the expansion: eyes real faces use that the first pass did not carry. Each one stays inside
+  // the four mood buckets, because the bucket is what routes a face into a category.
+  [S(0x25d5), S(0x25d5), 'heavy round', '\u91CD\u5706', 'happy'],
+  [S(0x25cf), S(0x25cf), 'filled circle', '\u5B9E\u5FC3\u5706', 'happy'],
+  [S(0x25e6), S(0x25e6), 'white bullet', '\u7A7A\u5FC3\u70B9', 'calm'],
+  [S(0xff65), S(0xff65), 'halfwidth middle dot', '\u534A\u89D2\u4E2D\u70B9', 'calm'],
+  [S(0x0398), S(0x0398), 'theta', '\u0398', 'puzzled'],
+  [S(0x03a3), S(0x03a3), 'sigma capital', '\u03A3', 'puzzled'],
+  [S(0x00b4), S(0x00b4), 'acute', '\u9510\u97F3', 'wry'],
+  ['$', '$', 'dollar', '$', 'wry'],
+  ['#', '#', 'hash', '#', 'wry'],
+  ['@', '@', 'at sign', '@', 'puzzled'],
 ];
 
 // ---------------------------------------------------------------- mouth / face (centre)
@@ -151,11 +165,30 @@ const MOUTHS = [
   ['*', 'asterisk', '\u661F'],
   ['+', 'plus', '\u5341'],
   [S(0x2203), 'there exists', '\u5B58\u5728\u53F7'],
-  [S(0x4e09), 'kanji three', '\u4E09'],
-  [S(0x516b), 'kanji eight', '\u516B'],
-  [S(0x53e3), 'kanji mouth', '\u53E3'],
-  [S(0x56db), 'kanji four', '\u56DB'],
-  [S(0x5341), 'kanji ten', '\u5341'],
+  // Five kanji mouths used to sit here (three, eight, mouth, four, ten). A face carrying Han is one the
+  // judge filters out by design - a bracketed Chinese phrase must not read as a kaomoji - so those five
+  // could only ever produce library entries that no check could see.
+  [S(0x0411), 'cyrillic be capital', '\u0411'],
+  [S(0x0431), 'cyrillic be', '\u0431'],
+  [S(0x03a9), 'omega capital', '\u03A9'],
+  [S(0x3064), 'hiragana tsu', '\u3064'],
+  [S(0x3057), 'hiragana shi', '\u3057'],
+  [S(0x30ec), 'katakana re', '\u30EC'],
+  [S(0x30ef), 'katakana wa', '\u30EF'],
+  [S(0x3142), 'hangul bieup', '\u3142'],
+  [S(0x3141), 'hangul mieum', '\u3141'],
+  [S(0x221e), 'infinity', '\u221E'],
+  [S(0x2229), 'intersection', '\u2229'],
+  [S(0x222a), 'union', '\u222A'],
+  [S(0x2248), 'almost equal', '\u2248'],
+  [S(0x2260), 'not equal', '\u2260'],
+  [S(0x223c), 'tilde operator', '\u223C'],
+  [S(0x3003), 'ditto mark', '\u3003'],
+  [S(0x25a0), 'filled square', '\u25A0'],
+  [S(0x25b2), 'filled up triangle', '\u25B2'],
+  [S(0x25bc), 'filled down triangle', '\u25BC'],
+  [S(0x25c7), 'white diamond', '\u25C7'],
+  [S(0x2661), 'white heart', '\u2661'],
   [S(0x30fb), 'middle dot', '\u4E2D\u9ED1\u70B9'],
   ['3', 'digit three', '3'],
   [S(0x0295), 'inverted glottal', '\u5012\u6487'],
@@ -345,24 +378,56 @@ const CLASSIC = [
   ['(\uFF61\uFF9F\uFF61)\u30CE', 'flat pushing away', '\u9762\u762B\u63A8\u5F00'],
   ['(\uFF61\u0414\uFF61)\u30CE', 'startled pushing away', '\u4E00\u60CA\u63A8\u5F00'],
   ['\uFF9F(\uFF61\u0414\uFF61)\uFF9F', 'startled with hands up', '\u4E00\u60CA\u4E3E\u624B'],
+  // Added in the expansion: the shapes a reader recognises on sight, which is what this category is for.
+  // Every one is balanced, carries a non-ASCII mark and passes the judge's reading - which is the same
+  // gate the composed passes go through, so nothing here can be a face the checker cannot see.
+  ['(\uFF9F\u2200\uFF9F)', 'wide grin', '\u5927\u7B11'],
+  ['(\uFFE3\u2200\uFFE3)', 'long-lashed grin', '\u957F\u776B\u6BDB\u7B11'],
+  ['(\u2267\u2200\u2266)', 'squinting grin', '\u54AA\u773C\u7B11'],
+  ['(\uFF40\u2200\u00B4)', 'smug grin', '\u5F97\u610F\u7684\u7B11'],
+  ['(\uFF65\u2200\uFF65)', 'spot-eye grin', '\u70B9\u773C\u7B11'],
+  ['(\uFF9F\u25BD\uFF9F)', 'blank stare', '\u5446\u6EDE'],
+  ['(\u00B0\u25BD\u00B0)', 'carefree', '\u65E0\u6240\u8C13'],
+  ['(\uFF61\u25BD\uFF61)', 'small squint', '\u5C0F\u54AA\u773C'],
+  ['(\uFF9F\u25B3\uFF9F)', 'mouth open', '\u5F20\u7740\u5634'],
+  ['(\u2299\u25BD\u2299)', 'wide-eyed delight', '\u7741\u5927\u773C'],
+  ['(\uFF9F\u0414\uFF9F)', 'furious', '\u6C14\u9F13\u9F13'],
+  ['(\u00B0\u0414\u00B0)', 'shocked', '\u60CA\u8BB6'],
+  ['(\uFF40\u0414\u00B4)', 'shouting', '\u5927\u558A'],
+  ['(\uFF9F\uFF65\u0414\uFF65\uFF9F)', 'cross, puffing', '\u751F\u95F7\u6C14'],
+  ['(\u0295\u03C9\u0294)', 'cat smile', '\u732B\u7B11'],
+  ['(\u0295\u0414\u0294)', 'cat, annoyed', '\u732B\u751F\u6C14'],
+  ['(\u2022\u1D25\u2022)', 'bear face', '\u718A\u8138'],
+  ['(\uFF61\u2022\u1D25\u2022\uFF61)', 'small bear face', '\u5C0F\u718A\u8138'],
+  ['(\u2299\u203F\u2299)', 'round bright eyes', '\u5706\u4EAE\u773C'],
+  ['(\uFF9F\u203F\uFF9F)', 'half-closed pleased', '\u534A\u95ED\u773C\u6EE1\u8DB3'],
+  ['(\uFFE3\u203F\uFFE3)', 'long-lashed pleased', '\u957F\u776B\u6BDB\u6EE1\u8DB3'],
+  ['(\u0E51\u203F\u0E51)', 'sparkling calm', '\u95EA\u95EA\u7684\u5E73\u9759'],
+  ['(\u2267\u203F\u2266)', 'squinting calm', '\u54AA\u773C\u5E73\u9759'],
+  ['\u0295(\u2267\u25BD\u2266)\u0294', 'cat, triumphant', '\u732B\u5F97\u610F'],
+  ['\uFF9F(\u2267\u25BD\u2266)\uFF9F', 'triumphant with hands up', '\u5F97\u610F\u4E3E\u624B'],
+  ['(\u2267\u25BD\u2266)\u30CE', 'triumphant waving', '\u5F97\u610F\u6325\u624B'],
+  ['\u2661(\u2299\u25BD\u2299)\u2661', 'delighted, hearts beside', '\u5F00\u5FC3\uFF0C\u4E24\u65C1\u7231\u5FC3'],
+  ['(\u2299\u25BD\u2299)\u266A', 'delighted humming', '\u5F00\u5FC3\u54FC\u6B4C'],
+  ['(\u2022\u1D25\u2022)\u266A', 'bear humming', '\u718A\u54FC\u6B4C'],
 ];
 
 // ---------------------------------------------------------------- categories and quotas
 const CATS = [
-  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 120 },
-  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 100 },
-  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 120 },
-  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 110 },
-  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 100 },
-  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 100 },
-  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 100 },
-  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 30 },
-  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 90 },
-  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 60 },
-  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 60 },
-  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 60 },
-  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 60 },
-  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 40 },
+  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 180 },
+  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 140 },
+  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 180 },
+  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 170 },
+  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 160 },
+  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 150 },
+  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 150 },
+  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 60 },
+  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 150 },
+  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 90 },
+  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 100 },
+  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 100 },
+  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 100 },
+  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 60 },
 ];
 
 // ---------------------------------------------------------------- collection
@@ -393,6 +458,10 @@ function add(face, feelEn, feelZh) {
   const round = [...face].filter((ch) => ch === '(' || ch === '\uFF08').length;
   const shut = [...face].filter((ch) => ch === ')' || ch === '\uFF09').length;
   if (round !== shut) return false;
+  // Fifth gate: the face has to be one the judge can see. 58 faces used to ship that `findKaomoji`
+  // could not see - Han inside a face, or a frame it does not know - so the palette and its checker
+  // disagreed, and using one of them earned a "you used no kaomoji" reminder.
+  if (findKaomoji(face).length === 0) return false;
   seen.add(face);
   out.push({ face, feel: feelEn, feelZh });
   return true;

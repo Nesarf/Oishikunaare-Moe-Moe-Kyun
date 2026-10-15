@@ -1315,6 +1315,26 @@ check('the emoji notice speaks the configured locale', () => {
   assert.ok(second.includes('#2'), 'a repeated reminder says which one it is');
 });
 
+// The palette and the checker must agree. A face the judge cannot see is worse than no face at all:
+// the rule points the model at the library, and a notice would then say it used none. 100 of 1150 faces
+// shipped blind before this - Han mouths, rounded and lenticular frames, and classic underscore faces.
+check('every shipped face is one the judge can see', () => {
+  const library = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const faces = library.categories.flatMap((c) => c.faces.map((f) => f.face));
+  const blind = faces.filter((face) => mod.findKaomoji(face).length === 0);
+  assert.deepEqual(blind, [], 'no shipped face may be invisible to the judge');
+  assert.ok(faces.length >= 1500, 'the expanded library carries at least 1500 faces, found ' + faces.length);
+});
+
+check('the judge knows the frames the library writes in', () => {
+  assert.deepEqual(mod.findKaomoji('done (o_o) ok'), ['(o_o)'], 'the underscore counts as a mark');
+  assert.deepEqual(mod.findKaomoji('look (see below) please'), [], 'an ordinary parenthetical is not a face');
+  assert.deepEqual(mod.findKaomoji('a (x) b'), [], 'a bare letter is not a face');
+  assert.deepEqual(mod.findKaomoji('nice \u256d^_^\u256e'), ['\u256d^_^\u256e'], 'a rounded frame counts');
+  assert.deepEqual(mod.findKaomoji('nice \u3010^_^\u3011'), ['\u3010^_^\u3011'], 'a lenticular frame counts');
+  assert.deepEqual(mod.findKaomoji('nice \u300c^_^\u300d'), ['\u300c^_^\u300d'], 'a corner-quote frame counts');
+  assert.deepEqual(mod.findKaomoji('note \u3010\u91cd\u8981\u3011 here'), [], 'Han inside is not a face');
+});
 check('the shipped library holds more than a thousand faces, all usable', () => {
   const library = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
   const faces = library.categories.flatMap((c) => c.faces.map((f) => f.face));

@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.16.0 - 2026-10-15
+
+- **The kaomoji library grew from 1150 to 1790 faces, and every one of them is now a face the judge can
+  see.** It shipped 100 blind entries before this: 36 carried a Han character (which the judge filters
+  out on purpose, so a bracketed Chinese phrase does not read as a face), 50 sat in rounded, lenticular
+  or corner-quote frames the judge did not know, and 14 were classic underscore faces like `(o_o)` and
+  `(X_X)` that the old inner-mark test rejected because `_` counts as a word character. Using one of
+  those earned a "you used no kaomoji" reminder - the palette contradicting its own checker.
+- So the two were made to agree, from both ends. The judge now knows five frame pairs - ASCII and
+  fullwidth parentheses, plus U+256D/U+256E, U+3010/U+3011 and U+300C/U+300D - and counts `_` as a mark;
+  the generator now **imports the judge** and refuses any face it cannot see, which is why the agreement
+  cannot drift again.
+- The five kanji mouths moved out of the axis for the same reason, and the eye, mouth, mark, arm and
+  classic lists were extended: 11 new eyes, 21 mouths, 28 hand-written classics. Quotas rose with the
+  candidate pools (1790 shipped from ~54,000 candidates, sampled evenly per category).
+- Two new cases: every shipped face is visible to `findKaomoji`, and the judge's five frames behave -
+  including that an ordinary parenthetical and a bracketed Han word are still not faces.
 ## 0.15.1 - 2026-10-15
 
 - **The emoji notice had the same stale escalation the other two had.** Its heading counted up

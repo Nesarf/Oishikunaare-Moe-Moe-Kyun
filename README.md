@@ -326,7 +326,10 @@ reusing one face until it reads as a tic. Labels exist in both languages: `feel`
 English rendering, `feelZh`/`useZh`/`labelZh` the Chinese one.
 
 To grow it, either edit `rules/kaomoji.json` or point `kaomojiLibrary` at your own file with the same
-shape:
+shape. The shipped file holds **1790 faces** across 14 moods, and one invariant is worth keeping if you
+extend it: **every face must be one the judge can see** (`findKaomoji`, the same reading the floor uses).
+The generator enforces that by importing the judge, and a test asserts it - because 100 entries used to
+ship blind, which turned "use a face from the palette" into "you used no kaomoji" for those faces.
 
 ```json
 {

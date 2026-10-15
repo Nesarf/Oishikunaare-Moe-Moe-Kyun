@@ -274,7 +274,10 @@ dsh plugin --profile web update github:Nesarf/Oishikunaare-Moe-Moe-Kyun
 而不是把同一个字形用到像抽动。标签两种语言都有：`feel`/`use`/`label` 是英文渲染，
 `feelZh`/`useZh`/`labelZh` 是中文渲染。
 
-要扩充，直接改 `rules/kaomoji.json`，或用 `kaomojiLibrary` 指向你自己的同形文件：
+要扩充，直接改 `rules/kaomoji.json`，或用 `kaomojiLibrary` 指向你自己的同形文件。
+随包那份是 **14 种情绪、1790 个字形**，扩充时有一条不变量值得守：**每个字形都必须是判据看得见的**
+（`findKaomoji`，与下限用的是同一套读数）。生成器靠**直接 import 判据**保证它，测试也钉住了 ——
+以前有 100 条是判据看不见的，于是「从库里挑一个」对它们来说等于「你没有用颜文字」：
 
 ```json
 {
