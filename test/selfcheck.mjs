@@ -730,6 +730,48 @@ check('the symbol steer asks for the reply again, in either locale', () => {
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 
+check('the symbol ladder notice reports accumulation, not repetition', () => {
+  const finding = { where: 'reasoning', glyphs: ['U+2713', 'U+2717', 'U+2705', 'U+274C', 'U+2611'] };
+  const zh = mod.symbolLadderNotice(finding, 137, 2, 'zh');
+  const en = mod.symbolLadderNotice(finding, 137, 2, 'en');
+  assert.ok(zh.includes('137') && en.includes('137'), 'both report the running total');
+  assert.ok(zh.includes('2') && en.includes('ladder reminder 2'), 'and which step of the ladder this is');
+  assert.ok(zh.includes(finding.glyphs[0]) && en.includes(finding.glyphs[0]), 'and name the code points');
+  assert.ok(zh.length < 400 && en.length < 400, 'short enough that the extra reminder stays cheap');
+  for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
+});
+
+check('the file steer asks for an edit, not for the turn again', () => {
+  const zh = mod.toolSteerNotice('write', ['U+2713'], 'zh');
+  const en = mod.toolSteerNotice('write', ['U+2713'], 'en');
+  assert.ok(en.includes('the file, not the reply'), 'en says what this one is about');
+  assert.ok(zh.includes('write') && en.includes('write'), 'both name the tool that carried it');
+  assert.ok(en.includes('Edit those few places'), 'and asks for the few places, not a rewrite');
+  for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'carrying no banned glyph itself');
+});
+
+check('a glyph written through a tool call is caught, and nothing else is', () => {
+  const bad = String.fromCodePoint(0x2713);
+  const authored = (parts) => [{ id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: parts }];
+  const call = (args, name = 'write') => ({ type: 'tool-call', id: 'c1', name, arguments: args });
+  const found = mod.findBannedInToolCalls(authored([call({ file_path: 'E:/x.md', content: 'done ' + bad })]));
+  assert.ok(found !== null, 'an argument carrying a glyph is a finding');
+  assert.equal(found.where, 'tool', 'and it is labelled as a tool call');
+  assert.equal(found.call, 'write', 'with the tool that carried it');
+  const asString = mod.findBannedInToolCalls(authored([call('{"content":"done ' + bad + '"}')]));
+  assert.ok(asString !== null, 'arguments that arrive as a string are read too');
+  assert.equal(mod.findBannedInToolCalls(authored([call({ pattern: 'U+2713' })])), null, 'an ASCII code point reference is not a breach');
+  assert.equal(mod.findBannedInToolCalls(authored([{ type: 'text', text: 'no call here' }])), null, 'a message without a call is not a finding');
+  assert.equal(mod.findBannedInToolCalls(authored([call({ content: 'clean' })])), null, 'nor is a clean argument');
+  assert.equal(mod.findBannedInToolCalls([{ id: 't1', role: 'tool', source: { kind: 'tool' }, content: [{ type: 'text', text: bad }] }]), null, 'what a tool printed is not the agent writing');
+  assert.equal(mod.findBannedInToolCalls([{ id: 'u1', role: 'user', source: { kind: 'user' }, content: [{ type: 'text', text: bad }] }]), null, 'nor is the user speaking');
+  assert.equal(mod.findBannedInToolCalls(null), null, 'and a missing transcript is not an error');
+  assert.equal(mod.findBannedInToolCalls([]), null, 'nor an empty one');
+  // Only the newest authored message: an older call has already been answered for.
+  const older = authored([call({ content: bad })]);
+  const newer = authored([{ type: 'text', text: 'nothing to see' }]);
+  assert.equal(mod.findBannedInToolCalls([...older, ...newer]), null, 'an older call is not re-judged');
+});
 check('the symbol steer decider is guarded on every side', () => {
   const bad = String.fromCodePoint(0x2713);
   const withGlyph = [{ id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'p', model: 'm' }, content: [{ type: 'reasoning', text: 'thought ' + bad }, { type: 'text', text: 'done' }] }];

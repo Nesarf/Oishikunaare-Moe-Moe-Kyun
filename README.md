@@ -390,6 +390,16 @@ edited.
   face-less.
 - The two levers share one per-turn record, so a single turn never pays for two extra steps: whichever
   fires first owns that turn.
+- Past the notice budget, the ladder keeps a long session honest: **`symbolLadder`** (default
+  `[10, 50, 200]`) is a list of totals at which a cumulative notice is sent even though the per-session
+  budget is spent, so the reminder becomes a function of how much has accumulated rather than of how many
+  times it has been said. `symbolLadder: []` turns it off and leaves the plain budget in charge. The
+  measurement is why it exists: one session's thinking reached 2230 of these code points while its last
+  notice had arrived long before.
+- The file half of the ban is judged through the tool call that writes it. A glyph inside a `tool-call`'s
+  `arguments` is a finding, and the turn-stop steer then asks for those few places to be edited rather
+  than for the turn to be redone. Fenced code is **not** exempt there - that is exactly what gets written
+  into a file - while a `U+XXXX` reference stays safe because it is ASCII.
 
 ### What each judge does with an exception, and how the strict one seeds itself
 

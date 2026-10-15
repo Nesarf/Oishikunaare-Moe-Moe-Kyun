@@ -382,6 +382,56 @@ check('the steer levers are on exactly as the config says', async () => {
   assert.equal(off.logs.some((l) => l.includes('steer on')), false, 'and nothing is logged about it');
 });
 
+check('the symbol ladder still speaks after the notice budget is spent', async () => {
+  const host = makeHost();
+  const home = tempHome({ locale: 'zh', kaomojiCheck: false, selfCheckMax: 1, symbolLadder: [2] });
+  mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const symbolNoticeOf = (decision) => (decision?.messages ?? []).find((m) => m?.content?.[0]?.text?.includes('OUTPUT SYMBOL')
+    || m?.content?.[0]?.text?.includes('\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B'));
+  const step = async (history) => {
+    const agent = { id: 'acc-ladder', ctx: { get: () => undefined }, session: { id: 'acc-ladder', deriveMessages: () => history } };
+    await host.emit('agent/created', { agent }, () => undefined);
+    return host.emit('agent/pre-step', { agent, messages: history }, enterWith(history));
+  };
+  try {
+    const first = [assistant('m1', [{ type: 'text', text: `done ${CHECK}` }])];
+    const one = symbolNoticeOf(await step(first));
+    assert.ok(one, 'the first breach gets a notice');
+    assert.equal(one.content[0].text.includes('\u7D2F\u8BA1'), false, 'the plain one, not the cumulative one');
+
+    const two = symbolNoticeOf(await step([...first, assistant('m2', [{ type: 'text', text: `again ${CHECK}` }])]));
+    assert.ok(two, 'and past the budget of 1, the ladder still speaks');
+    assert.ok(two.content[0].text.includes('\u7D2F\u8BA1'), 'as the cumulative notice');
+    assert.ok(two.content[0].text.includes('2'), 'reporting how much has accumulated');
+
+    const three = await step([...first, assistant('m2', [{ type: 'text', text: `again ${CHECK}` }])]);
+    assert.equal(symbolNoticeOf(three), undefined, 'and the same ladder step is never repeated');
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
+
+check('a glyph written through a tool call is steered at the file', async () => {
+  const host = makeHost();
+  const home = tempHome({ locale: 'en' });
+  mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
+  const bad = String.fromCodePoint(0x2713);
+  const conversation = [assistant('a1', [
+    { type: 'text', text: 'wrote the file' },
+    { type: 'tool-call', id: 'c1', name: 'write', arguments: { file_path: 'E:/x.md', content: 'done ' + bad } },
+  ])];
+  const steered = [];
+  const agent = { session: { id: 'acc-tool-steer', deriveMessages: () => conversation }, steer: (message) => steered.push(message) };
+  try {
+    await host.emit('agent/turn-stopping', { agent, turn: 3, signal: new AbortController().signal }, () => undefined);
+    assert.equal(steered.length, 1, 'the write is steered once');
+    assert.ok(steered[0].content[0].text.includes('the file, not the reply'), 'and it is the file steer, not the reply one');
+    assert.ok(steered[0].content[0].text.includes('write'), 'naming the tool that carried it');
+    assert.equal(mod.offendingGlyphs(steered[0].content[0].text).length, 0, 'without printing the glyph back');
+  } finally {
+    fs.rmSync(home, { recursive: true, force: true });
+  }
+});
 check('the steer lever keeps a bare turn open, once, within its budget', async () => {
   const host = makeHost();
   mod.apply(host.ctx, { home: tempHome({ locale: 'en', kaomojiSteer: true, kaomojiSteerMax: 1 }), shippedLibrary: SHIPPED });

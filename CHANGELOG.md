@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.20.0 - 2026-10-16
+
+- **The notice budget no longer ends the conversation about it: `symbolLadder` (default [10, 50, 200]).**
+  The budget exists so a determined run cannot loop on warning itself, and it works - but it also meant the
+  reminders stopped while the breaches did not: measured on this machine, one session's thinking reached
+  2230 judgement-mark code points and its last notice had arrived long before. A cumulative notice is now
+  sent when the session's total crosses a ladder step, even with the budget spent, so the reminder tracks
+  accumulation instead of repetition. The total stays bounded (budget plus ladder steps). `symbolLadder: []`
+  turns it off.
+- **The file half of the ban is judged now, through the tool call that writes it.** `findBannedInToolCalls`
+  reads a `tool-call`'s `arguments` in the newest authored message - the one place a write becomes visible -
+  and the turn-stop steer asks for those few places to be edited rather than for the turn to be redone.
+  Fenced code is deliberately *not* exempt in that judgement (it is exactly what lands in a file), while a
+  `U+XXXX` reference stays safe because it is ASCII. `channelLabel` learned a fourth label so a notice
+  never points at the wrong place.
+- Tests: the ladder notice in both locales (reports the total and the step, names the code points, carries
+  no banned glyph, stays under 400 characters), the file steer in both locales, the tool-call judge against
+  nine shapes (hit, string arguments, ASCII reference, no call, clean argument, a tool's own output, the
+  user speaking, a missing and an empty transcript, and an older call that is not re-judged), and two
+  acceptance cases: the ladder speaking after a budget of one is spent (and never repeating a step), and a
+  write carrying a glyph steered at the file.
+- Not changed: `authoredParts` still reads only text / thinking / reasoning, so the *spoken* channel judge
+  keeps its exemption for code and for code point references; the tool-call judgement is a separate reading
+  with its own rules.
 ## 0.19.0 - 2026-10-16
 
 - **The hard ban got the lever that acts before the turn closes: `symbolSteer` (default on).** The

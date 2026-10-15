@@ -997,6 +997,10 @@ export function findEmojiInMessages(messages, judgeOptions = {}) {
  * @returns {string} the label to print.
  */
 function channelLabel(where, locale) {
+  // A tool call is not a channel the agent speaks in, but its arguments are still its own words: what it
+  // writes into a file is authored text, and the rule covers files. It gets its own label so a notice
+  // never tells the reader to look at the wrong place.
+  if (where === 'tool') return locale === 'zh' ? '\u5DE5\u5177\u8C03\u7528\u7684\u53C2\u6570' : "a tool call's arguments";
   const thinking = where === 'thinking' || where === 'reasoning';
   if (locale === 'zh') return thinking ? '\u601D\u8003' : '\u6B63\u6587';
   return thinking ? 'thinking' : 'text';
@@ -1047,6 +1051,63 @@ export function findBannedInMessages(messages, judgeOptions = {}) {
       const key = `${message.id ?? index}:${part.kind}:${glyphs.join(',')}:${part.text.length}`;
       return { key, where: part.kind, glyphs };
     }
+  }
+  return null;
+}
+
+/**
+ * Serialize a tool call's arguments, so the file half of the ban can be judged.
+ *
+ * The rule covers files, but `authoredParts` deliberately reads only the three channels the model speaks
+ * in, so a glyph written into a file was never judged by anything. A tool call is the one place the write
+ * becomes visible: `arguments` is what the agent asked to be written.
+ * @param {object} part - a content part.
+ * @returns {string} the call's name and arguments as text, empty when there is nothing to read.
+ */
+function toolCallText(part) {
+  const args = part?.arguments;
+  let body = '';
+  if (typeof args === 'string') body = args;
+  else if (args && typeof args === 'object') {
+    try {
+      body = JSON.stringify(args);
+    } catch {
+      body = '';
+    }
+  }
+  const name = typeof part?.name === 'string' ? part.name : '';
+  return body === '' ? '' : `${name} ${body}`;
+}
+
+/**
+ * Find a banned glyph in the newest authored message's tool calls.
+ *
+ * Only the newest authored message is read, for the same reason the spoken-channel judge does it: an
+ * older call has already been answered for, and reminding about history is how a notice becomes noise.
+ * The judgement here does not exempt fenced code - exempting it would exempt exactly what gets written
+ * into a file - while a `U+XXXX` reference stays safe because it is ASCII.
+ * @param {unknown[]} messages - the conversation, oldest first.
+ * @param {object} [judgeOptions] - the judge configuration.
+ * @returns {{ key: string, where: string, glyphs: string[], call: string } | null} the finding, or null.
+ */
+export function findBannedInToolCalls(messages, judgeOptions = {}) {
+  if (!Array.isArray(messages)) return null;
+  for (let index = messages.length - 1; index >= 0; index--) {
+    const message = messages[index];
+    if (!message || typeof message !== 'object') continue;
+    if (!isAuthoredMessage(message)) continue;
+    if (!Array.isArray(message.content)) return null;
+    for (const part of message.content) {
+      if (!part || typeof part !== 'object' || part.type !== 'tool-call') continue;
+      const text = toolCallText(part);
+      if (text === '') continue;
+      const glyphs = judgeText(text, judgeOptions);
+      if (glyphs.length === 0) continue;
+      const call = typeof part.name === 'string' ? part.name : 'tool';
+      const id = part.id ?? message.id ?? 'call';
+      return { key: `${id}:tool:${glyphs.join(',')}:${text.length}`, where: 'tool', glyphs, call };
+    }
+    return null;
   }
   return null;
 }
@@ -1441,6 +1502,37 @@ export function newestBareReply(messages) {
  * @param {string} where - the channel the glyphs were in.
  * @returns {string} the steering text.
  */
+/**
+ * Compose the notice for a session that keeps carrying the glyphs after its notice budget is spent.
+ *
+ * The budget exists so a determined run cannot loop on warning itself, and it works - but it also means
+ * the reminders stop while the breaches do not. Measured on this machine: one session's thinking reached
+ * 2230 of these code points, and its last notice had arrived long before. A ladder fixes that by making
+ * the reminder a function of how much has accumulated rather than of how many times it was said: the
+ * total stays bounded (the budget plus the ladder), and a session that keeps going still hears about it.
+ * @param {{ where: string, glyphs: string[] }} finding - what was found this time.
+ * @param {number} tally - how many of these code points the session has carried in total.
+ * @param {number} tier - which ladder step this is.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @returns {string} the notice text.
+ */
+export function symbolLadderNotice(finding, tally, tier, locale) {
+  const list = Array.isArray(finding?.glyphs) ? finding.glyphs : [];
+  const shown = list.slice(0, 4).join(', ');
+  const named = list.length <= 4
+    ? ` (${shown})`
+    : locale === 'zh'
+      ? `\uFF08${shown} \u7B49 ${list.length} \u4E2A\uFF09`
+      : ` (${shown} and ${list.length - 4} more)`;
+  if (locale === 'zh') {
+    return `\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u00B7\u7D2F\u8BA1\u3011\u8FD9\u4E00\u4F1A\u8BDD\u91CC\u8FD9\u7C7B\u5B57\u5F62\u7D2F\u8BA1\u5DF2\u51FA\u73B0 ${tally} \u4E2A\uFF0C\u73B0\u5728\u662F\u7B2C ${tier} \u6863\u63D0\u9192${named}\u3002\u63A5\u4E0B\u6765\u7684\u8F93\u51FA\u8BF7\u6539\u7528\u7EAF\u6587\u5B57\u8868\u8FBE\uFF08\u901A\u8FC7 / \u4E0D\u901A\u8FC7\u3001\u6210\u529F / \u5931\u8D25\uFF09\uFF0C\u601D\u8003\u91CC\u540C\u6837\u4E0D\u8981\u7528\uFF1B\u5DF2\u7ECF\u5199\u8FDB\u53BB\u7684\u6539\u4E0D\u4E86\uFF0C\u80FD\u6539\u7684\u662F\u63A5\u4E0B\u6765\u7684\u3002\u672C\u63D0\u9192\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
+  }
+  return `OUTPUT SYMBOL DISCIPLINE - cumulative. This session has now carried ${tally} of these glyphs, and`
+    + ` this is ladder reminder ${tier}${named}. Write them as words from here on (pass / fail, works /`
+    + ' broken), in your thinking as well: what is already written stays, what comes next does not have to.'
+    + ' No reply to this reminder is needed.';
+}
+
 export function symbolSteerNotice(glyphs, locale, where = 'text') {
   const list = Array.isArray(glyphs) ? glyphs.join(', ') : '';
   const channel = channelLabel(where, locale);
@@ -1452,6 +1544,28 @@ export function symbolSteerNotice(glyphs, locale, where = 'text') {
     + ' (pass / fail, works / broken), and stop using them in your thinking from here as well - what is'
     + ' already written cannot be changed, what comes next can. Do not add new explanation and do not'
     + ' repeat yourself.';
+}
+
+/**
+ * Compose the steering message for a tool call that wrote a banned glyph somewhere.
+ *
+ * Different from the reply steer in what it can ask for: the reply is still being written, the file is
+ * already on disk. So this asks for the file to be edited rather than for the turn to be redone, and it
+ * says which few places - a whole-file rewrite would cost more than the mistake.
+ * @param {string} call - the tool that carried the glyphs.
+ * @param {string[]} glyphs - the code points found, named and never printed.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @returns {string} the steering text.
+ */
+export function toolSteerNotice(call, glyphs, locale) {
+  const list = Array.isArray(glyphs) ? glyphs.join(', ') : '';
+  const name = typeof call === 'string' && call !== '' ? call : 'tool';
+  if (locale === 'zh') {
+    return `\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u00B7\u6587\u4EF6\u3011\u521A\u624D\u90A3\u6B21\u5DE5\u5177\u8C03\u7528\uFF08${name}\uFF09\u7684\u53C2\u6570\u91CC\u6709\u5BF9\u9519\u6807\u8BB0\u7C7B\u5B57\u5F62\uFF08${list}\uFF09\u3002\u8BF7\u7528\u7F16\u8F91\u5DE5\u5177\u628A\u5DF2\u7ECF\u5199\u4E0B\u53BB\u7684\u90A3\u51E0\u4E2A\u5B57\u5F62\u6539\u6210\u6587\u5B57\uFF08\u901A\u8FC7 / \u4E0D\u901A\u8FC7\u3001\u6210\u529F / \u5931\u8D25\uFF09\uFF0C\u53EA\u6539\u90A3\u51E0\u5904\uFF0C\u4E0D\u8981\u91CD\u5199\u6574\u4EFD\u6587\u4EF6\uFF0C\u4E5F\u4E0D\u8981\u91CD\u590D\u81EA\u5DF1\u3002`;
+  }
+  return `OUTPUT SYMBOL DISCIPLINE - the file, not the reply. The tool call you just made (${name}) carries`
+    + ` judgement-mark glyphs in its arguments (${list}). Edit those few places and write them as words`
+    + ' (pass / fail, works / broken); do not rewrite the whole file and do not repeat yourself.';
 }
 
 /**
@@ -1477,8 +1591,9 @@ export function makeSymbolSteerDecider(options) {
       if (!agent || typeof agent.steer !== 'function') return null;
       const messages = typeof agent.session?.deriveMessages === 'function' ? agent.session.deriveMessages() : null;
       if (!Array.isArray(messages) || messages.length === 0) return null;
-      const finding = findBannedInMessages(messages, state.judge);
-      if (finding === null) return null;
+      const spoken = findBannedInMessages(messages, state.judge);
+      const written = spoken === null ? findBannedInToolCalls(messages, state.judge) : null;
+      if (spoken === null && written === null) return null;
       const sessionId = agent.session?.id ?? 'unknown';
       const turn = Number.isFinite(input.turn) ? input.turn : -1;
       if (perTurn.get(sessionId) === turn) return null;
@@ -1486,7 +1601,9 @@ export function makeSymbolSteerDecider(options) {
       if (used >= max) return null;
       perTurn.set(sessionId, turn);
       perSession.set(sessionId, used + 1);
-      return symbolSteerNotice(finding.glyphs, state.locale, finding.where);
+      // The reply can still be rewritten; a file that was already written has to be edited instead.
+      if (spoken !== null) return symbolSteerNotice(spoken.glyphs, state.locale, spoken.where);
+      return toolSteerNotice(written.call, written.glyphs, state.locale);
     } catch (error) {
       options.warn?.(`symbol steer check failed: ${error?.message ?? error}`);
       return null;
@@ -1872,6 +1989,14 @@ export function observedMessages(input, decision) {
 export function makeSelfCheckHook(options) {
   const notified = new Set();
   const counts = new Map();
+  // The ladder: how much has accumulated, and how far up it the session has already been told about.
+  // Kept apart from `counts` on purpose - the budget and the ladder are two different reasons to speak,
+  // and letting the ladder spend the budget would make a long session quieter, not louder.
+  const tallies = new Map();
+  const reportedTiers = new Map();
+  const ladder = Array.isArray(options.ladder)
+    ? options.ladder.filter((value) => Number.isFinite(value) && value > 0).map((value) => Math.floor(value)).sort((a, b) => a - b)
+    : [];
   const kaomojiCounts = new Map();
   const kaomojiRunCounts = new Map();
   const languageCounts = new Map();
@@ -1910,21 +2035,29 @@ export function makeSelfCheckHook(options) {
 
       // The symbol rule: a breach is a glyph, which is mechanical, and it has the larger budget.
       const finding = findBannedInMessages(messages, state.judge);
-      if (finding && !notified.has(finding.key)) {
+      if (finding) {
+        // The same finding is looked at again on every step while it is the newest thing in the
+        // conversation, so it is counted once and then only consulted for the ladder.
+        const first = !notified.has(finding.key);
+        if (first) notified.add(finding.key);
+        const tally = (tallies.get(sessionId) ?? 0) + (first ? finding.glyphs.length : 0);
+        if (first) tallies.set(sessionId, tally);
         const used = counts.get(sessionId) ?? 0;
-        if (used >= options.max) {
-          if (!notified.has(`suppressed:${sessionId}`)) {
-            notified.add(`suppressed:${sessionId}`);
-            options.log?.(`session ${sessionId}: ${options.max} symbol notice(s) already sent, further breaches logged only`);
-          }
-        } else {
-          notified.add(finding.key);
+        const step = ladder.findIndex((threshold, index) => index >= (reportedTiers.get(sessionId) ?? 0) && tally >= threshold);
+        if (first && used < options.max) {
           counts.set(sessionId, used + 1);
           notices.push(selfCheckNotice(finding, state.locale, {
             attempt: used + 1,
             exclusion: state.judge?.exclusion ?? '',
           }));
           options.log?.(`session ${sessionId}: symbol notice ${used + 1}/${options.max} for ${finding.glyphs.join(', ')} in ${finding.where}`);
+        } else if (step >= 0) {
+          reportedTiers.set(sessionId, step + 1);
+          notices.push(symbolLadderNotice(finding, tally, step + 1, state.locale));
+          options.log?.(`session ${sessionId}: symbol ladder ${step + 1} at ${tally} code point(s) in total`);
+        } else if (used >= options.max && !notified.has(`suppressed:${sessionId}`)) {
+          notified.add(`suppressed:${sessionId}`);
+          options.log?.(`session ${sessionId}: ${options.max} symbol notice(s) already sent, further breaches logged only`);
         }
       }
 
@@ -2207,6 +2340,11 @@ export function apply(ctx, config) {
     });
     const hook = makeSelfCheckHook({
       max,
+      // The ladder keeps a long session from going quiet while the breaches continue; `symbolLadder: []`
+      // turns it off and leaves the plain budget in charge.
+      ladder: Array.isArray(initial.symbolLadder)
+        ? initial.symbolLadder
+        : [10, 50, 200],
       kaomoji: initial.kaomojiCheck !== false,
       kaomojiFloor: typeof initial.kaomojiFloor === 'number' ? initial.kaomojiFloor : 3,
       kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 5,
