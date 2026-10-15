@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.18.2 - 2026-10-16
+
+- **NOTICE no longer names the SPDX identifier**, matching the licensor's instruction and the kit's own
+  change: `E:\CZGD\spdx\` (the submission package) is gone, and its README now says the submission is
+  not urgent. The licence is still named in prose, and the authoritative text's hash is unchanged
+  (`f551b95f...`), so nothing about the grant moved.
+- Repository topics gained the two the kit asks for: `czgd-pl-1-0` and `custom-license`.
 ## 0.18.1 - 2026-10-16
 
 - **The SPDX identifier is out again, at the licensor's request.** 0.18.0 added
