@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.20.1 - 2026-10-16
+
+- **The session audit reads every channel the ban covers now, and counts exemptions by position.** It used
+  to read prose only and say so ("ignoring tool calls and the reasoning channel"), which made it agree with
+  a version of the ban that no longer exists. On one real session it reported 75 code points in prose and
+  nothing else, while that same session carried 2255 in the thinking channel and 3 written through a tool
+  call. It reports per channel now (prose / quoted / thinking / written), and the kaomoji floor verdict
+  stays a prose property so thinking cannot dilute it.
+- A defect in the same reading, found while wiring the test: exemptions were collected as a set of
+  *characters*, so one fenced block containing a glyph exempted every occurrence of that glyph in the whole
+  text. They are counted as *positions* now, which is what the rule is about.
+- `scripts/audit-session.mjs` is importable (its main path is guarded) so the reading itself is under test:
+  one case builds a part per channel and asserts the five totals, the prose-only floor, and that a bare
+  string is still read as prose.
 ## 0.20.0 - 2026-10-16
 
 - **The notice budget no longer ends the conversation about it: `symbolLadder` (default [10, 50, 200]).**

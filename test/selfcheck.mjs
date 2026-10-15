@@ -730,6 +730,29 @@ check('the symbol steer asks for the reply again, in either locale', () => {
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 
+check('the session audit reads every channel the judge reads', async () => {
+  // It used to read prose only and say so ("ignoring tool calls and the reasoning channel"). Measured on
+  // this machine, almost all of these code points live in the thinking channel, so that reading reported
+  // a reassuring zero. This is the assertion that keeps the audit and the ban describing one system.
+  const auditMod = await import(new URL('../scripts/audit-session.mjs', import.meta.url).href);
+  const bad = String.fromCodePoint(0x2713);
+  const report = auditMod.audit([
+    { channel: 'text', text: 'done ' + bad + ' and `' + bad + '` in code' },
+    { channel: 'thinking', text: 'thought ' + bad + ' ' + bad },
+    { channel: 'tool', text: '{"content":"wrote ' + bad + '"}' },
+  ]);
+  assert.equal(report.bannedInProse, 1, 'prose outside code is counted');
+  assert.equal(report.bannedQuoted, 1, 'code inside prose is counted apart');
+  assert.equal(report.bannedInThinking, 2, 'the thinking channel is read');
+  assert.equal(report.bannedWritten, 1, 'and so is what a tool was asked to write');
+  assert.equal(report.messages, 1, 'only prose carries the kaomoji floor');
+  assert.equal(report.parts, 3, 'while every authored part is read');
+  assert.equal(report.rows[1].meetsFloor, null, 'a part that is not prose has no floor verdict');
+  assert.equal(report.rows[0].sentences > 0, true, 'and prose still gets its sentence estimate');
+  assert.equal(report.rows[1].sentences, 0, 'while thinking is not counted as prose sentences');
+  assert.equal(auditMod.audit(['plain ' + bad]).bannedInProse, 1, 'a bare string is still read as prose');
+  assert.equal(auditMod.audit([]).parts, 0, 'and an empty read is not an error');
+});
 check('the symbol ladder notice reports accumulation, not repetition', () => {
   const finding = { where: 'reasoning', glyphs: ['U+2713', 'U+2717', 'U+2705', 'U+274C', 'U+2611'] };
   const zh = mod.symbolLadderNotice(finding, 137, 2, 'zh');

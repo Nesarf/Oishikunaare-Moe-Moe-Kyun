@@ -9,9 +9,15 @@
  * `{ type, seq, time, data }` with assistant text under `data.message.content[]`. Frames that fail to
  * decode (a torn tail) are counted, never guessed.
  *
- * Reported per assistant message: sentence estimate, kaomoji count, code points the ban names, and
- * how many of those sat inside code or inline code (where the rule exempts them). The totals say
- * whether the kaomoji floor is being met and whether a banned glyph ever reached prose.
+ * Reported per part the agent authored: prose and thinking separately, plus the arguments it handed to a
+ * tool - the only place a write into a file becomes visible - with a sentence estimate and kaomoji count
+ * for prose (the floor is a prose rule and thinking must not dilute it). The totals say whether the
+ * kaomoji floor is being met, and how many banned code points reached prose, thinking, or a file.
+ *
+ * This read used to take only `text` and say so: "ignoring tool calls and the reasoning channel". That
+ * made it agree with a version of the ban that no longer exists - measured on this machine, the
+ * overwhelming majority of these code points appear in the thinking channel, so an audit that skipped it
+ * reported a number that looked reassuring and was wrong.
  *
  * Usage:
  *   node scripts/audit-session.mjs                       # newest session of this workspace
@@ -44,11 +50,19 @@ const sentenceCount = (text) => mod.proseSentences(mod.proseOnly(text));
 /** Face detection comes from the plugin for the same reason. */
 const kaomojiOf = (text) => mod.findKaomoji(mod.proseOnly(text));
 
-/** Where the ban does not reach: fenced code and inline code. */
-function exemptions(text) {
-  const fenced = text.match(/```[\s\S]*?```/g) ?? [];
-  const inline = text.match(/`[^`\n]*`/g) ?? [];
-  return { fenced, inline };
+/**
+ * Where the ban does not reach: fenced code and inline code - by position, not by character.
+ *
+ * The first version collected the *characters* that appeared inside code into a set, which exempts every
+ * occurrence of those characters anywhere in the text: one fenced block containing an x made every x in
+ * the paragraph exempt. Positions are what the rule is about, so positions are what this returns.
+ */
+function exemptOffsets(text) {
+  const skip = new Set();
+  for (const match of text.matchAll(/```[\s\S]*?```|`[^`\n]*`/g)) {
+    for (let i = match.index; i < match.index + match[0].length; i++) skip.add(i);
+  }
+  return skip;
 }
 
 /** Decode every frame of a session log into records. */
@@ -95,75 +109,115 @@ function newestSession() {
   return candidates[0]?.file ?? null;
 }
 
-/** Pull the assistant's own text out of a record, ignoring tool calls and the reasoning channel. */
-function assistantTexts(records) {
+/**
+ * Every channel the agent authored, in the shape the judge reads them.
+ *
+ * `text` and `thinking` are the two the hook judges; `tool` is the arguments of a tool call, which is
+ * where a glyph written into a file shows up and the only place it can be seen at all.
+ */
+function assistantParts(records) {
   const out = [];
   for (const record of records) {
     if (record?.type !== 'assistant/message') continue;
     const content = record.data?.message?.content;
     if (!Array.isArray(content)) continue;
     for (const part of content) {
-      if (part?.type === 'text' && typeof part.text === 'string' && part.text.trim() !== '') out.push(part.text);
+      if (part?.type === 'text' && typeof part.text === 'string' && part.text.trim() !== '') {
+        out.push({ channel: 'text', text: part.text });
+      } else if ((part?.type === 'thinking' || part?.type === 'reasoning')
+        && typeof part.text === 'string' && part.text.trim() !== '') {
+        out.push({ channel: 'thinking', text: part.text });
+      } else if (part?.type === 'tool-call') {
+        const args = part.arguments;
+        const body = typeof args === 'string'
+          ? args
+          : args && typeof args === 'object'
+            ? (() => { try { return JSON.stringify(args); } catch { return ''; } })()
+            : '';
+        if (body !== '') out.push({ channel: 'tool', text: body });
+      }
     }
   }
   return out;
 }
 
-export function audit(texts) {
-  const rows = texts.map((text) => {
-    const { fenced, inline } = exemptions(text);
-    const exempt = new Set([...fenced, ...inline].flatMap((chunk) => [...chunk]));
-    const hits = [...text].filter((ch) => bannedCodes.has(ch.codePointAt(0)));
-    const prose = hits.filter((ch) => !exempt.has(ch));
-    const sentences = sentenceCount(text);
-    const faces = kaomojiOf(text);
+/** A plain string is prose: the shape this function accepted before thinking and tool calls were read. */
+const asPart = (entry) => (typeof entry === 'string' ? { channel: 'text', text: entry } : entry);
+
+export function audit(entries) {
+  const parts = (Array.isArray(entries) ? entries : []).map(asPart).filter((p) => p && typeof p.text === 'string');
+  const rows = parts.map(({ channel, text }) => {
+    const prose = channel === 'text';
+    const skip = exemptOffsets(text);
+    const hits = [...text.matchAll(/./gu)]
+      .map((match) => ({ cp: match[0].codePointAt(0), index: match.index }))
+      .filter((hit) => bannedCodes.has(hit.cp));
+    // A tool argument is what gets written into a file, so nothing in it is "quoted by accident": the
+    // plugin's tool-call reading does not exempt fenced code either, because that is what lands in the
+    // file. Prose and thinking keep the exemption, exactly as the hook judges them.
+    const outside = channel === 'tool' ? hits : hits.filter((hit) => !skip.has(hit.index));
+    const sentences = prose ? sentenceCount(text) : 0;
+    const faces = prose ? kaomojiOf(text) : [];
     return {
+      channel,
       sentences,
       kaomoji: faces.length,
       perKaomoji: faces.length === 0 ? null : Number((sentences / faces.length).toFixed(1)),
       need: Math.ceil(sentences / 5),
-      meetsFloor: faces.length >= Math.ceil(sentences / 5),
-      bannedInProse: prose.length,
-      bannedQuoted: hits.length - prose.length,
-      codes: [...new Set(hits.map((ch) => 'U+' + ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')))],
+      meetsFloor: prose ? faces.length >= Math.ceil(sentences / 5) : null,
+      bannedInProse: outside.length,
+      bannedQuoted: hits.length - outside.length,
+      codes: [...new Set(hits.map((hit) => 'U+' + hit.cp.toString(16).toUpperCase().padStart(4, '0')))],
     };
   });
-  const sum = (key) => rows.reduce((n, r) => n + r[key], 0);
+  const sum = (key) => rows.reduce((n, r) => n + (r[key] ?? 0), 0);
+  const inChannel = (channel) => rows.filter((r) => r.channel === channel);
+  const proseRows = inChannel('text');
+  const overChannel = (channel, key) => inChannel(channel).reduce((n, r) => n + (r[key] ?? 0), 0);
   return {
-    messages: rows.length,
+    messages: proseRows.length,
+    parts: rows.length,
     sentences: sum('sentences'),
     kaomoji: sum('kaomoji'),
     perKaomoji: sum('kaomoji') === 0 ? null : Number((sum('sentences') / sum('kaomoji')).toFixed(1)),
-    floorMet: rows.filter((r) => r.meetsFloor).length,
-    bannedInProse: sum('bannedInProse'),
-    bannedQuoted: sum('bannedQuoted'),
+    floorMet: proseRows.filter((r) => r.meetsFloor).length,
+    bannedInProse: overChannel('text', 'bannedInProse'),
+    bannedQuoted: overChannel('text', 'bannedQuoted'),
+    bannedInThinking: overChannel('thinking', 'bannedInProse'),
+    bannedWritten: overChannel('tool', 'bannedInProse'),
     rows,
   };
 }
 
-const args = process.argv.slice(2);
-const asJson = args.includes('--json');
-const named = args.find((a) => !a.startsWith('--'));
-const file = named ? path.resolve(named) : newestSession();
-if (!file || !fs.existsSync(file)) {
-  console.error('audit-session: no session log found (pass one explicitly)');
-  process.exit(2);
+function main() {
+  const args = process.argv.slice(2);
+  const asJson = args.includes('--json');
+  const named = args.find((a) => !a.startsWith('--'));
+  const file = named ? path.resolve(named) : newestSession();
+  if (!file || !fs.existsSync(file)) {
+    console.error('audit-session: no session log found (pass one explicitly)');
+    process.exit(2);
+  }
+  const { records, frames, torn } = readRecords(file);
+  const report = audit(assistantParts(records));
+  if (asJson) {
+    console.log(JSON.stringify({ file, frames, torn, ...report }, null, 2));
+    process.exit(0);
+  }
+  console.log(`session: ${file}`);
+  console.log(`frames: ${frames} (unreadable: ${torn})   parts read: ${report.parts} (${report.messages} of them prose)`);
+  console.log('');
+  console.log('  channel   sentences  kaomoji  per  floor  banned(prose)  banned(quoted)');
+  for (const row of report.rows.slice(-14)) {
+    console.log(`  ${row.channel.padEnd(9)}  ${String(row.sentences).padStart(9)}  ${String(row.kaomoji).padStart(7)}  ${String(row.perKaomoji ?? '-').padStart(3)}  ${String(row.meetsFloor === null ? '-' : row.meetsFloor ? 'yes' : 'NO ').padStart(5)}  ${String(row.bannedInProse).padStart(13)}  ${String(row.bannedQuoted).padStart(14)}`);
+  }
+  console.log('');
+  console.log(`total: ${report.sentences} sentences / ${report.kaomoji} kaomoji -> one per ${report.perKaomoji ?? 'n/a'} sentences (floor: five)`);
+  console.log(`       floor met in ${report.floorMet}/${report.messages} prose part(s)`);
+  console.log(`       banned code points: ${report.bannedInProse} in prose, ${report.bannedQuoted} inside quoted code,`);
+  console.log(`                           ${report.bannedInThinking} in thinking, ${report.bannedWritten} written through a tool call`);
 }
-const { records, frames, torn } = readRecords(file);
-const texts = assistantTexts(records);
-const report = audit(texts);
-if (asJson) {
-  console.log(JSON.stringify({ file, frames, torn, ...report }, null, 2));
-  process.exit(0);
-}
-console.log(`session: ${file}`);
-console.log(`frames: ${frames} (unreadable: ${torn})   assistant messages: ${report.messages}`);
-console.log('');
-console.log('  sentences  kaomoji  per  floor  banned(prose)  banned(quoted)');
-for (const row of report.rows.slice(-14)) {
-  console.log(`  ${String(row.sentences).padStart(9)}  ${String(row.kaomoji).padStart(7)}  ${String(row.perKaomoji ?? '-').padStart(3)}  ${(row.meetsFloor ? 'yes' : 'NO ').padStart(5)}  ${String(row.bannedInProse).padStart(13)}  ${String(row.bannedQuoted).padStart(14)}`);
-}
-console.log('');
-console.log(`total: ${report.sentences} sentences / ${report.kaomoji} kaomoji -> one per ${report.perKaomoji ?? 'n/a'} sentences (floor: five)`);
-console.log(`       floor met in ${report.floorMet}/${report.messages} messages`);
-console.log(`       banned code points: ${report.bannedInProse} in prose, ${report.bannedQuoted} inside quoted code`);
+
+// Importable for tests: the reading above is the part worth checking, and it should not drag a session
+// log and an exit code along with it.
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) main();

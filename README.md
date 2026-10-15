@@ -518,9 +518,12 @@ npm run audit:session                # newest session of this workspace
 npm run audit:session -- --json      # machine-readable
 ```
 
-It decodes a DSH session log frame by frame and reports, per assistant message, the prose sentences, the
-faces, and how many banned code points landed in prose versus inside quoted code. It measures with the
-plugin own prose and face detection, so the audit and the hook cannot disagree.
+It decodes a DSH session log frame by frame and reports, per authored part, the channel it came from:
+prose sentences and faces for prose (the floor is a prose rule, and thinking must not dilute it), and how
+many banned code points landed in prose, inside quoted code, in the thinking channel, or in a tool call's
+arguments - the last being the only place a glyph written into a file can be seen at all. It measures with
+the plugin's own prose and face detection, and its exemptions are counted by position rather than by
+character, so the audit and the hook describe one system.
 ### Two checks, in two files
 
 - `test/selfcheck.mjs` calls the exported functions directly: the logic, the rules, the library.
