@@ -1,0 +1,316 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - classic",
+  "version": 4,
+  "note": "the shapes everyone recognizes. One mood of the library, split out so a reader can take a single mood instead of the whole 300 KB file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "classic",
+      "label": "classic faces",
+      "labelZh": "经典字形",
+      "use": "the shapes everyone recognizes",
+      "useZh": "大家都认得的形状",
+      "faces": [
+        {
+          "face": "(｡｡｡)",
+          "feel": "speechless",
+          "feelZh": "无语"
+        },
+        {
+          "face": "(≧▽≦)",
+          "feel": "triumphant squint",
+          "feelZh": "得意"
+        },
+        {
+          "face": "(ﾟ･ﾟ)",
+          "feel": "flat stare",
+          "feelZh": "面无表情"
+        },
+        {
+          "face": "(๑˃ᴗ˂๑)",
+          "feel": "wide beaming",
+          "feelZh": "满脸发光"
+        },
+        {
+          "face": "(๑˃ᴗ˂๑)ฅ",
+          "feel": "wide beaming with a hand",
+          "feelZh": "发光加一只手"
+        },
+        {
+          "face": "(｡ﾟ｡)",
+          "feel": "small flat",
+          "feelZh": "小巧的面无表情"
+        },
+        {
+          "face": "(´･ω･`)",
+          "feel": "sleepy smile",
+          "feelZh": "困困的笑"
+        },
+        {
+          "face": "(*´ω`*)",
+          "feel": "cozy",
+          "feelZh": "舒服"
+        },
+        {
+          "face": "(*´∀`*)",
+          "feel": "bright grin",
+          "feelZh": "开心咧嘴"
+        },
+        {
+          "face": "(ง ะ ง)",
+          "feel": "stare",
+          "feelZh": "盯着"
+        },
+        {
+          "face": "ﾟ(ﾟДﾟ)ﾟ",
+          "feel": "stiff with hands up",
+          "feelZh": "僵着举手"
+        },
+        {
+          "face": "ﾟ(ﾟ･ﾟ)ﾟ",
+          "feel": "half hearted hands up",
+          "feelZh": "半心举手"
+        },
+        {
+          "face": "(｡•̀ᴥ•́｡)",
+          "feel": "soft sparkle eyes",
+          "feelZh": "软软的眼睛"
+        },
+        {
+          "face": "Σ(｡Д｡)",
+          "feel": "startled sideways",
+          "feelZh": "侧身一惊"
+        },
+        {
+          "face": "(｡Д｡;)",
+          "feel": "startled",
+          "feelZh": "一惊"
+        },
+        {
+          "face": "(｡ﾟ｡;)",
+          "feel": "startled and flat",
+          "feelZh": "一惊而面瘫"
+        },
+        {
+          "face": "ﾟ(ﾟ･ﾟ)ﾟ♥",
+          "feel": "reluctant affection",
+          "feelZh": "勉强的心"
+        },
+        {
+          "face": "(´▽`)",
+          "feel": "sheepish",
+          "feelZh": "不好意思"
+        },
+        {
+          "face": "(`▽´)",
+          "feel": "sheepish, reversed",
+          "feelZh": "不好意思，反向"
+        },
+        {
+          "face": "(´ﾟ`)",
+          "feel": "relieved",
+          "feelZh": "松了口气"
+        },
+        {
+          "face": "(￣•ﾟ•￣)",
+          "feel": "wide relieved",
+          "feelZh": "放大版的松口气"
+        },
+        {
+          "face": "(｡Д｡)ﾉ",
+          "feel": "flat and pushing back",
+          "feelZh": "面瘫着推开"
+        },
+        {
+          "face": "ﾉ(´Д`)",
+          "feel": "pushing back with both hands",
+          "feelZh": "两只手推开"
+        },
+        {
+          "face": "ﾉ(｡ﾟ｡)ﾇ",
+          "feel": "shrugging",
+          "feelZh": "耸肩"
+        },
+        {
+          "face": "(≧Д≦)",
+          "feel": "swagger",
+          "feelZh": "嚣张"
+        },
+        {
+          "face": "ﾟ(≧Д≦)ﾟ",
+          "feel": "swagger with hands up",
+          "feelZh": "嚣张举手"
+        },
+        {
+          "face": "(๑´ᴗ`๑)",
+          "feel": "sweet",
+          "feelZh": "甜甜的"
+        },
+        {
+          "face": "(๑´ᴗ`๑)ฅ",
+          "feel": "sweet with a hand",
+          "feelZh": "甜甜的，加一只手"
+        },
+        {
+          "face": "(๑˃ᴗ˂๑)ฅฅ",
+          "feel": "sweet with both hands",
+          "feelZh": "甜甜的，两只手"
+        },
+        {
+          "face": "ヽ(´ω`)ノ",
+          "feel": "greeting",
+          "feelZh": "打招呼"
+        },
+        {
+          "face": "゜｡ﾟ(つﾟ｡)ﾟ",
+          "feel": "shy paws",
+          "feelZh": "害羞的爪子"
+        },
+        {
+          "face": "(ง･ﾟ･)ง",
+          "feel": "paws up",
+          "feelZh": "两只爪"
+        },
+        {
+          "face": "♡(｡ﾟ｡)♡",
+          "feel": "surrounded by hearts",
+          "feelZh": "两旁是爱心"
+        },
+        {
+          "face": "(・∀・)♪",
+          "feel": "humming",
+          "feelZh": "哼着歌"
+        },
+        {
+          "face": "ﾟ(･∀･)ﾟ",
+          "feel": "content with hands up",
+          "feelZh": "满足地举手"
+        },
+        {
+          "face": "(｡´ω`｡)",
+          "feel": "small cozy",
+          "feelZh": "小小的舒服"
+        },
+        {
+          "face": "ﾟ(´ﾟ`)ﾟ",
+          "feel": "hands up, relieved",
+          "feelZh": "举手，松口气"
+        },
+        {
+          "face": "(｡・ﾟ・｡)",
+          "feel": "blank",
+          "feelZh": "空白"
+        },
+        {
+          "face": "(´･ﾟ･`)",
+          "feel": "sleepy",
+          "feelZh": "困"
+        },
+        {
+          "face": "ﾟ(･Д･)ﾟ",
+          "feel": "stiff and flat",
+          "feelZh": "僵着，面瘫"
+        },
+        {
+          "face": "ง(｡ﾟ｡)ง",
+          "feel": "paws up, flat",
+          "feelZh": "两只爪，面瘫"
+        },
+        {
+          "face": "(｡ﾟ｡)ﾉ",
+          "feel": "pushing back, flat",
+          "feelZh": "面瘫推开"
+        },
+        {
+          "face": "ﾟ(´ﾟ`)ﾟ♥",
+          "feel": "affectionate hands up",
+          "feelZh": "亲昵地举手"
+        },
+        {
+          "face": "(｡ﾟ｡)ノ",
+          "feel": "flat pushing away",
+          "feelZh": "面瘫推开"
+        },
+        {
+          "face": "(｡Д｡)ノ",
+          "feel": "startled pushing away",
+          "feelZh": "一惊推开"
+        },
+        {
+          "face": "ﾟ(｡Д｡)ﾟ",
+          "feel": "startled with hands up",
+          "feelZh": "一惊举手"
+        },
+        {
+          "face": "(≧∀≦)",
+          "feel": "squinting grin",
+          "feelZh": "咪眼笑"
+        },
+        {
+          "face": "(｀∀´)",
+          "feel": "smug grin",
+          "feelZh": "得意的笑"
+        },
+        {
+          "face": "(｀Д´)",
+          "feel": "shouting",
+          "feelZh": "大喊"
+        },
+        {
+          "face": "(ﾟ･Д･ﾟ)",
+          "feel": "cross, puffing",
+          "feelZh": "生闷气"
+        },
+        {
+          "face": "(ʕДʔ)",
+          "feel": "cat, annoyed",
+          "feelZh": "猫生气"
+        },
+        {
+          "face": "(•ᴥ•)",
+          "feel": "bear face",
+          "feelZh": "熊脸"
+        },
+        {
+          "face": "(｡•ᴥ•｡)",
+          "feel": "small bear face",
+          "feelZh": "小熊脸"
+        },
+        {
+          "face": "(๑‿๑)",
+          "feel": "sparkling calm",
+          "feelZh": "闪闪的平静"
+        },
+        {
+          "face": "(≧‿≦)",
+          "feel": "squinting calm",
+          "feelZh": "咪眼平静"
+        },
+        {
+          "face": "ʕ(≧▽≦)ʔ",
+          "feel": "cat, triumphant",
+          "feelZh": "猫得意"
+        },
+        {
+          "face": "ﾟ(≧▽≦)ﾟ",
+          "feel": "triumphant with hands up",
+          "feelZh": "得意举手"
+        },
+        {
+          "face": "(≧▽≦)ノ",
+          "feel": "triumphant waving",
+          "feelZh": "得意挥手"
+        },
+        {
+          "face": "♡(⊙▽⊙)♡",
+          "feel": "delighted, hearts beside",
+          "feelZh": "开心，两旁爱心"
+        },
+        {
+          "face": "(⊙▽⊙)♪",
+          "feel": "delighted humming",
+          "feelZh": "开心哼歌"
+        }
+      ]
+    }
+  ]
+}

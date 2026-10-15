@@ -1326,6 +1326,28 @@ check('every shipped face is one the judge can see', () => {
   assert.ok(faces.length >= 1500, 'the expanded library carries at least 1500 faces, found ' + faces.length);
 });
 
+// The library is 300 KB and the prompt invites a reader to consult it, so the same faces ship one mood
+// per file as well: the read that costs nothing is a single mood, and the whole file is still there.
+check('the library also ships one file per mood, and they add up', () => {
+  const library = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const dir = path.join(path.dirname(SHIPPED), 'kaomoji');
+  assert.ok(fs.existsSync(dir), 'the split directory exists beside the library file');
+  const files = fs.readdirSync(dir).filter((name) => name.endsWith('.json'));
+  assert.equal(files.length, library.categories.length, 'one file per category');
+  let faces = 0;
+  let biggest = 0;
+  for (const category of library.categories) {
+    const one = JSON.parse(fs.readFileSync(path.join(dir, `${category.id}.json`), 'utf8'));
+    assert.equal(one.categories.length, 1, 'a split file holds exactly one category');
+    assert.equal(one.categories[0].id, category.id, 'and it is the one its name says');
+    assert.equal(one.categories[0].faces.length, category.faces.length, 'with the same faces as the whole file');
+    faces += one.categories[0].faces.length;
+    biggest = Math.max(biggest, fs.statSync(path.join(dir, `${category.id}.json`)).size);
+  }
+  const whole = library.categories.reduce((n, c) => n + c.faces.length, 0);
+  assert.equal(faces, whole, 'the split files add up to the whole library');
+  assert.ok(biggest < 60000, `no single mood is a heavy read (biggest ${biggest} bytes)`);
+});
 check('the judge knows the frames the library writes in', () => {
   assert.deepEqual(mod.findKaomoji('done (o_o) ok'), ['(o_o)'], 'the underscore counts as a mark');
   assert.deepEqual(mod.findKaomoji('look (see below) please'), [], 'an ordinary parenthetical is not a face');

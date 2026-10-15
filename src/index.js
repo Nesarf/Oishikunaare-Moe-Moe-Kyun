@@ -551,7 +551,7 @@ export function renderKaomojiLibrary(categories, file, options) {
     lines.push(`${label} [${useOf(category)}]: ${rendered.join('  ')}`);
   }
   lines.push(omitted.length > 0
-    ? `not shown (${total - shown} more): ${omitted.join('; ')} - read ${file} for the full set.`
+    ? `not shown (${total - shown} more): ${omitted.join('; ')} - read ${file} for the full set, or one mood at a time from the kaomoji/ directory beside it (a single mood is ~10x cheaper to read).`
     : `full set (${shown} faces) in ${file}`);
   return lines.join('\n');
 }

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.17.0 - 2026-10-15
+
+- **The same faces now ship one mood per file.** The library is 307 KB and the prompt invites a reader to
+  consult it for the full set, which is an expensive read for a single face. `rules/kaomoji/<mood>.json`
+  holds one category each (8-33 KB, ~10x cheaper), generated from the same pass, checked by the same
+  `--check`, and asserted by a test that they add up to the whole library. The prompt line now names both
+  routes.
+- `npm run check:generated` covers the split too: a stale mood file fails the check the same way a stale
+  library file does.
 ## 0.16.0 - 2026-10-15
 
 - **The kaomoji library grew from 1150 to 1790 faces, and every one of them is now a face the judge can

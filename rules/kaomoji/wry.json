@@ -1,0 +1,916 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - wry",
+  "version": 4,
+  "note": "a small joke, a shrug, light self-mockery. One mood of the library, split out so a reader can take a single mood instead of the whole 300 KB file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "wry",
+      "label": "wry",
+      "labelZh": "苦笑",
+      "use": "a small joke, a shrug, light self-mockery",
+      "useZh": "开个小玩笑、耸耸肩、带点自嘲",
+      "faces": [
+        {
+          "face": "(0＿0)",
+          "feel": "zero eyes + fullwidth flat mouth",
+          "feelZh": "零眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(0З0)",
+          "feel": "zero eyes + cyrillic ze mouth",
+          "feelZh": "零眼 + З嘴"
+        },
+        {
+          "face": "(0≦0)",
+          "feel": "zero eyes + less or equal mouth",
+          "feelZh": "零眼 + 小等号嘴"
+        },
+        {
+          "face": "(0⁀0)",
+          "feel": "zero eyes + character tie mouth",
+          "feelZh": "零眼 + 上连接嘴"
+        },
+        {
+          "face": "(0し0)",
+          "feel": "zero eyes + hiragana shi mouth",
+          "feelZh": "零眼 + し嘴"
+        },
+        {
+          "face": "(0≠0)",
+          "feel": "zero eyes + not equal mouth",
+          "feelZh": "零眼 + ≠嘴"
+        },
+        {
+          "face": "(0ʕ0)",
+          "feel": "zero eyes + inverted glottal mouth",
+          "feelZh": "零眼 + 倒撇嘴"
+        },
+        {
+          "face": "(0◡0)",
+          "feel": "zero eyes + lower half circle mouth",
+          "feelZh": "零眼 + 下半圆嘴"
+        },
+        {
+          "face": "(°。°)",
+          "feel": "degree eyes + ideographic full stop mouth",
+          "feelZh": "度眼 + 句点嘴"
+        },
+        {
+          "face": "(°ツ°)",
+          "feel": "degree eyes + katakana tsu mouth",
+          "feelZh": "度眼 + ツ嘴"
+        },
+        {
+          "face": "(°μ°)",
+          "feel": "degree eyes + mu mouth",
+          "feelZh": "度眼 + μ嘴"
+        },
+        {
+          "face": "(°…°)",
+          "feel": "degree eyes + ellipsis mouth",
+          "feelZh": "度眼 + 省略嘴"
+        },
+        {
+          "face": "(°⁀°)",
+          "feel": "degree eyes + character tie mouth",
+          "feelZh": "度眼 + 上连接嘴"
+        },
+        {
+          "face": "(°Ω°)",
+          "feel": "degree eyes + omega capital mouth",
+          "feelZh": "度眼 + Ω嘴"
+        },
+        {
+          "face": "(°∪°)",
+          "feel": "degree eyes + union mouth",
+          "feelZh": "度眼 + ∪嘴"
+        },
+        {
+          "face": "(°♡°)",
+          "feel": "degree eyes + white heart mouth",
+          "feelZh": "度眼 + ♡嘴"
+        },
+        {
+          "face": "(°≢°)",
+          "feel": "degree eyes + not identical mouth",
+          "feelZh": "度眼 + 不全等嘴"
+        },
+        {
+          "face": "(°ﾏ°)",
+          "feel": "degree eyes + halfwidth ra mouth",
+          "feelZh": "度眼 + 半角ラ嘴"
+        },
+        {
+          "face": "(x∀x)",
+          "feel": "lowercase x eyes + for all mouth",
+          "feelZh": "小叉眼 + ∀嘴"
+        },
+        {
+          "face": "(x≧x)",
+          "feel": "lowercase x eyes + greater or equal mouth",
+          "feelZh": "小叉眼 + 大等号嘴"
+        },
+        {
+          "face": "(x‿x)",
+          "feel": "lowercase x eyes + undertie mouth",
+          "feelZh": "小叉眼 + 下连接嘴"
+        },
+        {
+          "face": "(xつx)",
+          "feel": "lowercase x eyes + hiragana tsu mouth",
+          "feelZh": "小叉眼 + つ嘴"
+        },
+        {
+          "face": "(x≈x)",
+          "feel": "lowercase x eyes + almost equal mouth",
+          "feelZh": "小叉眼 + ≈嘴"
+        },
+        {
+          "face": "(x・x)",
+          "feel": "lowercase x eyes + middle dot mouth",
+          "feelZh": "小叉眼 + 中黑点嘴"
+        },
+        {
+          "face": "(x◡x)",
+          "feel": "lowercase x eyes + lower half circle mouth",
+          "feelZh": "小叉眼 + 下半圆嘴"
+        },
+        {
+          "face": "(X．X)",
+          "feel": "uppercase x eyes + fullwidth period mouth",
+          "feelZh": "大叉眼 + 全角句点嘴"
+        },
+        {
+          "face": "(XﾊX)",
+          "feel": "uppercase x eyes + halfwidth tsu mouth",
+          "feelZh": "大叉眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(X…X)",
+          "feel": "uppercase x eyes + ellipsis mouth",
+          "feelZh": "大叉眼 + 省略嘴"
+        },
+        {
+          "face": "(XאX)",
+          "feel": "uppercase x eyes + hebrew alef mouth",
+          "feelZh": "大叉眼 + 希伯来 alef嘴"
+        },
+        {
+          "face": "(XワX)",
+          "feel": "uppercase x eyes + katakana wa mouth",
+          "feelZh": "大叉眼 + ワ嘴"
+        },
+        {
+          "face": "(X〃X)",
+          "feel": "uppercase x eyes + ditto mark mouth",
+          "feelZh": "大叉眼 + 〃嘴"
+        },
+        {
+          "face": "(XոX)",
+          "feel": "uppercase x eyes + armenian vo mouth",
+          "feelZh": "大叉眼 + 亚美尼亚 o嘴"
+        },
+        {
+          "face": "(X⊖X)",
+          "feel": "uppercase x eyes + circled minus mouth",
+          "feelZh": "大叉眼 + 圆圈减嘴"
+        },
+        {
+          "face": "(×ω×)",
+          "feel": "multiplication eyes + omega mouth",
+          "feelZh": "乘号眼 + ω嘴"
+        },
+        {
+          "face": "(×ノ×)",
+          "feel": "multiplication eyes + katakana no mouth",
+          "feelZh": "乘号眼 + ノ嘴"
+        },
+        {
+          "face": "(×≦×)",
+          "feel": "multiplication eyes + less or equal mouth",
+          "feelZh": "乘号眼 + 小等号嘴"
+        },
+        {
+          "face": "(×-×)",
+          "feel": "multiplication eyes + hyphen mouth",
+          "feelZh": "乘号眼 + 短横嘴"
+        },
+        {
+          "face": "(×א×)",
+          "feel": "multiplication eyes + hebrew alef mouth",
+          "feelZh": "乘号眼 + 希伯来 alef嘴"
+        },
+        {
+          "face": "(×し×)",
+          "feel": "multiplication eyes + hiragana shi mouth",
+          "feelZh": "乘号眼 + し嘴"
+        },
+        {
+          "face": "(×≠×)",
+          "feel": "multiplication eyes + not equal mouth",
+          "feelZh": "乘号眼 + ≠嘴"
+        },
+        {
+          "face": "(×3×)",
+          "feel": "multiplication eyes + digit three mouth",
+          "feelZh": "乘号眼 + 3嘴"
+        },
+        {
+          "face": "(×⌢×)",
+          "feel": "multiplication eyes + frown mouth",
+          "feelZh": "乘号眼 + 下弯嘴"
+        },
+        {
+          "face": "(T。T)",
+          "feel": "latin tee eyes + ideographic full stop mouth",
+          "feelZh": "T眼 + 句点嘴"
+        },
+        {
+          "face": "(TツT)",
+          "feel": "latin tee eyes + katakana tsu mouth",
+          "feelZh": "T眼 + ツ嘴"
+        },
+        {
+          "face": "(T＞T)",
+          "feel": "latin tee eyes + fullwidth greater mouth",
+          "feelZh": "T眼 + 全角大于嘴"
+        },
+        {
+          "face": "(T๚T)",
+          "feel": "latin tee eyes + thai angkhankhu mouth",
+          "feelZh": "T眼 + 泰文弯嘴"
+        },
+        {
+          "face": "(TレT)",
+          "feel": "latin tee eyes + katakana re mouth",
+          "feelZh": "T眼 + レ嘴"
+        },
+        {
+          "face": "(T∼T)",
+          "feel": "latin tee eyes + tilde operator mouth",
+          "feelZh": "T眼 + ∼嘴"
+        },
+        {
+          "face": "(TոT)",
+          "feel": "latin tee eyes + armenian vo mouth",
+          "feelZh": "T眼 + 亚美尼亚 o嘴"
+        },
+        {
+          "face": "(T⊖T)",
+          "feel": "latin tee eyes + circled minus mouth",
+          "feelZh": "T眼 + 圆圈减嘴"
+        },
+        {
+          "face": "(ТωТ)",
+          "feel": "cyrillic te eyes + omega mouth",
+          "feelZh": "西里尔 T眼 + ω嘴"
+        },
+        {
+          "face": "(ТノТ)",
+          "feel": "cyrillic te eyes + katakana no mouth",
+          "feelZh": "西里尔 T眼 + ノ嘴"
+        },
+        {
+          "face": "(Т≦Т)",
+          "feel": "cyrillic te eyes + less or equal mouth",
+          "feelZh": "西里尔 T眼 + 小等号嘴"
+        },
+        {
+          "face": "(Т〜Т)",
+          "feel": "cyrillic te eyes + wave dash mouth",
+          "feelZh": "西里尔 T眼 + 全角波浪嘴"
+        },
+        {
+          "face": "(Т๚Т)",
+          "feel": "cyrillic te eyes + thai angkhankhu mouth",
+          "feelZh": "西里尔 T眼 + 泰文弯嘴"
+        },
+        {
+          "face": "(ТつТ)",
+          "feel": "cyrillic te eyes + hiragana tsu mouth",
+          "feelZh": "西里尔 T眼 + つ嘴"
+        },
+        {
+          "face": "(Т≈Т)",
+          "feel": "cyrillic te eyes + almost equal mouth",
+          "feelZh": "西里尔 T眼 + ≈嘴"
+        },
+        {
+          "face": "(Т・Т)",
+          "feel": "cyrillic te eyes + middle dot mouth",
+          "feelZh": "西里尔 T眼 + 中黑点嘴"
+        },
+        {
+          "face": "(Т⌣Т)",
+          "feel": "cyrillic te eyes + smile mouth",
+          "feelZh": "西里尔 T眼 + 上扬嘴"
+        },
+        {
+          "face": "(ʕ_ʕ)",
+          "feel": "inverted glottal eyes + flat mouth",
+          "feelZh": "倒撇眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ʕЗʕ)",
+          "feel": "inverted glottal eyes + cyrillic ze mouth",
+          "feelZh": "倒撇眼 + З嘴"
+        },
+        {
+          "face": "(ʕεʕ)",
+          "feel": "inverted glottal eyes + epsilon mouth",
+          "feelZh": "倒撇眼 + ε嘴"
+        },
+        {
+          "face": "(ʕ..ʕ)",
+          "feel": "inverted glottal eyes + two dots mouth",
+          "feelZh": "倒撇眼 + 双点嘴"
+        },
+        {
+          "face": "(ʕ﹏ʕ)",
+          "feel": "inverted glottal eyes + wavy low line mouth",
+          "feelZh": "倒撇眼 + 波浪线嘴"
+        },
+        {
+          "face": "(ʕБʕ)",
+          "feel": "inverted glottal eyes + cyrillic be capital mouth",
+          "feelZh": "倒撇眼 + Б嘴"
+        },
+        {
+          "face": "(ʕ∞ʕ)",
+          "feel": "inverted glottal eyes + infinity mouth",
+          "feelZh": "倒撇眼 + ∞嘴"
+        },
+        {
+          "face": "(ʕ▼ʕ)",
+          "feel": "inverted glottal eyes + filled down triangle mouth",
+          "feelZh": "倒撇眼 + ▼嘴"
+        },
+        {
+          "face": "(ʕλʕ)",
+          "feel": "inverted glottal eyes + lambda mouth",
+          "feelZh": "倒撇眼 + λ嘴"
+        },
+        {
+          "face": "(ʕσʕ)",
+          "feel": "inverted glottal eyes + sigma mouth",
+          "feelZh": "倒撇眼 + σ嘴"
+        },
+        {
+          "face": "(ˈ△ˈ)",
+          "feel": "vertical stroke eyes + up triangle mouth",
+          "feelZh": "重音眼 + 上三角嘴"
+        },
+        {
+          "face": "(ˈoˈ)",
+          "feel": "vertical stroke eyes + round mouth",
+          "feelZh": "重音眼 + 圆嘴"
+        },
+        {
+          "face": "(ˈ<ˈ)",
+          "feel": "vertical stroke eyes + less mouth",
+          "feelZh": "重音眼 + 小于嘴"
+        },
+        {
+          "face": "(ˈ=ˈ)",
+          "feel": "vertical stroke eyes + equals mouth",
+          "feelZh": "重音眼 + 等号嘴"
+        },
+        {
+          "face": "(ˈ*ˈ)",
+          "feel": "vertical stroke eyes + asterisk mouth",
+          "feelZh": "重音眼 + 星嘴"
+        },
+        {
+          "face": "(ˈワˈ)",
+          "feel": "vertical stroke eyes + katakana wa mouth",
+          "feelZh": "重音眼 + ワ嘴"
+        },
+        {
+          "face": "(ˈ〃ˈ)",
+          "feel": "vertical stroke eyes + ditto mark mouth",
+          "feelZh": "重音眼 + 〃嘴"
+        },
+        {
+          "face": "(ˈաˈ)",
+          "feel": "vertical stroke eyes + armenian ayb mouth",
+          "feelZh": "重音眼 + 亚美尼亚 a嘴"
+        },
+        {
+          "face": "(ˈ◠ˈ)",
+          "feel": "vertical stroke eyes + upper half circle mouth",
+          "feelZh": "重音眼 + 上半圆嘴"
+        },
+        {
+          "face": "(｀．｀)",
+          "feel": "fullwidth grave eyes + fullwidth period mouth",
+          "feelZh": "全角反引号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀ﾊ｀)",
+          "feel": "fullwidth grave eyes + halfwidth tsu mouth",
+          "feelZh": "全角反引号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(｀≧｀)",
+          "feel": "fullwidth grave eyes + greater or equal mouth",
+          "feelZh": "全角反引号眼 + 大等号嘴"
+        },
+        {
+          "face": "(｀~｀)",
+          "feel": "fullwidth grave eyes + tilde mouth",
+          "feelZh": "全角反引号眼 + 波浪嘴"
+        },
+        {
+          "face": "(｀⁀｀)",
+          "feel": "fullwidth grave eyes + character tie mouth",
+          "feelZh": "全角反引号眼 + 上连接嘴"
+        },
+        {
+          "face": "(｀Ω｀)",
+          "feel": "fullwidth grave eyes + omega capital mouth",
+          "feelZh": "全角反引号眼 + Ω嘴"
+        },
+        {
+          "face": "(｀≈｀)",
+          "feel": "fullwidth grave eyes + almost equal mouth",
+          "feelZh": "全角反引号眼 + ≈嘴"
+        },
+        {
+          "face": "(｀・｀)",
+          "feel": "fullwidth grave eyes + middle dot mouth",
+          "feelZh": "全角反引号眼 + 中黑点嘴"
+        },
+        {
+          "face": "(｀⌣｀)",
+          "feel": "fullwidth grave eyes + smile mouth",
+          "feelZh": "全角反引号眼 + 上扬嘴"
+        },
+        {
+          "face": "(`＿`)",
+          "feel": "grave eyes + fullwidth flat mouth",
+          "feelZh": "反引号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(`З`)",
+          "feel": "grave eyes + cyrillic ze mouth",
+          "feelZh": "反引号眼 + З嘴"
+        },
+        {
+          "face": "(`≦`)",
+          "feel": "grave eyes + less or equal mouth",
+          "feelZh": "反引号眼 + 小等号嘴"
+        },
+        {
+          "face": "(`⁀`)",
+          "feel": "grave eyes + character tie mouth",
+          "feelZh": "反引号眼 + 上连接嘴"
+        },
+        {
+          "face": "(`し`)",
+          "feel": "grave eyes + hiragana shi mouth",
+          "feelZh": "反引号眼 + し嘴"
+        },
+        {
+          "face": "(`≠`)",
+          "feel": "grave eyes + not equal mouth",
+          "feelZh": "反引号眼 + ≠嘴"
+        },
+        {
+          "face": "(`ʕ`)",
+          "feel": "grave eyes + inverted glottal mouth",
+          "feelZh": "反引号眼 + 倒撇嘴"
+        },
+        {
+          "face": "(`◡`)",
+          "feel": "grave eyes + lower half circle mouth",
+          "feelZh": "反引号眼 + 下半圆嘴"
+        },
+        {
+          "face": "(´。´)",
+          "feel": "acute eyes + ideographic full stop mouth",
+          "feelZh": "撇号眼 + 句点嘴"
+        },
+        {
+          "face": "(´ﾊ´)",
+          "feel": "acute eyes + halfwidth tsu mouth",
+          "feelZh": "撇号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´≧´)",
+          "feel": "acute eyes + greater or equal mouth",
+          "feelZh": "撇号眼 + 大等号嘴"
+        },
+        {
+          "face": "(´~´)",
+          "feel": "acute eyes + tilde mouth",
+          "feelZh": "撇号眼 + 波浪嘴"
+        },
+        {
+          "face": "(´⁀´)",
+          "feel": "acute eyes + character tie mouth",
+          "feelZh": "撇号眼 + 上连接嘴"
+        },
+        {
+          "face": "(´Ω´)",
+          "feel": "acute eyes + omega capital mouth",
+          "feelZh": "撇号眼 + Ω嘴"
+        },
+        {
+          "face": "(´∪´)",
+          "feel": "acute eyes + union mouth",
+          "feelZh": "撇号眼 + ∪嘴"
+        },
+        {
+          "face": "(´♡´)",
+          "feel": "acute eyes + white heart mouth",
+          "feelZh": "撇号眼 + ♡嘴"
+        },
+        {
+          "face": "(´≢´)",
+          "feel": "acute eyes + not identical mouth",
+          "feelZh": "撇号眼 + 不全等嘴"
+        },
+        {
+          "face": "(´ﾏ´)",
+          "feel": "acute eyes + halfwidth ra mouth",
+          "feelZh": "撇号眼 + 半角ラ嘴"
+        },
+        {
+          "face": "(_∀_)",
+          "feel": "underscore eyes + for all mouth",
+          "feelZh": "横线眼 + ∀嘴"
+        },
+        {
+          "face": "(_≧_)",
+          "feel": "underscore eyes + greater or equal mouth",
+          "feelZh": "横线眼 + 大等号嘴"
+        },
+        {
+          "face": "(_‿_)",
+          "feel": "underscore eyes + undertie mouth",
+          "feelZh": "横线眼 + 下连接嘴"
+        },
+        {
+          "face": "(_し_)",
+          "feel": "underscore eyes + hiragana shi mouth",
+          "feelZh": "横线眼 + し嘴"
+        },
+        {
+          "face": "(_≠_)",
+          "feel": "underscore eyes + not equal mouth",
+          "feelZh": "横线眼 + ≠嘴"
+        },
+        {
+          "face": "(_ʕ_)",
+          "feel": "underscore eyes + inverted glottal mouth",
+          "feelZh": "横线眼 + 倒撇嘴"
+        },
+        {
+          "face": "(_◡_)",
+          "feel": "underscore eyes + lower half circle mouth",
+          "feelZh": "横线眼 + 下半圆嘴"
+        },
+        {
+          "face": "(˙。˙)",
+          "feel": "dot above eyes + ideographic full stop mouth",
+          "feelZh": "上点眼 + 句点嘴"
+        },
+        {
+          "face": "(˙ツ˙)",
+          "feel": "dot above eyes + katakana tsu mouth",
+          "feelZh": "上点眼 + ツ嘴"
+        },
+        {
+          "face": "(˙μ˙)",
+          "feel": "dot above eyes + mu mouth",
+          "feelZh": "上点眼 + μ嘴"
+        },
+        {
+          "face": "(˙…˙)",
+          "feel": "dot above eyes + ellipsis mouth",
+          "feelZh": "上点眼 + 省略嘴"
+        },
+        {
+          "face": "(˙‿˙)",
+          "feel": "dot above eyes + undertie mouth",
+          "feelZh": "上点眼 + 下连接嘴"
+        },
+        {
+          "face": "(˙б˙)",
+          "feel": "dot above eyes + cyrillic be mouth",
+          "feelZh": "上点眼 + б嘴"
+        },
+        {
+          "face": "(˙∩˙)",
+          "feel": "dot above eyes + intersection mouth",
+          "feelZh": "上点眼 + ∩嘴"
+        },
+        {
+          "face": "(˙◇˙)",
+          "feel": "dot above eyes + white diamond mouth",
+          "feelZh": "上点眼 + ◇嘴"
+        },
+        {
+          "face": "(˙≢˙)",
+          "feel": "dot above eyes + not identical mouth",
+          "feelZh": "上点眼 + 不全等嘴"
+        },
+        {
+          "face": "(˙ﾏ˙)",
+          "feel": "dot above eyes + halfwidth ra mouth",
+          "feelZh": "上点眼 + 半角ラ嘴"
+        },
+        {
+          "face": "(／д／)",
+          "feel": "fullwidth slash eyes + cyrillic de mouth",
+          "feelZh": "全角斜线眼 + д嘴"
+        },
+        {
+          "face": "(／ﾟ／)",
+          "feel": "fullwidth slash eyes + halfwidth circle mouth",
+          "feelZh": "全角斜线眼 + 半角圆嘴"
+        },
+        {
+          "face": "(／v／)",
+          "feel": "fullwidth slash eyes + latin v mouth",
+          "feelZh": "全角斜线眼 + v嘴"
+        },
+        {
+          "face": "(／＝／)",
+          "feel": "fullwidth slash eyes + fullwidth equals mouth",
+          "feelZh": "全角斜线眼 + 全角等号嘴"
+        },
+        {
+          "face": "(／+／)",
+          "feel": "fullwidth slash eyes + plus mouth",
+          "feelZh": "全角斜线眼 + 十嘴"
+        },
+        {
+          "face": "(／ㅂ／)",
+          "feel": "fullwidth slash eyes + hangul bieup mouth",
+          "feelZh": "全角斜线眼 + ㅂ嘴"
+        },
+        {
+          "face": "(／■／)",
+          "feel": "fullwidth slash eyes + filled square mouth",
+          "feelZh": "全角斜线眼 + ■嘴"
+        },
+        {
+          "face": "(／ո／)",
+          "feel": "fullwidth slash eyes + armenian vo mouth",
+          "feelZh": "全角斜线眼 + 亚美尼亚 o嘴"
+        },
+        {
+          "face": "(／⊖／)",
+          "feel": "fullwidth slash eyes + circled minus mouth",
+          "feelZh": "全角斜线眼 + 圆圈减嘴"
+        },
+        {
+          "face": "(/▽/)",
+          "feel": "slash eyes + down triangle mouth",
+          "feelZh": "斜线眼 + 下三角嘴"
+        },
+        {
+          "face": "(/ﾟ/)",
+          "feel": "slash eyes + halfwidth circle mouth",
+          "feelZh": "斜线眼 + 半角圆嘴"
+        },
+        {
+          "face": "(/＝/)",
+          "feel": "slash eyes + fullwidth equals mouth",
+          "feelZh": "斜线眼 + 全角等号嘴"
+        },
+        {
+          "face": "(/Б/)",
+          "feel": "slash eyes + cyrillic be capital mouth",
+          "feelZh": "斜线眼 + Б嘴"
+        },
+        {
+          "face": "(/∞/)",
+          "feel": "slash eyes + infinity mouth",
+          "feelZh": "斜线眼 + ∞嘴"
+        },
+        {
+          "face": "(/▼/)",
+          "feel": "slash eyes + filled down triangle mouth",
+          "feelZh": "斜线眼 + ▼嘴"
+        },
+        {
+          "face": "(/≡/)",
+          "feel": "slash eyes + identical mouth",
+          "feelZh": "斜线眼 + 全等嘴"
+        },
+        {
+          "face": "(/У/)",
+          "feel": "slash eyes + cyrillic u mouth",
+          "feelZh": "斜线眼 + У嘴"
+        },
+        {
+          "face": "(;д;)",
+          "feel": "semicolon eyes + cyrillic de mouth",
+          "feelZh": "分号眼 + д嘴"
+        },
+        {
+          "face": "(;μ;)",
+          "feel": "semicolon eyes + mu mouth",
+          "feelZh": "分号眼 + μ嘴"
+        },
+        {
+          "face": "(;﹏;)",
+          "feel": "semicolon eyes + wavy low line mouth",
+          "feelZh": "分号眼 + 波浪线嘴"
+        },
+        {
+          "face": "(;Ω;)",
+          "feel": "semicolon eyes + omega capital mouth",
+          "feelZh": "分号眼 + Ω嘴"
+        },
+        {
+          "face": "(;∪;)",
+          "feel": "semicolon eyes + union mouth",
+          "feelZh": "分号眼 + ∪嘴"
+        },
+        {
+          "face": "(;・;)",
+          "feel": "semicolon eyes + middle dot mouth",
+          "feelZh": "分号眼 + 中黑点嘴"
+        },
+        {
+          "face": "(;⌢;)",
+          "feel": "semicolon eyes + frown mouth",
+          "feelZh": "分号眼 + 下弯嘴"
+        },
+        {
+          "face": "(ﾞ＿ﾞ)",
+          "feel": "halfwidth dakuten eyes + fullwidth flat mouth",
+          "feelZh": "半角浊点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ﾞЗﾞ)",
+          "feel": "halfwidth dakuten eyes + cyrillic ze mouth",
+          "feelZh": "半角浊点眼 + З嘴"
+        },
+        {
+          "face": "(ﾞεﾞ)",
+          "feel": "halfwidth dakuten eyes + epsilon mouth",
+          "feelZh": "半角浊点眼 + ε嘴"
+        },
+        {
+          "face": "(ﾞ..ﾞ)",
+          "feel": "halfwidth dakuten eyes + two dots mouth",
+          "feelZh": "半角浊点眼 + 双点嘴"
+        },
+        {
+          "face": "(ﾞ﹏ﾞ)",
+          "feel": "halfwidth dakuten eyes + wavy low line mouth",
+          "feelZh": "半角浊点眼 + 波浪线嘴"
+        },
+        {
+          "face": "(ﾞБﾞ)",
+          "feel": "halfwidth dakuten eyes + cyrillic be capital mouth",
+          "feelZh": "半角浊点眼 + Б嘴"
+        },
+        {
+          "face": "(ﾞ∞ﾞ)",
+          "feel": "halfwidth dakuten eyes + infinity mouth",
+          "feelZh": "半角浊点眼 + ∞嘴"
+        },
+        {
+          "face": "(ﾞ▼ﾞ)",
+          "feel": "halfwidth dakuten eyes + filled down triangle mouth",
+          "feelZh": "半角浊点眼 + ▼嘴"
+        },
+        {
+          "face": "(ﾞλﾞ)",
+          "feel": "halfwidth dakuten eyes + lambda mouth",
+          "feelZh": "半角浊点眼 + λ嘴"
+        },
+        {
+          "face": "(ﾞσﾞ)",
+          "feel": "halfwidth dakuten eyes + sigma mouth",
+          "feelZh": "半角浊点眼 + σ嘴"
+        },
+        {
+          "face": "(゛Д゛)",
+          "feel": "katakana dakuten eyes + cyrillic de capital mouth",
+          "feelZh": "浊点眼 + Д嘴"
+        },
+        {
+          "face": "(゛O゛)",
+          "feel": "katakana dakuten eyes + wide round mouth",
+          "feelZh": "浊点眼 + 大圆嘴"
+        },
+        {
+          "face": "(゛＞゛)",
+          "feel": "katakana dakuten eyes + fullwidth greater mouth",
+          "feelZh": "浊点眼 + 全角大于嘴"
+        },
+        {
+          "face": "(゛=゛)",
+          "feel": "katakana dakuten eyes + equals mouth",
+          "feelZh": "浊点眼 + 等号嘴"
+        },
+        {
+          "face": "(゛*゛)",
+          "feel": "katakana dakuten eyes + asterisk mouth",
+          "feelZh": "浊点眼 + 星嘴"
+        },
+        {
+          "face": "(゛ワ゛)",
+          "feel": "katakana dakuten eyes + katakana wa mouth",
+          "feelZh": "浊点眼 + ワ嘴"
+        },
+        {
+          "face": "(゛〃゛)",
+          "feel": "katakana dakuten eyes + ditto mark mouth",
+          "feelZh": "浊点眼 + 〃嘴"
+        },
+        {
+          "face": "(゛ա゛)",
+          "feel": "katakana dakuten eyes + armenian ayb mouth",
+          "feelZh": "浊点眼 + 亚美尼亚 a嘴"
+        },
+        {
+          "face": "(゛◠゛)",
+          "feel": "katakana dakuten eyes + upper half circle mouth",
+          "feelZh": "浊点眼 + 上半圆嘴"
+        },
+        {
+          "face": "($ω$)",
+          "feel": "dollar eyes + omega mouth",
+          "feelZh": "$眼 + ω嘴"
+        },
+        {
+          "face": "($ノ$)",
+          "feel": "dollar eyes + katakana no mouth",
+          "feelZh": "$眼 + ノ嘴"
+        },
+        {
+          "face": "($〜$)",
+          "feel": "dollar eyes + wave dash mouth",
+          "feelZh": "$眼 + 全角波浪嘴"
+        },
+        {
+          "face": "($∃$)",
+          "feel": "dollar eyes + there exists mouth",
+          "feelZh": "$眼 + 存在号嘴"
+        },
+        {
+          "face": "($ㅁ$)",
+          "feel": "dollar eyes + hangul mieum mouth",
+          "feelZh": "$眼 + ㅁ嘴"
+        },
+        {
+          "face": "($▲$)",
+          "feel": "dollar eyes + filled up triangle mouth",
+          "feelZh": "$眼 + ▲嘴"
+        },
+        {
+          "face": "($λ$)",
+          "feel": "dollar eyes + lambda mouth",
+          "feelZh": "$眼 + λ嘴"
+        },
+        {
+          "face": "($σ$)",
+          "feel": "dollar eyes + sigma mouth",
+          "feelZh": "$眼 + σ嘴"
+        },
+        {
+          "face": "(#Д#)",
+          "feel": "hash eyes + cyrillic de capital mouth",
+          "feelZh": "#眼 + Д嘴"
+        },
+        {
+          "face": "(#ε#)",
+          "feel": "hash eyes + epsilon mouth",
+          "feelZh": "#眼 + ε嘴"
+        },
+        {
+          "face": "(#─#)",
+          "feel": "hash eyes + box drawing horizontal mouth",
+          "feelZh": "#眼 + 制表横线嘴"
+        },
+        {
+          "face": "(#б#)",
+          "feel": "hash eyes + cyrillic be mouth",
+          "feelZh": "#眼 + б嘴"
+        },
+        {
+          "face": "(#∩#)",
+          "feel": "hash eyes + intersection mouth",
+          "feelZh": "#眼 + ∩嘴"
+        },
+        {
+          "face": "(#◇#)",
+          "feel": "hash eyes + white diamond mouth",
+          "feelZh": "#眼 + ◇嘴"
+        },
+        {
+          "face": "(#≢#)",
+          "feel": "hash eyes + not identical mouth",
+          "feelZh": "#眼 + 不全等嘴"
+        }
+      ]
+    }
+  ]
+}

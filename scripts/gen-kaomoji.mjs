@@ -652,6 +652,23 @@ const args = process.argv.slice(2);
 const checkMode = args[0] === '--check';
 const target = path.resolve(checkMode ? (args[1] ?? path.join(ROOT, 'rules', 'kaomoji.json')) : (args[0] ?? path.join(ROOT, 'rules', 'kaomoji.json')));
 const wanted = JSON.stringify(render(), null, 2) + '\n';
+// The same faces, one file per mood, next to the whole-library file. The library is 300 KB and the
+// prompt invites a reader to consult it; one mood at a time is the read that costs nothing, and a
+// reader who wants everything still has the single file.
+const splitDir = path.join(path.dirname(target), 'kaomoji');
+const splitOf = (c) => JSON.stringify({
+  name: `Oishikunaare-Moe-Moe-Kyun kaomoji library - ${c.id}`,
+  version: 4,
+  note: `${c.use}. One mood of the library, split out so a reader can take a single mood instead of the whole 300 KB file. feelZh is the Chinese rendering of feel.`,
+  categories: [{
+    id: c.id,
+    label: c.label,
+    labelZh: c.labelZh,
+    use: c.use,
+    useZh: c.useZh,
+    faces: c.rows.map((r) => ({ face: r.face, feel: r.feel, feelZh: r.feelZh })),
+  }],
+}, null, 2) + '\n';
 
 if (checkMode) {
   const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
@@ -660,10 +677,22 @@ if (checkMode) {
     console.error('run: node scripts/gen-kaomoji.mjs');
     process.exit(1);
   }
-  console.log(`gen-kaomoji: in sync (${CATS.length} categories, ${total} faces)`);
+  const stale = CATS.filter((c) => {
+    const file = path.join(splitDir, `${c.id}.json`);
+    return !fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== splitOf(c);
+  });
+  if (stale.length > 0) {
+    console.error(`rules/kaomoji/ is out of date for: ${stale.map((c) => c.id).join(', ')}`);
+    console.error('run: node scripts/gen-kaomoji.mjs');
+    process.exit(1);
+  }
+  console.log(`gen-kaomoji: in sync (${CATS.length} categories, ${total} faces, ${CATS.length} split file(s))`);
 } else {
   fs.writeFileSync(target, wanted, 'utf8');
+  fs.mkdirSync(splitDir, { recursive: true });
+  for (const c of CATS) fs.writeFileSync(path.join(splitDir, `${c.id}.json`), splitOf(c), 'utf8');
   console.log(`wrote ${target}: ${CATS.length} categories / ${total} unique faces`);
+  console.log(`wrote ${splitDir}: one file per mood`);
   for (const c of CATS) {
     console.log(`  ${c.id.padEnd(12)} ${String(c.rows.length).padStart(4)} of ${String(POOL.get(c.id).length).padStart(6)} candidates   e.g. ${c.rows.slice(0, 5).map((r) => r.face).join(' ')}`);
   }

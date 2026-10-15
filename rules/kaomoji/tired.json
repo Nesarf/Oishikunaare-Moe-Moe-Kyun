@@ -1,0 +1,316 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - tired",
+  "version": 4,
+  "note": "a long task, late at night. One mood of the library, split out so a reader can take a single mood instead of the whole 300 KB file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "tired",
+      "label": "tired",
+      "labelZh": "疲惫",
+      "use": "a long task, late at night",
+      "useZh": "长任务、深夜",
+      "faces": [
+        {
+          "face": "(o_o)ｚｚＺ",
+          "feel": "round eyes + flat mouth, zzZ in fullwidth",
+          "feelZh": "圆眼 + 平嘴嘴，zzZ"
+        },
+        {
+          "face": "(o▽o)。。。",
+          "feel": "round eyes + down triangle mouth, trailing full stops",
+          "feelZh": "圆眼 + 下三角嘴，尾随句点"
+        },
+        {
+          "face": "(o…o)♪ zzZ",
+          "feel": "round eyes + ellipsis mouth, a hum and zzZ",
+          "feelZh": "圆眼 + 省略嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(o-o)ｚｚＺ",
+          "feel": "round eyes + hyphen mouth, zzZ in fullwidth",
+          "feelZh": "圆眼 + 短横嘴，zzZ"
+        },
+        {
+          "face": "(o=o)。。。",
+          "feel": "round eyes + equals mouth, trailing full stops",
+          "feelZh": "圆眼 + 等号嘴，尾随句点"
+        },
+        {
+          "face": "(O▽O)ｚｚＺ～",
+          "feel": "wide round eyes + down triangle mouth, zzZ with a wave",
+          "feelZh": "大圆眼 + 下三角嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(O…O)～",
+          "feel": "wide round eyes + ellipsis mouth, a trailing wave",
+          "feelZh": "大圆眼 + 省略嘴，波浪尾"
+        },
+        {
+          "face": "(O~O)｡",
+          "feel": "wide round eyes + tilde mouth, a halfwidth stop",
+          "feelZh": "大圆眼 + 波浪嘴，半角句点"
+        },
+        {
+          "face": "(O=O)ｚｚＺ～",
+          "feel": "wide round eyes + equals mouth, zzZ with a wave",
+          "feelZh": "大圆眼 + 等号嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(0▽0)～",
+          "feel": "zero eyes + down triangle mouth, a trailing wave",
+          "feelZh": "零眼 + 下三角嘴，波浪尾"
+        },
+        {
+          "face": "(0…0)ｚｚＺ",
+          "feel": "zero eyes + ellipsis mouth, zzZ in fullwidth",
+          "feelZh": "零眼 + 省略嘴，zzZ"
+        },
+        {
+          "face": "(0~0)。。。",
+          "feel": "zero eyes + tilde mouth, trailing full stops",
+          "feelZh": "零眼 + 波浪嘴，尾随句点"
+        },
+        {
+          "face": "(0=0)♪ zzZ",
+          "feel": "zero eyes + equals mouth, a hum and zzZ",
+          "feelZh": "零眼 + 等号嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(x▽x)ｚｚＺ",
+          "feel": "lowercase x eyes + down triangle mouth, zzZ in fullwidth",
+          "feelZh": "小叉眼 + 下三角嘴，zzZ"
+        },
+        {
+          "face": "(x.x)。。。",
+          "feel": "lowercase x eyes + dot mouth, trailing full stops",
+          "feelZh": "小叉眼 + 点嘴，尾随句点"
+        },
+        {
+          "face": "(x~x)ｚｚＺ～",
+          "feel": "lowercase x eyes + tilde mouth, zzZ with a wave",
+          "feelZh": "小叉眼 + 波浪嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(x=x)～",
+          "feel": "lowercase x eyes + equals mouth, a trailing wave",
+          "feelZh": "小叉眼 + 等号嘴，波浪尾"
+        },
+        {
+          "face": "(X_X)｡",
+          "feel": "uppercase x eyes + flat mouth, a halfwidth stop",
+          "feelZh": "大叉眼 + 平嘴嘴，半角句点"
+        },
+        {
+          "face": "(X.X)ｚｚＺ～",
+          "feel": "uppercase x eyes + dot mouth, zzZ with a wave",
+          "feelZh": "大叉眼 + 点嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(X~X)～",
+          "feel": "uppercase x eyes + tilde mouth, a trailing wave",
+          "feelZh": "大叉眼 + 波浪嘴，波浪尾"
+        },
+        {
+          "face": "(X=X)ｚｚＺ",
+          "feel": "uppercase x eyes + equals mouth, zzZ in fullwidth",
+          "feelZh": "大叉眼 + 等号嘴，zzZ"
+        },
+        {
+          "face": "(T_T)。。。",
+          "feel": "latin tee eyes + flat mouth, trailing full stops",
+          "feelZh": "T眼 + 平嘴嘴，尾随句点"
+        },
+        {
+          "face": "(T.T)♪ zzZ",
+          "feel": "latin tee eyes + dot mouth, a hum and zzZ",
+          "feelZh": "T眼 + 点嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(T~T)ｚｚＺ",
+          "feel": "latin tee eyes + tilde mouth, zzZ in fullwidth",
+          "feelZh": "T眼 + 波浪嘴，zzZ"
+        },
+        {
+          "face": "(T-T)。。。",
+          "feel": "latin tee eyes + hyphen mouth, trailing full stops",
+          "feelZh": "T眼 + 短横嘴，尾随句点"
+        },
+        {
+          "face": "(ˈ_ˈ)♪ zzZ",
+          "feel": "vertical stroke eyes + flat mouth, a hum and zzZ",
+          "feelZh": "重音眼 + 平嘴嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(ˈoˈ)～",
+          "feel": "vertical stroke eyes + round mouth, a trailing wave",
+          "feelZh": "重音眼 + 圆嘴，波浪尾"
+        },
+        {
+          "face": "(ˈOˈ)｡",
+          "feel": "vertical stroke eyes + wide round mouth, a halfwidth stop",
+          "feelZh": "重音眼 + 大圆嘴，半角句点"
+        },
+        {
+          "face": "(ˈ.ˈ)ｚｚＺ～",
+          "feel": "vertical stroke eyes + dot mouth, zzZ with a wave",
+          "feelZh": "重音眼 + 点嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(ˈ~ˈ)～",
+          "feel": "vertical stroke eyes + tilde mouth, a trailing wave",
+          "feelZh": "重音眼 + 波浪嘴，波浪尾"
+        },
+        {
+          "face": "(ˈ=ˈ)ｚｚＺ",
+          "feel": "vertical stroke eyes + equals mouth, zzZ in fullwidth",
+          "feelZh": "重音眼 + 等号嘴，zzZ"
+        },
+        {
+          "face": "(｀_｀)。。。",
+          "feel": "fullwidth grave eyes + flat mouth, trailing full stops",
+          "feelZh": "全角反引号眼 + 平嘴嘴，尾随句点"
+        },
+        {
+          "face": "(｀o｀)♪ zzZ",
+          "feel": "fullwidth grave eyes + round mouth, a hum and zzZ",
+          "feelZh": "全角反引号眼 + 圆嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(｀w｀)ｚｚＺ",
+          "feel": "fullwidth grave eyes + latin w mouth, zzZ in fullwidth",
+          "feelZh": "全角反引号眼 + w嘴，zzZ"
+        },
+        {
+          "face": "(｀.｀)。。。",
+          "feel": "fullwidth grave eyes + dot mouth, trailing full stops",
+          "feelZh": "全角反引号眼 + 点嘴，尾随句点"
+        },
+        {
+          "face": "(｀~｀)ｚｚＺ～",
+          "feel": "fullwidth grave eyes + tilde mouth, zzZ with a wave",
+          "feelZh": "全角反引号眼 + 波浪嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(｀=｀)～",
+          "feel": "fullwidth grave eyes + equals mouth, a trailing wave",
+          "feelZh": "全角反引号眼 + 等号嘴，波浪尾"
+        },
+        {
+          "face": "(`_`)｡",
+          "feel": "grave eyes + flat mouth, a halfwidth stop",
+          "feelZh": "反引号眼 + 平嘴嘴，半角句点"
+        },
+        {
+          "face": "(`o`)ｚｚＺ～",
+          "feel": "grave eyes + round mouth, zzZ with a wave",
+          "feelZh": "反引号眼 + 圆嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(`w`)～",
+          "feel": "grave eyes + latin w mouth, a trailing wave",
+          "feelZh": "反引号眼 + w嘴，波浪尾"
+        },
+        {
+          "face": "(`…`)ｚｚＺ",
+          "feel": "grave eyes + ellipsis mouth, zzZ in fullwidth",
+          "feelZh": "反引号眼 + 省略嘴，zzZ"
+        },
+        {
+          "face": "(`~`)。。。",
+          "feel": "grave eyes + tilde mouth, trailing full stops",
+          "feelZh": "反引号眼 + 波浪嘴，尾随句点"
+        },
+        {
+          "face": "(`=`)♪ zzZ",
+          "feel": "grave eyes + equals mouth, a hum and zzZ",
+          "feelZh": "反引号眼 + 等号嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(ー▽ー)ｚｚＺ",
+          "feel": "katakana prolonged eyes + down triangle mouth, zzZ in fullwidth",
+          "feelZh": "长音眼 + 下三角嘴，zzZ"
+        },
+        {
+          "face": "(ーoー)。。。",
+          "feel": "katakana prolonged eyes + round mouth, trailing full stops",
+          "feelZh": "长音眼 + 圆嘴，尾随句点"
+        },
+        {
+          "face": "(ーwー)♪ zzZ",
+          "feel": "katakana prolonged eyes + latin w mouth, a hum and zzZ",
+          "feelZh": "长音眼 + w嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(ー…ー)～",
+          "feel": "katakana prolonged eyes + ellipsis mouth, a trailing wave",
+          "feelZh": "长音眼 + 省略嘴，波浪尾"
+        },
+        {
+          "face": "(ー~ー)｡",
+          "feel": "katakana prolonged eyes + tilde mouth, a halfwidth stop",
+          "feelZh": "长音眼 + 波浪嘴，半角句点"
+        },
+        {
+          "face": "(ー=ー)ｚｚＺ～",
+          "feel": "katakana prolonged eyes + equals mouth, zzZ with a wave",
+          "feelZh": "长音眼 + 等号嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(_▽_)～",
+          "feel": "underscore eyes + down triangle mouth, a trailing wave",
+          "feelZh": "横线眼 + 下三角嘴，波浪尾"
+        },
+        {
+          "face": "(_o_)｡",
+          "feel": "underscore eyes + round mouth, a halfwidth stop",
+          "feelZh": "横线眼 + 圆嘴，半角句点"
+        },
+        {
+          "face": "(_w_)。。。",
+          "feel": "underscore eyes + latin w mouth, trailing full stops",
+          "feelZh": "横线眼 + w嘴，尾随句点"
+        },
+        {
+          "face": "(_…_)♪ zzZ",
+          "feel": "underscore eyes + ellipsis mouth, a hum and zzZ",
+          "feelZh": "横线眼 + 省略嘴，一声哼加 zzZ"
+        },
+        {
+          "face": "(_-_)ｚｚＺ",
+          "feel": "underscore eyes + hyphen mouth, zzZ in fullwidth",
+          "feelZh": "横线眼 + 短横嘴，zzZ"
+        },
+        {
+          "face": "(_=_)。。。",
+          "feel": "underscore eyes + equals mouth, trailing full stops",
+          "feelZh": "横线眼 + 等号嘴，尾随句点"
+        },
+        {
+          "face": "(˙▽˙)ｚｚＺ～",
+          "feel": "dot above eyes + down triangle mouth, zzZ with a wave",
+          "feelZh": "上点眼 + 下三角嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(˙O˙)～",
+          "feel": "dot above eyes + wide round mouth, a trailing wave",
+          "feelZh": "上点眼 + 大圆嘴，波浪尾"
+        },
+        {
+          "face": "(˙w˙)｡",
+          "feel": "dot above eyes + latin w mouth, a halfwidth stop",
+          "feelZh": "上点眼 + w嘴，半角句点"
+        },
+        {
+          "face": "(˙…˙)ｚｚＺ～",
+          "feel": "dot above eyes + ellipsis mouth, zzZ with a wave",
+          "feelZh": "上点眼 + 省略嘴，zzZ 加波浪"
+        },
+        {
+          "face": "(˙-˙)～",
+          "feel": "dot above eyes + hyphen mouth, a trailing wave",
+          "feelZh": "上点眼 + 短横嘴，波浪尾"
+        }
+      ]
+    }
+  ]
+}
