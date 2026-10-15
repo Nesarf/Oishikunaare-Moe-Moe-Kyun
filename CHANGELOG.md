@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.18.1 - 2026-10-16
+
+- **The SPDX identifier is out again, at the licensor's request.** 0.18.0 added
+  `SPDX-License-Identifier: LicenseRef-CZGD-PL-1.0` to the build banner and named the same identifier in
+  both READMEs, following the kit's own step 2. It is removed from all three (and from the regenerated
+  `lib/index.js`); the licence is named in prose instead. `package.json` keeps
+  `SEE LICENSE IN LICENSE`, which is npm's convention rather than an SPDX claim, and `NOTICE` keeps the
+  line its own template carries.
 ## 0.18.0 - 2026-10-16
 
 - **The licence is CZGD-PL-1.0 now** (Cheese Gyudon Public Licence, the project's own), replacing MIT.
