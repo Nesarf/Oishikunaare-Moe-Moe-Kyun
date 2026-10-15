@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.21.1 - 2026-10-16
+
+- **The density ceiling the rule implied is gone: a paragraph carrying four or five faces is fine, when each
+  one is saying something.** Asked for by the same reader, and consistent with the reason a face is allowed
+  at all - it is not decoration, it carries tone, attitude and distance, and a face that adds nothing reads
+  worse than no face at any density. Both locales of the kaomoji rule now say so, next to the floor.
 ## 0.21.0 - 2026-10-16
 
 - **The symbol rule now says how to write, not only what not to write.** Asked for by the reader this
