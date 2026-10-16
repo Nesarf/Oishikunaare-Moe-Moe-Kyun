@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.23.1 - 2026-10-16
+
+- **Licence paperwork caught up with the text.** `LICENSE` was revised in place (13 wording fixes: the
+  "other" particle unified), which is a change note the licence itself asks for, so `NOTICE` now records it
+  and says where the authoritative hash lives (the source kit's `CHECKSUMS.txt`). The grant and every clause
+  are unchanged, no version was bumped, and the copy here still matches the source kit byte for byte
+  (sha256 a8277278...). The assertions that pin the licence shape - the manifest convention, the shipped
+  NOTICE, the spirit section, no SPDX claim - all still hold.
 ## 0.23.0 - 2026-10-16
 
 - **The voice notice now follows the agent, not the voice id.** Asked for after a report that agents with a

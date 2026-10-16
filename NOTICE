@@ -9,3 +9,5 @@ scripts/gen-kaomoji.mjs 生成，声音表由 scripts/gen-voices.mjs 生成）�
 
 改动说明：
 - 2026-10-16 Nesarf：授权由 MIT 改为 CZGD·PL-1.0；此前以 MIT 发布的版本仍可按 MIT 使用。
+- 2026-10-16：`LICENSE` 随正本库（`E:\CZGD`）同步了一次用词修订（「其它」统一为「其他」，共 13 处），
+  授权范围与各项条款的实质未变；本文件所引版本的正文 sha256 以正本库的 `CHECKSUMS.txt` 为准。
