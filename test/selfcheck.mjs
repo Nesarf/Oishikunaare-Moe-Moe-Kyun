@@ -730,6 +730,28 @@ check('the symbol steer asks for the reply again, in either locale', () => {
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 
+check('a voice given to an agent with a character of its own is a touch, not a swap', () => {
+  // The report this answers: an agent with a written persona came out of the moe layer sounding like the
+  // layer instead of itself. Inference from a persona now says "on top of your own character", and the
+  // plain form is kept for agents that have none.
+  const voice = { id: 'gentle', label: '\u6E29\u67D4', markers: ['\u5440', '\u5462'] };
+  const zhOwn = mod.voiceNotice('zh', voice, { own: true });
+  const zhPlain = mod.voiceNotice('zh', voice, { own: false });
+  assert.ok(zhOwn.includes('\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A'), 'zh puts the touch on top of the existing character');
+  assert.ok(zhOwn.includes('\u592A\u5927\u51FA\u5165'), 'and warns against drifting from it');
+  assert.equal(zhPlain.includes('\u57FA\u7840\u4E0A'), false, 'the plain form does not claim to be a touch');
+  const enOwn = mod.voiceNotice('en', voice, { own: true });
+  const jaOwn = mod.voiceNotice('ja', voice, { own: true });
+  assert.ok(enOwn.includes('on top of your own character'), 'en says the same');
+  assert.ok(enOwn.includes('not to drift far'), 'and warns against drifting');
+  assert.ok(jaOwn.includes('\u6027\u683C\u3068\u7269\u8FBA\u306E\u4E0A\u306B'), 'ja says the same');
+  assert.ok(jaOwn.includes('\u5927\u304D\u304F\u96E2\u308C\u306A\u3044'), 'and warns against drifting');
+  for (const text of [zhOwn, zhPlain, enOwn, mod.voiceNotice('en', voice, { own: false }), jaOwn, mod.voiceNotice('ja', voice, { own: false })]) {
+    assert.equal(mod.judgeAuthoredText(text).length, 0, 'and none of them carries a banned glyph');
+  }
+  assert.ok(zhOwn.includes(voice.label) && zhPlain.includes(voice.label), 'both forms still name which voice it is');
+  assert.ok(zhOwn.length < 260 && enOwn.length < 520, 'and both stay short enough to read');
+});
 check('the brief is short, complete and clean in both locales', () => {
   // The brief exists so a host that re-injects a file on every step can carry the rules with every
   // request. Short is the point - it is paid for on every step - but it still has to cover all four.
@@ -1198,6 +1220,35 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
   assert.equal(unknownMapping.text, null, 'a mapping to an id the table does not hold announces nothing');
 });
 
+check('the copy follows the agent, not the source of the voice id', async () => {
+  // The design: an agent with a character of its own keeps it and is only asked for a touch, while a
+  // standard agent with none is simply given a voice by the rules. Both runs below are mapped through the
+  // same preset entry, so the only difference between them is whether a persona exists.
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const run = async (presetVoice) => {
+    const hook = mod.makeSelfCheckHook({
+      max: 3,
+      moe: true,
+      voices,
+      voice: 'auto',
+      resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+      presetVoice,
+      voiceOptions: () => ({ voice: 'auto', byPreset: { p1: 'elegant' }, signals: null }),
+    });
+    const messages = [mk('\u4f60\u662f\u4e00\u4e2a\u52a9\u624b')];
+    const out = await hook({ agent: { session: { id: 'copy-' + Math.random().toString(16).slice(2) }, id: 'a1' }, messages }, async () => ({ kind: 'enter', messages }));
+    return out.messages.length > 1 ? out.messages[0].content[0].text : null;
+  };
+  const withPersona = await run(() => ({ id: 'p1', persona: '\u4f60\u662f\u4e00\u4e2a\u602a\u529b\u5C11\u5973' }));
+  const without = await run(() => ({ id: 'p1' }));
+  assert.ok(withPersona.includes('\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A'), 'a written character gets the touch form');
+  assert.ok(withPersona.includes('\u4E0D\u8981\u548C\u4F60\u672C\u8EAB\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u6709\u592A\u5927\u51FA\u5165'), 'and is told not to drift');
+  assert.equal(withPersona.includes('\u58F0\u97F3\u6863\u5B9A\u4E3A'), false, 'the touch form never claims to set the voice');
+  assert.ok(without.includes('\u58F0\u97F3\u6863\u5B9A\u4E3A'), 'a standard agent is given a voice instead');
+  assert.equal(without.includes('\u57FA\u7840\u4E0A'), false, 'and is not asked to layer anything on');
+  assert.ok(withPersona.includes('elegant') && without.includes('elegant'), 'both still name which voice it is');
+});
 check('with no registry the voice still works, and the rules are untouched', async () => {
   const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
   const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;

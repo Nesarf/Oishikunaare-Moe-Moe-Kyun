@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.23.0 - 2026-10-16
+
+- **The voice notice now follows the agent, not the voice id.** Asked for after a report that agents with a
+  written persona came out of the moe layer sounding like the layer: the copy is now chosen by whether the
+  agent has a character of its own, so an agent with a persona is told "on top of your own character and
+  manner, let a touch of X come through, and take care not to drift far from what you already are", while a
+  standard agent with no persona is simply given a voice. Both forms name the voice id, so a log or a notice
+  can still say which one it was.
+- The switch is `preset.persona` being non-empty, so a mapping or an inference no longer decides the copy:
+  whichever way the id was picked, an agent that has a character keeps it and is only asked for a touch.
+- Tests: the two forms in three locales (the touch form opens on the existing character and warns against
+  drifting, the plain form never claims to be a touch, neither carries a banned glyph, both name the id),
+  and an end-to-end case where two agents mapped through the same preset entry get different copy because
+  only one of them has a persona.
 ## 0.22.0 - 2026-10-16
 
 - **A brief for hosts that re-inject a baseline file on every step: `briefRules(locale)` and the
