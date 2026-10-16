@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.24.1 - 2026-10-16
+
+- **The holder name is unified to Nesarf_Mollor, and the licence text here already moved with it**
+  (sha256 7e278630..., matching the source kit byte for byte, whose 1.1 release added the revision clause
+  this is filed under). `NOTICE` carries the new spelling in both the copyright line and the change note;
+  the only remaining `Nesarf` in the repository is inside an old changelog entry that records the package
+  name it had at the time, and history is not edited to match the present.
+- New assertion: the holder named inside `LICENSE` must be named by the `NOTICE` shipped beside it, and the
+  NOTICE must still carry a copyright line, point at the licence text and contain no banned glyph. Compared
+  rather than pinned, so the next revision moves both without editing the test.
 ## 0.24.0 - 2026-10-16
 
 - **The licence is CZGD-PL-1.1 now.** The source kit released 1.1 as a version rather than an edit in

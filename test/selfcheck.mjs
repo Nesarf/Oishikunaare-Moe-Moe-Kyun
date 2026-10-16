@@ -752,6 +752,22 @@ check('a voice given to an agent with a character of its own is a touch, not a s
   assert.ok(zhOwn.includes(voice.label) && zhPlain.includes(voice.label), 'both forms still name which voice it is');
   assert.ok(zhOwn.length < 260 && enOwn.length < 520, 'and both stay short enough to read');
 });
+check('the holder named in the NOTICE is the holder the licence names', () => {
+  // The kit unified the holder name across the authoritative text and every project copy; the two places
+  // that must agree are the licence itself and the NOTICE shipped beside it. Compared rather than pinned,
+  // so a future revision moves both without editing this test.
+  const read = (name) => fs.readFileSync(path.join(ROOT, name), 'utf8');
+  const licence = read('LICENSE');
+  const notice = read('NOTICE');
+  const declared = /\u6388\u6743\u4EBA\uFF1A([^\s\uFF08(]+)/.exec(licence);
+  assert.ok(declared !== null, 'the licence names its holder');
+  const holder = declared[1];
+  assert.ok(holder.length > 0, 'and the name is not empty');
+  assert.ok(notice.includes(holder), `the NOTICE names the same holder (${holder})`);
+  assert.ok(/Copyright \(c\) \d{4}/.test(notice), 'the NOTICE carries a copyright line');
+  assert.ok(notice.includes('LICENSE'), 'and points at the licence text');
+  assert.equal(mod.judgeAuthoredText(notice).length, 0, 'the NOTICE itself carries no banned glyph');
+});
 check('the licence version is the same in the text, the NOTICE and both READMEs', () => {
   // Four files carry the licence version and a kit release moves all four at once; a half-updated licence
   // is worse than either version, so the agreement between them is asserted rather than remembered.
