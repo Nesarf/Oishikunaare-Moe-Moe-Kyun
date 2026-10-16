@@ -730,6 +730,39 @@ check('the symbol steer asks for the reply again, in either locale', () => {
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 
+check('the brief is short, complete and clean in both locales', () => {
+  // The brief exists so a host that re-injects a file on every step can carry the rules with every
+  // request. Short is the point - it is paid for on every step - but it still has to cover all four.
+  for (const locale of ['zh', 'en']) {
+    const brief = mod.briefRules(locale);
+    assert.equal(typeof brief, 'string', `${locale} brief is text`);
+    assert.ok(brief.length < 1200, `${locale} brief stays short enough to re-inject every step`);
+    assert.ok(brief.split('\n').length >= 4, `${locale} brief covers the rules in separate lines`);
+    assert.equal(mod.judgeAuthoredText(brief).length, 0, `${locale} brief carries no banned glyph`);
+    assert.ok(brief.includes('emoji'), `${locale} brief names the emoji rule`);
+    assert.ok(brief.includes(locale === 'zh' ? '\u989C\u6587\u5B57' : 'kaomoji'), `${locale} brief names the kaomoji rule`);
+    assert.ok(brief.includes(locale === 'zh' ? '\u601D\u8003' : 'Think in the language'), `${locale} brief names the thinking-language rule`);
+    assert.ok(brief.includes(locale === 'zh' ? '\u5224\u65AD\u5199\u6210\u8BCD\u8BED' : 'Write the judgement as words'), `${locale} brief names the symbol rule`);
+  }
+});
+
+check('a managed block is written once, however often it is applied', async () => {
+  const wire = await import(new URL('../src/wire.mjs', import.meta.url).href);
+  const block = wire.managedBlock('wire-test', 'body line');
+  assert.ok(block.startsWith('<!-- mmk:begin wire-test -->'), 'the block opens with its marker');
+  assert.ok(block.endsWith('<!-- mmk:end wire-test -->'), 'and closes with it');
+  const once = wire.upsertBlock('', 'wire-test', 'body line');
+  assert.equal(wire.upsertBlock(once, 'wire-test', 'body line'), once, 'applying it twice changes nothing');
+  const again = wire.upsertBlock(once, 'wire-test', 'new body');
+  assert.equal(again.includes('body line'), false, 'a re-apply replaces the body');
+  assert.equal(again.includes('new body'), true, 'with the new one');
+  assert.equal(again.match(/mmk:begin/g).length, 1, 'and leaves exactly one block');
+  const appended = wire.upsertBlock('existing text\n', 'wire-test', 'body line');
+  assert.ok(appended.startsWith('existing text'), 'a file without the block keeps its text');
+  assert.equal(appended.match(/mmk:begin/g).length, 1, 'and gains one block');
+  const empty = wire.upsertBlock('', 'wire-test', 'body line');
+  assert.equal(empty.startsWith('<!-- mmk:begin'), true, 'an empty file starts with the block');
+});
 check('the rules ask for prose a reader can follow', () => {
   // The symbol rule used to stop at "say it in words". A reader who reads every sentence asked for more:
   // normal punctuation is fine, and nothing may carry the structure. This is that promise, in words.

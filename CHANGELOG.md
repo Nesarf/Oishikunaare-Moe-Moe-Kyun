@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.22.0 - 2026-10-16
+
+- **A brief for hosts that re-inject a baseline file on every step: `briefRules(locale)` and the
+  `agents-md-brief` wire target.** The full rules land once, when the session is assembled, and then sink
+  into a history that keeps growing - measured on this machine, a session's own thinking carried thousands
+  of the banned code points while the rule banning them sat thousands of messages up, and the hard ban had
+  to grow a turn-stop lever for exactly that reason. A host that re-injects a file every step (this
+  machine's `AGENTS.md` does) can now carry a brief with every request instead: the four rules compressed
+  to five lines, 228 characters in Chinese and 797 in English, no banned glyph in either.
+- `mmk wire agents-md-brief --write <path>` applies it idempotently: the block lives between
+  `mmk:begin` / `mmk:end` markers and a re-run replaces it in place, so a rule file never grows a second
+  copy. `managedBlock` and `upsertBlock` are exported for anyone wiring their own file.
+- Tests: the brief in both locales (short, four rules named, no banned glyph), and the managed block
+  (markers, apply-twice-changes-nothing, re-apply replaces the body and leaves one block, append to a file
+  that has none, and start an empty file with it).
 ## 0.21.1 - 2026-10-16
 
 - **The density ceiling the rule implied is gone: a paragraph carrying four or five faces is fine, when each

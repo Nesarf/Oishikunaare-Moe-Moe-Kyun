@@ -31,7 +31,8 @@ import {
   voiceFor,
 } from '../src/portable.mjs';
 import { readTranscript } from '../src/transcripts.mjs';
-import { wireTargets } from '../src/wire.mjs';
+import { upsertBlock, wireTargets } from '../src/wire.mjs';
+import { briefRules } from '../src/index.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const USAGE = `mmk - moe house rules, harness free
@@ -174,18 +175,29 @@ if (command === 'wire') {
   // with real paths filled in, is the difference between "there is an adapter" and "it is wired up".
   // The table itself lives in src/wire.mjs, the one module allowed to name another program's files.
   const here = path.join(HERE, '..').replace(/\\/g, '/');
-  const targets = wireTargets({ here, version: version(), rules: state.resolve().text });
+  const targets = wireTargets({ here, version: version(), rules: state.resolve().text, brief: briefRules(state.locale) });
   const wanted = value('target') ?? rest[0];
   if (wanted === undefined) {
     if (has('json')) json(Object.fromEntries(Object.entries(targets).map(([name, entry]) => [name, { file: entry.file, note: entry.note }])));
     else {
       out('usage: mmk wire <target>');
-      for (const [name, entry] of Object.entries(targets)) out(`  ${name.padEnd(12)} ${entry.file} - ${entry.note}`);
+      for (const [name, entry] of Object.entries(targets)) out(`  ${name.padEnd(16)} ${entry.file} - ${entry.note}`);
     }
     process.exit(0);
   }
   const target = targets[wanted];
   if (target === undefined) fail(`unknown wire target "${wanted}" (run: mmk wire)`);
+  const writeTo = value('write');
+  if (writeTo !== undefined) {
+    // The block is placed between its markers, or appended when there are none, so running this twice
+    // leaves one copy. A rule file that grows a second copy every time is worse than an unwired one.
+    const before = fs.existsSync(writeTo) ? fs.readFileSync(writeTo, 'utf8') : '';
+    const after = upsertBlock(before, wanted, target.block);
+    const changed = after !== before;
+    if (changed) fs.writeFileSync(writeTo, after, 'utf8');
+    out(`${changed ? 'wrote' : 'unchanged'}: ${writeTo} (${wanted}${before === '' ? ', new file' : ''})`);
+    process.exit(0);
+  }
   if (has('json')) json({ target: wanted, file: target.file, note: target.note, block: target.block });
   else out(`# ${wanted} -> ${target.file}\n# ${target.note}\n\n${target.block}`);
   process.exit(0);

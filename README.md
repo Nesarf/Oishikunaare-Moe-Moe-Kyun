@@ -230,6 +230,13 @@ plus pure functions, so they are reachable three more ways:
 | Claude Code hook | `node adapters/claude-code.mjs` (or `npm run claude-code --print-config`) | the correction, not just the rules: on `Stop` a breach answers `{"decision":"block","reason":<notice>}`, on `UserPromptSubmit` and `SessionStart` it answers with `hookSpecificOutput.additionalContext`. Budgeted once per session, fails open, and a stop the hook itself caused is never blocked again. |
 | modules | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |
 
+The `agents-md-brief` target covers the opposite situation from the rest: a host that re-injects a
+baseline file on **every step**, such as this machine's `AGENTS.md`. The full rules would then be paid for
+on every request, so that target emits the brief instead - the rules compressed to a few lines - and
+`mmk wire agents-md-brief --write <path>` places it between `mmk:begin` / `mmk:end` markers, replacing the
+block in place rather than appending a second copy. The reason is measured: the long rules land once at the
+session opening and sink into a history that keeps growing, while one session's own thinking carried
+thousands of the banned code points. A brief that travels with every request does not sink.
 `mmk review` reads a transcript and judges its newest authored message. Three readers ship: this
 package's own `dsh` artifacts (zstd framed, header plus event rows), Claude Code's `cc` transcript
 envelopes (where a thinking block carries its text under `thinking`, which the reader normalizes), and

@@ -189,6 +189,11 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
 | 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
 
+`agents-md-brief` 这个目标对应的是**相反**的场景：宿主会**每一步**重新注入一份 baseline 文件（本机的
+`AGENTS.md` 就是这样）。那时候整段规则会在每次请求上重复付费，所以这个目标给的是**速览** ——
+把规则压到几行 —— 而 `mmk wire agents-md-brief --write <路径>` 会把它放进 `mmk:begin` / `mmk:end`
+标记之间，**就地替换**而不是再追加一份。理由有实测支撑：完整规则只在会话开头落地一次，之后沉进
+不断变长的历史里，而某条会话自己的思考里累计出现过几千个被禁码位。跟着每次请求走的速览不会沉。
 `mmk review` 读一份会话记录，判它最新的一条「模型自己写的」消息。自带三个读取器：本包自己的
 `dsh` 产物（zstd 分帧、头行 + 事件行）、Claude Code 的 `cc` 记录信封（它的思考块把文本放在
 `thinking` 字段里，由读取器归一化）、以及最朴素的 `jsonl`（一行一条消息）—— 写新适配器就照它写。
