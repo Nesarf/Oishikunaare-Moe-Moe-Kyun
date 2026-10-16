@@ -266,13 +266,13 @@ the hook and the plugin row.
 
 ```sh
 # as a plugin, from GitHub (fastest path, no registry round trip)
-dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web add github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 
 # as a plugin, from the registry
 dsh plugin --profile web add oishikunaare-moe-moe-kyun
 
 # or from a clone (a checkout may live anywhere; this machine keeps it at E:/Oishikunaare-Moe-Moe-Kyun)
-git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
+git clone https://github.com/Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
 
 # the harness-free entries need no plugin install at all
@@ -287,7 +287,7 @@ leaves the lockfile on the old commit.
 ```sh
 dsh plugin --profile web update oishikunaare-moe-moe-kyun
 # a GitHub-installed copy is keyed by the spec, so this is the row that moves it:
-dsh plugin --profile web update github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## Configure

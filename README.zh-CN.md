@@ -217,13 +217,13 @@ CLI 必须仍然给出正确退出码。
 
 ```sh
 # 作为插件，从 GitHub 直装
-dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web add github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 
 # 作为插件，从 registry 装
 dsh plugin --profile web add oishikunaare-moe-moe-kyun
 
 # 或从本地克隆装（克隆目录叫什么都可以；本机的克隆在 E:/Oishikunaare-Moe-Moe-Kyun）
-git clone https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun
+git clone https://github.com/Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 dsh plugin --profile web add link:E:/Oishikunaare-Moe-Moe-Kyun
 
 # 那三个「不依赖宿主」的入口根本不用装插件
@@ -238,7 +238,7 @@ commit 上。
 ```sh
 dsh plugin --profile web update oishikunaare-moe-moe-kyun
 # 从 GitHub 装的那份是按 spec 记账的，所以移动它的是这一行：
-dsh plugin --profile web update github:Nesarf/Oishikunaare-Moe-Moe-Kyun
+dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 ```
 
 ## 配置
@@ -468,7 +468,7 @@ npm run audit:session -- --json      # 机器可读
 
 作者本机（Windows）的实际情况，供日后对照：
 
-- 正式来源是本仓库：`dsh plugin --profile web add github:Nesarf/Oishikunaare-Moe-Moe-Kyun`，
+- 正式来源是本仓库：`dsh plugin --profile web add github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun`，
   在本机解析到 `E:\dsh-home\profiles\web\node_modules\Oishikunaare-Moe-Moe-Kyun`，并由
   `profiles/web/package.json` 的 bundles 装载。早期那份自建副本
   （`plugins\dsh-agent-house-rules`，以 `link:` 装过）已从 profile 摘除并删除。

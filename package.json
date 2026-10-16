@@ -79,12 +79,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun.git"
+    "url": "git+https://github.com/Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun.git"
   },
   "bugs": {
-    "url": "https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun/issues"
+    "url": "https://github.com/Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun/issues"
   },
-  "homepage": "https://github.com/Nesarf/Oishikunaare-Moe-Moe-Kyun#readme",
+  "homepage": "https://github.com/Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun#readme",
   "engines": {
     "node": ">=20"
   },
