@@ -496,4 +496,4 @@ npm run audit:session -- --json      # 机器可读
 
 ## 授权
 
-CZGD·PL-1.0（Cheese Gyudon Public Licence，チーズ牛丼パブリックライセンス），见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。此前以 MIT 发布的版本仍可按 MIT 使用。
+CZGD·PL-1.1（Cheese Gyudon Public Licence，チーズ牛丼パブリックライセンス），见 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。此前以 MIT 发布的版本仍可按 MIT 使用。

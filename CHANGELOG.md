@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.24.0 - 2026-10-16
+
+- **The licence is CZGD-PL-1.1 now.** The source kit released 1.1 as a version rather than an edit in
+  place: v1.0's clause wording is untouched and kept in the kit's `versions/`, the ending blessing and
+  twelve "other" particles were corrected, and 9.3 was added - the licensor may make wording revisions
+  without changing rights, must record them and update the hash, and a revision ships as a new version.
+  The SPDX custom identifier moved with it, to LicenseRef-CZGD-PL-1.1.
+- Moved together: `LICENSE` (the 1.1 text, matching the kit byte for byte), `NOTICE` (the version, what
+  changed, and where the hash and signature live), both READMEs, and this entry.
+- New assertion: the version named by `LICENSE` must be the version named by `NOTICE` and both READMEs, and
+  the text must still carry the spirit section, the 9.3 revision clause and no banned glyph. A kit release
+  moves four files at once; a half-updated licence is worse than either version, so it is checked.
 ## 0.23.1 - 2026-10-16
 
 - **Licence paperwork caught up with the text.** `LICENSE` was revised in place (13 wording fixes: the

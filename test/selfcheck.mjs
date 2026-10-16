@@ -752,6 +752,25 @@ check('a voice given to an agent with a character of its own is a touch, not a s
   assert.ok(zhOwn.includes(voice.label) && zhPlain.includes(voice.label), 'both forms still name which voice it is');
   assert.ok(zhOwn.length < 260 && enOwn.length < 520, 'and both stay short enough to read');
 });
+check('the licence version is the same in the text, the NOTICE and both READMEs', () => {
+  // Four files carry the licence version and a kit release moves all four at once; a half-updated licence
+  // is worse than either version, so the agreement between them is asserted rather than remembered.
+  const read = (name) => fs.readFileSync(path.join(ROOT, name), 'utf8');
+  const licence = read('LICENSE');
+  const declared = /CZGD\u00B7PL-(\d+\.\d+)/.exec(licence);
+  assert.ok(declared !== null, 'the licence text names its own version at the top');
+  const version = declared[1];
+  for (const name of ['NOTICE', 'README.md', 'README.zh-CN.md']) {
+    const text = read(name);
+    assert.ok(
+      text.includes(`PL-${version}`) || text.includes(`PL\u00B7${version}`),
+      `${name} names the same licence version as the text (PL-${version})`,
+    );
+  }
+  assert.ok(licence.includes('O.T.A.K.U.'), 'and the spirit section is still in the text');
+  assert.ok(licence.includes('9.3'), 'and the revision clause the version added is there');
+  assert.equal(mod.judgeAuthoredText(licence).length, 0, 'while the text still carries no banned glyph');
+});
 check('the brief is short, complete and clean in both locales', () => {
   // The brief exists so a host that re-injects a file on every step can carry the rules with every
   // request. Short is the point - it is paid for on every step - but it still has to cover all four.

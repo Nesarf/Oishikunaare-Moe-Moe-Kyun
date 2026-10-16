@@ -557,4 +557,4 @@ character, so the audit and the hook describe one system.
 
 ## License
 
-CZGD-PL-1.0 (Cheese Gyudon Public Licence). See [LICENSE](LICENSE) and [NOTICE](NOTICE). Releases published under MIT stay available under MIT.
+CZGD-PL-1.1 (Cheese Gyudon Public Licence). See [LICENSE](LICENSE) and [NOTICE](NOTICE). Releases published under MIT stay available under MIT.

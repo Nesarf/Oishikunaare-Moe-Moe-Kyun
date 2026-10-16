@@ -1,7 +1,7 @@
 Oishikunaare-Moe-Moe-Kyun
 Copyright (c) 2026 Nesarf
 
-本作品依 CZGD·PL-1.0（チーズ牛丼パブリックライセンス）发布。
+本作品依 CZGD·PL-1.1（チーズ牛丼パブリックライセンス）发布。
 协议全文见 LICENSE。
 
 出处：无 —— 本作品为原创，未包含第三方代码或素材（颜文字库由本仓库的
@@ -9,5 +9,8 @@ scripts/gen-kaomoji.mjs 生成，声音表由 scripts/gen-voices.mjs 生成）�
 
 改动说明：
 - 2026-10-16 Nesarf：授权由 MIT 改为 CZGD·PL-1.0；此前以 MIT 发布的版本仍可按 MIT 使用。
-- 2026-10-16：`LICENSE` 随正本库（`E:\CZGD`）同步了一次用词修订（「其它」统一为「其他」，共 13 处），
-  授权范围与各项条款的实质未变；本文件所引版本的正文 sha256 以正本库的 `CHECKSUMS.txt` 为准。
+- 2026-10-16：`LICENSE` 随正本库（`E:\CZGD`）同步到 CZGD·PL-1.1。
+  该版把用字校订并入正式版本（结尾祝福语「抑或是」改为「亦或是」；条款句内的 12 处「其它」统一为
+  「其他」，第 33 行原本就是「其他」，未动），并新增第 9.3 条「勘误与介入入口」。
+  授权范围与各项条款的实质未变：v1.0 的条款文字一字未动，保存在正本库的 versions/CZGD-PL-1.0.txt。
+  正文 sha256 与签名以正本库的 `CHECKSUMS.txt` 与 `CHECKSUMS.txt.sig` 为准。
