@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.35.0 - 2026-10-16
+
+- **The thinking discipline now starts from your own judgement.** Asked for after the prose-rules work: thinking
+  should establish what you are doing, on what evidence, and what is still uncertain, and only then align with
+  what the reader needs - starting from a guess at what the reader wants to hear is how a reply turns into a
+  performance. Phrases like "on the evidence", "this I am not sure about" and "the trade is this" are positions
+  rather than pleasantries, and they belong in the thinking before the answer. Both locales carry it.
 ## 0.34.0 - 2026-10-16
 
 - **The prose guidance names one construction to avoid and one to reach for instead.** Asked for directly:
