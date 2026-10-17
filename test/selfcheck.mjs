@@ -828,6 +828,10 @@ check('the prose guidance discourages the false contrast and encourages the angl
   assert.ok(zh.includes('\u89C6\u89D2'), 'and points at the angle construction instead');
   assert.ok(en.includes('not X but Y'), 'en names the same construction');
   assert.ok(en.includes('naming the standpoint'), 'and points at the angle instead');
+  assert.ok(zh.includes(String.fromCodePoint(0x6BD4, 0x55BB, 0x5C11, 0x7528)), 'zh asks for simile sparingly');
+  assert.ok(zh.includes(String.fromCodePoint(0x7EC6, 0x5316)), 'and names the finer statement');
+  assert.ok(en.includes('Use simile sparingly'), 'en asks for simile sparingly');
+  assert.ok(en.includes('Break the claim down'), 'and names the finer statement');
   for (const rule of [zh, en]) {
     assert.equal(mod.judgeAuthoredText(rule).length, 0, 'the rule text still carries no banned glyph');
   }
@@ -1755,3 +1759,21 @@ for (const { label, fn } of pending) {
 }
 console.log(`\n${failures === 0 ? 'all checks pass' : failures + ' check(s) failed'}`);
 process.exit(failures === 0 ? 0 : 1);
+
+check('a turn that ends carrying an emoji earns one more pass', () => {
+  const emoji = String.fromCodePoint(0x1F600);
+  const messages = [{ id: 'm1', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'text', text: 'done ' + emoji }] }];
+  const agent = { session: { id: 'emoji-1', deriveMessages: () => messages }, steer: () => {} };
+  const resolve = () => ({ enabled: true, locale: 'zh', judge: {} });
+  const first = mod.makeEmojiSteerDecider({ enabled: true, max: 1, resolve })({ agent, turn: 1 });
+  assert.ok(first !== null, 'the first turn is asked for another pass');
+  assert.equal(mod.judgeAuthoredText(first).length, 0, 'and the steer carries no banned glyph');
+  assert.ok(/emoji/i.test(first), 'it names what went wrong');
+  const perTurn = new Map([['emoji-1', 1]]);
+  assert.equal(mod.makeEmojiSteerDecider({ enabled: true, max: 1, perTurn, resolve })({ agent, turn: 1 }), null, 'the same turn is never steered twice');
+  const used = new Map([['emoji-1', 1]]);
+  assert.equal(mod.makeEmojiSteerDecider({ enabled: true, max: 1, perSession: used, resolve })({ agent, turn: 2 }), null, 'and the session budget is respected');
+  const clean = [{ id: 'm2', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'text', text: 'no marks here' }] }];
+  const quiet = { session: { id: 'emoji-2', deriveMessages: () => clean }, steer: () => {} };
+  assert.equal(mod.makeEmojiSteerDecider({ enabled: true, max: 1, resolve })({ agent: quiet, turn: 1 }), null, 'a clean turn is left alone');
+});

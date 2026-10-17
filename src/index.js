@@ -1797,6 +1797,23 @@ export function symbolSteerNotice(glyphs, locale, where = 'text') {
  * @param {string} locale - the locale the rules were assembled in.
  * @returns {string} the steering text.
  */
+/**
+ * Compose the steering message for a turn that closed carrying an emoji.
+ *
+ * Like the glyph steer, it asks for the reply rather than for a fresh one, and it names the marks so the
+ * model does not have to guess which character was meant.
+ * @param {string[]} emoji - the offending marks, as rendered.
+ * @param {string} locale - the locale the rules were assembled in.
+ * @returns {string} the steering text.
+ */
+export function emojiSteerNotice(emoji, locale) {
+  const marks = (emoji ?? []).slice(0, 4).join(' ');
+  if (locale === 'zh') {
+    return '\u3010\u840C\u00B7\u8868\u60C5\u7B26\u6587\u3011\u8FD9\u4E00\u56DE\u5408\u7684\u56DE\u590D\u91CC\u5E26\u4E86 emoji\uFF08' + marks + '\uFF09\u3002emoji \u4E00\u5F8B\u4E3A\u96F6\uFF1A\u60F3\u8868\u8FBE\u90A3\u4E2A\u610F\u601D\uFF0C\u5C31\u7528\u6587\u5B57\uFF0C\u6216\u8005\u6362\u4E00\u4E2A\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8BF7\u628A\u90A3\u6761\u56DE\u590D\u91CD\u5199\u6210\u4E0D\u5E26 emoji \u7684\u7248\u672C\uFF0C\u4E0D\u8981\u53E6\u52A0\u4E00\u6BB5\u89E3\u91CA\u3002';
+  }
+  return 'MOE EMOJI - this turn closed carrying ' + marks + '. Emoji is zero: say what it meant in words, or use a Japanese kaomoji instead. Rewrite the reply without them, and do not add a paragraph explaining the change.';
+}
+
 export function toolSteerNotice(call, glyphs, locale) {
   const list = Array.isArray(glyphs) ? glyphs.join(', ') : '';
   const name = typeof call === 'string' && call !== '' ? call : 'tool';
@@ -1846,6 +1863,45 @@ export function makeSymbolSteerDecider(options) {
       return toolSteerNotice(written.call, written.glyphs, state.locale);
     } catch (error) {
       options.warn?.(`symbol steer check failed: ${error?.message ?? error}`);
+      return null;
+    }
+  };
+}
+
+/**
+ * Decide whether a turn that closed carrying an emoji earns one more pass.
+ *
+ * The same ledger as the glyph decider - one steer per turn, a budget per session - so the two levers can
+ * never multiply: whichever fires first claims the turn.
+ * @param {object} options - enabled, max, perTurn, perSession, resolve, warn.
+ * @returns {(input: object) => string | null} the decider.
+ */
+export function makeEmojiSteerDecider(options) {
+  const perTurn = options.perTurn instanceof Map ? options.perTurn : new Map();
+  const perSession = options.perSession instanceof Map ? options.perSession : new Map();
+  const max = Number.isFinite(options.max) && options.max >= 0 ? Math.floor(options.max) : 1;
+  return (input) => {
+    try {
+      if (options.enabled !== true) return null;
+      if (!input || input.signal?.aborted) return null;
+      const state = typeof options.resolve === 'function' ? options.resolve() : null;
+      if (!state || !state.enabled) return null;
+      const agent = input.agent;
+      if (!agent || typeof agent.steer !== 'function') return null;
+      const messages = typeof agent.session?.deriveMessages === 'function' ? agent.session.deriveMessages() : null;
+      if (!Array.isArray(messages) || messages.length === 0) return null;
+      const hit = findEmojiInMessages(messages, state.judge);
+      if (hit === null) return null;
+      const sessionId = agent.session?.id ?? 'unknown';
+      const turn = Number.isFinite(input.turn) ? input.turn : -1;
+      if (perTurn.get(sessionId) === turn) return null;
+      const used = perSession.get(sessionId) ?? 0;
+      if (used >= max) return null;
+      perTurn.set(sessionId, turn);
+      perSession.set(sessionId, used + 1);
+      return emojiSteerNotice(hit.emoji, state.locale);
+    } catch (error) {
+      options.warn?.(`emoji steer check failed: ${error?.message ?? error}`);
       return null;
     }
   };
@@ -2679,7 +2735,9 @@ export function apply(ctx, config) {
     const steerPerTurn = new Map();
     const symbolSteerOn = initial.symbolSteer !== false;
     const kaomojiSteerOn = initial.kaomojiSteer === true;
-    if (symbolSteerOn || kaomojiSteerOn) {
+    const emojiSteerOn = initial.emojiSteer === true;
+    const emojiSteerMax = Number.isFinite(initial.emojiSteerMax) && initial.emojiSteerMax >= 0 ? Math.floor(initial.emojiSteerMax) : 1;
+    if (symbolSteerOn || kaomojiSteerOn || emojiSteerOn) {
       const symbolMax = typeof initial.symbolSteerMax === 'number' && initial.symbolSteerMax >= 0
         ? Math.floor(initial.symbolSteerMax)
         : 1;
@@ -2701,15 +2759,23 @@ export function apply(ctx, config) {
       const kaomojiDecide = kaomojiSteerOn
         ? makeSteerDecider({ enabled: true, max: kaomojiMax, perTurn: steerPerTurn, resolve: steerState, warn })
         : () => null;
+      // Emoji gets the same lever: the turn-end check already covered the banned glyphs and the missing
+      // face, and an emoji is the third way a reply can arrive unreadable.
+      const emojiDecide = emojiSteerOn
+        ? makeEmojiSteerDecider({ enabled: true, max: emojiSteerMax, perTurn: steerPerTurn, resolve: steerState, warn })
+        : () => null;
       ctx.on('agent/turn-stopping', async (payload) => {
         const symbolText = symbolDecide(payload);
-        const text = symbolText ?? kaomojiDecide(payload);
+        const kaomojiText = symbolText === null ? kaomojiDecide(payload) : null;
+        const text = symbolText ?? kaomojiText ?? emojiDecide(payload);
         if (text === null) return;
         try {
           payload.agent.steer(noticeMessage(text));
-          ctx.logger?.info?.(symbolText === null
-            ? '[house-rules] turn stopped without a kaomoji; steered one more pass'
-            : '[house-rules] turn stopped carrying a banned glyph; steered one more pass');
+          ctx.logger?.info?.(symbolText !== null
+            ? '[house-rules] turn stopped carrying a banned glyph; steered one more pass'
+            : (kaomojiText !== null
+              ? '[house-rules] turn stopped without a kaomoji; steered one more pass'
+              : '[house-rules] turn stopped carrying an emoji; steered one more pass'));
         } catch (error) {
           warn(`steering failed: ${error?.message ?? error}`);
         }

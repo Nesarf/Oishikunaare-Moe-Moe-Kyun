@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.38.0 - 2026-10-16
+
+- **Emoji gets the same turn-end lever the banned glyphs already had.** The turn-end check covered two of the
+  three ways a reply can arrive unreadable - a judgement glyph and a missing face - and an emoji was the third;
+  `findEmojiInMessages` and `makeEmojiSteerDecider` close that gap, with `emojiSteer` (default on) and
+  `emojiSteerMax` (default one per session) as their own switch and budget, sharing the per-turn ledger with
+  the other two so the levers cannot multiply: whichever fires first claims the turn. The steer asks for the
+  reply to be rewritten without the marks and says not to add a paragraph explaining the change.
+- Also this round: the prose guidance gained the assertions it was missing (simile sparingly, the finer
+  statement, the standpoint construction, in both locales), and the temporary directory was cleared.
 ## 0.37.0 - 2026-10-16
 
 - **The rule text ships in Japanese.** `PACKAGED.ja` carries all four parts (the mark discipline, the kaomoji
