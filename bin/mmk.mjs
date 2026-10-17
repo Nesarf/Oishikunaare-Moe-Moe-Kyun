@@ -32,7 +32,7 @@ import {
 } from '../src/portable.mjs';
 import { readTranscript } from '../src/transcripts.mjs';
 import { upsertBlock, wireTargets } from '../src/wire.mjs';
-import { briefRules } from '../src/index.js';
+import { accentFor, briefRules, readAccentTable } from '../src/index.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const USAGE = `mmk - moe house rules, harness free
@@ -46,6 +46,7 @@ commands
   check                 judge one text, and report what it carries
   notice                render the notice for a named finding
   voice                 decide which voice a preset or a persona speaks in
+  accent                pick the accent a persona suits (--persona-text or --persona-file)
   review                judge a transcript's newest authored message
 
 common options
@@ -258,6 +259,17 @@ if (command === 'voice') {
   process.exit(decision.id === null ? 3 : 0);
 }
 
+if (command === 'accent') {
+  const personaFile = value('persona-file');
+  const persona = value('persona-text') ?? (personaFile === undefined ? undefined : fs.readFileSync(personaFile, 'utf8'));
+  if (persona === undefined) fail('accent needs --persona-text or --persona-file');
+  const table = readAccentTable(path.join(HERE, '..', 'rules', 'accents'), state.locale);
+  const chosen = accentFor(persona, table.accents);
+  if (has('json')) json({ locale: table.locale, persona, accent: chosen });
+  else if (chosen === null) out('no accent fits this persona: the copy keeps the voice markers');
+  else out(`${chosen.id} (${chosen.label}) - ${chosen.feel}`);
+  process.exit(0);
+}
 if (command === 'review') {
   const file = value('transcript') ?? value('file');
   if (file === undefined) fail('review needs --transcript <path>');

@@ -188,7 +188,7 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 | 入口 | 怎么用 | 给谁用 |
 | --- | --- | --- |
-| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>`、`mmk accent --persona-text "…"`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
 | 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |

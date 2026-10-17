@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.33.0 - 2026-10-16
+
+- **`mmk accent` asks the pool which touch a persona suits, without a host.** One command: the accent id,
+  its label and its feel, or a clear "no accent fits this persona" when none of the signals match. It takes
+  `--persona-text` or `--persona-file`, honours `--locale` for the table (so a Japanese persona reads the
+  Japanese labels) and `--json` for machine use - the same `accentFor` the plugin calls, so the answer cannot
+  drift from what an agent would be given.
 ## 0.32.0 - 2026-10-16
 
 - **Faces without a frame are recognised now, through a mark whitelist.** The framed reader stays the strict

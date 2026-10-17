@@ -227,7 +227,7 @@ plus pure functions, so they are reachable three more ways:
 
 | entry | how | what it is for |
 | --- | --- | --- |
-| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>`, `mmk wire <target>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` and `mmk wire <target>` emit paste-ready blocks. |
+| CLI | `mmk rules`, `mmk check --text "..."`, `mmk review --transcript <file>`, `mmk accent --persona-text "<text>"`, `mmk wire <target>` | a shell, a git hook, a CI step, or a person asking whether a line would be refused. Exit 3 means a breach, so a caller can branch on the answer without parsing prose. `mmk rules --format md` and `mmk wire <target>` emit paste-ready blocks. |
 | MCP server | `node adapters/mcp.mjs` (or `npm run mcp`) | any client that speaks MCP: `mmk_rules` fetches the section for the system prompt, `mmk_check` judges a draft on all three alphabets, `mmk_notice` renders one notice. Nothing here assumes a particular agent. |
 | Claude Code hook | `node adapters/claude-code.mjs` (or `npm run claude-code --print-config`) | the correction, not just the rules: on `Stop` a breach answers `{"decision":"block","reason":<notice>}`, on `UserPromptSubmit` and `SessionStart` it answers with `hookSpecificOutput.additionalContext`. Budgeted once per session, fails open, and a stop the hook itself caused is never blocked again. |
 | modules | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | writing another adapter. The DSH plugin, the CLI, the MCP server and the hook are all thin layers over that one file. |
