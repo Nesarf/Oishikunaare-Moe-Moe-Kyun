@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.32.0 - 2026-10-16
+
+- **Faces without a frame are recognised now, through a mark whitelist.** The framed reader stays the strict
+  one - it is what keeps an ordinary parenthetical from counting as a face - but a whole family of real faces
+  carries no brackets at all, and refusing them meant the palette could not ship them and using one earned a
+  "you used no kaomoji" reminder. A bare run now counts when it is three to ten code points, holds at least
+  two marks from the whitelist, contains no letter or digit, and does not touch one at either end. That is
+  what keeps a lone ellipsis, a row of tildes, an arithmetic expression and the Western colon-parenthesis kind
+  out of the count, while two ring eyes and a squiggle go in.
+- Nothing in the shipped library changed (19600 faces, still all framed by the composer), so this only widens
+  what a reader may write.
 ## 0.31.0 - 2026-10-16
 
 - **The accent pool is 40 touches now, the same forty in each locale.** Sixteen more entries were added to
