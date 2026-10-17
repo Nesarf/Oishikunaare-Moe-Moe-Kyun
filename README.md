@@ -331,7 +331,7 @@ required - with no file at all the rules above are injected in English.
 
 ### The kaomoji library
 
-`rules/kaomoji.json` ships 10274 faces across fourteen moods (cheerful, calm, wry, troubled, shy,
+`rules/kaomoji.json` ships 18585 faces across fourteen moods, each cut into parts of at most 500 faces (cheerful, calm, wry, troubled, shy,
 determined, puzzled, tired, affection, fullwidth and framed, with arms, decorated, blushing and
 sweating, classic faces), each with the mood it carries and a short label. The library
 is rendered into the prompt under the rules, so an agent has a palette to draw from instead of
@@ -339,7 +339,7 @@ reusing one face until it reads as a tic. Labels exist in both languages: `feel`
 English rendering, `feelZh`/`useZh`/`labelZh` the Chinese one.
 
 To grow it, either edit `rules/kaomoji.json` or point `kaomojiLibrary` at your own file with the same
-shape. The shipped file holds **10274 faces** across 14 moods, and one invariant is worth keeping if you
+shape. The shipped file holds **18585 faces** across 14 moods, and one invariant is worth keeping if you
 extend it: **every face must be one the judge can see** (`findKaomoji`, the same reading the floor uses).
 The generator enforces that by importing the judge, and a test asserts it - because 100 entries used to
 ship blind, which turned "use a face from the palette" into "you used no kaomoji" for those faces.
@@ -356,7 +356,7 @@ ship blind, which turned "use a face from the palette" into "you used no kaomoji
 The prompt is not free, so the renderer takes faces in category order up to `kaomojiLibraryMax` and
 counts the rest instead of printing them - a stable prefix, which also keeps the prompt prefix
 cacheable. The file path is always named, so an agent that wants the remainder can read it. For scale:
-the Chinese rendering of all 10274 faces runs past 130 000 characters, which is exactly why the
+the Chinese rendering of all 18585 faces runs past 130 000 characters, which is exactly why the
 ceiling exists: the default 140 carries about 2400 characters of palette.
 
 ### The self-check: rules with teeth

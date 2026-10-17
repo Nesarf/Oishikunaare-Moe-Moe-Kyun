@@ -1,0 +1,2516 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - determined (part 2)",
+  "version": 4,
+  "note": "fixed it, settled the plan, rolling up sleeves. Part 2 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "determined",
+      "label": "determined",
+      "labelZh": "有干劲",
+      "use": "fixed it, settled the plan, rolling up sleeves",
+      "useZh": "修好了、定下方案、下决心",
+      "faces": [
+        {
+          "face": "/(дДд)/",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "西里尔 d眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(дДд)\\/",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "西里尔 d眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(дДд)\\\\",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "西里尔 d眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(дДд)//",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "西里尔 d眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(ддд)\\",
+          "feel": "cyrillic de eyes + cyrillic de mouth, arms out",
+          "feelZh": "西里尔 d眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(ддд)/",
+          "feel": "cyrillic de eyes + cyrillic de mouth, arms out",
+          "feelZh": "西里尔 d眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ддд)\\/",
+          "feel": "cyrillic de eyes + cyrillic de mouth, arms out",
+          "feelZh": "西里尔 d眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ддд)\\\\",
+          "feel": "cyrillic de eyes + cyrillic de mouth, arms out",
+          "feelZh": "西里尔 d眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ддд)//",
+          "feel": "cyrillic de eyes + cyrillic de mouth, arms out",
+          "feelZh": "西里尔 d眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(д∀д)\\",
+          "feel": "cyrillic de eyes + for all mouth, arms out",
+          "feelZh": "西里尔 d眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(д∀д)/",
+          "feel": "cyrillic de eyes + for all mouth, arms out",
+          "feelZh": "西里尔 d眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(д∀д)\\/",
+          "feel": "cyrillic de eyes + for all mouth, arms out",
+          "feelZh": "西里尔 d眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(д∀д)\\\\",
+          "feel": "cyrillic de eyes + for all mouth, arms out",
+          "feelZh": "西里尔 d眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(д∀д)//",
+          "feel": "cyrillic de eyes + for all mouth, arms out",
+          "feelZh": "西里尔 d眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(дЗд)\\",
+          "feel": "cyrillic de eyes + cyrillic ze mouth, arms out",
+          "feelZh": "西里尔 d眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(дЗд)/",
+          "feel": "cyrillic de eyes + cyrillic ze mouth, arms out",
+          "feelZh": "西里尔 d眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(дЗд)\\/",
+          "feel": "cyrillic de eyes + cyrillic ze mouth, arms out",
+          "feelZh": "西里尔 d眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(дЗд)/\\",
+          "feel": "cyrillic de eyes + cyrillic ze mouth, arms out",
+          "feelZh": "西里尔 d眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(дЗд)//",
+          "feel": "cyrillic de eyes + cyrillic ze mouth, arms out",
+          "feelZh": "西里尔 d眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(дツд)\\",
+          "feel": "cyrillic de eyes + katakana tsu mouth, arms out",
+          "feelZh": "西里尔 d眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(дツд)/",
+          "feel": "cyrillic de eyes + katakana tsu mouth, arms out",
+          "feelZh": "西里尔 d眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(дツд)\\/",
+          "feel": "cyrillic de eyes + katakana tsu mouth, arms out",
+          "feelZh": "西里尔 d眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(дツд)/\\",
+          "feel": "cyrillic de eyes + katakana tsu mouth, arms out",
+          "feelZh": "西里尔 d眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(дツд)//",
+          "feel": "cyrillic de eyes + katakana tsu mouth, arms out",
+          "feelZh": "西里尔 d眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω_ω)\\",
+          "feel": "omega eyes + flat mouth, arms out",
+          "feelZh": "ω眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ω_ω)/",
+          "feel": "omega eyes + flat mouth, arms out",
+          "feelZh": "ω眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω_ω)\\/",
+          "feel": "omega eyes + flat mouth, arms out",
+          "feelZh": "ω眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω_ω)/\\",
+          "feel": "omega eyes + flat mouth, arms out",
+          "feelZh": "ω眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω_ω)//",
+          "feel": "omega eyes + flat mouth, arms out",
+          "feelZh": "ω眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω＿ω)\\",
+          "feel": "omega eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ω眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ω＿ω)/",
+          "feel": "omega eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ω眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω＿ω)\\/",
+          "feel": "omega eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ω眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω＿ω)/\\",
+          "feel": "omega eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ω眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ω＿ω)//",
+          "feel": "omega eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ω眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω。ω)\\",
+          "feel": "omega eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ω眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(ω。ω)/",
+          "feel": "omega eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ω眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω。ω)\\/",
+          "feel": "omega eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ω眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω。ω)/\\",
+          "feel": "omega eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ω眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω。ω)\\\\",
+          "feel": "omega eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ω眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω．ω)\\",
+          "feel": "omega eyes + fullwidth period mouth, arms out",
+          "feelZh": "ω眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(ω．ω)/",
+          "feel": "omega eyes + fullwidth period mouth, arms out",
+          "feelZh": "ω眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω．ω)\\/",
+          "feel": "omega eyes + fullwidth period mouth, arms out",
+          "feelZh": "ω眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω．ω)/\\",
+          "feel": "omega eyes + fullwidth period mouth, arms out",
+          "feelZh": "ω眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ω．ω)\\\\",
+          "feel": "omega eyes + fullwidth period mouth, arms out",
+          "feelZh": "ω眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(ωωω)\\",
+          "feel": "omega eyes + omega mouth, arms out",
+          "feelZh": "ω眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(ωωω)/",
+          "feel": "omega eyes + omega mouth, arms out",
+          "feelZh": "ω眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ωωω)\\/",
+          "feel": "omega eyes + omega mouth, arms out",
+          "feelZh": "ω眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ωωω)/\\",
+          "feel": "omega eyes + omega mouth, arms out",
+          "feelZh": "ω眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ωωω)\\\\",
+          "feel": "omega eyes + omega mouth, arms out",
+          "feelZh": "ω眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω▽ω)\\",
+          "feel": "omega eyes + down triangle mouth, arms out",
+          "feelZh": "ω眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(ω▽ω)/",
+          "feel": "omega eyes + down triangle mouth, arms out",
+          "feelZh": "ω眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω▽ω)\\/",
+          "feel": "omega eyes + down triangle mouth, arms out",
+          "feelZh": "ω眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω▽ω)/\\",
+          "feel": "omega eyes + down triangle mouth, arms out",
+          "feelZh": "ω眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω▽ω)\\\\",
+          "feel": "omega eyes + down triangle mouth, arms out",
+          "feelZh": "ω眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(ω△ω)\\",
+          "feel": "omega eyes + up triangle mouth, arms out",
+          "feelZh": "ω眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(ω△ω)/",
+          "feel": "omega eyes + up triangle mouth, arms out",
+          "feelZh": "ω眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω△ω)\\/",
+          "feel": "omega eyes + up triangle mouth, arms out",
+          "feelZh": "ω眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω△ω)/\\",
+          "feel": "omega eyes + up triangle mouth, arms out",
+          "feelZh": "ω眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ω△ω)\\\\",
+          "feel": "omega eyes + up triangle mouth, arms out",
+          "feelZh": "ω眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(ωДω)\\",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(ωДω)/",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ωДω)\\/",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ωДω)/\\",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ωДω)\\\\",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ωДω)//",
+          "feel": "omega eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ω眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(ωдω)/",
+          "feel": "omega eyes + cyrillic de mouth, arms out",
+          "feelZh": "ω眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ωдω)\\/",
+          "feel": "omega eyes + cyrillic de mouth, arms out",
+          "feelZh": "ω眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ωдω)/\\",
+          "feel": "omega eyes + cyrillic de mouth, arms out",
+          "feelZh": "ω眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ωдω)\\\\",
+          "feel": "omega eyes + cyrillic de mouth, arms out",
+          "feelZh": "ω眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ωдω)//",
+          "feel": "omega eyes + cyrillic de mouth, arms out",
+          "feelZh": "ω眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(ω∀ω)/",
+          "feel": "omega eyes + for all mouth, arms out",
+          "feelZh": "ω眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ω∀ω)\\/",
+          "feel": "omega eyes + for all mouth, arms out",
+          "feelZh": "ω眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ω∀ω)/\\",
+          "feel": "omega eyes + for all mouth, arms out",
+          "feelZh": "ω眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ω∀ω)\\\\",
+          "feel": "omega eyes + for all mouth, arms out",
+          "feelZh": "ω眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ω∀ω)//",
+          "feel": "omega eyes + for all mouth, arms out",
+          "feelZh": "ω眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(ωЗω)/",
+          "feel": "omega eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ω眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ωЗω)\\/",
+          "feel": "omega eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ω眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ωЗω)/\\",
+          "feel": "omega eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ω眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ωЗω)\\\\",
+          "feel": "omega eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ω眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ωЗω)//",
+          "feel": "omega eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ω眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(ωツω)/",
+          "feel": "omega eyes + katakana tsu mouth, arms out",
+          "feelZh": "ω眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ωツω)\\/",
+          "feel": "omega eyes + katakana tsu mouth, arms out",
+          "feelZh": "ω眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ωツω)/\\",
+          "feel": "omega eyes + katakana tsu mouth, arms out",
+          "feelZh": "ω眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ωツω)\\\\",
+          "feel": "omega eyes + katakana tsu mouth, arms out",
+          "feelZh": "ω眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ωツω)//",
+          "feel": "omega eyes + katakana tsu mouth, arms out",
+          "feelZh": "ω眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ_μ)\\",
+          "feel": "mu eyes + flat mouth, arms out",
+          "feelZh": "μ眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ_μ)\\/",
+          "feel": "mu eyes + flat mouth, arms out",
+          "feelZh": "μ眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ_μ)/\\",
+          "feel": "mu eyes + flat mouth, arms out",
+          "feelZh": "μ眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ_μ)\\\\",
+          "feel": "mu eyes + flat mouth, arms out",
+          "feelZh": "μ眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ_μ)//",
+          "feel": "mu eyes + flat mouth, arms out",
+          "feelZh": "μ眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ＿μ)\\",
+          "feel": "mu eyes + fullwidth flat mouth, arms out",
+          "feelZh": "μ眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ＿μ)\\/",
+          "feel": "mu eyes + fullwidth flat mouth, arms out",
+          "feelZh": "μ眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ＿μ)/\\",
+          "feel": "mu eyes + fullwidth flat mouth, arms out",
+          "feelZh": "μ眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ＿μ)\\\\",
+          "feel": "mu eyes + fullwidth flat mouth, arms out",
+          "feelZh": "μ眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(μ＿μ)//",
+          "feel": "mu eyes + fullwidth flat mouth, arms out",
+          "feelZh": "μ眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ。μ)\\",
+          "feel": "mu eyes + ideographic full stop mouth, arms out",
+          "feelZh": "μ眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ。μ)\\/",
+          "feel": "mu eyes + ideographic full stop mouth, arms out",
+          "feelZh": "μ眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ。μ)/\\",
+          "feel": "mu eyes + ideographic full stop mouth, arms out",
+          "feelZh": "μ眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ。μ)\\\\",
+          "feel": "mu eyes + ideographic full stop mouth, arms out",
+          "feelZh": "μ眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ。μ)//",
+          "feel": "mu eyes + ideographic full stop mouth, arms out",
+          "feelZh": "μ眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ．μ)\\",
+          "feel": "mu eyes + fullwidth period mouth, arms out",
+          "feelZh": "μ眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ．μ)\\/",
+          "feel": "mu eyes + fullwidth period mouth, arms out",
+          "feelZh": "μ眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ．μ)/\\",
+          "feel": "mu eyes + fullwidth period mouth, arms out",
+          "feelZh": "μ眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ．μ)\\\\",
+          "feel": "mu eyes + fullwidth period mouth, arms out",
+          "feelZh": "μ眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(μ．μ)//",
+          "feel": "mu eyes + fullwidth period mouth, arms out",
+          "feelZh": "μ眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(μωμ)\\",
+          "feel": "mu eyes + omega mouth, arms out",
+          "feelZh": "μ眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(μωμ)\\/",
+          "feel": "mu eyes + omega mouth, arms out",
+          "feelZh": "μ眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(μωμ)/\\",
+          "feel": "mu eyes + omega mouth, arms out",
+          "feelZh": "μ眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(μωμ)\\\\",
+          "feel": "mu eyes + omega mouth, arms out",
+          "feelZh": "μ眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(μωμ)//",
+          "feel": "mu eyes + omega mouth, arms out",
+          "feelZh": "μ眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ▽μ)\\",
+          "feel": "mu eyes + down triangle mouth, arms out",
+          "feelZh": "μ眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(μ▽μ)/",
+          "feel": "mu eyes + down triangle mouth, arms out",
+          "feelZh": "μ眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ▽μ)/\\",
+          "feel": "mu eyes + down triangle mouth, arms out",
+          "feelZh": "μ眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ▽μ)\\\\",
+          "feel": "mu eyes + down triangle mouth, arms out",
+          "feelZh": "μ眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ▽μ)//",
+          "feel": "mu eyes + down triangle mouth, arms out",
+          "feelZh": "μ眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ△μ)\\",
+          "feel": "mu eyes + up triangle mouth, arms out",
+          "feelZh": "μ眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(μ△μ)/",
+          "feel": "mu eyes + up triangle mouth, arms out",
+          "feelZh": "μ眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ△μ)/\\",
+          "feel": "mu eyes + up triangle mouth, arms out",
+          "feelZh": "μ眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ△μ)\\\\",
+          "feel": "mu eyes + up triangle mouth, arms out",
+          "feelZh": "μ眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(μ△μ)//",
+          "feel": "mu eyes + up triangle mouth, arms out",
+          "feelZh": "μ眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(μДμ)\\",
+          "feel": "mu eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "μ眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(μДμ)/",
+          "feel": "mu eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "μ眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(μДμ)/\\",
+          "feel": "mu eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "μ眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(μДμ)\\\\",
+          "feel": "mu eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "μ眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(μДμ)//",
+          "feel": "mu eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "μ眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(μдμ)\\",
+          "feel": "mu eyes + cyrillic de mouth, arms out",
+          "feelZh": "μ眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(μдμ)/",
+          "feel": "mu eyes + cyrillic de mouth, arms out",
+          "feelZh": "μ眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(μдμ)/\\",
+          "feel": "mu eyes + cyrillic de mouth, arms out",
+          "feelZh": "μ眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(μдμ)\\\\",
+          "feel": "mu eyes + cyrillic de mouth, arms out",
+          "feelZh": "μ眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(μдμ)//",
+          "feel": "mu eyes + cyrillic de mouth, arms out",
+          "feelZh": "μ眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(μ∀μ)\\",
+          "feel": "mu eyes + for all mouth, arms out",
+          "feelZh": "μ眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(μ∀μ)/",
+          "feel": "mu eyes + for all mouth, arms out",
+          "feelZh": "μ眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(μ∀μ)\\/",
+          "feel": "mu eyes + for all mouth, arms out",
+          "feelZh": "μ眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(μ∀μ)\\\\",
+          "feel": "mu eyes + for all mouth, arms out",
+          "feelZh": "μ眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(μ∀μ)//",
+          "feel": "mu eyes + for all mouth, arms out",
+          "feelZh": "μ眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(μЗμ)\\",
+          "feel": "mu eyes + cyrillic ze mouth, arms out",
+          "feelZh": "μ眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(μЗμ)/",
+          "feel": "mu eyes + cyrillic ze mouth, arms out",
+          "feelZh": "μ眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(μЗμ)\\/",
+          "feel": "mu eyes + cyrillic ze mouth, arms out",
+          "feelZh": "μ眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(μЗμ)\\\\",
+          "feel": "mu eyes + cyrillic ze mouth, arms out",
+          "feelZh": "μ眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(μЗμ)//",
+          "feel": "mu eyes + cyrillic ze mouth, arms out",
+          "feelZh": "μ眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(μツμ)\\",
+          "feel": "mu eyes + katakana tsu mouth, arms out",
+          "feelZh": "μ眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(μツμ)/",
+          "feel": "mu eyes + katakana tsu mouth, arms out",
+          "feelZh": "μ眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(μツμ)\\/",
+          "feel": "mu eyes + katakana tsu mouth, arms out",
+          "feelZh": "μ眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(μツμ)\\\\",
+          "feel": "mu eyes + katakana tsu mouth, arms out",
+          "feelZh": "μ眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(μツμ)//",
+          "feel": "mu eyes + katakana tsu mouth, arms out",
+          "feelZh": "μ眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε_ε)\\",
+          "feel": "epsilon eyes + flat mouth, arms out",
+          "feelZh": "ε眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ε_ε)/",
+          "feel": "epsilon eyes + flat mouth, arms out",
+          "feelZh": "ε眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε_ε)\\/",
+          "feel": "epsilon eyes + flat mouth, arms out",
+          "feelZh": "ε眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε_ε)\\\\",
+          "feel": "epsilon eyes + flat mouth, arms out",
+          "feelZh": "ε眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε_ε)//",
+          "feel": "epsilon eyes + flat mouth, arms out",
+          "feelZh": "ε眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε＿ε)\\",
+          "feel": "epsilon eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ε眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ε＿ε)/",
+          "feel": "epsilon eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ε眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε＿ε)\\/",
+          "feel": "epsilon eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ε眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε＿ε)\\\\",
+          "feel": "epsilon eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ε眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ε＿ε)//",
+          "feel": "epsilon eyes + fullwidth flat mouth, arms out",
+          "feelZh": "ε眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε。ε)\\",
+          "feel": "epsilon eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ε眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(ε。ε)/",
+          "feel": "epsilon eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ε眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε。ε)\\/",
+          "feel": "epsilon eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ε眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε。ε)/\\",
+          "feel": "epsilon eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ε眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε。ε)//",
+          "feel": "epsilon eyes + ideographic full stop mouth, arms out",
+          "feelZh": "ε眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε．ε)\\",
+          "feel": "epsilon eyes + fullwidth period mouth, arms out",
+          "feelZh": "ε眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(ε．ε)/",
+          "feel": "epsilon eyes + fullwidth period mouth, arms out",
+          "feelZh": "ε眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε．ε)\\/",
+          "feel": "epsilon eyes + fullwidth period mouth, arms out",
+          "feelZh": "ε眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε．ε)/\\",
+          "feel": "epsilon eyes + fullwidth period mouth, arms out",
+          "feelZh": "ε眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ε．ε)//",
+          "feel": "epsilon eyes + fullwidth period mouth, arms out",
+          "feelZh": "ε眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(εωε)\\",
+          "feel": "epsilon eyes + omega mouth, arms out",
+          "feelZh": "ε眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(εωε)/",
+          "feel": "epsilon eyes + omega mouth, arms out",
+          "feelZh": "ε眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(εωε)\\/",
+          "feel": "epsilon eyes + omega mouth, arms out",
+          "feelZh": "ε眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(εωε)/\\",
+          "feel": "epsilon eyes + omega mouth, arms out",
+          "feelZh": "ε眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(εωε)//",
+          "feel": "epsilon eyes + omega mouth, arms out",
+          "feelZh": "ε眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε▽ε)\\",
+          "feel": "epsilon eyes + down triangle mouth, arms out",
+          "feelZh": "ε眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(ε▽ε)/",
+          "feel": "epsilon eyes + down triangle mouth, arms out",
+          "feelZh": "ε眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε▽ε)\\/",
+          "feel": "epsilon eyes + down triangle mouth, arms out",
+          "feelZh": "ε眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε▽ε)/\\",
+          "feel": "epsilon eyes + down triangle mouth, arms out",
+          "feelZh": "ε眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε▽ε)//",
+          "feel": "epsilon eyes + down triangle mouth, arms out",
+          "feelZh": "ε眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε△ε)\\",
+          "feel": "epsilon eyes + up triangle mouth, arms out",
+          "feelZh": "ε眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(ε△ε)/",
+          "feel": "epsilon eyes + up triangle mouth, arms out",
+          "feelZh": "ε眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε△ε)\\/",
+          "feel": "epsilon eyes + up triangle mouth, arms out",
+          "feelZh": "ε眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε△ε)/\\",
+          "feel": "epsilon eyes + up triangle mouth, arms out",
+          "feelZh": "ε眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ε△ε)\\\\",
+          "feel": "epsilon eyes + up triangle mouth, arms out",
+          "feelZh": "ε眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(εДε)\\",
+          "feel": "epsilon eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ε眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(εДε)/",
+          "feel": "epsilon eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ε眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(εДε)\\/",
+          "feel": "epsilon eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ε眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(εДε)/\\",
+          "feel": "epsilon eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ε眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(εДε)\\\\",
+          "feel": "epsilon eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "ε眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(εдε)\\",
+          "feel": "epsilon eyes + cyrillic de mouth, arms out",
+          "feelZh": "ε眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(εдε)/",
+          "feel": "epsilon eyes + cyrillic de mouth, arms out",
+          "feelZh": "ε眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(εдε)\\/",
+          "feel": "epsilon eyes + cyrillic de mouth, arms out",
+          "feelZh": "ε眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(εдε)/\\",
+          "feel": "epsilon eyes + cyrillic de mouth, arms out",
+          "feelZh": "ε眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(εдε)\\\\",
+          "feel": "epsilon eyes + cyrillic de mouth, arms out",
+          "feelZh": "ε眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(ε∀ε)\\",
+          "feel": "epsilon eyes + for all mouth, arms out",
+          "feelZh": "ε眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(ε∀ε)/",
+          "feel": "epsilon eyes + for all mouth, arms out",
+          "feelZh": "ε眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ε∀ε)\\/",
+          "feel": "epsilon eyes + for all mouth, arms out",
+          "feelZh": "ε眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ε∀ε)/\\",
+          "feel": "epsilon eyes + for all mouth, arms out",
+          "feelZh": "ε眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ε∀ε)\\\\",
+          "feel": "epsilon eyes + for all mouth, arms out",
+          "feelZh": "ε眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(εЗε)\\",
+          "feel": "epsilon eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ε眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(εЗε)/",
+          "feel": "epsilon eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ε眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(εЗε)\\/",
+          "feel": "epsilon eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ε眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(εЗε)/\\",
+          "feel": "epsilon eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ε眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(εЗε)\\\\",
+          "feel": "epsilon eyes + cyrillic ze mouth, arms out",
+          "feelZh": "ε眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(εツε)\\",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(εツε)/",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(εツε)\\/",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(εツε)/\\",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(εツε)\\\\",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(εツε)//",
+          "feel": "epsilon eyes + katakana tsu mouth, arms out",
+          "feelZh": "ε眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟ_ﾟ)/",
+          "feel": "halfwidth circle eyes + flat mouth, arms out",
+          "feelZh": "半角圆眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ_ﾟ)\\/",
+          "feel": "halfwidth circle eyes + flat mouth, arms out",
+          "feelZh": "半角圆眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ_ﾟ)/\\",
+          "feel": "halfwidth circle eyes + flat mouth, arms out",
+          "feelZh": "半角圆眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ_ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + flat mouth, arms out",
+          "feelZh": "半角圆眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ_ﾟ)//",
+          "feel": "halfwidth circle eyes + flat mouth, arms out",
+          "feelZh": "半角圆眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟ＿ﾟ)/",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, arms out",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ＿ﾟ)\\/",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, arms out",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ＿ﾟ)/\\",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, arms out",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ＿ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, arms out",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ＿ﾟ)//",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, arms out",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟ。ﾟ)/",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, arms out",
+          "feelZh": "半角圆眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ。ﾟ)\\/",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, arms out",
+          "feelZh": "半角圆眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ。ﾟ)/\\",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, arms out",
+          "feelZh": "半角圆眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ。ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, arms out",
+          "feelZh": "半角圆眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ。ﾟ)//",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, arms out",
+          "feelZh": "半角圆眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟ．ﾟ)/",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, arms out",
+          "feelZh": "半角圆眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ．ﾟ)\\/",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, arms out",
+          "feelZh": "半角圆眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ．ﾟ)/\\",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, arms out",
+          "feelZh": "半角圆眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ．ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, arms out",
+          "feelZh": "半角圆眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ．ﾟ)//",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, arms out",
+          "feelZh": "半角圆眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟωﾟ)\\",
+          "feel": "halfwidth circle eyes + omega mouth, arms out",
+          "feelZh": "半角圆眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟωﾟ)\\/",
+          "feel": "halfwidth circle eyes + omega mouth, arms out",
+          "feelZh": "半角圆眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟωﾟ)/\\",
+          "feel": "halfwidth circle eyes + omega mouth, arms out",
+          "feelZh": "半角圆眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟωﾟ)\\\\",
+          "feel": "halfwidth circle eyes + omega mouth, arms out",
+          "feelZh": "半角圆眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟωﾟ)//",
+          "feel": "halfwidth circle eyes + omega mouth, arms out",
+          "feelZh": "半角圆眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟ▽ﾟ)\\",
+          "feel": "halfwidth circle eyes + down triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ▽ﾟ)\\/",
+          "feel": "halfwidth circle eyes + down triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ▽ﾟ)/\\",
+          "feel": "halfwidth circle eyes + down triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ▽ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + down triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ▽ﾟ)//",
+          "feel": "halfwidth circle eyes + down triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟ△ﾟ)\\",
+          "feel": "halfwidth circle eyes + up triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ△ﾟ)\\/",
+          "feel": "halfwidth circle eyes + up triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ△ﾟ)/\\",
+          "feel": "halfwidth circle eyes + up triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ△ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + up triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ△ﾟ)//",
+          "feel": "halfwidth circle eyes + up triangle mouth, arms out",
+          "feelZh": "半角圆眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟДﾟ)\\",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "半角圆眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟДﾟ)\\/",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "半角圆眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟДﾟ)/\\",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "半角圆眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟДﾟ)\\\\",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "半角圆眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟДﾟ)//",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "半角圆眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟдﾟ)\\",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, arms out",
+          "feelZh": "半角圆眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟдﾟ)/",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, arms out",
+          "feelZh": "半角圆眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟдﾟ)/\\",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, arms out",
+          "feelZh": "半角圆眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟдﾟ)\\\\",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, arms out",
+          "feelZh": "半角圆眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟдﾟ)//",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, arms out",
+          "feelZh": "半角圆眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟ∀ﾟ)\\",
+          "feel": "halfwidth circle eyes + for all mouth, arms out",
+          "feelZh": "半角圆眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟ∀ﾟ)/",
+          "feel": "halfwidth circle eyes + for all mouth, arms out",
+          "feelZh": "半角圆眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ∀ﾟ)/\\",
+          "feel": "halfwidth circle eyes + for all mouth, arms out",
+          "feelZh": "半角圆眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ∀ﾟ)\\\\",
+          "feel": "halfwidth circle eyes + for all mouth, arms out",
+          "feelZh": "半角圆眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟ∀ﾟ)//",
+          "feel": "halfwidth circle eyes + for all mouth, arms out",
+          "feelZh": "半角圆眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟЗﾟ)\\",
+          "feel": "halfwidth circle eyes + cyrillic ze mouth, arms out",
+          "feelZh": "半角圆眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟЗﾟ)/",
+          "feel": "halfwidth circle eyes + cyrillic ze mouth, arms out",
+          "feelZh": "半角圆眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟЗﾟ)/\\",
+          "feel": "halfwidth circle eyes + cyrillic ze mouth, arms out",
+          "feelZh": "半角圆眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟЗﾟ)\\\\",
+          "feel": "halfwidth circle eyes + cyrillic ze mouth, arms out",
+          "feelZh": "半角圆眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟЗﾟ)//",
+          "feel": "halfwidth circle eyes + cyrillic ze mouth, arms out",
+          "feelZh": "半角圆眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(ﾟツﾟ)\\",
+          "feel": "halfwidth circle eyes + katakana tsu mouth, arms out",
+          "feelZh": "半角圆眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(ﾟツﾟ)/",
+          "feel": "halfwidth circle eyes + katakana tsu mouth, arms out",
+          "feelZh": "半角圆眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟツﾟ)/\\",
+          "feel": "halfwidth circle eyes + katakana tsu mouth, arms out",
+          "feelZh": "半角圆眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟツﾟ)\\\\",
+          "feel": "halfwidth circle eyes + katakana tsu mouth, arms out",
+          "feelZh": "半角圆眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(ﾟツﾟ)//",
+          "feel": "halfwidth circle eyes + katakana tsu mouth, arms out",
+          "feelZh": "半角圆眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(•_•)\\",
+          "feel": "bullet eyes + flat mouth, arms out",
+          "feelZh": "点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(•_•)/",
+          "feel": "bullet eyes + flat mouth, arms out",
+          "feelZh": "点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•_•)/\\",
+          "feel": "bullet eyes + flat mouth, arms out",
+          "feelZh": "点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•_•)\\\\",
+          "feel": "bullet eyes + flat mouth, arms out",
+          "feelZh": "点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•_•)//",
+          "feel": "bullet eyes + flat mouth, arms out",
+          "feelZh": "点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(•＿•)\\",
+          "feel": "bullet eyes + fullwidth flat mouth, arms out",
+          "feelZh": "点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(•＿•)/",
+          "feel": "bullet eyes + fullwidth flat mouth, arms out",
+          "feelZh": "点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•＿•)\\/",
+          "feel": "bullet eyes + fullwidth flat mouth, arms out",
+          "feelZh": "点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•＿•)\\\\",
+          "feel": "bullet eyes + fullwidth flat mouth, arms out",
+          "feelZh": "点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(•＿•)//",
+          "feel": "bullet eyes + fullwidth flat mouth, arms out",
+          "feelZh": "点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(•。•)\\",
+          "feel": "bullet eyes + ideographic full stop mouth, arms out",
+          "feelZh": "点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(•。•)/",
+          "feel": "bullet eyes + ideographic full stop mouth, arms out",
+          "feelZh": "点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(•。•)\\/",
+          "feel": "bullet eyes + ideographic full stop mouth, arms out",
+          "feelZh": "点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(•。•)\\\\",
+          "feel": "bullet eyes + ideographic full stop mouth, arms out",
+          "feelZh": "点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(•。•)//",
+          "feel": "bullet eyes + ideographic full stop mouth, arms out",
+          "feelZh": "点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(•．•)\\",
+          "feel": "bullet eyes + fullwidth period mouth, arms out",
+          "feelZh": "点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(•．•)/",
+          "feel": "bullet eyes + fullwidth period mouth, arms out",
+          "feelZh": "点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(•．•)\\/",
+          "feel": "bullet eyes + fullwidth period mouth, arms out",
+          "feelZh": "点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(•．•)\\\\",
+          "feel": "bullet eyes + fullwidth period mouth, arms out",
+          "feelZh": "点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(•．•)//",
+          "feel": "bullet eyes + fullwidth period mouth, arms out",
+          "feelZh": "点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(•ω•)\\",
+          "feel": "bullet eyes + omega mouth, arms out",
+          "feelZh": "点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(•ω•)/",
+          "feel": "bullet eyes + omega mouth, arms out",
+          "feelZh": "点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(•ω•)\\/",
+          "feel": "bullet eyes + omega mouth, arms out",
+          "feelZh": "点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(•ω•)\\\\",
+          "feel": "bullet eyes + omega mouth, arms out",
+          "feelZh": "点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(•ω•)//",
+          "feel": "bullet eyes + omega mouth, arms out",
+          "feelZh": "点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(•▽•)\\",
+          "feel": "bullet eyes + down triangle mouth, arms out",
+          "feelZh": "点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(•▽•)/",
+          "feel": "bullet eyes + down triangle mouth, arms out",
+          "feelZh": "点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(•▽•)\\/",
+          "feel": "bullet eyes + down triangle mouth, arms out",
+          "feelZh": "点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(•▽•)/\\",
+          "feel": "bullet eyes + down triangle mouth, arms out",
+          "feelZh": "点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(•▽•)//",
+          "feel": "bullet eyes + down triangle mouth, arms out",
+          "feelZh": "点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(•△•)\\",
+          "feel": "bullet eyes + up triangle mouth, arms out",
+          "feelZh": "点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(•△•)/",
+          "feel": "bullet eyes + up triangle mouth, arms out",
+          "feelZh": "点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(•△•)\\/",
+          "feel": "bullet eyes + up triangle mouth, arms out",
+          "feelZh": "点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(•△•)/\\",
+          "feel": "bullet eyes + up triangle mouth, arms out",
+          "feelZh": "点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(•△•)//",
+          "feel": "bullet eyes + up triangle mouth, arms out",
+          "feelZh": "点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(•Д•)\\",
+          "feel": "bullet eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(•Д•)/",
+          "feel": "bullet eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(•Д•)\\/",
+          "feel": "bullet eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(•Д•)/\\",
+          "feel": "bullet eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(•Д•)//",
+          "feel": "bullet eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(•д•)\\",
+          "feel": "bullet eyes + cyrillic de mouth, arms out",
+          "feelZh": "点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(•д•)/",
+          "feel": "bullet eyes + cyrillic de mouth, arms out",
+          "feelZh": "点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(•д•)\\/",
+          "feel": "bullet eyes + cyrillic de mouth, arms out",
+          "feelZh": "点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(•д•)/\\",
+          "feel": "bullet eyes + cyrillic de mouth, arms out",
+          "feelZh": "点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(•д•)//",
+          "feel": "bullet eyes + cyrillic de mouth, arms out",
+          "feelZh": "点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(•∀•)\\",
+          "feel": "bullet eyes + for all mouth, arms out",
+          "feelZh": "点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(•∀•)/",
+          "feel": "bullet eyes + for all mouth, arms out",
+          "feelZh": "点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(•∀•)\\/",
+          "feel": "bullet eyes + for all mouth, arms out",
+          "feelZh": "点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(•∀•)/\\",
+          "feel": "bullet eyes + for all mouth, arms out",
+          "feelZh": "点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(•∀•)//",
+          "feel": "bullet eyes + for all mouth, arms out",
+          "feelZh": "点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(•З•)\\",
+          "feel": "bullet eyes + cyrillic ze mouth, arms out",
+          "feelZh": "点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(•З•)/",
+          "feel": "bullet eyes + cyrillic ze mouth, arms out",
+          "feelZh": "点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(•З•)\\/",
+          "feel": "bullet eyes + cyrillic ze mouth, arms out",
+          "feelZh": "点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(•З•)/\\",
+          "feel": "bullet eyes + cyrillic ze mouth, arms out",
+          "feelZh": "点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(•З•)\\\\",
+          "feel": "bullet eyes + cyrillic ze mouth, arms out",
+          "feelZh": "点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(•ツ•)\\",
+          "feel": "bullet eyes + katakana tsu mouth, arms out",
+          "feelZh": "点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(•ツ•)/",
+          "feel": "bullet eyes + katakana tsu mouth, arms out",
+          "feelZh": "点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(•ツ•)\\/",
+          "feel": "bullet eyes + katakana tsu mouth, arms out",
+          "feelZh": "点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(•ツ•)/\\",
+          "feel": "bullet eyes + katakana tsu mouth, arms out",
+          "feelZh": "点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(•ツ•)\\\\",
+          "feel": "bullet eyes + katakana tsu mouth, arms out",
+          "feelZh": "点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(·_·)\\",
+          "feel": "middle dot eyes + flat mouth, arms out",
+          "feelZh": "中点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(·_·)/",
+          "feel": "middle dot eyes + flat mouth, arms out",
+          "feelZh": "中点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·_·)\\/",
+          "feel": "middle dot eyes + flat mouth, arms out",
+          "feelZh": "中点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·_·)/\\",
+          "feel": "middle dot eyes + flat mouth, arms out",
+          "feelZh": "中点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·_·)\\\\",
+          "feel": "middle dot eyes + flat mouth, arms out",
+          "feelZh": "中点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(·＿·)\\",
+          "feel": "middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(·＿·)/",
+          "feel": "middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·＿·)\\/",
+          "feel": "middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·＿·)/\\",
+          "feel": "middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(·＿·)\\\\",
+          "feel": "middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(·。·)\\",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(·。·)/",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(·。·)\\/",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(·。·)/\\",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(·。·)\\\\",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(·。·)//",
+          "feel": "middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(·．·)/",
+          "feel": "middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(·．·)\\/",
+          "feel": "middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(·．·)/\\",
+          "feel": "middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(·．·)\\\\",
+          "feel": "middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(·．·)//",
+          "feel": "middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(·ω·)/",
+          "feel": "middle dot eyes + omega mouth, arms out",
+          "feelZh": "中点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(·ω·)\\/",
+          "feel": "middle dot eyes + omega mouth, arms out",
+          "feelZh": "中点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(·ω·)/\\",
+          "feel": "middle dot eyes + omega mouth, arms out",
+          "feelZh": "中点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(·ω·)\\\\",
+          "feel": "middle dot eyes + omega mouth, arms out",
+          "feelZh": "中点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(·ω·)//",
+          "feel": "middle dot eyes + omega mouth, arms out",
+          "feelZh": "中点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(·▽·)/",
+          "feel": "middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(·▽·)\\/",
+          "feel": "middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(·▽·)/\\",
+          "feel": "middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(·▽·)\\\\",
+          "feel": "middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(·▽·)//",
+          "feel": "middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(·△·)/",
+          "feel": "middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(·△·)\\/",
+          "feel": "middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(·△·)/\\",
+          "feel": "middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(·△·)\\\\",
+          "feel": "middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(·△·)//",
+          "feel": "middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(·Д·)/",
+          "feel": "middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(·Д·)\\/",
+          "feel": "middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(·Д·)/\\",
+          "feel": "middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(·Д·)\\\\",
+          "feel": "middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(·Д·)//",
+          "feel": "middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(·д·)\\",
+          "feel": "middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(·д·)\\/",
+          "feel": "middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(·д·)/\\",
+          "feel": "middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(·д·)\\\\",
+          "feel": "middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(·д·)//",
+          "feel": "middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(·∀·)\\",
+          "feel": "middle dot eyes + for all mouth, arms out",
+          "feelZh": "中点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(·∀·)\\/",
+          "feel": "middle dot eyes + for all mouth, arms out",
+          "feelZh": "中点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(·∀·)/\\",
+          "feel": "middle dot eyes + for all mouth, arms out",
+          "feelZh": "中点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(·∀·)\\\\",
+          "feel": "middle dot eyes + for all mouth, arms out",
+          "feelZh": "中点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(·∀·)//",
+          "feel": "middle dot eyes + for all mouth, arms out",
+          "feelZh": "中点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(·З·)\\",
+          "feel": "middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(·З·)\\/",
+          "feel": "middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(·З·)/\\",
+          "feel": "middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(·З·)\\\\",
+          "feel": "middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(·З·)//",
+          "feel": "middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(·ツ·)\\",
+          "feel": "middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(·ツ·)\\/",
+          "feel": "middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(·ツ·)/\\",
+          "feel": "middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(·ツ·)\\\\",
+          "feel": "middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(·ツ·)//",
+          "feel": "middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(・_・)\\",
+          "feel": "katakana middle dot eyes + flat mouth, arms out",
+          "feelZh": "中黑点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(・_・)/",
+          "feel": "katakana middle dot eyes + flat mouth, arms out",
+          "feelZh": "中黑点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・_・)/\\",
+          "feel": "katakana middle dot eyes + flat mouth, arms out",
+          "feelZh": "中黑点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・_・)\\\\",
+          "feel": "katakana middle dot eyes + flat mouth, arms out",
+          "feelZh": "中黑点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・_・)//",
+          "feel": "katakana middle dot eyes + flat mouth, arms out",
+          "feelZh": "中黑点眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(・＿・)\\",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(・＿・)/",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・＿・)/\\",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・＿・)\\\\",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(・＿・)//",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, arms out",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(・。・)\\",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中黑点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(・。・)/",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中黑点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(・。・)/\\",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中黑点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(・。・)\\\\",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中黑点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(・。・)//",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, arms out",
+          "feelZh": "中黑点眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(・．・)\\",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中黑点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(・．・)/",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中黑点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(・．・)/\\",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中黑点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(・．・)\\\\",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中黑点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(・．・)//",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, arms out",
+          "feelZh": "中黑点眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(・ω・)\\",
+          "feel": "katakana middle dot eyes + omega mouth, arms out",
+          "feelZh": "中黑点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(・ω・)/",
+          "feel": "katakana middle dot eyes + omega mouth, arms out",
+          "feelZh": "中黑点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(・ω・)/\\",
+          "feel": "katakana middle dot eyes + omega mouth, arms out",
+          "feelZh": "中黑点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(・ω・)\\\\",
+          "feel": "katakana middle dot eyes + omega mouth, arms out",
+          "feelZh": "中黑点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(・ω・)//",
+          "feel": "katakana middle dot eyes + omega mouth, arms out",
+          "feelZh": "中黑点眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(・▽・)\\",
+          "feel": "katakana middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(・▽・)/",
+          "feel": "katakana middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(・▽・)\\/",
+          "feel": "katakana middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(・▽・)\\\\",
+          "feel": "katakana middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(・▽・)//",
+          "feel": "katakana middle dot eyes + down triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(・△・)\\",
+          "feel": "katakana middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(・△・)/",
+          "feel": "katakana middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(・△・)\\/",
+          "feel": "katakana middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(・△・)\\\\",
+          "feel": "katakana middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(・△・)//",
+          "feel": "katakana middle dot eyes + up triangle mouth, arms out",
+          "feelZh": "中黑点眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(・Д・)\\",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中黑点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(・Д・)/",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中黑点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(・Д・)\\/",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中黑点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(・Д・)\\\\",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中黑点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(・Д・)//",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "中黑点眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "\\(・д・)\\",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中黑点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(・д・)/",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中黑点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(・д・)\\/",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中黑点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(・д・)\\\\",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中黑点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(・д・)//",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, arms out",
+          "feelZh": "中黑点眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "\\(・∀・)\\",
+          "feel": "katakana middle dot eyes + for all mouth, arms out",
+          "feelZh": "中黑点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(・∀・)/",
+          "feel": "katakana middle dot eyes + for all mouth, arms out",
+          "feelZh": "中黑点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(・∀・)\\/",
+          "feel": "katakana middle dot eyes + for all mouth, arms out",
+          "feelZh": "中黑点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(・∀・)/\\",
+          "feel": "katakana middle dot eyes + for all mouth, arms out",
+          "feelZh": "中黑点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(・∀・)//",
+          "feel": "katakana middle dot eyes + for all mouth, arms out",
+          "feelZh": "中黑点眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "\\(・З・)\\",
+          "feel": "katakana middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中黑点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "/(・З・)/",
+          "feel": "katakana middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中黑点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(・З・)\\/",
+          "feel": "katakana middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中黑点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(・З・)/\\",
+          "feel": "katakana middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中黑点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(・З・)//",
+          "feel": "katakana middle dot eyes + cyrillic ze mouth, arms out",
+          "feelZh": "中黑点眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "\\(・ツ・)\\",
+          "feel": "katakana middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中黑点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "/(・ツ・)/",
+          "feel": "katakana middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中黑点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(・ツ・)\\/",
+          "feel": "katakana middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中黑点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(・ツ・)/\\",
+          "feel": "katakana middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中黑点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "(・ツ・)//",
+          "feel": "katakana middle dot eyes + katakana tsu mouth, arms out",
+          "feelZh": "中黑点眼 + ツ嘴，张开手臂"
+        },
+        {
+          "face": "\\(°_°)\\",
+          "feel": "degree eyes + flat mouth, arms out",
+          "feelZh": "度眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(°_°)/",
+          "feel": "degree eyes + flat mouth, arms out",
+          "feelZh": "度眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°_°)\\/",
+          "feel": "degree eyes + flat mouth, arms out",
+          "feelZh": "度眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°_°)/\\",
+          "feel": "degree eyes + flat mouth, arms out",
+          "feelZh": "度眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°_°)//",
+          "feel": "degree eyes + flat mouth, arms out",
+          "feelZh": "度眼 + 平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(°＿°)\\",
+          "feel": "degree eyes + fullwidth flat mouth, arms out",
+          "feelZh": "度眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "/(°＿°)/",
+          "feel": "degree eyes + fullwidth flat mouth, arms out",
+          "feelZh": "度眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°＿°)\\/",
+          "feel": "degree eyes + fullwidth flat mouth, arms out",
+          "feelZh": "度眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°＿°)/\\",
+          "feel": "degree eyes + fullwidth flat mouth, arms out",
+          "feelZh": "度眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "(°＿°)//",
+          "feel": "degree eyes + fullwidth flat mouth, arms out",
+          "feelZh": "度眼 + 全角平嘴嘴，张开手臂"
+        },
+        {
+          "face": "\\(°。°)\\",
+          "feel": "degree eyes + ideographic full stop mouth, arms out",
+          "feelZh": "度眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "/(°。°)/",
+          "feel": "degree eyes + ideographic full stop mouth, arms out",
+          "feelZh": "度眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(°。°)\\/",
+          "feel": "degree eyes + ideographic full stop mouth, arms out",
+          "feelZh": "度眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(°。°)/\\",
+          "feel": "degree eyes + ideographic full stop mouth, arms out",
+          "feelZh": "度眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "(°。°)\\\\",
+          "feel": "degree eyes + ideographic full stop mouth, arms out",
+          "feelZh": "度眼 + 句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(°．°)\\",
+          "feel": "degree eyes + fullwidth period mouth, arms out",
+          "feelZh": "度眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "/(°．°)/",
+          "feel": "degree eyes + fullwidth period mouth, arms out",
+          "feelZh": "度眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(°．°)\\/",
+          "feel": "degree eyes + fullwidth period mouth, arms out",
+          "feelZh": "度眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(°．°)/\\",
+          "feel": "degree eyes + fullwidth period mouth, arms out",
+          "feelZh": "度眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "(°．°)\\\\",
+          "feel": "degree eyes + fullwidth period mouth, arms out",
+          "feelZh": "度眼 + 全角句点嘴，张开手臂"
+        },
+        {
+          "face": "\\(°ω°)\\",
+          "feel": "degree eyes + omega mouth, arms out",
+          "feelZh": "度眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "/(°ω°)/",
+          "feel": "degree eyes + omega mouth, arms out",
+          "feelZh": "度眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(°ω°)\\/",
+          "feel": "degree eyes + omega mouth, arms out",
+          "feelZh": "度眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(°ω°)/\\",
+          "feel": "degree eyes + omega mouth, arms out",
+          "feelZh": "度眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "(°ω°)\\\\",
+          "feel": "degree eyes + omega mouth, arms out",
+          "feelZh": "度眼 + ω嘴，张开手臂"
+        },
+        {
+          "face": "\\(°▽°)\\",
+          "feel": "degree eyes + down triangle mouth, arms out",
+          "feelZh": "度眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "/(°▽°)/",
+          "feel": "degree eyes + down triangle mouth, arms out",
+          "feelZh": "度眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(°▽°)\\/",
+          "feel": "degree eyes + down triangle mouth, arms out",
+          "feelZh": "度眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(°▽°)/\\",
+          "feel": "degree eyes + down triangle mouth, arms out",
+          "feelZh": "度眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "(°▽°)\\\\",
+          "feel": "degree eyes + down triangle mouth, arms out",
+          "feelZh": "度眼 + 下三角嘴，张开手臂"
+        },
+        {
+          "face": "\\(°△°)\\",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(°△°)/",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(°△°)\\/",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(°△°)/\\",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(°△°)\\\\",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "(°△°)//",
+          "feel": "degree eyes + up triangle mouth, arms out",
+          "feelZh": "度眼 + 上三角嘴，张开手臂"
+        },
+        {
+          "face": "/(°Д°)/",
+          "feel": "degree eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "度眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(°Д°)\\/",
+          "feel": "degree eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "度眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(°Д°)/\\",
+          "feel": "degree eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "度眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(°Д°)\\\\",
+          "feel": "degree eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "度眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "(°Д°)//",
+          "feel": "degree eyes + cyrillic de capital mouth, arms out",
+          "feelZh": "度眼 + Д嘴，张开手臂"
+        },
+        {
+          "face": "/(°д°)/",
+          "feel": "degree eyes + cyrillic de mouth, arms out",
+          "feelZh": "度眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(°д°)\\/",
+          "feel": "degree eyes + cyrillic de mouth, arms out",
+          "feelZh": "度眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(°д°)/\\",
+          "feel": "degree eyes + cyrillic de mouth, arms out",
+          "feelZh": "度眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(°д°)\\\\",
+          "feel": "degree eyes + cyrillic de mouth, arms out",
+          "feelZh": "度眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "(°д°)//",
+          "feel": "degree eyes + cyrillic de mouth, arms out",
+          "feelZh": "度眼 + д嘴，张开手臂"
+        },
+        {
+          "face": "/(°∀°)/",
+          "feel": "degree eyes + for all mouth, arms out",
+          "feelZh": "度眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(°∀°)\\/",
+          "feel": "degree eyes + for all mouth, arms out",
+          "feelZh": "度眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(°∀°)/\\",
+          "feel": "degree eyes + for all mouth, arms out",
+          "feelZh": "度眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(°∀°)\\\\",
+          "feel": "degree eyes + for all mouth, arms out",
+          "feelZh": "度眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "(°∀°)//",
+          "feel": "degree eyes + for all mouth, arms out",
+          "feelZh": "度眼 + ∀嘴，张开手臂"
+        },
+        {
+          "face": "/(°З°)/",
+          "feel": "degree eyes + cyrillic ze mouth, arms out",
+          "feelZh": "度眼 + З嘴，张开手臂"
+        },
+        {
+          "face": "(°З°)\\/",
+          "feel": "degree eyes + cyrillic ze mouth, arms out",
+          "feelZh": "度眼 + З嘴，张开手臂"
+        }
+      ]
+    }
+  ]
+}

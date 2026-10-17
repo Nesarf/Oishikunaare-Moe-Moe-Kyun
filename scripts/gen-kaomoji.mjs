@@ -311,6 +311,9 @@ const TIRED_TAILS = [
 
 // ---------------------------------------------------------------- classic faces, written by hand
 const CLASSIC = [
+  ['\uA4B0 *\u2022\u0277\u2022* \uA4B1', 'soft gaze with paws', '\u67D4\u8F6F\u7684\u51DD\u89C6\uFF0C\u5E26\u5C0F\u722A'],
+  ['\u0295 \u2022\u1D25\u2022\u0294', 'plain bear face', '\u6734\u7D20\u7684\u718A\u8138'],
+  ['\uA4B0\u0E51\u2022\u2313\uFE0E\u2022\u0E51\uA4B1\u1D4E\u1D4E\u1D4E', 'teary eyes', '\u6CEB\u7136\u6B32\u6CE3'],
   ['(\u2741\u00B4\u25E1`\u2741)*\u2732\uFF9F*', 'beaming with a sparkler', '\u6EE1\u8138\u5F00\u82B1\u52A0\u4E00\u652F\u4ED9\u5973\u68D2'],
   ['(\u0E51\u2022\u0300\u3141\u2022\u0301\u0E05)', 'spirited paw salute', '\u6709\u5E72\u52B2\u7684\u63E1\u62F3\u5C0F\u722A'],
   ['(\u0AE2\u02C3\uA302\u02C2\u204E)', 'blissful squint', '\u5E78\u798F\u7684\u772F\u773C'],
@@ -500,20 +503,20 @@ const CLASSIC = [
 
 // ---------------------------------------------------------------- categories and quotas
 const CATS = [
-  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 780 },
-  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 780 },
-  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 780 },
-  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 780 },
-  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 780 },
-  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 780 },
-  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 780 },
-  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 780 },
-  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 780 },
-  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 780 },
-  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 780 },
-  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 780 },
-  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 780 },
-  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 780 },
+  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 1400 },
+  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 1400 },
+  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 1400 },
+  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 1400 },
+  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 1400 },
+  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 1400 },
+  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 1400 },
+  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 1400 },
+  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 1400 },
+  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 1400 },
+  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 1400 },
+  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 1400 },
+  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 1400 },
+  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 1400 },
 ];
 
 // ---------------------------------------------------------------- collection
@@ -709,6 +712,26 @@ for (const [el, er, ee, ez] of EYES.filter((e) => TIRED_EYES.includes(e[0]))) {
     }
   }
 }
+// 13b) classic: the frames and parts people actually type, crossed so the hand-written pool is not the
+// thinnest one in a ten-thousand-face library. The parts are hand-picked, so the result still reads like
+// something a person wrote rather than like a generator's output.
+const CLASSIC_FRAMES = [
+  ['\uFF08', '\uFF09'], ['(', ')'], ['\u3014', '\u3015'], ['\u3010', '\u3011'],
+  ['\u2768', '\u2769'], ['\uA4B0', '\uA4B1'], ['\u0295', '\u0294'], ['\u27E8', '\u27E9'],
+];
+const CLASSIC_EYES = ['\uFFE3', '\u02C3', '\u00B4', '\u02D8', '\u25D5', '\u0E51', '\u00B0', '\u02C6', '\u0302', '\u2665', '\u2727', '\u25CB', '\u25CF', '\u0E05', '\u02C2', '\u203F', '\u30FB', '\uFF65', '\u02D9', '\u02B9'];
+const CLASSIC_MOUTHS = ['\u25BD', '\u03C9', '\u203F', '\u2323', '\u2312', '\u03B5', '\u0414', '\u0E51', '\u203C', '\u02D9', '\u3002', '\u25A1', '\u25CF', '\u266A'];
+const CLASSIC_TAILS = ['', '', '', '\u2727', '\u2726', '\u266A', '\u2661', '\u3002', '~', '\uFF61'];
+for (const [lo, ro] of CLASSIC_FRAMES) {
+  for (const eyes of CLASSIC_EYES) {
+    for (const mouth of CLASSIC_MOUTHS) {
+      for (const tail of CLASSIC_TAILS) {
+        const face = `${lo}${eyes}${mouth}${eyes}${ro}${tail}`;
+        if (add(face, `classic ${eyes} eyes + ${mouth} mouth`, `\u7ECF\u5178\uFF1A${eyes}\u773C + ${mouth}\u5634`)) pool('classic').push(out[out.length - 1]);
+      }
+    }
+  }
+}
 // 13) classic faces, written by hand
 for (const [face, fe, fz] of CLASSIC) {
   if (add(face, fe, fz)) pool('classic').push(out[out.length - 1]);
@@ -768,19 +791,32 @@ const wanted = JSON.stringify(render(), null, 2) + '\n';
 // prompt invites a reader to consult it; one mood at a time is the read that costs nothing, and a
 // reader who wants everything still has the single file.
 const splitDir = path.join(path.dirname(target), 'kaomoji');
-const splitOf = (c) => JSON.stringify({
-  name: `Oishikunaare-Moe-Moe-Kyun kaomoji library - ${c.id}`,
-  version: 4,
-  note: `${c.use}. One mood of the library, split out so a reader can take a single mood instead of the whole 300 KB file. feelZh is the Chinese rendering of feel.`,
-  categories: [{
-    id: c.id,
-    label: c.label,
-    labelZh: c.labelZh,
-    use: c.use,
-    useZh: c.useZh,
-    faces: c.rows.map((r) => ({ face: r.face, feel: r.feel, feelZh: r.feelZh })),
-  }],
-}, null, 2) + '\n';
+// A mood can be big enough that reading it whole is a real cost, so each mood is cut into parts of at
+// most SPLIT_FACES faces. The first part keeps the plain file name; later parts carry -2, -3 and so on, so a
+// reader can take one part and the whole mood still adds up.
+const SPLIT_FACES = 500;
+const partsOf = (c) => {
+  const parts = [];
+  for (let start = 0; start < c.rows.length; start += SPLIT_FACES) parts.push(c.rows.slice(start, start + SPLIT_FACES));
+  return parts;
+};
+const splitName = (c, index) => (index === 0 ? `${c.id}.json` : `${c.id}-${index + 1}.json`);
+const splitOf = (c, index = 0) => {
+  const rows = partsOf(c)[index] ?? [];
+  return JSON.stringify({
+    name: `Oishikunaare-Moe-Moe-Kyun kaomoji library - ${c.id} (part ${index + 1})`,
+    version: 4,
+    note: `${c.use}. Part ${index + 1} of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.`,
+    categories: [{
+      id: c.id,
+      label: c.label,
+      labelZh: c.labelZh,
+      use: c.use,
+      useZh: c.useZh,
+      faces: rows.map((r) => ({ face: r.face, feel: r.feel, feelZh: r.feelZh })),
+    }],
+  }, null, 2) + '\n';
+};
 
 if (checkMode) {
   const current = fs.existsSync(target) ? fs.readFileSync(target, 'utf8') : '';
@@ -789,20 +825,23 @@ if (checkMode) {
     console.error('run: node scripts/gen-kaomoji.mjs');
     process.exit(1);
   }
-  const stale = CATS.filter((c) => {
-    const file = path.join(splitDir, `${c.id}.json`);
-    return !fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== splitOf(c);
-  });
+  const stale = [];
+  for (const c of CATS) {
+    partsOf(c).forEach((_, index) => {
+      const file = path.join(splitDir, splitName(c, index));
+      if (!fs.existsSync(file) || fs.readFileSync(file, 'utf8') !== splitOf(c, index)) stale.push(c.id);
+    });
+  }
   if (stale.length > 0) {
     console.error(`rules/kaomoji/ is out of date for: ${stale.map((c) => c.id).join(', ')}`);
     console.error('run: node scripts/gen-kaomoji.mjs');
     process.exit(1);
   }
-  console.log(`gen-kaomoji: in sync (${CATS.length} categories, ${total} faces, ${CATS.length} split file(s))`);
+  console.log(`gen-kaomoji: in sync (${CATS.length} categories, ${total} faces, ${CATS.reduce((n, c) => n + partsOf(c).length, 0)} part file(s))`);
 } else {
   fs.writeFileSync(target, wanted, 'utf8');
   fs.mkdirSync(splitDir, { recursive: true });
-  for (const c of CATS) fs.writeFileSync(path.join(splitDir, `${c.id}.json`), splitOf(c), 'utf8');
+  for (const c of CATS) partsOf(c).forEach((_, index) => fs.writeFileSync(path.join(splitDir, splitName(c, index)), splitOf(c, index), 'utf8'));
   console.log(`wrote ${target}: ${CATS.length} categories / ${total} unique faces`);
   console.log(`wrote ${splitDir}: one file per mood`);
   for (const c of CATS) {

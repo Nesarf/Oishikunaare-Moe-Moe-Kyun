@@ -1,0 +1,2016 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - affection (part 3)",
+  "version": 4,
+  "note": "thanking, warmth, winning together. Part 3 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "affection",
+      "label": "affection",
+      "labelZh": "亲昵",
+      "use": "thanking, warmth, winning together",
+      "useZh": "道谢、温暖、一起赢了",
+      "faces": [
+        {
+          "face": "(μ＿μ❀)",
+          "feel": "mu eyes + fullwidth flat mouth with a ❀",
+          "feelZh": "μ眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡μ。μ)",
+          "feel": "mu eyes + ideographic full stop mouth, a ♡ in front",
+          "feelZh": "μ眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(μ。μ❀)",
+          "feel": "mu eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "μ眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡μ．μ)",
+          "feel": "mu eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "μ眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(μ．μ❀)",
+          "feel": "mu eyes + fullwidth period mouth with a ❀",
+          "feelZh": "μ眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡μωμ)",
+          "feel": "mu eyes + omega mouth, a ♡ in front",
+          "feelZh": "μ眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(μωμ❀)",
+          "feel": "mu eyes + omega mouth with a ❀",
+          "feelZh": "μ眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡μ▽μ)",
+          "feel": "mu eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "μ眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(μ▽μ❀)",
+          "feel": "mu eyes + down triangle mouth with a ❀",
+          "feelZh": "μ眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μ△μ♡)",
+          "feel": "mu eyes + up triangle mouth with a ♡",
+          "feelZh": "μ眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μ△μ❀)",
+          "feel": "mu eyes + up triangle mouth with a ❀",
+          "feelZh": "μ眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μДμ♡)",
+          "feel": "mu eyes + cyrillic de capital mouth with a ♡",
+          "feelZh": "μ眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μДμ❀)",
+          "feel": "mu eyes + cyrillic de capital mouth with a ❀",
+          "feelZh": "μ眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μдμ♡)",
+          "feel": "mu eyes + cyrillic de mouth with a ♡",
+          "feelZh": "μ眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μдμ❀)",
+          "feel": "mu eyes + cyrillic de mouth with a ❀",
+          "feelZh": "μ眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μ∀μ♡)",
+          "feel": "mu eyes + for all mouth with a ♡",
+          "feelZh": "μ眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(μ∀μ❀)",
+          "feel": "mu eyes + for all mouth with a ❀",
+          "feelZh": "μ眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ε_ε♡)",
+          "feel": "epsilon eyes + flat mouth with a ♡",
+          "feelZh": "ε眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ε_ε❀)",
+          "feel": "epsilon eyes + flat mouth with a ❀",
+          "feelZh": "ε眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ε＿ε♡)",
+          "feel": "epsilon eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "ε眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ε＿ε)",
+          "feel": "epsilon eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "ε眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(ε。ε♡)",
+          "feel": "epsilon eyes + ideographic full stop mouth with a ♡",
+          "feelZh": "ε眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ε。ε)",
+          "feel": "epsilon eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "ε眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ε．ε♡)",
+          "feel": "epsilon eyes + fullwidth period mouth with a ♡",
+          "feelZh": "ε眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ε．ε)",
+          "feel": "epsilon eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "ε眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(εωε♡)",
+          "feel": "epsilon eyes + omega mouth with a ♡",
+          "feelZh": "ε眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿εωε)",
+          "feel": "epsilon eyes + omega mouth, a ✿ in front",
+          "feelZh": "ε眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ε▽ε♡)",
+          "feel": "epsilon eyes + down triangle mouth with a ♡",
+          "feelZh": "ε眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ε▽ε)",
+          "feel": "epsilon eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "ε眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥ε△ε)",
+          "feel": "epsilon eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "ε眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿ε△ε)",
+          "feel": "epsilon eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "ε眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥εДε)",
+          "feel": "epsilon eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "ε眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿εДε)",
+          "feel": "epsilon eyes + cyrillic de capital mouth, a ✿ in front",
+          "feelZh": "ε眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥εдε)",
+          "feel": "epsilon eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "ε眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿εдε)",
+          "feel": "epsilon eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "ε眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥ε∀ε)",
+          "feel": "epsilon eyes + for all mouth, a ♥ in front",
+          "feelZh": "ε眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿ε∀ε)",
+          "feel": "epsilon eyes + for all mouth, a ✿ in front",
+          "feelZh": "ε眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥ﾟ_ﾟ)",
+          "feel": "halfwidth circle eyes + flat mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿ﾟ_ﾟ)",
+          "feel": "halfwidth circle eyes + flat mouth, a ✿ in front",
+          "feelZh": "半角圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥ﾟ＿ﾟ)",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ＿ﾟ✿)",
+          "feel": "halfwidth circle eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "半角圆眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥ﾟ。ﾟ)",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ。ﾟ✿)",
+          "feel": "halfwidth circle eyes + ideographic full stop mouth with a ✿",
+          "feelZh": "半角圆眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥ﾟ．ﾟ)",
+          "feel": "halfwidth circle eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ．ﾟ✿)",
+          "feel": "halfwidth circle eyes + fullwidth period mouth with a ✿",
+          "feelZh": "半角圆眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥ﾟωﾟ)",
+          "feel": "halfwidth circle eyes + omega mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟωﾟ✿)",
+          "feel": "halfwidth circle eyes + omega mouth with a ✿",
+          "feelZh": "半角圆眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥ﾟ▽ﾟ)",
+          "feel": "halfwidth circle eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ▽ﾟ✿)",
+          "feel": "halfwidth circle eyes + down triangle mouth with a ✿",
+          "feelZh": "半角圆眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥ﾟ△ﾟ)",
+          "feel": "halfwidth circle eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "半角圆眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ△ﾟ✿)",
+          "feel": "halfwidth circle eyes + up triangle mouth with a ✿",
+          "feelZh": "半角圆眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚ﾟ△ﾟ)",
+          "feel": "halfwidth circle eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "半角圆眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟДﾟ✿)",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "半角圆眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚ﾟДﾟ)",
+          "feel": "halfwidth circle eyes + cyrillic de capital mouth, a ༚ in front",
+          "feelZh": "半角圆眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟдﾟ✿)",
+          "feel": "halfwidth circle eyes + cyrillic de mouth with a ✿",
+          "feelZh": "半角圆眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚ﾟдﾟ)",
+          "feel": "halfwidth circle eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "半角圆眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ﾟ∀ﾟ✿)",
+          "feel": "halfwidth circle eyes + for all mouth with a ✿",
+          "feelZh": "半角圆眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚ﾟ∀ﾟ)",
+          "feel": "halfwidth circle eyes + for all mouth, a ༚ in front",
+          "feelZh": "半角圆眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(•_•✿)",
+          "feel": "bullet eyes + flat mouth with a ✿",
+          "feelZh": "点眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚•_•)",
+          "feel": "bullet eyes + flat mouth, a ༚ in front",
+          "feelZh": "点眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(•＿•✿)",
+          "feel": "bullet eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "点眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚•＿•)",
+          "feel": "bullet eyes + fullwidth flat mouth, a ༚ in front",
+          "feelZh": "点眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•。•)",
+          "feel": "bullet eyes + ideographic full stop mouth, a ♪ in front",
+          "feelZh": "点眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚•。•)",
+          "feel": "bullet eyes + ideographic full stop mouth, a ༚ in front",
+          "feelZh": "点眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•．•)",
+          "feel": "bullet eyes + fullwidth period mouth, a ♪ in front",
+          "feelZh": "点眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚•．•)",
+          "feel": "bullet eyes + fullwidth period mouth, a ༚ in front",
+          "feelZh": "点眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•ω•)",
+          "feel": "bullet eyes + omega mouth, a ♪ in front",
+          "feelZh": "点眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚•ω•)",
+          "feel": "bullet eyes + omega mouth, a ༚ in front",
+          "feelZh": "点眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•▽•)",
+          "feel": "bullet eyes + down triangle mouth, a ♪ in front",
+          "feelZh": "点眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚•▽•)",
+          "feel": "bullet eyes + down triangle mouth, a ༚ in front",
+          "feelZh": "点眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•△•)",
+          "feel": "bullet eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "点眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚•△•)",
+          "feel": "bullet eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "点眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪•Д•)",
+          "feel": "bullet eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "点眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(•Д•༚)",
+          "feel": "bullet eyes + cyrillic de capital mouth with a ༚",
+          "feelZh": "点眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪•д•)",
+          "feel": "bullet eyes + cyrillic de mouth, a ♪ in front",
+          "feelZh": "点眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(•д•༚)",
+          "feel": "bullet eyes + cyrillic de mouth with a ༚",
+          "feelZh": "点眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪•∀•)",
+          "feel": "bullet eyes + for all mouth, a ♪ in front",
+          "feelZh": "点眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(•∀•༚)",
+          "feel": "bullet eyes + for all mouth with a ༚",
+          "feelZh": "点眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪·_·)",
+          "feel": "middle dot eyes + flat mouth, a ♪ in front",
+          "feelZh": "中点眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(·_·༚)",
+          "feel": "middle dot eyes + flat mouth with a ༚",
+          "feelZh": "中点眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪·＿·)",
+          "feel": "middle dot eyes + fullwidth flat mouth, a ♪ in front",
+          "feelZh": "中点眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(·＿·༚)",
+          "feel": "middle dot eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "中点眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·。·♪)",
+          "feel": "middle dot eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "中点眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·。·༚)",
+          "feel": "middle dot eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "中点眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·．·♪)",
+          "feel": "middle dot eyes + fullwidth period mouth with a ♪",
+          "feelZh": "中点眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·．·༚)",
+          "feel": "middle dot eyes + fullwidth period mouth with a ༚",
+          "feelZh": "中点眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·ω·♪)",
+          "feel": "middle dot eyes + omega mouth with a ♪",
+          "feelZh": "中点眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·ω·༚)",
+          "feel": "middle dot eyes + omega mouth with a ༚",
+          "feelZh": "中点眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·▽·♪)",
+          "feel": "middle dot eyes + down triangle mouth with a ♪",
+          "feelZh": "中点眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·▽·༚)",
+          "feel": "middle dot eyes + down triangle mouth with a ༚",
+          "feelZh": "中点眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·△·♪)",
+          "feel": "middle dot eyes + up triangle mouth with a ♪",
+          "feelZh": "中点眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·△·༚)",
+          "feel": "middle dot eyes + up triangle mouth with a ༚",
+          "feelZh": "中点眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(·Д·♪)",
+          "feel": "middle dot eyes + cyrillic de capital mouth with a ♪",
+          "feelZh": "中点眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀·Д·)",
+          "feel": "middle dot eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "中点眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(·д·♪)",
+          "feel": "middle dot eyes + cyrillic de mouth with a ♪",
+          "feelZh": "中点眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀·д·)",
+          "feel": "middle dot eyes + cyrillic de mouth, a ❀ in front",
+          "feelZh": "中点眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(·∀·♪)",
+          "feel": "middle dot eyes + for all mouth with a ♪",
+          "feelZh": "中点眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀·∀·)",
+          "feel": "middle dot eyes + for all mouth, a ❀ in front",
+          "feelZh": "中点眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(・_・♪)",
+          "feel": "katakana middle dot eyes + flat mouth with a ♪",
+          "feelZh": "中黑点眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀・_・)",
+          "feel": "katakana middle dot eyes + flat mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(・＿・♪)",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth with a ♪",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀・＿・)",
+          "feel": "katakana middle dot eyes + fullwidth flat mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(・。・♪)",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "中黑点眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀・。・)",
+          "feel": "katakana middle dot eyes + ideographic full stop mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・．・)",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀・．・)",
+          "feel": "katakana middle dot eyes + fullwidth period mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・ω・)",
+          "feel": "katakana middle dot eyes + omega mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀・ω・)",
+          "feel": "katakana middle dot eyes + omega mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・▽・)",
+          "feel": "katakana middle dot eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀・▽・)",
+          "feel": "katakana middle dot eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・△・)",
+          "feel": "katakana middle dot eyes + up triangle mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀・△・)",
+          "feel": "katakana middle dot eyes + up triangle mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・Д・)",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀・Д・)",
+          "feel": "katakana middle dot eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "中黑点眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡・д・)",
+          "feel": "katakana middle dot eyes + cyrillic de mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(・д・❀)",
+          "feel": "katakana middle dot eyes + cyrillic de mouth with a ❀",
+          "feelZh": "中黑点眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡・∀・)",
+          "feel": "katakana middle dot eyes + for all mouth, a ♡ in front",
+          "feelZh": "中黑点眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(・∀・❀)",
+          "feel": "katakana middle dot eyes + for all mouth with a ❀",
+          "feelZh": "中黑点眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡°_°)",
+          "feel": "degree eyes + flat mouth, a ♡ in front",
+          "feelZh": "度眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(°_°❀)",
+          "feel": "degree eyes + flat mouth with a ❀",
+          "feelZh": "度眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡°＿°)",
+          "feel": "degree eyes + fullwidth flat mouth, a ♡ in front",
+          "feelZh": "度眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(°＿°❀)",
+          "feel": "degree eyes + fullwidth flat mouth with a ❀",
+          "feelZh": "度眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡°。°)",
+          "feel": "degree eyes + ideographic full stop mouth, a ♡ in front",
+          "feelZh": "度眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(°。°❀)",
+          "feel": "degree eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "度眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡°．°)",
+          "feel": "degree eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "度眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(°．°❀)",
+          "feel": "degree eyes + fullwidth period mouth with a ❀",
+          "feelZh": "度眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°ω°♡)",
+          "feel": "degree eyes + omega mouth with a ♡",
+          "feelZh": "度眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°ω°❀)",
+          "feel": "degree eyes + omega mouth with a ❀",
+          "feelZh": "度眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°▽°♡)",
+          "feel": "degree eyes + down triangle mouth with a ♡",
+          "feelZh": "度眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°▽°❀)",
+          "feel": "degree eyes + down triangle mouth with a ❀",
+          "feelZh": "度眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°△°♡)",
+          "feel": "degree eyes + up triangle mouth with a ♡",
+          "feelZh": "度眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°△°❀)",
+          "feel": "degree eyes + up triangle mouth with a ❀",
+          "feelZh": "度眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°Д°♡)",
+          "feel": "degree eyes + cyrillic de capital mouth with a ♡",
+          "feelZh": "度眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°Д°❀)",
+          "feel": "degree eyes + cyrillic de capital mouth with a ❀",
+          "feelZh": "度眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(°д°♡)",
+          "feel": "degree eyes + cyrillic de mouth with a ♡",
+          "feelZh": "度眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿°д°)",
+          "feel": "degree eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "度眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(°∀°♡)",
+          "feel": "degree eyes + for all mouth with a ♡",
+          "feelZh": "度眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿°∀°)",
+          "feel": "degree eyes + for all mouth, a ✿ in front",
+          "feelZh": "度眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(*_*♡)",
+          "feel": "star eyes + flat mouth with a ♡",
+          "feelZh": "星眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿*_*)",
+          "feel": "star eyes + flat mouth, a ✿ in front",
+          "feelZh": "星眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(*＿*♡)",
+          "feel": "star eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "星眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿*＿*)",
+          "feel": "star eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "星眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(*。*♡)",
+          "feel": "star eyes + ideographic full stop mouth with a ♡",
+          "feelZh": "星眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿*。*)",
+          "feel": "star eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "星眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(*．*♡)",
+          "feel": "star eyes + fullwidth period mouth with a ♡",
+          "feelZh": "星眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿*．*)",
+          "feel": "star eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "星眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*ω*)",
+          "feel": "star eyes + omega mouth, a ♥ in front",
+          "feelZh": "星眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿*ω*)",
+          "feel": "star eyes + omega mouth, a ✿ in front",
+          "feelZh": "星眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*▽*)",
+          "feel": "star eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "星眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿*▽*)",
+          "feel": "star eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "星眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*△*)",
+          "feel": "star eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "星眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿*△*)",
+          "feel": "star eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "星眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*Д*)",
+          "feel": "star eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "星眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿*Д*)",
+          "feel": "star eyes + cyrillic de capital mouth, a ✿ in front",
+          "feelZh": "星眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*д*)",
+          "feel": "star eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "星眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿*д*)",
+          "feel": "star eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "星眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥*∀*)",
+          "feel": "star eyes + for all mouth, a ♥ in front",
+          "feelZh": "星眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(*∀*✿)",
+          "feel": "star eyes + for all mouth with a ✿",
+          "feelZh": "星眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥+_+)",
+          "feel": "plus eyes + flat mouth, a ♥ in front",
+          "feelZh": "十眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(+_+✿)",
+          "feel": "plus eyes + flat mouth with a ✿",
+          "feelZh": "十眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥+＿+)",
+          "feel": "plus eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "十眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(+＿+✿)",
+          "feel": "plus eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "十眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥+。+)",
+          "feel": "plus eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "十眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(+。+✿)",
+          "feel": "plus eyes + ideographic full stop mouth with a ✿",
+          "feelZh": "十眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥+．+)",
+          "feel": "plus eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "十眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(+．+✿)",
+          "feel": "plus eyes + fullwidth period mouth with a ✿",
+          "feelZh": "十眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥+ω+)",
+          "feel": "plus eyes + omega mouth, a ♥ in front",
+          "feelZh": "十眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(+ω+✿)",
+          "feel": "plus eyes + omega mouth with a ✿",
+          "feelZh": "十眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+ω+)",
+          "feel": "plus eyes + omega mouth, a ༚ in front",
+          "feelZh": "十眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(+▽+✿)",
+          "feel": "plus eyes + down triangle mouth with a ✿",
+          "feelZh": "十眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+▽+)",
+          "feel": "plus eyes + down triangle mouth, a ༚ in front",
+          "feelZh": "十眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(+△+✿)",
+          "feel": "plus eyes + up triangle mouth with a ✿",
+          "feelZh": "十眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+△+)",
+          "feel": "plus eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "十眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(+Д+✿)",
+          "feel": "plus eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "十眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+Д+)",
+          "feel": "plus eyes + cyrillic de capital mouth, a ༚ in front",
+          "feelZh": "十眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(+д+✿)",
+          "feel": "plus eyes + cyrillic de mouth with a ✿",
+          "feelZh": "十眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+д+)",
+          "feel": "plus eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "十眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(+∀+✿)",
+          "feel": "plus eyes + for all mouth with a ✿",
+          "feelZh": "十眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚+∀+)",
+          "feel": "plus eyes + for all mouth, a ༚ in front",
+          "feelZh": "十眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪x_x)",
+          "feel": "lowercase x eyes + flat mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚x_x)",
+          "feel": "lowercase x eyes + flat mouth, a ༚ in front",
+          "feelZh": "小叉眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪x＿x)",
+          "feel": "lowercase x eyes + fullwidth flat mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚x＿x)",
+          "feel": "lowercase x eyes + fullwidth flat mouth, a ༚ in front",
+          "feelZh": "小叉眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪x。x)",
+          "feel": "lowercase x eyes + ideographic full stop mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚x。x)",
+          "feel": "lowercase x eyes + ideographic full stop mouth, a ༚ in front",
+          "feelZh": "小叉眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪x．x)",
+          "feel": "lowercase x eyes + fullwidth period mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚x．x)",
+          "feel": "lowercase x eyes + fullwidth period mouth, a ༚ in front",
+          "feelZh": "小叉眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪xωx)",
+          "feel": "lowercase x eyes + omega mouth, a ♪ in front",
+          "feelZh": "小叉眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(xωx༚)",
+          "feel": "lowercase x eyes + omega mouth with a ༚",
+          "feelZh": "小叉眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪x▽x)",
+          "feel": "lowercase x eyes + down triangle mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(x▽x༚)",
+          "feel": "lowercase x eyes + down triangle mouth with a ༚",
+          "feelZh": "小叉眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪x△x)",
+          "feel": "lowercase x eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "小叉眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(x△x༚)",
+          "feel": "lowercase x eyes + up triangle mouth with a ༚",
+          "feelZh": "小叉眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪xДx)",
+          "feel": "lowercase x eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "小叉眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(xДx༚)",
+          "feel": "lowercase x eyes + cyrillic de capital mouth with a ༚",
+          "feelZh": "小叉眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪xдx)",
+          "feel": "lowercase x eyes + cyrillic de mouth, a ♪ in front",
+          "feelZh": "小叉眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(xдx༚)",
+          "feel": "lowercase x eyes + cyrillic de mouth with a ༚",
+          "feelZh": "小叉眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪x∀x)",
+          "feel": "lowercase x eyes + for all mouth, a ♪ in front",
+          "feelZh": "小叉眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(x∀x༚)",
+          "feel": "lowercase x eyes + for all mouth with a ༚",
+          "feelZh": "小叉眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X_X♪)",
+          "feel": "uppercase x eyes + flat mouth with a ♪",
+          "feelZh": "大叉眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X_X༚)",
+          "feel": "uppercase x eyes + flat mouth with a ༚",
+          "feelZh": "大叉眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X＿X♪)",
+          "feel": "uppercase x eyes + fullwidth flat mouth with a ♪",
+          "feelZh": "大叉眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X＿X༚)",
+          "feel": "uppercase x eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "大叉眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X。X♪)",
+          "feel": "uppercase x eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "大叉眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X。X༚)",
+          "feel": "uppercase x eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "大叉眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X．X♪)",
+          "feel": "uppercase x eyes + fullwidth period mouth with a ♪",
+          "feelZh": "大叉眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X．X༚)",
+          "feel": "uppercase x eyes + fullwidth period mouth with a ༚",
+          "feelZh": "大叉眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(XωX♪)",
+          "feel": "uppercase x eyes + omega mouth with a ♪",
+          "feelZh": "大叉眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(XωX༚)",
+          "feel": "uppercase x eyes + omega mouth with a ༚",
+          "feelZh": "大叉眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(X▽X♪)",
+          "feel": "uppercase x eyes + down triangle mouth with a ♪",
+          "feelZh": "大叉眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀X▽X)",
+          "feel": "uppercase x eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "大叉眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(X△X♪)",
+          "feel": "uppercase x eyes + up triangle mouth with a ♪",
+          "feelZh": "大叉眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀X△X)",
+          "feel": "uppercase x eyes + up triangle mouth, a ❀ in front",
+          "feelZh": "大叉眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(XДX♪)",
+          "feel": "uppercase x eyes + cyrillic de capital mouth with a ♪",
+          "feelZh": "大叉眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀XДX)",
+          "feel": "uppercase x eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "大叉眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(XдX♪)",
+          "feel": "uppercase x eyes + cyrillic de mouth with a ♪",
+          "feelZh": "大叉眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀XдX)",
+          "feel": "uppercase x eyes + cyrillic de mouth, a ❀ in front",
+          "feelZh": "大叉眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(X∀X♪)",
+          "feel": "uppercase x eyes + for all mouth with a ♪",
+          "feelZh": "大叉眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀X∀X)",
+          "feel": "uppercase x eyes + for all mouth, a ❀ in front",
+          "feelZh": "大叉眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(×_×♪)",
+          "feel": "multiplication eyes + flat mouth with a ♪",
+          "feelZh": "乘号眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀×_×)",
+          "feel": "multiplication eyes + flat mouth, a ❀ in front",
+          "feelZh": "乘号眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×＿×)",
+          "feel": "multiplication eyes + fullwidth flat mouth, a ♡ in front",
+          "feelZh": "乘号眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀×＿×)",
+          "feel": "multiplication eyes + fullwidth flat mouth, a ❀ in front",
+          "feelZh": "乘号眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×。×)",
+          "feel": "multiplication eyes + ideographic full stop mouth, a ♡ in front",
+          "feelZh": "乘号眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀×。×)",
+          "feel": "multiplication eyes + ideographic full stop mouth, a ❀ in front",
+          "feelZh": "乘号眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×．×)",
+          "feel": "multiplication eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "乘号眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀×．×)",
+          "feel": "multiplication eyes + fullwidth period mouth, a ❀ in front",
+          "feelZh": "乘号眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×ω×)",
+          "feel": "multiplication eyes + omega mouth, a ♡ in front",
+          "feelZh": "乘号眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀×ω×)",
+          "feel": "multiplication eyes + omega mouth, a ❀ in front",
+          "feelZh": "乘号眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×▽×)",
+          "feel": "multiplication eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "乘号眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀×▽×)",
+          "feel": "multiplication eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "乘号眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡×△×)",
+          "feel": "multiplication eyes + up triangle mouth, a ♡ in front",
+          "feelZh": "乘号眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(×△×❀)",
+          "feel": "multiplication eyes + up triangle mouth with a ❀",
+          "feelZh": "乘号眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡×Д×)",
+          "feel": "multiplication eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "乘号眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(×Д×❀)",
+          "feel": "multiplication eyes + cyrillic de capital mouth with a ❀",
+          "feelZh": "乘号眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡×д×)",
+          "feel": "multiplication eyes + cyrillic de mouth, a ♡ in front",
+          "feelZh": "乘号眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(×д×❀)",
+          "feel": "multiplication eyes + cyrillic de mouth with a ❀",
+          "feelZh": "乘号眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡×∀×)",
+          "feel": "multiplication eyes + for all mouth, a ♡ in front",
+          "feelZh": "乘号眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(×∀×❀)",
+          "feel": "multiplication eyes + for all mouth with a ❀",
+          "feelZh": "乘号眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡>_<)",
+          "feel": "narrow eyes + flat mouth, a ♡ in front",
+          "feelZh": "窄眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(>_<❀)",
+          "feel": "narrow eyes + flat mouth with a ❀",
+          "feelZh": "窄眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>＿<♡)",
+          "feel": "narrow eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "窄眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>＿<❀)",
+          "feel": "narrow eyes + fullwidth flat mouth with a ❀",
+          "feelZh": "窄眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>。<♡)",
+          "feel": "narrow eyes + ideographic full stop mouth with a ♡",
+          "feelZh": "窄眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>。<❀)",
+          "feel": "narrow eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "窄眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>．<♡)",
+          "feel": "narrow eyes + fullwidth period mouth with a ♡",
+          "feelZh": "窄眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>．<❀)",
+          "feel": "narrow eyes + fullwidth period mouth with a ❀",
+          "feelZh": "窄眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>ω<♡)",
+          "feel": "narrow eyes + omega mouth with a ♡",
+          "feelZh": "窄眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>ω<❀)",
+          "feel": "narrow eyes + omega mouth with a ❀",
+          "feelZh": "窄眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>▽<♡)",
+          "feel": "narrow eyes + down triangle mouth with a ♡",
+          "feelZh": "窄眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>▽<❀)",
+          "feel": "narrow eyes + down triangle mouth with a ❀",
+          "feelZh": "窄眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(>△<♡)",
+          "feel": "narrow eyes + up triangle mouth with a ♡",
+          "feelZh": "窄眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿>△<)",
+          "feel": "narrow eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "窄眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(>Д<♡)",
+          "feel": "narrow eyes + cyrillic de capital mouth with a ♡",
+          "feelZh": "窄眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿>Д<)",
+          "feel": "narrow eyes + cyrillic de capital mouth, a ✿ in front",
+          "feelZh": "窄眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(>д<♡)",
+          "feel": "narrow eyes + cyrillic de mouth with a ♡",
+          "feelZh": "窄眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿>д<)",
+          "feel": "narrow eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "窄眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(>∀<♡)",
+          "feel": "narrow eyes + for all mouth with a ♡",
+          "feelZh": "窄眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿>∀<)",
+          "feel": "narrow eyes + for all mouth, a ✿ in front",
+          "feelZh": "窄眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(<_>♡)",
+          "feel": "inverted narrow eyes + flat mouth with a ♡",
+          "feelZh": "外窄眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿<_>)",
+          "feel": "inverted narrow eyes + flat mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(<＿>♡)",
+          "feel": "inverted narrow eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "外窄眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿<＿>)",
+          "feel": "inverted narrow eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<。>)",
+          "feel": "inverted narrow eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "外窄眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿<。>)",
+          "feel": "inverted narrow eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<．>)",
+          "feel": "inverted narrow eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "外窄眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿<．>)",
+          "feel": "inverted narrow eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<ω>)",
+          "feel": "inverted narrow eyes + omega mouth, a ♥ in front",
+          "feelZh": "外窄眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿<ω>)",
+          "feel": "inverted narrow eyes + omega mouth, a ✿ in front",
+          "feelZh": "外窄眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<▽>)",
+          "feel": "inverted narrow eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "外窄眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿<▽>)",
+          "feel": "inverted narrow eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<△>)",
+          "feel": "inverted narrow eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "外窄眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿<△>)",
+          "feel": "inverted narrow eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "外窄眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥<Д>)",
+          "feel": "inverted narrow eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "外窄眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(<Д>✿)",
+          "feel": "inverted narrow eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "外窄眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥<д>)",
+          "feel": "inverted narrow eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "外窄眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(<д>✿)",
+          "feel": "inverted narrow eyes + cyrillic de mouth with a ✿",
+          "feelZh": "外窄眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥<∀>)",
+          "feel": "inverted narrow eyes + for all mouth, a ♥ in front",
+          "feelZh": "外窄眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(<∀>✿)",
+          "feel": "inverted narrow eyes + for all mouth with a ✿",
+          "feelZh": "外窄眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥＞_＜)",
+          "feel": "fullwidth narrow eyes + flat mouth, a ♥ in front",
+          "feelZh": "全角窄眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞_＜✿)",
+          "feel": "fullwidth narrow eyes + flat mouth with a ✿",
+          "feelZh": "全角窄眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥＞＿＜)",
+          "feel": "fullwidth narrow eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "全角窄眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞＿＜✿)",
+          "feel": "fullwidth narrow eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "全角窄眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥＞。＜)",
+          "feel": "fullwidth narrow eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "全角窄眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞。＜✿)",
+          "feel": "fullwidth narrow eyes + ideographic full stop mouth with a ✿",
+          "feelZh": "全角窄眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＞。＜)",
+          "feel": "fullwidth narrow eyes + ideographic full stop mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞．＜✿)",
+          "feel": "fullwidth narrow eyes + fullwidth period mouth with a ✿",
+          "feelZh": "全角窄眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＞．＜)",
+          "feel": "fullwidth narrow eyes + fullwidth period mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞ω＜✿)",
+          "feel": "fullwidth narrow eyes + omega mouth with a ✿",
+          "feelZh": "全角窄眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＞ω＜)",
+          "feel": "fullwidth narrow eyes + omega mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞▽＜✿)",
+          "feel": "fullwidth narrow eyes + down triangle mouth with a ✿",
+          "feelZh": "全角窄眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＞▽＜)",
+          "feel": "fullwidth narrow eyes + down triangle mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(＞△＜✿)",
+          "feel": "fullwidth narrow eyes + up triangle mouth with a ✿",
+          "feelZh": "全角窄眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＞△＜)",
+          "feel": "fullwidth narrow eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＞Д＜)",
+          "feel": "fullwidth narrow eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "全角窄眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＞Д＜)",
+          "feel": "fullwidth narrow eyes + cyrillic de capital mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＞д＜)",
+          "feel": "fullwidth narrow eyes + cyrillic de mouth, a ♪ in front",
+          "feelZh": "全角窄眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＞д＜)",
+          "feel": "fullwidth narrow eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＞∀＜)",
+          "feel": "fullwidth narrow eyes + for all mouth, a ♪ in front",
+          "feelZh": "全角窄眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＞∀＜)",
+          "feel": "fullwidth narrow eyes + for all mouth, a ༚ in front",
+          "feelZh": "全角窄眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪T_T)",
+          "feel": "latin tee eyes + flat mouth, a ♪ in front",
+          "feelZh": "T眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚T_T)",
+          "feel": "latin tee eyes + flat mouth, a ༚ in front",
+          "feelZh": "T眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪T＿T)",
+          "feel": "latin tee eyes + fullwidth flat mouth, a ♪ in front",
+          "feelZh": "T眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚T＿T)",
+          "feel": "latin tee eyes + fullwidth flat mouth, a ༚ in front",
+          "feelZh": "T眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪T。T)",
+          "feel": "latin tee eyes + ideographic full stop mouth, a ♪ in front",
+          "feelZh": "T眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(T。T༚)",
+          "feel": "latin tee eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "T眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪T．T)",
+          "feel": "latin tee eyes + fullwidth period mouth, a ♪ in front",
+          "feelZh": "T眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(T．T༚)",
+          "feel": "latin tee eyes + fullwidth period mouth with a ༚",
+          "feelZh": "T眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪TωT)",
+          "feel": "latin tee eyes + omega mouth, a ♪ in front",
+          "feelZh": "T眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(TωT༚)",
+          "feel": "latin tee eyes + omega mouth with a ༚",
+          "feelZh": "T眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪T▽T)",
+          "feel": "latin tee eyes + down triangle mouth, a ♪ in front",
+          "feelZh": "T眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(T▽T༚)",
+          "feel": "latin tee eyes + down triangle mouth with a ༚",
+          "feelZh": "T眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪T△T)",
+          "feel": "latin tee eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "T眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(T△T༚)",
+          "feel": "latin tee eyes + up triangle mouth with a ༚",
+          "feelZh": "T眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪TДT)",
+          "feel": "latin tee eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "T眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(TДT༚)",
+          "feel": "latin tee eyes + cyrillic de capital mouth with a ༚",
+          "feelZh": "T眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(TдT♪)",
+          "feel": "latin tee eyes + cyrillic de mouth with a ♪",
+          "feelZh": "T眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(TдT༚)",
+          "feel": "latin tee eyes + cyrillic de mouth with a ༚",
+          "feelZh": "T眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(T∀T♪)",
+          "feel": "latin tee eyes + for all mouth with a ♪",
+          "feelZh": "T眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(T∀T༚)",
+          "feel": "latin tee eyes + for all mouth with a ༚",
+          "feelZh": "T眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т_Т♪)",
+          "feel": "cyrillic te eyes + flat mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т_Т༚)",
+          "feel": "cyrillic te eyes + flat mouth with a ༚",
+          "feelZh": "西里尔 T眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т＿Т♪)",
+          "feel": "cyrillic te eyes + fullwidth flat mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т＿Т༚)",
+          "feel": "cyrillic te eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "西里尔 T眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т。Т♪)",
+          "feel": "cyrillic te eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т。Т༚)",
+          "feel": "cyrillic te eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "西里尔 T眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(Т．Т♪)",
+          "feel": "cyrillic te eyes + fullwidth period mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀Т．Т)",
+          "feel": "cyrillic te eyes + fullwidth period mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ТωТ♪)",
+          "feel": "cyrillic te eyes + omega mouth with a ♪",
+          "feelZh": "西里尔 T眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ТωТ)",
+          "feel": "cyrillic te eyes + omega mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(Т▽Т♪)",
+          "feel": "cyrillic te eyes + down triangle mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀Т▽Т)",
+          "feel": "cyrillic te eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(Т△Т♪)",
+          "feel": "cyrillic te eyes + up triangle mouth with a ♪",
+          "feelZh": "西里尔 T眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀Т△Т)",
+          "feel": "cyrillic te eyes + up triangle mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ТДТ♪)",
+          "feel": "cyrillic te eyes + cyrillic de capital mouth with a ♪",
+          "feelZh": "西里尔 T眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ТДТ)",
+          "feel": "cyrillic te eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ТдТ♪)",
+          "feel": "cyrillic te eyes + cyrillic de mouth with a ♪",
+          "feelZh": "西里尔 T眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ТдТ)",
+          "feel": "cyrillic te eyes + cyrillic de mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡Т∀Т)",
+          "feel": "cyrillic te eyes + for all mouth, a ♡ in front",
+          "feelZh": "西里尔 T眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀Т∀Т)",
+          "feel": "cyrillic te eyes + for all mouth, a ❀ in front",
+          "feelZh": "西里尔 T眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ʕ_ʕ)",
+          "feel": "inverted glottal eyes + flat mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ʕ_ʕ)",
+          "feel": "inverted glottal eyes + flat mouth, a ❀ in front",
+          "feelZh": "倒撇眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ʕ＿ʕ)",
+          "feel": "inverted glottal eyes + fullwidth flat mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ʕ＿ʕ)",
+          "feel": "inverted glottal eyes + fullwidth flat mouth, a ❀ in front",
+          "feelZh": "倒撇眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ʕ。ʕ)",
+          "feel": "inverted glottal eyes + ideographic full stop mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ʕ。ʕ)",
+          "feel": "inverted glottal eyes + ideographic full stop mouth, a ❀ in front",
+          "feelZh": "倒撇眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ʕ．ʕ)",
+          "feel": "inverted glottal eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕ．ʕ❀)",
+          "feel": "inverted glottal eyes + fullwidth period mouth with a ❀",
+          "feelZh": "倒撇眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡ʕωʕ)",
+          "feel": "inverted glottal eyes + omega mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕωʕ❀)",
+          "feel": "inverted glottal eyes + omega mouth with a ❀",
+          "feelZh": "倒撇眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡ʕ▽ʕ)",
+          "feel": "inverted glottal eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕ▽ʕ❀)",
+          "feel": "inverted glottal eyes + down triangle mouth with a ❀",
+          "feelZh": "倒撇眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡ʕ△ʕ)",
+          "feel": "inverted glottal eyes + up triangle mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕ△ʕ❀)",
+          "feel": "inverted glottal eyes + up triangle mouth with a ❀",
+          "feelZh": "倒撇眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡ʕДʕ)",
+          "feel": "inverted glottal eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕДʕ❀)",
+          "feel": "inverted glottal eyes + cyrillic de capital mouth with a ❀",
+          "feelZh": "倒撇眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡ʕдʕ)",
+          "feel": "inverted glottal eyes + cyrillic de mouth, a ♡ in front",
+          "feelZh": "倒撇眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ʕдʕ❀)",
+          "feel": "inverted glottal eyes + cyrillic de mouth with a ❀",
+          "feelZh": "倒撇眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ʕ∀ʕ♡)",
+          "feel": "inverted glottal eyes + for all mouth with a ♡",
+          "feelZh": "倒撇眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ʕ∀ʕ❀)",
+          "feel": "inverted glottal eyes + for all mouth with a ❀",
+          "feelZh": "倒撇眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ_ˈ♡)",
+          "feel": "vertical stroke eyes + flat mouth with a ♡",
+          "feelZh": "重音眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ_ˈ❀)",
+          "feel": "vertical stroke eyes + flat mouth with a ❀",
+          "feelZh": "重音眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ＿ˈ♡)",
+          "feel": "vertical stroke eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "重音眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ＿ˈ❀)",
+          "feel": "vertical stroke eyes + fullwidth flat mouth with a ❀",
+          "feelZh": "重音眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ。ˈ♡)",
+          "feel": "vertical stroke eyes + ideographic full stop mouth with a ♡",
+          "feelZh": "重音眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ。ˈ❀)",
+          "feel": "vertical stroke eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "重音眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ．ˈ♡)",
+          "feel": "vertical stroke eyes + fullwidth period mouth with a ♡",
+          "feelZh": "重音眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈ．ˈ❀)",
+          "feel": "vertical stroke eyes + fullwidth period mouth with a ❀",
+          "feelZh": "重音眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˈωˈ♡)",
+          "feel": "vertical stroke eyes + omega mouth with a ♡",
+          "feelZh": "重音眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈωˈ)",
+          "feel": "vertical stroke eyes + omega mouth, a ✿ in front",
+          "feelZh": "重音眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˈ▽ˈ♡)",
+          "feel": "vertical stroke eyes + down triangle mouth with a ♡",
+          "feelZh": "重音眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈ▽ˈ)",
+          "feel": "vertical stroke eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "重音眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˈ△ˈ♡)",
+          "feel": "vertical stroke eyes + up triangle mouth with a ♡",
+          "feelZh": "重音眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈ△ˈ)",
+          "feel": "vertical stroke eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "重音眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˈДˈ♡)",
+          "feel": "vertical stroke eyes + cyrillic de capital mouth with a ♡",
+          "feelZh": "重音眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈДˈ)",
+          "feel": "vertical stroke eyes + cyrillic de capital mouth, a ✿ in front",
+          "feelZh": "重音眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˈдˈ♡)",
+          "feel": "vertical stroke eyes + cyrillic de mouth with a ♡",
+          "feelZh": "重音眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈдˈ)",
+          "feel": "vertical stroke eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "重音眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˈ∀ˈ♡)",
+          "feel": "vertical stroke eyes + for all mouth with a ♡",
+          "feelZh": "重音眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ˈ∀ˈ)",
+          "feel": "vertical stroke eyes + for all mouth, a ✿ in front",
+          "feelZh": "重音眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀_｀)",
+          "feel": "fullwidth grave eyes + flat mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿｀_｀)",
+          "feel": "fullwidth grave eyes + flat mouth, a ✿ in front",
+          "feelZh": "全角反引号眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀＿｀)",
+          "feel": "fullwidth grave eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿｀＿｀)",
+          "feel": "fullwidth grave eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "全角反引号眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀。｀)",
+          "feel": "fullwidth grave eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿｀。｀)",
+          "feel": "fullwidth grave eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "全角反引号眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀．｀)",
+          "feel": "fullwidth grave eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿｀．｀)",
+          "feel": "fullwidth grave eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "全角反引号眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀ω｀)",
+          "feel": "fullwidth grave eyes + omega mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿｀ω｀)",
+          "feel": "fullwidth grave eyes + omega mouth, a ✿ in front",
+          "feelZh": "全角反引号眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥｀▽｀)",
+          "feel": "fullwidth grave eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(｀▽｀✿)",
+          "feel": "fullwidth grave eyes + down triangle mouth with a ✿",
+          "feelZh": "全角反引号眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥｀△｀)",
+          "feel": "fullwidth grave eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(｀△｀✿)",
+          "feel": "fullwidth grave eyes + up triangle mouth with a ✿",
+          "feelZh": "全角反引号眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥｀Д｀)",
+          "feel": "fullwidth grave eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(｀Д｀✿)",
+          "feel": "fullwidth grave eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "全角反引号眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥｀д｀)",
+          "feel": "fullwidth grave eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(｀д｀✿)",
+          "feel": "fullwidth grave eyes + cyrillic de mouth with a ✿",
+          "feelZh": "全角反引号眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥｀∀｀)",
+          "feel": "fullwidth grave eyes + for all mouth, a ♥ in front",
+          "feelZh": "全角反引号眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(｀∀｀✿)",
+          "feel": "fullwidth grave eyes + for all mouth with a ✿",
+          "feelZh": "全角反引号眼 + ∀嘴，尾部一个心/花"
+        }
+      ]
+    }
+  ]
+}

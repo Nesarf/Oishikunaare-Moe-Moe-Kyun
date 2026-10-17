@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.27.0 - 2026-10-16
+
+- **The library is 18585 faces: the judge's frame set grew, and a classic composition pass fills the
+  thinnest category.** Fifteen frame families are recognised now (the soft pair, the bear muzzle, subscripts,
+  low points, half-width brackets, and the CJK lenticular and white-bracket pairs), so faces people actually
+  type are visible to the judge instead of being refused - two of the hand-written candidates that were
+  invisible before now ship. A classic pass crosses those frames with a hand-picked set of eyes and mouths,
+  which takes classic from 139 candidates to over 14500, and the ceiling goes from 780 to 1400 per mood.
+- **Each mood is cut into parts of at most 500 faces.** At this size a single mood file was 277 KB, which is
+  not a read anyone should pay for at once, so the split directory now holds parts (`<mood>.json`,
+  `<mood>-2.json`, ... 41 files in all, none over about 100 KB). The parts add up to the whole category, and
+  the generator's check verifies every part.
+- Tests: the split test now verifies that parts exist, add up per category and per library, and that no part
+  is heavy; the frame cases cover the frames that used to be invisible.
 ## 0.26.0 - 2026-10-16
 
 - **The emoji ban is about colour now, not about blocks.** Two blocks hold both line symbols a person types

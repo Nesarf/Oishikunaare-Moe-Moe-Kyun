@@ -1,0 +1,2016 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - classic (part 3)",
+  "version": 4,
+  "note": "the shapes everyone recognizes. Part 3 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "classic",
+      "label": "classic faces",
+      "labelZh": "经典字形",
+      "use": "the shapes everyone recognizes",
+      "useZh": "大家都认得的形状",
+      "faces": [
+        {
+          "face": "ʕ˃⌒˃ʔ♪",
+          "feel": "classic ˃ eyes + ⌒ mouth",
+          "feelZh": "经典：˃眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ˃ε˃ʔ。",
+          "feel": "classic ˃ eyes + ε mouth",
+          "feelZh": "经典：˃眼 + ε嘴"
+        },
+        {
+          "face": "ʕ˃Д˃ʔ｡",
+          "feel": "classic ˃ eyes + Д mouth",
+          "feelZh": "经典：˃眼 + Д嘴"
+        },
+        {
+          "face": "ʕ˃˙˃ʔ✦",
+          "feel": "classic ˃ eyes + ˙ mouth",
+          "feelZh": "经典：˃眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ˃。˃ʔ♡",
+          "feel": "classic ˃ eyes + 。 mouth",
+          "feelZh": "经典：˃眼 + 。嘴"
+        },
+        {
+          "face": "ʕ˃□˃ʔ｡",
+          "feel": "classic ˃ eyes + □ mouth",
+          "feelZh": "经典：˃眼 + □嘴"
+        },
+        {
+          "face": "ʕ˃♪˃ʔ✧",
+          "feel": "classic ˃ eyes + ♪ mouth",
+          "feelZh": "经典：˃眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ´▽´ʔ♪",
+          "feel": "classic ´ eyes + ▽ mouth",
+          "feelZh": "经典：´眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ´ω´ʔ~",
+          "feel": "classic ´ eyes + ω mouth",
+          "feelZh": "经典：´眼 + ω嘴"
+        },
+        {
+          "face": "ʕ´⌣´ʔ",
+          "feel": "classic ´ eyes + ⌣ mouth",
+          "feelZh": "经典：´眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ´⌒´ʔ♪",
+          "feel": "classic ´ eyes + ⌒ mouth",
+          "feelZh": "经典：´眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ´ε´ʔ。",
+          "feel": "classic ´ eyes + ε mouth",
+          "feelZh": "经典：´眼 + ε嘴"
+        },
+        {
+          "face": "ʕ´๑´ʔ",
+          "feel": "classic ´ eyes + ๑ mouth",
+          "feelZh": "经典：´眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ´˙´ʔ✦",
+          "feel": "classic ´ eyes + ˙ mouth",
+          "feelZh": "经典：´眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ´。´ʔ♡",
+          "feel": "classic ´ eyes + 。 mouth",
+          "feelZh": "经典：´眼 + 。嘴"
+        },
+        {
+          "face": "ʕ´□´ʔ｡",
+          "feel": "classic ´ eyes + □ mouth",
+          "feelZh": "经典：´眼 + □嘴"
+        },
+        {
+          "face": "ʕ´♪´ʔ✧",
+          "feel": "classic ´ eyes + ♪ mouth",
+          "feelZh": "经典：´眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ˘▽˘ʔ♡",
+          "feel": "classic ˘ eyes + ▽ mouth",
+          "feelZh": "经典：˘眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ˘ω˘ʔ~",
+          "feel": "classic ˘ eyes + ω mouth",
+          "feelZh": "经典：˘眼 + ω嘴"
+        },
+        {
+          "face": "ʕ˘⌣˘ʔ",
+          "feel": "classic ˘ eyes + ⌣ mouth",
+          "feelZh": "经典：˘眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ˘⌒˘ʔ♪",
+          "feel": "classic ˘ eyes + ⌒ mouth",
+          "feelZh": "经典：˘眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ˘ε˘ʔ。",
+          "feel": "classic ˘ eyes + ε mouth",
+          "feelZh": "经典：˘眼 + ε嘴"
+        },
+        {
+          "face": "ʕ˘๑˘ʔ",
+          "feel": "classic ˘ eyes + ๑ mouth",
+          "feelZh": "经典：˘眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ˘˙˘ʔ✦",
+          "feel": "classic ˘ eyes + ˙ mouth",
+          "feelZh": "经典：˘眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ˘。˘ʔ♡",
+          "feel": "classic ˘ eyes + 。 mouth",
+          "feelZh": "经典：˘眼 + 。嘴"
+        },
+        {
+          "face": "ʕ˘□˘ʔ｡",
+          "feel": "classic ˘ eyes + □ mouth",
+          "feelZh": "经典：˘眼 + □嘴"
+        },
+        {
+          "face": "ʕ˘♪˘ʔ✧",
+          "feel": "classic ˘ eyes + ♪ mouth",
+          "feelZh": "经典：˘眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ◕▽◕ʔ♡",
+          "feel": "classic ◕ eyes + ▽ mouth",
+          "feelZh": "经典：◕眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ◕ω◕ʔ~",
+          "feel": "classic ◕ eyes + ω mouth",
+          "feelZh": "经典：◕眼 + ω嘴"
+        },
+        {
+          "face": "ʕ◕⌣◕ʔ",
+          "feel": "classic ◕ eyes + ⌣ mouth",
+          "feelZh": "经典：◕眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ◕⌒◕ʔ♪",
+          "feel": "classic ◕ eyes + ⌒ mouth",
+          "feelZh": "经典：◕眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ◕ε◕ʔ。",
+          "feel": "classic ◕ eyes + ε mouth",
+          "feelZh": "经典：◕眼 + ε嘴"
+        },
+        {
+          "face": "ʕ◕๑◕ʔ",
+          "feel": "classic ◕ eyes + ๑ mouth",
+          "feelZh": "经典：◕眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ◕˙◕ʔ✦",
+          "feel": "classic ◕ eyes + ˙ mouth",
+          "feelZh": "经典：◕眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ◕。◕ʔ♡",
+          "feel": "classic ◕ eyes + 。 mouth",
+          "feelZh": "经典：◕眼 + 。嘴"
+        },
+        {
+          "face": "ʕ◕□◕ʔ｡",
+          "feel": "classic ◕ eyes + □ mouth",
+          "feelZh": "经典：◕眼 + □嘴"
+        },
+        {
+          "face": "ʕ◕♪◕ʔ✧",
+          "feel": "classic ◕ eyes + ♪ mouth",
+          "feelZh": "经典：◕眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ๑▽๑ʔ♡",
+          "feel": "classic ๑ eyes + ▽ mouth",
+          "feelZh": "经典：๑眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ๑ω๑ʔ~",
+          "feel": "classic ๑ eyes + ω mouth",
+          "feelZh": "经典：๑眼 + ω嘴"
+        },
+        {
+          "face": "ʕ๑⌣๑ʔ✧",
+          "feel": "classic ๑ eyes + ⌣ mouth",
+          "feelZh": "经典：๑眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ๑⌒๑ʔ♪",
+          "feel": "classic ๑ eyes + ⌒ mouth",
+          "feelZh": "经典：๑眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ๑ε๑ʔ。",
+          "feel": "classic ๑ eyes + ε mouth",
+          "feelZh": "经典：๑眼 + ε嘴"
+        },
+        {
+          "face": "ʕ๑๑๑ʔ",
+          "feel": "classic ๑ eyes + ๑ mouth",
+          "feelZh": "经典：๑眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ๑˙๑ʔ✦",
+          "feel": "classic ๑ eyes + ˙ mouth",
+          "feelZh": "经典：๑眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ๑。๑ʔ。",
+          "feel": "classic ๑ eyes + 。 mouth",
+          "feelZh": "经典：๑眼 + 。嘴"
+        },
+        {
+          "face": "ʕ๑□๑ʔ｡",
+          "feel": "classic ๑ eyes + □ mouth",
+          "feelZh": "经典：๑眼 + □嘴"
+        },
+        {
+          "face": "ʕ๑♪๑ʔ✧",
+          "feel": "classic ๑ eyes + ♪ mouth",
+          "feelZh": "经典：๑眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ°▽°ʔ♡",
+          "feel": "classic ° eyes + ▽ mouth",
+          "feelZh": "经典：°眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ°ω°ʔ~",
+          "feel": "classic ° eyes + ω mouth",
+          "feelZh": "经典：°眼 + ω嘴"
+        },
+        {
+          "face": "ʕ°⌣°ʔ✧",
+          "feel": "classic ° eyes + ⌣ mouth",
+          "feelZh": "经典：°眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ°⌒°ʔ♪",
+          "feel": "classic ° eyes + ⌒ mouth",
+          "feelZh": "经典：°眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ°ε°ʔ。",
+          "feel": "classic ° eyes + ε mouth",
+          "feelZh": "经典：°眼 + ε嘴"
+        },
+        {
+          "face": "ʕ°๑°ʔ",
+          "feel": "classic ° eyes + ๑ mouth",
+          "feelZh": "经典：°眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ°˙°ʔ✦",
+          "feel": "classic ° eyes + ˙ mouth",
+          "feelZh": "经典：°眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ°。°ʔ。",
+          "feel": "classic ° eyes + 。 mouth",
+          "feelZh": "经典：°眼 + 。嘴"
+        },
+        {
+          "face": "ʕ°□°ʔ｡",
+          "feel": "classic ° eyes + □ mouth",
+          "feelZh": "经典：°眼 + □嘴"
+        },
+        {
+          "face": "ʕ°♪°ʔ✧",
+          "feel": "classic ° eyes + ♪ mouth",
+          "feelZh": "经典：°眼 + ♪嘴"
+        },
+        {
+          "face": "ʕˆ▽ˆʔ♡",
+          "feel": "classic ˆ eyes + ▽ mouth",
+          "feelZh": "经典：ˆ眼 + ▽嘴"
+        },
+        {
+          "face": "ʕˆωˆʔ~",
+          "feel": "classic ˆ eyes + ω mouth",
+          "feelZh": "经典：ˆ眼 + ω嘴"
+        },
+        {
+          "face": "ʕˆ⌣ˆʔ✧",
+          "feel": "classic ˆ eyes + ⌣ mouth",
+          "feelZh": "经典：ˆ眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕˆ⌒ˆʔ♪",
+          "feel": "classic ˆ eyes + ⌒ mouth",
+          "feelZh": "经典：ˆ眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕˆεˆʔ。",
+          "feel": "classic ˆ eyes + ε mouth",
+          "feelZh": "经典：ˆ眼 + ε嘴"
+        },
+        {
+          "face": "ʕˆ๑ˆʔ",
+          "feel": "classic ˆ eyes + ๑ mouth",
+          "feelZh": "经典：ˆ眼 + ๑嘴"
+        },
+        {
+          "face": "ʕˆ˙ˆʔ✦",
+          "feel": "classic ˆ eyes + ˙ mouth",
+          "feelZh": "经典：ˆ眼 + ˙嘴"
+        },
+        {
+          "face": "ʕˆ。ˆʔ。",
+          "feel": "classic ˆ eyes + 。 mouth",
+          "feelZh": "经典：ˆ眼 + 。嘴"
+        },
+        {
+          "face": "ʕˆ□ˆʔ｡",
+          "feel": "classic ˆ eyes + □ mouth",
+          "feelZh": "经典：ˆ眼 + □嘴"
+        },
+        {
+          "face": "ʕˆ♪ˆʔ✦",
+          "feel": "classic ˆ eyes + ♪ mouth",
+          "feelZh": "经典：ˆ眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ̂▽̂ʔ♡",
+          "feel": "classic ̂ eyes + ▽ mouth",
+          "feelZh": "经典：̂眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ̂ω̂ʔ~",
+          "feel": "classic ̂ eyes + ω mouth",
+          "feelZh": "经典：̂眼 + ω嘴"
+        },
+        {
+          "face": "ʕ̂⌣̂ʔ✧",
+          "feel": "classic ̂ eyes + ⌣ mouth",
+          "feelZh": "经典：̂眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ̂⌒̂ʔ♪",
+          "feel": "classic ̂ eyes + ⌒ mouth",
+          "feelZh": "经典：̂眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ̂ε̂ʔ~",
+          "feel": "classic ̂ eyes + ε mouth",
+          "feelZh": "经典：̂眼 + ε嘴"
+        },
+        {
+          "face": "ʕ̂๑̂ʔ",
+          "feel": "classic ̂ eyes + ๑ mouth",
+          "feelZh": "经典：̂眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ̂˙̂ʔ✦",
+          "feel": "classic ̂ eyes + ˙ mouth",
+          "feelZh": "经典：̂眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ̂。̂ʔ。",
+          "feel": "classic ̂ eyes + 。 mouth",
+          "feelZh": "经典：̂眼 + 。嘴"
+        },
+        {
+          "face": "ʕ̂□̂ʔ｡",
+          "feel": "classic ̂ eyes + □ mouth",
+          "feelZh": "经典：̂眼 + □嘴"
+        },
+        {
+          "face": "ʕ̂♪̂ʔ✦",
+          "feel": "classic ̂ eyes + ♪ mouth",
+          "feelZh": "经典：̂眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ♥▽♥ʔ♡",
+          "feel": "classic ♥ eyes + ▽ mouth",
+          "feelZh": "经典：♥眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ♥ω♥ʔ~",
+          "feel": "classic ♥ eyes + ω mouth",
+          "feelZh": "经典：♥眼 + ω嘴"
+        },
+        {
+          "face": "ʕ♥⌣♥ʔ✧",
+          "feel": "classic ♥ eyes + ⌣ mouth",
+          "feelZh": "经典：♥眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ♥⌒♥ʔ♪",
+          "feel": "classic ♥ eyes + ⌒ mouth",
+          "feelZh": "经典：♥眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ♥ε♥ʔ~",
+          "feel": "classic ♥ eyes + ε mouth",
+          "feelZh": "经典：♥眼 + ε嘴"
+        },
+        {
+          "face": "ʕ♥๑♥ʔ",
+          "feel": "classic ♥ eyes + ๑ mouth",
+          "feelZh": "经典：♥眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ♥˙♥ʔ✦",
+          "feel": "classic ♥ eyes + ˙ mouth",
+          "feelZh": "经典：♥眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ♥。♥ʔ。",
+          "feel": "classic ♥ eyes + 。 mouth",
+          "feelZh": "经典：♥眼 + 。嘴"
+        },
+        {
+          "face": "ʕ♥□♥ʔ｡",
+          "feel": "classic ♥ eyes + □ mouth",
+          "feelZh": "经典：♥眼 + □嘴"
+        },
+        {
+          "face": "ʕ♥♪♥ʔ✦",
+          "feel": "classic ♥ eyes + ♪ mouth",
+          "feelZh": "经典：♥眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ✧▽✧ʔ♡",
+          "feel": "classic ✧ eyes + ▽ mouth",
+          "feelZh": "经典：✧眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ✧ω✧ʔ~",
+          "feel": "classic ✧ eyes + ω mouth",
+          "feelZh": "经典：✧眼 + ω嘴"
+        },
+        {
+          "face": "ʕ✧⌣✧ʔ✧",
+          "feel": "classic ✧ eyes + ⌣ mouth",
+          "feelZh": "经典：✧眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ✧⌒✧ʔ♪",
+          "feel": "classic ✧ eyes + ⌒ mouth",
+          "feelZh": "经典：✧眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ✧ε✧ʔ~",
+          "feel": "classic ✧ eyes + ε mouth",
+          "feelZh": "经典：✧眼 + ε嘴"
+        },
+        {
+          "face": "ʕ✧๑✧ʔ",
+          "feel": "classic ✧ eyes + ๑ mouth",
+          "feelZh": "经典：✧眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ✧˙✧ʔ♪",
+          "feel": "classic ✧ eyes + ˙ mouth",
+          "feelZh": "经典：✧眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ✧。✧ʔ。",
+          "feel": "classic ✧ eyes + 。 mouth",
+          "feelZh": "经典：✧眼 + 。嘴"
+        },
+        {
+          "face": "ʕ✧□✧ʔ｡",
+          "feel": "classic ✧ eyes + □ mouth",
+          "feelZh": "经典：✧眼 + □嘴"
+        },
+        {
+          "face": "ʕ✧♪✧ʔ✦",
+          "feel": "classic ✧ eyes + ♪ mouth",
+          "feelZh": "经典：✧眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ○▽○ʔ♡",
+          "feel": "classic ○ eyes + ▽ mouth",
+          "feelZh": "经典：○眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ○ω○ʔ｡",
+          "feel": "classic ○ eyes + ω mouth",
+          "feelZh": "经典：○眼 + ω嘴"
+        },
+        {
+          "face": "ʕ○⌣○ʔ✧",
+          "feel": "classic ○ eyes + ⌣ mouth",
+          "feelZh": "经典：○眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ○⌒○ʔ♪",
+          "feel": "classic ○ eyes + ⌒ mouth",
+          "feelZh": "经典：○眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ○ε○ʔ~",
+          "feel": "classic ○ eyes + ε mouth",
+          "feelZh": "经典：○眼 + ε嘴"
+        },
+        {
+          "face": "ʕ○๑○ʔ",
+          "feel": "classic ○ eyes + ๑ mouth",
+          "feelZh": "经典：○眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ○˙○ʔ♪",
+          "feel": "classic ○ eyes + ˙ mouth",
+          "feelZh": "经典：○眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ○。○ʔ。",
+          "feel": "classic ○ eyes + 。 mouth",
+          "feelZh": "经典：○眼 + 。嘴"
+        },
+        {
+          "face": "ʕ○□○ʔ｡",
+          "feel": "classic ○ eyes + □ mouth",
+          "feelZh": "经典：○眼 + □嘴"
+        },
+        {
+          "face": "ʕ○♪○ʔ✦",
+          "feel": "classic ○ eyes + ♪ mouth",
+          "feelZh": "经典：○眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ●▽●ʔ♡",
+          "feel": "classic ● eyes + ▽ mouth",
+          "feelZh": "经典：●眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ●ω●ʔ｡",
+          "feel": "classic ● eyes + ω mouth",
+          "feelZh": "经典：●眼 + ω嘴"
+        },
+        {
+          "face": "ʕ●⌣●ʔ✧",
+          "feel": "classic ● eyes + ⌣ mouth",
+          "feelZh": "经典：●眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ●⌒●ʔ♪",
+          "feel": "classic ● eyes + ⌒ mouth",
+          "feelZh": "经典：●眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ●ε●ʔ~",
+          "feel": "classic ● eyes + ε mouth",
+          "feelZh": "经典：●眼 + ε嘴"
+        },
+        {
+          "face": "ʕ●๑●ʔ",
+          "feel": "classic ● eyes + ๑ mouth",
+          "feelZh": "经典：●眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ●˙●ʔ♪",
+          "feel": "classic ● eyes + ˙ mouth",
+          "feelZh": "经典：●眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ●。●ʔ。",
+          "feel": "classic ● eyes + 。 mouth",
+          "feelZh": "经典：●眼 + 。嘴"
+        },
+        {
+          "face": "ʕ●□●ʔ｡",
+          "feel": "classic ● eyes + □ mouth",
+          "feelZh": "经典：●眼 + □嘴"
+        },
+        {
+          "face": "ʕ●♪●ʔ✦",
+          "feel": "classic ● eyes + ♪ mouth",
+          "feelZh": "经典：●眼 + ♪嘴"
+        },
+        {
+          "face": "ʕฅ▽ฅʔ♡",
+          "feel": "classic ฅ eyes + ▽ mouth",
+          "feelZh": "经典：ฅ眼 + ▽嘴"
+        },
+        {
+          "face": "ʕฅωฅʔ｡",
+          "feel": "classic ฅ eyes + ω mouth",
+          "feelZh": "经典：ฅ眼 + ω嘴"
+        },
+        {
+          "face": "ʕฅ⌣ฅʔ✧",
+          "feel": "classic ฅ eyes + ⌣ mouth",
+          "feelZh": "经典：ฅ眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕฅ⌒ฅʔ♡",
+          "feel": "classic ฅ eyes + ⌒ mouth",
+          "feelZh": "经典：ฅ眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕฅεฅʔ~",
+          "feel": "classic ฅ eyes + ε mouth",
+          "feelZh": "经典：ฅ眼 + ε嘴"
+        },
+        {
+          "face": "ʕฅ๑ฅʔ",
+          "feel": "classic ฅ eyes + ๑ mouth",
+          "feelZh": "经典：ฅ眼 + ๑嘴"
+        },
+        {
+          "face": "ʕฅ˙ฅʔ♪",
+          "feel": "classic ฅ eyes + ˙ mouth",
+          "feelZh": "经典：ฅ眼 + ˙嘴"
+        },
+        {
+          "face": "ʕฅ。ฅʔ。",
+          "feel": "classic ฅ eyes + 。 mouth",
+          "feelZh": "经典：ฅ眼 + 。嘴"
+        },
+        {
+          "face": "ʕฅ●ฅʔ",
+          "feel": "classic ฅ eyes + ● mouth",
+          "feelZh": "经典：ฅ眼 + ●嘴"
+        },
+        {
+          "face": "ʕฅ♪ฅʔ✦",
+          "feel": "classic ฅ eyes + ♪ mouth",
+          "feelZh": "经典：ฅ眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ˂▽˂ʔ♡",
+          "feel": "classic ˂ eyes + ▽ mouth",
+          "feelZh": "经典：˂眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ˂ω˂ʔ｡",
+          "feel": "classic ˂ eyes + ω mouth",
+          "feelZh": "经典：˂眼 + ω嘴"
+        },
+        {
+          "face": "ʕ˂⌣˂ʔ✧",
+          "feel": "classic ˂ eyes + ⌣ mouth",
+          "feelZh": "经典：˂眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ˂⌒˂ʔ♡",
+          "feel": "classic ˂ eyes + ⌒ mouth",
+          "feelZh": "经典：˂眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ˂ε˂ʔ~",
+          "feel": "classic ˂ eyes + ε mouth",
+          "feelZh": "经典：˂眼 + ε嘴"
+        },
+        {
+          "face": "ʕ˂๑˂ʔ",
+          "feel": "classic ˂ eyes + ๑ mouth",
+          "feelZh": "经典：˂眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ˂˙˂ʔ♪",
+          "feel": "classic ˂ eyes + ˙ mouth",
+          "feelZh": "经典：˂眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ˂。˂ʔ。",
+          "feel": "classic ˂ eyes + 。 mouth",
+          "feelZh": "经典：˂眼 + 。嘴"
+        },
+        {
+          "face": "ʕ˂●˂ʔ",
+          "feel": "classic ˂ eyes + ● mouth",
+          "feelZh": "经典：˂眼 + ●嘴"
+        },
+        {
+          "face": "ʕ˂♪˂ʔ✦",
+          "feel": "classic ˂ eyes + ♪ mouth",
+          "feelZh": "经典：˂眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ‿▽‿ʔ♡",
+          "feel": "classic ‿ eyes + ▽ mouth",
+          "feelZh": "经典：‿眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ‿ω‿ʔ｡",
+          "feel": "classic ‿ eyes + ω mouth",
+          "feelZh": "经典：‿眼 + ω嘴"
+        },
+        {
+          "face": "ʕ‿⌣‿ʔ✧",
+          "feel": "classic ‿ eyes + ⌣ mouth",
+          "feelZh": "经典：‿眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ‿⌒‿ʔ♡",
+          "feel": "classic ‿ eyes + ⌒ mouth",
+          "feelZh": "经典：‿眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ‿ε‿ʔ~",
+          "feel": "classic ‿ eyes + ε mouth",
+          "feelZh": "经典：‿眼 + ε嘴"
+        },
+        {
+          "face": "ʕ‿๑‿ʔ",
+          "feel": "classic ‿ eyes + ๑ mouth",
+          "feelZh": "经典：‿眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ‿˙‿ʔ♪",
+          "feel": "classic ‿ eyes + ˙ mouth",
+          "feelZh": "经典：‿眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ‿。‿ʔ。",
+          "feel": "classic ‿ eyes + 。 mouth",
+          "feelZh": "经典：‿眼 + 。嘴"
+        },
+        {
+          "face": "ʕ‿●‿ʔ",
+          "feel": "classic ‿ eyes + ● mouth",
+          "feelZh": "经典：‿眼 + ●嘴"
+        },
+        {
+          "face": "ʕ‿♪‿ʔ✦",
+          "feel": "classic ‿ eyes + ♪ mouth",
+          "feelZh": "经典：‿眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ・▽・ʔ♡",
+          "feel": "classic ・ eyes + ▽ mouth",
+          "feelZh": "经典：・眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ・ω・ʔ｡",
+          "feel": "classic ・ eyes + ω mouth",
+          "feelZh": "经典：・眼 + ω嘴"
+        },
+        {
+          "face": "ʕ・⌣・ʔ✧",
+          "feel": "classic ・ eyes + ⌣ mouth",
+          "feelZh": "经典：・眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ・⌒・ʔ♡",
+          "feel": "classic ・ eyes + ⌒ mouth",
+          "feelZh": "经典：・眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ・ε・ʔ~",
+          "feel": "classic ・ eyes + ε mouth",
+          "feelZh": "经典：・眼 + ε嘴"
+        },
+        {
+          "face": "ʕ・๑・ʔ✧",
+          "feel": "classic ・ eyes + ๑ mouth",
+          "feelZh": "经典：・眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ・˙・ʔ♪",
+          "feel": "classic ・ eyes + ˙ mouth",
+          "feelZh": "经典：・眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ・。・ʔ。",
+          "feel": "classic ・ eyes + 。 mouth",
+          "feelZh": "经典：・眼 + 。嘴"
+        },
+        {
+          "face": "ʕ・●・ʔ",
+          "feel": "classic ・ eyes + ● mouth",
+          "feelZh": "经典：・眼 + ●嘴"
+        },
+        {
+          "face": "ʕ・♪・ʔ✦",
+          "feel": "classic ・ eyes + ♪ mouth",
+          "feelZh": "经典：・眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ･▽･ʔ。",
+          "feel": "classic ･ eyes + ▽ mouth",
+          "feelZh": "经典：･眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ･ω･ʔ｡",
+          "feel": "classic ･ eyes + ω mouth",
+          "feelZh": "经典：･眼 + ω嘴"
+        },
+        {
+          "face": "ʕ･⌣･ʔ✧",
+          "feel": "classic ･ eyes + ⌣ mouth",
+          "feelZh": "经典：･眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ･⌒･ʔ♡",
+          "feel": "classic ･ eyes + ⌒ mouth",
+          "feelZh": "经典：･眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ･ε･ʔ~",
+          "feel": "classic ･ eyes + ε mouth",
+          "feelZh": "经典：･眼 + ε嘴"
+        },
+        {
+          "face": "ʕ･๑･ʔ✧",
+          "feel": "classic ･ eyes + ๑ mouth",
+          "feelZh": "经典：･眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ･˙･ʔ♪",
+          "feel": "classic ･ eyes + ˙ mouth",
+          "feelZh": "经典：･眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ･。･ʔ。",
+          "feel": "classic ･ eyes + 。 mouth",
+          "feelZh": "经典：･眼 + 。嘴"
+        },
+        {
+          "face": "ʕ･●･ʔ",
+          "feel": "classic ･ eyes + ● mouth",
+          "feelZh": "经典：･眼 + ●嘴"
+        },
+        {
+          "face": "ʕ･♪･ʔ✦",
+          "feel": "classic ･ eyes + ♪ mouth",
+          "feelZh": "经典：･眼 + ♪嘴"
+        },
+        {
+          "face": "ʕ˙▽˙ʔ。",
+          "feel": "classic ˙ eyes + ▽ mouth",
+          "feelZh": "经典：˙眼 + ▽嘴"
+        },
+        {
+          "face": "ʕ˙ω˙ʔ｡",
+          "feel": "classic ˙ eyes + ω mouth",
+          "feelZh": "经典：˙眼 + ω嘴"
+        },
+        {
+          "face": "ʕ˙⌣˙ʔ✧",
+          "feel": "classic ˙ eyes + ⌣ mouth",
+          "feelZh": "经典：˙眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕ˙⌒˙ʔ♡",
+          "feel": "classic ˙ eyes + ⌒ mouth",
+          "feelZh": "经典：˙眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕ˙ε˙ʔ~",
+          "feel": "classic ˙ eyes + ε mouth",
+          "feelZh": "经典：˙眼 + ε嘴"
+        },
+        {
+          "face": "ʕ˙๑˙ʔ✧",
+          "feel": "classic ˙ eyes + ๑ mouth",
+          "feelZh": "经典：˙眼 + ๑嘴"
+        },
+        {
+          "face": "ʕ˙˙˙ʔ♪",
+          "feel": "classic ˙ eyes + ˙ mouth",
+          "feelZh": "经典：˙眼 + ˙嘴"
+        },
+        {
+          "face": "ʕ˙。˙ʔ。",
+          "feel": "classic ˙ eyes + 。 mouth",
+          "feelZh": "经典：˙眼 + 。嘴"
+        },
+        {
+          "face": "ʕ˙●˙ʔ",
+          "feel": "classic ˙ eyes + ● mouth",
+          "feelZh": "经典：˙眼 + ●嘴"
+        },
+        {
+          "face": "ʕ˙♪˙ʔ✦",
+          "feel": "classic ˙ eyes + ♪ mouth",
+          "feelZh": "经典：˙眼 + ♪嘴"
+        },
+        {
+          "face": "ʕʹ▽ʹʔ。",
+          "feel": "classic ʹ eyes + ▽ mouth",
+          "feelZh": "经典：ʹ眼 + ▽嘴"
+        },
+        {
+          "face": "ʕʹωʹʔ｡",
+          "feel": "classic ʹ eyes + ω mouth",
+          "feelZh": "经典：ʹ眼 + ω嘴"
+        },
+        {
+          "face": "ʕʹ⌣ʹʔ✦",
+          "feel": "classic ʹ eyes + ⌣ mouth",
+          "feelZh": "经典：ʹ眼 + ⌣嘴"
+        },
+        {
+          "face": "ʕʹ⌒ʹʔ♡",
+          "feel": "classic ʹ eyes + ⌒ mouth",
+          "feelZh": "经典：ʹ眼 + ⌒嘴"
+        },
+        {
+          "face": "ʕʹεʹʔ~",
+          "feel": "classic ʹ eyes + ε mouth",
+          "feelZh": "经典：ʹ眼 + ε嘴"
+        },
+        {
+          "face": "ʕʹ๑ʹʔ✧",
+          "feel": "classic ʹ eyes + ๑ mouth",
+          "feelZh": "经典：ʹ眼 + ๑嘴"
+        },
+        {
+          "face": "ʕʹ˙ʹʔ♪",
+          "feel": "classic ʹ eyes + ˙ mouth",
+          "feelZh": "经典：ʹ眼 + ˙嘴"
+        },
+        {
+          "face": "ʕʹ。ʹʔ~",
+          "feel": "classic ʹ eyes + 。 mouth",
+          "feelZh": "经典：ʹ眼 + 。嘴"
+        },
+        {
+          "face": "ʕʹ●ʹʔ",
+          "feel": "classic ʹ eyes + ● mouth",
+          "feelZh": "经典：ʹ眼 + ●嘴"
+        },
+        {
+          "face": "ʕʹ♪ʹʔ✦",
+          "feel": "classic ʹ eyes + ♪ mouth",
+          "feelZh": "经典：ʹ眼 + ♪嘴"
+        },
+        {
+          "face": "⟨￣▽￣⟩。",
+          "feel": "classic ￣ eyes + ▽ mouth",
+          "feelZh": "经典：￣眼 + ▽嘴"
+        },
+        {
+          "face": "⟨￣ω￣⟩｡",
+          "feel": "classic ￣ eyes + ω mouth",
+          "feelZh": "经典：￣眼 + ω嘴"
+        },
+        {
+          "face": "⟨￣⌣￣⟩✦",
+          "feel": "classic ￣ eyes + ⌣ mouth",
+          "feelZh": "经典：￣眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨￣⌒￣⟩♡",
+          "feel": "classic ￣ eyes + ⌒ mouth",
+          "feelZh": "经典：￣眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨￣ε￣⟩~",
+          "feel": "classic ￣ eyes + ε mouth",
+          "feelZh": "经典：￣眼 + ε嘴"
+        },
+        {
+          "face": "⟨￣๑￣⟩✧",
+          "feel": "classic ￣ eyes + ๑ mouth",
+          "feelZh": "经典：￣眼 + ๑嘴"
+        },
+        {
+          "face": "⟨￣˙￣⟩♪",
+          "feel": "classic ￣ eyes + ˙ mouth",
+          "feelZh": "经典：￣眼 + ˙嘴"
+        },
+        {
+          "face": "⟨￣。￣⟩~",
+          "feel": "classic ￣ eyes + 。 mouth",
+          "feelZh": "经典：￣眼 + 。嘴"
+        },
+        {
+          "face": "⟨￣●￣⟩",
+          "feel": "classic ￣ eyes + ● mouth",
+          "feelZh": "经典：￣眼 + ●嘴"
+        },
+        {
+          "face": "⟨￣♪￣⟩✦",
+          "feel": "classic ￣ eyes + ♪ mouth",
+          "feelZh": "经典：￣眼 + ♪嘴"
+        },
+        {
+          "face": "⟨˃▽˃⟩。",
+          "feel": "classic ˃ eyes + ▽ mouth",
+          "feelZh": "经典：˃眼 + ▽嘴"
+        },
+        {
+          "face": "⟨˃ω˃⟩｡",
+          "feel": "classic ˃ eyes + ω mouth",
+          "feelZh": "经典：˃眼 + ω嘴"
+        },
+        {
+          "face": "⟨˃⌣˃⟩✦",
+          "feel": "classic ˃ eyes + ⌣ mouth",
+          "feelZh": "经典：˃眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨˃⌒˃⟩♡",
+          "feel": "classic ˃ eyes + ⌒ mouth",
+          "feelZh": "经典：˃眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨˃ε˃⟩~",
+          "feel": "classic ˃ eyes + ε mouth",
+          "feelZh": "经典：˃眼 + ε嘴"
+        },
+        {
+          "face": "⟨˃๑˃⟩✧",
+          "feel": "classic ˃ eyes + ๑ mouth",
+          "feelZh": "经典：˃眼 + ๑嘴"
+        },
+        {
+          "face": "⟨˃˙˃⟩♪",
+          "feel": "classic ˃ eyes + ˙ mouth",
+          "feelZh": "经典：˃眼 + ˙嘴"
+        },
+        {
+          "face": "⟨˃。˃⟩~",
+          "feel": "classic ˃ eyes + 。 mouth",
+          "feelZh": "经典：˃眼 + 。嘴"
+        },
+        {
+          "face": "⟨˃●˃⟩",
+          "feel": "classic ˃ eyes + ● mouth",
+          "feelZh": "经典：˃眼 + ●嘴"
+        },
+        {
+          "face": "⟨˃♪˃⟩♪",
+          "feel": "classic ˃ eyes + ♪ mouth",
+          "feelZh": "经典：˃眼 + ♪嘴"
+        },
+        {
+          "face": "⟨´▽´⟩。",
+          "feel": "classic ´ eyes + ▽ mouth",
+          "feelZh": "经典：´眼 + ▽嘴"
+        },
+        {
+          "face": "⟨´ω´⟩｡",
+          "feel": "classic ´ eyes + ω mouth",
+          "feelZh": "经典：´眼 + ω嘴"
+        },
+        {
+          "face": "⟨´⌣´⟩✦",
+          "feel": "classic ´ eyes + ⌣ mouth",
+          "feelZh": "经典：´眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨´⌒´⟩♡",
+          "feel": "classic ´ eyes + ⌒ mouth",
+          "feelZh": "经典：´眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨´ε´⟩｡",
+          "feel": "classic ´ eyes + ε mouth",
+          "feelZh": "经典：´眼 + ε嘴"
+        },
+        {
+          "face": "⟨´๑´⟩✧",
+          "feel": "classic ´ eyes + ๑ mouth",
+          "feelZh": "经典：´眼 + ๑嘴"
+        },
+        {
+          "face": "⟨´˙´⟩♪",
+          "feel": "classic ´ eyes + ˙ mouth",
+          "feelZh": "经典：´眼 + ˙嘴"
+        },
+        {
+          "face": "⟨´。´⟩~",
+          "feel": "classic ´ eyes + 。 mouth",
+          "feelZh": "经典：´眼 + 。嘴"
+        },
+        {
+          "face": "⟨´●´⟩",
+          "feel": "classic ´ eyes + ● mouth",
+          "feelZh": "经典：´眼 + ●嘴"
+        },
+        {
+          "face": "⟨´♪´⟩♪",
+          "feel": "classic ´ eyes + ♪ mouth",
+          "feelZh": "经典：´眼 + ♪嘴"
+        },
+        {
+          "face": "⟨˘▽˘⟩。",
+          "feel": "classic ˘ eyes + ▽ mouth",
+          "feelZh": "经典：˘眼 + ▽嘴"
+        },
+        {
+          "face": "⟨˘ω˘⟩｡",
+          "feel": "classic ˘ eyes + ω mouth",
+          "feelZh": "经典：˘眼 + ω嘴"
+        },
+        {
+          "face": "⟨˘⌣˘⟩✦",
+          "feel": "classic ˘ eyes + ⌣ mouth",
+          "feelZh": "经典：˘眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨˘⌒˘⟩♡",
+          "feel": "classic ˘ eyes + ⌒ mouth",
+          "feelZh": "经典：˘眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨˘ε˘⟩｡",
+          "feel": "classic ˘ eyes + ε mouth",
+          "feelZh": "经典：˘眼 + ε嘴"
+        },
+        {
+          "face": "⟨˘๑˘⟩✧",
+          "feel": "classic ˘ eyes + ๑ mouth",
+          "feelZh": "经典：˘眼 + ๑嘴"
+        },
+        {
+          "face": "⟨˘˙˘⟩♪",
+          "feel": "classic ˘ eyes + ˙ mouth",
+          "feelZh": "经典：˘眼 + ˙嘴"
+        },
+        {
+          "face": "⟨˘。˘⟩~",
+          "feel": "classic ˘ eyes + 。 mouth",
+          "feelZh": "经典：˘眼 + 。嘴"
+        },
+        {
+          "face": "⟨˘●˘⟩",
+          "feel": "classic ˘ eyes + ● mouth",
+          "feelZh": "经典：˘眼 + ●嘴"
+        },
+        {
+          "face": "⟨˘♪˘⟩♪",
+          "feel": "classic ˘ eyes + ♪ mouth",
+          "feelZh": "经典：˘眼 + ♪嘴"
+        },
+        {
+          "face": "⟨◕▽◕⟩。",
+          "feel": "classic ◕ eyes + ▽ mouth",
+          "feelZh": "经典：◕眼 + ▽嘴"
+        },
+        {
+          "face": "⟨◕ω◕⟩｡",
+          "feel": "classic ◕ eyes + ω mouth",
+          "feelZh": "经典：◕眼 + ω嘴"
+        },
+        {
+          "face": "⟨◕⌣◕⟩✦",
+          "feel": "classic ◕ eyes + ⌣ mouth",
+          "feelZh": "经典：◕眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨◕⌒◕⟩♡",
+          "feel": "classic ◕ eyes + ⌒ mouth",
+          "feelZh": "经典：◕眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨◕ε◕⟩｡",
+          "feel": "classic ◕ eyes + ε mouth",
+          "feelZh": "经典：◕眼 + ε嘴"
+        },
+        {
+          "face": "⟨◕๑◕⟩✧",
+          "feel": "classic ◕ eyes + ๑ mouth",
+          "feelZh": "经典：◕眼 + ๑嘴"
+        },
+        {
+          "face": "⟨◕˙◕⟩♡",
+          "feel": "classic ◕ eyes + ˙ mouth",
+          "feelZh": "经典：◕眼 + ˙嘴"
+        },
+        {
+          "face": "⟨◕。◕⟩~",
+          "feel": "classic ◕ eyes + 。 mouth",
+          "feelZh": "经典：◕眼 + 。嘴"
+        },
+        {
+          "face": "⟨◕●◕⟩",
+          "feel": "classic ◕ eyes + ● mouth",
+          "feelZh": "经典：◕眼 + ●嘴"
+        },
+        {
+          "face": "⟨◕♪◕⟩♪",
+          "feel": "classic ◕ eyes + ♪ mouth",
+          "feelZh": "经典：◕眼 + ♪嘴"
+        },
+        {
+          "face": "⟨๑▽๑⟩。",
+          "feel": "classic ๑ eyes + ▽ mouth",
+          "feelZh": "经典：๑眼 + ▽嘴"
+        },
+        {
+          "face": "⟨๑‿๑⟩",
+          "feel": "classic ๑ eyes + ‿ mouth",
+          "feelZh": "经典：๑眼 + ‿嘴"
+        },
+        {
+          "face": "⟨๑⌣๑⟩✦",
+          "feel": "classic ๑ eyes + ⌣ mouth",
+          "feelZh": "经典：๑眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨๑⌒๑⟩♡",
+          "feel": "classic ๑ eyes + ⌒ mouth",
+          "feelZh": "经典：๑眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨๑ε๑⟩｡",
+          "feel": "classic ๑ eyes + ε mouth",
+          "feelZh": "经典：๑眼 + ε嘴"
+        },
+        {
+          "face": "⟨๑๑๑⟩✧",
+          "feel": "classic ๑ eyes + ๑ mouth",
+          "feelZh": "经典：๑眼 + ๑嘴"
+        },
+        {
+          "face": "⟨๑˙๑⟩♡",
+          "feel": "classic ๑ eyes + ˙ mouth",
+          "feelZh": "经典：๑眼 + ˙嘴"
+        },
+        {
+          "face": "⟨๑。๑⟩~",
+          "feel": "classic ๑ eyes + 。 mouth",
+          "feelZh": "经典：๑眼 + 。嘴"
+        },
+        {
+          "face": "⟨๑●๑⟩",
+          "feel": "classic ๑ eyes + ● mouth",
+          "feelZh": "经典：๑眼 + ●嘴"
+        },
+        {
+          "face": "⟨๑♪๑⟩♪",
+          "feel": "classic ๑ eyes + ♪ mouth",
+          "feelZh": "经典：๑眼 + ♪嘴"
+        },
+        {
+          "face": "⟨°▽°⟩。",
+          "feel": "classic ° eyes + ▽ mouth",
+          "feelZh": "经典：°眼 + ▽嘴"
+        },
+        {
+          "face": "⟨°‿°⟩",
+          "feel": "classic ° eyes + ‿ mouth",
+          "feelZh": "经典：°眼 + ‿嘴"
+        },
+        {
+          "face": "⟨°⌣°⟩✦",
+          "feel": "classic ° eyes + ⌣ mouth",
+          "feelZh": "经典：°眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨°⌒°⟩♡",
+          "feel": "classic ° eyes + ⌒ mouth",
+          "feelZh": "经典：°眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨°ε°⟩｡",
+          "feel": "classic ° eyes + ε mouth",
+          "feelZh": "经典：°眼 + ε嘴"
+        },
+        {
+          "face": "⟨°๑°⟩✧",
+          "feel": "classic ° eyes + ๑ mouth",
+          "feelZh": "经典：°眼 + ๑嘴"
+        },
+        {
+          "face": "⟨°˙°⟩♡",
+          "feel": "classic ° eyes + ˙ mouth",
+          "feelZh": "经典：°眼 + ˙嘴"
+        },
+        {
+          "face": "⟨°。°⟩~",
+          "feel": "classic ° eyes + 。 mouth",
+          "feelZh": "经典：°眼 + 。嘴"
+        },
+        {
+          "face": "⟨°●°⟩",
+          "feel": "classic ° eyes + ● mouth",
+          "feelZh": "经典：°眼 + ●嘴"
+        },
+        {
+          "face": "⟨°♪°⟩♪",
+          "feel": "classic ° eyes + ♪ mouth",
+          "feelZh": "经典：°眼 + ♪嘴"
+        },
+        {
+          "face": "⟨ˆ▽ˆ⟩。",
+          "feel": "classic ˆ eyes + ▽ mouth",
+          "feelZh": "经典：ˆ眼 + ▽嘴"
+        },
+        {
+          "face": "⟨ˆ‿ˆ⟩",
+          "feel": "classic ˆ eyes + ‿ mouth",
+          "feelZh": "经典：ˆ眼 + ‿嘴"
+        },
+        {
+          "face": "⟨ˆ⌣ˆ⟩✦",
+          "feel": "classic ˆ eyes + ⌣ mouth",
+          "feelZh": "经典：ˆ眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨ˆ⌒ˆ⟩。",
+          "feel": "classic ˆ eyes + ⌒ mouth",
+          "feelZh": "经典：ˆ眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨ˆεˆ⟩｡",
+          "feel": "classic ˆ eyes + ε mouth",
+          "feelZh": "经典：ˆ眼 + ε嘴"
+        },
+        {
+          "face": "⟨ˆ๑ˆ⟩✧",
+          "feel": "classic ˆ eyes + ๑ mouth",
+          "feelZh": "经典：ˆ眼 + ๑嘴"
+        },
+        {
+          "face": "⟨ˆ˙ˆ⟩♡",
+          "feel": "classic ˆ eyes + ˙ mouth",
+          "feelZh": "经典：ˆ眼 + ˙嘴"
+        },
+        {
+          "face": "⟨ˆ。ˆ⟩~",
+          "feel": "classic ˆ eyes + 。 mouth",
+          "feelZh": "经典：ˆ眼 + 。嘴"
+        },
+        {
+          "face": "⟨ˆ●ˆ⟩✧",
+          "feel": "classic ˆ eyes + ● mouth",
+          "feelZh": "经典：ˆ眼 + ●嘴"
+        },
+        {
+          "face": "⟨ˆ♪ˆ⟩♪",
+          "feel": "classic ˆ eyes + ♪ mouth",
+          "feelZh": "经典：ˆ眼 + ♪嘴"
+        },
+        {
+          "face": "⟨̂▽̂⟩。",
+          "feel": "classic ̂ eyes + ▽ mouth",
+          "feelZh": "经典：̂眼 + ▽嘴"
+        },
+        {
+          "face": "⟨̂‿̂⟩",
+          "feel": "classic ̂ eyes + ‿ mouth",
+          "feelZh": "经典：̂眼 + ‿嘴"
+        },
+        {
+          "face": "⟨̂⌣̂⟩✦",
+          "feel": "classic ̂ eyes + ⌣ mouth",
+          "feelZh": "经典：̂眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨̂⌒̂⟩。",
+          "feel": "classic ̂ eyes + ⌒ mouth",
+          "feelZh": "经典：̂眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨̂ε̂⟩｡",
+          "feel": "classic ̂ eyes + ε mouth",
+          "feelZh": "经典：̂眼 + ε嘴"
+        },
+        {
+          "face": "⟨̂๑̂⟩✧",
+          "feel": "classic ̂ eyes + ๑ mouth",
+          "feelZh": "经典：̂眼 + ๑嘴"
+        },
+        {
+          "face": "⟨̂˙̂⟩♡",
+          "feel": "classic ̂ eyes + ˙ mouth",
+          "feelZh": "经典：̂眼 + ˙嘴"
+        },
+        {
+          "face": "⟨̂。̂⟩~",
+          "feel": "classic ̂ eyes + 。 mouth",
+          "feelZh": "经典：̂眼 + 。嘴"
+        },
+        {
+          "face": "⟨̂●̂⟩✧",
+          "feel": "classic ̂ eyes + ● mouth",
+          "feelZh": "经典：̂眼 + ●嘴"
+        },
+        {
+          "face": "⟨̂♪̂⟩♪",
+          "feel": "classic ̂ eyes + ♪ mouth",
+          "feelZh": "经典：̂眼 + ♪嘴"
+        },
+        {
+          "face": "⟨♥▽♥⟩。",
+          "feel": "classic ♥ eyes + ▽ mouth",
+          "feelZh": "经典：♥眼 + ▽嘴"
+        },
+        {
+          "face": "⟨♥‿♥⟩",
+          "feel": "classic ♥ eyes + ‿ mouth",
+          "feelZh": "经典：♥眼 + ‿嘴"
+        },
+        {
+          "face": "⟨♥⌣♥⟩✦",
+          "feel": "classic ♥ eyes + ⌣ mouth",
+          "feelZh": "经典：♥眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨♥⌒♥⟩。",
+          "feel": "classic ♥ eyes + ⌒ mouth",
+          "feelZh": "经典：♥眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨♥ε♥⟩｡",
+          "feel": "classic ♥ eyes + ε mouth",
+          "feelZh": "经典：♥眼 + ε嘴"
+        },
+        {
+          "face": "⟨♥๑♥⟩✧",
+          "feel": "classic ♥ eyes + ๑ mouth",
+          "feelZh": "经典：♥眼 + ๑嘴"
+        },
+        {
+          "face": "⟨♥˙♥⟩♡",
+          "feel": "classic ♥ eyes + ˙ mouth",
+          "feelZh": "经典：♥眼 + ˙嘴"
+        },
+        {
+          "face": "⟨♥。♥⟩~",
+          "feel": "classic ♥ eyes + 。 mouth",
+          "feelZh": "经典：♥眼 + 。嘴"
+        },
+        {
+          "face": "⟨♥●♥⟩✧",
+          "feel": "classic ♥ eyes + ● mouth",
+          "feelZh": "经典：♥眼 + ●嘴"
+        },
+        {
+          "face": "⟨♥♪♥⟩♪",
+          "feel": "classic ♥ eyes + ♪ mouth",
+          "feelZh": "经典：♥眼 + ♪嘴"
+        },
+        {
+          "face": "⟨✧▽✧⟩。",
+          "feel": "classic ✧ eyes + ▽ mouth",
+          "feelZh": "经典：✧眼 + ▽嘴"
+        },
+        {
+          "face": "⟨✧‿✧⟩",
+          "feel": "classic ✧ eyes + ‿ mouth",
+          "feelZh": "经典：✧眼 + ‿嘴"
+        },
+        {
+          "face": "⟨✧⌣✧⟩✦",
+          "feel": "classic ✧ eyes + ⌣ mouth",
+          "feelZh": "经典：✧眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨✧⌒✧⟩。",
+          "feel": "classic ✧ eyes + ⌒ mouth",
+          "feelZh": "经典：✧眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨✧ε✧⟩｡",
+          "feel": "classic ✧ eyes + ε mouth",
+          "feelZh": "经典：✧眼 + ε嘴"
+        },
+        {
+          "face": "⟨✧๑✧⟩✦",
+          "feel": "classic ✧ eyes + ๑ mouth",
+          "feelZh": "经典：✧眼 + ๑嘴"
+        },
+        {
+          "face": "⟨✧˙✧⟩♡",
+          "feel": "classic ✧ eyes + ˙ mouth",
+          "feelZh": "经典：✧眼 + ˙嘴"
+        },
+        {
+          "face": "⟨✧。✧⟩~",
+          "feel": "classic ✧ eyes + 。 mouth",
+          "feelZh": "经典：✧眼 + 。嘴"
+        },
+        {
+          "face": "⟨✧●✧⟩✧",
+          "feel": "classic ✧ eyes + ● mouth",
+          "feelZh": "经典：✧眼 + ●嘴"
+        },
+        {
+          "face": "⟨✧♪✧⟩♪",
+          "feel": "classic ✧ eyes + ♪ mouth",
+          "feelZh": "经典：✧眼 + ♪嘴"
+        },
+        {
+          "face": "⟨○▽○⟩~",
+          "feel": "classic ○ eyes + ▽ mouth",
+          "feelZh": "经典：○眼 + ▽嘴"
+        },
+        {
+          "face": "⟨○‿○⟩",
+          "feel": "classic ○ eyes + ‿ mouth",
+          "feelZh": "经典：○眼 + ‿嘴"
+        },
+        {
+          "face": "⟨○⌣○⟩✦",
+          "feel": "classic ○ eyes + ⌣ mouth",
+          "feelZh": "经典：○眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨○⌒○⟩。",
+          "feel": "classic ○ eyes + ⌒ mouth",
+          "feelZh": "经典：○眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨○ε○⟩｡",
+          "feel": "classic ○ eyes + ε mouth",
+          "feelZh": "经典：○眼 + ε嘴"
+        },
+        {
+          "face": "⟨○๑○⟩✦",
+          "feel": "classic ○ eyes + ๑ mouth",
+          "feelZh": "经典：○眼 + ๑嘴"
+        },
+        {
+          "face": "⟨○˙○⟩♡",
+          "feel": "classic ○ eyes + ˙ mouth",
+          "feelZh": "经典：○眼 + ˙嘴"
+        },
+        {
+          "face": "⟨○。○⟩~",
+          "feel": "classic ○ eyes + 。 mouth",
+          "feelZh": "经典：○眼 + 。嘴"
+        },
+        {
+          "face": "⟨○●○⟩✧",
+          "feel": "classic ○ eyes + ● mouth",
+          "feelZh": "经典：○眼 + ●嘴"
+        },
+        {
+          "face": "⟨○♪○⟩♪",
+          "feel": "classic ○ eyes + ♪ mouth",
+          "feelZh": "经典：○眼 + ♪嘴"
+        },
+        {
+          "face": "⟨●▽●⟩~",
+          "feel": "classic ● eyes + ▽ mouth",
+          "feelZh": "经典：●眼 + ▽嘴"
+        },
+        {
+          "face": "⟨●‿●⟩",
+          "feel": "classic ● eyes + ‿ mouth",
+          "feelZh": "经典：●眼 + ‿嘴"
+        },
+        {
+          "face": "⟨●⌣●⟩✦",
+          "feel": "classic ● eyes + ⌣ mouth",
+          "feelZh": "经典：●眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨●⌒●⟩。",
+          "feel": "classic ● eyes + ⌒ mouth",
+          "feelZh": "经典：●眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨●ε●⟩｡",
+          "feel": "classic ● eyes + ε mouth",
+          "feelZh": "经典：●眼 + ε嘴"
+        },
+        {
+          "face": "⟨●๑●⟩✦",
+          "feel": "classic ● eyes + ๑ mouth",
+          "feelZh": "经典：●眼 + ๑嘴"
+        },
+        {
+          "face": "⟨●˙●⟩♡",
+          "feel": "classic ● eyes + ˙ mouth",
+          "feelZh": "经典：●眼 + ˙嘴"
+        },
+        {
+          "face": "⟨●。●⟩~",
+          "feel": "classic ● eyes + 。 mouth",
+          "feelZh": "经典：●眼 + 。嘴"
+        },
+        {
+          "face": "⟨●●●⟩✧",
+          "feel": "classic ● eyes + ● mouth",
+          "feelZh": "经典：●眼 + ●嘴"
+        },
+        {
+          "face": "⟨●♪●⟩♪",
+          "feel": "classic ● eyes + ♪ mouth",
+          "feelZh": "经典：●眼 + ♪嘴"
+        },
+        {
+          "face": "⟨ฅ▽ฅ⟩~",
+          "feel": "classic ฅ eyes + ▽ mouth",
+          "feelZh": "经典：ฅ眼 + ▽嘴"
+        },
+        {
+          "face": "⟨ฅ‿ฅ⟩",
+          "feel": "classic ฅ eyes + ‿ mouth",
+          "feelZh": "经典：ฅ眼 + ‿嘴"
+        },
+        {
+          "face": "⟨ฅ⌣ฅ⟩♪",
+          "feel": "classic ฅ eyes + ⌣ mouth",
+          "feelZh": "经典：ฅ眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨ฅ⌒ฅ⟩。",
+          "feel": "classic ฅ eyes + ⌒ mouth",
+          "feelZh": "经典：ฅ眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨ฅεฅ⟩｡",
+          "feel": "classic ฅ eyes + ε mouth",
+          "feelZh": "经典：ฅ眼 + ε嘴"
+        },
+        {
+          "face": "⟨ฅ๑ฅ⟩✦",
+          "feel": "classic ฅ eyes + ๑ mouth",
+          "feelZh": "经典：ฅ眼 + ๑嘴"
+        },
+        {
+          "face": "⟨ฅ˙ฅ⟩♡",
+          "feel": "classic ฅ eyes + ˙ mouth",
+          "feelZh": "经典：ฅ眼 + ˙嘴"
+        },
+        {
+          "face": "⟨ฅ。ฅ⟩｡",
+          "feel": "classic ฅ eyes + 。 mouth",
+          "feelZh": "经典：ฅ眼 + 。嘴"
+        },
+        {
+          "face": "⟨ฅ●ฅ⟩✧",
+          "feel": "classic ฅ eyes + ● mouth",
+          "feelZh": "经典：ฅ眼 + ●嘴"
+        },
+        {
+          "face": "⟨ฅ♪ฅ⟩♪",
+          "feel": "classic ฅ eyes + ♪ mouth",
+          "feelZh": "经典：ฅ眼 + ♪嘴"
+        },
+        {
+          "face": "⟨˂▽˂⟩~",
+          "feel": "classic ˂ eyes + ▽ mouth",
+          "feelZh": "经典：˂眼 + ▽嘴"
+        },
+        {
+          "face": "⟨˂‿˂⟩",
+          "feel": "classic ˂ eyes + ‿ mouth",
+          "feelZh": "经典：˂眼 + ‿嘴"
+        },
+        {
+          "face": "⟨˂⌣˂⟩♪",
+          "feel": "classic ˂ eyes + ⌣ mouth",
+          "feelZh": "经典：˂眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨˂⌒˂⟩。",
+          "feel": "classic ˂ eyes + ⌒ mouth",
+          "feelZh": "经典：˂眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨˂ε˂⟩｡",
+          "feel": "classic ˂ eyes + ε mouth",
+          "feelZh": "经典：˂眼 + ε嘴"
+        },
+        {
+          "face": "⟨˂๑˂⟩✦",
+          "feel": "classic ˂ eyes + ๑ mouth",
+          "feelZh": "经典：˂眼 + ๑嘴"
+        },
+        {
+          "face": "⟨˂˙˂⟩♡",
+          "feel": "classic ˂ eyes + ˙ mouth",
+          "feelZh": "经典：˂眼 + ˙嘴"
+        },
+        {
+          "face": "⟨˂。˂⟩｡",
+          "feel": "classic ˂ eyes + 。 mouth",
+          "feelZh": "经典：˂眼 + 。嘴"
+        },
+        {
+          "face": "⟨˂●˂⟩✧",
+          "feel": "classic ˂ eyes + ● mouth",
+          "feelZh": "经典：˂眼 + ●嘴"
+        },
+        {
+          "face": "⟨˂♪˂⟩♪",
+          "feel": "classic ˂ eyes + ♪ mouth",
+          "feelZh": "经典：˂眼 + ♪嘴"
+        },
+        {
+          "face": "⟨‿▽‿⟩~",
+          "feel": "classic ‿ eyes + ▽ mouth",
+          "feelZh": "经典：‿眼 + ▽嘴"
+        },
+        {
+          "face": "⟨‿‿‿⟩",
+          "feel": "classic ‿ eyes + ‿ mouth",
+          "feelZh": "经典：‿眼 + ‿嘴"
+        },
+        {
+          "face": "⟨‿⌣‿⟩♪",
+          "feel": "classic ‿ eyes + ⌣ mouth",
+          "feelZh": "经典：‿眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨‿⌒‿⟩。",
+          "feel": "classic ‿ eyes + ⌒ mouth",
+          "feelZh": "经典：‿眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨‿ε‿⟩｡",
+          "feel": "classic ‿ eyes + ε mouth",
+          "feelZh": "经典：‿眼 + ε嘴"
+        },
+        {
+          "face": "⟨‿๑‿⟩✦",
+          "feel": "classic ‿ eyes + ๑ mouth",
+          "feelZh": "经典：‿眼 + ๑嘴"
+        },
+        {
+          "face": "⟨‿˙‿⟩♡",
+          "feel": "classic ‿ eyes + ˙ mouth",
+          "feelZh": "经典：‿眼 + ˙嘴"
+        },
+        {
+          "face": "⟨‿。‿⟩｡",
+          "feel": "classic ‿ eyes + 。 mouth",
+          "feelZh": "经典：‿眼 + 。嘴"
+        },
+        {
+          "face": "⟨‿●‿⟩✧",
+          "feel": "classic ‿ eyes + ● mouth",
+          "feelZh": "经典：‿眼 + ●嘴"
+        },
+        {
+          "face": "⟨‿♪‿⟩♡",
+          "feel": "classic ‿ eyes + ♪ mouth",
+          "feelZh": "经典：‿眼 + ♪嘴"
+        },
+        {
+          "face": "⟨・▽・⟩~",
+          "feel": "classic ・ eyes + ▽ mouth",
+          "feelZh": "经典：・眼 + ▽嘴"
+        },
+        {
+          "face": "⟨・‿・⟩",
+          "feel": "classic ・ eyes + ‿ mouth",
+          "feelZh": "经典：・眼 + ‿嘴"
+        },
+        {
+          "face": "⟨・⌣・⟩♪",
+          "feel": "classic ・ eyes + ⌣ mouth",
+          "feelZh": "经典：・眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨・⌒・⟩。",
+          "feel": "classic ・ eyes + ⌒ mouth",
+          "feelZh": "经典：・眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨・Д・⟩",
+          "feel": "classic ・ eyes + Д mouth",
+          "feelZh": "经典：・眼 + Д嘴"
+        },
+        {
+          "face": "⟨・๑・⟩✦",
+          "feel": "classic ・ eyes + ๑ mouth",
+          "feelZh": "经典：・眼 + ๑嘴"
+        },
+        {
+          "face": "⟨・˙・⟩♡",
+          "feel": "classic ・ eyes + ˙ mouth",
+          "feelZh": "经典：・眼 + ˙嘴"
+        },
+        {
+          "face": "⟨・。・⟩｡",
+          "feel": "classic ・ eyes + 。 mouth",
+          "feelZh": "经典：・眼 + 。嘴"
+        },
+        {
+          "face": "⟨・●・⟩✧",
+          "feel": "classic ・ eyes + ● mouth",
+          "feelZh": "经典：・眼 + ●嘴"
+        },
+        {
+          "face": "⟨・♪・⟩♡",
+          "feel": "classic ・ eyes + ♪ mouth",
+          "feelZh": "经典：・眼 + ♪嘴"
+        },
+        {
+          "face": "⟨･▽･⟩~",
+          "feel": "classic ･ eyes + ▽ mouth",
+          "feelZh": "经典：･眼 + ▽嘴"
+        },
+        {
+          "face": "⟨･‿･⟩",
+          "feel": "classic ･ eyes + ‿ mouth",
+          "feelZh": "经典：･眼 + ‿嘴"
+        },
+        {
+          "face": "⟨･⌣･⟩♪",
+          "feel": "classic ･ eyes + ⌣ mouth",
+          "feelZh": "经典：･眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨･⌒･⟩。",
+          "feel": "classic ･ eyes + ⌒ mouth",
+          "feelZh": "经典：･眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨･Д･⟩",
+          "feel": "classic ･ eyes + Д mouth",
+          "feelZh": "经典：･眼 + Д嘴"
+        },
+        {
+          "face": "⟨･๑･⟩✦",
+          "feel": "classic ･ eyes + ๑ mouth",
+          "feelZh": "经典：･眼 + ๑嘴"
+        },
+        {
+          "face": "⟨･˙･⟩♡",
+          "feel": "classic ･ eyes + ˙ mouth",
+          "feelZh": "经典：･眼 + ˙嘴"
+        },
+        {
+          "face": "⟨･。･⟩｡",
+          "feel": "classic ･ eyes + 。 mouth",
+          "feelZh": "经典：･眼 + 。嘴"
+        },
+        {
+          "face": "⟨･●･⟩✧",
+          "feel": "classic ･ eyes + ● mouth",
+          "feelZh": "经典：･眼 + ●嘴"
+        },
+        {
+          "face": "⟨･♪･⟩♡",
+          "feel": "classic ･ eyes + ♪ mouth",
+          "feelZh": "经典：･眼 + ♪嘴"
+        },
+        {
+          "face": "⟨˙▽˙⟩~",
+          "feel": "classic ˙ eyes + ▽ mouth",
+          "feelZh": "经典：˙眼 + ▽嘴"
+        },
+        {
+          "face": "⟨˙‿˙⟩",
+          "feel": "classic ˙ eyes + ‿ mouth",
+          "feelZh": "经典：˙眼 + ‿嘴"
+        },
+        {
+          "face": "⟨˙⌣˙⟩♪",
+          "feel": "classic ˙ eyes + ⌣ mouth",
+          "feelZh": "经典：˙眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨˙⌒˙⟩。",
+          "feel": "classic ˙ eyes + ⌒ mouth",
+          "feelZh": "经典：˙眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨˙Д˙⟩",
+          "feel": "classic ˙ eyes + Д mouth",
+          "feelZh": "经典：˙眼 + Д嘴"
+        },
+        {
+          "face": "⟨˙๑˙⟩✦",
+          "feel": "classic ˙ eyes + ๑ mouth",
+          "feelZh": "经典：˙眼 + ๑嘴"
+        },
+        {
+          "face": "⟨˙˙˙⟩。",
+          "feel": "classic ˙ eyes + ˙ mouth",
+          "feelZh": "经典：˙眼 + ˙嘴"
+        },
+        {
+          "face": "⟨˙。˙⟩｡",
+          "feel": "classic ˙ eyes + 。 mouth",
+          "feelZh": "经典：˙眼 + 。嘴"
+        },
+        {
+          "face": "⟨˙●˙⟩✧",
+          "feel": "classic ˙ eyes + ● mouth",
+          "feelZh": "经典：˙眼 + ●嘴"
+        },
+        {
+          "face": "⟨˙♪˙⟩♡",
+          "feel": "classic ˙ eyes + ♪ mouth",
+          "feelZh": "经典：˙眼 + ♪嘴"
+        },
+        {
+          "face": "⟨ʹ▽ʹ⟩~",
+          "feel": "classic ʹ eyes + ▽ mouth",
+          "feelZh": "经典：ʹ眼 + ▽嘴"
+        },
+        {
+          "face": "⟨ʹ‿ʹ⟩✧",
+          "feel": "classic ʹ eyes + ‿ mouth",
+          "feelZh": "经典：ʹ眼 + ‿嘴"
+        },
+        {
+          "face": "⟨ʹ⌣ʹ⟩♪",
+          "feel": "classic ʹ eyes + ⌣ mouth",
+          "feelZh": "经典：ʹ眼 + ⌣嘴"
+        },
+        {
+          "face": "⟨ʹ⌒ʹ⟩。",
+          "feel": "classic ʹ eyes + ⌒ mouth",
+          "feelZh": "经典：ʹ眼 + ⌒嘴"
+        },
+        {
+          "face": "⟨ʹДʹ⟩",
+          "feel": "classic ʹ eyes + Д mouth",
+          "feelZh": "经典：ʹ眼 + Д嘴"
+        },
+        {
+          "face": "⟨ʹ๑ʹ⟩✦",
+          "feel": "classic ʹ eyes + ๑ mouth",
+          "feelZh": "经典：ʹ眼 + ๑嘴"
+        },
+        {
+          "face": "⟨ʹ˙ʹ⟩。",
+          "feel": "classic ʹ eyes + ˙ mouth",
+          "feelZh": "经典：ʹ眼 + ˙嘴"
+        },
+        {
+          "face": "⟨ʹ。ʹ⟩｡",
+          "feel": "classic ʹ eyes + 。 mouth",
+          "feelZh": "经典：ʹ眼 + 。嘴"
+        },
+        {
+          "face": "⟨ʹ●ʹ⟩✧",
+          "feel": "classic ʹ eyes + ● mouth",
+          "feelZh": "经典：ʹ眼 + ●嘴"
+        },
+        {
+          "face": "⟨ʹ♪ʹ⟩♡",
+          "feel": "classic ʹ eyes + ♪ mouth",
+          "feelZh": "经典：ʹ眼 + ♪嘴"
+        },
+        {
+          "face": "₍₍ ง(*Ӧ)ว ⁾⁾",
+          "feel": "raring to go",
+          "feelZh": "摩拳擦掌"
+        },
+        {
+          "face": "₍₍ ◝(・ω・)◟ ⁾⁾",
+          "feel": "framed smile",
+          "feelZh": "被框起来的小笑"
+        },
+        {
+          "face": "｡:.ﾟヽ(*´∀`)ﾉﾟ.:｡",
+          "feel": "celebration",
+          "feelZh": "庆祝"
+        },
+        {
+          "face": "(*´▽`*)",
+          "feel": "happy",
+          "feelZh": "开心"
+        },
+        {
+          "face": "(◔_◔)",
+          "feel": "skeptical",
+          "feelZh": "将信将疑"
+        },
+        {
+          "face": "(・へ・)",
+          "feel": "displeased",
+          "feelZh": "不悦"
+        },
+        {
+          "face": "(๑¯ω¯๑)",
+          "feel": "drowsy",
+          "feelZh": "昏昏欲睡"
+        },
+        {
+          "face": "(ﾟ･ﾟ)",
+          "feel": "flat stare",
+          "feelZh": "面无表情"
+        },
+        {
+          "face": "(｡•̀ᴥ•́｡)",
+          "feel": "soft sparkle eyes",
+          "feelZh": "软软的眼睛"
+        },
+        {
+          "face": "ﾉ(´Д`)",
+          "feel": "pushing back with both hands",
+          "feelZh": "两只手推开"
+        },
+        {
+          "face": "゜｡ﾟ(つﾟ｡)ﾟ",
+          "feel": "shy paws",
+          "feelZh": "害羞的爪子"
+        },
+        {
+          "face": "ง(｡ﾟ｡)ง",
+          "feel": "paws up, flat",
+          "feelZh": "两只爪，面瘫"
+        },
+        {
+          "face": "(ʕωʔ)",
+          "feel": "cat smile",
+          "feelZh": "猫笑"
+        }
+      ]
+    }
+  ]
+}

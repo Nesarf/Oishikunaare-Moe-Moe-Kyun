@@ -1,0 +1,66 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - tired (part 3)",
+  "version": 4,
+  "note": "a long task, late at night. Part 3 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "tired",
+      "label": "tired",
+      "labelZh": "疲惫",
+      "use": "a long task, late at night",
+      "useZh": "长任务、深夜",
+      "faces": [
+        {
+          "face": "(˙-˙)…",
+          "feel": "dot above eyes + hyphen mouth, dozing",
+          "feelZh": "上点眼 + 短横嘴，打盵尾"
+        },
+        {
+          "face": "(˙-˙)♪",
+          "feel": "dot above eyes + hyphen mouth, dozing",
+          "feelZh": "上点眼 + 短横嘴，打盵尾"
+        },
+        {
+          "face": "(˙-˙)..zzZ",
+          "feel": "dot above eyes + hyphen mouth, dozing",
+          "feelZh": "上点眼 + 短横嘴，打盵尾"
+        },
+        {
+          "face": "(˙-˙)zzzz",
+          "feel": "dot above eyes + hyphen mouth, dozing",
+          "feelZh": "上点眼 + 短横嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)zzZ",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)z",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)…",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)♪",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)..zzZ",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        },
+        {
+          "face": "(˙=˙)zzzz",
+          "feel": "dot above eyes + equals mouth, dozing",
+          "feelZh": "上点眼 + 等号嘴，打盵尾"
+        }
+      ]
+    }
+  ]
+}

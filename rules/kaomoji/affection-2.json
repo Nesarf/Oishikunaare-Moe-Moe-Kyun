@@ -1,0 +1,2516 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - affection (part 2)",
+  "version": 4,
+  "note": "thanking, warmth, winning together. Part 2 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "affection",
+      "label": "affection",
+      "labelZh": "亲昵",
+      "use": "thanking, warmth, winning together",
+      "useZh": "道谢、温暖、一起赢了",
+      "faces": [
+        {
+          "face": "(°ʕЗʕ°)",
+          "feel": "a degree on both sides, inverted glottal eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个度号，倒撇眼 + З嘴"
+        },
+        {
+          "face": "(♡ʕツʕ♡)",
+          "feel": "a white heart on both sides, inverted glottal eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个白心，倒撇眼 + ツ嘴"
+        },
+        {
+          "face": "(*ʕツʕ*)",
+          "feel": "a star on both sides, inverted glottal eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个星星，倒撇眼 + ツ嘴"
+        },
+        {
+          "face": "(♪ʕﾊʕ♪)",
+          "feel": "a note on both sides, inverted glottal eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个音符，倒撇眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✧ʕノʕ✧)",
+          "feel": "a sparkle on both sides, inverted glottal eyes + katakana no mouth",
+          "feelZh": "两侧各一个火花，倒撇眼 + ノ嘴"
+        },
+        {
+          "face": "(༚ʕノʕ༚)",
+          "feel": "a tibetan mark on both sides, inverted glottal eyes + katakana no mouth",
+          "feelZh": "两侧各一个藏文记号，倒撇眼 + ノ嘴"
+        },
+        {
+          "face": "(☆ʕﾝʕ☆)",
+          "feel": "a white star on both sides, inverted glottal eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个白星，倒撇眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✿ʕﾝʕ✿)",
+          "feel": "a flower on both sides, inverted glottal eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花，倒撇眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♥ʕoʕ♥)",
+          "feel": "a heart on both sides, inverted glottal eyes + round mouth",
+          "feelZh": "两侧各一个心，倒撇眼 + 圆嘴"
+        },
+        {
+          "face": "(❀ʕoʕ❀)",
+          "feel": "a flower bud on both sides, inverted glottal eyes + round mouth",
+          "feelZh": "两侧各一个花苞，倒撇眼 + 圆嘴"
+        },
+        {
+          "face": "(❀ˈ_ˈ❀)",
+          "feel": "a flower bud on both sides, vertical stroke eyes + flat mouth",
+          "feelZh": "两侧各一个花苞，重音眼 + 平嘴嘴"
+        },
+        {
+          "face": "(༚ˈ。ˈ༚)",
+          "feel": "a tibetan mark on both sides, vertical stroke eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个藏文记号，重音眼 + 句点嘴"
+        },
+        {
+          "face": "(✿ˈ．ˈ✿)",
+          "feel": "a flower on both sides, vertical stroke eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个花，重音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(*ˈωˈ*)",
+          "feel": "a star on both sides, vertical stroke eyes + omega mouth",
+          "feelZh": "两侧各一个星星，重音眼 + ω嘴"
+        },
+        {
+          "face": "(༚ˈ△ˈ༚)",
+          "feel": "a tibetan mark on both sides, vertical stroke eyes + up triangle mouth",
+          "feelZh": "两侧各一个藏文记号，重音眼 + 上三角嘴"
+        },
+        {
+          "face": "(❀ˈДˈ❀)",
+          "feel": "a flower bud on both sides, vertical stroke eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个花苞，重音眼 + Д嘴"
+        },
+        {
+          "face": "(*ˈдˈ*)",
+          "feel": "a star on both sides, vertical stroke eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个星星，重音眼 + д嘴"
+        },
+        {
+          "face": "(☆ˈЗˈ☆)",
+          "feel": "a white star on both sides, vertical stroke eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白星，重音眼 + З嘴"
+        },
+        {
+          "face": "(✿ˈЗˈ✿)",
+          "feel": "a flower on both sides, vertical stroke eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个花，重音眼 + З嘴"
+        },
+        {
+          "face": "(♥ˈツˈ♥)",
+          "feel": "a heart on both sides, vertical stroke eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个心，重音眼 + ツ嘴"
+        },
+        {
+          "face": "(❀ˈツˈ❀)",
+          "feel": "a flower bud on both sides, vertical stroke eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个花苞，重音眼 + ツ嘴"
+        },
+        {
+          "face": "(♥ˈﾊˈ♥)",
+          "feel": "a heart on both sides, vertical stroke eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个心，重音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(°ˈﾊˈ°)",
+          "feel": "a degree on both sides, vertical stroke eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个度号，重音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♡ˈノˈ♡)",
+          "feel": "a white heart on both sides, vertical stroke eyes + katakana no mouth",
+          "feelZh": "两侧各一个白心，重音眼 + ノ嘴"
+        },
+        {
+          "face": "(*ˈノˈ*)",
+          "feel": "a star on both sides, vertical stroke eyes + katakana no mouth",
+          "feelZh": "两侧各一个星星，重音眼 + ノ嘴"
+        },
+        {
+          "face": "(♪ˈﾝˈ♪)",
+          "feel": "a note on both sides, vertical stroke eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个音符，重音眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✧ˈoˈ✧)",
+          "feel": "a sparkle on both sides, vertical stroke eyes + round mouth",
+          "feelZh": "两侧各一个火花，重音眼 + 圆嘴"
+        },
+        {
+          "face": "(༚ˈoˈ༚)",
+          "feel": "a tibetan mark on both sides, vertical stroke eyes + round mouth",
+          "feelZh": "两侧各一个藏文记号，重音眼 + 圆嘴"
+        },
+        {
+          "face": "(✿｀_｀✿)",
+          "feel": "a flower on both sides, fullwidth grave eyes + flat mouth",
+          "feelZh": "两侧各一个花，全角反引号眼 + 平嘴嘴"
+        },
+        {
+          "face": "(❀｀＿｀❀)",
+          "feel": "a flower bud on both sides, fullwidth grave eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个花苞，全角反引号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(༚｀．｀༚)",
+          "feel": "a tibetan mark on both sides, fullwidth grave eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个藏文记号，全角反引号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(✿｀ω｀✿)",
+          "feel": "a flower on both sides, fullwidth grave eyes + omega mouth",
+          "feelZh": "两侧各一个花，全角反引号眼 + ω嘴"
+        },
+        {
+          "face": "(❀｀▽｀❀)",
+          "feel": "a flower bud on both sides, fullwidth grave eyes + down triangle mouth",
+          "feelZh": "两侧各一个花苞，全角反引号眼 + 下三角嘴"
+        },
+        {
+          "face": "(༚｀Д｀༚)",
+          "feel": "a tibetan mark on both sides, fullwidth grave eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个藏文记号，全角反引号眼 + Д嘴"
+        },
+        {
+          "face": "(✿｀д｀✿)",
+          "feel": "a flower on both sides, fullwidth grave eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个花，全角反引号眼 + д嘴"
+        },
+        {
+          "face": "(*｀∀｀*)",
+          "feel": "a star on both sides, fullwidth grave eyes + for all mouth",
+          "feelZh": "两侧各一个星星，全角反引号眼 + ∀嘴"
+        },
+        {
+          "face": "(♪｀З｀♪)",
+          "feel": "a note on both sides, fullwidth grave eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个音符，全角反引号眼 + З嘴"
+        },
+        {
+          "face": "(✧｀ツ｀✧)",
+          "feel": "a sparkle on both sides, fullwidth grave eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个火花，全角反引号眼 + ツ嘴"
+        },
+        {
+          "face": "(༚｀ツ｀༚)",
+          "feel": "a tibetan mark on both sides, fullwidth grave eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个藏文记号，全角反引号眼 + ツ嘴"
+        },
+        {
+          "face": "(☆｀ﾊ｀☆)",
+          "feel": "a white star on both sides, fullwidth grave eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个白星，全角反引号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✿｀ﾊ｀✿)",
+          "feel": "a flower on both sides, fullwidth grave eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个花，全角反引号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(☆｀ノ｀☆)",
+          "feel": "a white star on both sides, fullwidth grave eyes + katakana no mouth",
+          "feelZh": "两侧各一个白星，全角反引号眼 + ノ嘴"
+        },
+        {
+          "face": "(❀｀ノ｀❀)",
+          "feel": "a flower bud on both sides, fullwidth grave eyes + katakana no mouth",
+          "feelZh": "两侧各一个花苞，全角反引号眼 + ノ嘴"
+        },
+        {
+          "face": "(♥｀ﾝ｀♥)",
+          "feel": "a heart on both sides, fullwidth grave eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个心，全角反引号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(°｀ﾝ｀°)",
+          "feel": "a degree on both sides, fullwidth grave eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个度号，全角反引号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♡｀o｀♡)",
+          "feel": "a white heart on both sides, fullwidth grave eyes + round mouth",
+          "feelZh": "两侧各一个白心，全角反引号眼 + 圆嘴"
+        },
+        {
+          "face": "(*｀o｀*)",
+          "feel": "a star on both sides, fullwidth grave eyes + round mouth",
+          "feelZh": "两侧各一个星星，全角反引号眼 + 圆嘴"
+        },
+        {
+          "face": "(✿`＿`✿)",
+          "feel": "a flower on both sides, grave eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个花，反引号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(*`。`*)",
+          "feel": "a star on both sides, grave eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个星星，反引号眼 + 句点嘴"
+        },
+        {
+          "face": "(༚`ω`༚)",
+          "feel": "a tibetan mark on both sides, grave eyes + omega mouth",
+          "feelZh": "两侧各一个藏文记号，反引号眼 + ω嘴"
+        },
+        {
+          "face": "(❀`▽`❀)",
+          "feel": "a flower bud on both sides, grave eyes + down triangle mouth",
+          "feelZh": "两侧各一个花苞，反引号眼 + 下三角嘴"
+        },
+        {
+          "face": "(*`△`*)",
+          "feel": "a star on both sides, grave eyes + up triangle mouth",
+          "feelZh": "两侧各一个星星，反引号眼 + 上三角嘴"
+        },
+        {
+          "face": "(༚`д`༚)",
+          "feel": "a tibetan mark on both sides, grave eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个藏文记号，反引号眼 + д嘴"
+        },
+        {
+          "face": "(❀`∀`❀)",
+          "feel": "a flower bud on both sides, grave eyes + for all mouth",
+          "feelZh": "两侧各一个花苞，反引号眼 + ∀嘴"
+        },
+        {
+          "face": "(♡`З`♡)",
+          "feel": "a white heart on both sides, grave eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白心，反引号眼 + З嘴"
+        },
+        {
+          "face": "(*`З`*)",
+          "feel": "a star on both sides, grave eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个星星，反引号眼 + З嘴"
+        },
+        {
+          "face": "(♪`ツ`♪)",
+          "feel": "a note on both sides, grave eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个音符，反引号眼 + ツ嘴"
+        },
+        {
+          "face": "(✧`ﾊ`✧)",
+          "feel": "a sparkle on both sides, grave eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个火花，反引号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(༚`ﾊ`༚)",
+          "feel": "a tibetan mark on both sides, grave eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个藏文记号，反引号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(☆`ノ`☆)",
+          "feel": "a white star on both sides, grave eyes + katakana no mouth",
+          "feelZh": "两侧各一个白星，反引号眼 + ノ嘴"
+        },
+        {
+          "face": "(✿`ノ`✿)",
+          "feel": "a flower on both sides, grave eyes + katakana no mouth",
+          "feelZh": "两侧各一个花，反引号眼 + ノ嘴"
+        },
+        {
+          "face": "(♥`ﾝ`♥)",
+          "feel": "a heart on both sides, grave eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个心，反引号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(❀`ﾝ`❀)",
+          "feel": "a flower bud on both sides, grave eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花苞，反引号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♥`o`♥)",
+          "feel": "a heart on both sides, grave eyes + round mouth",
+          "feelZh": "两侧各一个心，反引号眼 + 圆嘴"
+        },
+        {
+          "face": "(°`o`°)",
+          "feel": "a degree on both sides, grave eyes + round mouth",
+          "feelZh": "两侧各一个度号，反引号眼 + 圆嘴"
+        },
+        {
+          "face": "(༚´＿´༚)",
+          "feel": "a tibetan mark on both sides, acute eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个藏文记号，撇号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(❀´。´❀)",
+          "feel": "a flower bud on both sides, acute eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个花苞，撇号眼 + 句点嘴"
+        },
+        {
+          "face": "(*´．´*)",
+          "feel": "a star on both sides, acute eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个星星，撇号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(✿´▽´✿)",
+          "feel": "a flower on both sides, acute eyes + down triangle mouth",
+          "feelZh": "两侧各一个花，撇号眼 + 下三角嘴"
+        },
+        {
+          "face": "(❀´△´❀)",
+          "feel": "a flower bud on both sides, acute eyes + up triangle mouth",
+          "feelZh": "两侧各一个花苞，撇号眼 + 上三角嘴"
+        },
+        {
+          "face": "(༚´д´༚)",
+          "feel": "a tibetan mark on both sides, acute eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个藏文记号，撇号眼 + д嘴"
+        },
+        {
+          "face": "(✿´∀´✿)",
+          "feel": "a flower on both sides, acute eyes + for all mouth",
+          "feelZh": "两侧各一个花，撇号眼 + ∀嘴"
+        },
+        {
+          "face": "(♡´З´♡)",
+          "feel": "a white heart on both sides, acute eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白心，撇号眼 + З嘴"
+        },
+        {
+          "face": "(°´З´°)",
+          "feel": "a degree on both sides, acute eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个度号，撇号眼 + З嘴"
+        },
+        {
+          "face": "(♡´ツ´♡)",
+          "feel": "a white heart on both sides, acute eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个白心，撇号眼 + ツ嘴"
+        },
+        {
+          "face": "(*´ツ´*)",
+          "feel": "a star on both sides, acute eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个星星，撇号眼 + ツ嘴"
+        },
+        {
+          "face": "(♪´ﾊ´♪)",
+          "feel": "a note on both sides, acute eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个音符，撇号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✧´ノ´✧)",
+          "feel": "a sparkle on both sides, acute eyes + katakana no mouth",
+          "feelZh": "两侧各一个火花，撇号眼 + ノ嘴"
+        },
+        {
+          "face": "(༚´ノ´༚)",
+          "feel": "a tibetan mark on both sides, acute eyes + katakana no mouth",
+          "feelZh": "两侧各一个藏文记号，撇号眼 + ノ嘴"
+        },
+        {
+          "face": "(☆´ﾝ´☆)",
+          "feel": "a white star on both sides, acute eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个白星，撇号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✿´ﾝ´✿)",
+          "feel": "a flower on both sides, acute eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花，撇号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♥´o´♥)",
+          "feel": "a heart on both sides, acute eyes + round mouth",
+          "feelZh": "两侧各一个心，撇号眼 + 圆嘴"
+        },
+        {
+          "face": "(❀´o´❀)",
+          "feel": "a flower bud on both sides, acute eyes + round mouth",
+          "feelZh": "两侧各一个花苞，撇号眼 + 圆嘴"
+        },
+        {
+          "face": "(*￣_￣*)",
+          "feel": "a star on both sides, fullwidth macron eyes + flat mouth",
+          "feelZh": "两侧各一个星星，全角长音眼 + 平嘴嘴"
+        },
+        {
+          "face": "(༚￣。￣༚)",
+          "feel": "a tibetan mark on both sides, fullwidth macron eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个藏文记号，全角长音眼 + 句点嘴"
+        },
+        {
+          "face": "(✿￣．￣✿)",
+          "feel": "a flower on both sides, fullwidth macron eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个花，全角长音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(*￣ω￣*)",
+          "feel": "a star on both sides, fullwidth macron eyes + omega mouth",
+          "feelZh": "两侧各一个星星，全角长音眼 + ω嘴"
+        },
+        {
+          "face": "(༚￣△￣༚)",
+          "feel": "a tibetan mark on both sides, fullwidth macron eyes + up triangle mouth",
+          "feelZh": "两侧各一个藏文记号，全角长音眼 + 上三角嘴"
+        },
+        {
+          "face": "(❀￣Д￣❀)",
+          "feel": "a flower bud on both sides, fullwidth macron eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个花苞，全角长音眼 + Д嘴"
+        },
+        {
+          "face": "(*￣д￣*)",
+          "feel": "a star on both sides, fullwidth macron eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个星星，全角长音眼 + д嘴"
+        },
+        {
+          "face": "(☆￣З￣☆)",
+          "feel": "a white star on both sides, fullwidth macron eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白星，全角长音眼 + З嘴"
+        },
+        {
+          "face": "(✿￣З￣✿)",
+          "feel": "a flower on both sides, fullwidth macron eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个花，全角长音眼 + З嘴"
+        },
+        {
+          "face": "(♥￣ツ￣♥)",
+          "feel": "a heart on both sides, fullwidth macron eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个心，全角长音眼 + ツ嘴"
+        },
+        {
+          "face": "(❀￣ツ￣❀)",
+          "feel": "a flower bud on both sides, fullwidth macron eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个花苞，全角长音眼 + ツ嘴"
+        },
+        {
+          "face": "(♥￣ﾊ￣♥)",
+          "feel": "a heart on both sides, fullwidth macron eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个心，全角长音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(°￣ﾊ￣°)",
+          "feel": "a degree on both sides, fullwidth macron eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个度号，全角长音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♡￣ノ￣♡)",
+          "feel": "a white heart on both sides, fullwidth macron eyes + katakana no mouth",
+          "feelZh": "两侧各一个白心，全角长音眼 + ノ嘴"
+        },
+        {
+          "face": "(*￣ノ￣*)",
+          "feel": "a star on both sides, fullwidth macron eyes + katakana no mouth",
+          "feelZh": "两侧各一个星星，全角长音眼 + ノ嘴"
+        },
+        {
+          "face": "(♪￣ﾝ￣♪)",
+          "feel": "a note on both sides, fullwidth macron eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个音符，全角长音眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✧￣o￣✧)",
+          "feel": "a sparkle on both sides, fullwidth macron eyes + round mouth",
+          "feelZh": "两侧各一个火花，全角长音眼 + 圆嘴"
+        },
+        {
+          "face": "(༚￣o￣༚)",
+          "feel": "a tibetan mark on both sides, fullwidth macron eyes + round mouth",
+          "feelZh": "两侧各一个藏文记号，全角长音眼 + 圆嘴"
+        },
+        {
+          "face": "(✿ー_ー✿)",
+          "feel": "a flower on both sides, katakana prolonged eyes + flat mouth",
+          "feelZh": "两侧各一个花，长音眼 + 平嘴嘴"
+        },
+        {
+          "face": "(❀ー＿ー❀)",
+          "feel": "a flower bud on both sides, katakana prolonged eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个花苞，长音眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(༚ー．ー༚)",
+          "feel": "a tibetan mark on both sides, katakana prolonged eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个藏文记号，长音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(✿ーωー✿)",
+          "feel": "a flower on both sides, katakana prolonged eyes + omega mouth",
+          "feelZh": "两侧各一个花，长音眼 + ω嘴"
+        },
+        {
+          "face": "(❀ー▽ー❀)",
+          "feel": "a flower bud on both sides, katakana prolonged eyes + down triangle mouth",
+          "feelZh": "两侧各一个花苞，长音眼 + 下三角嘴"
+        },
+        {
+          "face": "(༚ーДー༚)",
+          "feel": "a tibetan mark on both sides, katakana prolonged eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个藏文记号，长音眼 + Д嘴"
+        },
+        {
+          "face": "(✿ーдー✿)",
+          "feel": "a flower on both sides, katakana prolonged eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个花，长音眼 + д嘴"
+        },
+        {
+          "face": "(*ー∀ー*)",
+          "feel": "a star on both sides, katakana prolonged eyes + for all mouth",
+          "feelZh": "两侧各一个星星，长音眼 + ∀嘴"
+        },
+        {
+          "face": "(♪ーЗー♪)",
+          "feel": "a note on both sides, katakana prolonged eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个音符，长音眼 + З嘴"
+        },
+        {
+          "face": "(✧ーツー✧)",
+          "feel": "a sparkle on both sides, katakana prolonged eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个火花，长音眼 + ツ嘴"
+        },
+        {
+          "face": "(༚ーツー༚)",
+          "feel": "a tibetan mark on both sides, katakana prolonged eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个藏文记号，长音眼 + ツ嘴"
+        },
+        {
+          "face": "(☆ーﾊー☆)",
+          "feel": "a white star on both sides, katakana prolonged eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个白星，长音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✿ーﾊー✿)",
+          "feel": "a flower on both sides, katakana prolonged eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个花，长音眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♥ーノー♥)",
+          "feel": "a heart on both sides, katakana prolonged eyes + katakana no mouth",
+          "feelZh": "两侧各一个心，长音眼 + ノ嘴"
+        },
+        {
+          "face": "(❀ーノー❀)",
+          "feel": "a flower bud on both sides, katakana prolonged eyes + katakana no mouth",
+          "feelZh": "两侧各一个花苞，长音眼 + ノ嘴"
+        },
+        {
+          "face": "(♥ーﾝー♥)",
+          "feel": "a heart on both sides, katakana prolonged eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个心，长音眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(°ーﾝー°)",
+          "feel": "a degree on both sides, katakana prolonged eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个度号，长音眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♡ーoー♡)",
+          "feel": "a white heart on both sides, katakana prolonged eyes + round mouth",
+          "feelZh": "两侧各一个白心，长音眼 + 圆嘴"
+        },
+        {
+          "face": "(*ーoー*)",
+          "feel": "a star on both sides, katakana prolonged eyes + round mouth",
+          "feelZh": "两侧各一个星星，长音眼 + 圆嘴"
+        },
+        {
+          "face": "(♪___♪)",
+          "feel": "a note on both sides, underscore eyes + flat mouth",
+          "feelZh": "两侧各一个音符，横线眼 + 平嘴嘴"
+        },
+        {
+          "face": "(☆_＿_☆)",
+          "feel": "a white star on both sides, underscore eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个白星，横线眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(✿_＿_✿)",
+          "feel": "a flower on both sides, underscore eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个花，横线眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(♥_。_♥)",
+          "feel": "a heart on both sides, underscore eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个心，横线眼 + 句点嘴"
+        },
+        {
+          "face": "(❀_。_❀)",
+          "feel": "a flower bud on both sides, underscore eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个花苞，横线眼 + 句点嘴"
+        },
+        {
+          "face": "(♡_．_♡)",
+          "feel": "a white heart on both sides, underscore eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个白心，横线眼 + 全角句点嘴"
+        },
+        {
+          "face": "(°_．_°)",
+          "feel": "a degree on both sides, underscore eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个度号，横线眼 + 全角句点嘴"
+        },
+        {
+          "face": "(♡_ω_♡)",
+          "feel": "a white heart on both sides, underscore eyes + omega mouth",
+          "feelZh": "两侧各一个白心，横线眼 + ω嘴"
+        },
+        {
+          "face": "(*_ω_*)",
+          "feel": "a star on both sides, underscore eyes + omega mouth",
+          "feelZh": "两侧各一个星星，横线眼 + ω嘴"
+        },
+        {
+          "face": "(♪_▽_♪)",
+          "feel": "a note on both sides, underscore eyes + down triangle mouth",
+          "feelZh": "两侧各一个音符，横线眼 + 下三角嘴"
+        },
+        {
+          "face": "(✧_△_✧)",
+          "feel": "a sparkle on both sides, underscore eyes + up triangle mouth",
+          "feelZh": "两侧各一个火花，横线眼 + 上三角嘴"
+        },
+        {
+          "face": "(༚_△_༚)",
+          "feel": "a tibetan mark on both sides, underscore eyes + up triangle mouth",
+          "feelZh": "两侧各一个藏文记号，横线眼 + 上三角嘴"
+        },
+        {
+          "face": "(☆_Д_☆)",
+          "feel": "a white star on both sides, underscore eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个白星，横线眼 + Д嘴"
+        },
+        {
+          "face": "(✿_Д_✿)",
+          "feel": "a flower on both sides, underscore eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个花，横线眼 + Д嘴"
+        },
+        {
+          "face": "(♥_д_♥)",
+          "feel": "a heart on both sides, underscore eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个心，横线眼 + д嘴"
+        },
+        {
+          "face": "(❀_д_❀)",
+          "feel": "a flower bud on both sides, underscore eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个花苞，横线眼 + д嘴"
+        },
+        {
+          "face": "(♡_∀_♡)",
+          "feel": "a white heart on both sides, underscore eyes + for all mouth",
+          "feelZh": "两侧各一个白心，横线眼 + ∀嘴"
+        },
+        {
+          "face": "(°_∀_°)",
+          "feel": "a degree on both sides, underscore eyes + for all mouth",
+          "feelZh": "两侧各一个度号，横线眼 + ∀嘴"
+        },
+        {
+          "face": "(♡_З_♡)",
+          "feel": "a white heart on both sides, underscore eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白心，横线眼 + З嘴"
+        },
+        {
+          "face": "(*_З_*)",
+          "feel": "a star on both sides, underscore eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个星星，横线眼 + З嘴"
+        },
+        {
+          "face": "(♪_ツ_♪)",
+          "feel": "a note on both sides, underscore eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个音符，横线眼 + ツ嘴"
+        },
+        {
+          "face": "(✧_ﾊ_✧)",
+          "feel": "a sparkle on both sides, underscore eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个火花，横线眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(༚_ﾊ_༚)",
+          "feel": "a tibetan mark on both sides, underscore eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个藏文记号，横线眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(☆_ノ_☆)",
+          "feel": "a white star on both sides, underscore eyes + katakana no mouth",
+          "feelZh": "两侧各一个白星，横线眼 + ノ嘴"
+        },
+        {
+          "face": "(✿_ノ_✿)",
+          "feel": "a flower on both sides, underscore eyes + katakana no mouth",
+          "feelZh": "两侧各一个花，横线眼 + ノ嘴"
+        },
+        {
+          "face": "(♥_ﾝ_♥)",
+          "feel": "a heart on both sides, underscore eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个心，横线眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(❀_ﾝ_❀)",
+          "feel": "a flower bud on both sides, underscore eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花苞，横线眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♥_o_♥)",
+          "feel": "a heart on both sides, underscore eyes + round mouth",
+          "feelZh": "两侧各一个心，横线眼 + 圆嘴"
+        },
+        {
+          "face": "(°_o_°)",
+          "feel": "a degree on both sides, underscore eyes + round mouth",
+          "feelZh": "两侧各一个度号，横线眼 + 圆嘴"
+        },
+        {
+          "face": "(♪˙_˙♪)",
+          "feel": "a note on both sides, dot above eyes + flat mouth",
+          "feelZh": "两侧各一个音符，上点眼 + 平嘴嘴"
+        },
+        {
+          "face": "(✧˙＿˙✧)",
+          "feel": "a sparkle on both sides, dot above eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个火花，上点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(༚˙＿˙༚)",
+          "feel": "a tibetan mark on both sides, dot above eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个藏文记号，上点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(☆˙。˙☆)",
+          "feel": "a white star on both sides, dot above eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个白星，上点眼 + 句点嘴"
+        },
+        {
+          "face": "(✿˙。˙✿)",
+          "feel": "a flower on both sides, dot above eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个花，上点眼 + 句点嘴"
+        },
+        {
+          "face": "(♥˙．˙♥)",
+          "feel": "a heart on both sides, dot above eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个心，上点眼 + 全角句点嘴"
+        },
+        {
+          "face": "(❀˙．˙❀)",
+          "feel": "a flower bud on both sides, dot above eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个花苞，上点眼 + 全角句点嘴"
+        },
+        {
+          "face": "(♡˙ω˙♡)",
+          "feel": "a white heart on both sides, dot above eyes + omega mouth",
+          "feelZh": "两侧各一个白心，上点眼 + ω嘴"
+        },
+        {
+          "face": "(°˙ω˙°)",
+          "feel": "a degree on both sides, dot above eyes + omega mouth",
+          "feelZh": "两侧各一个度号，上点眼 + ω嘴"
+        },
+        {
+          "face": "(♡˙▽˙♡)",
+          "feel": "a white heart on both sides, dot above eyes + down triangle mouth",
+          "feelZh": "两侧各一个白心，上点眼 + 下三角嘴"
+        },
+        {
+          "face": "(*˙▽˙*)",
+          "feel": "a star on both sides, dot above eyes + down triangle mouth",
+          "feelZh": "两侧各一个星星，上点眼 + 下三角嘴"
+        },
+        {
+          "face": "(♪˙△˙♪)",
+          "feel": "a note on both sides, dot above eyes + up triangle mouth",
+          "feelZh": "两侧各一个音符，上点眼 + 上三角嘴"
+        },
+        {
+          "face": "(✧˙Д˙✧)",
+          "feel": "a sparkle on both sides, dot above eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个火花，上点眼 + Д嘴"
+        },
+        {
+          "face": "(༚˙Д˙༚)",
+          "feel": "a tibetan mark on both sides, dot above eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个藏文记号，上点眼 + Д嘴"
+        },
+        {
+          "face": "(☆˙д˙☆)",
+          "feel": "a white star on both sides, dot above eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个白星，上点眼 + д嘴"
+        },
+        {
+          "face": "(✿˙д˙✿)",
+          "feel": "a flower on both sides, dot above eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个花，上点眼 + д嘴"
+        },
+        {
+          "face": "(♥˙∀˙♥)",
+          "feel": "a heart on both sides, dot above eyes + for all mouth",
+          "feelZh": "两侧各一个心，上点眼 + ∀嘴"
+        },
+        {
+          "face": "(❀˙∀˙❀)",
+          "feel": "a flower bud on both sides, dot above eyes + for all mouth",
+          "feelZh": "两侧各一个花苞，上点眼 + ∀嘴"
+        },
+        {
+          "face": "(♡˙З˙♡)",
+          "feel": "a white heart on both sides, dot above eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白心，上点眼 + З嘴"
+        },
+        {
+          "face": "(°˙З˙°)",
+          "feel": "a degree on both sides, dot above eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个度号，上点眼 + З嘴"
+        },
+        {
+          "face": "(♡˙ツ˙♡)",
+          "feel": "a white heart on both sides, dot above eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个白心，上点眼 + ツ嘴"
+        },
+        {
+          "face": "(*˙ツ˙*)",
+          "feel": "a star on both sides, dot above eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个星星，上点眼 + ツ嘴"
+        },
+        {
+          "face": "(♪˙ﾊ˙♪)",
+          "feel": "a note on both sides, dot above eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个音符，上点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✧˙ノ˙✧)",
+          "feel": "a sparkle on both sides, dot above eyes + katakana no mouth",
+          "feelZh": "两侧各一个火花，上点眼 + ノ嘴"
+        },
+        {
+          "face": "(༚˙ノ˙༚)",
+          "feel": "a tibetan mark on both sides, dot above eyes + katakana no mouth",
+          "feelZh": "两侧各一个藏文记号，上点眼 + ノ嘴"
+        },
+        {
+          "face": "(☆˙ﾝ˙☆)",
+          "feel": "a white star on both sides, dot above eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个白星，上点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✿˙ﾝ˙✿)",
+          "feel": "a flower on both sides, dot above eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花，上点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♥˙o˙♥)",
+          "feel": "a heart on both sides, dot above eyes + round mouth",
+          "feelZh": "两侧各一个心，上点眼 + 圆嘴"
+        },
+        {
+          "face": "(❀˙o˙❀)",
+          "feel": "a flower bud on both sides, dot above eyes + round mouth",
+          "feelZh": "两侧各一个花苞，上点眼 + 圆嘴"
+        },
+        {
+          "face": "(♡ಠ_ಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + flat mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + 平嘴嘴"
+        },
+        {
+          "face": "(°ಠ_ಠ°)",
+          "feel": "a degree on both sides, kannada ttha eyes + flat mouth",
+          "feelZh": "两侧各一个度号，卡纳达眼 + 平嘴嘴"
+        },
+        {
+          "face": "(♡ಠ＿ಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(*ಠ＿ಠ*)",
+          "feel": "a star on both sides, kannada ttha eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个星星，卡纳达眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(♪ಠ。ಠ♪)",
+          "feel": "a note on both sides, kannada ttha eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个音符，卡纳达眼 + 句点嘴"
+        },
+        {
+          "face": "(✧ಠ．ಠ✧)",
+          "feel": "a sparkle on both sides, kannada ttha eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个火花，卡纳达眼 + 全角句点嘴"
+        },
+        {
+          "face": "(༚ಠ．ಠ༚)",
+          "feel": "a tibetan mark on both sides, kannada ttha eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个藏文记号，卡纳达眼 + 全角句点嘴"
+        },
+        {
+          "face": "(☆ಠωಠ☆)",
+          "feel": "a white star on both sides, kannada ttha eyes + omega mouth",
+          "feelZh": "两侧各一个白星，卡纳达眼 + ω嘴"
+        },
+        {
+          "face": "(✿ಠωಠ✿)",
+          "feel": "a flower on both sides, kannada ttha eyes + omega mouth",
+          "feelZh": "两侧各一个花，卡纳达眼 + ω嘴"
+        },
+        {
+          "face": "(♥ಠ▽ಠ♥)",
+          "feel": "a heart on both sides, kannada ttha eyes + down triangle mouth",
+          "feelZh": "两侧各一个心，卡纳达眼 + 下三角嘴"
+        },
+        {
+          "face": "(❀ಠ▽ಠ❀)",
+          "feel": "a flower bud on both sides, kannada ttha eyes + down triangle mouth",
+          "feelZh": "两侧各一个花苞，卡纳达眼 + 下三角嘴"
+        },
+        {
+          "face": "(♡ಠ△ಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + up triangle mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + 上三角嘴"
+        },
+        {
+          "face": "(°ಠ△ಠ°)",
+          "feel": "a degree on both sides, kannada ttha eyes + up triangle mouth",
+          "feelZh": "两侧各一个度号，卡纳达眼 + 上三角嘴"
+        },
+        {
+          "face": "(♡ಠДಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + Д嘴"
+        },
+        {
+          "face": "(*ಠДಠ*)",
+          "feel": "a star on both sides, kannada ttha eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个星星，卡纳达眼 + Д嘴"
+        },
+        {
+          "face": "(♪ಠдಠ♪)",
+          "feel": "a note on both sides, kannada ttha eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个音符，卡纳达眼 + д嘴"
+        },
+        {
+          "face": "(✧ಠ∀ಠ✧)",
+          "feel": "a sparkle on both sides, kannada ttha eyes + for all mouth",
+          "feelZh": "两侧各一个火花，卡纳达眼 + ∀嘴"
+        },
+        {
+          "face": "(༚ಠ∀ಠ༚)",
+          "feel": "a tibetan mark on both sides, kannada ttha eyes + for all mouth",
+          "feelZh": "两侧各一个藏文记号，卡纳达眼 + ∀嘴"
+        },
+        {
+          "face": "(☆ಠЗಠ☆)",
+          "feel": "a white star on both sides, kannada ttha eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白星，卡纳达眼 + З嘴"
+        },
+        {
+          "face": "(✿ಠЗಠ✿)",
+          "feel": "a flower on both sides, kannada ttha eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个花，卡纳达眼 + З嘴"
+        },
+        {
+          "face": "(♥ಠツಠ♥)",
+          "feel": "a heart on both sides, kannada ttha eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个心，卡纳达眼 + ツ嘴"
+        },
+        {
+          "face": "(❀ಠツಠ❀)",
+          "feel": "a flower bud on both sides, kannada ttha eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个花苞，卡纳达眼 + ツ嘴"
+        },
+        {
+          "face": "(♡ಠﾊಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(°ಠﾊಠ°)",
+          "feel": "a degree on both sides, kannada ttha eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个度号，卡纳达眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♡ಠノಠ♡)",
+          "feel": "a white heart on both sides, kannada ttha eyes + katakana no mouth",
+          "feelZh": "两侧各一个白心，卡纳达眼 + ノ嘴"
+        },
+        {
+          "face": "(*ಠノಠ*)",
+          "feel": "a star on both sides, kannada ttha eyes + katakana no mouth",
+          "feelZh": "两侧各一个星星，卡纳达眼 + ノ嘴"
+        },
+        {
+          "face": "(♪ಠﾝಠ♪)",
+          "feel": "a note on both sides, kannada ttha eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个音符，卡纳达眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✧ಠoಠ✧)",
+          "feel": "a sparkle on both sides, kannada ttha eyes + round mouth",
+          "feelZh": "两侧各一个火花，卡纳达眼 + 圆嘴"
+        },
+        {
+          "face": "(༚ಠoಠ༚)",
+          "feel": "a tibetan mark on both sides, kannada ttha eyes + round mouth",
+          "feelZh": "两侧各一个藏文记号，卡纳达眼 + 圆嘴"
+        },
+        {
+          "face": "(☆ق_ق☆)",
+          "feel": "a white star on both sides, arabic qaf eyes + flat mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 qaf眼 + 平嘴嘴"
+        },
+        {
+          "face": "(✿ق_ق✿)",
+          "feel": "a flower on both sides, arabic qaf eyes + flat mouth",
+          "feelZh": "两侧各一个花，阿拉伯 qaf眼 + 平嘴嘴"
+        },
+        {
+          "face": "(♥ق＿ق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(❀ق＿ق❀)",
+          "feel": "a flower bud on both sides, arabic qaf eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 qaf眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(♥ق。ق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + 句点嘴"
+        },
+        {
+          "face": "(°ق。ق°)",
+          "feel": "a degree on both sides, arabic qaf eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 qaf眼 + 句点嘴"
+        },
+        {
+          "face": "(♡ق．ق♡)",
+          "feel": "a white heart on both sides, arabic qaf eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 qaf眼 + 全角句点嘴"
+        },
+        {
+          "face": "(*ق．ق*)",
+          "feel": "a star on both sides, arabic qaf eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 qaf眼 + 全角句点嘴"
+        },
+        {
+          "face": "(♪قωق♪)",
+          "feel": "a note on both sides, arabic qaf eyes + omega mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 qaf眼 + ω嘴"
+        },
+        {
+          "face": "(✧ق▽ق✧)",
+          "feel": "a sparkle on both sides, arabic qaf eyes + down triangle mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 qaf眼 + 下三角嘴"
+        },
+        {
+          "face": "(༚ق▽ق༚)",
+          "feel": "a tibetan mark on both sides, arabic qaf eyes + down triangle mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 qaf眼 + 下三角嘴"
+        },
+        {
+          "face": "(☆ق△ق☆)",
+          "feel": "a white star on both sides, arabic qaf eyes + up triangle mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 qaf眼 + 上三角嘴"
+        },
+        {
+          "face": "(✿ق△ق✿)",
+          "feel": "a flower on both sides, arabic qaf eyes + up triangle mouth",
+          "feelZh": "两侧各一个花，阿拉伯 qaf眼 + 上三角嘴"
+        },
+        {
+          "face": "(♥قДق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + Д嘴"
+        },
+        {
+          "face": "(❀قДق❀)",
+          "feel": "a flower bud on both sides, arabic qaf eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 qaf眼 + Д嘴"
+        },
+        {
+          "face": "(♥قдق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + д嘴"
+        },
+        {
+          "face": "(°قдق°)",
+          "feel": "a degree on both sides, arabic qaf eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 qaf眼 + д嘴"
+        },
+        {
+          "face": "(♡ق∀ق♡)",
+          "feel": "a white heart on both sides, arabic qaf eyes + for all mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 qaf眼 + ∀嘴"
+        },
+        {
+          "face": "(*ق∀ق*)",
+          "feel": "a star on both sides, arabic qaf eyes + for all mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 qaf眼 + ∀嘴"
+        },
+        {
+          "face": "(♪قЗق♪)",
+          "feel": "a note on both sides, arabic qaf eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 qaf眼 + З嘴"
+        },
+        {
+          "face": "(✧قツق✧)",
+          "feel": "a sparkle on both sides, arabic qaf eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 qaf眼 + ツ嘴"
+        },
+        {
+          "face": "(༚قツق༚)",
+          "feel": "a tibetan mark on both sides, arabic qaf eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 qaf眼 + ツ嘴"
+        },
+        {
+          "face": "(☆قﾊق☆)",
+          "feel": "a white star on both sides, arabic qaf eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 qaf眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✿قﾊق✿)",
+          "feel": "a flower on both sides, arabic qaf eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个花，阿拉伯 qaf眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♥قノق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + katakana no mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + ノ嘴"
+        },
+        {
+          "face": "(❀قノق❀)",
+          "feel": "a flower bud on both sides, arabic qaf eyes + katakana no mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 qaf眼 + ノ嘴"
+        },
+        {
+          "face": "(♥قﾝق♥)",
+          "feel": "a heart on both sides, arabic qaf eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个心，阿拉伯 qaf眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(°قﾝق°)",
+          "feel": "a degree on both sides, arabic qaf eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 qaf眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(♡قoق♡)",
+          "feel": "a white heart on both sides, arabic qaf eyes + round mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 qaf眼 + 圆嘴"
+        },
+        {
+          "face": "(*قoق*)",
+          "feel": "a star on both sides, arabic qaf eyes + round mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 qaf眼 + 圆嘴"
+        },
+        {
+          "face": "(♪ع_ع♪)",
+          "feel": "a note on both sides, arabic ayn eyes + flat mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 ayn眼 + 平嘴嘴"
+        },
+        {
+          "face": "(✧ع＿ع✧)",
+          "feel": "a sparkle on both sides, arabic ayn eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 ayn眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(༚ع＿ع༚)",
+          "feel": "a tibetan mark on both sides, arabic ayn eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 ayn眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(☆ع。ع☆)",
+          "feel": "a white star on both sides, arabic ayn eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 ayn眼 + 句点嘴"
+        },
+        {
+          "face": "(✿ع。ع✿)",
+          "feel": "a flower on both sides, arabic ayn eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个花，阿拉伯 ayn眼 + 句点嘴"
+        },
+        {
+          "face": "(♥ع．ع♥)",
+          "feel": "a heart on both sides, arabic ayn eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个心，阿拉伯 ayn眼 + 全角句点嘴"
+        },
+        {
+          "face": "(❀ع．ع❀)",
+          "feel": "a flower bud on both sides, arabic ayn eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 ayn眼 + 全角句点嘴"
+        },
+        {
+          "face": "(♥عωع♥)",
+          "feel": "a heart on both sides, arabic ayn eyes + omega mouth",
+          "feelZh": "两侧各一个心，阿拉伯 ayn眼 + ω嘴"
+        },
+        {
+          "face": "(°عωع°)",
+          "feel": "a degree on both sides, arabic ayn eyes + omega mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 ayn眼 + ω嘴"
+        },
+        {
+          "face": "(♡ع▽ع♡)",
+          "feel": "a white heart on both sides, arabic ayn eyes + down triangle mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 ayn眼 + 下三角嘴"
+        },
+        {
+          "face": "(*ع▽ع*)",
+          "feel": "a star on both sides, arabic ayn eyes + down triangle mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 ayn眼 + 下三角嘴"
+        },
+        {
+          "face": "(♪ع△ع♪)",
+          "feel": "a note on both sides, arabic ayn eyes + up triangle mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 ayn眼 + 上三角嘴"
+        },
+        {
+          "face": "(✧عДع✧)",
+          "feel": "a sparkle on both sides, arabic ayn eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 ayn眼 + Д嘴"
+        },
+        {
+          "face": "(༚عДع༚)",
+          "feel": "a tibetan mark on both sides, arabic ayn eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 ayn眼 + Д嘴"
+        },
+        {
+          "face": "(☆عдع☆)",
+          "feel": "a white star on both sides, arabic ayn eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 ayn眼 + д嘴"
+        },
+        {
+          "face": "(✿عдع✿)",
+          "feel": "a flower on both sides, arabic ayn eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个花，阿拉伯 ayn眼 + д嘴"
+        },
+        {
+          "face": "(♥ع∀ع♥)",
+          "feel": "a heart on both sides, arabic ayn eyes + for all mouth",
+          "feelZh": "两侧各一个心，阿拉伯 ayn眼 + ∀嘴"
+        },
+        {
+          "face": "(❀ع∀ع❀)",
+          "feel": "a flower bud on both sides, arabic ayn eyes + for all mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 ayn眼 + ∀嘴"
+        },
+        {
+          "face": "(♥عЗع♥)",
+          "feel": "a heart on both sides, arabic ayn eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个心，阿拉伯 ayn眼 + З嘴"
+        },
+        {
+          "face": "(°عЗع°)",
+          "feel": "a degree on both sides, arabic ayn eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 ayn眼 + З嘴"
+        },
+        {
+          "face": "(♡عツع♡)",
+          "feel": "a white heart on both sides, arabic ayn eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 ayn眼 + ツ嘴"
+        },
+        {
+          "face": "(*عツع*)",
+          "feel": "a star on both sides, arabic ayn eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 ayn眼 + ツ嘴"
+        },
+        {
+          "face": "(♪عﾊع♪)",
+          "feel": "a note on both sides, arabic ayn eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 ayn眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(✧عノع✧)",
+          "feel": "a sparkle on both sides, arabic ayn eyes + katakana no mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 ayn眼 + ノ嘴"
+        },
+        {
+          "face": "(༚عノع༚)",
+          "feel": "a tibetan mark on both sides, arabic ayn eyes + katakana no mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 ayn眼 + ノ嘴"
+        },
+        {
+          "face": "(☆عﾝع☆)",
+          "feel": "a white star on both sides, arabic ayn eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 ayn眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✿عﾝع✿)",
+          "feel": "a flower on both sides, arabic ayn eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个花，阿拉伯 ayn眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(☆عoع☆)",
+          "feel": "a white star on both sides, arabic ayn eyes + round mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 ayn眼 + 圆嘴"
+        },
+        {
+          "face": "(❀عoع❀)",
+          "feel": "a flower bud on both sides, arabic ayn eyes + round mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 ayn眼 + 圆嘴"
+        },
+        {
+          "face": "(♥ط_ط♥)",
+          "feel": "a heart on both sides, arabic tta eyes + flat mouth",
+          "feelZh": "两侧各一个心，阿拉伯 tta眼 + 平嘴嘴"
+        },
+        {
+          "face": "(°ط_ط°)",
+          "feel": "a degree on both sides, arabic tta eyes + flat mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 tta眼 + 平嘴嘴"
+        },
+        {
+          "face": "(♡ط＿ط♡)",
+          "feel": "a white heart on both sides, arabic tta eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 tta眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(*ط＿ط*)",
+          "feel": "a star on both sides, arabic tta eyes + fullwidth flat mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 tta眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(♪ط。ط♪)",
+          "feel": "a note on both sides, arabic tta eyes + ideographic full stop mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 tta眼 + 句点嘴"
+        },
+        {
+          "face": "(✧ط．ط✧)",
+          "feel": "a sparkle on both sides, arabic tta eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 tta眼 + 全角句点嘴"
+        },
+        {
+          "face": "(༚ط．ط༚)",
+          "feel": "a tibetan mark on both sides, arabic tta eyes + fullwidth period mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 tta眼 + 全角句点嘴"
+        },
+        {
+          "face": "(☆طωط☆)",
+          "feel": "a white star on both sides, arabic tta eyes + omega mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 tta眼 + ω嘴"
+        },
+        {
+          "face": "(✿طωط✿)",
+          "feel": "a flower on both sides, arabic tta eyes + omega mouth",
+          "feelZh": "两侧各一个花，阿拉伯 tta眼 + ω嘴"
+        },
+        {
+          "face": "(☆ط▽ط☆)",
+          "feel": "a white star on both sides, arabic tta eyes + down triangle mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 tta眼 + 下三角嘴"
+        },
+        {
+          "face": "(❀ط▽ط❀)",
+          "feel": "a flower bud on both sides, arabic tta eyes + down triangle mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 tta眼 + 下三角嘴"
+        },
+        {
+          "face": "(♥ط△ط♥)",
+          "feel": "a heart on both sides, arabic tta eyes + up triangle mouth",
+          "feelZh": "两侧各一个心，阿拉伯 tta眼 + 上三角嘴"
+        },
+        {
+          "face": "(°ط△ط°)",
+          "feel": "a degree on both sides, arabic tta eyes + up triangle mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 tta眼 + 上三角嘴"
+        },
+        {
+          "face": "(♡طДط♡)",
+          "feel": "a white heart on both sides, arabic tta eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 tta眼 + Д嘴"
+        },
+        {
+          "face": "(*طДط*)",
+          "feel": "a star on both sides, arabic tta eyes + cyrillic de capital mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 tta眼 + Д嘴"
+        },
+        {
+          "face": "(♪طдط♪)",
+          "feel": "a note on both sides, arabic tta eyes + cyrillic de mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 tta眼 + д嘴"
+        },
+        {
+          "face": "(✧ط∀ط✧)",
+          "feel": "a sparkle on both sides, arabic tta eyes + for all mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 tta眼 + ∀嘴"
+        },
+        {
+          "face": "(༚ط∀ط༚)",
+          "feel": "a tibetan mark on both sides, arabic tta eyes + for all mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 tta眼 + ∀嘴"
+        },
+        {
+          "face": "(☆طЗط☆)",
+          "feel": "a white star on both sides, arabic tta eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 tta眼 + З嘴"
+        },
+        {
+          "face": "(✿طЗط✿)",
+          "feel": "a flower on both sides, arabic tta eyes + cyrillic ze mouth",
+          "feelZh": "两侧各一个花，阿拉伯 tta眼 + З嘴"
+        },
+        {
+          "face": "(☆طツط☆)",
+          "feel": "a white star on both sides, arabic tta eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个白星，阿拉伯 tta眼 + ツ嘴"
+        },
+        {
+          "face": "(❀طツط❀)",
+          "feel": "a flower bud on both sides, arabic tta eyes + katakana tsu mouth",
+          "feelZh": "两侧各一个花苞，阿拉伯 tta眼 + ツ嘴"
+        },
+        {
+          "face": "(♥طﾊط♥)",
+          "feel": "a heart on both sides, arabic tta eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个心，阿拉伯 tta眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(°طﾊط°)",
+          "feel": "a degree on both sides, arabic tta eyes + halfwidth tsu mouth",
+          "feelZh": "两侧各一个度号，阿拉伯 tta眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(♡طノط♡)",
+          "feel": "a white heart on both sides, arabic tta eyes + katakana no mouth",
+          "feelZh": "两侧各一个白心，阿拉伯 tta眼 + ノ嘴"
+        },
+        {
+          "face": "(*طノط*)",
+          "feel": "a star on both sides, arabic tta eyes + katakana no mouth",
+          "feelZh": "两侧各一个星星，阿拉伯 tta眼 + ノ嘴"
+        },
+        {
+          "face": "(♪طﾝط♪)",
+          "feel": "a note on both sides, arabic tta eyes + halfwidth no mouth",
+          "feelZh": "两侧各一个音符，阿拉伯 tta眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(✧طoط✧)",
+          "feel": "a sparkle on both sides, arabic tta eyes + round mouth",
+          "feelZh": "两侧各一个火花，阿拉伯 tta眼 + 圆嘴"
+        },
+        {
+          "face": "(༚طoط༚)",
+          "feel": "a tibetan mark on both sides, arabic tta eyes + round mouth",
+          "feelZh": "两侧各一个藏文记号，阿拉伯 tta眼 + 圆嘴"
+        },
+        {
+          "face": "(^_^♡)",
+          "feel": "upturned eyes + flat mouth with a ♡",
+          "feelZh": "上弯眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿^_^)",
+          "feel": "upturned eyes + flat mouth, a ✿ in front",
+          "feelZh": "上弯眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^＿^)",
+          "feel": "upturned eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "上弯眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿^＿^)",
+          "feel": "upturned eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "上弯眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^。^)",
+          "feel": "upturned eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "上弯眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿^。^)",
+          "feel": "upturned eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "上弯眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^．^)",
+          "feel": "upturned eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "上弯眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿^．^)",
+          "feel": "upturned eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "上弯眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^ω^)",
+          "feel": "upturned eyes + omega mouth, a ♥ in front",
+          "feelZh": "上弯眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿^ω^)",
+          "feel": "upturned eyes + omega mouth, a ✿ in front",
+          "feelZh": "上弯眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^▽^)",
+          "feel": "upturned eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "上弯眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿^▽^)",
+          "feel": "upturned eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "上弯眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥^△^)",
+          "feel": "upturned eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "上弯眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(^△^✿)",
+          "feel": "upturned eyes + up triangle mouth with a ✿",
+          "feelZh": "上弯眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥^Д^)",
+          "feel": "upturned eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "上弯眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(^Д^✿)",
+          "feel": "upturned eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "上弯眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥^д^)",
+          "feel": "upturned eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "上弯眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(^д^✿)",
+          "feel": "upturned eyes + cyrillic de mouth with a ✿",
+          "feelZh": "上弯眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥^∀^)",
+          "feel": "upturned eyes + for all mouth, a ♥ in front",
+          "feelZh": "上弯眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(^∀^✿)",
+          "feel": "upturned eyes + for all mouth with a ✿",
+          "feelZh": "上弯眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥＾_＾)",
+          "feel": "fullwidth circumflex eyes + flat mouth, a ♥ in front",
+          "feelZh": "全角抑扬眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾_＾✿)",
+          "feel": "fullwidth circumflex eyes + flat mouth with a ✿",
+          "feelZh": "全角抑扬眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾_＾)",
+          "feel": "fullwidth circumflex eyes + flat mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾＿＾✿)",
+          "feel": "fullwidth circumflex eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "全角抑扬眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾＿＾)",
+          "feel": "fullwidth circumflex eyes + fullwidth flat mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾。＾✿)",
+          "feel": "fullwidth circumflex eyes + ideographic full stop mouth with a ✿",
+          "feelZh": "全角抑扬眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾。＾)",
+          "feel": "fullwidth circumflex eyes + ideographic full stop mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾．＾✿)",
+          "feel": "fullwidth circumflex eyes + fullwidth period mouth with a ✿",
+          "feelZh": "全角抑扬眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾．＾)",
+          "feel": "fullwidth circumflex eyes + fullwidth period mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾ω＾✿)",
+          "feel": "fullwidth circumflex eyes + omega mouth with a ✿",
+          "feelZh": "全角抑扬眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾ω＾)",
+          "feel": "fullwidth circumflex eyes + omega mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(＾▽＾✿)",
+          "feel": "fullwidth circumflex eyes + down triangle mouth with a ✿",
+          "feelZh": "全角抑扬眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚＾▽＾)",
+          "feel": "fullwidth circumflex eyes + down triangle mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＾△＾)",
+          "feel": "fullwidth circumflex eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "全角抑扬眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＾△＾)",
+          "feel": "fullwidth circumflex eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＾Д＾)",
+          "feel": "fullwidth circumflex eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "全角抑扬眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＾Д＾)",
+          "feel": "fullwidth circumflex eyes + cyrillic de capital mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＾д＾)",
+          "feel": "fullwidth circumflex eyes + cyrillic de mouth, a ♪ in front",
+          "feelZh": "全角抑扬眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＾д＾)",
+          "feel": "fullwidth circumflex eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪＾∀＾)",
+          "feel": "fullwidth circumflex eyes + for all mouth, a ♪ in front",
+          "feelZh": "全角抑扬眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚＾∀＾)",
+          "feel": "fullwidth circumflex eyes + for all mouth, a ༚ in front",
+          "feelZh": "全角抑扬眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪ˆ_ˆ)",
+          "feel": "circumflex eyes + flat mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚ˆ_ˆ)",
+          "feel": "circumflex eyes + flat mouth, a ༚ in front",
+          "feelZh": "抑扬眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪ˆ＿ˆ)",
+          "feel": "circumflex eyes + fullwidth flat mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆ＿ˆ༚)",
+          "feel": "circumflex eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "抑扬眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪ˆ。ˆ)",
+          "feel": "circumflex eyes + ideographic full stop mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆ。ˆ༚)",
+          "feel": "circumflex eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "抑扬眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪ˆ．ˆ)",
+          "feel": "circumflex eyes + fullwidth period mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆ．ˆ༚)",
+          "feel": "circumflex eyes + fullwidth period mouth with a ༚",
+          "feelZh": "抑扬眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪ˆωˆ)",
+          "feel": "circumflex eyes + omega mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆωˆ༚)",
+          "feel": "circumflex eyes + omega mouth with a ༚",
+          "feelZh": "抑扬眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪ˆ▽ˆ)",
+          "feel": "circumflex eyes + down triangle mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆ▽ˆ༚)",
+          "feel": "circumflex eyes + down triangle mouth with a ༚",
+          "feelZh": "抑扬眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪ˆ△ˆ)",
+          "feel": "circumflex eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "抑扬眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˆ△ˆ༚)",
+          "feel": "circumflex eyes + up triangle mouth with a ༚",
+          "feelZh": "抑扬眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆДˆ♪)",
+          "feel": "circumflex eyes + cyrillic de capital mouth with a ♪",
+          "feelZh": "抑扬眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆДˆ༚)",
+          "feel": "circumflex eyes + cyrillic de capital mouth with a ༚",
+          "feelZh": "抑扬眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆдˆ♪)",
+          "feel": "circumflex eyes + cyrillic de mouth with a ♪",
+          "feelZh": "抑扬眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆдˆ༚)",
+          "feel": "circumflex eyes + cyrillic de mouth with a ༚",
+          "feelZh": "抑扬眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆ∀ˆ♪)",
+          "feel": "circumflex eyes + for all mouth with a ♪",
+          "feelZh": "抑扬眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˆ∀ˆ༚)",
+          "feel": "circumflex eyes + for all mouth with a ༚",
+          "feelZh": "抑扬眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˇ_ˇ♪)",
+          "feel": "caron eyes + flat mouth with a ♪",
+          "feelZh": "抑扬符眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˇ_ˇ༚)",
+          "feel": "caron eyes + flat mouth with a ༚",
+          "feelZh": "抑扬符眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˇ＿ˇ♪)",
+          "feel": "caron eyes + fullwidth flat mouth with a ♪",
+          "feelZh": "抑扬符眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˇ＿ˇ༚)",
+          "feel": "caron eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "抑扬符眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ˇ。ˇ♪)",
+          "feel": "caron eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "抑扬符眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ˇ。ˇ)",
+          "feel": "caron eyes + ideographic full stop mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˇ．ˇ♪)",
+          "feel": "caron eyes + fullwidth period mouth with a ♪",
+          "feelZh": "抑扬符眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ˇ．ˇ)",
+          "feel": "caron eyes + fullwidth period mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˇωˇ♪)",
+          "feel": "caron eyes + omega mouth with a ♪",
+          "feelZh": "抑扬符眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ˇωˇ)",
+          "feel": "caron eyes + omega mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˇ▽ˇ♪)",
+          "feel": "caron eyes + down triangle mouth with a ♪",
+          "feelZh": "抑扬符眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ˇ▽ˇ)",
+          "feel": "caron eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ˇ△ˇ♪)",
+          "feel": "caron eyes + up triangle mouth with a ♪",
+          "feelZh": "抑扬符眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ˇ△ˇ)",
+          "feel": "caron eyes + up triangle mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ˇДˇ)",
+          "feel": "caron eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "抑扬符眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ˇДˇ)",
+          "feel": "caron eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ˇдˇ)",
+          "feel": "caron eyes + cyrillic de mouth, a ♡ in front",
+          "feelZh": "抑扬符眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ˇдˇ)",
+          "feel": "caron eyes + cyrillic de mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ˇ∀ˇ)",
+          "feel": "caron eyes + for all mouth, a ♡ in front",
+          "feelZh": "抑扬符眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ˇ∀ˇ)",
+          "feel": "caron eyes + for all mouth, a ❀ in front",
+          "feelZh": "抑扬符眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡o_o)",
+          "feel": "round eyes + flat mouth, a ♡ in front",
+          "feelZh": "圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀o_o)",
+          "feel": "round eyes + flat mouth, a ❀ in front",
+          "feelZh": "圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡o＿o)",
+          "feel": "round eyes + fullwidth flat mouth, a ♡ in front",
+          "feelZh": "圆眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀o＿o)",
+          "feel": "round eyes + fullwidth flat mouth, a ❀ in front",
+          "feelZh": "圆眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡o。o)",
+          "feel": "round eyes + ideographic full stop mouth, a ♡ in front",
+          "feelZh": "圆眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(o。o❀)",
+          "feel": "round eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "圆眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡o．o)",
+          "feel": "round eyes + fullwidth period mouth, a ♡ in front",
+          "feelZh": "圆眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(o．o❀)",
+          "feel": "round eyes + fullwidth period mouth with a ❀",
+          "feelZh": "圆眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡oωo)",
+          "feel": "round eyes + omega mouth, a ♡ in front",
+          "feelZh": "圆眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(oωo❀)",
+          "feel": "round eyes + omega mouth with a ❀",
+          "feelZh": "圆眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡o▽o)",
+          "feel": "round eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "圆眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(o▽o❀)",
+          "feel": "round eyes + down triangle mouth with a ❀",
+          "feelZh": "圆眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡o△o)",
+          "feel": "round eyes + up triangle mouth, a ♡ in front",
+          "feelZh": "圆眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(o△o❀)",
+          "feel": "round eyes + up triangle mouth with a ❀",
+          "feelZh": "圆眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡oДo)",
+          "feel": "round eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "圆眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(oДo❀)",
+          "feel": "round eyes + cyrillic de capital mouth with a ❀",
+          "feelZh": "圆眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(oдo♡)",
+          "feel": "round eyes + cyrillic de mouth with a ♡",
+          "feelZh": "圆眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(oдo❀)",
+          "feel": "round eyes + cyrillic de mouth with a ❀",
+          "feelZh": "圆眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(o∀o♡)",
+          "feel": "round eyes + for all mouth with a ♡",
+          "feelZh": "圆眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(o∀o❀)",
+          "feel": "round eyes + for all mouth with a ❀",
+          "feelZh": "圆眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ_ｏ♡)",
+          "feel": "fullwidth round eyes + flat mouth with a ♡",
+          "feelZh": "全角圆眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ_ｏ❀)",
+          "feel": "fullwidth round eyes + flat mouth with a ❀",
+          "feelZh": "全角圆眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ＿ｏ♡)",
+          "feel": "fullwidth round eyes + fullwidth flat mouth with a ♡",
+          "feelZh": "全角圆眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ＿ｏ❀)",
+          "feel": "fullwidth round eyes + fullwidth flat mouth with a ❀",
+          "feelZh": "全角圆眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ。ｏ♡)",
+          "feel": "fullwidth round eyes + ideographic full stop mouth with a ♡",
+          "feelZh": "全角圆眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ。ｏ❀)",
+          "feel": "fullwidth round eyes + ideographic full stop mouth with a ❀",
+          "feelZh": "全角圆眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ｏ．ｏ♡)",
+          "feel": "fullwidth round eyes + fullwidth period mouth with a ♡",
+          "feelZh": "全角圆眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏ．ｏ)",
+          "feel": "fullwidth round eyes + fullwidth period mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ｏωｏ♡)",
+          "feel": "fullwidth round eyes + omega mouth with a ♡",
+          "feelZh": "全角圆眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏωｏ)",
+          "feel": "fullwidth round eyes + omega mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(ｏ▽ｏ♡)",
+          "feel": "fullwidth round eyes + down triangle mouth with a ♡",
+          "feelZh": "全角圆眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏ▽ｏ)",
+          "feel": "fullwidth round eyes + down triangle mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ｏ△ｏ♡)",
+          "feel": "fullwidth round eyes + up triangle mouth with a ♡",
+          "feelZh": "全角圆眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏ△ｏ)",
+          "feel": "fullwidth round eyes + up triangle mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(ｏДｏ♡)",
+          "feel": "fullwidth round eyes + cyrillic de capital mouth with a ♡",
+          "feelZh": "全角圆眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏДｏ)",
+          "feel": "fullwidth round eyes + cyrillic de capital mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(ｏдｏ♡)",
+          "feel": "fullwidth round eyes + cyrillic de mouth with a ♡",
+          "feelZh": "全角圆眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(✿ｏдｏ)",
+          "feel": "fullwidth round eyes + cyrillic de mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥ｏ∀ｏ)",
+          "feel": "fullwidth round eyes + for all mouth, a ♥ in front",
+          "feelZh": "全角圆眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿ｏ∀ｏ)",
+          "feel": "fullwidth round eyes + for all mouth, a ✿ in front",
+          "feelZh": "全角圆眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥O_O)",
+          "feel": "wide round eyes + flat mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿O_O)",
+          "feel": "wide round eyes + flat mouth, a ✿ in front",
+          "feelZh": "大圆眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥O＿O)",
+          "feel": "wide round eyes + fullwidth flat mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿O＿O)",
+          "feel": "wide round eyes + fullwidth flat mouth, a ✿ in front",
+          "feelZh": "大圆眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥O。O)",
+          "feel": "wide round eyes + ideographic full stop mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(✿O。O)",
+          "feel": "wide round eyes + ideographic full stop mouth, a ✿ in front",
+          "feelZh": "大圆眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♥O．O)",
+          "feel": "wide round eyes + fullwidth period mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(O．O✿)",
+          "feel": "wide round eyes + fullwidth period mouth with a ✿",
+          "feelZh": "大圆眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥OωO)",
+          "feel": "wide round eyes + omega mouth, a ♥ in front",
+          "feelZh": "大圆眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(OωO✿)",
+          "feel": "wide round eyes + omega mouth with a ✿",
+          "feelZh": "大圆眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥O▽O)",
+          "feel": "wide round eyes + down triangle mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(O▽O✿)",
+          "feel": "wide round eyes + down triangle mouth with a ✿",
+          "feelZh": "大圆眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥O△O)",
+          "feel": "wide round eyes + up triangle mouth, a ♥ in front",
+          "feelZh": "大圆眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(O△O✿)",
+          "feel": "wide round eyes + up triangle mouth with a ✿",
+          "feelZh": "大圆眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥OДO)",
+          "feel": "wide round eyes + cyrillic de capital mouth, a ♥ in front",
+          "feelZh": "大圆眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(OДO✿)",
+          "feel": "wide round eyes + cyrillic de capital mouth with a ✿",
+          "feelZh": "大圆眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♥OдO)",
+          "feel": "wide round eyes + cyrillic de mouth, a ♥ in front",
+          "feelZh": "大圆眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(OдO✿)",
+          "feel": "wide round eyes + cyrillic de mouth with a ✿",
+          "feelZh": "大圆眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚OдO)",
+          "feel": "wide round eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "大圆眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(O∀O✿)",
+          "feel": "wide round eyes + for all mouth with a ✿",
+          "feelZh": "大圆眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚O∀O)",
+          "feel": "wide round eyes + for all mouth, a ༚ in front",
+          "feelZh": "大圆眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(0_0✿)",
+          "feel": "zero eyes + flat mouth with a ✿",
+          "feelZh": "零眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚0_0)",
+          "feel": "zero eyes + flat mouth, a ༚ in front",
+          "feelZh": "零眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(0＿0✿)",
+          "feel": "zero eyes + fullwidth flat mouth with a ✿",
+          "feelZh": "零眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚0＿0)",
+          "feel": "zero eyes + fullwidth flat mouth, a ༚ in front",
+          "feelZh": "零眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(0。0✿)",
+          "feel": "zero eyes + ideographic full stop mouth with a ✿",
+          "feelZh": "零眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚0。0)",
+          "feel": "zero eyes + ideographic full stop mouth, a ༚ in front",
+          "feelZh": "零眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(0．0✿)",
+          "feel": "zero eyes + fullwidth period mouth with a ✿",
+          "feelZh": "零眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(༚0．0)",
+          "feel": "zero eyes + fullwidth period mouth, a ༚ in front",
+          "feelZh": "零眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0ω0)",
+          "feel": "zero eyes + omega mouth, a ♪ in front",
+          "feelZh": "零眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚0ω0)",
+          "feel": "zero eyes + omega mouth, a ༚ in front",
+          "feelZh": "零眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0▽0)",
+          "feel": "zero eyes + down triangle mouth, a ♪ in front",
+          "feelZh": "零眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚0▽0)",
+          "feel": "zero eyes + down triangle mouth, a ༚ in front",
+          "feelZh": "零眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0△0)",
+          "feel": "zero eyes + up triangle mouth, a ♪ in front",
+          "feelZh": "零眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚0△0)",
+          "feel": "zero eyes + up triangle mouth, a ༚ in front",
+          "feelZh": "零眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0Д0)",
+          "feel": "zero eyes + cyrillic de capital mouth, a ♪ in front",
+          "feelZh": "零眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚0Д0)",
+          "feel": "zero eyes + cyrillic de capital mouth, a ༚ in front",
+          "feelZh": "零眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0д0)",
+          "feel": "zero eyes + cyrillic de mouth, a ♪ in front",
+          "feelZh": "零眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(༚0д0)",
+          "feel": "zero eyes + cyrillic de mouth, a ༚ in front",
+          "feelZh": "零眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♪0∀0)",
+          "feel": "zero eyes + for all mouth, a ♪ in front",
+          "feelZh": "零眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(0∀0༚)",
+          "feel": "zero eyes + for all mouth with a ༚",
+          "feelZh": "零眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪д_д)",
+          "feel": "cyrillic de eyes + flat mouth, a ♪ in front",
+          "feelZh": "西里尔 d眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(д_д༚)",
+          "feel": "cyrillic de eyes + flat mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪д＿д)",
+          "feel": "cyrillic de eyes + fullwidth flat mouth, a ♪ in front",
+          "feelZh": "西里尔 d眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(д＿д༚)",
+          "feel": "cyrillic de eyes + fullwidth flat mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪д。д)",
+          "feel": "cyrillic de eyes + ideographic full stop mouth, a ♪ in front",
+          "feelZh": "西里尔 d眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(д。д༚)",
+          "feel": "cyrillic de eyes + ideographic full stop mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪д．д)",
+          "feel": "cyrillic de eyes + fullwidth period mouth, a ♪ in front",
+          "feelZh": "西里尔 d眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(д．д༚)",
+          "feel": "cyrillic de eyes + fullwidth period mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♪дωд)",
+          "feel": "cyrillic de eyes + omega mouth, a ♪ in front",
+          "feelZh": "西里尔 d眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(дωд༚)",
+          "feel": "cyrillic de eyes + omega mouth with a ༚",
+          "feelZh": "西里尔 d眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(д▽д♪)",
+          "feel": "cyrillic de eyes + down triangle mouth with a ♪",
+          "feelZh": "西里尔 d眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(д▽д༚)",
+          "feel": "cyrillic de eyes + down triangle mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 下三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(д△д♪)",
+          "feel": "cyrillic de eyes + up triangle mouth with a ♪",
+          "feelZh": "西里尔 d眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(д△д༚)",
+          "feel": "cyrillic de eyes + up triangle mouth with a ༚",
+          "feelZh": "西里尔 d眼 + 上三角嘴，尾部一个心/花"
+        },
+        {
+          "face": "(дДд♪)",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth with a ♪",
+          "feelZh": "西里尔 d眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(дДд༚)",
+          "feel": "cyrillic de eyes + cyrillic de capital mouth with a ༚",
+          "feelZh": "西里尔 d眼 + Д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ддд♪)",
+          "feel": "cyrillic de eyes + cyrillic de mouth with a ♪",
+          "feelZh": "西里尔 d眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(ддд༚)",
+          "feel": "cyrillic de eyes + cyrillic de mouth with a ༚",
+          "feelZh": "西里尔 d眼 + д嘴，尾部一个心/花"
+        },
+        {
+          "face": "(д∀д♪)",
+          "feel": "cyrillic de eyes + for all mouth with a ♪",
+          "feelZh": "西里尔 d眼 + ∀嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀д∀д)",
+          "feel": "cyrillic de eyes + for all mouth, a ❀ in front",
+          "feelZh": "西里尔 d眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(ω_ω♪)",
+          "feel": "omega eyes + flat mouth with a ♪",
+          "feelZh": "ω眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ω_ω)",
+          "feel": "omega eyes + flat mouth, a ❀ in front",
+          "feelZh": "ω眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(ω＿ω♪)",
+          "feel": "omega eyes + fullwidth flat mouth with a ♪",
+          "feelZh": "ω眼 + 全角平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ω＿ω)",
+          "feel": "omega eyes + fullwidth flat mouth, a ❀ in front",
+          "feelZh": "ω眼 + 全角平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(ω。ω♪)",
+          "feel": "omega eyes + ideographic full stop mouth with a ♪",
+          "feelZh": "ω眼 + 句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ω。ω)",
+          "feel": "omega eyes + ideographic full stop mouth, a ❀ in front",
+          "feelZh": "ω眼 + 句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ω．ω♪)",
+          "feel": "omega eyes + fullwidth period mouth with a ♪",
+          "feelZh": "ω眼 + 全角句点嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ω．ω)",
+          "feel": "omega eyes + fullwidth period mouth, a ❀ in front",
+          "feelZh": "ω眼 + 全角句点嘴，前面一个心/花"
+        },
+        {
+          "face": "(ωωω♪)",
+          "feel": "omega eyes + omega mouth with a ♪",
+          "feelZh": "ω眼 + ω嘴，尾部一个心/花"
+        },
+        {
+          "face": "(❀ωωω)",
+          "feel": "omega eyes + omega mouth, a ❀ in front",
+          "feelZh": "ω眼 + ω嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ω▽ω)",
+          "feel": "omega eyes + down triangle mouth, a ♡ in front",
+          "feelZh": "ω眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ω▽ω)",
+          "feel": "omega eyes + down triangle mouth, a ❀ in front",
+          "feelZh": "ω眼 + 下三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ω△ω)",
+          "feel": "omega eyes + up triangle mouth, a ♡ in front",
+          "feelZh": "ω眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ω△ω)",
+          "feel": "omega eyes + up triangle mouth, a ❀ in front",
+          "feelZh": "ω眼 + 上三角嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ωДω)",
+          "feel": "omega eyes + cyrillic de capital mouth, a ♡ in front",
+          "feelZh": "ω眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ωДω)",
+          "feel": "omega eyes + cyrillic de capital mouth, a ❀ in front",
+          "feelZh": "ω眼 + Д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ωдω)",
+          "feel": "omega eyes + cyrillic de mouth, a ♡ in front",
+          "feelZh": "ω眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ωдω)",
+          "feel": "omega eyes + cyrillic de mouth, a ❀ in front",
+          "feelZh": "ω眼 + д嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡ω∀ω)",
+          "feel": "omega eyes + for all mouth, a ♡ in front",
+          "feelZh": "ω眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(❀ω∀ω)",
+          "feel": "omega eyes + for all mouth, a ❀ in front",
+          "feelZh": "ω眼 + ∀嘴，前面一个心/花"
+        },
+        {
+          "face": "(♡μ_μ)",
+          "feel": "mu eyes + flat mouth, a ♡ in front",
+          "feelZh": "μ眼 + 平嘴嘴，前面一个心/花"
+        },
+        {
+          "face": "(μ_μ❀)",
+          "feel": "mu eyes + flat mouth with a ❀",
+          "feelZh": "μ眼 + 平嘴嘴，尾部一个心/花"
+        },
+        {
+          "face": "(♡μ＿μ)",
+          "feel": "mu eyes + fullwidth flat mouth, a ♡ in front",
+          "feelZh": "μ眼 + 全角平嘴嘴，前面一个心/花"
+        }
+      ]
+    }
+  ]
+}

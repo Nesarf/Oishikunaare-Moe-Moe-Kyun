@@ -1,0 +1,2516 @@
+{
+  "name": "Oishikunaare-Moe-Moe-Kyun kaomoji library - blushing (part 2)",
+  "version": 4,
+  "note": "flustered, embarrassed, caught off guard. Part 2 of one mood of the library, so a reader can take a part instead of the whole file. feelZh is the Chinese rendering of feel.",
+  "categories": [
+    {
+      "id": "blushing",
+      "label": "blushing and sweating",
+      "labelZh": "脸红与冒汗",
+      "use": "flustered, embarrassed, caught off guard",
+      "useZh": "慌乱、不好意思、被抓包",
+      "faces": [
+        {
+          "face": "(｀;·▽·)",
+          "feel": "a low sweat, middle dot eyes + down triangle mouth",
+          "feelZh": "低垂的一滴汗，中点眼 + 下三角嘴"
+        },
+        {
+          "face": "(ノ·▽·)",
+          "feel": "a katakana no, middle dot eyes + down triangle mouth",
+          "feelZh": "ノ，中点眼 + 下三角嘴"
+        },
+        {
+          "face": "(ﾟ;·△·)",
+          "feel": "a half sweat, middle dot eyes + up triangle mouth",
+          "feelZh": "半滴汗，中点眼 + 上三角嘴"
+        },
+        {
+          "face": "(´;·Д·)",
+          "feel": "a raised sweat, middle dot eyes + cyrillic de capital mouth",
+          "feelZh": "扬起的一滴汗，中点眼 + Д嘴"
+        },
+        {
+          "face": "(ˈ;·Д·)",
+          "feel": "a jumping sweat, middle dot eyes + cyrillic de capital mouth",
+          "feelZh": "跳起来的一滴汗，中点眼 + Д嘴"
+        },
+        {
+          "face": "(;·д·)",
+          "feel": "a small sweat, middle dot eyes + cyrillic de mouth",
+          "feelZh": "一小滴汗，中点眼 + д嘴"
+        },
+        {
+          "face": "(つ·д·)",
+          "feel": "a hiragana tsu, middle dot eyes + cyrillic de mouth",
+          "feelZh": "小つ，中点眼 + д嘴"
+        },
+        {
+          "face": "(｀;·∀·)",
+          "feel": "a low sweat, middle dot eyes + for all mouth",
+          "feelZh": "低垂的一滴汗，中点眼 + ∀嘴"
+        },
+        {
+          "face": "(ノ·∀·)",
+          "feel": "a katakana no, middle dot eyes + for all mouth",
+          "feelZh": "ノ，中点眼 + ∀嘴"
+        },
+        {
+          "face": "(ﾟ;·З·)",
+          "feel": "a half sweat, middle dot eyes + cyrillic ze mouth",
+          "feelZh": "半滴汗，中点眼 + З嘴"
+        },
+        {
+          "face": "(´;·ツ·)",
+          "feel": "a raised sweat, middle dot eyes + katakana tsu mouth",
+          "feelZh": "扬起的一滴汗，中点眼 + ツ嘴"
+        },
+        {
+          "face": "(ˈ;·ツ·)",
+          "feel": "a jumping sweat, middle dot eyes + katakana tsu mouth",
+          "feelZh": "跳起来的一滴汗，中点眼 + ツ嘴"
+        },
+        {
+          "face": "(´;·ﾊ·)",
+          "feel": "a raised sweat, middle dot eyes + halfwidth tsu mouth",
+          "feelZh": "扬起的一滴汗，中点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ˈ;·ﾊ·)",
+          "feel": "a jumping sweat, middle dot eyes + halfwidth tsu mouth",
+          "feelZh": "跳起来的一滴汗，中点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(;·ノ·)",
+          "feel": "a small sweat, middle dot eyes + katakana no mouth",
+          "feelZh": "一小滴汗，中点眼 + ノ嘴"
+        },
+        {
+          "face": "(つ·ノ·)",
+          "feel": "a hiragana tsu, middle dot eyes + katakana no mouth",
+          "feelZh": "小つ，中点眼 + ノ嘴"
+        },
+        {
+          "face": "(｀;·ﾝ·)",
+          "feel": "a low sweat, middle dot eyes + halfwidth no mouth",
+          "feelZh": "低垂的一滴汗，中点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ノ·ﾝ·)",
+          "feel": "a katakana no, middle dot eyes + halfwidth no mouth",
+          "feelZh": "ノ，中点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ﾟ;·o·)",
+          "feel": "a half sweat, middle dot eyes + round mouth",
+          "feelZh": "半滴汗，中点眼 + 圆嘴"
+        },
+        {
+          "face": "(´;·O·)",
+          "feel": "a raised sweat, middle dot eyes + wide round mouth",
+          "feelZh": "扬起的一滴汗，中点眼 + 大圆嘴"
+        },
+        {
+          "face": "(ˈ;·O·)",
+          "feel": "a jumping sweat, middle dot eyes + wide round mouth",
+          "feelZh": "跳起来的一滴汗，中点眼 + 大圆嘴"
+        },
+        {
+          "face": "(;·ﾟ·)",
+          "feel": "a small sweat, middle dot eyes + halfwidth circle mouth",
+          "feelZh": "一小滴汗，中点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(つ·ﾟ·)",
+          "feel": "a hiragana tsu, middle dot eyes + halfwidth circle mouth",
+          "feelZh": "小つ，中点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(｀;·w·)",
+          "feel": "a low sweat, middle dot eyes + latin w mouth",
+          "feelZh": "低垂的一滴汗，中点眼 + w嘴"
+        },
+        {
+          "face": "(ノ·w·)",
+          "feel": "a katakana no, middle dot eyes + latin w mouth",
+          "feelZh": "ノ，中点眼 + w嘴"
+        },
+        {
+          "face": "(ﾟ;·ε·)",
+          "feel": "a half sweat, middle dot eyes + epsilon mouth",
+          "feelZh": "半滴汗，中点眼 + ε嘴"
+        },
+        {
+          "face": "(´;・_・)",
+          "feel": "a raised sweat, katakana middle dot eyes + flat mouth",
+          "feelZh": "扬起的一滴汗，中黑点眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ˈ;・_・)",
+          "feel": "a jumping sweat, katakana middle dot eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，中黑点眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;・＿・)",
+          "feel": "a small sweat, katakana middle dot eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，中黑点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つ・＿・)",
+          "feel": "a hiragana tsu, katakana middle dot eyes + fullwidth flat mouth",
+          "feelZh": "小つ，中黑点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;・。・)",
+          "feel": "a low sweat, katakana middle dot eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + 句点嘴"
+        },
+        {
+          "face": "(ノ・。・)",
+          "feel": "a katakana no, katakana middle dot eyes + ideographic full stop mouth",
+          "feelZh": "ノ，中黑点眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;・．・)",
+          "feel": "a half sweat, katakana middle dot eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，中黑点眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;・ω・)",
+          "feel": "a raised sweat, katakana middle dot eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，中黑点眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;・ω・)",
+          "feel": "a jumping sweat, katakana middle dot eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，中黑点眼 + ω嘴"
+        },
+        {
+          "face": "(;・▽・)",
+          "feel": "a small sweat, katakana middle dot eyes + down triangle mouth",
+          "feelZh": "一小滴汗，中黑点眼 + 下三角嘴"
+        },
+        {
+          "face": "(つ・▽・)",
+          "feel": "a hiragana tsu, katakana middle dot eyes + down triangle mouth",
+          "feelZh": "小つ，中黑点眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;・△・)",
+          "feel": "a low sweat, katakana middle dot eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + 上三角嘴"
+        },
+        {
+          "face": "(ノ・△・)",
+          "feel": "a katakana no, katakana middle dot eyes + up triangle mouth",
+          "feelZh": "ノ，中黑点眼 + 上三角嘴"
+        },
+        {
+          "face": "(｀;・Д・)",
+          "feel": "a low sweat, katakana middle dot eyes + cyrillic de capital mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + Д嘴"
+        },
+        {
+          "face": "(ノ・Д・)",
+          "feel": "a katakana no, katakana middle dot eyes + cyrillic de capital mouth",
+          "feelZh": "ノ，中黑点眼 + Д嘴"
+        },
+        {
+          "face": "(ﾟ;・д・)",
+          "feel": "a half sweat, katakana middle dot eyes + cyrillic de mouth",
+          "feelZh": "半滴汗，中黑点眼 + д嘴"
+        },
+        {
+          "face": "(´;・∀・)",
+          "feel": "a raised sweat, katakana middle dot eyes + for all mouth",
+          "feelZh": "扬起的一滴汗，中黑点眼 + ∀嘴"
+        },
+        {
+          "face": "(ˈ;・∀・)",
+          "feel": "a jumping sweat, katakana middle dot eyes + for all mouth",
+          "feelZh": "跳起来的一滴汗，中黑点眼 + ∀嘴"
+        },
+        {
+          "face": "(;・З・)",
+          "feel": "a small sweat, katakana middle dot eyes + cyrillic ze mouth",
+          "feelZh": "一小滴汗，中黑点眼 + З嘴"
+        },
+        {
+          "face": "(つ・З・)",
+          "feel": "a hiragana tsu, katakana middle dot eyes + cyrillic ze mouth",
+          "feelZh": "小つ，中黑点眼 + З嘴"
+        },
+        {
+          "face": "(｀;・ツ・)",
+          "feel": "a low sweat, katakana middle dot eyes + katakana tsu mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + ツ嘴"
+        },
+        {
+          "face": "(ノ・ツ・)",
+          "feel": "a katakana no, katakana middle dot eyes + katakana tsu mouth",
+          "feelZh": "ノ，中黑点眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾟ;・ﾊ・)",
+          "feel": "a half sweat, katakana middle dot eyes + halfwidth tsu mouth",
+          "feelZh": "半滴汗，中黑点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´;・ノ・)",
+          "feel": "a raised sweat, katakana middle dot eyes + katakana no mouth",
+          "feelZh": "扬起的一滴汗，中黑点眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;・ノ・)",
+          "feel": "a jumping sweat, katakana middle dot eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，中黑点眼 + ノ嘴"
+        },
+        {
+          "face": "(;・ﾝ・)",
+          "feel": "a small sweat, katakana middle dot eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，中黑点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つ・ﾝ・)",
+          "feel": "a hiragana tsu, katakana middle dot eyes + halfwidth no mouth",
+          "feelZh": "小つ，中黑点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;・o・)",
+          "feel": "a low sweat, katakana middle dot eyes + round mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + 圆嘴"
+        },
+        {
+          "face": "(ノ・o・)",
+          "feel": "a katakana no, katakana middle dot eyes + round mouth",
+          "feelZh": "ノ，中黑点眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;・O・)",
+          "feel": "a half sweat, katakana middle dot eyes + wide round mouth",
+          "feelZh": "半滴汗，中黑点眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;・ﾟ・)",
+          "feel": "a raised sweat, katakana middle dot eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，中黑点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;・ﾟ・)",
+          "feel": "a jumping sweat, katakana middle dot eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，中黑点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(;・w・)",
+          "feel": "a small sweat, katakana middle dot eyes + latin w mouth",
+          "feelZh": "一小滴汗，中黑点眼 + w嘴"
+        },
+        {
+          "face": "(つ・w・)",
+          "feel": "a hiragana tsu, katakana middle dot eyes + latin w mouth",
+          "feelZh": "小つ，中黑点眼 + w嘴"
+        },
+        {
+          "face": "(｀;・ε・)",
+          "feel": "a low sweat, katakana middle dot eyes + epsilon mouth",
+          "feelZh": "低垂的一滴汗，中黑点眼 + ε嘴"
+        },
+        {
+          "face": "(ノ・ε・)",
+          "feel": "a katakana no, katakana middle dot eyes + epsilon mouth",
+          "feelZh": "ノ，中黑点眼 + ε嘴"
+        },
+        {
+          "face": "(ﾟ;°_°)",
+          "feel": "a half sweat, degree eyes + flat mouth",
+          "feelZh": "半滴汗，度眼 + 平嘴嘴"
+        },
+        {
+          "face": "(´;°＿°)",
+          "feel": "a raised sweat, degree eyes + fullwidth flat mouth",
+          "feelZh": "扬起的一滴汗，度眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ˈ;°＿°)",
+          "feel": "a jumping sweat, degree eyes + fullwidth flat mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(;°。°)",
+          "feel": "a small sweat, degree eyes + ideographic full stop mouth",
+          "feelZh": "一小滴汗，度眼 + 句点嘴"
+        },
+        {
+          "face": "(ˈ;°。°)",
+          "feel": "a jumping sweat, degree eyes + ideographic full stop mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + 句点嘴"
+        },
+        {
+          "face": "(;°．°)",
+          "feel": "a small sweat, degree eyes + fullwidth period mouth",
+          "feelZh": "一小滴汗，度眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つ°．°)",
+          "feel": "a hiragana tsu, degree eyes + fullwidth period mouth",
+          "feelZh": "小つ，度眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;°ω°)",
+          "feel": "a low sweat, degree eyes + omega mouth",
+          "feelZh": "低垂的一滴汗，度眼 + ω嘴"
+        },
+        {
+          "face": "(ノ°ω°)",
+          "feel": "a katakana no, degree eyes + omega mouth",
+          "feelZh": "ノ，度眼 + ω嘴"
+        },
+        {
+          "face": "(ﾟ;°▽°)",
+          "feel": "a half sweat, degree eyes + down triangle mouth",
+          "feelZh": "半滴汗，度眼 + 下三角嘴"
+        },
+        {
+          "face": "(´;°△°)",
+          "feel": "a raised sweat, degree eyes + up triangle mouth",
+          "feelZh": "扬起的一滴汗，度眼 + 上三角嘴"
+        },
+        {
+          "face": "(ˈ;°△°)",
+          "feel": "a jumping sweat, degree eyes + up triangle mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + 上三角嘴"
+        },
+        {
+          "face": "(;°Д°)",
+          "feel": "a small sweat, degree eyes + cyrillic de capital mouth",
+          "feelZh": "一小滴汗，度眼 + Д嘴"
+        },
+        {
+          "face": "(つ°Д°)",
+          "feel": "a hiragana tsu, degree eyes + cyrillic de capital mouth",
+          "feelZh": "小つ，度眼 + Д嘴"
+        },
+        {
+          "face": "(｀;°д°)",
+          "feel": "a low sweat, degree eyes + cyrillic de mouth",
+          "feelZh": "低垂的一滴汗，度眼 + д嘴"
+        },
+        {
+          "face": "(ノ°д°)",
+          "feel": "a katakana no, degree eyes + cyrillic de mouth",
+          "feelZh": "ノ，度眼 + д嘴"
+        },
+        {
+          "face": "(ﾟ;°∀°)",
+          "feel": "a half sweat, degree eyes + for all mouth",
+          "feelZh": "半滴汗，度眼 + ∀嘴"
+        },
+        {
+          "face": "(´;°З°)",
+          "feel": "a raised sweat, degree eyes + cyrillic ze mouth",
+          "feelZh": "扬起的一滴汗，度眼 + З嘴"
+        },
+        {
+          "face": "(ˈ;°З°)",
+          "feel": "a jumping sweat, degree eyes + cyrillic ze mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + З嘴"
+        },
+        {
+          "face": "(;°ツ°)",
+          "feel": "a small sweat, degree eyes + katakana tsu mouth",
+          "feelZh": "一小滴汗，度眼 + ツ嘴"
+        },
+        {
+          "face": "(つ°ツ°)",
+          "feel": "a hiragana tsu, degree eyes + katakana tsu mouth",
+          "feelZh": "小つ，度眼 + ツ嘴"
+        },
+        {
+          "face": "(｀;°ﾊ°)",
+          "feel": "a low sweat, degree eyes + halfwidth tsu mouth",
+          "feelZh": "低垂的一滴汗，度眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ノ°ﾊ°)",
+          "feel": "a katakana no, degree eyes + halfwidth tsu mouth",
+          "feelZh": "ノ，度眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ﾟ;°ノ°)",
+          "feel": "a half sweat, degree eyes + katakana no mouth",
+          "feelZh": "半滴汗，度眼 + ノ嘴"
+        },
+        {
+          "face": "(´;°ﾝ°)",
+          "feel": "a raised sweat, degree eyes + halfwidth no mouth",
+          "feelZh": "扬起的一滴汗，度眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ˈ;°ﾝ°)",
+          "feel": "a jumping sweat, degree eyes + halfwidth no mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(;°o°)",
+          "feel": "a small sweat, degree eyes + round mouth",
+          "feelZh": "一小滴汗，度眼 + 圆嘴"
+        },
+        {
+          "face": "(つ°o°)",
+          "feel": "a hiragana tsu, degree eyes + round mouth",
+          "feelZh": "小つ，度眼 + 圆嘴"
+        },
+        {
+          "face": "(｀;°O°)",
+          "feel": "a low sweat, degree eyes + wide round mouth",
+          "feelZh": "低垂的一滴汗，度眼 + 大圆嘴"
+        },
+        {
+          "face": "(ノ°O°)",
+          "feel": "a katakana no, degree eyes + wide round mouth",
+          "feelZh": "ノ，度眼 + 大圆嘴"
+        },
+        {
+          "face": "(ﾟ;°ﾟ°)",
+          "feel": "a half sweat, degree eyes + halfwidth circle mouth",
+          "feelZh": "半滴汗，度眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ノ°ﾟ°)",
+          "feel": "a katakana no, degree eyes + halfwidth circle mouth",
+          "feelZh": "ノ，度眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ﾟ;°w°)",
+          "feel": "a half sweat, degree eyes + latin w mouth",
+          "feelZh": "半滴汗，度眼 + w嘴"
+        },
+        {
+          "face": "(´;°ε°)",
+          "feel": "a raised sweat, degree eyes + epsilon mouth",
+          "feelZh": "扬起的一滴汗，度眼 + ε嘴"
+        },
+        {
+          "face": "(ˈ;°ε°)",
+          "feel": "a jumping sweat, degree eyes + epsilon mouth",
+          "feelZh": "跳起来的一滴汗，度眼 + ε嘴"
+        },
+        {
+          "face": "(｀;*_*)",
+          "feel": "a low sweat, star eyes + flat mouth",
+          "feelZh": "低垂的一滴汗，星眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ノ*_*)",
+          "feel": "a katakana no, star eyes + flat mouth",
+          "feelZh": "ノ，星眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ﾟ;*＿*)",
+          "feel": "a half sweat, star eyes + fullwidth flat mouth",
+          "feelZh": "半滴汗，星眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(´;*。*)",
+          "feel": "a raised sweat, star eyes + ideographic full stop mouth",
+          "feelZh": "扬起的一滴汗，星眼 + 句点嘴"
+        },
+        {
+          "face": "(ˈ;*。*)",
+          "feel": "a jumping sweat, star eyes + ideographic full stop mouth",
+          "feelZh": "跳起来的一滴汗，星眼 + 句点嘴"
+        },
+        {
+          "face": "(;*．*)",
+          "feel": "a small sweat, star eyes + fullwidth period mouth",
+          "feelZh": "一小滴汗，星眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つ*．*)",
+          "feel": "a hiragana tsu, star eyes + fullwidth period mouth",
+          "feelZh": "小つ，星眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;*ω*)",
+          "feel": "a low sweat, star eyes + omega mouth",
+          "feelZh": "低垂的一滴汗，星眼 + ω嘴"
+        },
+        {
+          "face": "(ノ*ω*)",
+          "feel": "a katakana no, star eyes + omega mouth",
+          "feelZh": "ノ，星眼 + ω嘴"
+        },
+        {
+          "face": "(ﾟ;*▽*)",
+          "feel": "a half sweat, star eyes + down triangle mouth",
+          "feelZh": "半滴汗，星眼 + 下三角嘴"
+        },
+        {
+          "face": "(´;*△*)",
+          "feel": "a raised sweat, star eyes + up triangle mouth",
+          "feelZh": "扬起的一滴汗，星眼 + 上三角嘴"
+        },
+        {
+          "face": "(ˈ;*△*)",
+          "feel": "a jumping sweat, star eyes + up triangle mouth",
+          "feelZh": "跳起来的一滴汗，星眼 + 上三角嘴"
+        },
+        {
+          "face": "(;*Д*)",
+          "feel": "a small sweat, star eyes + cyrillic de capital mouth",
+          "feelZh": "一小滴汗，星眼 + Д嘴"
+        },
+        {
+          "face": "(つ*Д*)",
+          "feel": "a hiragana tsu, star eyes + cyrillic de capital mouth",
+          "feelZh": "小つ，星眼 + Д嘴"
+        },
+        {
+          "face": "(｀;*д*)",
+          "feel": "a low sweat, star eyes + cyrillic de mouth",
+          "feelZh": "低垂的一滴汗，星眼 + д嘴"
+        },
+        {
+          "face": "(ノ*д*)",
+          "feel": "a katakana no, star eyes + cyrillic de mouth",
+          "feelZh": "ノ，星眼 + д嘴"
+        },
+        {
+          "face": "(ﾟ;*∀*)",
+          "feel": "a half sweat, star eyes + for all mouth",
+          "feelZh": "半滴汗，星眼 + ∀嘴"
+        },
+        {
+          "face": "(´;*З*)",
+          "feel": "a raised sweat, star eyes + cyrillic ze mouth",
+          "feelZh": "扬起的一滴汗，星眼 + З嘴"
+        },
+        {
+          "face": "(ˈ;*З*)",
+          "feel": "a jumping sweat, star eyes + cyrillic ze mouth",
+          "feelZh": "跳起来的一滴汗，星眼 + З嘴"
+        },
+        {
+          "face": "(;*ツ*)",
+          "feel": "a small sweat, star eyes + katakana tsu mouth",
+          "feelZh": "一小滴汗，星眼 + ツ嘴"
+        },
+        {
+          "face": "(つ*ツ*)",
+          "feel": "a hiragana tsu, star eyes + katakana tsu mouth",
+          "feelZh": "小つ，星眼 + ツ嘴"
+        },
+        {
+          "face": "(｀;*ﾊ*)",
+          "feel": "a low sweat, star eyes + halfwidth tsu mouth",
+          "feelZh": "低垂的一滴汗，星眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ノ*ﾊ*)",
+          "feel": "a katakana no, star eyes + halfwidth tsu mouth",
+          "feelZh": "ノ，星眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(｀;*ノ*)",
+          "feel": "a low sweat, star eyes + katakana no mouth",
+          "feelZh": "低垂的一滴汗，星眼 + ノ嘴"
+        },
+        {
+          "face": "(ノ*ノ*)",
+          "feel": "a katakana no, star eyes + katakana no mouth",
+          "feelZh": "ノ，星眼 + ノ嘴"
+        },
+        {
+          "face": "(ﾟ;*ﾝ*)",
+          "feel": "a half sweat, star eyes + halfwidth no mouth",
+          "feelZh": "半滴汗，星眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(´;*o*)",
+          "feel": "a raised sweat, star eyes + round mouth",
+          "feelZh": "扬起的一滴汗，星眼 + 圆嘴"
+        },
+        {
+          "face": "(つ*o*)",
+          "feel": "a hiragana tsu, star eyes + round mouth",
+          "feelZh": "小つ，星眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;*O*)",
+          "feel": "a half sweat, star eyes + wide round mouth",
+          "feelZh": "半滴汗，星眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;*ﾟ*)",
+          "feel": "a raised sweat, star eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，星眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;*ﾟ*)",
+          "feel": "a jumping sweat, star eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，星眼 + 半角圆嘴"
+        },
+        {
+          "face": "(｀;*w*)",
+          "feel": "a low sweat, star eyes + latin w mouth",
+          "feelZh": "低垂的一滴汗，星眼 + w嘴"
+        },
+        {
+          "face": "(ノ*w*)",
+          "feel": "a katakana no, star eyes + latin w mouth",
+          "feelZh": "ノ，星眼 + w嘴"
+        },
+        {
+          "face": "(ﾟ;*ε*)",
+          "feel": "a half sweat, star eyes + epsilon mouth",
+          "feelZh": "半滴汗，星眼 + ε嘴"
+        },
+        {
+          "face": "(´;+_+)",
+          "feel": "a raised sweat, plus eyes + flat mouth",
+          "feelZh": "扬起的一滴汗，十眼 + 平嘴嘴"
+        },
+        {
+          "face": "(つ+_+)",
+          "feel": "a hiragana tsu, plus eyes + flat mouth",
+          "feelZh": "小つ，十眼 + 平嘴嘴"
+        },
+        {
+          "face": "(｀;+＿+)",
+          "feel": "a low sweat, plus eyes + fullwidth flat mouth",
+          "feelZh": "低垂的一滴汗，十眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ノ+＿+)",
+          "feel": "a katakana no, plus eyes + fullwidth flat mouth",
+          "feelZh": "ノ，十眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ﾟ;+。+)",
+          "feel": "a half sweat, plus eyes + ideographic full stop mouth",
+          "feelZh": "半滴汗，十眼 + 句点嘴"
+        },
+        {
+          "face": "(´;+．+)",
+          "feel": "a raised sweat, plus eyes + fullwidth period mouth",
+          "feelZh": "扬起的一滴汗，十眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ˈ;+．+)",
+          "feel": "a jumping sweat, plus eyes + fullwidth period mouth",
+          "feelZh": "跳起来的一滴汗，十眼 + 全角句点嘴"
+        },
+        {
+          "face": "(;+ω+)",
+          "feel": "a small sweat, plus eyes + omega mouth",
+          "feelZh": "一小滴汗，十眼 + ω嘴"
+        },
+        {
+          "face": "(つ+ω+)",
+          "feel": "a hiragana tsu, plus eyes + omega mouth",
+          "feelZh": "小つ，十眼 + ω嘴"
+        },
+        {
+          "face": "(｀;+▽+)",
+          "feel": "a low sweat, plus eyes + down triangle mouth",
+          "feelZh": "低垂的一滴汗，十眼 + 下三角嘴"
+        },
+        {
+          "face": "(ノ+▽+)",
+          "feel": "a katakana no, plus eyes + down triangle mouth",
+          "feelZh": "ノ，十眼 + 下三角嘴"
+        },
+        {
+          "face": "(ﾟ;+△+)",
+          "feel": "a half sweat, plus eyes + up triangle mouth",
+          "feelZh": "半滴汗，十眼 + 上三角嘴"
+        },
+        {
+          "face": "(´;+Д+)",
+          "feel": "a raised sweat, plus eyes + cyrillic de capital mouth",
+          "feelZh": "扬起的一滴汗，十眼 + Д嘴"
+        },
+        {
+          "face": "(ˈ;+Д+)",
+          "feel": "a jumping sweat, plus eyes + cyrillic de capital mouth",
+          "feelZh": "跳起来的一滴汗，十眼 + Д嘴"
+        },
+        {
+          "face": "(;+д+)",
+          "feel": "a small sweat, plus eyes + cyrillic de mouth",
+          "feelZh": "一小滴汗，十眼 + д嘴"
+        },
+        {
+          "face": "(つ+д+)",
+          "feel": "a hiragana tsu, plus eyes + cyrillic de mouth",
+          "feelZh": "小つ，十眼 + д嘴"
+        },
+        {
+          "face": "(;+∀+)",
+          "feel": "a small sweat, plus eyes + for all mouth",
+          "feelZh": "一小滴汗，十眼 + ∀嘴"
+        },
+        {
+          "face": "(つ+∀+)",
+          "feel": "a hiragana tsu, plus eyes + for all mouth",
+          "feelZh": "小つ，十眼 + ∀嘴"
+        },
+        {
+          "face": "(｀;+З+)",
+          "feel": "a low sweat, plus eyes + cyrillic ze mouth",
+          "feelZh": "低垂的一滴汗，十眼 + З嘴"
+        },
+        {
+          "face": "(ノ+З+)",
+          "feel": "a katakana no, plus eyes + cyrillic ze mouth",
+          "feelZh": "ノ，十眼 + З嘴"
+        },
+        {
+          "face": "(ﾟ;+ツ+)",
+          "feel": "a half sweat, plus eyes + katakana tsu mouth",
+          "feelZh": "半滴汗，十眼 + ツ嘴"
+        },
+        {
+          "face": "(´;+ﾊ+)",
+          "feel": "a raised sweat, plus eyes + halfwidth tsu mouth",
+          "feelZh": "扬起的一滴汗，十眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ˈ;+ﾊ+)",
+          "feel": "a jumping sweat, plus eyes + halfwidth tsu mouth",
+          "feelZh": "跳起来的一滴汗，十眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(;+ノ+)",
+          "feel": "a small sweat, plus eyes + katakana no mouth",
+          "feelZh": "一小滴汗，十眼 + ノ嘴"
+        },
+        {
+          "face": "(つ+ノ+)",
+          "feel": "a hiragana tsu, plus eyes + katakana no mouth",
+          "feelZh": "小つ，十眼 + ノ嘴"
+        },
+        {
+          "face": "(｀;+ﾝ+)",
+          "feel": "a low sweat, plus eyes + halfwidth no mouth",
+          "feelZh": "低垂的一滴汗，十眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ノ+ﾝ+)",
+          "feel": "a katakana no, plus eyes + halfwidth no mouth",
+          "feelZh": "ノ，十眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ˈ;+o+)",
+          "feel": "a jumping sweat, plus eyes + round mouth",
+          "feelZh": "跳起来的一滴汗，十眼 + 圆嘴"
+        },
+        {
+          "face": "(｀;+O+)",
+          "feel": "a low sweat, plus eyes + wide round mouth",
+          "feelZh": "低垂的一滴汗，十眼 + 大圆嘴"
+        },
+        {
+          "face": "(ノ+O+)",
+          "feel": "a katakana no, plus eyes + wide round mouth",
+          "feelZh": "ノ，十眼 + 大圆嘴"
+        },
+        {
+          "face": "(ﾟ;+ﾟ+)",
+          "feel": "a half sweat, plus eyes + halfwidth circle mouth",
+          "feelZh": "半滴汗，十眼 + 半角圆嘴"
+        },
+        {
+          "face": "(´;+w+)",
+          "feel": "a raised sweat, plus eyes + latin w mouth",
+          "feelZh": "扬起的一滴汗，十眼 + w嘴"
+        },
+        {
+          "face": "(つ+w+)",
+          "feel": "a hiragana tsu, plus eyes + latin w mouth",
+          "feelZh": "小つ，十眼 + w嘴"
+        },
+        {
+          "face": "(｀;+ε+)",
+          "feel": "a low sweat, plus eyes + epsilon mouth",
+          "feelZh": "低垂的一滴汗，十眼 + ε嘴"
+        },
+        {
+          "face": "(ノ+ε+)",
+          "feel": "a katakana no, plus eyes + epsilon mouth",
+          "feelZh": "ノ，十眼 + ε嘴"
+        },
+        {
+          "face": "(ˈ;x_x)",
+          "feel": "a jumping sweat, lowercase x eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;x＿x)",
+          "feel": "a small sweat, lowercase x eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，小叉眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つx＿x)",
+          "feel": "a hiragana tsu, lowercase x eyes + fullwidth flat mouth",
+          "feelZh": "小つ，小叉眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;x。x)",
+          "feel": "a low sweat, lowercase x eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，小叉眼 + 句点嘴"
+        },
+        {
+          "face": "(ノx。x)",
+          "feel": "a katakana no, lowercase x eyes + ideographic full stop mouth",
+          "feelZh": "ノ，小叉眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;x．x)",
+          "feel": "a half sweat, lowercase x eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，小叉眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;xωx)",
+          "feel": "a raised sweat, lowercase x eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，小叉眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;xωx)",
+          "feel": "a jumping sweat, lowercase x eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + ω嘴"
+        },
+        {
+          "face": "(´;x▽x)",
+          "feel": "a raised sweat, lowercase x eyes + down triangle mouth",
+          "feelZh": "扬起的一滴汗，小叉眼 + 下三角嘴"
+        },
+        {
+          "face": "(ˈ;x▽x)",
+          "feel": "a jumping sweat, lowercase x eyes + down triangle mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + 下三角嘴"
+        },
+        {
+          "face": "(;x△x)",
+          "feel": "a small sweat, lowercase x eyes + up triangle mouth",
+          "feelZh": "一小滴汗，小叉眼 + 上三角嘴"
+        },
+        {
+          "face": "(つx△x)",
+          "feel": "a hiragana tsu, lowercase x eyes + up triangle mouth",
+          "feelZh": "小つ，小叉眼 + 上三角嘴"
+        },
+        {
+          "face": "(｀;xДx)",
+          "feel": "a low sweat, lowercase x eyes + cyrillic de capital mouth",
+          "feelZh": "低垂的一滴汗，小叉眼 + Д嘴"
+        },
+        {
+          "face": "(ノxДx)",
+          "feel": "a katakana no, lowercase x eyes + cyrillic de capital mouth",
+          "feelZh": "ノ，小叉眼 + Д嘴"
+        },
+        {
+          "face": "(ﾟ;xдx)",
+          "feel": "a half sweat, lowercase x eyes + cyrillic de mouth",
+          "feelZh": "半滴汗，小叉眼 + д嘴"
+        },
+        {
+          "face": "(´;x∀x)",
+          "feel": "a raised sweat, lowercase x eyes + for all mouth",
+          "feelZh": "扬起的一滴汗，小叉眼 + ∀嘴"
+        },
+        {
+          "face": "(ˈ;x∀x)",
+          "feel": "a jumping sweat, lowercase x eyes + for all mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + ∀嘴"
+        },
+        {
+          "face": "(;xЗx)",
+          "feel": "a small sweat, lowercase x eyes + cyrillic ze mouth",
+          "feelZh": "一小滴汗，小叉眼 + З嘴"
+        },
+        {
+          "face": "(つxЗx)",
+          "feel": "a hiragana tsu, lowercase x eyes + cyrillic ze mouth",
+          "feelZh": "小つ，小叉眼 + З嘴"
+        },
+        {
+          "face": "(｀;xツx)",
+          "feel": "a low sweat, lowercase x eyes + katakana tsu mouth",
+          "feelZh": "低垂的一滴汗，小叉眼 + ツ嘴"
+        },
+        {
+          "face": "(ノxツx)",
+          "feel": "a katakana no, lowercase x eyes + katakana tsu mouth",
+          "feelZh": "ノ，小叉眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾟ;xﾊx)",
+          "feel": "a half sweat, lowercase x eyes + halfwidth tsu mouth",
+          "feelZh": "半滴汗，小叉眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´;xノx)",
+          "feel": "a raised sweat, lowercase x eyes + katakana no mouth",
+          "feelZh": "扬起的一滴汗，小叉眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;xノx)",
+          "feel": "a jumping sweat, lowercase x eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + ノ嘴"
+        },
+        {
+          "face": "(;xﾝx)",
+          "feel": "a small sweat, lowercase x eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，小叉眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つxﾝx)",
+          "feel": "a hiragana tsu, lowercase x eyes + halfwidth no mouth",
+          "feelZh": "小つ，小叉眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ﾟ;xox)",
+          "feel": "a half sweat, lowercase x eyes + round mouth",
+          "feelZh": "半滴汗，小叉眼 + 圆嘴"
+        },
+        {
+          "face": "(´;xOx)",
+          "feel": "a raised sweat, lowercase x eyes + wide round mouth",
+          "feelZh": "扬起的一滴汗，小叉眼 + 大圆嘴"
+        },
+        {
+          "face": "(つxOx)",
+          "feel": "a hiragana tsu, lowercase x eyes + wide round mouth",
+          "feelZh": "小つ，小叉眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;xﾟx)",
+          "feel": "a low sweat, lowercase x eyes + halfwidth circle mouth",
+          "feelZh": "低垂的一滴汗，小叉眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ノxﾟx)",
+          "feel": "a katakana no, lowercase x eyes + halfwidth circle mouth",
+          "feelZh": "ノ，小叉眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;xwx)",
+          "feel": "a jumping sweat, lowercase x eyes + latin w mouth",
+          "feelZh": "跳起来的一滴汗，小叉眼 + w嘴"
+        },
+        {
+          "face": "(;xεx)",
+          "feel": "a small sweat, lowercase x eyes + epsilon mouth",
+          "feelZh": "一小滴汗，小叉眼 + ε嘴"
+        },
+        {
+          "face": "(つxεx)",
+          "feel": "a hiragana tsu, lowercase x eyes + epsilon mouth",
+          "feelZh": "小つ，小叉眼 + ε嘴"
+        },
+        {
+          "face": "(ﾟ;X_X)",
+          "feel": "a half sweat, uppercase x eyes + flat mouth",
+          "feelZh": "半滴汗，大叉眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ノX_X)",
+          "feel": "a katakana no, uppercase x eyes + flat mouth",
+          "feelZh": "ノ，大叉眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ﾟ;X＿X)",
+          "feel": "a half sweat, uppercase x eyes + fullwidth flat mouth",
+          "feelZh": "半滴汗，大叉眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(´;X。X)",
+          "feel": "a raised sweat, uppercase x eyes + ideographic full stop mouth",
+          "feelZh": "扬起的一滴汗，大叉眼 + 句点嘴"
+        },
+        {
+          "face": "(ˈ;X。X)",
+          "feel": "a jumping sweat, uppercase x eyes + ideographic full stop mouth",
+          "feelZh": "跳起来的一滴汗，大叉眼 + 句点嘴"
+        },
+        {
+          "face": "(;X．X)",
+          "feel": "a small sweat, uppercase x eyes + fullwidth period mouth",
+          "feelZh": "一小滴汗，大叉眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つX．X)",
+          "feel": "a hiragana tsu, uppercase x eyes + fullwidth period mouth",
+          "feelZh": "小つ，大叉眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;XωX)",
+          "feel": "a low sweat, uppercase x eyes + omega mouth",
+          "feelZh": "低垂的一滴汗，大叉眼 + ω嘴"
+        },
+        {
+          "face": "(ノXωX)",
+          "feel": "a katakana no, uppercase x eyes + omega mouth",
+          "feelZh": "ノ，大叉眼 + ω嘴"
+        },
+        {
+          "face": "(ﾟ;X▽X)",
+          "feel": "a half sweat, uppercase x eyes + down triangle mouth",
+          "feelZh": "半滴汗，大叉眼 + 下三角嘴"
+        },
+        {
+          "face": "(´;X△X)",
+          "feel": "a raised sweat, uppercase x eyes + up triangle mouth",
+          "feelZh": "扬起的一滴汗，大叉眼 + 上三角嘴"
+        },
+        {
+          "face": "(ˈ;X△X)",
+          "feel": "a jumping sweat, uppercase x eyes + up triangle mouth",
+          "feelZh": "跳起来的一滴汗，大叉眼 + 上三角嘴"
+        },
+        {
+          "face": "(;XДX)",
+          "feel": "a small sweat, uppercase x eyes + cyrillic de capital mouth",
+          "feelZh": "一小滴汗，大叉眼 + Д嘴"
+        },
+        {
+          "face": "(つXДX)",
+          "feel": "a hiragana tsu, uppercase x eyes + cyrillic de capital mouth",
+          "feelZh": "小つ，大叉眼 + Д嘴"
+        },
+        {
+          "face": "(｀;XдX)",
+          "feel": "a low sweat, uppercase x eyes + cyrillic de mouth",
+          "feelZh": "低垂的一滴汗，大叉眼 + д嘴"
+        },
+        {
+          "face": "(ノXдX)",
+          "feel": "a katakana no, uppercase x eyes + cyrillic de mouth",
+          "feelZh": "ノ，大叉眼 + д嘴"
+        },
+        {
+          "face": "(ﾟ;X∀X)",
+          "feel": "a half sweat, uppercase x eyes + for all mouth",
+          "feelZh": "半滴汗，大叉眼 + ∀嘴"
+        },
+        {
+          "face": "(´;XЗX)",
+          "feel": "a raised sweat, uppercase x eyes + cyrillic ze mouth",
+          "feelZh": "扬起的一滴汗，大叉眼 + З嘴"
+        },
+        {
+          "face": "(ˈ;XЗX)",
+          "feel": "a jumping sweat, uppercase x eyes + cyrillic ze mouth",
+          "feelZh": "跳起来的一滴汗，大叉眼 + З嘴"
+        },
+        {
+          "face": "(;XツX)",
+          "feel": "a small sweat, uppercase x eyes + katakana tsu mouth",
+          "feelZh": "一小滴汗，大叉眼 + ツ嘴"
+        },
+        {
+          "face": "(つXツX)",
+          "feel": "a hiragana tsu, uppercase x eyes + katakana tsu mouth",
+          "feelZh": "小つ，大叉眼 + ツ嘴"
+        },
+        {
+          "face": "(｀;XﾊX)",
+          "feel": "a low sweat, uppercase x eyes + halfwidth tsu mouth",
+          "feelZh": "低垂的一滴汗，大叉眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ノXﾊX)",
+          "feel": "a katakana no, uppercase x eyes + halfwidth tsu mouth",
+          "feelZh": "ノ，大叉眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ﾟ;XノX)",
+          "feel": "a half sweat, uppercase x eyes + katakana no mouth",
+          "feelZh": "半滴汗，大叉眼 + ノ嘴"
+        },
+        {
+          "face": "(´;XﾝX)",
+          "feel": "a raised sweat, uppercase x eyes + halfwidth no mouth",
+          "feelZh": "扬起的一滴汗，大叉眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ˈ;XﾝX)",
+          "feel": "a jumping sweat, uppercase x eyes + halfwidth no mouth",
+          "feelZh": "跳起来的一滴汗，大叉眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;XoX)",
+          "feel": "a low sweat, uppercase x eyes + round mouth",
+          "feelZh": "低垂的一滴汗，大叉眼 + 圆嘴"
+        },
+        {
+          "face": "(つXoX)",
+          "feel": "a hiragana tsu, uppercase x eyes + round mouth",
+          "feelZh": "小つ，大叉眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;XOX)",
+          "feel": "a half sweat, uppercase x eyes + wide round mouth",
+          "feelZh": "半滴汗，大叉眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;XﾟX)",
+          "feel": "a raised sweat, uppercase x eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，大叉眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;XﾟX)",
+          "feel": "a jumping sweat, uppercase x eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，大叉眼 + 半角圆嘴"
+        },
+        {
+          "face": "(｀;XwX)",
+          "feel": "a low sweat, uppercase x eyes + latin w mouth",
+          "feelZh": "低垂的一滴汗，大叉眼 + w嘴"
+        },
+        {
+          "face": "(ノXwX)",
+          "feel": "a katakana no, uppercase x eyes + latin w mouth",
+          "feelZh": "ノ，大叉眼 + w嘴"
+        },
+        {
+          "face": "(ﾟ;XεX)",
+          "feel": "a half sweat, uppercase x eyes + epsilon mouth",
+          "feelZh": "半滴汗，大叉眼 + ε嘴"
+        },
+        {
+          "face": "(´;×_×)",
+          "feel": "a raised sweat, multiplication eyes + flat mouth",
+          "feelZh": "扬起的一滴汗，乘号眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ˈ;×_×)",
+          "feel": "a jumping sweat, multiplication eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，乘号眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;×＿×)",
+          "feel": "a small sweat, multiplication eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，乘号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つ×＿×)",
+          "feel": "a hiragana tsu, multiplication eyes + fullwidth flat mouth",
+          "feelZh": "小つ，乘号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;×。×)",
+          "feel": "a low sweat, multiplication eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + 句点嘴"
+        },
+        {
+          "face": "(ノ×。×)",
+          "feel": "a katakana no, multiplication eyes + ideographic full stop mouth",
+          "feelZh": "ノ，乘号眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;×．×)",
+          "feel": "a half sweat, multiplication eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，乘号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;×ω×)",
+          "feel": "a raised sweat, multiplication eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，乘号眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;×ω×)",
+          "feel": "a jumping sweat, multiplication eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，乘号眼 + ω嘴"
+        },
+        {
+          "face": "(;×▽×)",
+          "feel": "a small sweat, multiplication eyes + down triangle mouth",
+          "feelZh": "一小滴汗，乘号眼 + 下三角嘴"
+        },
+        {
+          "face": "(つ×▽×)",
+          "feel": "a hiragana tsu, multiplication eyes + down triangle mouth",
+          "feelZh": "小つ，乘号眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;×△×)",
+          "feel": "a low sweat, multiplication eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + 上三角嘴"
+        },
+        {
+          "face": "(ノ×△×)",
+          "feel": "a katakana no, multiplication eyes + up triangle mouth",
+          "feelZh": "ノ，乘号眼 + 上三角嘴"
+        },
+        {
+          "face": "(ﾟ;×Д×)",
+          "feel": "a half sweat, multiplication eyes + cyrillic de capital mouth",
+          "feelZh": "半滴汗，乘号眼 + Д嘴"
+        },
+        {
+          "face": "(´;×д×)",
+          "feel": "a raised sweat, multiplication eyes + cyrillic de mouth",
+          "feelZh": "扬起的一滴汗，乘号眼 + д嘴"
+        },
+        {
+          "face": "(ˈ;×д×)",
+          "feel": "a jumping sweat, multiplication eyes + cyrillic de mouth",
+          "feelZh": "跳起来的一滴汗，乘号眼 + д嘴"
+        },
+        {
+          "face": "(;×∀×)",
+          "feel": "a small sweat, multiplication eyes + for all mouth",
+          "feelZh": "一小滴汗，乘号眼 + ∀嘴"
+        },
+        {
+          "face": "(つ×∀×)",
+          "feel": "a hiragana tsu, multiplication eyes + for all mouth",
+          "feelZh": "小つ，乘号眼 + ∀嘴"
+        },
+        {
+          "face": "(｀;×З×)",
+          "feel": "a low sweat, multiplication eyes + cyrillic ze mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + З嘴"
+        },
+        {
+          "face": "(ノ×З×)",
+          "feel": "a katakana no, multiplication eyes + cyrillic ze mouth",
+          "feelZh": "ノ，乘号眼 + З嘴"
+        },
+        {
+          "face": "(｀;×ツ×)",
+          "feel": "a low sweat, multiplication eyes + katakana tsu mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + ツ嘴"
+        },
+        {
+          "face": "(ノ×ツ×)",
+          "feel": "a katakana no, multiplication eyes + katakana tsu mouth",
+          "feelZh": "ノ，乘号眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾟ;×ﾊ×)",
+          "feel": "a half sweat, multiplication eyes + halfwidth tsu mouth",
+          "feelZh": "半滴汗，乘号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´;×ノ×)",
+          "feel": "a raised sweat, multiplication eyes + katakana no mouth",
+          "feelZh": "扬起的一滴汗，乘号眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;×ノ×)",
+          "feel": "a jumping sweat, multiplication eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，乘号眼 + ノ嘴"
+        },
+        {
+          "face": "(;×ﾝ×)",
+          "feel": "a small sweat, multiplication eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，乘号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つ×ﾝ×)",
+          "feel": "a hiragana tsu, multiplication eyes + halfwidth no mouth",
+          "feelZh": "小つ，乘号眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;×o×)",
+          "feel": "a low sweat, multiplication eyes + round mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + 圆嘴"
+        },
+        {
+          "face": "(ノ×o×)",
+          "feel": "a katakana no, multiplication eyes + round mouth",
+          "feelZh": "ノ，乘号眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;×O×)",
+          "feel": "a half sweat, multiplication eyes + wide round mouth",
+          "feelZh": "半滴汗，乘号眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;×ﾟ×)",
+          "feel": "a raised sweat, multiplication eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，乘号眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;×ﾟ×)",
+          "feel": "a jumping sweat, multiplication eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，乘号眼 + 半角圆嘴"
+        },
+        {
+          "face": "(;×w×)",
+          "feel": "a small sweat, multiplication eyes + latin w mouth",
+          "feelZh": "一小滴汗，乘号眼 + w嘴"
+        },
+        {
+          "face": "(つ×w×)",
+          "feel": "a hiragana tsu, multiplication eyes + latin w mouth",
+          "feelZh": "小つ，乘号眼 + w嘴"
+        },
+        {
+          "face": "(｀;×ε×)",
+          "feel": "a low sweat, multiplication eyes + epsilon mouth",
+          "feelZh": "低垂的一滴汗，乘号眼 + ε嘴"
+        },
+        {
+          "face": "(ノ×ε×)",
+          "feel": "a katakana no, multiplication eyes + epsilon mouth",
+          "feelZh": "ノ，乘号眼 + ε嘴"
+        },
+        {
+          "face": "(ˈ;>_<)",
+          "feel": "a jumping sweat, narrow eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，窄眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;>＿<)",
+          "feel": "a small sweat, narrow eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つ>＿<)",
+          "feel": "a hiragana tsu, narrow eyes + fullwidth flat mouth",
+          "feelZh": "小つ，窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;>。<)",
+          "feel": "a low sweat, narrow eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，窄眼 + 句点嘴"
+        },
+        {
+          "face": "(ノ>。<)",
+          "feel": "a katakana no, narrow eyes + ideographic full stop mouth",
+          "feelZh": "ノ，窄眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;>．<)",
+          "feel": "a half sweat, narrow eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;>ω<)",
+          "feel": "a raised sweat, narrow eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，窄眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;>ω<)",
+          "feel": "a jumping sweat, narrow eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，窄眼 + ω嘴"
+        },
+        {
+          "face": "(;>▽<)",
+          "feel": "a small sweat, narrow eyes + down triangle mouth",
+          "feelZh": "一小滴汗，窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(つ>▽<)",
+          "feel": "a hiragana tsu, narrow eyes + down triangle mouth",
+          "feelZh": "小つ，窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;>△<)",
+          "feel": "a low sweat, narrow eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(つ>△<)",
+          "feel": "a hiragana tsu, narrow eyes + up triangle mouth",
+          "feelZh": "小つ，窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(｀;>Д<)",
+          "feel": "a low sweat, narrow eyes + cyrillic de capital mouth",
+          "feelZh": "低垂的一滴汗，窄眼 + Д嘴"
+        },
+        {
+          "face": "(ノ>Д<)",
+          "feel": "a katakana no, narrow eyes + cyrillic de capital mouth",
+          "feelZh": "ノ，窄眼 + Д嘴"
+        },
+        {
+          "face": "(ﾟ;>д<)",
+          "feel": "a half sweat, narrow eyes + cyrillic de mouth",
+          "feelZh": "半滴汗，窄眼 + д嘴"
+        },
+        {
+          "face": "(´;>∀<)",
+          "feel": "a raised sweat, narrow eyes + for all mouth",
+          "feelZh": "扬起的一滴汗，窄眼 + ∀嘴"
+        },
+        {
+          "face": "(ˈ;>∀<)",
+          "feel": "a jumping sweat, narrow eyes + for all mouth",
+          "feelZh": "跳起来的一滴汗，窄眼 + ∀嘴"
+        },
+        {
+          "face": "(;>З<)",
+          "feel": "a small sweat, narrow eyes + cyrillic ze mouth",
+          "feelZh": "一小滴汗，窄眼 + З嘴"
+        },
+        {
+          "face": "(つ>З<)",
+          "feel": "a hiragana tsu, narrow eyes + cyrillic ze mouth",
+          "feelZh": "小つ，窄眼 + З嘴"
+        },
+        {
+          "face": "(｀;>ツ<)",
+          "feel": "a low sweat, narrow eyes + katakana tsu mouth",
+          "feelZh": "低垂的一滴汗，窄眼 + ツ嘴"
+        },
+        {
+          "face": "(ノ>ツ<)",
+          "feel": "a katakana no, narrow eyes + katakana tsu mouth",
+          "feelZh": "ノ，窄眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾟ;>ﾊ<)",
+          "feel": "a half sweat, narrow eyes + halfwidth tsu mouth",
+          "feelZh": "半滴汗，窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´;>ノ<)",
+          "feel": "a raised sweat, narrow eyes + katakana no mouth",
+          "feelZh": "扬起的一滴汗，窄眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;>ノ<)",
+          "feel": "a jumping sweat, narrow eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，窄眼 + ノ嘴"
+        },
+        {
+          "face": "(;>ﾝ<)",
+          "feel": "a small sweat, narrow eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つ>ﾝ<)",
+          "feel": "a hiragana tsu, narrow eyes + halfwidth no mouth",
+          "feelZh": "小つ，窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ﾟ;>o<)",
+          "feel": "a half sweat, narrow eyes + round mouth",
+          "feelZh": "半滴汗，窄眼 + 圆嘴"
+        },
+        {
+          "face": "(´;>O<)",
+          "feel": "a raised sweat, narrow eyes + wide round mouth",
+          "feelZh": "扬起的一滴汗，窄眼 + 大圆嘴"
+        },
+        {
+          "face": "(つ>O<)",
+          "feel": "a hiragana tsu, narrow eyes + wide round mouth",
+          "feelZh": "小つ，窄眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;>ﾟ<)",
+          "feel": "a low sweat, narrow eyes + halfwidth circle mouth",
+          "feelZh": "低垂的一滴汗，窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ノ>ﾟ<)",
+          "feel": "a katakana no, narrow eyes + halfwidth circle mouth",
+          "feelZh": "ノ，窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;>w<)",
+          "feel": "a jumping sweat, narrow eyes + latin w mouth",
+          "feelZh": "跳起来的一滴汗，窄眼 + w嘴"
+        },
+        {
+          "face": "(;>ε<)",
+          "feel": "a small sweat, narrow eyes + epsilon mouth",
+          "feelZh": "一小滴汗，窄眼 + ε嘴"
+        },
+        {
+          "face": "(つ>ε<)",
+          "feel": "a hiragana tsu, narrow eyes + epsilon mouth",
+          "feelZh": "小つ，窄眼 + ε嘴"
+        },
+        {
+          "face": "(ﾟ;<_>)",
+          "feel": "a half sweat, inverted narrow eyes + flat mouth",
+          "feelZh": "半滴汗，外窄眼 + 平嘴嘴"
+        },
+        {
+          "face": "(´;<＿>)",
+          "feel": "a raised sweat, inverted narrow eyes + fullwidth flat mouth",
+          "feelZh": "扬起的一滴汗，外窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ˈ;<＿>)",
+          "feel": "a jumping sweat, inverted narrow eyes + fullwidth flat mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(;<。>)",
+          "feel": "a small sweat, inverted narrow eyes + ideographic full stop mouth",
+          "feelZh": "一小滴汗，外窄眼 + 句点嘴"
+        },
+        {
+          "face": "(ˈ;<。>)",
+          "feel": "a jumping sweat, inverted narrow eyes + ideographic full stop mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + 句点嘴"
+        },
+        {
+          "face": "(;<．>)",
+          "feel": "a small sweat, inverted narrow eyes + fullwidth period mouth",
+          "feelZh": "一小滴汗，外窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つ<．>)",
+          "feel": "a hiragana tsu, inverted narrow eyes + fullwidth period mouth",
+          "feelZh": "小つ，外窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;<ω>)",
+          "feel": "a low sweat, inverted narrow eyes + omega mouth",
+          "feelZh": "低垂的一滴汗，外窄眼 + ω嘴"
+        },
+        {
+          "face": "(ノ<ω>)",
+          "feel": "a katakana no, inverted narrow eyes + omega mouth",
+          "feelZh": "ノ，外窄眼 + ω嘴"
+        },
+        {
+          "face": "(ﾟ;<▽>)",
+          "feel": "a half sweat, inverted narrow eyes + down triangle mouth",
+          "feelZh": "半滴汗，外窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(´;<△>)",
+          "feel": "a raised sweat, inverted narrow eyes + up triangle mouth",
+          "feelZh": "扬起的一滴汗，外窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(ˈ;<△>)",
+          "feel": "a jumping sweat, inverted narrow eyes + up triangle mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(;<Д>)",
+          "feel": "a small sweat, inverted narrow eyes + cyrillic de capital mouth",
+          "feelZh": "一小滴汗，外窄眼 + Д嘴"
+        },
+        {
+          "face": "(つ<Д>)",
+          "feel": "a hiragana tsu, inverted narrow eyes + cyrillic de capital mouth",
+          "feelZh": "小つ，外窄眼 + Д嘴"
+        },
+        {
+          "face": "(｀;<д>)",
+          "feel": "a low sweat, inverted narrow eyes + cyrillic de mouth",
+          "feelZh": "低垂的一滴汗，外窄眼 + д嘴"
+        },
+        {
+          "face": "(ノ<д>)",
+          "feel": "a katakana no, inverted narrow eyes + cyrillic de mouth",
+          "feelZh": "ノ，外窄眼 + д嘴"
+        },
+        {
+          "face": "(ﾟ;<∀>)",
+          "feel": "a half sweat, inverted narrow eyes + for all mouth",
+          "feelZh": "半滴汗，外窄眼 + ∀嘴"
+        },
+        {
+          "face": "(´;<З>)",
+          "feel": "a raised sweat, inverted narrow eyes + cyrillic ze mouth",
+          "feelZh": "扬起的一滴汗，外窄眼 + З嘴"
+        },
+        {
+          "face": "(ˈ;<З>)",
+          "feel": "a jumping sweat, inverted narrow eyes + cyrillic ze mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + З嘴"
+        },
+        {
+          "face": "(;<ツ>)",
+          "feel": "a small sweat, inverted narrow eyes + katakana tsu mouth",
+          "feelZh": "一小滴汗，外窄眼 + ツ嘴"
+        },
+        {
+          "face": "(つ<ツ>)",
+          "feel": "a hiragana tsu, inverted narrow eyes + katakana tsu mouth",
+          "feelZh": "小つ，外窄眼 + ツ嘴"
+        },
+        {
+          "face": "(｀;<ﾊ>)",
+          "feel": "a low sweat, inverted narrow eyes + halfwidth tsu mouth",
+          "feelZh": "低垂的一滴汗，外窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ノ<ﾊ>)",
+          "feel": "a katakana no, inverted narrow eyes + halfwidth tsu mouth",
+          "feelZh": "ノ，外窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ﾟ;<ノ>)",
+          "feel": "a half sweat, inverted narrow eyes + katakana no mouth",
+          "feelZh": "半滴汗，外窄眼 + ノ嘴"
+        },
+        {
+          "face": "(´;<ﾝ>)",
+          "feel": "a raised sweat, inverted narrow eyes + halfwidth no mouth",
+          "feelZh": "扬起的一滴汗，外窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ˈ;<ﾝ>)",
+          "feel": "a jumping sweat, inverted narrow eyes + halfwidth no mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;<o>)",
+          "feel": "a low sweat, inverted narrow eyes + round mouth",
+          "feelZh": "低垂的一滴汗，外窄眼 + 圆嘴"
+        },
+        {
+          "face": "(ノ<o>)",
+          "feel": "a katakana no, inverted narrow eyes + round mouth",
+          "feelZh": "ノ，外窄眼 + 圆嘴"
+        },
+        {
+          "face": "(ˈ;<O>)",
+          "feel": "a jumping sweat, inverted narrow eyes + wide round mouth",
+          "feelZh": "跳起来的一滴汗，外窄眼 + 大圆嘴"
+        },
+        {
+          "face": "(;<ﾟ>)",
+          "feel": "a small sweat, inverted narrow eyes + halfwidth circle mouth",
+          "feelZh": "一小滴汗，外窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(つ<ﾟ>)",
+          "feel": "a hiragana tsu, inverted narrow eyes + halfwidth circle mouth",
+          "feelZh": "小つ，外窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(｀;<w>)",
+          "feel": "a low sweat, inverted narrow eyes + latin w mouth",
+          "feelZh": "低垂的一滴汗，外窄眼 + w嘴"
+        },
+        {
+          "face": "(ノ<w>)",
+          "feel": "a katakana no, inverted narrow eyes + latin w mouth",
+          "feelZh": "ノ，外窄眼 + w嘴"
+        },
+        {
+          "face": "(ﾟ;<ε>)",
+          "feel": "a half sweat, inverted narrow eyes + epsilon mouth",
+          "feelZh": "半滴汗，外窄眼 + ε嘴"
+        },
+        {
+          "face": "(´;＞_＜)",
+          "feel": "a raised sweat, fullwidth narrow eyes + flat mouth",
+          "feelZh": "扬起的一滴汗，全角窄眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ˈ;＞_＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;＞＿＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，全角窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つ＞＿＜)",
+          "feel": "a hiragana tsu, fullwidth narrow eyes + fullwidth flat mouth",
+          "feelZh": "小つ，全角窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;＞。＜)",
+          "feel": "a low sweat, fullwidth narrow eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，全角窄眼 + 句点嘴"
+        },
+        {
+          "face": "(ノ＞。＜)",
+          "feel": "a katakana no, fullwidth narrow eyes + ideographic full stop mouth",
+          "feelZh": "ノ，全角窄眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;＞．＜)",
+          "feel": "a half sweat, fullwidth narrow eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，全角窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;＞ω＜)",
+          "feel": "a raised sweat, fullwidth narrow eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，全角窄眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;＞ω＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + ω嘴"
+        },
+        {
+          "face": "(;＞▽＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + down triangle mouth",
+          "feelZh": "一小滴汗，全角窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(つ＞▽＜)",
+          "feel": "a hiragana tsu, fullwidth narrow eyes + down triangle mouth",
+          "feelZh": "小つ，全角窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;＞△＜)",
+          "feel": "a low sweat, fullwidth narrow eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，全角窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(ノ＞△＜)",
+          "feel": "a katakana no, fullwidth narrow eyes + up triangle mouth",
+          "feelZh": "ノ，全角窄眼 + 上三角嘴"
+        },
+        {
+          "face": "(ﾟ;＞Д＜)",
+          "feel": "a half sweat, fullwidth narrow eyes + cyrillic de capital mouth",
+          "feelZh": "半滴汗，全角窄眼 + Д嘴"
+        },
+        {
+          "face": "(´;＞д＜)",
+          "feel": "a raised sweat, fullwidth narrow eyes + cyrillic de mouth",
+          "feelZh": "扬起的一滴汗，全角窄眼 + д嘴"
+        },
+        {
+          "face": "(ˈ;＞д＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + cyrillic de mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + д嘴"
+        },
+        {
+          "face": "(;＞∀＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + for all mouth",
+          "feelZh": "一小滴汗，全角窄眼 + ∀嘴"
+        },
+        {
+          "face": "(つ＞∀＜)",
+          "feel": "a hiragana tsu, fullwidth narrow eyes + for all mouth",
+          "feelZh": "小つ，全角窄眼 + ∀嘴"
+        },
+        {
+          "face": "(｀;＞З＜)",
+          "feel": "a low sweat, fullwidth narrow eyes + cyrillic ze mouth",
+          "feelZh": "低垂的一滴汗，全角窄眼 + З嘴"
+        },
+        {
+          "face": "(ノ＞З＜)",
+          "feel": "a katakana no, fullwidth narrow eyes + cyrillic ze mouth",
+          "feelZh": "ノ，全角窄眼 + З嘴"
+        },
+        {
+          "face": "(ﾟ;＞ツ＜)",
+          "feel": "a half sweat, fullwidth narrow eyes + katakana tsu mouth",
+          "feelZh": "半滴汗，全角窄眼 + ツ嘴"
+        },
+        {
+          "face": "(´;＞ﾊ＜)",
+          "feel": "a raised sweat, fullwidth narrow eyes + halfwidth tsu mouth",
+          "feelZh": "扬起的一滴汗，全角窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ˈ;＞ﾊ＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + halfwidth tsu mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(;＞ノ＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + katakana no mouth",
+          "feelZh": "一小滴汗，全角窄眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;＞ノ＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + ノ嘴"
+        },
+        {
+          "face": "(;＞ﾝ＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，全角窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つ＞ﾝ＜)",
+          "feel": "a hiragana tsu, fullwidth narrow eyes + halfwidth no mouth",
+          "feelZh": "小つ，全角窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;＞o＜)",
+          "feel": "a low sweat, fullwidth narrow eyes + round mouth",
+          "feelZh": "低垂的一滴汗，全角窄眼 + 圆嘴"
+        },
+        {
+          "face": "(ノ＞o＜)",
+          "feel": "a katakana no, fullwidth narrow eyes + round mouth",
+          "feelZh": "ノ，全角窄眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;＞O＜)",
+          "feel": "a half sweat, fullwidth narrow eyes + wide round mouth",
+          "feelZh": "半滴汗，全角窄眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;＞ﾟ＜)",
+          "feel": "a raised sweat, fullwidth narrow eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，全角窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;＞ﾟ＜)",
+          "feel": "a jumping sweat, fullwidth narrow eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，全角窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(;＞w＜)",
+          "feel": "a small sweat, fullwidth narrow eyes + latin w mouth",
+          "feelZh": "一小滴汗，全角窄眼 + w嘴"
+        },
+        {
+          "face": "(つ＞w＜)",
+          "feel": "a hiragana tsu, fullwidth narrow eyes + latin w mouth",
+          "feelZh": "小つ，全角窄眼 + w嘴"
+        },
+        {
+          "face": "(｀;＞ε＜)",
+          "feel": "a low sweat, fullwidth narrow eyes + epsilon mouth",
+          "feelZh": "低垂的一滴汗，全角窄眼 + ε嘴"
+        },
+        {
+          "face": "(ノ＞ε＜)",
+          "feel": "a katakana no, fullwidth narrow eyes + epsilon mouth",
+          "feelZh": "ノ，全角窄眼 + ε嘴"
+        },
+        {
+          "face": "(ˈ;T_T)",
+          "feel": "a jumping sweat, latin tee eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;T＿T)",
+          "feel": "a small sweat, latin tee eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，T眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つT＿T)",
+          "feel": "a hiragana tsu, latin tee eyes + fullwidth flat mouth",
+          "feelZh": "小つ，T眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;T。T)",
+          "feel": "a low sweat, latin tee eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，T眼 + 句点嘴"
+        },
+        {
+          "face": "(ノT。T)",
+          "feel": "a katakana no, latin tee eyes + ideographic full stop mouth",
+          "feelZh": "ノ，T眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;T．T)",
+          "feel": "a half sweat, latin tee eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，T眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;TωT)",
+          "feel": "a raised sweat, latin tee eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，T眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;TωT)",
+          "feel": "a jumping sweat, latin tee eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + ω嘴"
+        },
+        {
+          "face": "(;T▽T)",
+          "feel": "a small sweat, latin tee eyes + down triangle mouth",
+          "feelZh": "一小滴汗，T眼 + 下三角嘴"
+        },
+        {
+          "face": "(つT▽T)",
+          "feel": "a hiragana tsu, latin tee eyes + down triangle mouth",
+          "feelZh": "小つ，T眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;T△T)",
+          "feel": "a low sweat, latin tee eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，T眼 + 上三角嘴"
+        },
+        {
+          "face": "(ノT△T)",
+          "feel": "a katakana no, latin tee eyes + up triangle mouth",
+          "feelZh": "ノ，T眼 + 上三角嘴"
+        },
+        {
+          "face": "(ﾟ;TДT)",
+          "feel": "a half sweat, latin tee eyes + cyrillic de capital mouth",
+          "feelZh": "半滴汗，T眼 + Д嘴"
+        },
+        {
+          "face": "(´;TдT)",
+          "feel": "a raised sweat, latin tee eyes + cyrillic de mouth",
+          "feelZh": "扬起的一滴汗，T眼 + д嘴"
+        },
+        {
+          "face": "(ˈ;TдT)",
+          "feel": "a jumping sweat, latin tee eyes + cyrillic de mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + д嘴"
+        },
+        {
+          "face": "(´;T∀T)",
+          "feel": "a raised sweat, latin tee eyes + for all mouth",
+          "feelZh": "扬起的一滴汗，T眼 + ∀嘴"
+        },
+        {
+          "face": "(ˈ;T∀T)",
+          "feel": "a jumping sweat, latin tee eyes + for all mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + ∀嘴"
+        },
+        {
+          "face": "(;TЗT)",
+          "feel": "a small sweat, latin tee eyes + cyrillic ze mouth",
+          "feelZh": "一小滴汗，T眼 + З嘴"
+        },
+        {
+          "face": "(つTЗT)",
+          "feel": "a hiragana tsu, latin tee eyes + cyrillic ze mouth",
+          "feelZh": "小つ，T眼 + З嘴"
+        },
+        {
+          "face": "(｀;TツT)",
+          "feel": "a low sweat, latin tee eyes + katakana tsu mouth",
+          "feelZh": "低垂的一滴汗，T眼 + ツ嘴"
+        },
+        {
+          "face": "(ノTツT)",
+          "feel": "a katakana no, latin tee eyes + katakana tsu mouth",
+          "feelZh": "ノ，T眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾟ;TﾊT)",
+          "feel": "a half sweat, latin tee eyes + halfwidth tsu mouth",
+          "feelZh": "半滴汗，T眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´;TノT)",
+          "feel": "a raised sweat, latin tee eyes + katakana no mouth",
+          "feelZh": "扬起的一滴汗，T眼 + ノ嘴"
+        },
+        {
+          "face": "(ˈ;TノT)",
+          "feel": "a jumping sweat, latin tee eyes + katakana no mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + ノ嘴"
+        },
+        {
+          "face": "(;TﾝT)",
+          "feel": "a small sweat, latin tee eyes + halfwidth no mouth",
+          "feelZh": "一小滴汗，T眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(つTﾝT)",
+          "feel": "a hiragana tsu, latin tee eyes + halfwidth no mouth",
+          "feelZh": "小つ，T眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ﾟ;ToT)",
+          "feel": "a half sweat, latin tee eyes + round mouth",
+          "feelZh": "半滴汗，T眼 + 圆嘴"
+        },
+        {
+          "face": "(´;TOT)",
+          "feel": "a raised sweat, latin tee eyes + wide round mouth",
+          "feelZh": "扬起的一滴汗，T眼 + 大圆嘴"
+        },
+        {
+          "face": "(つTOT)",
+          "feel": "a hiragana tsu, latin tee eyes + wide round mouth",
+          "feelZh": "小つ，T眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;TﾟT)",
+          "feel": "a low sweat, latin tee eyes + halfwidth circle mouth",
+          "feelZh": "低垂的一滴汗，T眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ノTﾟT)",
+          "feel": "a katakana no, latin tee eyes + halfwidth circle mouth",
+          "feelZh": "ノ，T眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;TwT)",
+          "feel": "a jumping sweat, latin tee eyes + latin w mouth",
+          "feelZh": "跳起来的一滴汗，T眼 + w嘴"
+        },
+        {
+          "face": "(;TεT)",
+          "feel": "a small sweat, latin tee eyes + epsilon mouth",
+          "feelZh": "一小滴汗，T眼 + ε嘴"
+        },
+        {
+          "face": "(つTεT)",
+          "feel": "a hiragana tsu, latin tee eyes + epsilon mouth",
+          "feelZh": "小つ，T眼 + ε嘴"
+        },
+        {
+          "face": "(｀;Т_Т)",
+          "feel": "a low sweat, cyrillic te eyes + flat mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ノТ_Т)",
+          "feel": "a katakana no, cyrillic te eyes + flat mouth",
+          "feelZh": "ノ，西里尔 T眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ﾟ;Т＿Т)",
+          "feel": "a half sweat, cyrillic te eyes + fullwidth flat mouth",
+          "feelZh": "半滴汗，西里尔 T眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(´;Т。Т)",
+          "feel": "a raised sweat, cyrillic te eyes + ideographic full stop mouth",
+          "feelZh": "扬起的一滴汗，西里尔 T眼 + 句点嘴"
+        },
+        {
+          "face": "(ˈ;Т。Т)",
+          "feel": "a jumping sweat, cyrillic te eyes + ideographic full stop mouth",
+          "feelZh": "跳起来的一滴汗，西里尔 T眼 + 句点嘴"
+        },
+        {
+          "face": "(;Т．Т)",
+          "feel": "a small sweat, cyrillic te eyes + fullwidth period mouth",
+          "feelZh": "一小滴汗，西里尔 T眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つТ．Т)",
+          "feel": "a hiragana tsu, cyrillic te eyes + fullwidth period mouth",
+          "feelZh": "小つ，西里尔 T眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;ТωТ)",
+          "feel": "a low sweat, cyrillic te eyes + omega mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + ω嘴"
+        },
+        {
+          "face": "(つТωТ)",
+          "feel": "a hiragana tsu, cyrillic te eyes + omega mouth",
+          "feelZh": "小つ，西里尔 T眼 + ω嘴"
+        },
+        {
+          "face": "(｀;Т▽Т)",
+          "feel": "a low sweat, cyrillic te eyes + down triangle mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + 下三角嘴"
+        },
+        {
+          "face": "(ノТ▽Т)",
+          "feel": "a katakana no, cyrillic te eyes + down triangle mouth",
+          "feelZh": "ノ，西里尔 T眼 + 下三角嘴"
+        },
+        {
+          "face": "(ﾟ;Т△Т)",
+          "feel": "a half sweat, cyrillic te eyes + up triangle mouth",
+          "feelZh": "半滴汗，西里尔 T眼 + 上三角嘴"
+        },
+        {
+          "face": "(´;ТДТ)",
+          "feel": "a raised sweat, cyrillic te eyes + cyrillic de capital mouth",
+          "feelZh": "扬起的一滴汗，西里尔 T眼 + Д嘴"
+        },
+        {
+          "face": "(ˈ;ТДТ)",
+          "feel": "a jumping sweat, cyrillic te eyes + cyrillic de capital mouth",
+          "feelZh": "跳起来的一滴汗，西里尔 T眼 + Д嘴"
+        },
+        {
+          "face": "(;ТдТ)",
+          "feel": "a small sweat, cyrillic te eyes + cyrillic de mouth",
+          "feelZh": "一小滴汗，西里尔 T眼 + д嘴"
+        },
+        {
+          "face": "(つТдТ)",
+          "feel": "a hiragana tsu, cyrillic te eyes + cyrillic de mouth",
+          "feelZh": "小つ，西里尔 T眼 + д嘴"
+        },
+        {
+          "face": "(｀;Т∀Т)",
+          "feel": "a low sweat, cyrillic te eyes + for all mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + ∀嘴"
+        },
+        {
+          "face": "(ノТ∀Т)",
+          "feel": "a katakana no, cyrillic te eyes + for all mouth",
+          "feelZh": "ノ，西里尔 T眼 + ∀嘴"
+        },
+        {
+          "face": "(ﾟ;ТЗТ)",
+          "feel": "a half sweat, cyrillic te eyes + cyrillic ze mouth",
+          "feelZh": "半滴汗，西里尔 T眼 + З嘴"
+        },
+        {
+          "face": "(´;ТツТ)",
+          "feel": "a raised sweat, cyrillic te eyes + katakana tsu mouth",
+          "feelZh": "扬起的一滴汗，西里尔 T眼 + ツ嘴"
+        },
+        {
+          "face": "(ˈ;ТツТ)",
+          "feel": "a jumping sweat, cyrillic te eyes + katakana tsu mouth",
+          "feelZh": "跳起来的一滴汗，西里尔 T眼 + ツ嘴"
+        },
+        {
+          "face": "(;ТﾊТ)",
+          "feel": "a small sweat, cyrillic te eyes + halfwidth tsu mouth",
+          "feelZh": "一小滴汗，西里尔 T眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(つТﾊТ)",
+          "feel": "a hiragana tsu, cyrillic te eyes + halfwidth tsu mouth",
+          "feelZh": "小つ，西里尔 T眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(｀;ТノТ)",
+          "feel": "a low sweat, cyrillic te eyes + katakana no mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + ノ嘴"
+        },
+        {
+          "face": "(ノТノТ)",
+          "feel": "a katakana no, cyrillic te eyes + katakana no mouth",
+          "feelZh": "ノ，西里尔 T眼 + ノ嘴"
+        },
+        {
+          "face": "(ﾟ;ТﾝТ)",
+          "feel": "a half sweat, cyrillic te eyes + halfwidth no mouth",
+          "feelZh": "半滴汗，西里尔 T眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(´;ТoТ)",
+          "feel": "a raised sweat, cyrillic te eyes + round mouth",
+          "feelZh": "扬起的一滴汗，西里尔 T眼 + 圆嘴"
+        },
+        {
+          "face": "(ˈ;ТoТ)",
+          "feel": "a jumping sweat, cyrillic te eyes + round mouth",
+          "feelZh": "跳起来的一滴汗，西里尔 T眼 + 圆嘴"
+        },
+        {
+          "face": "(;ТOТ)",
+          "feel": "a small sweat, cyrillic te eyes + wide round mouth",
+          "feelZh": "一小滴汗，西里尔 T眼 + 大圆嘴"
+        },
+        {
+          "face": "(つТOТ)",
+          "feel": "a hiragana tsu, cyrillic te eyes + wide round mouth",
+          "feelZh": "小つ，西里尔 T眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;ТﾟТ)",
+          "feel": "a low sweat, cyrillic te eyes + halfwidth circle mouth",
+          "feelZh": "低垂的一滴汗，西里尔 T眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ノТﾟТ)",
+          "feel": "a katakana no, cyrillic te eyes + halfwidth circle mouth",
+          "feelZh": "ノ，西里尔 T眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ﾟ;ТwТ)",
+          "feel": "a half sweat, cyrillic te eyes + latin w mouth",
+          "feelZh": "半滴汗，西里尔 T眼 + w嘴"
+        },
+        {
+          "face": "(´;ТεТ)",
+          "feel": "a raised sweat, cyrillic te eyes + epsilon mouth",
+          "feelZh": "扬起的一滴汗，西里尔 T眼 + ε嘴"
+        },
+        {
+          "face": "(ˈ;ТεТ)",
+          "feel": "a jumping sweat, cyrillic te eyes + epsilon mouth",
+          "feelZh": "跳起来的一滴汗，西里尔 T眼 + ε嘴"
+        },
+        {
+          "face": "(´;ʕ_ʕ)",
+          "feel": "a raised sweat, inverted glottal eyes + flat mouth",
+          "feelZh": "扬起的一滴汗，倒撇眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ˈ;ʕ_ʕ)",
+          "feel": "a jumping sweat, inverted glottal eyes + flat mouth",
+          "feelZh": "跳起来的一滴汗，倒撇眼 + 平嘴嘴"
+        },
+        {
+          "face": "(;ʕ＿ʕ)",
+          "feel": "a small sweat, inverted glottal eyes + fullwidth flat mouth",
+          "feelZh": "一小滴汗，倒撇眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(つʕ＿ʕ)",
+          "feel": "a hiragana tsu, inverted glottal eyes + fullwidth flat mouth",
+          "feelZh": "小つ，倒撇眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀;ʕ。ʕ)",
+          "feel": "a low sweat, inverted glottal eyes + ideographic full stop mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + 句点嘴"
+        },
+        {
+          "face": "(ノʕ。ʕ)",
+          "feel": "a katakana no, inverted glottal eyes + ideographic full stop mouth",
+          "feelZh": "ノ，倒撇眼 + 句点嘴"
+        },
+        {
+          "face": "(ﾟ;ʕ．ʕ)",
+          "feel": "a half sweat, inverted glottal eyes + fullwidth period mouth",
+          "feelZh": "半滴汗，倒撇眼 + 全角句点嘴"
+        },
+        {
+          "face": "(´;ʕωʕ)",
+          "feel": "a raised sweat, inverted glottal eyes + omega mouth",
+          "feelZh": "扬起的一滴汗，倒撇眼 + ω嘴"
+        },
+        {
+          "face": "(ˈ;ʕωʕ)",
+          "feel": "a jumping sweat, inverted glottal eyes + omega mouth",
+          "feelZh": "跳起来的一滴汗，倒撇眼 + ω嘴"
+        },
+        {
+          "face": "(;ʕ▽ʕ)",
+          "feel": "a small sweat, inverted glottal eyes + down triangle mouth",
+          "feelZh": "一小滴汗，倒撇眼 + 下三角嘴"
+        },
+        {
+          "face": "(つʕ▽ʕ)",
+          "feel": "a hiragana tsu, inverted glottal eyes + down triangle mouth",
+          "feelZh": "小つ，倒撇眼 + 下三角嘴"
+        },
+        {
+          "face": "(｀;ʕ△ʕ)",
+          "feel": "a low sweat, inverted glottal eyes + up triangle mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + 上三角嘴"
+        },
+        {
+          "face": "(ノʕ△ʕ)",
+          "feel": "a katakana no, inverted glottal eyes + up triangle mouth",
+          "feelZh": "ノ，倒撇眼 + 上三角嘴"
+        },
+        {
+          "face": "(ﾟ;ʕДʕ)",
+          "feel": "a half sweat, inverted glottal eyes + cyrillic de capital mouth",
+          "feelZh": "半滴汗，倒撇眼 + Д嘴"
+        },
+        {
+          "face": "(´;ʕдʕ)",
+          "feel": "a raised sweat, inverted glottal eyes + cyrillic de mouth",
+          "feelZh": "扬起的一滴汗，倒撇眼 + д嘴"
+        },
+        {
+          "face": "(ˈ;ʕдʕ)",
+          "feel": "a jumping sweat, inverted glottal eyes + cyrillic de mouth",
+          "feelZh": "跳起来的一滴汗，倒撇眼 + д嘴"
+        },
+        {
+          "face": "(;ʕ∀ʕ)",
+          "feel": "a small sweat, inverted glottal eyes + for all mouth",
+          "feelZh": "一小滴汗，倒撇眼 + ∀嘴"
+        },
+        {
+          "face": "(つʕ∀ʕ)",
+          "feel": "a hiragana tsu, inverted glottal eyes + for all mouth",
+          "feelZh": "小つ，倒撇眼 + ∀嘴"
+        },
+        {
+          "face": "(｀;ʕЗʕ)",
+          "feel": "a low sweat, inverted glottal eyes + cyrillic ze mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + З嘴"
+        },
+        {
+          "face": "(ノʕЗʕ)",
+          "feel": "a katakana no, inverted glottal eyes + cyrillic ze mouth",
+          "feelZh": "ノ，倒撇眼 + З嘴"
+        },
+        {
+          "face": "(ﾟ;ʕツʕ)",
+          "feel": "a half sweat, inverted glottal eyes + katakana tsu mouth",
+          "feelZh": "半滴汗，倒撇眼 + ツ嘴"
+        },
+        {
+          "face": "(´;ʕﾊʕ)",
+          "feel": "a raised sweat, inverted glottal eyes + halfwidth tsu mouth",
+          "feelZh": "扬起的一滴汗，倒撇眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ˈ;ʕﾊʕ)",
+          "feel": "a jumping sweat, inverted glottal eyes + halfwidth tsu mouth",
+          "feelZh": "跳起来的一滴汗，倒撇眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(;ʕノʕ)",
+          "feel": "a small sweat, inverted glottal eyes + katakana no mouth",
+          "feelZh": "一小滴汗，倒撇眼 + ノ嘴"
+        },
+        {
+          "face": "(つʕノʕ)",
+          "feel": "a hiragana tsu, inverted glottal eyes + katakana no mouth",
+          "feelZh": "小つ，倒撇眼 + ノ嘴"
+        },
+        {
+          "face": "(｀;ʕﾝʕ)",
+          "feel": "a low sweat, inverted glottal eyes + halfwidth no mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ノʕﾝʕ)",
+          "feel": "a katakana no, inverted glottal eyes + halfwidth no mouth",
+          "feelZh": "ノ，倒撇眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;ʕoʕ)",
+          "feel": "a low sweat, inverted glottal eyes + round mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + 圆嘴"
+        },
+        {
+          "face": "(ノʕoʕ)",
+          "feel": "a katakana no, inverted glottal eyes + round mouth",
+          "feelZh": "ノ，倒撇眼 + 圆嘴"
+        },
+        {
+          "face": "(ﾟ;ʕOʕ)",
+          "feel": "a half sweat, inverted glottal eyes + wide round mouth",
+          "feelZh": "半滴汗，倒撇眼 + 大圆嘴"
+        },
+        {
+          "face": "(´;ʕﾟʕ)",
+          "feel": "a raised sweat, inverted glottal eyes + halfwidth circle mouth",
+          "feelZh": "扬起的一滴汗，倒撇眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈ;ʕﾟʕ)",
+          "feel": "a jumping sweat, inverted glottal eyes + halfwidth circle mouth",
+          "feelZh": "跳起来的一滴汗，倒撇眼 + 半角圆嘴"
+        },
+        {
+          "face": "(;ʕwʕ)",
+          "feel": "a small sweat, inverted glottal eyes + latin w mouth",
+          "feelZh": "一小滴汗，倒撇眼 + w嘴"
+        },
+        {
+          "face": "(つʕwʕ)",
+          "feel": "a hiragana tsu, inverted glottal eyes + latin w mouth",
+          "feelZh": "小つ，倒撇眼 + w嘴"
+        },
+        {
+          "face": "(｀;ʕεʕ)",
+          "feel": "a low sweat, inverted glottal eyes + epsilon mouth",
+          "feelZh": "低垂的一滴汗，倒撇眼 + ε嘴"
+        },
+        {
+          "face": "(ノʕεʕ)",
+          "feel": "a katakana no, inverted glottal eyes + epsilon mouth",
+          "feelZh": "ノ，倒撇眼 + ε嘴"
+        },
+        {
+          "face": "(ﾟ;ˈ_ˈ)",
+          "feel": "a half sweat, vertical stroke eyes + flat mouth",
+          "feelZh": "半滴汗，重音眼 + 平嘴嘴"
+        },
+        {
+          "face": "(´;ˈ＿ˈ)",
+          "feel": "a raised sweat, vertical stroke eyes + fullwidth flat mouth",
+          "feelZh": "扬起的一滴汗，重音眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ˈ;ˈ＿ˈ)",
+          "feel": "a jumping sweat, vertical stroke eyes + fullwidth flat mouth",
+          "feelZh": "跳起来的一滴汗，重音眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(;ˈ。ˈ)",
+          "feel": "a small sweat, vertical stroke eyes + ideographic full stop mouth",
+          "feelZh": "一小滴汗，重音眼 + 句点嘴"
+        },
+        {
+          "face": "(つˈ。ˈ)",
+          "feel": "a hiragana tsu, vertical stroke eyes + ideographic full stop mouth",
+          "feelZh": "小つ，重音眼 + 句点嘴"
+        },
+        {
+          "face": "(｀;ˈ．ˈ)",
+          "feel": "a low sweat, vertical stroke eyes + fullwidth period mouth",
+          "feelZh": "低垂的一滴汗，重音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ノˈ．ˈ)",
+          "feel": "a katakana no, vertical stroke eyes + fullwidth period mouth",
+          "feelZh": "ノ，重音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ﾟ;ˈωˈ)",
+          "feel": "a half sweat, vertical stroke eyes + omega mouth",
+          "feelZh": "半滴汗，重音眼 + ω嘴"
+        },
+        {
+          "face": "(´;ˈ▽ˈ)",
+          "feel": "a raised sweat, vertical stroke eyes + down triangle mouth",
+          "feelZh": "扬起的一滴汗，重音眼 + 下三角嘴"
+        },
+        {
+          "face": "(ˈ;ˈ▽ˈ)",
+          "feel": "a jumping sweat, vertical stroke eyes + down triangle mouth",
+          "feelZh": "跳起来的一滴汗，重音眼 + 下三角嘴"
+        },
+        {
+          "face": "(;ˈ△ˈ)",
+          "feel": "a small sweat, vertical stroke eyes + up triangle mouth",
+          "feelZh": "一小滴汗，重音眼 + 上三角嘴"
+        },
+        {
+          "face": "(つˈ△ˈ)",
+          "feel": "a hiragana tsu, vertical stroke eyes + up triangle mouth",
+          "feelZh": "小つ，重音眼 + 上三角嘴"
+        },
+        {
+          "face": "(｀;ˈДˈ)",
+          "feel": "a low sweat, vertical stroke eyes + cyrillic de capital mouth",
+          "feelZh": "低垂的一滴汗，重音眼 + Д嘴"
+        },
+        {
+          "face": "(ノˈДˈ)",
+          "feel": "a katakana no, vertical stroke eyes + cyrillic de capital mouth",
+          "feelZh": "ノ，重音眼 + Д嘴"
+        },
+        {
+          "face": "(ﾟ;ˈдˈ)",
+          "feel": "a half sweat, vertical stroke eyes + cyrillic de mouth",
+          "feelZh": "半滴汗，重音眼 + д嘴"
+        },
+        {
+          "face": "(´;ˈ∀ˈ)",
+          "feel": "a raised sweat, vertical stroke eyes + for all mouth",
+          "feelZh": "扬起的一滴汗，重音眼 + ∀嘴"
+        },
+        {
+          "face": "(ˈ;ˈ∀ˈ)",
+          "feel": "a jumping sweat, vertical stroke eyes + for all mouth",
+          "feelZh": "跳起来的一滴汗，重音眼 + ∀嘴"
+        },
+        {
+          "face": "(;ˈЗˈ)",
+          "feel": "a small sweat, vertical stroke eyes + cyrillic ze mouth",
+          "feelZh": "一小滴汗，重音眼 + З嘴"
+        },
+        {
+          "face": "(ˈ;ˈЗˈ)",
+          "feel": "a jumping sweat, vertical stroke eyes + cyrillic ze mouth",
+          "feelZh": "跳起来的一滴汗，重音眼 + З嘴"
+        },
+        {
+          "face": "(;ˈツˈ)",
+          "feel": "a small sweat, vertical stroke eyes + katakana tsu mouth",
+          "feelZh": "一小滴汗，重音眼 + ツ嘴"
+        },
+        {
+          "face": "(つˈツˈ)",
+          "feel": "a hiragana tsu, vertical stroke eyes + katakana tsu mouth",
+          "feelZh": "小つ，重音眼 + ツ嘴"
+        }
+      ]
+    }
+  ]
+}
