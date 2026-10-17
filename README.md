@@ -52,12 +52,14 @@ Four rules ship today.
    in words. Marks must not carry the structure either - a paragraph that reads as prose beats a column
    of markers, an item in a list should be a short sentence rather than a label, and a kaomoji is tone
    rather than layout.
-2. **No emoji** - zero, in replies, in the agent's own thinking and in every file it writes. The ban
-   is by block rather than by character list (pictographs, faces, transport, Miscellaneous Symbols,
-   the geometric shapes that carry emoji presentation, plus the variation selector, the zero width
-   joiner and the skin tone modifiers), because a list would need regenerating every Unicode release
-   and would still be incomplete. Decoration is carved out - a heart, a note, a star, a sparkle, a
-   flower - so the ban admits exactly the code points the loaded palette uses.
+2. **No emoji** - zero, in replies, in the agent's own thinking and in every file it writes. The ban is
+   by colour rather than by block: the picture blocks are banned whole (pictographs, faces, transport,
+   the supplemental pictographs), while in the two mixed blocks - Miscellaneous Symbols and the arrows
+   block - only the code points that default to colour presentation count, so a pointing hand or a plain
+   arrow drawn in lines is fine and a coloured umbrella or circle is not. The variation selector U+FE0F,
+   the zero width joiner and the skin tone modifiers are named too, and a mark followed by U+FE0E is the
+   writer asking for lines, which is honoured. Decoration is carved out - a heart, a note, a star, a
+   sparkle, a flower - so the ban admits exactly the code points the loaded palette uses.
 3. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
    floor rather than as garnish: at least one per three sentences, and any reply of two sentences or
    more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none

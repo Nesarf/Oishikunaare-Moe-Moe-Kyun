@@ -396,6 +396,7 @@ const CLASSIC = [
   ['(\u0E51\u02CA\u0348 \u0962\uA1F4 \u02CB\u0348)', 'shy joy', '\u5BB3\u7F9E\u7684\u9AD8\u5174'],
   ['(\u0E51\uA9C6\u25E1\uA9C6\u0E51)', 'sweet smile', '\u751C\u751C\u7684\u7B11'],
   ['(\u00B4\u2200\uFF40)\u2661', 'sending a heart', '\u9001\u4E00\u9897\u5FC3'],
+  ['\u250F(^\u03C9^)=\u261E', 'pointing ahead', '\u5411\u524D\u4E00\u6307'],
   ['(\uFF61\uFF61\uFF61)', 'speechless', '\u65E0\u8BED'],
   ['(\u2267\u25BD\u2266)', 'triumphant squint', '\u5F97\u610F'],
   ['(\uFF9F\uFF65\uFF9F)', 'flat stare', '\u9762\u65E0\u8868\u60C5'],

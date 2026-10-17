@@ -1506,6 +1506,13 @@ check('the emoji judge names real emoji and waves decoration through', () => {
   // The palette is made of these, so the ban cannot refuse them without refusing its own library.
   assert.deepEqual(mod.offendingEmoji(heart), [], 'a heart is decoration');
   assert.deepEqual(mod.offendingEmoji(star), [], 'a star is decoration');
+    // The ban is about colour, not about blocks: the two mixed blocks hold line symbols a person types
+    // and pictures drawn in colour, and only the colour ones count. A writer can also ask for lines.
+    assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0x261e)), [], 'a line-drawn pointing hand is not emoji');
+    assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0x2b00)), [], 'a line arrow is not emoji');
+    assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0x2614)), ['U+2614'], 'a coloured umbrella still is');
+    assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0x26aa)), ['U+26AA'], 'and a coloured circle');
+    assert.deepEqual(mod.offendingEmoji(String.fromCodePoint(0x2614, 0xfe0e)), [], 'text presentation asks for lines and is honoured');
   assert.deepEqual(mod.offendingEmoji(note), [], 'a note is decoration');
   assert.deepEqual(mod.offendingEmoji(flower), [], 'a flower is decoration');
   // And a kaomoji full of them passes whole.

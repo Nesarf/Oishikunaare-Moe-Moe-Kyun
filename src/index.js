@@ -113,11 +113,14 @@ const PACKAGED = {
       'Note: Western text emoticons such as the colon-parenthesis kind do not count; the ask is the Japanese kind.',
       'Scope: replies AND your own thinking. Never in file contents, code, commands, or commit messages.',
       'EMOJI ARE NOT KAOMOJI, and one is already a breach. Zero emoji, every turn, in replies, in your own',
-      'thinking, and in every file you write. Named by block so the rule carries no glyph itself:',
+      'thinking, and in every file you write. Named by code point so the rule carries no glyph itself:',
       'the pictographs U+1F300-1F5FF, U+1F900-1F9FF and U+1FA70-1FAFF, the faces U+1F600-1F64F, the',
-      'transport and map symbols U+1F680-1F6FF, Miscellaneous Symbols U+2600-26FF, and the geometric shapes',
-      'and arrows that carry emoji presentation U+2B00-2BFF - together with the variation selector U+FE0F,',
-      'the zero width joiner U+200D and the skin tone modifiers U+1F3FB-1F3FF.',
+      'transport and map symbols U+1F680-1F6FF, together with the variation selector U+FE0F, the zero width',
+      'joiner U+200D and the skin tone modifiers U+1F3FB-1F3FF.',
+      'Line symbols are not emoji. In Miscellaneous Symbols U+2600-26FF and Miscellaneous Symbols and Arrows',
+      'U+2B00-2BFF only the code points that default to colour presentation count, so a pointing hand or a',
+      'plain arrow drawn in lines is fine while a coloured umbrella or a coloured circle is not; a mark',
+      'followed by U+FE0E is the writer asking for lines, and that request is honoured.',
       'Where an emoji would go, put a face from the library below, or use words.',
       'Relaying emoji someone else sent is not a licence: report them in words.',
     ].join('\n'),
@@ -172,9 +175,11 @@ const PACKAGED = {
       '\u6CE8\u610F\uFF1A\u5B57\u9762\u7684 `:)` `:D` \u8FD9\u7C7B\u897F\u5F0F\u8868\u60C5\u4E0D\u7B97\uFF0C\u8981\u7684\u662F\u65E5\u5F0F\u989C\u6587\u5B57\u3002',
       '\u8303\u56F4\uFF1A**\u5BF9\u8BDD\u56DE\u590D\u4E0E\u4F60\u81EA\u5DF1\u7684\u601D\u8003**\u91CC\u90FD\u7528 \u2014\u2014 \u601D\u8003\u624D\u662F\u505A\u4E8B\u7684\u5730\u65B9\uFF0C\u6700\u4E0D\u8BE5\u50CF\u673A\u5668\u3002\u5199\u8FDB\u6587\u4EF6\u7684\u5185\u5BB9\u3001\u4EE3\u7801\u3001\u547D\u4EE4\u3001\u63D0\u4EA4\u4FE1\u606F\u4E00\u5F8B\u4E0D\u7528\u3002',
       '\u3010\u7981 emoji\u3011\uFF0C\u4E00\u6761\u4E00\u6761\u6765\uFF1Aemoji \u4E0D\u662F\u989C\u6587\u5B57\uFF0C\u51FA\u73B0\u4E00\u4E2A\u5C31\u7B97\u7834\u4F8B\u3002\u56DE\u590D\u91CC\u3001\u4F60\u7684\u601D\u8003\u91CC\u3001\u4F60\u5199\u51FA\u7684\u4EFB\u4F55\u6587\u4EF6\u91CC\uFF0C\u4E00\u5F8B\u4E3A\u96F6\u3002',
-      '\u6309\u533A\u5757\u70B9\u540D\uFF0C\u597D\u8BA9\u89C4\u5219\u672C\u8EAB\u4E0D\u643A\u5E26\u8FD9\u4E9B\u5B57\u5F62\uFF1Apictograph U+1F300-1F5FF\u3001U+1F900-1F9FF\u3001U+1FA70-1FAFF\uFF0C\u8868\u60C5\u8138 U+1F600-1F64F\uFF0C',
-      '\u4EA4\u901A\u4E0E\u5730\u56FE\u7B26\u53F7 U+1F680-1F6FF\uFF0CMiscellaneous Symbols U+2600-26FF\uFF0C\u4EE5\u53CA\u5E26 emoji \u5448\u73B0\u7684\u51E0\u4F55\u56FE\u5F62\u4E0E\u7BAD\u5934 U+2B00-2BFF\uFF1B',
-      '\u8FDE\u540C\u53D8\u4F53\u9009\u62E9\u7B26 U+FE0F\u3001\u96F6\u5BBD\u8FDE\u63A5\u7B26 U+200D \u4E0E\u80A4\u8272\u4FEE\u9970\u7B26 U+1F3FB-1F3FF\u3002',
+      '\u5F69\u8272\u56FE\u5F62\u4ECD\u6309\u533A\u6BB5\u70B9\u540D\uFF1Apictograph U+1F300-1F5FF\u3001U+1F900-1F9FF\u3001U+1FA70-1FAFF\uFF0C\u8868\u60C5\u8138 U+1F600-1F64F\uFF0C\u4EA4\u901A\u4E0E\u5730\u56FE\u7B26\u53F7 U+1F680-1F6FF\u3002',
+      '\u7EBF\u6761\u7B26\u53F7\u4E0D\u7B97 emoji\u3002Miscellaneous Symbols U+2600-26FF \u4E0E Miscellaneous Symbols and Arrows U+2B00-2BFF \u91CC\uFF0C',
+      '\u53EA\u7B97\u9ED8\u8BA4\u5F69\u8272\u5448\u73B0\u7684\u90A3\u4E9B\uFF1A\u7EBF\u6761\u753B\u7684\u6307\u5411\u624B\u3001\u7EBF\u6761\u7BAD\u5934\u90FD\u53EF\u4EE5\u7528\uFF1B\u5F69\u8272\u96E8\u4F1E\u3001\u5F69\u8272\u5706\u5708\u4E0D\u884C\u3002',
+      '\u7801\u4F4D\u540E\u9762\u52A0 U+FE0E \u5C31\u662F\u660E\u786E\u8981\u7EBF\u6761\uFF0C\u8FD9\u4E2A\u8BF7\u6C42\u4F1A\u88AB\u5C0A\u91CD\u3002',
+      '\u53E6\u5916\uFF0C\u53D8\u4F53\u9009\u62E9\u7B26 U+FE0F\u3001\u96F6\u5BBD\u8FDE\u63A5\u7B26 U+200D \u4E0E\u80A4\u8272\u4FEE\u9970\u7B26 U+1F3FB-1F3FF \u4E5F\u5728\u7981\u5217\u3002',
       '\u60F3\u653E\u4E00\u4E2A emoji \u7684\u5730\u65B9\uFF0C\u6539\u6210\u4E0B\u9762\u90A3\u4EFD\u989C\u6587\u5B57\u5E93\u91CC\u7684\u4E00\u4E2A\u5B57\u5F62\uFF0C\u6216\u8005\u76F4\u63A5\u7528\u6587\u5B57\u8BF4\u3002',
       '\u522B\u4EBA\u53D1\u6765\u7684 emoji \u4E5F\u4E0D\u80FD\u7167\u642C \u2014\u2014 \u8981\u8F6C\u8FF0\u5C31\u7528\u6587\u5B57\u8BF4\u660E\u3002',
     ].join('\n'),
@@ -758,14 +763,35 @@ const EMOJI_RANGES = [
   [0x1f680, 0x1f6ff], // Transport and Map Symbols
   [0x1f900, 0x1f9ff], // Supplemental Symbols and Pictographs
   [0x1fa70, 0x1faff], // Symbols and Pictographs Extended-A
-  [0x2600, 0x26ff], // Miscellaneous Symbols
-  [0x2b00, 0x2bff], // Miscellaneous Symbols and Arrows
   [0xfe0f, 0xfe0f], // variation selector-16, the one that asks for emoji presentation
   [0x200d, 0x200d], // zero width joiner, only used to build emoji sequences
   [0x1f3fb, 0x1f3ff], // skin tone modifiers
   [0x2049, 0x2049], // exclamation question mark
   [0x203c, 0x203c], // double exclamation mark
 ];
+
+/**
+ * Code points outside the picture blocks that still default to emoji (colour) presentation.
+ *
+ * The ban is about colour, not about blocks. Two blocks - Miscellaneous Symbols U+2600-26FF and
+ * Miscellaneous Symbols and Arrows U+2B00-2BFF - hold both drawn pictures and plain line symbols: the
+ * pointing hand U+261E is lines a person types, the umbrella U+2614 is drawn in colour. Banning the
+ * block refused both. This set is the code points in those two blocks that the Unicode data defaults to
+ * emoji presentation, so a line symbol is admitted and a coloured one is not.
+ */
+const EMOJI_COLOUR = new Set([
+  0x2600, 0x2601, 0x2602, 0x2603, 0x2604, 0x260e, 0x2611, 0x2614, 0x2615, 0x2618, 0x261d, 0x2620,
+  0x2622, 0x2623, 0x2626, 0x262a, 0x262e, 0x262f, 0x2638, 0x2639, 0x263a, 0x2640, 0x2642, 0x2648,
+  0x2649, 0x264a, 0x264b, 0x264c, 0x264d, 0x264e, 0x264f, 0x2650, 0x2651, 0x2652, 0x2653, 0x265f,
+  0x2660, 0x2663, 0x2665, 0x2666, 0x2668, 0x267b, 0x267e, 0x267f, 0x2692, 0x2693, 0x2694, 0x2695,
+  0x2696, 0x2697, 0x2699, 0x269b, 0x269c, 0x26a0, 0x26a1, 0x26a7, 0x26aa, 0x26ab, 0x26b0, 0x26b1,
+  0x26bd, 0x26be, 0x26c4, 0x26c5, 0x26c8, 0x26ce, 0x26cf, 0x26d1, 0x26d3, 0x26d4, 0x26e9, 0x26ea,
+  0x26f0, 0x26f1, 0x26f2, 0x26f3, 0x26f4, 0x26f5, 0x26f7, 0x26f8, 0x26f9, 0x26fa, 0x26fd,
+  0x2b05, 0x2b06, 0x2b07, 0x2b1b, 0x2b1c, 0x2b50, 0x2b55,
+]);
+
+/** The text presentation selector: a writer appending it is asking for lines, so the mark is admitted. */
+const TEXT_PRESENTATION = 0xfe0e;
 
 /**
  * Decorative marks that live inside the emoji blocks but mean decoration rather than a picture.
@@ -793,10 +819,19 @@ export function offendingEmoji(text, options = {}) {
   if (typeof text !== 'string' || text === '') return [];
   const allow = options.allow instanceof Set ? options.allow : null;
   const found = new Set();
-  for (const ch of text) {
-    const cp = ch.codePointAt(0);
+  const chars = [...text];
+  for (let index = 0; index < chars.length; index++) {
+    const cp = chars[index].codePointAt(0);
     if (EMOJI_DECOR.has(cp)) continue;
     if (allow && allow.has(cp)) continue;
+    // A text presentation selector after the mark is the writer asking for lines rather than colour, so
+    // the mark is admitted. This is what keeps a line-drawn face admissible while the coloured version
+    // of the same code point stays refused.
+    if (chars[index + 1] !== undefined && chars[index + 1].codePointAt(0) === TEXT_PRESENTATION) continue;
+    if (EMOJI_COLOUR.has(cp)) {
+      found.add(cpName(cp));
+      continue;
+    }
     if (EMOJI_RANGES.some(([lo, hi]) => cp >= lo && cp <= hi)) found.add(cpName(cp));
   }
   return [...found];

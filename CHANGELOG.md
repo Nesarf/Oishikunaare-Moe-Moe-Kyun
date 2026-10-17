@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.26.0 - 2026-10-16
+
+- **The emoji ban is about colour now, not about blocks.** Two blocks hold both line symbols a person types
+  and pictures drawn in colour: a pointing hand written in lines and an umbrella drawn in colour live a few
+  code points apart, and banning the block refused both - which is how a hand-written face carrying the
+  pointing hand got refused, and how the palette could not hold a symbol a person would actually type. The
+  picture blocks stay banned whole; Miscellaneous Symbols and the arrows block are now an explicit set of the
+  code points that default to colour presentation, and the rest of each block is admitted. A mark followed by
+  U+FE0E is the writer asking for lines, and that request is honoured.
+- The rule text in both locales says exactly that (colour, not block; line symbols are not emoji), the two
+  READMEs explain it, and `offendingEmoji` reads the same way. The hand-written classic face with the pointing
+  hand is back in the palette.
+- Tests: a line-drawn pointing hand and a line arrow pass, a coloured umbrella and a coloured circle do not,
+  and a coloured mark followed by the text presentation selector passes - alongside the existing picture,
+  face, object, skin tone and decoration cases.
 ## 0.25.0 - 2026-10-16
 
 - **The library is 10273 faces now, ten times what it was.** Fourteen moods at a ceiling of 780 each; calm
