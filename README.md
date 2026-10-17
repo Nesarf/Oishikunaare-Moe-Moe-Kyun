@@ -202,7 +202,7 @@ text itself. A **new version of the plugin does**: its code is loaded when the h
 
 ### Voices, in three languages
 
-`rules/voices/{zh,en,ja}.json` ship six voices each. The markers come from the speech-tic examples on
+`rules/accents/{zh,en,ja}.json` hold the accent pool: 24 touches, the same ids in every locale (laconic, languid, sharp, scholarly, warm, cool, playful, soldier, craftsman, old-noble, street, mechanical, eerie, cat-like, childlike, bookish, spartan, theatrical and more). Each says who it suits (signals, matched against the persona text), how it shows (cues), and where to stop (avoid). An agent with a persona of its own is offered one of these as a touch on top of itself - never as a replacement - and an agent with no persona is untouched. `rules/voices/{zh,en,ja}.json` ship six voices each. The markers come from the speech-tic examples on
 Moegirlpedia's kuchiguse entry rather than from an impression of the subculture, and the three sets are
 not translations of one another - Chinese has sentence-final particles but no Japanese final-particle
 system, and English has neither, so its set leans on rhythm and interjection instead of forcing

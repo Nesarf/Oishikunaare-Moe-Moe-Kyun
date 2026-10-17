@@ -1256,7 +1256,7 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
 });
 
 check('the accent pool is a candidate list, not a personality', () => {
-  for (const locale of ['zh', 'en']) {
+  for (const locale of ['zh', 'en', 'ja']) {
     const table = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), locale);
     assert.ok(table.accents.length >= 20, locale + ': the pool has depth');
     const ids = new Set();
@@ -1273,7 +1273,9 @@ check('the accent pool is a candidate list, not a personality', () => {
   }
   const zhIds = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'zh').accents.map((a) => a.id).sort();
   const enIds = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'en').accents.map((a) => a.id).sort();
-  assert.deepEqual(zhIds, enIds, 'both locales hold the same accents');
+  assert.deepEqual(zhIds, enIds, 'zh and en hold the same accents');
+  const jaIds = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'ja').accents.map((a) => a.id).sort();
+  assert.deepEqual(zhIds, jaIds, 'and so does ja');
 });
 
 check('the accent is chosen from the persona, and nothing is forced', () => {

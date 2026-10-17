@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.30.0 - 2026-10-16
+
+- **The accent pool now speaks Japanese too.** `rules/accents/ja.json` holds the same 24 entries as the
+  Chinese and English tables, with the same ids, and the test checks that all three locales agree item for
+  item - so a mismatch cannot creep in by translating one and forgetting another.
+- The READMEs name the third file, and the English one gains the paragraph it was missing.
 ## 0.29.0 - 2026-10-16
 
 - **An accent pool: 24 candidates for the "add a touch of X" the voice copy asks for.** `rules/accents/zh.json`
