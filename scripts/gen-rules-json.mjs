@@ -25,6 +25,7 @@ const RULES = path.join(ROOT, 'rules');
 const DESCRIPTION = {
   en: 'English rule text (shipped default). Replaceable by the user at runtime.',
   zh: 'Chinese rule text. Replaceable by the user at runtime.',
+  ja: 'Japanese rule text. Replaceable by the user at runtime.',
 };
 
 const locales = Object.keys(DESCRIPTION);

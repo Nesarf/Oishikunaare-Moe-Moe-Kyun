@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.37.0 - 2026-10-16
+
+- **The rule text ships in Japanese.** `PACKAGED.ja` carries all four parts (the mark discipline, the kaomoji
+  floor, the thinking discipline and the moe layer), so a Japanese-speaking agent now has its rules written in
+  its own language instead of being handed English or Chinese. The Japanese text is shorter than the Chinese
+  one on purpose - Japanese says the same things in fewer characters - and every clause the other two carry is
+  there: the judgement in words, no mark carrying structure, simile sparingly, the statement broken down, the
+  false contrast avoided and the standpoint named instead, the emoji boundary, the kaomoji floor, judgement
+  first in the thinking, and the moe boundaries.
+- `rules/ja.json` is generated beside the other two, and the tests now treat ja as a shipped locale while an
+  unknown one still falls back to English.
 ## 0.36.0 - 2026-10-16
 
 - **Simile is demoted and the statement is asked to be finer-grained, because figures drift.** Asked for

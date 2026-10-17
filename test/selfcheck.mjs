@@ -115,7 +115,7 @@ check('locale selection prefers exact, then language, then default', () => {
   assert.equal(mod.packagedRules('zh-CN').locale, 'zh');
   assert.equal(mod.packagedRules('ZH').locale, 'zh');
   assert.equal(mod.packagedRules('en-GB').locale, 'en');
-  assert.equal(mod.packagedRules('ja').locale, 'en');
+  assert.equal(mod.packagedRules('ja').locale, 'ja');
   assert.equal(mod.packagedRules(undefined).locale, 'en');
 });
 
@@ -166,7 +166,8 @@ check('the thinking-language discipline ships in both locales, and states each h
   assert.equal(en.locale, 'en');
   assert.equal(zh.locale, 'zh');
   assert.equal(mod.packagedThinkingLanguage('zh-CN').locale, 'zh', 'a language tag resolves to its base');
-  assert.equal(mod.packagedThinkingLanguage('ja').locale, 'en', 'and an unknown locale falls back');
+  assert.equal(mod.packagedThinkingLanguage('ja').locale, 'ja', 'ja is a shipped locale');
+  assert.equal(mod.packagedThinkingLanguage('xx').locale, 'en', 'and an unknown language falls back');
   assert.ok(en.text.length > 400, 'the English block is a block, not a line');
   assert.ok(zh.text.length > 150, 'and the Chinese one is a block too');
 
