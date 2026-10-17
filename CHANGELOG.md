@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.34.0 - 2026-10-16
+
+- **The prose guidance names one construction to avoid and one to reach for instead.** Asked for directly:
+  the "not X but Y" shape sets two things against each other that were never at odds, and reads as an argument
+  with something nobody said, so the rule now says to state what the thing is; a contrast earns its place only
+  when it corrects a real misunderstanding, and then it should say which claim is being corrected. In its
+  place the rule points at naming the standpoint - "from the point of view of X", "at the level of Y" - the
+  angle first, then what holds from there. Both locales carry it, and the brief carries the short form.
 ## 0.33.0 - 2026-10-16
 
 - **`mmk accent` asks the pool which touch a persona suits, without a host.** One command: the accent id,

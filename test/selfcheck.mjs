@@ -820,6 +820,18 @@ check('a managed block is written once, however often it is applied', async () =
   const empty = wire.upsertBlock('', 'wire-test', 'body line');
   assert.equal(empty.startsWith('<!-- mmk:begin'), true, 'an empty file starts with the block');
 });
+check('the prose guidance discourages the false contrast and encourages the angle', () => {
+  const zh = mod.packagedRules('zh').rules.bannedSymbols;
+  const en = mod.packagedRules('en').rules.bannedSymbols;
+  assert.ok(zh.includes('\u5BF9\u7ACB'), 'zh names the false-opposition shape');
+  assert.ok(zh.includes('\u89C6\u89D2'), 'and points at the angle construction instead');
+  assert.ok(en.includes('not X but Y'), 'en names the same construction');
+  assert.ok(en.includes('naming the standpoint'), 'and points at the angle instead');
+  for (const rule of [zh, en]) {
+    assert.equal(mod.judgeAuthoredText(rule).length, 0, 'the rule text still carries no banned glyph');
+  }
+});
+
 check('the rules ask for prose a reader can follow', () => {
   // The symbol rule used to stop at "say it in words". A reader who reads every sentence asked for more:
   // normal punctuation is fine, and nothing may carry the structure. This is that promise, in words.
