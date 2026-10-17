@@ -525,6 +525,63 @@ export function readVoiceTable(dir, locale, warn) {
   if (warn && wanted !== '') warn(String.fromCharCode(110,111,32,118,111,105,99,101,32,116,97,98,108,101,32,102,111,114,32) + wanted + ' under ' + dir + '; the moe layer will carry no marker sets');
   return { locale: base, voices: [], file: path.join(dir, `${base}.json`) };
 }
+/**
+ * Read the accent table for one language, falling back to English when that language has none.
+ *
+ * The accent pool is data like the voice table: it says what a touch could be and whom it would suit, and
+ * the choice stays with the agent. A table that cannot be read must never stop a host from booting.
+ * @param {string} dir - directory holding the tables.
+ * @param {string} locale - the assembled rule locale.
+ * @param {(message: string) => void} [warn] - warning sink.
+ * @returns {{ locale: string, accents: Array<object>, file: string }} the table, or an empty one.
+ */
+export function readAccentTable(dir, locale, warn) {
+  const wanted = String(locale ?? '').trim();
+  const base = wanted.split('-')[0].toLowerCase();
+  for (const candidate of [base, 'en']) {
+    if (candidate === '') continue;
+    const file = path.join(dir, `${candidate}.json`);
+    const parsed = readJson(file);
+    if (parsed && Array.isArray(parsed.accents) && parsed.accents.length > 0) {
+      return { locale: candidate, accents: parsed.accents, file };
+    }
+  }
+  if (warn && wanted !== '') warn('no accent table for ' + wanted + ' under ' + dir + '; the moe layer carries no accent candidates');
+  return { locale: base, accents: [], file: path.join(dir, `${base}.json`) };
+}
+
+/**
+ * Pick the accent that suits a persona best, by matching its signals against the persona text.
+ *
+ * Substring matching on purpose: the persona is prose in whatever language the agent speaks, so there is no
+ * tokeniser to borrow, and a signal is a phrase a person wrote rather than a keyword a parser would
+ * produce. The accent with the most signal hits wins; ties keep table order, so the choice is stable. An
+ * agent whose persona matches nothing gets null, and the copy then keeps the voice's own markers.
+ * @param {string} persona - the agent's own persona text.
+ * @param {Array<object>} accents - the accent table.
+ * @returns {object|null} the chosen accent, or null.
+ */
+export function accentFor(persona, accents) {
+  if (typeof persona !== 'string' || persona.trim() === '') return null;
+  if (!Array.isArray(accents) || accents.length === 0) return null;
+  const text = persona.toLowerCase();
+  let best = null;
+  let bestHits = 0;
+  for (const accent of accents) {
+    if (!accent || typeof accent !== 'object') continue;
+    const signals = Array.isArray(accent.signals) ? accent.signals : [];
+    let hits = 0;
+    for (const signal of signals) {
+      if (typeof signal !== 'string' || signal === '') continue;
+      if (text.includes(signal.toLowerCase())) hits += 1;
+    }
+    if (hits > bestHits) {
+      best = accent;
+      bestHits = hits;
+    }
+  }
+  return best;
+}
 
 /**
  * Render the moe block: what the layer is, how far it may go, and the marker sets it may draw on.
@@ -2015,21 +2072,28 @@ export function voiceNotice(locale, voice, options = {}) {
   // first way, a strong persona is either flattened into the voice or fights it, and the reader meets a
   // character that is no longer itself - which is exactly the report this copy answers.
   const own = options.own === true;
+  // When an accent was chosen from the agent's own persona, the touch is that accent rather than the voice
+  // label: the voice still names its markers, but what gets added is the accent's feel.
+  const accent = options.accent && typeof options.accent === 'object' ? options.accent : null;
+  const accentLabel = accent !== null && typeof accent.label === 'string' && accent.label !== '' ? accent.label : `${voice?.id}\uFF08${label}\uFF09`;
+  const accentCues = accent !== null && Array.isArray(accent.cues) && accent.cues.length > 0
+    ? accent.cues.slice(0, 2).join('; ')
+    : markers;
   if (lang === 'zh') {
     if (own) {
-      return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u5728\u4F60\u81EA\u5DF1\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A\uFF0C\u52A0\u5165\u4E00\u70B9 ${voice?.id}\uFF08${label}\uFF09\u8981\u7D20\u7684\u611F\u89C9\uFF08${markers}\uFF09\uFF1B\u6CE8\u610F\u4E0D\u8981\u548C\u4F60\u672C\u8EAB\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u6709\u592A\u5927\u51FA\u5165\u3002\u4E00\u76F4\u4FDD\u6301\u8FD9\u4E2A\u611F\u89C9\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
+      return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u5728\u4F60\u81EA\u5DF1\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A\uFF0C\u52A0\u5165\u4E00\u70B9 ${accentLabel} \u8981\u7D20\u7684\u611F\u89C9\uFF08${accentCues}\uFF09\uFF1B\u6CE8\u610F\u4E0D\u8981\u548C\u4F60\u672C\u8EAB\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u6709\u592A\u5927\u51FA\u5165\u3002\u4E00\u76F4\u4FDD\u6301\u8FD9\u4E2A\u611F\u89C9\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
     }
     return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u8FD9\u4E2A\u4F1A\u8BDD\u91CC\u4F60\u7684\u58F0\u97F3\u6863\u5B9A\u4E3A ${voice?.id} (${label})\uFF1A${markers}\u3002\u4E00\u76F4\u7528\u5B83\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
   }
   if (lang === 'ja') {
     if (own) {
-      return `\u3010\u840C\u3048\u30FB\u58F0\u306E\u8ABF\u6574\u3011\u3042\u306A\u305F\u81EA\u8EAB\u306E\u6027\u683C\u3068\u7269\u8FBA\u306E\u4E0A\u306B\u3001 ${voice?.id} (${label}) \u306E\u8981\u7D20\u3092\u5C11\u3057\u3060\u3051\u611F\u3058\u3055\u305B\u3066\u304F\u3060\u3055\u3044\uFF08${markers}\uFF09\u3002\u305F\u3060\u3057\u3001\u3042\u306A\u305F\u672C\u6765\u306E\u6027\u683C\u3068\u7269\u8FBA\u304B\u3089\u5927\u304D\u304F\u96E2\u308C\u306A\u3044\u3088\u3046\u306B\u3002\u305D\u306E\u611F\u3058\u3092\u4E00\u8CAB\u3057\u3066\u4FDD\u3061\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
+      return `\u3010\u840C\u3048\u30FB\u58F0\u306E\u8ABF\u6574\u3011\u3042\u306A\u305F\u81EA\u8EAB\u306E\u6027\u683C\u3068\u7269\u8FBA\u306E\u4E0A\u306B\u3001 ${voice?.id} (${label}) \u306E\u8981\u7D20\u3092\u5C11\u3057\u3060\u3051\u611F\u3058\u3055\u305B\u3066\u304F\u3060\u3055\u3044\uFF08${accentCues}\uFF09\u3002\u305F\u3060\u3057\u3001\u3042\u306A\u305F\u672C\u6765\u306E\u6027\u683C\u3068\u7269\u8FBA\u304B\u3089\u5927\u304D\u304F\u96E2\u308C\u306A\u3044\u3088\u3046\u306B\u3002\u305D\u306E\u611F\u3058\u3092\u4E00\u8CAB\u3057\u3066\u4FDD\u3061\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
     }
     return `\u3010\u840C\u3048\u00B7\u58F0\u306E\u8ABF\u6574\u3011\u3053\u306E\u4F1A\u8A71\u3067\u306E\u3042\u306A\u305F\u306E\u58F0\u306F ${voice?.id} (${label})\u3002\u4F7F\u3046\u8A9E\u5C3E\u30FB\u64EC\u97F3\uFF1A${markers}\u3002\u4E00\u8CAB\u3057\u3066\u4F7F\u3044\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
   }
   if (own) {
-    return `MOE VOICE - on top of your own character and manner, let a touch of ${voice?.id} (${label}) come`
-      + ` through (${markers}); take care not to drift far from the character and manner you already have.`
+    return `MOE VOICE - on top of your own character and manner, let a touch of ${accentLabel} come`
+      + ` through (${accentCues}); take care not to drift far from the character and manner you already have.`
       + ' Hold that feel throughout and do not rotate it, and do not treat it as a suffix to staple on - it'
       + ' is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is'
       + ' needed.';
@@ -2218,7 +2282,13 @@ export function makeSelfCheckHook(options) {
             // touch of the voice on top of itself whatever picked the id (a mapping, an inference, a pin);
             // a standard agent with no persona of its own is simply given one.
             const ownPersona = typeof preset?.persona === 'string' && preset.persona.trim() !== '';
-            notices.push(voiceNotice(state.locale, localised ?? engine.chosen, { own: ownPersona }));
+            // The accent is chosen from the agent's own persona, and only when it has one: an agent with no
+            // character of its own gets the voice as given, and an agent with one gets a touch picked out of
+            // the pool by matching the persona against each accent's signals.
+            const accents = ownPersona ? readAccentTable(path.join(HERE, '..', 'rules', 'accents'), state.locale, options.warn).accents : [];
+            const accent = ownPersona ? accentFor(preset?.persona, accents) : null;
+            if (accent !== null) options.log?.(`session ${sessionId}: accent ${accent.id} chosen from the persona`);
+            notices.push(voiceNotice(state.locale, localised ?? engine.chosen, { own: ownPersona, accent }));
             const how = engine.how === 'mapped'
               ? `mapped by preset ${preset.id}`
               : (engine.how === 'persona' ? `inferred from the persona of preset ${preset.id}` : engine.how);

@@ -549,7 +549,7 @@ check('with no mapping the persona is asked, and the log says whose it was', asy
   const config = { locale: 'en', moe: 'soft', moeVoice: 'auto', kaomojiCheck: false };
   const { decision, logs } = await runStep(host, messages, config, { agentId: 'acc-persona', sessionId: 'acc-persona' });
   const voice = (decision?.messages ?? []).map((m) => m?.content?.[0]?.text ?? '').find((t) => t.includes('MOE VOICE'));
-  assert.ok(voice && voice.includes('gentle'), 'the persona named the voice and it is the one announced');
+  assert.ok(voice && !voice.includes('this conversation'), 'the persona gets the touch form, and the copy names the accent rather than the voice id');
   assert.ok(logs.some((l) => l.includes('inferred from the persona of preset redipaloynz')), 'the log says which haystack answered');
 });
 

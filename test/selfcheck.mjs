@@ -1235,7 +1235,7 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
     presetVoice: () => ({ id: 'redipaloynz', persona: '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B' }),
     voiceOptions: () => ({ voice: 'auto', byPreset: { redipaloynz: 'elegant' }, signals: null }),
   });
-  assert.ok(mapped.text && mapped.text.includes('elegant'), 'the mapped voice is the one announced');
+  assert.ok(mapped.seen.some((m) => m.includes('moe voice elegant')), 'the mapped voice is the one announced (in the log when an accent takes the copy)');
   assert.ok(mapped.seen.some((m) => m.includes('mapped by preset redipaloynz')), 'and the log names the preset it came from');
 
   // Layer 2: nothing is mapped, so the persona answers, and the log says which haystack it came from.
@@ -1243,7 +1243,7 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
     presetVoice: () => ({ id: 'redipaloynz', persona: '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B' }),
     voiceOptions: () => ({ voice: 'auto', byPreset: null, signals: null }),
   });
-  assert.ok(persona.text && persona.text.includes('gentle'), 'the persona decides when the config says nothing');
+  assert.ok(persona.seen.some((m) => m.includes('moe voice')), 'the persona decides when the config says nothing (the voice is in the log, the copy names the accent)');
   assert.ok(persona.seen.some((m) => m.includes('inferred from the persona of preset redipaloynz')), 'and the log says so');
 
   // A mapped id that is not in the table is not an answer: it falls through to the mode rather than
@@ -1255,6 +1255,41 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
   assert.equal(unknownMapping.text, null, 'a mapping to an id the table does not hold announces nothing');
 });
 
+check('the accent pool is a candidate list, not a personality', () => {
+  for (const locale of ['zh', 'en']) {
+    const table = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), locale);
+    assert.ok(table.accents.length >= 20, locale + ': the pool has depth');
+    const ids = new Set();
+    for (const accent of table.accents) {
+      assert.ok(typeof accent.id === 'string' && accent.id !== '', 'each accent has an id');
+      assert.equal(ids.has(accent.id), false, 'and ids are unique in ' + locale);
+      ids.add(accent.id);
+      assert.ok(typeof accent.label === 'string' && accent.label !== '', accent.id + ' has a label');
+      assert.ok(Array.isArray(accent.signals) && accent.signals.length > 0, accent.id + ' says who it suits');
+      assert.ok(Array.isArray(accent.cues) && accent.cues.length > 0, accent.id + ' says how it shows');
+      assert.ok(Array.isArray(accent.avoid) && accent.avoid.length > 0, accent.id + ' says where to stop');
+      assert.equal(mod.judgeAuthoredText(JSON.stringify(accent)).length, 0, accent.id + ' carries no banned glyph');
+    }
+  }
+  const zhIds = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'zh').accents.map((a) => a.id).sort();
+  const enIds = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'en').accents.map((a) => a.id).sort();
+  assert.deepEqual(zhIds, enIds, 'both locales hold the same accents');
+});
+
+check('the accent is chosen from the persona, and nothing is forced', () => {
+  const accents = mod.readAccentTable(path.join(ROOT, 'rules', 'accents'), 'zh').accents;
+  assert.equal(mod.accentFor('\u4F60\u662F\u4E00\u4E2A\u5BE1\u8A00\u7684\u5C11\u5973', accents).id, 'laconic', 'a quiet persona gets the quiet accent');
+  assert.equal(mod.accentFor('\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u52A9\u624B', accents).id, 'warm', 'a warm persona gets warmth');
+  assert.equal(mod.accentFor('', accents), null, 'no persona means no accent');
+  assert.equal(mod.accentFor('plain text with no signal at all', accents), null, 'and no match means none is forced');
+  const notice = mod.voiceNotice('zh', { id: 'gentle', label: '\u6E29\u67D4', markers: ['\u5440'] }, { own: true, accent: { label: '\u5BE1\u8A00', cues: ['\u53E5\u5B50\u77ED'] } });
+  assert.ok(notice.includes('\u5BE1\u8A00'), 'the copy names the accent');
+  assert.ok(notice.includes('\u53E5\u5B50\u77ED'), 'and its cue');
+  assert.ok(notice.includes('\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A'), 'still asking for a touch, not a swap');
+  assert.equal(mod.judgeAuthoredText(notice).length, 0, 'carrying no banned glyph');
+  const plain = mod.voiceNotice('zh', { id: 'gentle', label: '\u6E29\u67D4', markers: ['\u5440'] }, { own: true });
+  assert.ok(plain.includes('\u6E29\u67D4'), 'without an accent the voice label is used');
+});
 check('the copy follows the agent, not the source of the voice id', async () => {
   // The design: an agent with a character of its own keeps it and is only asked for a touch, while a
   // standard agent with none is simply given a voice by the rules. Both runs below are mapped through the
@@ -1282,7 +1317,9 @@ check('the copy follows the agent, not the source of the voice id', async () => 
   assert.equal(withPersona.includes('\u58F0\u97F3\u6863\u5B9A\u4E3A'), false, 'the touch form never claims to set the voice');
   assert.ok(without.includes('\u58F0\u97F3\u6863\u5B9A\u4E3A'), 'a standard agent is given a voice instead');
   assert.equal(without.includes('\u57FA\u7840\u4E0A'), false, 'and is not asked to layer anything on');
-  assert.ok(withPersona.includes('elegant') && without.includes('elegant'), 'both still name which voice it is');
+  assert.ok(without.includes('elegant'), 'a standard agent is told which voice it got');
+  assert.ok(withPersona.includes('\u8981\u7D20'), 'and an agent with a persona is told to add a touch of something');
+  assert.equal(withPersona.includes('elegant'), false, 'the touch is the accent, not the voice id');
 });
 check('with no registry the voice still works, and the rules are untouched', async () => {
   const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.29.0 - 2026-10-16
+
+- **An accent pool: 24 candidates for the "add a touch of X" the voice copy asks for.** `rules/accents/zh.json`
+  and `en.json` hold the same 24 entries: each says who it suits (signals, matched against the persona text),
+  how it shows (cues), and where to stop (avoid). Nothing here replaces a character - the pool is a list of
+  touches, and the choice stays with the agent.
+- `readAccentTable(dir, locale)` and `accentFor(persona, accents)` are exported. Matching is substring work by
+  design: a persona is prose in whatever language the agent speaks, so there is no tokeniser to borrow, and a
+  signal is a phrase a person wrote. The accent with the most signal hits wins, ties keep table order, and an
+  agent whose persona matches nothing gets null - then the copy keeps the voice's own markers.
+- The voice copy now names the accent when one was chosen (`add a touch of <accent>, with its cues, and do not
+  drift from what you already are`), and the voice id is reported in the log instead. Agents without a persona
+  are untouched: they get the voice as before.
+- Tests: the pool in both locales (depth, unique ids, the three fields, no banned glyph, same ids in both),
+  the matcher (quiet persona to laconic, warm to warm, no persona and no match to null), and the copy naming
+  the accent while keeping the touch framing.
 ## 0.28.0 - 2026-10-16
 
 - **19600 faces: the two everyday moods now fill their quota, and hand-written faces are never sampled
