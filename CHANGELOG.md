@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.31.0 - 2026-10-16
+
+- **The accent pool is 40 touches now, the same forty in each locale.** Sixteen more entries were added to
+  all three tables at once - curious, meticulous, breezy, solemn, self-deprecating, considerate, exacting,
+  reminiscent, sly, dutiful, dreamy, nerdy, generous, faintly envious, stoic and rustic - so the choice for an
+  agent with a persona is wider than six voices could ever be. The ids are identical across the three tables
+  and the test enforces it.
 ## 0.30.0 - 2026-10-16
 
 - **The accent pool now speaks Japanese too.** `rules/accents/ja.json` holds the same 24 entries as the
