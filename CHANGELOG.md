@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.39.0 - 2026-10-16
+
+- **The Japanese rule text is at full length now.** The first pass fitted the four blocks into about half the
+  length of the Chinese text - enough to run, not enough to be the settled version. Each block gained the
+  clauses that were only implied: the Han-character stand-ins are named and refused ("do not write the mark's
+  shape as a character"), the transcription rule is spelled out for tables and pages, the kaomoji section says
+  which channels stay free of a face, the thinking section says the two registers both decompose the same way,
+  and the moe section says a voice is a direction rather than a strength. Japanese is still shorter than Chinese
+  because the language says the same in fewer characters.
 ## 0.38.0 - 2026-10-16
 
 - **Emoji gets the same turn-end lever the banned glyphs already had.** The turn-end check covered two of the
