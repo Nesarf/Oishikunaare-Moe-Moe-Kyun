@@ -311,6 +311,91 @@ const TIRED_TAILS = [
 
 // ---------------------------------------------------------------- classic faces, written by hand
 const CLASSIC = [
+  ['(\u3063\u02D8\u03C9\u02D8\u03C2)', 'petting softly', '\u8F7B\u8F7B\u6478\u5934'],
+  ['(\u3065\uFF61\u25D5\u203F\u203F\u25D5\uFF61)\u3065', 'offering a hug', '\u9012\u51FA\u62E5\u62B1'],
+  ['(\uFF89\u00B4\u30EE`)\uFF89*: \uFF65\uFF9F', 'throwing sparkles', '\u6492\u4E00\u628A\u661F\u5149'],
+  ['(*\u00B4\u03C9`*)', 'content', '\u6EE1\u8DB3'],
+  ['(\u0E51\u02D8\uFE36\u02D8\u0E51)', 'peaceful', '\u5B89\u8BE6'],
+  ['(\uFF61\u25D5\u203F\u25D5\uFF61)', 'gentle', '\u6E29\u548C'],
+  ['(\uFF61\uFF65\u03C9\uFF65\uFF61)\uFF89', 'greeting', '\u6253\u62DB\u547C'],
+  ['(\u25D5\u1D17\u25D5\u273F)', 'warm smile', '\u6696\u7B11'],
+  ['(\u273F\u25E0\u203F\u25E0)', 'blooming', '\u5F00\u82B1'],
+  ['(*\uFF9F\u25BD\uFF9F)\uFF89', 'waving happily', '\u5F00\u5FC3\u5730\u6325\u624B'],
+  ['(\u0E51\u2022\u0301 \u2083 \u2022\u0300\u0E51)', 'pouting', '\u9F13\u8138'],
+  ['(\u0E51\u00B4\u3142`\u0E51)', 'giggling', '\u5077\u7B11'],
+  ['(\u00B4\uFF61\u2022 \u03C9 \u2022\uFF61`)', 'gentle joy', '\u6E29\u67D4\u7684\u559C\u60A6'],
+  ['(\u25CD\u2022\u1D17\u2022\u25CD)\u2727', 'twinkling', '\u95EA\u95EA\u7684\u5F00\u5FC3'],
+  ['(\u0E51\u02C3\u1D17\u02C2\u0E51)\u2661', 'love', '\u5E26\u4E00\u70B9\u7231\u610F'],
+  ['(\u2267\u25E1\u2266)', 'delighted', '\u9AD8\u5174'],
+  ['(\u25CF\u02CA\u03C9\u02CB\u25CF)', 'calm', '\u5E73\u9759'],
+  ['(\u0E51\u2022\u0300\u3142\u2022\u0301)\u0648\u2727', 'firm', '\u575A\u5B9A'],
+  ['(\u0E07 \u2022\u0300_\u2022\u0301)\u0E07', 'ready to fight', '\u51C6\u5907\u5F00\u5DE5'],
+  ['(\u0E51\u2022\u0300\u3141\u2022\u0301\u0E51)\u2727', 'proud', '\u5F97\u610F'],
+  ['(\u0E51\uFFEB\u072B\uFFE9)', 'playful', '\u8C03\u76AE'],
+  ['(\u00B4^\u03C9^`)', 'relaxed smile', '\u653E\u677E\u7684\u7B11'],
+  ['(\uFF89\u25D5\u30EE\u25D5)\uFF89', 'cheering', '\u6B22\u547C'],
+  ['(\u0E51\u02D8 \u00B3\u02D8\u0E51)', 'blowing a kiss', '\u9001\u4E2A\u543B'],
+  ['(\u0E51\u00AF\u03C9\u00AF\u0E51)', 'drowsy', '\u72AF\u56F0'],
+  ['(\u00B4-\u03C9-`)', 'tired', '\u75B2\u5026'],
+  ['(\uFFE3\u03C9\uFFE3)', 'unbothered', '\u6EE1\u4E0D\u5728\u4E4E'],
+  ['(\uFFE3\u25BD\uFFE3)~*', 'satisfied and waving', '\u6EE1\u610F\u5730\u6325\u624B'],
+  ['(\uFFE3\u30FC\uFFE3)\u309E', 'saluting', '\u656C\u793C'],
+  ['(\u30FB\u03C9\u30FB)\u30CE', 'hello', '\u4F60\u597D'],
+  ['(\u00B4\u30FB\u03C9\u30FB`)', 'downcast', '\u4F4E\u843D'],
+  ['(\u2565\uFE4F\u2565)', 'crying', '\u54ED'],
+  ['(\u0CA5\uFE4F\u0CA5)', 'holding it in', '\u5FCD\u7740'],
+  ['(\u0E51\u2022\u0301\u03C9\u2022\u0300\u0E51)', 'worried', '\u62C5\u5FC3'],
+  ['(\uFFE2_\uFFE2)', 'skeptical', '\u5B58\u7591'],
+  ['(\u0E51\u2022\u0300\u3142\u2022\u0301)', 'serious', '\u8BA4\u771F'],
+  ['(\u0E51\u2022\u0300\u3142\u2022\u0301)\u0648', 'doing it', '\u4E0A'],
+  ['(*\u30FB\u03C9\u30FB)\uFF89', 'goodbye', '\u518D\u89C1'],
+  ['(\u0E51\u00B4\u2022.\u032B \u2022 `\u0E51)', 'speechless', '\u65E0\u8BED'],
+  ['(\u0E51\uFFEB\u203F\uFFE9\u0E51)', 'sweet', '\u751C'],
+  ['(\u0E51\u1D54\u2919\u1D54\u0E51)', 'cheerful', '\u5F00\u5FC3'],
+  ['(\u0E51\u2022\u0300\u15DC\u2022\u0301\u0E51)', 'determined', '\u6709\u5E72\u52B2'],
+  ['(\u0E51\u02C3\u0335\u1D17\u02C2\u0335)', 'joyful', '\u5F00\u5FC3'],
+  ['(\u0E51\u02C3\u0301\uA1F4\u02C2\u0300\u0E51)', 'laughing', '\u5927\u7B11'],
+  ['(\u0E51><\u0E51)', 'squeezed eyes', '\u772F\u6210\u4E00\u6761\u7EBF'],
+  ['(\u0E51\u25D5\uFE35\u25D5\u0E51)', 'sorry', '\u62B1\u6B49'],
+  ['(\u0E51\u2022\u0301 \u2083 \u2022\u0300\u0E51)\u2661', 'pouting with love', '\u9F13\u8138\u5E26\u7231\u5FC3'],
+  ['(\u0E51\u00B4\u03C9`\u0E51)', 'soft', '\u8F6F\u8F6F'],
+  ['(\u0E51\u00B4\u3142`\u0E51)\u2727', 'happy sparkle', '\u5F00\u5FC3\u5E26\u661F'],
+  ['(\u0E51\u2022\u0300\u3142\u2022\u0301)\u0648\u2727', 'confident', '\u81EA\u4FE1'],
+  ['(\u0E51\u2022\u0300\u3141\u2022\u0301\u0E51)\u0648', 'steady', '\u7A33\u7A33\u7684'],
+  ['(\u0E51\u2022\u0301\u03C9\u2022\u0300\u0E51)', 'anxious', '\u4E0D\u5B89'],
+  ['(\u0E51\u00B4\u2022 \u2083 \u2022\u0300\u0E51)', 'sulking', '\u95F9\u522B\u626D'],
+  ['(\u0E51\u02D8\u2022 \u2083 \u2022\u02D8\u0E51)', 'playful pout', '\u4FCF\u76AE\u7684\u9F13\u8138'],
+  ['(\uFF61\u2022\u0301\uFE3F\u2022\u0300\uFF61)\uFF61', 'about to cry', '\u5FEB\u54ED\u4E86'],
+  ['(\u3063- \u2038 - \u03C2)', 'sighing', '\u53F9\u6C14'],
+  ['(\uFF89\u0414`)', 'crying out', '\u54ED\u51FA\u6765'],
+  ['(\u00B4;\u03C9;`)', 'crying', '\u54ED'],
+  ['(\uFF61\u014F\uFE4F\u014F)', 'troubled', '\u96BE\u8FC7'],
+  ['(\u00B4\u00B0\u0325\u0325\u0325\u03C9\u00B0\u0325\u0325\u0325\uFF40)', 'deeply moved to tears', '\u54ED\u6210\u4E00\u56E2'],
+  ['(\u2312_\u2312;)', 'awkward', '\u5C34\u5C2C'],
+  ['(\uFF1B\u00B4\u0434\uFF40)\u309E', 'sweating salute', '\u5192\u6C57\u656C\u793C'],
+  ['(\uFFE3\u25BD\uFFE3;)', 'sweating satisfied', '\u5192\u6C57\u5730\u6EE1\u610F'],
+  ['(\uFFE3\u30D8\uFFE3)', 'annoyed', '\u4E0D\u6EE1'],
+  ['(\uFFE2\u2038\uFFE2)\uFF1F', 'suspicious question', '\u6000\u7591'],
+  ['(\u2192_\u2192)', 'side glance', '\u659C\u773C'],
+  ['(\u2190_\u2190)', 'other side glance', '\u53E6\u4E00\u8FB9\u7684\u659C\u773C'],
+  ['(\u2191_\u2191)', 'looking up', '\u5411\u4E0A\u770B'],
+  ['(\u2193_\u2193)', 'looking down', '\u5411\u4E0B\u770B'],
+  ['(\u2192_\u2192)\u2026', 'side glance with pause', '\u659C\u773C\u52A0\u505C\u987F'],
+  ['(\u00AC_\u00AC)', 'unimpressed', '\u4E0D\u4EE5\u4E3A\u7136'],
+  ['(\u2256_\u2256)', 'flat', '\u9762\u65E0\u8868\u60C5'],
+  ['(\uFFE3\u25BD\uFFE3)\u309E', 'saluting satisfied', '\u6EE1\u610F\u5730\u656C\u793C'],
+  ['(\u30FB_\u30FB)\u309E', 'saluting neutral', '\u656C\u793C'],
+  ['\u2510(\u00B4\u0434`)\u250C', 'shrugging', '\u8038\u80A9'],
+  ['\u2510(\uFFE3\u30D8\uFFE3)\u250C', 'shrugging annoyed', '\u4E0D\u6EE1\u5730\u8038\u80A9'],
+  ['\u2510(\u00B4\u2200`)\u250C', 'shrugging happily', '\u5F00\u5FC3\u5730\u8038\u80A9'],
+  ['\u256E(\u256F\u25BD\u2570)\u256D', 'helpless', '\u6CA1\u529E\u6CD5'],
+  ['\u256E(\uFFE3\u25BD\uFFE3)\u256D', 'helpless and fine', '\u65E0\u6240\u8C13'],
+  ['(\u00B4\uFF65\u03C9\uFF65`)\u309E', 'sorry salute', '\u62B1\u6B49\u656C\u793C'],
+  ['(\u3063\u02D8\u0437\u02D8)\u3063', 'a quick kiss', '\u5FEB\u901F\u4EB2\u4E00\u4E0B'],
+  ['(\u0E51\uFFEB\u203F\uFFE9\u0E51)\u2661', 'sweet love', '\u751C\u751C\u7684\u7231'],
+  ['(\u0E51\u00B4\u03C9`\u0E51)\u2661', 'gentle love', '\u6E29\u67D4\u7684\u7231'],
+  ['(\u25D5\u203F\u25D5\u273F)', 'bloom', '\u5F00\u82B1'],
+  ['(\u25D5\u1D17\u25D5\u273F)\u2661', 'warm love', '\u6E29\u6696\u7684\u7231'],
   ['\uA4B0 *\u2022\u0277\u2022* \uA4B1', 'soft gaze with paws', '\u67D4\u8F6F\u7684\u51DD\u89C6\uFF0C\u5E26\u5C0F\u722A'],
   ['\u0295 \u2022\u1D25\u2022\u0294', 'plain bear face', '\u6734\u7D20\u7684\u718A\u8138'],
   ['\uA4B0\u0E51\u2022\u2313\uFE0E\u2022\u0E51\uA4B1\u1D4E\u1D4E\u1D4E', 'teary eyes', '\u6CEB\u7136\u6B32\u6CE3'],
@@ -693,6 +778,26 @@ for (const [el, er, ee, ez] of EYES.filter((e) => TIRED_EYES.includes(e[0]))) {
   }
 }
 
+// 12e) calm: a third family whose marks the earlier passes do not use, so it adds to the pool instead of
+// colliding with it. The tail is where a collision would happen, so each of these tails is new.
+for (const [el, er, ee, ez] of EYES.filter((e) => ['_', '-', '~', 'o', 'O', '.', 'u', 'w', '\u03C9', '\u203F', '\u2323', '\u25BD', '\u2323', '\u2302', '\u2261', '\u2262', '\u2212', '\u25CB', '\u25CF', '\u3007', '\uFF65', '\u30FB', '\u2038', '\u02D9', '\u00B4', '\u0060', '\u02C6', '\u02C7', '\u02D8', '\uFFE3'].includes(e[0]))) {
+  for (const [mouth, me, mz] of MOUTHS.filter((m) => ['_', '~', 'u', 'o', 'O', '.', 'w', '-', '\u03C9', '\uFF65', '\u3002'].includes(m[0]))) {
+    for (const [tail, te, tz] of [['\u309C', 'a degree mark', '\u5EA6\u70B9'], ['\u309B', 'a voiced mark', '\u6D4A\u70B9'], [':', 'a colon', '\u5192\u53F7'], [';', 'a semicolon', '\u5206\u53F7'], ['\uFF61', 'a soft stop', '\u8F7B\u70B9'], ['\uFF65', 'a middle dot', '\u4E2D\u70B9'], ['\u2606', 'a star', '\u661F'], ['\uFF01', 'an exclamation', '\u611F\u53F9']]) {
+      const face = `(${el}${mouth}${er})${tail}`;
+      if (add(face, `${ee} eyes + ${me} mouth, ${te}`, `${ez}\u773C + ${mz}\u5634\uFF0C${tz}`)) pool('calm').push(out[out.length - 1]);
+    }
+  }
+}
+
+// 12f) tired: the same idea for the dozing family, with its own tail marks.
+for (const [el, er, ee, ez] of EYES.filter((e) => ['_', '-', '=', 'o', 'O', '0', 'T', 'X', 'x', '\u30FC', '\uFF3F', '\uFF40', '\u2026', '.', '\u3001', '\uFF65', '\u30FB', '\u25CB', '\u25CF', '\u3007', '\u2261', '\u2212', '\u02D9', '\u00B4', '\u0060', '\u02C6', '\u02C7', '\u2038', '\u2252'].includes(e[0]))) {
+  for (const [mouth, me, mz] of MOUTHS.filter((m) => ['_', '-', '~', '=', '.', '\u2026', 'w', 'o', 'O', '\u25BD', '\uFF65', '\u3002'].includes(m[0]))) {
+    for (const [tail, te, tz] of [['z', 'a z', 'z'], ['zz', 'two z', 'zz'], ['\u2026', 'a long pause', '\u957F\u505C\u987F'], ['\u30FB', 'a stop', '\u70B9'], ['\uFF61', 'a soft stop', '\u8F7B\u70B9'], ['\u2668', 'a hot spring', '\u6CE1\u6C64'], ['\u2606', 'a star', '\u661F'], ['\uFF5E', 'a wave', '\u6CE2\u6D6A']]) {
+      const face = `(${el}${mouth}${er})${tail}`;
+      if (add(face, `${ee} eyes + ${me} mouth, ${te}`, `${ez}\u773C + ${mz}\u5634\uFF0C${tz}`)) pool('tired').push(out[out.length - 1]);
+    }
+  }
+}
 // 12b) calm: a second pass, so the quiet bucket is not the thinnest one in the file
 for (const [el, er, ee, ez] of EYES.filter((e) => ['_', '-', '~', 'o', 'O', '.', 'u', 'w', '\u03C9', '\u203F', '\u2323'].includes(e[0]))) {
   for (const [mouth, me, mz] of MOUTHS.filter((m) => ['_', '~', 'u', 'o', 'O', '.', 'w', '-', '\u03C9', '\u2323'].includes(m[0]))) {
@@ -734,9 +839,17 @@ for (const [lo, ro] of CLASSIC_FRAMES) {
 }
 // 13) classic faces, written by hand
 for (const [face, fe, fz] of CLASSIC) {
-  if (add(face, fe, fz)) pool('classic').push(out[out.length - 1]);
+  // Marked, because a hand-written face is what people actually type and the sampler should not sample it
+  // away: every marked face ships, and the combinatorial ones fill the rest of the quota.
+  if (add(face, fe, fz)) pool('classic').push({ ...out[out.length - 1], hand: true });
 }
 
+// A face in the hand-written list can already be in the pool from a combinatorial pass, and then `add`
+// refused it and it never got its mark. Mark by name as well, so every face a person wrote ships.
+const CLASSIC_NAMES = new Set(CLASSIC.map(([face]) => face));
+for (const row of pool('classic')) {
+  if (CLASSIC_NAMES.has(row.face)) row.hand = true;
+}
 // ---------------------------------------------------------------- sample and write
 const render = () => ({
   name: 'Oishikunaare-Moe-Moe-Kyun kaomoji library',
@@ -767,8 +880,14 @@ for (const c of CATS) {
   if (candidates.length < c.quota) {
     console.warn(`category ${c.id}: ${candidates.length} candidate(s), under its ceiling of ${c.quota}; taking them all`);
   }
-  const step = candidates.length / take;
-  c.rows = Array.from({ length: take }, (_, i) => candidates[Math.floor(i * step)]);
+  // Every hand-written face ships. The combinatorial ones then fill the quota by even sampling, so the
+  // picks still spread across the whole range instead of clustering at the front.
+  const hand = candidates.filter((row) => row.hand === true);
+  const rest = candidates.filter((row) => row.hand !== true);
+  const room = Math.max(0, take - hand.length);
+  const step = rest.length === 0 ? 0 : rest.length / room;
+  const picked = room === 0 ? [] : Array.from({ length: room }, (_, i) => rest[Math.floor(i * step)]);
+  c.rows = hand.concat(picked);
   chosen = chosen.concat(c.rows);
 }
 

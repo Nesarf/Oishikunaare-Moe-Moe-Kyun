@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.28.0 - 2026-10-16
+
+- **19600 faces: the two everyday moods now fill their quota, and hand-written faces are never sampled
+  away.** Calm and tired were the only categories under their ceiling (775 and 1010 of 1400); two passes
+  with their own tail marks and a wider eye set moved them past it without colliding with the existing
+  pools - the earlier attempt at this lost faces because a busy pass registered them first, and that is
+  what the tail-marks-are-new rule avoids now.
+- The hand-written classic list is 351 entries and every gated one ships: a face in that list is marked
+  when it is added, and marked again by name afterwards (a combinatorial pass may have registered the same
+  face first, in which case `add` refused it and it had no mark). The sampler takes every marked face, then
+  fills the rest of the quota by even sampling.
+- 42 part files, none over 102 KB.
 ## 0.27.0 - 2026-10-16
 
 - **The library is 18585 faces: the judge's frame set grew, and a classic composition pass fills the
