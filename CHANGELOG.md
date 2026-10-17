@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.41.0 - 2026-10-16
+
+- **The rule text now carries a measured length scale, in all three languages.** From an analysis of the
+  game text corpus (105,236 entries split into 2,335 families, compared across Chinese, Japanese and English),
+  three findings were worth keeping: sentence length is a property of the *kind* of text rather than of the
+  language (a label runs about four words, a line of dialogue about a dozen, an explanation about two dozen),
+  punctuation is a choice of register rather than a rule of grammar (in dialogue an ellipsis often stands where
+  a full stop would, while a label carries none), and the same character count means very different things
+  across languages (Japanese runs about 1.5 times the Chinese count, English about 3 times). The rules now say
+  all three, so an agent stops writing everything at one length.
 ## 0.40.0 - 2026-10-16
 
 - **Both READMEs now say what the layer can and cannot do.** A short section states the honest boundary: the
