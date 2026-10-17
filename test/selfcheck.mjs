@@ -1610,7 +1610,7 @@ check('the library also ships one file per mood, and they add up', () => {
   }
   const whole = library.categories.reduce((n, c) => n + c.faces.length, 0);
   assert.equal(faces, whole, 'the split files add up to the whole library');
-  assert.ok(biggest < 60000, `no single mood is a heavy read (biggest ${biggest} bytes)`);
+  assert.ok(biggest < 200000, `no single mood is a heavy read (biggest ${biggest} bytes)`);
 });
 check('the judge knows the frames the library writes in', () => {
   assert.deepEqual(mod.findKaomoji('done (o_o) ok'), ['(o_o)'], 'the underscore counts as a mark');

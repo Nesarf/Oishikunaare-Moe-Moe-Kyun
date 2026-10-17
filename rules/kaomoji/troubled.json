@@ -16,84 +16,389 @@
           "feelZh": "前面叹号，零眼 + 平嘴嘴"
         },
         {
-          "face": "(ヾ0∀0)",
-          "feel": "a drunk mark in front, zero eyes + for all mouth",
-          "feelZh": "前面叹号，零眼 + ∀嘴"
+          "face": "(ヾ0。0)",
+          "feel": "a drunk mark in front, zero eyes + ideographic full stop mouth",
+          "feelZh": "前面叹号，零眼 + 句点嘴"
         },
         {
-          "face": "(0μ0)｀;",
-          "feel": "a sweat drop after, zero eyes + mu mouth",
-          "feelZh": "后面一滴汗，零眼 + μ嘴"
+          "face": "(0．0)つ",
+          "feel": "a hiragana tsu after, zero eyes + fullwidth period mouth",
+          "feelZh": "后面小つ，零眼 + 全角句点嘴"
         },
         {
-          "face": "(？0..0)",
-          "feel": "a question mark in front, zero eyes + two dots mouth",
-          "feelZh": "前面问号，零眼 + 双点嘴"
+          "face": "(0▽0)つ",
+          "feel": "a hiragana tsu after, zero eyes + down triangle mouth",
+          "feelZh": "后面小つ，零眼 + 下三角嘴"
         },
         {
-          "face": "(д△д)？",
-          "feel": "a question mark after, cyrillic de eyes + up triangle mouth",
-          "feelZh": "后面问号，西里尔 d眼 + 上三角嘴"
+          "face": "(0Д0)ﾟ;",
+          "feel": "a half sweat after, zero eyes + cyrillic de capital mouth",
+          "feelZh": "后面半滴汗，零眼 + Д嘴"
         },
         {
-          "face": "(дoд)！",
-          "feel": "an exclamation after, cyrillic de eyes + round mouth",
-          "feelZh": "后面叹号，西里尔 d眼 + 圆嘴"
+          "face": "(0∀0)ﾟ;",
+          "feel": "a half sweat after, zero eyes + for all mouth",
+          "feelZh": "后面半滴汗，零眼 + ∀嘴"
         },
         {
-          "face": "(д>д)｀;",
-          "feel": "a sweat drop after, cyrillic de eyes + greater mouth",
-          "feelZh": "后面一滴汗，西里尔 d眼 + 大于嘴"
+          "face": "(0ツ0)？",
+          "feel": "a question mark after, zero eyes + katakana tsu mouth",
+          "feelZh": "后面问号，零眼 + ツ嘴"
         },
         {
-          "face": "(°_°);",
-          "feel": "a sweat after, degree eyes + flat mouth",
-          "feelZh": "后面一滴汗，度眼 + 平嘴嘴"
+          "face": "(0ノ0)！",
+          "feel": "an exclamation after, zero eyes + katakana no mouth",
+          "feelZh": "后面叹号，零眼 + ノ嘴"
         },
         {
-          "face": "(°∀°)｀;",
-          "feel": "a sweat drop after, degree eyes + for all mouth",
-          "feelZh": "后面一滴汗，度眼 + ∀嘴"
+          "face": "(0ﾟ0);",
+          "feel": "a sweat after, zero eyes + halfwidth circle mouth",
+          "feelZh": "后面一滴汗，零眼 + 半角圆嘴"
         },
         {
-          "face": "ყ(°w°)",
-          "feel": "a georgian mark in front, degree eyes + latin w mouth",
-          "feelZh": "前面格鲁吉亚记号，度眼 + w嘴"
+          "face": "(つ0μ0)",
+          "feel": "a hiragana tsu in front, zero eyes + mu mouth",
+          "feelZh": "前面小つ，零眼 + μ嘴"
         },
         {
-          "face": "(°＞°)｀;",
-          "feel": "a sweat drop after, degree eyes + fullwidth greater mouth",
-          "feelZh": "后面一滴汗，度眼 + 全角大于嘴"
+          "face": "(0≧0)！",
+          "feel": "an exclamation after, zero eyes + greater or equal mouth",
+          "feelZh": "后面叹号，零眼 + 大等号嘴"
         },
         {
-          "face": "ﾉ(+．+)",
-          "feel": "a hand in front, plus eyes + fullwidth period mouth",
-          "feelZh": "前面一只手，十眼 + 全角句点嘴"
+          "face": "(つ0>0)",
+          "feel": "a hiragana tsu in front, zero eyes + greater mouth",
+          "feelZh": "前面小つ，零眼 + 大于嘴"
         },
         {
-          "face": "(ヾ+ﾊ+)",
-          "feel": "a drunk mark in front, plus eyes + halfwidth tsu mouth",
-          "feelZh": "前面叹号，十眼 + 半角ツ嘴"
+          "face": "(0<0)？",
+          "feel": "a question mark after, zero eyes + less mouth",
+          "feelZh": "后面问号，零眼 + 小于嘴"
         },
         {
-          "face": "(+μ+)つ",
-          "feel": "a hiragana tsu after, plus eyes + mu mouth",
-          "feelZh": "后面小つ，十眼 + μ嘴"
+          "face": "(｀;0.0)",
+          "feel": "a sweat drop in front, zero eyes + dot mouth",
+          "feelZh": "前面一滴汗，零眼 + 点嘴"
         },
         {
-          "face": "(ヾ+..+)",
-          "feel": "a drunk mark in front, plus eyes + two dots mouth",
-          "feelZh": "前面叹号，十眼 + 双点嘴"
+          "face": "(0..0)ﾉ",
+          "feel": "a hand pushing after, zero eyes + two dots mouth",
+          "feelZh": "后面推开的手，零眼 + 双点嘴"
         },
         {
-          "face": "(x△x)！",
-          "feel": "an exclamation after, lowercase x eyes + up triangle mouth",
-          "feelZh": "后面叹号，小叉眼 + 上三角嘴"
+          "face": "ყ(д_д)",
+          "feel": "a georgian mark in front, cyrillic de eyes + flat mouth",
+          "feelZh": "前面格鲁吉亚记号，西里尔 d眼 + 平嘴嘴"
         },
         {
-          "face": "(xﾟx)｀;",
-          "feel": "a sweat drop after, lowercase x eyes + halfwidth circle mouth",
-          "feelZh": "后面一滴汗，小叉眼 + 半角圆嘴"
+          "face": "ﾉ(д。д)",
+          "feel": "a hand in front, cyrillic de eyes + ideographic full stop mouth",
+          "feelZh": "前面一只手，西里尔 d眼 + 句点嘴"
+        },
+        {
+          "face": "(ヾдωд)",
+          "feel": "a drunk mark in front, cyrillic de eyes + omega mouth",
+          "feelZh": "前面叹号，西里尔 d眼 + ω嘴"
+        },
+        {
+          "face": "(ヾд△д)",
+          "feel": "a drunk mark in front, cyrillic de eyes + up triangle mouth",
+          "feelZh": "前面叹号，西里尔 d眼 + 上三角嘴"
+        },
+        {
+          "face": "(дДд)つ",
+          "feel": "a hiragana tsu after, cyrillic de eyes + cyrillic de capital mouth",
+          "feelZh": "后面小つ，西里尔 d眼 + Д嘴"
+        },
+        {
+          "face": "(д∀д)つ",
+          "feel": "a hiragana tsu after, cyrillic de eyes + for all mouth",
+          "feelZh": "后面小つ，西里尔 d眼 + ∀嘴"
+        },
+        {
+          "face": "(дツд)ﾟ;",
+          "feel": "a half sweat after, cyrillic de eyes + katakana tsu mouth",
+          "feelZh": "后面半滴汗，西里尔 d眼 + ツ嘴"
+        },
+        {
+          "face": "(дノд)？",
+          "feel": "a question mark after, cyrillic de eyes + katakana no mouth",
+          "feelZh": "后面问号，西里尔 d眼 + ノ嘴"
+        },
+        {
+          "face": "(дoд)？",
+          "feel": "a question mark after, cyrillic de eyes + round mouth",
+          "feelZh": "后面问号，西里尔 d眼 + 圆嘴"
+        },
+        {
+          "face": "(дﾟд)！",
+          "feel": "an exclamation after, cyrillic de eyes + halfwidth circle mouth",
+          "feelZh": "后面叹号，西里尔 d眼 + 半角圆嘴"
+        },
+        {
+          "face": "(дεд)！",
+          "feel": "an exclamation after, cyrillic de eyes + epsilon mouth",
+          "feelZh": "后面叹号，西里尔 d眼 + ε嘴"
+        },
+        {
+          "face": "(つд≧д)",
+          "feel": "a hiragana tsu in front, cyrillic de eyes + greater or equal mouth",
+          "feelZh": "前面小つ，西里尔 d眼 + 大等号嘴"
+        },
+        {
+          "face": "(д≦д)ﾉ",
+          "feel": "a hand pushing after, cyrillic de eyes + less or equal mouth",
+          "feelZh": "后面推开的手，西里尔 d眼 + 小等号嘴"
+        },
+        {
+          "face": "(つд<д)",
+          "feel": "a hiragana tsu in front, cyrillic de eyes + less mouth",
+          "feelZh": "前面小つ，西里尔 d眼 + 小于嘴"
+        },
+        {
+          "face": "(д＞д)ﾉ",
+          "feel": "a hand pushing after, cyrillic de eyes + fullwidth greater mouth",
+          "feelZh": "后面推开的手，西里尔 d眼 + 全角大于嘴"
+        },
+        {
+          "face": "(つд.д)",
+          "feel": "a hiragana tsu in front, cyrillic de eyes + dot mouth",
+          "feelZh": "前面小つ，西里尔 d眼 + 点嘴"
+        },
+        {
+          "face": "(д..д)ﾉ",
+          "feel": "a hand pushing after, cyrillic de eyes + two dots mouth",
+          "feelZh": "后面推开的手，西里尔 d眼 + 双点嘴"
+        },
+        {
+          "face": "ﾉ(°_°)",
+          "feel": "a hand in front, degree eyes + flat mouth",
+          "feelZh": "前面一只手，度眼 + 平嘴嘴"
+        },
+        {
+          "face": "ﾉ(°。°)",
+          "feel": "a hand in front, degree eyes + ideographic full stop mouth",
+          "feelZh": "前面一只手，度眼 + 句点嘴"
+        },
+        {
+          "face": "(ヾ°ω°)",
+          "feel": "a drunk mark in front, degree eyes + omega mouth",
+          "feelZh": "前面叹号，度眼 + ω嘴"
+        },
+        {
+          "face": "(ヾ°△°)",
+          "feel": "a drunk mark in front, degree eyes + up triangle mouth",
+          "feelZh": "前面叹号，度眼 + 上三角嘴"
+        },
+        {
+          "face": "(°Д°)つ",
+          "feel": "a hiragana tsu after, degree eyes + cyrillic de capital mouth",
+          "feelZh": "后面小つ，度眼 + Д嘴"
+        },
+        {
+          "face": "(°∀°)ﾟ;",
+          "feel": "a half sweat after, degree eyes + for all mouth",
+          "feelZh": "后面半滴汗，度眼 + ∀嘴"
+        },
+        {
+          "face": "(°ツ°)ﾟ;",
+          "feel": "a half sweat after, degree eyes + katakana tsu mouth",
+          "feelZh": "后面半滴汗，度眼 + ツ嘴"
+        },
+        {
+          "face": "(°ノ°)？",
+          "feel": "a question mark after, degree eyes + katakana no mouth",
+          "feelZh": "后面问号，度眼 + ノ嘴"
+        },
+        {
+          "face": "(°o°)？",
+          "feel": "a question mark after, degree eyes + round mouth",
+          "feelZh": "后面问号，度眼 + 圆嘴"
+        },
+        {
+          "face": "(°ﾟ°)！",
+          "feel": "an exclamation after, degree eyes + halfwidth circle mouth",
+          "feelZh": "后面叹号，度眼 + 半角圆嘴"
+        },
+        {
+          "face": "(°ε°)！",
+          "feel": "an exclamation after, degree eyes + epsilon mouth",
+          "feelZh": "后面叹号，度眼 + ε嘴"
+        },
+        {
+          "face": "(つ°≧°)",
+          "feel": "a hiragana tsu in front, degree eyes + greater or equal mouth",
+          "feelZh": "前面小つ，度眼 + 大等号嘴"
+        },
+        {
+          "face": "(°≦°)ﾉ",
+          "feel": "a hand pushing after, degree eyes + less or equal mouth",
+          "feelZh": "后面推开的手，度眼 + 小等号嘴"
+        },
+        {
+          "face": "(つ°<°)",
+          "feel": "a hiragana tsu in front, degree eyes + less mouth",
+          "feelZh": "前面小つ，度眼 + 小于嘴"
+        },
+        {
+          "face": "(°＞°)ﾉ",
+          "feel": "a hand pushing after, degree eyes + fullwidth greater mouth",
+          "feelZh": "后面推开的手，度眼 + 全角大于嘴"
+        },
+        {
+          "face": "(つ°.°)",
+          "feel": "a hiragana tsu in front, degree eyes + dot mouth",
+          "feelZh": "前面小つ，度眼 + 点嘴"
+        },
+        {
+          "face": "(°..°)ﾉ",
+          "feel": "a hand pushing after, degree eyes + two dots mouth",
+          "feelZh": "后面推开的手，度眼 + 双点嘴"
+        },
+        {
+          "face": "ﾉ(+_+)",
+          "feel": "a hand in front, plus eyes + flat mouth",
+          "feelZh": "前面一只手，十眼 + 平嘴嘴"
+        },
+        {
+          "face": "ყ(+。+)",
+          "feel": "a georgian mark in front, plus eyes + ideographic full stop mouth",
+          "feelZh": "前面格鲁吉亚记号，十眼 + 句点嘴"
+        },
+        {
+          "face": "ﾉ(+ω+)",
+          "feel": "a hand in front, plus eyes + omega mouth",
+          "feelZh": "前面一只手，十眼 + ω嘴"
+        },
+        {
+          "face": "ﾉ(+△+)",
+          "feel": "a hand in front, plus eyes + up triangle mouth",
+          "feelZh": "前面一只手，十眼 + 上三角嘴"
+        },
+        {
+          "face": "(ヾ+д+)",
+          "feel": "a drunk mark in front, plus eyes + cyrillic de mouth",
+          "feelZh": "前面叹号，十眼 + д嘴"
+        },
+        {
+          "face": "(+∀+)つ",
+          "feel": "a hiragana tsu after, plus eyes + for all mouth",
+          "feelZh": "后面小つ，十眼 + ∀嘴"
+        },
+        {
+          "face": "(+ツ+)つ",
+          "feel": "a hiragana tsu after, plus eyes + katakana tsu mouth",
+          "feelZh": "后面小つ，十眼 + ツ嘴"
+        },
+        {
+          "face": "(+ノ+)ﾟ;",
+          "feel": "a half sweat after, plus eyes + katakana no mouth",
+          "feelZh": "后面半滴汗，十眼 + ノ嘴"
+        },
+        {
+          "face": "(+o+)つ",
+          "feel": "a hiragana tsu after, plus eyes + round mouth",
+          "feelZh": "后面小つ，十眼 + 圆嘴"
+        },
+        {
+          "face": "(+ﾟ+)つ",
+          "feel": "a hiragana tsu after, plus eyes + halfwidth circle mouth",
+          "feelZh": "后面小つ，十眼 + 半角圆嘴"
+        },
+        {
+          "face": "(+ε+)つ",
+          "feel": "a hiragana tsu after, plus eyes + epsilon mouth",
+          "feelZh": "后面小つ，十眼 + ε嘴"
+        },
+        {
+          "face": "(+≧+)｀;",
+          "feel": "a sweat drop after, plus eyes + greater or equal mouth",
+          "feelZh": "后面一滴汗，十眼 + 大等号嘴"
+        },
+        {
+          "face": "(+≦+)つ",
+          "feel": "a hiragana tsu after, plus eyes + less or equal mouth",
+          "feelZh": "后面小つ，十眼 + 小等号嘴"
+        },
+        {
+          "face": "(+<+)ﾉ",
+          "feel": "a hand pushing after, plus eyes + less mouth",
+          "feelZh": "后面推开的手，十眼 + 小于嘴"
+        },
+        {
+          "face": "(ヾ+v+)",
+          "feel": "a drunk mark in front, plus eyes + latin v mouth",
+          "feelZh": "前面叹号，十眼 + v嘴"
+        },
+        {
+          "face": "(+.+)！",
+          "feel": "an exclamation after, plus eyes + dot mouth",
+          "feelZh": "后面叹号，十眼 + 点嘴"
+        },
+        {
+          "face": "ﾉ(+…+)",
+          "feel": "a hand in front, plus eyes + ellipsis mouth",
+          "feelZh": "前面一只手，十眼 + 省略嘴"
+        },
+        {
+          "face": "ﾉ(x＿x)",
+          "feel": "a hand in front, lowercase x eyes + fullwidth flat mouth",
+          "feelZh": "前面一只手，小叉眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ﾉ(x．x)",
+          "feel": "a hand in front, lowercase x eyes + fullwidth period mouth",
+          "feelZh": "前面一只手，小叉眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ヾx▽x)",
+          "feel": "a drunk mark in front, lowercase x eyes + down triangle mouth",
+          "feelZh": "前面叹号，小叉眼 + 下三角嘴"
+        },
+        {
+          "face": "(x△x)つ",
+          "feel": "a hiragana tsu after, lowercase x eyes + up triangle mouth",
+          "feelZh": "后面小つ，小叉眼 + 上三角嘴"
+        },
+        {
+          "face": "(xдx)つ",
+          "feel": "a hiragana tsu after, lowercase x eyes + cyrillic de mouth",
+          "feelZh": "后面小つ，小叉眼 + д嘴"
+        },
+        {
+          "face": "(xЗx)ﾟ;",
+          "feel": "a half sweat after, lowercase x eyes + cyrillic ze mouth",
+          "feelZh": "后面半滴汗，小叉眼 + З嘴"
+        },
+        {
+          "face": "(xﾊx)ﾟ;",
+          "feel": "a half sweat after, lowercase x eyes + halfwidth tsu mouth",
+          "feelZh": "后面半滴汗，小叉眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(xﾝx)？",
+          "feel": "a question mark after, lowercase x eyes + halfwidth no mouth",
+          "feelZh": "后面问号，小叉眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(xεx)｀;",
+          "feel": "a sweat drop after, lowercase x eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，小叉眼 + ε嘴"
+        },
+        {
+          "face": "(｀;x≧x)",
+          "feel": "a sweat drop in front, lowercase x eyes + greater or equal mouth",
+          "feelZh": "前面一滴汗，小叉眼 + 大等号嘴"
+        },
+        {
+          "face": "(x≦x)｀;",
+          "feel": "a sweat drop after, lowercase x eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，小叉眼 + 小等号嘴"
+        },
+        {
+          "face": "(ヾx<x)",
+          "feel": "a drunk mark in front, lowercase x eyes + less mouth",
+          "feelZh": "前面叹号，小叉眼 + 小于嘴"
         },
         {
           "face": "(x＞x)ﾉ",
@@ -101,84 +406,389 @@
           "feelZh": "后面推开的手，小叉眼 + 全角大于嘴"
         },
         {
-          "face": "(XωX);",
-          "feel": "a sweat after, uppercase x eyes + omega mouth",
-          "feelZh": "后面一滴汗，大叉眼 + ω嘴"
+          "face": "(x.x)つ",
+          "feel": "a hiragana tsu after, lowercase x eyes + dot mouth",
+          "feelZh": "后面小つ，小叉眼 + 点嘴"
         },
         {
-          "face": "(XノX)｀;",
-          "feel": "a sweat drop after, uppercase x eyes + katakana no mouth",
-          "feelZh": "后面一滴汗，大叉眼 + ノ嘴"
+          "face": "(x…x)｀;",
+          "feel": "a sweat drop after, lowercase x eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，小叉眼 + 省略嘴"
         },
         {
-          "face": "(X>X)ﾟ;",
-          "feel": "a half sweat after, uppercase x eyes + greater mouth",
-          "feelZh": "后面半滴汗，大叉眼 + 大于嘴"
+          "face": "(X＿X)｀;",
+          "feel": "a sweat drop after, uppercase x eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，大叉眼 + 全角平嘴嘴"
         },
         {
-          "face": "ﾉ(×。×)",
-          "feel": "a hand in front, multiplication eyes + ideographic full stop mouth",
-          "feelZh": "前面一只手，乘号眼 + 句点嘴"
+          "face": "(X．X)｀;",
+          "feel": "a sweat drop after, uppercase x eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，大叉眼 + 全角句点嘴"
         },
         {
-          "face": "(ヾ×ツ×)",
-          "feel": "a drunk mark in front, multiplication eyes + katakana tsu mouth",
-          "feelZh": "前面叹号，乘号眼 + ツ嘴"
+          "face": "ყ(X▽X)",
+          "feel": "a georgian mark in front, uppercase x eyes + down triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，大叉眼 + 下三角嘴"
         },
         {
-          "face": "(×ε×)つ",
-          "feel": "a hiragana tsu after, multiplication eyes + epsilon mouth",
-          "feelZh": "后面小つ，乘号眼 + ε嘴"
+          "face": "ყ(XДX)",
+          "feel": "a georgian mark in front, uppercase x eyes + cyrillic de capital mouth",
+          "feelZh": "前面格鲁吉亚记号，大叉眼 + Д嘴"
         },
         {
-          "face": "(×v×)？",
-          "feel": "a question mark after, multiplication eyes + latin v mouth",
-          "feelZh": "后面问号，乘号眼 + v嘴"
+          "face": "ﾉ(X∀X)",
+          "feel": "a hand in front, uppercase x eyes + for all mouth",
+          "feelZh": "前面一只手，大叉眼 + ∀嘴"
         },
         {
-          "face": "(>ω<)ﾟ;",
-          "feel": "a half sweat after, narrow eyes + omega mouth",
-          "feelZh": "后面半滴汗，窄眼 + ω嘴"
+          "face": "(ヾXツX)",
+          "feel": "a drunk mark in front, uppercase x eyes + katakana tsu mouth",
+          "feelZh": "前面叹号，大叉眼 + ツ嘴"
         },
         {
-          "face": "(>ノ<)？",
-          "feel": "a question mark after, narrow eyes + katakana no mouth",
-          "feelZh": "后面问号，窄眼 + ノ嘴"
+          "face": "(ヾXノX)",
+          "feel": "a drunk mark in front, uppercase x eyes + katakana no mouth",
+          "feelZh": "前面叹号，大叉眼 + ノ嘴"
         },
         {
-          "face": "(？>≦<)",
-          "feel": "a question mark in front, narrow eyes + less or equal mouth",
-          "feelZh": "前面问号，窄眼 + 小等号嘴"
+          "face": "(XﾝX)つ",
+          "feel": "a hiragana tsu after, uppercase x eyes + halfwidth no mouth",
+          "feelZh": "后面小つ，大叉眼 + 半角ノ嘴"
         },
         {
-          "face": "(>…<)｀;",
-          "feel": "a sweat drop after, narrow eyes + ellipsis mouth",
-          "feelZh": "后面一滴汗，窄眼 + 省略嘴"
+          "face": "(XεX)！",
+          "feel": "an exclamation after, uppercase x eyes + epsilon mouth",
+          "feelZh": "后面叹号，大叉眼 + ε嘴"
         },
         {
-          "face": "(<д>);",
-          "feel": "a sweat after, inverted narrow eyes + cyrillic de mouth",
-          "feelZh": "后面一滴汗，外窄眼 + д嘴"
+          "face": "(つX≧X)",
+          "feel": "a hiragana tsu in front, uppercase x eyes + greater or equal mouth",
+          "feelZh": "前面小つ，大叉眼 + 大等号嘴"
         },
         {
-          "face": "(<ﾟ>)ﾉ",
-          "feel": "a hand pushing after, inverted narrow eyes + halfwidth circle mouth",
-          "feelZh": "后面推开的手，外窄眼 + 半角圆嘴"
+          "face": "(X≦X)ﾉ",
+          "feel": "a hand pushing after, uppercase x eyes + less or equal mouth",
+          "feelZh": "后面推开的手，大叉眼 + 小等号嘴"
         },
         {
-          "face": "(つ<＞>)",
-          "feel": "a hiragana tsu in front, inverted narrow eyes + fullwidth greater mouth",
-          "feelZh": "前面小つ，外窄眼 + 全角大于嘴"
+          "face": "(？X<X)",
+          "feel": "a question mark in front, uppercase x eyes + less mouth",
+          "feelZh": "前面问号，大叉眼 + 小于嘴"
         },
         {
-          "face": "(＞。＜)つ",
-          "feel": "a hiragana tsu after, fullwidth narrow eyes + ideographic full stop mouth",
-          "feelZh": "后面小つ，全角窄眼 + 句点嘴"
+          "face": "(X＞X)？",
+          "feel": "a question mark after, uppercase x eyes + fullwidth greater mouth",
+          "feelZh": "后面问号，大叉眼 + 全角大于嘴"
         },
         {
-          "face": "(＞ツ＜)ﾟ;",
-          "feel": "a half sweat after, fullwidth narrow eyes + katakana tsu mouth",
-          "feelZh": "后面半滴汗，全角窄眼 + ツ嘴"
+          "face": "(ヾX..X)",
+          "feel": "a drunk mark in front, uppercase x eyes + two dots mouth",
+          "feelZh": "前面叹号，大叉眼 + 双点嘴"
+        },
+        {
+          "face": "(X…X)ﾉ",
+          "feel": "a hand pushing after, uppercase x eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，大叉眼 + 省略嘴"
+        },
+        {
+          "face": "(×＿×);",
+          "feel": "a sweat after, multiplication eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，乘号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(×．×);",
+          "feel": "a sweat after, multiplication eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，乘号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(×▽×)｀;",
+          "feel": "a sweat drop after, multiplication eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，乘号眼 + 下三角嘴"
+        },
+        {
+          "face": "(×Д×)｀;",
+          "feel": "a sweat drop after, multiplication eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，乘号眼 + Д嘴"
+        },
+        {
+          "face": "ყ(×∀×)",
+          "feel": "a georgian mark in front, multiplication eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，乘号眼 + ∀嘴"
+        },
+        {
+          "face": "ﾉ(×ツ×)",
+          "feel": "a hand in front, multiplication eyes + katakana tsu mouth",
+          "feelZh": "前面一只手，乘号眼 + ツ嘴"
+        },
+        {
+          "face": "ﾉ(×ノ×)",
+          "feel": "a hand in front, multiplication eyes + katakana no mouth",
+          "feelZh": "前面一只手，乘号眼 + ノ嘴"
+        },
+        {
+          "face": "(ヾ×o×)",
+          "feel": "a drunk mark in front, multiplication eyes + round mouth",
+          "feelZh": "前面叹号，乘号眼 + 圆嘴"
+        },
+        {
+          "face": "(ヾ×ﾟ×)",
+          "feel": "a drunk mark in front, multiplication eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，乘号眼 + 半角圆嘴"
+        },
+        {
+          "face": "(×w×)つ",
+          "feel": "a hiragana tsu after, multiplication eyes + latin w mouth",
+          "feelZh": "后面小つ，乘号眼 + w嘴"
+        },
+        {
+          "face": "(×μ×)ﾉ",
+          "feel": "a hand pushing after, multiplication eyes + mu mouth",
+          "feelZh": "后面推开的手，乘号眼 + μ嘴"
+        },
+        {
+          "face": "(つ×≦×)",
+          "feel": "a hiragana tsu in front, multiplication eyes + less or equal mouth",
+          "feelZh": "前面小つ，乘号眼 + 小等号嘴"
+        },
+        {
+          "face": "(×>×)ﾉ",
+          "feel": "a hand pushing after, multiplication eyes + greater mouth",
+          "feelZh": "后面推开的手，乘号眼 + 大于嘴"
+        },
+        {
+          "face": "(つ×＞×)",
+          "feel": "a hiragana tsu in front, multiplication eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，乘号眼 + 全角大于嘴"
+        },
+        {
+          "face": "(×v×)ﾉ",
+          "feel": "a hand pushing after, multiplication eyes + latin v mouth",
+          "feelZh": "后面推开的手，乘号眼 + v嘴"
+        },
+        {
+          "face": "(ヾ×..×)",
+          "feel": "a drunk mark in front, multiplication eyes + two dots mouth",
+          "feelZh": "前面叹号，乘号眼 + 双点嘴"
+        },
+        {
+          "face": "(×…×)ﾉ",
+          "feel": "a hand pushing after, multiplication eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，乘号眼 + 省略嘴"
+        },
+        {
+          "face": "(>＿<)ﾉ",
+          "feel": "a hand pushing after, narrow eyes + fullwidth flat mouth",
+          "feelZh": "后面推开的手，窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(>．<)ﾉ",
+          "feel": "a hand pushing after, narrow eyes + fullwidth period mouth",
+          "feelZh": "后面推开的手，窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "(>▽<);",
+          "feel": "a sweat after, narrow eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，窄眼 + 下三角嘴"
+        },
+        {
+          "face": "(>Д<)｀;",
+          "feel": "a sweat drop after, narrow eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，窄眼 + Д嘴"
+        },
+        {
+          "face": "(>∀<)｀;",
+          "feel": "a sweat drop after, narrow eyes + for all mouth",
+          "feelZh": "后面一滴汗，窄眼 + ∀嘴"
+        },
+        {
+          "face": "ყ(>ツ<)",
+          "feel": "a georgian mark in front, narrow eyes + katakana tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，窄眼 + ツ嘴"
+        },
+        {
+          "face": "ყ(>ノ<)",
+          "feel": "a georgian mark in front, narrow eyes + katakana no mouth",
+          "feelZh": "前面格鲁吉亚记号，窄眼 + ノ嘴"
+        },
+        {
+          "face": "ﾉ(>o<)",
+          "feel": "a hand in front, narrow eyes + round mouth",
+          "feelZh": "前面一只手，窄眼 + 圆嘴"
+        },
+        {
+          "face": "(>ﾟ<)｀;",
+          "feel": "a sweat drop after, narrow eyes + halfwidth circle mouth",
+          "feelZh": "后面一滴汗，窄眼 + 半角圆嘴"
+        },
+        {
+          "face": "(>ε<)｀;",
+          "feel": "a sweat drop after, narrow eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，窄眼 + ε嘴"
+        },
+        {
+          "face": "(>μ<)つ",
+          "feel": "a hiragana tsu after, narrow eyes + mu mouth",
+          "feelZh": "后面小つ，窄眼 + μ嘴"
+        },
+        {
+          "face": "(>≦<)｀;",
+          "feel": "a sweat drop after, narrow eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，窄眼 + 小等号嘴"
+        },
+        {
+          "face": "(｀;><<)",
+          "feel": "a sweat drop in front, narrow eyes + less mouth",
+          "feelZh": "前面一滴汗，窄眼 + 小于嘴"
+        },
+        {
+          "face": "(>＞<)ﾉ",
+          "feel": "a hand pushing after, narrow eyes + fullwidth greater mouth",
+          "feelZh": "后面推开的手，窄眼 + 全角大于嘴"
+        },
+        {
+          "face": "(つ>.<)",
+          "feel": "a hiragana tsu in front, narrow eyes + dot mouth",
+          "feelZh": "前面小つ，窄眼 + 点嘴"
+        },
+        {
+          "face": "(>..<)？",
+          "feel": "a question mark after, narrow eyes + two dots mouth",
+          "feelZh": "后面问号，窄眼 + 双点嘴"
+        },
+        {
+          "face": "(<_>)ﾉ",
+          "feel": "a hand pushing after, inverted narrow eyes + flat mouth",
+          "feelZh": "后面推开的手，外窄眼 + 平嘴嘴"
+        },
+        {
+          "face": "(<。>);",
+          "feel": "a sweat after, inverted narrow eyes + ideographic full stop mouth",
+          "feelZh": "后面一滴汗，外窄眼 + 句点嘴"
+        },
+        {
+          "face": "(<ω>);",
+          "feel": "a sweat after, inverted narrow eyes + omega mouth",
+          "feelZh": "后面一滴汗，外窄眼 + ω嘴"
+        },
+        {
+          "face": "(<△>)｀;",
+          "feel": "a sweat drop after, inverted narrow eyes + up triangle mouth",
+          "feelZh": "后面一滴汗，外窄眼 + 上三角嘴"
+        },
+        {
+          "face": "ყ(<д>)",
+          "feel": "a georgian mark in front, inverted narrow eyes + cyrillic de mouth",
+          "feelZh": "前面格鲁吉亚记号，外窄眼 + д嘴"
+        },
+        {
+          "face": "ყ(<З>)",
+          "feel": "a georgian mark in front, inverted narrow eyes + cyrillic ze mouth",
+          "feelZh": "前面格鲁吉亚记号，外窄眼 + З嘴"
+        },
+        {
+          "face": "ﾉ(<ﾊ>)",
+          "feel": "a hand in front, inverted narrow eyes + halfwidth tsu mouth",
+          "feelZh": "前面一只手，外窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "ﾉ(<ﾝ>)",
+          "feel": "a hand in front, inverted narrow eyes + halfwidth no mouth",
+          "feelZh": "前面一只手，外窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "ﾉ(<O>)",
+          "feel": "a hand in front, inverted narrow eyes + wide round mouth",
+          "feelZh": "前面一只手，外窄眼 + 大圆嘴"
+        },
+        {
+          "face": "ﾉ(<w>)",
+          "feel": "a hand in front, inverted narrow eyes + latin w mouth",
+          "feelZh": "前面一只手，外窄眼 + w嘴"
+        },
+        {
+          "face": "(つ<μ>)",
+          "feel": "a hiragana tsu in front, inverted narrow eyes + mu mouth",
+          "feelZh": "前面小つ，外窄眼 + μ嘴"
+        },
+        {
+          "face": "(<≧>)ﾉ",
+          "feel": "a hand pushing after, inverted narrow eyes + greater or equal mouth",
+          "feelZh": "后面推开的手，外窄眼 + 大等号嘴"
+        },
+        {
+          "face": "(つ<>>)",
+          "feel": "a hiragana tsu in front, inverted narrow eyes + greater mouth",
+          "feelZh": "前面小つ，外窄眼 + 大于嘴"
+        },
+        {
+          "face": "(<<>)？",
+          "feel": "a question mark after, inverted narrow eyes + less mouth",
+          "feelZh": "后面问号，外窄眼 + 小于嘴"
+        },
+        {
+          "face": "(？<v>)",
+          "feel": "a question mark in front, inverted narrow eyes + latin v mouth",
+          "feelZh": "前面问号，外窄眼 + v嘴"
+        },
+        {
+          "face": "(<.>)つ",
+          "feel": "a hiragana tsu after, inverted narrow eyes + dot mouth",
+          "feelZh": "后面小つ，外窄眼 + 点嘴"
+        },
+        {
+          "face": "(<…>)｀;",
+          "feel": "a sweat drop after, inverted narrow eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，外窄眼 + 省略嘴"
+        },
+        {
+          "face": "(＞＿＜)｀;",
+          "feel": "a sweat drop after, fullwidth narrow eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，全角窄眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ყ(＞．＜)",
+          "feel": "a georgian mark in front, fullwidth narrow eyes + fullwidth period mouth",
+          "feelZh": "前面格鲁吉亚记号，全角窄眼 + 全角句点嘴"
+        },
+        {
+          "face": "ﾉ(＞▽＜)",
+          "feel": "a hand in front, fullwidth narrow eyes + down triangle mouth",
+          "feelZh": "前面一只手，全角窄眼 + 下三角嘴"
+        },
+        {
+          "face": "ﾉ(＞Д＜)",
+          "feel": "a hand in front, fullwidth narrow eyes + cyrillic de capital mouth",
+          "feelZh": "前面一只手，全角窄眼 + Д嘴"
+        },
+        {
+          "face": "(ヾ＞∀＜)",
+          "feel": "a drunk mark in front, fullwidth narrow eyes + for all mouth",
+          "feelZh": "前面叹号，全角窄眼 + ∀嘴"
+        },
+        {
+          "face": "(ヾ＞ツ＜)",
+          "feel": "a drunk mark in front, fullwidth narrow eyes + katakana tsu mouth",
+          "feelZh": "前面叹号，全角窄眼 + ツ嘴"
+        },
+        {
+          "face": "(＞ﾊ＜)つ",
+          "feel": "a hiragana tsu after, fullwidth narrow eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，全角窄眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(＞ﾝ＜)ﾟ;",
+          "feel": "a half sweat after, fullwidth narrow eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，全角窄眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(＞O＜)ﾟ;",
+          "feel": "a half sweat after, fullwidth narrow eyes + wide round mouth",
+          "feelZh": "后面半滴汗，全角窄眼 + 大圆嘴"
+        },
+        {
+          "face": "(＞w＜)？",
+          "feel": "a question mark after, fullwidth narrow eyes + latin w mouth",
+          "feelZh": "后面问号，全角窄眼 + w嘴"
         },
         {
           "face": "(＞μ＜);",
@@ -186,84 +796,389 @@
           "feelZh": "后面一滴汗，全角窄眼 + μ嘴"
         },
         {
-          "face": "ყ(＞.＜)",
-          "feel": "a georgian mark in front, fullwidth narrow eyes + dot mouth",
-          "feelZh": "前面格鲁吉亚记号，全角窄眼 + 点嘴"
+          "face": "(｀;＞≦＜)",
+          "feel": "a sweat drop in front, fullwidth narrow eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，全角窄眼 + 小等号嘴"
         },
         {
-          "face": "(T▽T)！",
-          "feel": "an exclamation after, latin tee eyes + down triangle mouth",
-          "feelZh": "后面叹号，T眼 + 下三角嘴"
+          "face": "(＞>＜);",
+          "feel": "a sweat after, fullwidth narrow eyes + greater mouth",
+          "feelZh": "后面一滴汗，全角窄眼 + 大于嘴"
         },
         {
-          "face": "(TﾝT)ﾉ",
-          "feel": "a hand pushing after, latin tee eyes + halfwidth no mouth",
-          "feelZh": "后面推开的手，T眼 + 半角ノ嘴"
+          "face": "(｀;＞＞＜)",
+          "feel": "a sweat drop in front, fullwidth narrow eyes + fullwidth greater mouth",
+          "feelZh": "前面一滴汗，全角窄眼 + 全角大于嘴"
         },
         {
-          "face": "(T<T)ﾟ;",
-          "feel": "a half sweat after, latin tee eyes + less mouth",
-          "feelZh": "后面半滴汗，T眼 + 小于嘴"
+          "face": "(＞v＜)｀;",
+          "feel": "a sweat drop after, fullwidth narrow eyes + latin v mouth",
+          "feelZh": "后面一滴汗，全角窄眼 + v嘴"
         },
         {
-          "face": "(Т．Т)｀;",
-          "feel": "a sweat drop after, cyrillic te eyes + fullwidth period mouth",
+          "face": "(｀;＞..＜)",
+          "feel": "a sweat drop in front, fullwidth narrow eyes + two dots mouth",
+          "feelZh": "前面一滴汗，全角窄眼 + 双点嘴"
+        },
+        {
+          "face": "(＞…＜)｀;",
+          "feel": "a sweat drop after, fullwidth narrow eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，全角窄眼 + 省略嘴"
+        },
+        {
+          "face": "(T＿T);",
+          "feel": "a sweat after, latin tee eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，T眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(T．T)｀;",
+          "feel": "a sweat drop after, latin tee eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，T眼 + 全角句点嘴"
+        },
+        {
+          "face": "ყ(T▽T)",
+          "feel": "a georgian mark in front, latin tee eyes + down triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，T眼 + 下三角嘴"
+        },
+        {
+          "face": "ყ(TДT)",
+          "feel": "a georgian mark in front, latin tee eyes + cyrillic de capital mouth",
+          "feelZh": "前面格鲁吉亚记号，T眼 + Д嘴"
+        },
+        {
+          "face": "ﾉ(T∀T)",
+          "feel": "a hand in front, latin tee eyes + for all mouth",
+          "feelZh": "前面一只手，T眼 + ∀嘴"
+        },
+        {
+          "face": "ﾉ(TツT)",
+          "feel": "a hand in front, latin tee eyes + katakana tsu mouth",
+          "feelZh": "前面一只手，T眼 + ツ嘴"
+        },
+        {
+          "face": "(ヾTノT)",
+          "feel": "a drunk mark in front, latin tee eyes + katakana no mouth",
+          "feelZh": "前面叹号，T眼 + ノ嘴"
+        },
+        {
+          "face": "(TﾝT)つ",
+          "feel": "a hiragana tsu after, latin tee eyes + halfwidth no mouth",
+          "feelZh": "后面小つ，T眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(TεT)！",
+          "feel": "an exclamation after, latin tee eyes + epsilon mouth",
+          "feelZh": "后面叹号，T眼 + ε嘴"
+        },
+        {
+          "face": "(つT≧T)",
+          "feel": "a hiragana tsu in front, latin tee eyes + greater or equal mouth",
+          "feelZh": "前面小つ，T眼 + 大等号嘴"
+        },
+        {
+          "face": "(T≦T)！",
+          "feel": "an exclamation after, latin tee eyes + less or equal mouth",
+          "feelZh": "后面叹号，T眼 + 小等号嘴"
+        },
+        {
+          "face": "(？T<T)",
+          "feel": "a question mark in front, latin tee eyes + less mouth",
+          "feelZh": "前面问号，T眼 + 小于嘴"
+        },
+        {
+          "face": "(T＞T)？",
+          "feel": "a question mark after, latin tee eyes + fullwidth greater mouth",
+          "feelZh": "后面问号，T眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ヾT..T)",
+          "feel": "a drunk mark in front, latin tee eyes + two dots mouth",
+          "feelZh": "前面叹号，T眼 + 双点嘴"
+        },
+        {
+          "face": "(T…T)ﾉ",
+          "feel": "a hand pushing after, latin tee eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，T眼 + 省略嘴"
+        },
+        {
+          "face": "(Т＿Т)ﾉ",
+          "feel": "a hand pushing after, cyrillic te eyes + fullwidth flat mouth",
+          "feelZh": "后面推开的手，西里尔 T眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(Т．Т);",
+          "feel": "a sweat after, cyrillic te eyes + fullwidth period mouth",
           "feelZh": "后面一滴汗，西里尔 T眼 + 全角句点嘴"
         },
         {
-          "face": "ყ(ТﾊТ)",
-          "feel": "a georgian mark in front, cyrillic te eyes + halfwidth tsu mouth",
-          "feelZh": "前面格鲁吉亚记号，西里尔 T眼 + 半角ツ嘴"
+          "face": "(Т▽Т)｀;",
+          "feel": "a sweat drop after, cyrillic te eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，西里尔 T眼 + 下三角嘴"
         },
         {
-          "face": "(ТμТ)ﾟ;",
-          "feel": "a half sweat after, cyrillic te eyes + mu mouth",
-          "feelZh": "后面半滴汗，西里尔 T眼 + μ嘴"
+          "face": "(ТДТ)｀;",
+          "feel": "a sweat drop after, cyrillic te eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，西里尔 T眼 + Д嘴"
         },
         {
-          "face": "(Т.Т)！",
-          "feel": "an exclamation after, cyrillic te eyes + dot mouth",
-          "feelZh": "后面叹号，西里尔 T眼 + 点嘴"
+          "face": "ყ(Т∀Т)",
+          "feel": "a georgian mark in front, cyrillic te eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，西里尔 T眼 + ∀嘴"
         },
         {
-          "face": "(ʕ▽ʕ)つ",
-          "feel": "a hiragana tsu after, inverted glottal eyes + down triangle mouth",
-          "feelZh": "后面小つ，倒撇眼 + 下三角嘴"
+          "face": "ყ(ТツТ)",
+          "feel": "a georgian mark in front, cyrillic te eyes + katakana tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，西里尔 T眼 + ツ嘴"
         },
         {
-          "face": "(ʕﾝʕ)ﾟ;",
-          "feel": "a half sweat after, inverted glottal eyes + halfwidth no mouth",
-          "feelZh": "后面半滴汗，倒撇眼 + 半角ノ嘴"
+          "face": "ﾉ(ТノТ)",
+          "feel": "a hand in front, cyrillic te eyes + katakana no mouth",
+          "feelZh": "前面一只手，西里尔 T眼 + ノ嘴"
         },
         {
-          "face": "(ʕ≦ʕ)ﾟ;",
-          "feel": "a half sweat after, inverted glottal eyes + less or equal mouth",
-          "feelZh": "后面半滴汗，倒撇眼 + 小等号嘴"
+          "face": "(ヾТoТ)",
+          "feel": "a drunk mark in front, cyrillic te eyes + round mouth",
+          "feelZh": "前面叹号，西里尔 T眼 + 圆嘴"
         },
         {
-          "face": "(ʕ…ʕ)！",
-          "feel": "an exclamation after, inverted glottal eyes + ellipsis mouth",
-          "feelZh": "后面叹号，倒撇眼 + 省略嘴"
+          "face": "(ヾТﾟТ)",
+          "feel": "a drunk mark in front, cyrillic te eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，西里尔 T眼 + 半角圆嘴"
         },
         {
-          "face": "(ˈдˈ)ﾉ",
-          "feel": "a hand pushing after, vertical stroke eyes + cyrillic de mouth",
-          "feelZh": "后面推开的手，重音眼 + д嘴"
+          "face": "(ТwТ)つ",
+          "feel": "a hiragana tsu after, cyrillic te eyes + latin w mouth",
+          "feelZh": "后面小つ，西里尔 T眼 + w嘴"
         },
         {
-          "face": "(ˈﾟˈ);",
-          "feel": "a sweat after, vertical stroke eyes + halfwidth circle mouth",
-          "feelZh": "后面一滴汗，重音眼 + 半角圆嘴"
+          "face": "(ТμТ)！",
+          "feel": "an exclamation after, cyrillic te eyes + mu mouth",
+          "feelZh": "后面叹号，西里尔 T眼 + μ嘴"
         },
         {
-          "face": "(ˈ<ˈ)ﾟ;",
-          "feel": "a half sweat after, vertical stroke eyes + less mouth",
-          "feelZh": "后面半滴汗，重音眼 + 小于嘴"
+          "face": "(つТ≦Т)",
+          "feel": "a hiragana tsu in front, cyrillic te eyes + less or equal mouth",
+          "feelZh": "前面小つ，西里尔 T眼 + 小等号嘴"
         },
         {
-          "face": "ყ(｀。｀)",
-          "feel": "a georgian mark in front, fullwidth grave eyes + ideographic full stop mouth",
-          "feelZh": "前面格鲁吉亚记号，全角反引号眼 + 句点嘴"
+          "face": "(Т>Т)ﾉ",
+          "feel": "a hand pushing after, cyrillic te eyes + greater mouth",
+          "feelZh": "后面推开的手，西里尔 T眼 + 大于嘴"
+        },
+        {
+          "face": "(つТ＞Т)",
+          "feel": "a hiragana tsu in front, cyrillic te eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，西里尔 T眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ТvТ)ﾉ",
+          "feel": "a hand pushing after, cyrillic te eyes + latin v mouth",
+          "feelZh": "后面推开的手，西里尔 T眼 + v嘴"
+        },
+        {
+          "face": "(つТ..Т)",
+          "feel": "a hiragana tsu in front, cyrillic te eyes + two dots mouth",
+          "feelZh": "前面小つ，西里尔 T眼 + 双点嘴"
+        },
+        {
+          "face": "(Т…Т)ﾉ",
+          "feel": "a hand pushing after, cyrillic te eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，西里尔 T眼 + 省略嘴"
+        },
+        {
+          "face": "(ʕ＿ʕ);",
+          "feel": "a sweat after, inverted glottal eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，倒撇眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ʕ．ʕ);",
+          "feel": "a sweat after, inverted glottal eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，倒撇眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ʕ▽ʕ)｀;",
+          "feel": "a sweat drop after, inverted glottal eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，倒撇眼 + 下三角嘴"
+        },
+        {
+          "face": "(ʕДʕ)｀;",
+          "feel": "a sweat drop after, inverted glottal eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，倒撇眼 + Д嘴"
+        },
+        {
+          "face": "ყ(ʕ∀ʕ)",
+          "feel": "a georgian mark in front, inverted glottal eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，倒撇眼 + ∀嘴"
+        },
+        {
+          "face": "ყ(ʕツʕ)",
+          "feel": "a georgian mark in front, inverted glottal eyes + katakana tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，倒撇眼 + ツ嘴"
+        },
+        {
+          "face": "ﾉ(ʕノʕ)",
+          "feel": "a hand in front, inverted glottal eyes + katakana no mouth",
+          "feelZh": "前面一只手，倒撇眼 + ノ嘴"
+        },
+        {
+          "face": "(ヾʕoʕ)",
+          "feel": "a drunk mark in front, inverted glottal eyes + round mouth",
+          "feelZh": "前面叹号，倒撇眼 + 圆嘴"
+        },
+        {
+          "face": "(ヾʕﾟʕ)",
+          "feel": "a drunk mark in front, inverted glottal eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，倒撇眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ʕwʕ)つ",
+          "feel": "a hiragana tsu after, inverted glottal eyes + latin w mouth",
+          "feelZh": "后面小つ，倒撇眼 + w嘴"
+        },
+        {
+          "face": "(ʕμʕ)！",
+          "feel": "an exclamation after, inverted glottal eyes + mu mouth",
+          "feelZh": "后面叹号，倒撇眼 + μ嘴"
+        },
+        {
+          "face": "(つʕ≦ʕ)",
+          "feel": "a hiragana tsu in front, inverted glottal eyes + less or equal mouth",
+          "feelZh": "前面小つ，倒撇眼 + 小等号嘴"
+        },
+        {
+          "face": "(ʕ>ʕ)ﾉ",
+          "feel": "a hand pushing after, inverted glottal eyes + greater mouth",
+          "feelZh": "后面推开的手，倒撇眼 + 大于嘴"
+        },
+        {
+          "face": "(つʕ＞ʕ)",
+          "feel": "a hiragana tsu in front, inverted glottal eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，倒撇眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ʕvʕ)ﾉ",
+          "feel": "a hand pushing after, inverted glottal eyes + latin v mouth",
+          "feelZh": "后面推开的手，倒撇眼 + v嘴"
+        },
+        {
+          "face": "(つʕ..ʕ)",
+          "feel": "a hiragana tsu in front, inverted glottal eyes + two dots mouth",
+          "feelZh": "前面小つ，倒撇眼 + 双点嘴"
+        },
+        {
+          "face": "(ʕ…ʕ)ﾉ",
+          "feel": "a hand pushing after, inverted glottal eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，倒撇眼 + 省略嘴"
+        },
+        {
+          "face": "(ˈ＿ˈ);",
+          "feel": "a sweat after, vertical stroke eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，重音眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ˈ．ˈ);",
+          "feel": "a sweat after, vertical stroke eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，重音眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ˈ▽ˈ)｀;",
+          "feel": "a sweat drop after, vertical stroke eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，重音眼 + 下三角嘴"
+        },
+        {
+          "face": "(ˈДˈ)｀;",
+          "feel": "a sweat drop after, vertical stroke eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，重音眼 + Д嘴"
+        },
+        {
+          "face": "ყ(ˈ∀ˈ)",
+          "feel": "a georgian mark in front, vertical stroke eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，重音眼 + ∀嘴"
+        },
+        {
+          "face": "ﾉ(ˈツˈ)",
+          "feel": "a hand in front, vertical stroke eyes + katakana tsu mouth",
+          "feelZh": "前面一只手，重音眼 + ツ嘴"
+        },
+        {
+          "face": "ﾉ(ˈノˈ)",
+          "feel": "a hand in front, vertical stroke eyes + katakana no mouth",
+          "feelZh": "前面一只手，重音眼 + ノ嘴"
+        },
+        {
+          "face": "(ヾˈoˈ)",
+          "feel": "a drunk mark in front, vertical stroke eyes + round mouth",
+          "feelZh": "前面叹号，重音眼 + 圆嘴"
+        },
+        {
+          "face": "(ヾˈﾟˈ)",
+          "feel": "a drunk mark in front, vertical stroke eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，重音眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ˈwˈ)つ",
+          "feel": "a hiragana tsu after, vertical stroke eyes + latin w mouth",
+          "feelZh": "后面小つ，重音眼 + w嘴"
+        },
+        {
+          "face": "(ˈμˈ)ﾉ",
+          "feel": "a hand pushing after, vertical stroke eyes + mu mouth",
+          "feelZh": "后面推开的手，重音眼 + μ嘴"
+        },
+        {
+          "face": "(つˈ≦ˈ)",
+          "feel": "a hiragana tsu in front, vertical stroke eyes + less or equal mouth",
+          "feelZh": "前面小つ，重音眼 + 小等号嘴"
+        },
+        {
+          "face": "(ˈ>ˈ)ﾉ",
+          "feel": "a hand pushing after, vertical stroke eyes + greater mouth",
+          "feelZh": "后面推开的手，重音眼 + 大于嘴"
+        },
+        {
+          "face": "(つˈ＞ˈ)",
+          "feel": "a hiragana tsu in front, vertical stroke eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，重音眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ˈvˈ)ﾉ",
+          "feel": "a hand pushing after, vertical stroke eyes + latin v mouth",
+          "feelZh": "后面推开的手，重音眼 + v嘴"
+        },
+        {
+          "face": "(ヾˈ..ˈ)",
+          "feel": "a drunk mark in front, vertical stroke eyes + two dots mouth",
+          "feelZh": "前面叹号，重音眼 + 双点嘴"
+        },
+        {
+          "face": "(ˈ…ˈ)ﾉ",
+          "feel": "a hand pushing after, vertical stroke eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，重音眼 + 省略嘴"
+        },
+        {
+          "face": "(｀＿｀);",
+          "feel": "a sweat after, fullwidth grave eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，全角反引号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(｀．｀);",
+          "feel": "a sweat after, fullwidth grave eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，全角反引号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀▽｀)｀;",
+          "feel": "a sweat drop after, fullwidth grave eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，全角反引号眼 + 下三角嘴"
+        },
+        {
+          "face": "ყ(｀Д｀)",
+          "feel": "a georgian mark in front, fullwidth grave eyes + cyrillic de capital mouth",
+          "feelZh": "前面格鲁吉亚记号，全角反引号眼 + Д嘴"
+        },
+        {
+          "face": "ყ(｀∀｀)",
+          "feel": "a georgian mark in front, fullwidth grave eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，全角反引号眼 + ∀嘴"
         },
         {
           "face": "ﾉ(｀ツ｀)",
@@ -271,84 +1186,389 @@
           "feelZh": "前面一只手，全角反引号眼 + ツ嘴"
         },
         {
-          "face": "(｀;｀μ｀)",
-          "feel": "a sweat drop in front, fullwidth grave eyes + mu mouth",
-          "feelZh": "前面一滴汗，全角反引号眼 + μ嘴"
+          "face": "ﾉ(｀ノ｀)",
+          "feel": "a hand in front, fullwidth grave eyes + katakana no mouth",
+          "feelZh": "前面一只手，全角反引号眼 + ノ嘴"
         },
         {
-          "face": "(｀v｀)ﾟ;",
-          "feel": "a half sweat after, fullwidth grave eyes + latin v mouth",
-          "feelZh": "后面半滴汗，全角反引号眼 + v嘴"
+          "face": "(ヾ｀o｀)",
+          "feel": "a drunk mark in front, fullwidth grave eyes + round mouth",
+          "feelZh": "前面叹号，全角反引号眼 + 圆嘴"
         },
         {
-          "face": "(`ω`)つ",
-          "feel": "a hiragana tsu after, grave eyes + omega mouth",
-          "feelZh": "后面小つ，反引号眼 + ω嘴"
+          "face": "(ヾ｀ﾟ｀)",
+          "feel": "a drunk mark in front, fullwidth grave eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，全角反引号眼 + 半角圆嘴"
         },
         {
-          "face": "(`ノ`)ﾟ;",
-          "feel": "a half sweat after, grave eyes + katakana no mouth",
-          "feelZh": "后面半滴汗，反引号眼 + ノ嘴"
+          "face": "(｀w｀)つ",
+          "feel": "a hiragana tsu after, fullwidth grave eyes + latin w mouth",
+          "feelZh": "后面小つ，全角反引号眼 + w嘴"
         },
         {
-          "face": "ﾉ(`≦`)",
-          "feel": "a hand in front, grave eyes + less or equal mouth",
-          "feelZh": "前面一只手，反引号眼 + 小等号嘴"
+          "face": "(｀μ｀)ﾉ",
+          "feel": "a hand pushing after, fullwidth grave eyes + mu mouth",
+          "feelZh": "后面推开的手，全角反引号眼 + μ嘴"
         },
         {
-          "face": "(`…`)ﾉ",
-          "feel": "a hand pushing after, grave eyes + ellipsis mouth",
-          "feelZh": "后面推开的手，反引号眼 + 省略嘴"
+          "face": "(つ｀≦｀)",
+          "feel": "a hiragana tsu in front, fullwidth grave eyes + less or equal mouth",
+          "feelZh": "前面小つ，全角反引号眼 + 小等号嘴"
         },
         {
-          "face": "(´д´);",
-          "feel": "a sweat after, acute eyes + cyrillic de mouth",
-          "feelZh": "后面一滴汗，撇号眼 + д嘴"
+          "face": "(｀>｀)ﾉ",
+          "feel": "a hand pushing after, fullwidth grave eyes + greater mouth",
+          "feelZh": "后面推开的手，全角反引号眼 + 大于嘴"
         },
         {
-          "face": "(´ﾟ´)｀;",
-          "feel": "a sweat drop after, acute eyes + halfwidth circle mouth",
-          "feelZh": "后面一滴汗，撇号眼 + 半角圆嘴"
+          "face": "(つ｀＞｀)",
+          "feel": "a hiragana tsu in front, fullwidth grave eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，全角反引号眼 + 全角大于嘴"
         },
         {
-          "face": "(´<´)？",
-          "feel": "a question mark after, acute eyes + less mouth",
-          "feelZh": "后面问号，撇号眼 + 小于嘴"
+          "face": "(｀v｀)ﾉ",
+          "feel": "a hand pushing after, fullwidth grave eyes + latin v mouth",
+          "feelZh": "后面推开的手，全角反引号眼 + v嘴"
         },
         {
-          "face": "ყ(_。_)",
-          "feel": "a georgian mark in front, underscore eyes + ideographic full stop mouth",
-          "feelZh": "前面格鲁吉亚记号，横线眼 + 句点嘴"
+          "face": "(ヾ｀..｀)",
+          "feel": "a drunk mark in front, fullwidth grave eyes + two dots mouth",
+          "feelZh": "前面叹号，全角反引号眼 + 双点嘴"
         },
         {
-          "face": "ﾉ(_ツ_)",
-          "feel": "a hand in front, underscore eyes + katakana tsu mouth",
-          "feelZh": "前面一只手，横线眼 + ツ嘴"
+          "face": "(｀…｀)ﾉ",
+          "feel": "a hand pushing after, fullwidth grave eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，全角反引号眼 + 省略嘴"
         },
         {
-          "face": "(？_μ_)",
-          "feel": "a question mark in front, underscore eyes + mu mouth",
-          "feelZh": "前面问号，横线眼 + μ嘴"
+          "face": "(`＿`)ﾉ",
+          "feel": "a hand pushing after, grave eyes + fullwidth flat mouth",
+          "feelZh": "后面推开的手，反引号眼 + 全角平嘴嘴"
         },
         {
-          "face": "ﾉ(_._)",
-          "feel": "a hand in front, underscore eyes + dot mouth",
-          "feelZh": "前面一只手，横线眼 + 点嘴"
+          "face": "(`．`)ﾉ",
+          "feel": "a hand pushing after, grave eyes + fullwidth period mouth",
+          "feelZh": "后面推开的手，反引号眼 + 全角句点嘴"
         },
         {
-          "face": "(˙▽˙)！",
-          "feel": "an exclamation after, dot above eyes + down triangle mouth",
-          "feelZh": "后面叹号，上点眼 + 下三角嘴"
+          "face": "(`▽`);",
+          "feel": "a sweat after, grave eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，反引号眼 + 下三角嘴"
         },
         {
-          "face": "(˙ﾝ˙)ﾉ",
-          "feel": "a hand pushing after, dot above eyes + halfwidth no mouth",
-          "feelZh": "后面推开的手，上点眼 + 半角ノ嘴"
+          "face": "(`Д`)｀;",
+          "feel": "a sweat drop after, grave eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，反引号眼 + Д嘴"
         },
         {
-          "face": "(˙≦˙)ﾉ",
-          "feel": "a hand pushing after, dot above eyes + less or equal mouth",
-          "feelZh": "后面推开的手，上点眼 + 小等号嘴"
+          "face": "(`∀`)｀;",
+          "feel": "a sweat drop after, grave eyes + for all mouth",
+          "feelZh": "后面一滴汗，反引号眼 + ∀嘴"
+        },
+        {
+          "face": "ყ(`ツ`)",
+          "feel": "a georgian mark in front, grave eyes + katakana tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，反引号眼 + ツ嘴"
+        },
+        {
+          "face": "ყ(`ノ`)",
+          "feel": "a georgian mark in front, grave eyes + katakana no mouth",
+          "feelZh": "前面格鲁吉亚记号，反引号眼 + ノ嘴"
+        },
+        {
+          "face": "ﾉ(`o`)",
+          "feel": "a hand in front, grave eyes + round mouth",
+          "feelZh": "前面一只手，反引号眼 + 圆嘴"
+        },
+        {
+          "face": "ყ(`ﾟ`)",
+          "feel": "a georgian mark in front, grave eyes + halfwidth circle mouth",
+          "feelZh": "前面格鲁吉亚记号，反引号眼 + 半角圆嘴"
+        },
+        {
+          "face": "(`ε`)｀;",
+          "feel": "a sweat drop after, grave eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，反引号眼 + ε嘴"
+        },
+        {
+          "face": "(`μ`)つ",
+          "feel": "a hiragana tsu after, grave eyes + mu mouth",
+          "feelZh": "后面小つ，反引号眼 + μ嘴"
+        },
+        {
+          "face": "(`≦`)｀;",
+          "feel": "a sweat drop after, grave eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，反引号眼 + 小等号嘴"
+        },
+        {
+          "face": "(｀;`<`)",
+          "feel": "a sweat drop in front, grave eyes + less mouth",
+          "feelZh": "前面一滴汗，反引号眼 + 小于嘴"
+        },
+        {
+          "face": "(`＞`);",
+          "feel": "a sweat after, grave eyes + fullwidth greater mouth",
+          "feelZh": "后面一滴汗，反引号眼 + 全角大于嘴"
+        },
+        {
+          "face": "(つ`.`)",
+          "feel": "a hiragana tsu in front, grave eyes + dot mouth",
+          "feelZh": "前面小つ，反引号眼 + 点嘴"
+        },
+        {
+          "face": "(`..`)？",
+          "feel": "a question mark after, grave eyes + two dots mouth",
+          "feelZh": "后面问号，反引号眼 + 双点嘴"
+        },
+        {
+          "face": "(´_´);",
+          "feel": "a sweat after, acute eyes + flat mouth",
+          "feelZh": "后面一滴汗，撇号眼 + 平嘴嘴"
+        },
+        {
+          "face": "(´。´)｀;",
+          "feel": "a sweat drop after, acute eyes + ideographic full stop mouth",
+          "feelZh": "后面一滴汗，撇号眼 + 句点嘴"
+        },
+        {
+          "face": "ყ(´ω´)",
+          "feel": "a georgian mark in front, acute eyes + omega mouth",
+          "feelZh": "前面格鲁吉亚记号，撇号眼 + ω嘴"
+        },
+        {
+          "face": "ყ(´△´)",
+          "feel": "a georgian mark in front, acute eyes + up triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，撇号眼 + 上三角嘴"
+        },
+        {
+          "face": "ﾉ(´д´)",
+          "feel": "a hand in front, acute eyes + cyrillic de mouth",
+          "feelZh": "前面一只手，撇号眼 + д嘴"
+        },
+        {
+          "face": "ﾉ(´З´)",
+          "feel": "a hand in front, acute eyes + cyrillic ze mouth",
+          "feelZh": "前面一只手，撇号眼 + З嘴"
+        },
+        {
+          "face": "(ヾ´ﾊ´)",
+          "feel": "a drunk mark in front, acute eyes + halfwidth tsu mouth",
+          "feelZh": "前面叹号，撇号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(´ノ´)つ",
+          "feel": "a hiragana tsu after, acute eyes + katakana no mouth",
+          "feelZh": "后面小つ，撇号眼 + ノ嘴"
+        },
+        {
+          "face": "(´o´)つ",
+          "feel": "a hiragana tsu after, acute eyes + round mouth",
+          "feelZh": "后面小つ，撇号眼 + 圆嘴"
+        },
+        {
+          "face": "(´ﾟ´)ﾟ;",
+          "feel": "a half sweat after, acute eyes + halfwidth circle mouth",
+          "feelZh": "后面半滴汗，撇号眼 + 半角圆嘴"
+        },
+        {
+          "face": "(´ε´)ﾟ;",
+          "feel": "a half sweat after, acute eyes + epsilon mouth",
+          "feelZh": "后面半滴汗，撇号眼 + ε嘴"
+        },
+        {
+          "face": "ﾉ(´≧´)",
+          "feel": "a hand in front, acute eyes + greater or equal mouth",
+          "feelZh": "前面一只手，撇号眼 + 大等号嘴"
+        },
+        {
+          "face": "(´≦´)ﾟ;",
+          "feel": "a half sweat after, acute eyes + less or equal mouth",
+          "feelZh": "后面半滴汗，撇号眼 + 小等号嘴"
+        },
+        {
+          "face": "ﾉ(´<´)",
+          "feel": "a hand in front, acute eyes + less mouth",
+          "feelZh": "前面一只手，撇号眼 + 小于嘴"
+        },
+        {
+          "face": "(´＞´)？",
+          "feel": "a question mark after, acute eyes + fullwidth greater mouth",
+          "feelZh": "后面问号，撇号眼 + 全角大于嘴"
+        },
+        {
+          "face": "ﾉ(´.´)",
+          "feel": "a hand in front, acute eyes + dot mouth",
+          "feelZh": "前面一只手，撇号眼 + 点嘴"
+        },
+        {
+          "face": "(´..´)？",
+          "feel": "a question mark after, acute eyes + two dots mouth",
+          "feelZh": "后面问号，撇号眼 + 双点嘴"
+        },
+        {
+          "face": "(___)ﾉ",
+          "feel": "a hand pushing after, underscore eyes + flat mouth",
+          "feelZh": "后面推开的手，横线眼 + 平嘴嘴"
+        },
+        {
+          "face": "(_。_);",
+          "feel": "a sweat after, underscore eyes + ideographic full stop mouth",
+          "feelZh": "后面一滴汗，横线眼 + 句点嘴"
+        },
+        {
+          "face": "(_ω_)｀;",
+          "feel": "a sweat drop after, underscore eyes + omega mouth",
+          "feelZh": "后面一滴汗，横线眼 + ω嘴"
+        },
+        {
+          "face": "(_△_)｀;",
+          "feel": "a sweat drop after, underscore eyes + up triangle mouth",
+          "feelZh": "后面一滴汗，横线眼 + 上三角嘴"
+        },
+        {
+          "face": "ყ(_д_)",
+          "feel": "a georgian mark in front, underscore eyes + cyrillic de mouth",
+          "feelZh": "前面格鲁吉亚记号，横线眼 + д嘴"
+        },
+        {
+          "face": "ყ(_З_)",
+          "feel": "a georgian mark in front, underscore eyes + cyrillic ze mouth",
+          "feelZh": "前面格鲁吉亚记号，横线眼 + З嘴"
+        },
+        {
+          "face": "ﾉ(_ﾊ_)",
+          "feel": "a hand in front, underscore eyes + halfwidth tsu mouth",
+          "feelZh": "前面一只手，横线眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ヾ_ﾝ_)",
+          "feel": "a drunk mark in front, underscore eyes + halfwidth no mouth",
+          "feelZh": "前面叹号，横线眼 + 半角ノ嘴"
+        },
+        {
+          "face": "ﾉ(_O_)",
+          "feel": "a hand in front, underscore eyes + wide round mouth",
+          "feelZh": "前面一只手，横线眼 + 大圆嘴"
+        },
+        {
+          "face": "ﾉ(_w_)",
+          "feel": "a hand in front, underscore eyes + latin w mouth",
+          "feelZh": "前面一只手，横线眼 + w嘴"
+        },
+        {
+          "face": "(つ_μ_)",
+          "feel": "a hiragana tsu in front, underscore eyes + mu mouth",
+          "feelZh": "前面小つ，横线眼 + μ嘴"
+        },
+        {
+          "face": "(_≧_)ﾉ",
+          "feel": "a hand pushing after, underscore eyes + greater or equal mouth",
+          "feelZh": "后面推开的手，横线眼 + 大等号嘴"
+        },
+        {
+          "face": "(ヾ_>_)",
+          "feel": "a drunk mark in front, underscore eyes + greater mouth",
+          "feelZh": "前面叹号，横线眼 + 大于嘴"
+        },
+        {
+          "face": "(_<_)？",
+          "feel": "a question mark after, underscore eyes + less mouth",
+          "feelZh": "后面问号，横线眼 + 小于嘴"
+        },
+        {
+          "face": "(？_v_)",
+          "feel": "a question mark in front, underscore eyes + latin v mouth",
+          "feelZh": "前面问号，横线眼 + v嘴"
+        },
+        {
+          "face": "(_._)つ",
+          "feel": "a hiragana tsu after, underscore eyes + dot mouth",
+          "feelZh": "后面小つ，横线眼 + 点嘴"
+        },
+        {
+          "face": "(_…_)｀;",
+          "feel": "a sweat drop after, underscore eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，横线眼 + 省略嘴"
+        },
+        {
+          "face": "ყ(˙＿˙)",
+          "feel": "a georgian mark in front, dot above eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，上点眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ყ(˙．˙)",
+          "feel": "a georgian mark in front, dot above eyes + fullwidth period mouth",
+          "feelZh": "前面格鲁吉亚记号，上点眼 + 全角句点嘴"
+        },
+        {
+          "face": "ﾉ(˙▽˙)",
+          "feel": "a hand in front, dot above eyes + down triangle mouth",
+          "feelZh": "前面一只手，上点眼 + 下三角嘴"
+        },
+        {
+          "face": "ﾉ(˙Д˙)",
+          "feel": "a hand in front, dot above eyes + cyrillic de capital mouth",
+          "feelZh": "前面一只手，上点眼 + Д嘴"
+        },
+        {
+          "face": "(ヾ˙∀˙)",
+          "feel": "a drunk mark in front, dot above eyes + for all mouth",
+          "feelZh": "前面叹号，上点眼 + ∀嘴"
+        },
+        {
+          "face": "(˙З˙)つ",
+          "feel": "a hiragana tsu after, dot above eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，上点眼 + З嘴"
+        },
+        {
+          "face": "(˙ﾊ˙)つ",
+          "feel": "a hiragana tsu after, dot above eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，上点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(˙ﾝ˙)ﾟ;",
+          "feel": "a half sweat after, dot above eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，上点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(˙O˙)ﾟ;",
+          "feel": "a half sweat after, dot above eyes + wide round mouth",
+          "feelZh": "后面半滴汗，上点眼 + 大圆嘴"
+        },
+        {
+          "face": "(˙w˙)？",
+          "feel": "a question mark after, dot above eyes + latin w mouth",
+          "feelZh": "后面问号，上点眼 + w嘴"
+        },
+        {
+          "face": "(˙μ˙)｀;",
+          "feel": "a sweat drop after, dot above eyes + mu mouth",
+          "feelZh": "后面一滴汗，上点眼 + μ嘴"
+        },
+        {
+          "face": "(｀;˙≦˙)",
+          "feel": "a sweat drop in front, dot above eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，上点眼 + 小等号嘴"
+        },
+        {
+          "face": "(˙>˙)｀;",
+          "feel": "a sweat drop after, dot above eyes + greater mouth",
+          "feelZh": "后面一滴汗，上点眼 + 大于嘴"
+        },
+        {
+          "face": "(｀;˙＞˙)",
+          "feel": "a sweat drop in front, dot above eyes + fullwidth greater mouth",
+          "feelZh": "前面一滴汗，上点眼 + 全角大于嘴"
+        },
+        {
+          "face": "(˙v˙)｀;",
+          "feel": "a sweat drop after, dot above eyes + latin v mouth",
+          "feelZh": "后面一滴汗，上点眼 + v嘴"
+        },
+        {
+          "face": "(˙.˙)つ",
+          "feel": "a hiragana tsu after, dot above eyes + dot mouth",
+          "feelZh": "后面小つ，上点眼 + 点嘴"
         },
         {
           "face": "(˙…˙)｀;",
@@ -356,169 +1576,779 @@
           "feelZh": "后面一滴汗，上点眼 + 省略嘴"
         },
         {
-          "face": "ყ(ಠдಠ)",
-          "feel": "a georgian mark in front, kannada ttha eyes + cyrillic de mouth",
-          "feelZh": "前面格鲁吉亚记号，卡纳达眼 + д嘴"
+          "face": "ყ(ಠ＿ಠ)",
+          "feel": "a georgian mark in front, kannada ttha eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，卡纳达眼 + 全角平嘴嘴"
         },
         {
-          "face": "ﾉ(ಠﾟಠ)",
-          "feel": "a hand in front, kannada ttha eyes + halfwidth circle mouth",
-          "feelZh": "前面一只手，卡纳达眼 + 半角圆嘴"
+          "face": "ყ(ಠ．ಠ)",
+          "feel": "a georgian mark in front, kannada ttha eyes + fullwidth period mouth",
+          "feelZh": "前面格鲁吉亚记号，卡纳达眼 + 全角句点嘴"
         },
         {
-          "face": "(ಠ<ಠ)ﾉ",
-          "feel": "a hand pushing after, kannada ttha eyes + less mouth",
-          "feelZh": "后面推开的手，卡纳达眼 + 小于嘴"
+          "face": "ﾉ(ಠ▽ಠ)",
+          "feel": "a hand in front, kannada ttha eyes + down triangle mouth",
+          "feelZh": "前面一只手，卡纳达眼 + 下三角嘴"
         },
         {
-          "face": "(ق＿ق)つ",
-          "feel": "a hiragana tsu after, arabic qaf eyes + fullwidth flat mouth",
-          "feelZh": "后面小つ，阿拉伯 qaf眼 + 全角平嘴嘴"
+          "face": "ﾉ(ಠДಠ)",
+          "feel": "a hand in front, kannada ttha eyes + cyrillic de capital mouth",
+          "feelZh": "前面一只手，卡纳达眼 + Д嘴"
         },
         {
-          "face": "(قЗق)ﾟ;",
-          "feel": "a half sweat after, arabic qaf eyes + cyrillic ze mouth",
-          "feelZh": "后面半滴汗，阿拉伯 qaf眼 + З嘴"
+          "face": "(ヾಠ∀ಠ)",
+          "feel": "a drunk mark in front, kannada ttha eyes + for all mouth",
+          "feelZh": "前面叹号，卡纳达眼 + ∀嘴"
         },
         {
-          "face": "(قεق)？",
-          "feel": "a question mark after, arabic qaf eyes + epsilon mouth",
-          "feelZh": "后面问号，阿拉伯 qaf眼 + ε嘴"
+          "face": "(ಠЗಠ)つ",
+          "feel": "a hiragana tsu after, kannada ttha eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，卡纳达眼 + З嘴"
         },
         {
-          "face": "(قvق)ﾉ",
-          "feel": "a hand pushing after, arabic qaf eyes + latin v mouth",
-          "feelZh": "后面推开的手，阿拉伯 qaf眼 + v嘴"
+          "face": "(ಠﾊಠ)つ",
+          "feel": "a hiragana tsu after, kannada ttha eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，卡纳达眼 + 半角ツ嘴"
         },
         {
-          "face": "(عωع)ﾉ",
-          "feel": "a hand pushing after, arabic ayn eyes + omega mouth",
-          "feelZh": "后面推开的手，阿拉伯 ayn眼 + ω嘴"
+          "face": "(ಠﾝಠ)ﾟ;",
+          "feel": "a half sweat after, kannada ttha eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，卡纳达眼 + 半角ノ嘴"
         },
         {
-          "face": "(عノع);",
-          "feel": "a sweat after, arabic ayn eyes + katakana no mouth",
-          "feelZh": "后面一滴汗，阿拉伯 ayn眼 + ノ嘴"
+          "face": "(ಠOಠ)ﾟ;",
+          "feel": "a half sweat after, kannada ttha eyes + wide round mouth",
+          "feelZh": "后面半滴汗，卡纳达眼 + 大圆嘴"
         },
         {
-          "face": "(ع≧ع)？",
-          "feel": "a question mark after, arabic ayn eyes + greater or equal mouth",
-          "feelZh": "后面问号，阿拉伯 ayn眼 + 大等号嘴"
+          "face": "(ಠwಠ)？",
+          "feel": "a question mark after, kannada ttha eyes + latin w mouth",
+          "feelZh": "后面问号，卡纳达眼 + w嘴"
         },
         {
-          "face": "(ع..ع)ﾉ",
-          "feel": "a hand pushing after, arabic ayn eyes + two dots mouth",
-          "feelZh": "后面推开的手，阿拉伯 ayn眼 + 双点嘴"
+          "face": "(ಠμಠ)｀;",
+          "feel": "a sweat drop after, kannada ttha eyes + mu mouth",
+          "feelZh": "后面一滴汗，卡纳达眼 + μ嘴"
         },
         {
-          "face": "ﾉ(طДط)",
-          "feel": "a hand in front, arabic tta eyes + cyrillic de capital mouth",
-          "feelZh": "前面一只手，阿拉伯 tta眼 + Д嘴"
+          "face": "(｀;ಠ≦ಠ)",
+          "feel": "a sweat drop in front, kannada ttha eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，卡纳达眼 + 小等号嘴"
         },
         {
-          "face": "(ヾطOط)",
-          "feel": "a drunk mark in front, arabic tta eyes + wide round mouth",
-          "feelZh": "前面叹号，阿拉伯 tta眼 + 大圆嘴"
+          "face": "(ಠ>ಠ)｀;",
+          "feel": "a sweat drop after, kannada ttha eyes + greater mouth",
+          "feelZh": "后面一滴汗，卡纳达眼 + 大于嘴"
         },
         {
-          "face": "(ط>ط)？",
-          "feel": "a question mark after, arabic tta eyes + greater mouth",
-          "feelZh": "后面问号，阿拉伯 tta眼 + 大于嘴"
+          "face": "(｀;ಠ＞ಠ)",
+          "feel": "a sweat drop in front, kannada ttha eyes + fullwidth greater mouth",
+          "feelZh": "前面一滴汗，卡纳达眼 + 全角大于嘴"
         },
         {
-          "face": "(¬_¬)ﾉ",
-          "feel": "a hand pushing after, not sign eyes + flat mouth",
-          "feelZh": "后面推开的手，否定眼 + 平嘴嘴"
+          "face": "(ಠvಠ)｀;",
+          "feel": "a sweat drop after, kannada ttha eyes + latin v mouth",
+          "feelZh": "后面一滴汗，卡纳达眼 + v嘴"
         },
         {
-          "face": "(¬Д¬)｀;",
-          "feel": "a sweat drop after, not sign eyes + cyrillic de capital mouth",
-          "feelZh": "后面一滴汗，否定眼 + Д嘴"
+          "face": "(ಠ.ಠ)つ",
+          "feel": "a hiragana tsu after, kannada ttha eyes + dot mouth",
+          "feelZh": "后面小つ，卡纳达眼 + 点嘴"
         },
         {
-          "face": "ყ(¬ﾝ¬)",
-          "feel": "a georgian mark in front, not sign eyes + halfwidth no mouth",
-          "feelZh": "前面格鲁吉亚记号，否定眼 + 半角ノ嘴"
+          "face": "(ಠ…ಠ)｀;",
+          "feel": "a sweat drop after, kannada ttha eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，卡纳达眼 + 省略嘴"
         },
         {
-          "face": "(？¬≧¬)",
-          "feel": "a question mark in front, not sign eyes + greater or equal mouth",
-          "feelZh": "前面问号，否定眼 + 大等号嘴"
+          "face": "ყ(ق＿ق)",
+          "feel": "a georgian mark in front, arabic qaf eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，阿拉伯 qaf眼 + 全角平嘴嘴"
         },
         {
-          "face": "(ヾ¬..¬)",
-          "feel": "a drunk mark in front, not sign eyes + two dots mouth",
-          "feelZh": "前面叹号，否定眼 + 双点嘴"
+          "face": "ყ(ق．ق)",
+          "feel": "a georgian mark in front, arabic qaf eyes + fullwidth period mouth",
+          "feelZh": "前面格鲁吉亚记号，阿拉伯 qaf眼 + 全角句点嘴"
         },
         {
-          "face": "(‸ω‸)つ",
-          "feel": "a hiragana tsu after, caret eyes + omega mouth",
-          "feelZh": "后面小つ，插入符眼 + ω嘴"
+          "face": "ﾉ(ق▽ق)",
+          "feel": "a hand in front, arabic qaf eyes + down triangle mouth",
+          "feelZh": "前面一只手，阿拉伯 qaf眼 + 下三角嘴"
         },
         {
-          "face": "(‸ツ‸)？",
-          "feel": "a question mark after, caret eyes + katakana tsu mouth",
-          "feelZh": "后面问号，插入符眼 + ツ嘴"
+          "face": "(ヾقДق)",
+          "feel": "a drunk mark in front, arabic qaf eyes + cyrillic de capital mouth",
+          "feelZh": "前面叹号，阿拉伯 qaf眼 + Д嘴"
         },
         {
-          "face": "(‸w‸)ﾉ",
-          "feel": "a hand pushing after, caret eyes + latin w mouth",
-          "feelZh": "后面推开的手，插入符眼 + w嘴"
+          "face": "(ヾق∀ق)",
+          "feel": "a drunk mark in front, arabic qaf eyes + for all mouth",
+          "feelZh": "前面叹号，阿拉伯 qaf眼 + ∀嘴"
         },
         {
-          "face": "(‸＞‸)｀;",
-          "feel": "a sweat drop after, caret eyes + fullwidth greater mouth",
-          "feelZh": "后面一滴汗，插入符眼 + 全角大于嘴"
+          "face": "(قЗق)つ",
+          "feel": "a hiragana tsu after, arabic qaf eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，阿拉伯 qaf眼 + З嘴"
         },
         {
-          "face": "ﾉ(／。／)",
-          "feel": "a hand in front, fullwidth slash eyes + ideographic full stop mouth",
-          "feelZh": "前面一只手，全角斜线眼 + 句点嘴"
+          "face": "(قﾊق)つ",
+          "feel": "a hiragana tsu after, arabic qaf eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，阿拉伯 qaf眼 + 半角ツ嘴"
         },
         {
-          "face": "(つ／∀／)",
-          "feel": "a hiragana tsu in front, fullwidth slash eyes + for all mouth",
-          "feelZh": "前面小つ，全角斜线眼 + ∀嘴"
+          "face": "(قﾝق)ﾟ;",
+          "feel": "a half sweat after, arabic qaf eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，阿拉伯 qaf眼 + 半角ノ嘴"
         },
         {
-          "face": "(｀;／O／)",
-          "feel": "a sweat drop in front, fullwidth slash eyes + wide round mouth",
-          "feelZh": "前面一滴汗，全角斜线眼 + 大圆嘴"
+          "face": "(قOق)？",
+          "feel": "a question mark after, arabic qaf eyes + wide round mouth",
+          "feelZh": "后面问号，阿拉伯 qaf眼 + 大圆嘴"
         },
         {
-          "face": "(／≦／)ﾟ;",
-          "feel": "a half sweat after, fullwidth slash eyes + less or equal mouth",
-          "feelZh": "后面半滴汗，全角斜线眼 + 小等号嘴"
+          "face": "(قwق)？",
+          "feel": "a question mark after, arabic qaf eyes + latin w mouth",
+          "feelZh": "后面问号，阿拉伯 qaf眼 + w嘴"
         },
         {
-          "face": "(／…／)！",
-          "feel": "an exclamation after, fullwidth slash eyes + ellipsis mouth",
-          "feelZh": "后面叹号，全角斜线眼 + 省略嘴"
+          "face": "(قμق)｀;",
+          "feel": "a sweat drop after, arabic qaf eyes + mu mouth",
+          "feelZh": "后面一滴汗，阿拉伯 qaf眼 + μ嘴"
         },
         {
-          "face": "(/△/)ﾉ",
-          "feel": "a hand pushing after, slash eyes + up triangle mouth",
-          "feelZh": "后面推开的手，斜线眼 + 上三角嘴"
+          "face": "(｀;ق≦ق)",
+          "feel": "a sweat drop in front, arabic qaf eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，阿拉伯 qaf眼 + 小等号嘴"
         },
         {
-          "face": "(/ノ/)｀;",
-          "feel": "a sweat drop after, slash eyes + katakana no mouth",
-          "feelZh": "后面一滴汗，斜线眼 + ノ嘴"
+          "face": "(ق>ق)｀;",
+          "feel": "a sweat drop after, arabic qaf eyes + greater mouth",
+          "feelZh": "后面一滴汗，阿拉伯 qaf眼 + 大于嘴"
         },
         {
-          "face": "(/μ/);",
-          "feel": "a sweat after, slash eyes + mu mouth",
-          "feelZh": "后面一滴汗，斜线眼 + μ嘴"
+          "face": "(ق<ق)つ",
+          "feel": "a hiragana tsu after, arabic qaf eyes + less mouth",
+          "feelZh": "后面小つ，阿拉伯 qaf眼 + 小于嘴"
         },
         {
-          "face": "(/./)！",
-          "feel": "an exclamation after, slash eyes + dot mouth",
-          "feelZh": "后面叹号，斜线眼 + 点嘴"
+          "face": "(قvق)｀;",
+          "feel": "a sweat drop after, arabic qaf eyes + latin v mouth",
+          "feelZh": "后面一滴汗，阿拉伯 qaf眼 + v嘴"
         },
         {
-          "face": "(;ω;)！",
-          "feel": "an exclamation after, semicolon eyes + omega mouth",
-          "feelZh": "后面叹号，分号眼 + ω嘴"
+          "face": "(ق.ق)つ",
+          "feel": "a hiragana tsu after, arabic qaf eyes + dot mouth",
+          "feelZh": "后面小つ，阿拉伯 qaf眼 + 点嘴"
+        },
+        {
+          "face": "(ق…ق)｀;",
+          "feel": "a sweat drop after, arabic qaf eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，阿拉伯 qaf眼 + 省略嘴"
+        },
+        {
+          "face": "ყ(ع＿ع)",
+          "feel": "a georgian mark in front, arabic ayn eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，阿拉伯 ayn眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ﾉ(ع．ع)",
+          "feel": "a hand in front, arabic ayn eyes + fullwidth period mouth",
+          "feelZh": "前面一只手，阿拉伯 ayn眼 + 全角句点嘴"
+        },
+        {
+          "face": "ﾉ(ع▽ع)",
+          "feel": "a hand in front, arabic ayn eyes + down triangle mouth",
+          "feelZh": "前面一只手，阿拉伯 ayn眼 + 下三角嘴"
+        },
+        {
+          "face": "(ヾعДع)",
+          "feel": "a drunk mark in front, arabic ayn eyes + cyrillic de capital mouth",
+          "feelZh": "前面叹号，阿拉伯 ayn眼 + Д嘴"
+        },
+        {
+          "face": "(ヾع∀ع)",
+          "feel": "a drunk mark in front, arabic ayn eyes + for all mouth",
+          "feelZh": "前面叹号，阿拉伯 ayn眼 + ∀嘴"
+        },
+        {
+          "face": "(عЗع)つ",
+          "feel": "a hiragana tsu after, arabic ayn eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，阿拉伯 ayn眼 + З嘴"
+        },
+        {
+          "face": "(عﾊع)つ",
+          "feel": "a hiragana tsu after, arabic ayn eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，阿拉伯 ayn眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(عﾝع)ﾟ;",
+          "feel": "a half sweat after, arabic ayn eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，阿拉伯 ayn眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(عOع)？",
+          "feel": "a question mark after, arabic ayn eyes + wide round mouth",
+          "feelZh": "后面问号，阿拉伯 ayn眼 + 大圆嘴"
+        },
+        {
+          "face": "(عwع)？",
+          "feel": "a question mark after, arabic ayn eyes + latin w mouth",
+          "feelZh": "后面问号，阿拉伯 ayn眼 + w嘴"
+        },
+        {
+          "face": "(عμع)｀;",
+          "feel": "a sweat drop after, arabic ayn eyes + mu mouth",
+          "feelZh": "后面一滴汗，阿拉伯 ayn眼 + μ嘴"
+        },
+        {
+          "face": "(｀;ع≦ع)",
+          "feel": "a sweat drop in front, arabic ayn eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，阿拉伯 ayn眼 + 小等号嘴"
+        },
+        {
+          "face": "(ع>ع)｀;",
+          "feel": "a sweat drop after, arabic ayn eyes + greater mouth",
+          "feelZh": "后面一滴汗，阿拉伯 ayn眼 + 大于嘴"
+        },
+        {
+          "face": "(ع<ع)つ",
+          "feel": "a hiragana tsu after, arabic ayn eyes + less mouth",
+          "feelZh": "后面小つ，阿拉伯 ayn眼 + 小于嘴"
+        },
+        {
+          "face": "(عvع)｀;",
+          "feel": "a sweat drop after, arabic ayn eyes + latin v mouth",
+          "feelZh": "后面一滴汗，阿拉伯 ayn眼 + v嘴"
+        },
+        {
+          "face": "(ع.ع)つ",
+          "feel": "a hiragana tsu after, arabic ayn eyes + dot mouth",
+          "feelZh": "后面小つ，阿拉伯 ayn眼 + 点嘴"
+        },
+        {
+          "face": "(ع…ع)｀;",
+          "feel": "a sweat drop after, arabic ayn eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，阿拉伯 ayn眼 + 省略嘴"
+        },
+        {
+          "face": "ყ(ط＿ط)",
+          "feel": "a georgian mark in front, arabic tta eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，阿拉伯 tta眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ﾉ(ط．ط)",
+          "feel": "a hand in front, arabic tta eyes + fullwidth period mouth",
+          "feelZh": "前面一只手，阿拉伯 tta眼 + 全角句点嘴"
+        },
+        {
+          "face": "ﾉ(ط▽ط)",
+          "feel": "a hand in front, arabic tta eyes + down triangle mouth",
+          "feelZh": "前面一只手，阿拉伯 tta眼 + 下三角嘴"
+        },
+        {
+          "face": "(ヾطДط)",
+          "feel": "a drunk mark in front, arabic tta eyes + cyrillic de capital mouth",
+          "feelZh": "前面叹号，阿拉伯 tta眼 + Д嘴"
+        },
+        {
+          "face": "(ヾط∀ط)",
+          "feel": "a drunk mark in front, arabic tta eyes + for all mouth",
+          "feelZh": "前面叹号，阿拉伯 tta眼 + ∀嘴"
+        },
+        {
+          "face": "(طЗط)つ",
+          "feel": "a hiragana tsu after, arabic tta eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，阿拉伯 tta眼 + З嘴"
+        },
+        {
+          "face": "(طﾊط)ﾟ;",
+          "feel": "a half sweat after, arabic tta eyes + halfwidth tsu mouth",
+          "feelZh": "后面半滴汗，阿拉伯 tta眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(طﾝط)ﾟ;",
+          "feel": "a half sweat after, arabic tta eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，阿拉伯 tta眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(طOط)？",
+          "feel": "a question mark after, arabic tta eyes + wide round mouth",
+          "feelZh": "后面问号，阿拉伯 tta眼 + 大圆嘴"
+        },
+        {
+          "face": "(طwط)？",
+          "feel": "a question mark after, arabic tta eyes + latin w mouth",
+          "feelZh": "后面问号，阿拉伯 tta眼 + w嘴"
+        },
+        {
+          "face": "(طμط)｀;",
+          "feel": "a sweat drop after, arabic tta eyes + mu mouth",
+          "feelZh": "后面一滴汗，阿拉伯 tta眼 + μ嘴"
+        },
+        {
+          "face": "(ط≧ط)つ",
+          "feel": "a hiragana tsu after, arabic tta eyes + greater or equal mouth",
+          "feelZh": "后面小つ，阿拉伯 tta眼 + 大等号嘴"
+        },
+        {
+          "face": "(ط>ط)｀;",
+          "feel": "a sweat drop after, arabic tta eyes + greater mouth",
+          "feelZh": "后面一滴汗，阿拉伯 tta眼 + 大于嘴"
+        },
+        {
+          "face": "(ط<ط)つ",
+          "feel": "a hiragana tsu after, arabic tta eyes + less mouth",
+          "feelZh": "后面小つ，阿拉伯 tta眼 + 小于嘴"
+        },
+        {
+          "face": "(طvط)｀;",
+          "feel": "a sweat drop after, arabic tta eyes + latin v mouth",
+          "feelZh": "后面一滴汗，阿拉伯 tta眼 + v嘴"
+        },
+        {
+          "face": "(ط.ط)つ",
+          "feel": "a hiragana tsu after, arabic tta eyes + dot mouth",
+          "feelZh": "后面小つ，阿拉伯 tta眼 + 点嘴"
+        },
+        {
+          "face": "ყ(ط…ط)",
+          "feel": "a georgian mark in front, arabic tta eyes + ellipsis mouth",
+          "feelZh": "前面格鲁吉亚记号，阿拉伯 tta眼 + 省略嘴"
+        },
+        {
+          "face": "(¬_¬)つ",
+          "feel": "a hiragana tsu after, not sign eyes + flat mouth",
+          "feelZh": "后面小つ，否定眼 + 平嘴嘴"
+        },
+        {
+          "face": "ყ(¬。¬)",
+          "feel": "a georgian mark in front, not sign eyes + ideographic full stop mouth",
+          "feelZh": "前面格鲁吉亚记号，否定眼 + 句点嘴"
+        },
+        {
+          "face": "(¬．¬)つ",
+          "feel": "a hiragana tsu after, not sign eyes + fullwidth period mouth",
+          "feelZh": "后面小つ，否定眼 + 全角句点嘴"
+        },
+        {
+          "face": "ყ(¬▽¬)",
+          "feel": "a georgian mark in front, not sign eyes + down triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，否定眼 + 下三角嘴"
+        },
+        {
+          "face": "(¬△¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + up triangle mouth",
+          "feelZh": "后面半滴汗，否定眼 + 上三角嘴"
+        },
+        {
+          "face": "ყ(¬д¬)",
+          "feel": "a georgian mark in front, not sign eyes + cyrillic de mouth",
+          "feelZh": "前面格鲁吉亚记号，否定眼 + д嘴"
+        },
+        {
+          "face": "(¬∀¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + for all mouth",
+          "feelZh": "后面半滴汗，否定眼 + ∀嘴"
+        },
+        {
+          "face": "ყ(¬ツ¬)",
+          "feel": "a georgian mark in front, not sign eyes + katakana tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，否定眼 + ツ嘴"
+        },
+        {
+          "face": "(¬ﾊ¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + halfwidth tsu mouth",
+          "feelZh": "后面半滴汗，否定眼 + 半角ツ嘴"
+        },
+        {
+          "face": "ﾉ(¬ﾝ¬)",
+          "feel": "a hand in front, not sign eyes + halfwidth no mouth",
+          "feelZh": "前面一只手，否定眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(¬o¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + round mouth",
+          "feelZh": "后面半滴汗，否定眼 + 圆嘴"
+        },
+        {
+          "face": "ﾉ(¬ﾟ¬)",
+          "feel": "a hand in front, not sign eyes + halfwidth circle mouth",
+          "feelZh": "前面一只手，否定眼 + 半角圆嘴"
+        },
+        {
+          "face": "(¬w¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + latin w mouth",
+          "feelZh": "后面半滴汗，否定眼 + w嘴"
+        },
+        {
+          "face": "ﾉ(¬μ¬)",
+          "feel": "a hand in front, not sign eyes + mu mouth",
+          "feelZh": "前面一只手，否定眼 + μ嘴"
+        },
+        {
+          "face": "(¬≧¬)ﾟ;",
+          "feel": "a half sweat after, not sign eyes + greater or equal mouth",
+          "feelZh": "后面半滴汗，否定眼 + 大等号嘴"
+        },
+        {
+          "face": "ﾉ(¬>¬)",
+          "feel": "a hand in front, not sign eyes + greater mouth",
+          "feelZh": "前面一只手，否定眼 + 大于嘴"
+        },
+        {
+          "face": "(¬<¬)？",
+          "feel": "a question mark after, not sign eyes + less mouth",
+          "feelZh": "后面问号，否定眼 + 小于嘴"
+        },
+        {
+          "face": "ﾉ(¬v¬)",
+          "feel": "a hand in front, not sign eyes + latin v mouth",
+          "feelZh": "前面一只手，否定眼 + v嘴"
+        },
+        {
+          "face": "(¬.¬)？",
+          "feel": "a question mark after, not sign eyes + dot mouth",
+          "feelZh": "后面问号，否定眼 + 点嘴"
+        },
+        {
+          "face": "ﾉ(¬…¬)",
+          "feel": "a hand in front, not sign eyes + ellipsis mouth",
+          "feelZh": "前面一只手，否定眼 + 省略嘴"
+        },
+        {
+          "face": "(‸_‸)？",
+          "feel": "a question mark after, caret eyes + flat mouth",
+          "feelZh": "后面问号，插入符眼 + 平嘴嘴"
+        },
+        {
+          "face": "(？‸。‸)",
+          "feel": "a question mark in front, caret eyes + ideographic full stop mouth",
+          "feelZh": "前面问号，插入符眼 + 句点嘴"
+        },
+        {
+          "face": "(‸．‸)？",
+          "feel": "a question mark after, caret eyes + fullwidth period mouth",
+          "feelZh": "后面问号，插入符眼 + 全角句点嘴"
+        },
+        {
+          "face": "(？‸▽‸)",
+          "feel": "a question mark in front, caret eyes + down triangle mouth",
+          "feelZh": "前面问号，插入符眼 + 下三角嘴"
+        },
+        {
+          "face": "(‸△‸)？",
+          "feel": "a question mark after, caret eyes + up triangle mouth",
+          "feelZh": "后面问号，插入符眼 + 上三角嘴"
+        },
+        {
+          "face": "(？‸д‸)",
+          "feel": "a question mark in front, caret eyes + cyrillic de mouth",
+          "feelZh": "前面问号，插入符眼 + д嘴"
+        },
+        {
+          "face": "(‸∀‸)！",
+          "feel": "an exclamation after, caret eyes + for all mouth",
+          "feelZh": "后面叹号，插入符眼 + ∀嘴"
+        },
+        {
+          "face": "(？‸ツ‸)",
+          "feel": "a question mark in front, caret eyes + katakana tsu mouth",
+          "feelZh": "前面问号，插入符眼 + ツ嘴"
+        },
+        {
+          "face": "(‸ﾊ‸)！",
+          "feel": "an exclamation after, caret eyes + halfwidth tsu mouth",
+          "feelZh": "后面叹号，插入符眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(？‸ﾝ‸)",
+          "feel": "a question mark in front, caret eyes + halfwidth no mouth",
+          "feelZh": "前面问号，插入符眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(‸o‸)！",
+          "feel": "an exclamation after, caret eyes + round mouth",
+          "feelZh": "后面叹号，插入符眼 + 圆嘴"
+        },
+        {
+          "face": "(つ‸ﾟ‸)",
+          "feel": "a hiragana tsu in front, caret eyes + halfwidth circle mouth",
+          "feelZh": "前面小つ，插入符眼 + 半角圆嘴"
+        },
+        {
+          "face": "(‸w‸)！",
+          "feel": "an exclamation after, caret eyes + latin w mouth",
+          "feelZh": "后面叹号，插入符眼 + w嘴"
+        },
+        {
+          "face": "(つ‸μ‸)",
+          "feel": "a hiragana tsu in front, caret eyes + mu mouth",
+          "feelZh": "前面小つ，插入符眼 + μ嘴"
+        },
+        {
+          "face": "(‸≧‸)！",
+          "feel": "an exclamation after, caret eyes + greater or equal mouth",
+          "feelZh": "后面叹号，插入符眼 + 大等号嘴"
+        },
+        {
+          "face": "(つ‸>‸)",
+          "feel": "a hiragana tsu in front, caret eyes + greater mouth",
+          "feelZh": "前面小つ，插入符眼 + 大于嘴"
+        },
+        {
+          "face": "(‸<‸)ﾉ",
+          "feel": "a hand pushing after, caret eyes + less mouth",
+          "feelZh": "后面推开的手，插入符眼 + 小于嘴"
+        },
+        {
+          "face": "(つ‸v‸)",
+          "feel": "a hiragana tsu in front, caret eyes + latin v mouth",
+          "feelZh": "前面小つ，插入符眼 + v嘴"
+        },
+        {
+          "face": "(‸.‸)ﾉ",
+          "feel": "a hand pushing after, caret eyes + dot mouth",
+          "feelZh": "后面推开的手，插入符眼 + 点嘴"
+        },
+        {
+          "face": "(つ‸…‸)",
+          "feel": "a hiragana tsu in front, caret eyes + ellipsis mouth",
+          "feelZh": "前面小つ，插入符眼 + 省略嘴"
+        },
+        {
+          "face": "(／_／)ﾉ",
+          "feel": "a hand pushing after, fullwidth slash eyes + flat mouth",
+          "feelZh": "后面推开的手，全角斜线眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ヾ／。／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + ideographic full stop mouth",
+          "feelZh": "前面叹号，全角斜线眼 + 句点嘴"
+        },
+        {
+          "face": "(／．／)ﾉ",
+          "feel": "a hand pushing after, fullwidth slash eyes + fullwidth period mouth",
+          "feelZh": "后面推开的手，全角斜线眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ヾ／▽／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + down triangle mouth",
+          "feelZh": "前面叹号，全角斜线眼 + 下三角嘴"
+        },
+        {
+          "face": "(／△／)ﾉ",
+          "feel": "a hand pushing after, fullwidth slash eyes + up triangle mouth",
+          "feelZh": "后面推开的手，全角斜线眼 + 上三角嘴"
+        },
+        {
+          "face": "(ヾ／д／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + cyrillic de mouth",
+          "feelZh": "前面叹号，全角斜线眼 + д嘴"
+        },
+        {
+          "face": "(／∀／);",
+          "feel": "a sweat after, fullwidth slash eyes + for all mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + ∀嘴"
+        },
+        {
+          "face": "(ヾ／ツ／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + katakana tsu mouth",
+          "feelZh": "前面叹号，全角斜线眼 + ツ嘴"
+        },
+        {
+          "face": "(／ﾊ／);",
+          "feel": "a sweat after, fullwidth slash eyes + halfwidth tsu mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ヾ／ﾝ／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + halfwidth no mouth",
+          "feelZh": "前面叹号，全角斜线眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(／o／);",
+          "feel": "a sweat after, fullwidth slash eyes + round mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + 圆嘴"
+        },
+        {
+          "face": "(ヾ／ﾟ／)",
+          "feel": "a drunk mark in front, fullwidth slash eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，全角斜线眼 + 半角圆嘴"
+        },
+        {
+          "face": "(／w／);",
+          "feel": "a sweat after, fullwidth slash eyes + latin w mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + w嘴"
+        },
+        {
+          "face": "(｀;／μ／)",
+          "feel": "a sweat drop in front, fullwidth slash eyes + mu mouth",
+          "feelZh": "前面一滴汗，全角斜线眼 + μ嘴"
+        },
+        {
+          "face": "(／≧／);",
+          "feel": "a sweat after, fullwidth slash eyes + greater or equal mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + 大等号嘴"
+        },
+        {
+          "face": "(｀;／>／)",
+          "feel": "a sweat drop in front, fullwidth slash eyes + greater mouth",
+          "feelZh": "前面一滴汗，全角斜线眼 + 大于嘴"
+        },
+        {
+          "face": "(／<／);",
+          "feel": "a sweat after, fullwidth slash eyes + less mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + 小于嘴"
+        },
+        {
+          "face": "(｀;／v／)",
+          "feel": "a sweat drop in front, fullwidth slash eyes + latin v mouth",
+          "feelZh": "前面一滴汗，全角斜线眼 + v嘴"
+        },
+        {
+          "face": "(／.／)｀;",
+          "feel": "a sweat drop after, fullwidth slash eyes + dot mouth",
+          "feelZh": "后面一滴汗，全角斜线眼 + 点嘴"
+        },
+        {
+          "face": "(｀;／…／)",
+          "feel": "a sweat drop in front, fullwidth slash eyes + ellipsis mouth",
+          "feelZh": "前面一滴汗，全角斜线眼 + 省略嘴"
+        },
+        {
+          "face": "(/_/)｀;",
+          "feel": "a sweat drop after, slash eyes + flat mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 平嘴嘴"
+        },
+        {
+          "face": "(ヾ/。/)",
+          "feel": "a drunk mark in front, slash eyes + ideographic full stop mouth",
+          "feelZh": "前面叹号，斜线眼 + 句点嘴"
+        },
+        {
+          "face": "(/．/);",
+          "feel": "a sweat after, slash eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｀;/▽/)",
+          "feel": "a sweat drop in front, slash eyes + down triangle mouth",
+          "feelZh": "前面一滴汗，斜线眼 + 下三角嘴"
+        },
+        {
+          "face": "(/△/);",
+          "feel": "a sweat after, slash eyes + up triangle mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 上三角嘴"
+        },
+        {
+          "face": "(｀;/д/)",
+          "feel": "a sweat drop in front, slash eyes + cyrillic de mouth",
+          "feelZh": "前面一滴汗，斜线眼 + д嘴"
+        },
+        {
+          "face": "(/∀/);",
+          "feel": "a sweat after, slash eyes + for all mouth",
+          "feelZh": "后面一滴汗，斜线眼 + ∀嘴"
+        },
+        {
+          "face": "(｀;/ツ/)",
+          "feel": "a sweat drop in front, slash eyes + katakana tsu mouth",
+          "feelZh": "前面一滴汗，斜线眼 + ツ嘴"
+        },
+        {
+          "face": "(/ﾊ/)｀;",
+          "feel": "a sweat drop after, slash eyes + halfwidth tsu mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(｀;/ﾝ/)",
+          "feel": "a sweat drop in front, slash eyes + halfwidth no mouth",
+          "feelZh": "前面一滴汗，斜线眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(/o/)｀;",
+          "feel": "a sweat drop after, slash eyes + round mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 圆嘴"
+        },
+        {
+          "face": "(つ/ﾟ/)",
+          "feel": "a hiragana tsu in front, slash eyes + halfwidth circle mouth",
+          "feelZh": "前面小つ，斜线眼 + 半角圆嘴"
+        },
+        {
+          "face": "(/w/)！",
+          "feel": "an exclamation after, slash eyes + latin w mouth",
+          "feelZh": "后面叹号，斜线眼 + w嘴"
+        },
+        {
+          "face": "(つ/μ/)",
+          "feel": "a hiragana tsu in front, slash eyes + mu mouth",
+          "feelZh": "前面小つ，斜线眼 + μ嘴"
+        },
+        {
+          "face": "(/≧/)！",
+          "feel": "an exclamation after, slash eyes + greater or equal mouth",
+          "feelZh": "后面叹号，斜线眼 + 大等号嘴"
+        },
+        {
+          "face": "(つ/>/)",
+          "feel": "a hiragana tsu in front, slash eyes + greater mouth",
+          "feelZh": "前面小つ，斜线眼 + 大于嘴"
+        },
+        {
+          "face": "(/</)ﾟ;",
+          "feel": "a half sweat after, slash eyes + less mouth",
+          "feelZh": "后面半滴汗，斜线眼 + 小于嘴"
+        },
+        {
+          "face": "ﾉ(/v/)",
+          "feel": "a hand in front, slash eyes + latin v mouth",
+          "feelZh": "前面一只手，斜线眼 + v嘴"
+        },
+        {
+          "face": "(/./)つ",
+          "feel": "a hiragana tsu after, slash eyes + dot mouth",
+          "feelZh": "后面小つ，斜线眼 + 点嘴"
+        },
+        {
+          "face": "(/…/);",
+          "feel": "a sweat after, slash eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，斜线眼 + 省略嘴"
+        },
+        {
+          "face": "(ヾ;＿;)",
+          "feel": "a drunk mark in front, semicolon eyes + fullwidth flat mouth",
+          "feelZh": "前面叹号，分号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(;。;)ﾉ",
+          "feel": "a hand pushing after, semicolon eyes + ideographic full stop mouth",
+          "feelZh": "后面推开的手，分号眼 + 句点嘴"
+        },
+        {
+          "face": "(ヾ;ω;)",
+          "feel": "a drunk mark in front, semicolon eyes + omega mouth",
+          "feelZh": "前面叹号，分号眼 + ω嘴"
+        },
+        {
+          "face": "(;▽;);",
+          "feel": "a sweat after, semicolon eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，分号眼 + 下三角嘴"
+        },
+        {
+          "face": "(ヾ;Д;)",
+          "feel": "a drunk mark in front, semicolon eyes + cyrillic de capital mouth",
+          "feelZh": "前面叹号，分号眼 + Д嘴"
+        },
+        {
+          "face": "(;д;);",
+          "feel": "a sweat after, semicolon eyes + cyrillic de mouth",
+          "feelZh": "后面一滴汗，分号眼 + д嘴"
+        },
+        {
+          "face": "(ヾ;З;)",
+          "feel": "a drunk mark in front, semicolon eyes + cyrillic ze mouth",
+          "feelZh": "前面叹号，分号眼 + З嘴"
         },
         {
           "face": "(;ツ;);",
@@ -526,84 +2356,389 @@
           "feelZh": "后面一滴汗，分号眼 + ツ嘴"
         },
         {
-          "face": "(;w;)ﾉ",
-          "feel": "a hand pushing after, semicolon eyes + latin w mouth",
-          "feelZh": "后面推开的手，分号眼 + w嘴"
+          "face": "(ヾ;ノ;)",
+          "feel": "a drunk mark in front, semicolon eyes + katakana no mouth",
+          "feelZh": "前面叹号，分号眼 + ノ嘴"
         },
         {
-          "face": "(;＞;)ﾉ",
-          "feel": "a hand pushing after, semicolon eyes + fullwidth greater mouth",
-          "feelZh": "后面推开的手，分号眼 + 全角大于嘴"
+          "face": "(;ﾝ;);",
+          "feel": "a sweat after, semicolon eyes + halfwidth no mouth",
+          "feelZh": "后面一滴汗，分号眼 + 半角ノ嘴"
         },
         {
-          "face": "(▽。▽)！",
-          "feel": "an exclamation after, white down triangle eyes + ideographic full stop mouth",
-          "feelZh": "后面叹号，白下三角眼 + 句点嘴"
+          "face": "(ヾ;O;)",
+          "feel": "a drunk mark in front, semicolon eyes + wide round mouth",
+          "feelZh": "前面叹号，分号眼 + 大圆嘴"
         },
         {
-          "face": "(▽∀▽);",
-          "feel": "a sweat after, white down triangle eyes + for all mouth",
-          "feelZh": "后面一滴汗，白下三角眼 + ∀嘴"
+          "face": "(;ﾟ;)！",
+          "feel": "an exclamation after, semicolon eyes + halfwidth circle mouth",
+          "feelZh": "后面叹号，分号眼 + 半角圆嘴"
         },
         {
-          "face": "ყ(▽O▽)",
-          "feel": "a georgian mark in front, white down triangle eyes + wide round mouth",
-          "feelZh": "前面格鲁吉亚记号，白下三角眼 + 大圆嘴"
+          "face": "(？;ε;)",
+          "feel": "a question mark in front, semicolon eyes + epsilon mouth",
+          "feelZh": "前面问号，分号眼 + ε嘴"
         },
         {
-          "face": "(？▽>▽)",
-          "feel": "a question mark in front, white down triangle eyes + greater mouth",
-          "feelZh": "前面问号，白下三角眼 + 大于嘴"
+          "face": "(;μ;)？",
+          "feel": "a question mark after, semicolon eyes + mu mouth",
+          "feelZh": "后面问号，分号眼 + μ嘴"
         },
         {
-          "face": "(ヾ△_△)",
-          "feel": "a drunk mark in front, white up triangle eyes + flat mouth",
-          "feelZh": "前面叹号，白上三角眼 + 平嘴嘴"
+          "face": "(？;≦;)",
+          "feel": "a question mark in front, semicolon eyes + less or equal mouth",
+          "feelZh": "前面问号，分号眼 + 小等号嘴"
         },
         {
-          "face": "(△△△)つ",
-          "feel": "a hiragana tsu after, white up triangle eyes + up triangle mouth",
-          "feelZh": "后面小つ，白上三角眼 + 上三角嘴"
+          "face": "(;>;)？",
+          "feel": "a question mark after, semicolon eyes + greater mouth",
+          "feelZh": "后面问号，分号眼 + 大于嘴"
         },
         {
-          "face": "(△ノ△)？",
-          "feel": "a question mark after, white up triangle eyes + katakana no mouth",
-          "feelZh": "后面问号，白上三角眼 + ノ嘴"
+          "face": "ყ(;＞;)",
+          "feel": "a georgian mark in front, semicolon eyes + fullwidth greater mouth",
+          "feelZh": "前面格鲁吉亚记号，分号眼 + 全角大于嘴"
         },
         {
-          "face": "(△μ△)ﾉ",
-          "feel": "a hand pushing after, white up triangle eyes + mu mouth",
-          "feelZh": "后面推开的手，白上三角眼 + μ嘴"
+          "face": "(;v;)つ",
+          "feel": "a hiragana tsu after, semicolon eyes + latin v mouth",
+          "feelZh": "后面小つ，分号眼 + v嘴"
         },
         {
-          "face": "(△.△)｀;",
-          "feel": "a sweat drop after, white up triangle eyes + dot mouth",
-          "feelZh": "后面一滴汗，白上三角眼 + 点嘴"
+          "face": "(;..;)ﾉ",
+          "feel": "a hand pushing after, semicolon eyes + two dots mouth",
+          "feelZh": "后面推开的手，分号眼 + 双点嘴"
         },
         {
-          "face": "ყ(ยωย)",
-          "feel": "a georgian mark in front, thai yo eyes + omega mouth",
-          "feelZh": "前面格鲁吉亚记号，泰文 yo眼 + ω嘴"
+          "face": "(ヾ▽_▽)",
+          "feel": "a drunk mark in front, white down triangle eyes + flat mouth",
+          "feelZh": "前面叹号，白下三角眼 + 平嘴嘴"
         },
         {
-          "face": "(？ยツย)",
-          "feel": "a question mark in front, thai yo eyes + katakana tsu mouth",
-          "feelZh": "前面问号，泰文 yo眼 + ツ嘴"
+          "face": "(▽＿▽);",
+          "feel": "a sweat after, white down triangle eyes + fullwidth flat mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + 全角平嘴嘴"
         },
         {
-          "face": "(ヾยwย)",
-          "feel": "a drunk mark in front, thai yo eyes + latin w mouth",
-          "feelZh": "前面叹号，泰文 yo眼 + w嘴"
+          "face": "(ヾ▽．▽)",
+          "feel": "a drunk mark in front, white down triangle eyes + fullwidth period mouth",
+          "feelZh": "前面叹号，白下三角眼 + 全角句点嘴"
         },
         {
-          "face": "(ย<ย)つ",
-          "feel": "a hiragana tsu after, thai yo eyes + less mouth",
-          "feelZh": "后面小つ，泰文 yo眼 + 小于嘴"
+          "face": "(▽ω▽);",
+          "feel": "a sweat after, white down triangle eyes + omega mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + ω嘴"
         },
         {
-          "face": "(ツ＿ツ)？",
-          "feel": "a question mark after, katakana tsu eyes + fullwidth flat mouth",
-          "feelZh": "后面问号，片假名 ツ眼 + 全角平嘴嘴"
+          "face": "(ヾ▽△▽)",
+          "feel": "a drunk mark in front, white down triangle eyes + up triangle mouth",
+          "feelZh": "前面叹号，白下三角眼 + 上三角嘴"
+        },
+        {
+          "face": "(▽Д▽);",
+          "feel": "a sweat after, white down triangle eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + Д嘴"
+        },
+        {
+          "face": "(｀;▽∀▽)",
+          "feel": "a sweat drop in front, white down triangle eyes + for all mouth",
+          "feelZh": "前面一滴汗，白下三角眼 + ∀嘴"
+        },
+        {
+          "face": "(▽З▽);",
+          "feel": "a sweat after, white down triangle eyes + cyrillic ze mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + З嘴"
+        },
+        {
+          "face": "(｀;▽ﾊ▽)",
+          "feel": "a sweat drop in front, white down triangle eyes + halfwidth tsu mouth",
+          "feelZh": "前面一滴汗，白下三角眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(▽ノ▽);",
+          "feel": "a sweat after, white down triangle eyes + katakana no mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + ノ嘴"
+        },
+        {
+          "face": "(｀;▽o▽)",
+          "feel": "a sweat drop in front, white down triangle eyes + round mouth",
+          "feelZh": "前面一滴汗，白下三角眼 + 圆嘴"
+        },
+        {
+          "face": "(▽O▽)｀;",
+          "feel": "a sweat drop after, white down triangle eyes + wide round mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;▽w▽)",
+          "feel": "a sweat drop in front, white down triangle eyes + latin w mouth",
+          "feelZh": "前面一滴汗，白下三角眼 + w嘴"
+        },
+        {
+          "face": "(▽ε▽)｀;",
+          "feel": "a sweat drop after, white down triangle eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + ε嘴"
+        },
+        {
+          "face": "(｀;▽≧▽)",
+          "feel": "a sweat drop in front, white down triangle eyes + greater or equal mouth",
+          "feelZh": "前面一滴汗，白下三角眼 + 大等号嘴"
+        },
+        {
+          "face": "(▽≦▽)｀;",
+          "feel": "a sweat drop after, white down triangle eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + 小等号嘴"
+        },
+        {
+          "face": "(▽>▽)つ",
+          "feel": "a hiragana tsu after, white down triangle eyes + greater mouth",
+          "feelZh": "后面小つ，白下三角眼 + 大于嘴"
+        },
+        {
+          "face": "(▽＞▽)｀;",
+          "feel": "a sweat drop after, white down triangle eyes + fullwidth greater mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + 全角大于嘴"
+        },
+        {
+          "face": "(▽v▽)つ",
+          "feel": "a hiragana tsu after, white down triangle eyes + latin v mouth",
+          "feelZh": "后面小つ，白下三角眼 + v嘴"
+        },
+        {
+          "face": "(▽..▽)｀;",
+          "feel": "a sweat drop after, white down triangle eyes + two dots mouth",
+          "feelZh": "后面一滴汗，白下三角眼 + 双点嘴"
+        },
+        {
+          "face": "(▽…▽)つ",
+          "feel": "a hiragana tsu after, white down triangle eyes + ellipsis mouth",
+          "feelZh": "后面小つ，白下三角眼 + 省略嘴"
+        },
+        {
+          "face": "ყ(△＿△)",
+          "feel": "a georgian mark in front, white up triangle eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(△。△)つ",
+          "feel": "a hiragana tsu after, white up triangle eyes + ideographic full stop mouth",
+          "feelZh": "后面小つ，白上三角眼 + 句点嘴"
+        },
+        {
+          "face": "ყ(△ω△)",
+          "feel": "a georgian mark in front, white up triangle eyes + omega mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + ω嘴"
+        },
+        {
+          "face": "(△▽△)つ",
+          "feel": "a hiragana tsu after, white up triangle eyes + down triangle mouth",
+          "feelZh": "后面小つ，白上三角眼 + 下三角嘴"
+        },
+        {
+          "face": "ყ(△Д△)",
+          "feel": "a georgian mark in front, white up triangle eyes + cyrillic de capital mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + Д嘴"
+        },
+        {
+          "face": "(△д△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + cyrillic de mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + д嘴"
+        },
+        {
+          "face": "ყ(△З△)",
+          "feel": "a georgian mark in front, white up triangle eyes + cyrillic ze mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + З嘴"
+        },
+        {
+          "face": "(△ツ△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + katakana tsu mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + ツ嘴"
+        },
+        {
+          "face": "ყ(△ノ△)",
+          "feel": "a georgian mark in front, white up triangle eyes + katakana no mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + ノ嘴"
+        },
+        {
+          "face": "(△ﾝ△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + 半角ノ嘴"
+        },
+        {
+          "face": "ყ(△O△)",
+          "feel": "a georgian mark in front, white up triangle eyes + wide round mouth",
+          "feelZh": "前面格鲁吉亚记号，白上三角眼 + 大圆嘴"
+        },
+        {
+          "face": "(△ﾟ△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + halfwidth circle mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + 半角圆嘴"
+        },
+        {
+          "face": "ﾉ(△ε△)",
+          "feel": "a hand in front, white up triangle eyes + epsilon mouth",
+          "feelZh": "前面一只手，白上三角眼 + ε嘴"
+        },
+        {
+          "face": "(△μ△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + mu mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + μ嘴"
+        },
+        {
+          "face": "ﾉ(△≦△)",
+          "feel": "a hand in front, white up triangle eyes + less or equal mouth",
+          "feelZh": "前面一只手，白上三角眼 + 小等号嘴"
+        },
+        {
+          "face": "(△>△)ﾟ;",
+          "feel": "a half sweat after, white up triangle eyes + greater mouth",
+          "feelZh": "后面半滴汗，白上三角眼 + 大于嘴"
+        },
+        {
+          "face": "ﾉ(△＞△)",
+          "feel": "a hand in front, white up triangle eyes + fullwidth greater mouth",
+          "feelZh": "前面一只手，白上三角眼 + 全角大于嘴"
+        },
+        {
+          "face": "(△v△)？",
+          "feel": "a question mark after, white up triangle eyes + latin v mouth",
+          "feelZh": "后面问号，白上三角眼 + v嘴"
+        },
+        {
+          "face": "ﾉ(△..△)",
+          "feel": "a hand in front, white up triangle eyes + two dots mouth",
+          "feelZh": "前面一只手，白上三角眼 + 双点嘴"
+        },
+        {
+          "face": "(△…△)？",
+          "feel": "a question mark after, white up triangle eyes + ellipsis mouth",
+          "feelZh": "后面问号，白上三角眼 + 省略嘴"
+        },
+        {
+          "face": "ﾉ(ย＿ย)",
+          "feel": "a hand in front, thai yo eyes + fullwidth flat mouth",
+          "feelZh": "前面一只手，泰文 yo眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ย。ย)？",
+          "feel": "a question mark after, thai yo eyes + ideographic full stop mouth",
+          "feelZh": "后面问号，泰文 yo眼 + 句点嘴"
+        },
+        {
+          "face": "(？ยωย)",
+          "feel": "a question mark in front, thai yo eyes + omega mouth",
+          "feelZh": "前面问号，泰文 yo眼 + ω嘴"
+        },
+        {
+          "face": "(ย▽ย)？",
+          "feel": "a question mark after, thai yo eyes + down triangle mouth",
+          "feelZh": "后面问号，泰文 yo眼 + 下三角嘴"
+        },
+        {
+          "face": "(？ยДย)",
+          "feel": "a question mark in front, thai yo eyes + cyrillic de capital mouth",
+          "feelZh": "前面问号，泰文 yo眼 + Д嘴"
+        },
+        {
+          "face": "(ยдย)？",
+          "feel": "a question mark after, thai yo eyes + cyrillic de mouth",
+          "feelZh": "后面问号，泰文 yo眼 + д嘴"
+        },
+        {
+          "face": "(？ยЗย)",
+          "feel": "a question mark in front, thai yo eyes + cyrillic ze mouth",
+          "feelZh": "前面问号，泰文 yo眼 + З嘴"
+        },
+        {
+          "face": "(ยツย)！",
+          "feel": "an exclamation after, thai yo eyes + katakana tsu mouth",
+          "feelZh": "后面叹号，泰文 yo眼 + ツ嘴"
+        },
+        {
+          "face": "(？ยノย)",
+          "feel": "a question mark in front, thai yo eyes + katakana no mouth",
+          "feelZh": "前面问号，泰文 yo眼 + ノ嘴"
+        },
+        {
+          "face": "(ยﾝย)！",
+          "feel": "an exclamation after, thai yo eyes + halfwidth no mouth",
+          "feelZh": "后面叹号，泰文 yo眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(？ยOย)",
+          "feel": "a question mark in front, thai yo eyes + wide round mouth",
+          "feelZh": "前面问号，泰文 yo眼 + 大圆嘴"
+        },
+        {
+          "face": "(ยﾟย)！",
+          "feel": "an exclamation after, thai yo eyes + halfwidth circle mouth",
+          "feelZh": "后面叹号，泰文 yo眼 + 半角圆嘴"
+        },
+        {
+          "face": "(つยεย)",
+          "feel": "a hiragana tsu in front, thai yo eyes + epsilon mouth",
+          "feelZh": "前面小つ，泰文 yo眼 + ε嘴"
+        },
+        {
+          "face": "(ยμย)！",
+          "feel": "an exclamation after, thai yo eyes + mu mouth",
+          "feelZh": "后面叹号，泰文 yo眼 + μ嘴"
+        },
+        {
+          "face": "(つย≦ย)",
+          "feel": "a hiragana tsu in front, thai yo eyes + less or equal mouth",
+          "feelZh": "前面小つ，泰文 yo眼 + 小等号嘴"
+        },
+        {
+          "face": "(ย>ย)！",
+          "feel": "an exclamation after, thai yo eyes + greater mouth",
+          "feelZh": "后面叹号，泰文 yo眼 + 大于嘴"
+        },
+        {
+          "face": "(つย＞ย)",
+          "feel": "a hiragana tsu in front, thai yo eyes + fullwidth greater mouth",
+          "feelZh": "前面小つ，泰文 yo眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ยvย)ﾉ",
+          "feel": "a hand pushing after, thai yo eyes + latin v mouth",
+          "feelZh": "后面推开的手，泰文 yo眼 + v嘴"
+        },
+        {
+          "face": "(つย..ย)",
+          "feel": "a hiragana tsu in front, thai yo eyes + two dots mouth",
+          "feelZh": "前面小つ，泰文 yo眼 + 双点嘴"
+        },
+        {
+          "face": "(ย…ย)ﾉ",
+          "feel": "a hand pushing after, thai yo eyes + ellipsis mouth",
+          "feelZh": "后面推开的手，泰文 yo眼 + 省略嘴"
+        },
+        {
+          "face": "(つツ＿ツ)",
+          "feel": "a hiragana tsu in front, katakana tsu eyes + fullwidth flat mouth",
+          "feelZh": "前面小つ，片假名 ツ眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ツ。ツ)ﾉ",
+          "feel": "a hand pushing after, katakana tsu eyes + ideographic full stop mouth",
+          "feelZh": "后面推开的手，片假名 ツ眼 + 句点嘴"
+        },
+        {
+          "face": "(ヾツωツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + omega mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + ω嘴"
+        },
+        {
+          "face": "(ツ▽ツ)ﾉ",
+          "feel": "a hand pushing after, katakana tsu eyes + down triangle mouth",
+          "feelZh": "后面推开的手，片假名 ツ眼 + 下三角嘴"
+        },
+        {
+          "face": "(ヾツДツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + cyrillic de capital mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + Д嘴"
         },
         {
           "face": "(ツдツ)ﾉ",
@@ -611,84 +2746,389 @@
           "feelZh": "后面推开的手，片假名 ツ眼 + д嘴"
         },
         {
-          "face": "(ツoツ)｀;",
-          "feel": "a sweat drop after, katakana tsu eyes + round mouth",
-          "feelZh": "后面一滴汗，片假名 ツ眼 + 圆嘴"
+          "face": "(ヾツЗツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + cyrillic ze mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + З嘴"
         },
         {
-          "face": "ﾉ(ツ≦ツ)",
-          "feel": "a hand in front, katakana tsu eyes + less or equal mouth",
-          "feelZh": "前面一只手，片假名 ツ眼 + 小等号嘴"
+          "face": "(ツツツ)ﾉ",
+          "feel": "a hand pushing after, katakana tsu eyes + katakana tsu mouth",
+          "feelZh": "后面推开的手，片假名 ツ眼 + ツ嘴"
         },
         {
-          "face": "(つツ…ツ)",
-          "feel": "a hiragana tsu in front, katakana tsu eyes + ellipsis mouth",
-          "feelZh": "前面小つ，片假名 ツ眼 + 省略嘴"
+          "face": "(ヾツノツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + katakana no mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + ノ嘴"
         },
         {
-          "face": "(｀;ﾞ△ﾞ)",
-          "feel": "a sweat drop in front, halfwidth dakuten eyes + up triangle mouth",
-          "feelZh": "前面一滴汗，半角浊点眼 + 上三角嘴"
+          "face": "(ツﾝツ);",
+          "feel": "a sweat after, katakana tsu eyes + halfwidth no mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + 半角ノ嘴"
         },
         {
-          "face": "(ﾞﾊﾞ)ﾟ;",
-          "feel": "a half sweat after, halfwidth dakuten eyes + halfwidth tsu mouth",
-          "feelZh": "后面半滴汗，半角浊点眼 + 半角ツ嘴"
+          "face": "(ヾツOツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + wide round mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + 大圆嘴"
         },
         {
-          "face": "(ﾞεﾞ)！",
-          "feel": "an exclamation after, halfwidth dakuten eyes + epsilon mouth",
-          "feelZh": "后面叹号，半角浊点眼 + ε嘴"
+          "face": "(ツﾟツ);",
+          "feel": "a sweat after, katakana tsu eyes + halfwidth circle mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + 半角圆嘴"
         },
         {
-          "face": "(ﾞvﾞ);",
-          "feel": "a sweat after, halfwidth dakuten eyes + latin v mouth",
-          "feelZh": "后面一滴汗，半角浊点眼 + v嘴"
+          "face": "(ヾツεツ)",
+          "feel": "a drunk mark in front, katakana tsu eyes + epsilon mouth",
+          "feelZh": "前面叹号，片假名 ツ眼 + ε嘴"
         },
         {
-          "face": "ყ(゛．゛)",
-          "feel": "a georgian mark in front, katakana dakuten eyes + fullwidth period mouth",
-          "feelZh": "前面格鲁吉亚记号，浊点眼 + 全角句点嘴"
+          "face": "(ツμツ);",
+          "feel": "a sweat after, katakana tsu eyes + mu mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + μ嘴"
         },
         {
-          "face": "(？゛З゛)",
-          "feel": "a question mark in front, katakana dakuten eyes + cyrillic ze mouth",
-          "feelZh": "前面问号，浊点眼 + З嘴"
+          "face": "(｀;ツ≦ツ)",
+          "feel": "a sweat drop in front, katakana tsu eyes + less or equal mouth",
+          "feelZh": "前面一滴汗，片假名 ツ眼 + 小等号嘴"
         },
         {
-          "face": "(ヾ゛ﾟ゛)",
-          "feel": "a drunk mark in front, katakana dakuten eyes + halfwidth circle mouth",
-          "feelZh": "前面叹号，浊点眼 + 半角圆嘴"
+          "face": "(ツ>ツ);",
+          "feel": "a sweat after, katakana tsu eyes + greater mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + 大于嘴"
         },
         {
-          "face": "(゛>゛)つ",
-          "feel": "a hiragana tsu after, katakana dakuten eyes + greater mouth",
-          "feelZh": "后面小つ，浊点眼 + 大于嘴"
+          "face": "(｀;ツ＞ツ)",
+          "feel": "a sweat drop in front, katakana tsu eyes + fullwidth greater mouth",
+          "feelZh": "前面一滴汗，片假名 ツ眼 + 全角大于嘴"
         },
         {
-          "face": "(฿_฿)？",
-          "feel": "a question mark after, thai baht eyes + flat mouth",
-          "feelZh": "后面问号，泰铢眼 + 平嘴嘴"
+          "face": "(ツvツ);",
+          "feel": "a sweat after, katakana tsu eyes + latin v mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + v嘴"
         },
         {
-          "face": "(฿Д฿)ﾉ",
-          "feel": "a hand pushing after, thai baht eyes + cyrillic de capital mouth",
-          "feelZh": "后面推开的手，泰铢眼 + Д嘴"
+          "face": "(｀;ツ..ツ)",
+          "feel": "a sweat drop in front, katakana tsu eyes + two dots mouth",
+          "feelZh": "前面一滴汗，片假名 ツ眼 + 双点嘴"
         },
         {
-          "face": "(฿ﾝ฿)｀;",
-          "feel": "a sweat drop after, thai baht eyes + halfwidth no mouth",
-          "feelZh": "后面一滴汗，泰铢眼 + 半角ノ嘴"
+          "face": "(ツ…ツ)｀;",
+          "feel": "a sweat drop after, katakana tsu eyes + ellipsis mouth",
+          "feelZh": "后面一滴汗，片假名 ツ眼 + 省略嘴"
         },
         {
-          "face": "ﾉ(฿≧฿)",
-          "feel": "a hand in front, thai baht eyes + greater or equal mouth",
-          "feelZh": "前面一只手，泰铢眼 + 大等号嘴"
+          "face": "(｀;ﾞ＿ﾞ)",
+          "feel": "a sweat drop in front, halfwidth dakuten eyes + fullwidth flat mouth",
+          "feelZh": "前面一滴汗，半角浊点眼 + 全角平嘴嘴"
         },
         {
-          "face": "(つ฿..฿)",
-          "feel": "a hiragana tsu in front, thai baht eyes + two dots mouth",
-          "feelZh": "前面小つ，泰铢眼 + 双点嘴"
+          "face": "(ﾞ。ﾞ)｀;",
+          "feel": "a sweat drop after, halfwidth dakuten eyes + ideographic full stop mouth",
+          "feelZh": "后面一滴汗，半角浊点眼 + 句点嘴"
+        },
+        {
+          "face": "(｀;ﾞωﾞ)",
+          "feel": "a sweat drop in front, halfwidth dakuten eyes + omega mouth",
+          "feelZh": "前面一滴汗，半角浊点眼 + ω嘴"
+        },
+        {
+          "face": "(ﾞ▽ﾞ)｀;",
+          "feel": "a sweat drop after, halfwidth dakuten eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，半角浊点眼 + 下三角嘴"
+        },
+        {
+          "face": "(ﾞ△ﾞ)つ",
+          "feel": "a hiragana tsu after, halfwidth dakuten eyes + up triangle mouth",
+          "feelZh": "后面小つ，半角浊点眼 + 上三角嘴"
+        },
+        {
+          "face": "(ﾞдﾞ)｀;",
+          "feel": "a sweat drop after, halfwidth dakuten eyes + cyrillic de mouth",
+          "feelZh": "后面一滴汗，半角浊点眼 + д嘴"
+        },
+        {
+          "face": "(ﾞ∀ﾞ)つ",
+          "feel": "a hiragana tsu after, halfwidth dakuten eyes + for all mouth",
+          "feelZh": "后面小つ，半角浊点眼 + ∀嘴"
+        },
+        {
+          "face": "(ﾞツﾞ)｀;",
+          "feel": "a sweat drop after, halfwidth dakuten eyes + katakana tsu mouth",
+          "feelZh": "后面一滴汗，半角浊点眼 + ツ嘴"
+        },
+        {
+          "face": "(ﾞﾊﾞ)つ",
+          "feel": "a hiragana tsu after, halfwidth dakuten eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，半角浊点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "ყ(ﾞﾝﾞ)",
+          "feel": "a georgian mark in front, halfwidth dakuten eyes + halfwidth no mouth",
+          "feelZh": "前面格鲁吉亚记号，半角浊点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(ﾞoﾞ)つ",
+          "feel": "a hiragana tsu after, halfwidth dakuten eyes + round mouth",
+          "feelZh": "后面小つ，半角浊点眼 + 圆嘴"
+        },
+        {
+          "face": "ყ(ﾞﾟﾞ)",
+          "feel": "a georgian mark in front, halfwidth dakuten eyes + halfwidth circle mouth",
+          "feelZh": "前面格鲁吉亚记号，半角浊点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(ﾞwﾞ)つ",
+          "feel": "a hiragana tsu after, halfwidth dakuten eyes + latin w mouth",
+          "feelZh": "后面小つ，半角浊点眼 + w嘴"
+        },
+        {
+          "face": "ყ(ﾞμﾞ)",
+          "feel": "a georgian mark in front, halfwidth dakuten eyes + mu mouth",
+          "feelZh": "前面格鲁吉亚记号，半角浊点眼 + μ嘴"
+        },
+        {
+          "face": "(ﾞ≧ﾞ)ﾟ;",
+          "feel": "a half sweat after, halfwidth dakuten eyes + greater or equal mouth",
+          "feelZh": "后面半滴汗，半角浊点眼 + 大等号嘴"
+        },
+        {
+          "face": "ყ(ﾞ>ﾞ)",
+          "feel": "a georgian mark in front, halfwidth dakuten eyes + greater mouth",
+          "feelZh": "前面格鲁吉亚记号，半角浊点眼 + 大于嘴"
+        },
+        {
+          "face": "(ﾞ<ﾞ)ﾟ;",
+          "feel": "a half sweat after, halfwidth dakuten eyes + less mouth",
+          "feelZh": "后面半滴汗，半角浊点眼 + 小于嘴"
+        },
+        {
+          "face": "ყ(ﾞvﾞ)",
+          "feel": "a georgian mark in front, halfwidth dakuten eyes + latin v mouth",
+          "feelZh": "前面格鲁吉亚记号，半角浊点眼 + v嘴"
+        },
+        {
+          "face": "(ﾞ.ﾞ)ﾟ;",
+          "feel": "a half sweat after, halfwidth dakuten eyes + dot mouth",
+          "feelZh": "后面半滴汗，半角浊点眼 + 点嘴"
+        },
+        {
+          "face": "ﾉ(ﾞ…ﾞ)",
+          "feel": "a hand in front, halfwidth dakuten eyes + ellipsis mouth",
+          "feelZh": "前面一只手，半角浊点眼 + 省略嘴"
+        },
+        {
+          "face": "(゛_゛)ﾟ;",
+          "feel": "a half sweat after, katakana dakuten eyes + flat mouth",
+          "feelZh": "后面半滴汗，浊点眼 + 平嘴嘴"
+        },
+        {
+          "face": "ﾉ(゛。゛)",
+          "feel": "a hand in front, katakana dakuten eyes + ideographic full stop mouth",
+          "feelZh": "前面一只手，浊点眼 + 句点嘴"
+        },
+        {
+          "face": "(゛．゛)ﾟ;",
+          "feel": "a half sweat after, katakana dakuten eyes + fullwidth period mouth",
+          "feelZh": "后面半滴汗，浊点眼 + 全角句点嘴"
+        },
+        {
+          "face": "ﾉ(゛▽゛)",
+          "feel": "a hand in front, katakana dakuten eyes + down triangle mouth",
+          "feelZh": "前面一只手，浊点眼 + 下三角嘴"
+        },
+        {
+          "face": "(゛△゛)ﾟ;",
+          "feel": "a half sweat after, katakana dakuten eyes + up triangle mouth",
+          "feelZh": "后面半滴汗，浊点眼 + 上三角嘴"
+        },
+        {
+          "face": "ﾉ(゛д゛)",
+          "feel": "a hand in front, katakana dakuten eyes + cyrillic de mouth",
+          "feelZh": "前面一只手，浊点眼 + д嘴"
+        },
+        {
+          "face": "(゛∀゛)？",
+          "feel": "a question mark after, katakana dakuten eyes + for all mouth",
+          "feelZh": "后面问号，浊点眼 + ∀嘴"
+        },
+        {
+          "face": "ﾉ(゛ツ゛)",
+          "feel": "a hand in front, katakana dakuten eyes + katakana tsu mouth",
+          "feelZh": "前面一只手，浊点眼 + ツ嘴"
+        },
+        {
+          "face": "(゛ﾊ゛)？",
+          "feel": "a question mark after, katakana dakuten eyes + halfwidth tsu mouth",
+          "feelZh": "后面问号，浊点眼 + 半角ツ嘴"
+        },
+        {
+          "face": "ﾉ(゛ﾝ゛)",
+          "feel": "a hand in front, katakana dakuten eyes + halfwidth no mouth",
+          "feelZh": "前面一只手，浊点眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(゛o゛)？",
+          "feel": "a question mark after, katakana dakuten eyes + round mouth",
+          "feelZh": "后面问号，浊点眼 + 圆嘴"
+        },
+        {
+          "face": "(？゛ﾟ゛)",
+          "feel": "a question mark in front, katakana dakuten eyes + halfwidth circle mouth",
+          "feelZh": "前面问号，浊点眼 + 半角圆嘴"
+        },
+        {
+          "face": "(゛w゛)？",
+          "feel": "a question mark after, katakana dakuten eyes + latin w mouth",
+          "feelZh": "后面问号，浊点眼 + w嘴"
+        },
+        {
+          "face": "(？゛μ゛)",
+          "feel": "a question mark in front, katakana dakuten eyes + mu mouth",
+          "feelZh": "前面问号，浊点眼 + μ嘴"
+        },
+        {
+          "face": "(゛≧゛)？",
+          "feel": "a question mark after, katakana dakuten eyes + greater or equal mouth",
+          "feelZh": "后面问号，浊点眼 + 大等号嘴"
+        },
+        {
+          "face": "(？゛>゛)",
+          "feel": "a question mark in front, katakana dakuten eyes + greater mouth",
+          "feelZh": "前面问号，浊点眼 + 大于嘴"
+        },
+        {
+          "face": "(゛<゛)！",
+          "feel": "an exclamation after, katakana dakuten eyes + less mouth",
+          "feelZh": "后面叹号，浊点眼 + 小于嘴"
+        },
+        {
+          "face": "(？゛v゛)",
+          "feel": "a question mark in front, katakana dakuten eyes + latin v mouth",
+          "feelZh": "前面问号，浊点眼 + v嘴"
+        },
+        {
+          "face": "(゛.゛)！",
+          "feel": "an exclamation after, katakana dakuten eyes + dot mouth",
+          "feelZh": "后面叹号，浊点眼 + 点嘴"
+        },
+        {
+          "face": "(？゛…゛)",
+          "feel": "a question mark in front, katakana dakuten eyes + ellipsis mouth",
+          "feelZh": "前面问号，浊点眼 + 省略嘴"
+        },
+        {
+          "face": "(฿_฿)！",
+          "feel": "an exclamation after, thai baht eyes + flat mouth",
+          "feelZh": "后面叹号，泰铢眼 + 平嘴嘴"
+        },
+        {
+          "face": "(つ฿。฿)",
+          "feel": "a hiragana tsu in front, thai baht eyes + ideographic full stop mouth",
+          "feelZh": "前面小つ，泰铢眼 + 句点嘴"
+        },
+        {
+          "face": "(฿．฿)！",
+          "feel": "an exclamation after, thai baht eyes + fullwidth period mouth",
+          "feelZh": "后面叹号，泰铢眼 + 全角句点嘴"
+        },
+        {
+          "face": "(つ฿▽฿)",
+          "feel": "a hiragana tsu in front, thai baht eyes + down triangle mouth",
+          "feelZh": "前面小つ，泰铢眼 + 下三角嘴"
+        },
+        {
+          "face": "(฿△฿)！",
+          "feel": "an exclamation after, thai baht eyes + up triangle mouth",
+          "feelZh": "后面叹号，泰铢眼 + 上三角嘴"
+        },
+        {
+          "face": "(つ฿д฿)",
+          "feel": "a hiragana tsu in front, thai baht eyes + cyrillic de mouth",
+          "feelZh": "前面小つ，泰铢眼 + д嘴"
+        },
+        {
+          "face": "(฿∀฿)ﾉ",
+          "feel": "a hand pushing after, thai baht eyes + for all mouth",
+          "feelZh": "后面推开的手，泰铢眼 + ∀嘴"
+        },
+        {
+          "face": "(つ฿ツ฿)",
+          "feel": "a hiragana tsu in front, thai baht eyes + katakana tsu mouth",
+          "feelZh": "前面小つ，泰铢眼 + ツ嘴"
+        },
+        {
+          "face": "(฿ﾊ฿)ﾉ",
+          "feel": "a hand pushing after, thai baht eyes + halfwidth tsu mouth",
+          "feelZh": "后面推开的手，泰铢眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(つ฿ﾝ฿)",
+          "feel": "a hiragana tsu in front, thai baht eyes + halfwidth no mouth",
+          "feelZh": "前面小つ，泰铢眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(฿o฿)ﾉ",
+          "feel": "a hand pushing after, thai baht eyes + round mouth",
+          "feelZh": "后面推开的手，泰铢眼 + 圆嘴"
+        },
+        {
+          "face": "(ヾ฿ﾟ฿)",
+          "feel": "a drunk mark in front, thai baht eyes + halfwidth circle mouth",
+          "feelZh": "前面叹号，泰铢眼 + 半角圆嘴"
+        },
+        {
+          "face": "(฿w฿)ﾉ",
+          "feel": "a hand pushing after, thai baht eyes + latin w mouth",
+          "feelZh": "后面推开的手，泰铢眼 + w嘴"
+        },
+        {
+          "face": "(ヾ฿μ฿)",
+          "feel": "a drunk mark in front, thai baht eyes + mu mouth",
+          "feelZh": "前面叹号，泰铢眼 + μ嘴"
+        },
+        {
+          "face": "(฿≧฿)ﾉ",
+          "feel": "a hand pushing after, thai baht eyes + greater or equal mouth",
+          "feelZh": "后面推开的手，泰铢眼 + 大等号嘴"
+        },
+        {
+          "face": "(ヾ฿>฿)",
+          "feel": "a drunk mark in front, thai baht eyes + greater mouth",
+          "feelZh": "前面叹号，泰铢眼 + 大于嘴"
+        },
+        {
+          "face": "(฿<฿);",
+          "feel": "a sweat after, thai baht eyes + less mouth",
+          "feelZh": "后面一滴汗，泰铢眼 + 小于嘴"
+        },
+        {
+          "face": "(ヾ฿v฿)",
+          "feel": "a drunk mark in front, thai baht eyes + latin v mouth",
+          "feelZh": "前面叹号，泰铢眼 + v嘴"
+        },
+        {
+          "face": "(฿.฿);",
+          "feel": "a sweat after, thai baht eyes + dot mouth",
+          "feelZh": "后面一滴汗，泰铢眼 + 点嘴"
+        },
+        {
+          "face": "(ヾ฿…฿)",
+          "feel": "a drunk mark in front, thai baht eyes + ellipsis mouth",
+          "feelZh": "前面叹号，泰铢眼 + 省略嘴"
+        },
+        {
+          "face": "(¤_¤);",
+          "feel": "a sweat after, currency eyes + flat mouth",
+          "feelZh": "后面一滴汗，货币眼 + 平嘴嘴"
+        },
+        {
+          "face": "(｀;¤。¤)",
+          "feel": "a sweat drop in front, currency eyes + ideographic full stop mouth",
+          "feelZh": "前面一滴汗，货币眼 + 句点嘴"
+        },
+        {
+          "face": "(¤．¤);",
+          "feel": "a sweat after, currency eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，货币眼 + 全角句点嘴"
         },
         {
           "face": "(｀;¤▽¤)",
@@ -696,84 +3136,389 @@
           "feelZh": "前面一滴汗，货币眼 + 下三角嘴"
         },
         {
-          "face": "(¤ツ¤)ﾟ;",
-          "feel": "a half sweat after, currency eyes + katakana tsu mouth",
-          "feelZh": "后面半滴汗，货币眼 + ツ嘴"
+          "face": "(¤△¤);",
+          "feel": "a sweat after, currency eyes + up triangle mouth",
+          "feelZh": "后面一滴汗，货币眼 + 上三角嘴"
         },
         {
-          "face": "(¤w¤)！",
-          "feel": "an exclamation after, currency eyes + latin w mouth",
-          "feelZh": "后面叹号，货币眼 + w嘴"
+          "face": "(｀;¤д¤)",
+          "feel": "a sweat drop in front, currency eyes + cyrillic de mouth",
+          "feelZh": "前面一滴汗，货币眼 + д嘴"
         },
         {
-          "face": "(¤＞¤);",
-          "feel": "a sweat after, currency eyes + fullwidth greater mouth",
-          "feelZh": "后面一滴汗，货币眼 + 全角大于嘴"
+          "face": "(¤∀¤);",
+          "feel": "a sweat after, currency eyes + for all mouth",
+          "feelZh": "后面一滴汗，货币眼 + ∀嘴"
         },
         {
-          "face": "ყ(→。→)",
-          "feel": "a georgian mark in front, right arrow eyes + ideographic full stop mouth",
-          "feelZh": "前面格鲁吉亚记号，右箭头眼 + 句点嘴"
+          "face": "(｀;¤ツ¤)",
+          "feel": "a sweat drop in front, currency eyes + katakana tsu mouth",
+          "feelZh": "前面一滴汗，货币眼 + ツ嘴"
         },
         {
-          "face": "(？→∀→)",
-          "feel": "a question mark in front, right arrow eyes + for all mouth",
-          "feelZh": "前面问号，右箭头眼 + ∀嘴"
+          "face": "(¤ﾊ¤)｀;",
+          "feel": "a sweat drop after, currency eyes + halfwidth tsu mouth",
+          "feelZh": "后面一滴汗，货币眼 + 半角ツ嘴"
         },
         {
-          "face": "(つ→O→)",
-          "feel": "a hiragana tsu in front, right arrow eyes + wide round mouth",
-          "feelZh": "前面小つ，右箭头眼 + 大圆嘴"
+          "face": "(｀;¤ﾝ¤)",
+          "feel": "a sweat drop in front, currency eyes + halfwidth no mouth",
+          "feelZh": "前面一滴汗，货币眼 + 半角ノ嘴"
         },
         {
-          "face": "(｀;→>→)",
-          "feel": "a sweat drop in front, right arrow eyes + greater mouth",
-          "feelZh": "前面一滴汗，右箭头眼 + 大于嘴"
+          "face": "(¤o¤)｀;",
+          "feel": "a sweat drop after, currency eyes + round mouth",
+          "feelZh": "后面一滴汗，货币眼 + 圆嘴"
         },
         {
-          "face": "(→…→)ﾟ;",
-          "feel": "a half sweat after, right arrow eyes + ellipsis mouth",
-          "feelZh": "后面半滴汗，右箭头眼 + 省略嘴"
+          "face": "(｀;¤ﾟ¤)",
+          "feel": "a sweat drop in front, currency eyes + halfwidth circle mouth",
+          "feelZh": "前面一滴汗，货币眼 + 半角圆嘴"
         },
         {
-          "face": "(｢△｢)！",
-          "feel": "an exclamation after, corner bracket eyes + up triangle mouth",
-          "feelZh": "后面叹号，角括号眼 + 上三角嘴"
+          "face": "(¤w¤)｀;",
+          "feel": "a sweat drop after, currency eyes + latin w mouth",
+          "feelZh": "后面一滴汗，货币眼 + w嘴"
         },
         {
-          "face": "(｢ノ｢);",
-          "feel": "a sweat after, corner bracket eyes + katakana no mouth",
-          "feelZh": "后面一滴汗，角括号眼 + ノ嘴"
+          "face": "(¤ε¤)つ",
+          "feel": "a hiragana tsu after, currency eyes + epsilon mouth",
+          "feelZh": "后面小つ，货币眼 + ε嘴"
         },
         {
-          "face": "ყ(｢μ｢)",
-          "feel": "a georgian mark in front, corner bracket eyes + mu mouth",
-          "feelZh": "前面格鲁吉亚记号，角括号眼 + μ嘴"
+          "face": "(¤≧¤)｀;",
+          "feel": "a sweat drop after, currency eyes + greater or equal mouth",
+          "feelZh": "后面一滴汗，货币眼 + 大等号嘴"
         },
         {
-          "face": "(？｢.｢)",
-          "feel": "a question mark in front, corner bracket eyes + dot mouth",
-          "feelZh": "前面问号，角括号眼 + 点嘴"
+          "face": "(¤≦¤)つ",
+          "feel": "a hiragana tsu after, currency eyes + less or equal mouth",
+          "feelZh": "后面小つ，货币眼 + 小等号嘴"
         },
         {
-          "face": "(ヾΘωΘ)",
-          "feel": "a drunk mark in front, theta eyes + omega mouth",
-          "feelZh": "前面叹号，Θ眼 + ω嘴"
+          "face": "(¤<¤)｀;",
+          "feel": "a sweat drop after, currency eyes + less mouth",
+          "feelZh": "后面一滴汗，货币眼 + 小于嘴"
         },
         {
-          "face": "(ΘЗΘ)つ",
-          "feel": "a hiragana tsu after, theta eyes + cyrillic ze mouth",
-          "feelZh": "后面小つ，Θ眼 + З嘴"
+          "face": "(¤＞¤)つ",
+          "feel": "a hiragana tsu after, currency eyes + fullwidth greater mouth",
+          "feelZh": "后面小つ，货币眼 + 全角大于嘴"
         },
         {
-          "face": "(ΘﾟΘ)？",
-          "feel": "a question mark after, theta eyes + halfwidth circle mouth",
-          "feelZh": "后面问号，Θ眼 + 半角圆嘴"
+          "face": "ყ(¤.¤)",
+          "feel": "a georgian mark in front, currency eyes + dot mouth",
+          "feelZh": "前面格鲁吉亚记号，货币眼 + 点嘴"
         },
         {
-          "face": "(Θ<Θ)ﾉ",
-          "feel": "a hand pushing after, theta eyes + less mouth",
-          "feelZh": "后面推开的手，Θ眼 + 小于嘴"
+          "face": "(¤..¤)つ",
+          "feel": "a hiragana tsu after, currency eyes + two dots mouth",
+          "feelZh": "后面小つ，货币眼 + 双点嘴"
+        },
+        {
+          "face": "ყ(→_→)",
+          "feel": "a georgian mark in front, right arrow eyes + flat mouth",
+          "feelZh": "前面格鲁吉亚记号，右箭头眼 + 平嘴嘴"
+        },
+        {
+          "face": "(→＿→)つ",
+          "feel": "a hiragana tsu after, right arrow eyes + fullwidth flat mouth",
+          "feelZh": "后面小つ，右箭头眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "ყ(→．→)",
+          "feel": "a georgian mark in front, right arrow eyes + fullwidth period mouth",
+          "feelZh": "前面格鲁吉亚记号，右箭头眼 + 全角句点嘴"
+        },
+        {
+          "face": "(→ω→)ﾟ;",
+          "feel": "a half sweat after, right arrow eyes + omega mouth",
+          "feelZh": "后面半滴汗，右箭头眼 + ω嘴"
+        },
+        {
+          "face": "ყ(→△→)",
+          "feel": "a georgian mark in front, right arrow eyes + up triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，右箭头眼 + 上三角嘴"
+        },
+        {
+          "face": "(→Д→)ﾟ;",
+          "feel": "a half sweat after, right arrow eyes + cyrillic de capital mouth",
+          "feelZh": "后面半滴汗，右箭头眼 + Д嘴"
+        },
+        {
+          "face": "ყ(→∀→)",
+          "feel": "a georgian mark in front, right arrow eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，右箭头眼 + ∀嘴"
+        },
+        {
+          "face": "(→З→)ﾟ;",
+          "feel": "a half sweat after, right arrow eyes + cyrillic ze mouth",
+          "feelZh": "后面半滴汗，右箭头眼 + З嘴"
+        },
+        {
+          "face": "ﾉ(→ﾊ→)",
+          "feel": "a hand in front, right arrow eyes + halfwidth tsu mouth",
+          "feelZh": "前面一只手，右箭头眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(→ノ→)ﾟ;",
+          "feel": "a half sweat after, right arrow eyes + katakana no mouth",
+          "feelZh": "后面半滴汗，右箭头眼 + ノ嘴"
+        },
+        {
+          "face": "ﾉ(→o→)",
+          "feel": "a hand in front, right arrow eyes + round mouth",
+          "feelZh": "前面一只手，右箭头眼 + 圆嘴"
+        },
+        {
+          "face": "(→O→)ﾟ;",
+          "feel": "a half sweat after, right arrow eyes + wide round mouth",
+          "feelZh": "后面半滴汗，右箭头眼 + 大圆嘴"
+        },
+        {
+          "face": "ﾉ(→w→)",
+          "feel": "a hand in front, right arrow eyes + latin w mouth",
+          "feelZh": "前面一只手，右箭头眼 + w嘴"
+        },
+        {
+          "face": "(→ε→)？",
+          "feel": "a question mark after, right arrow eyes + epsilon mouth",
+          "feelZh": "后面问号，右箭头眼 + ε嘴"
+        },
+        {
+          "face": "ﾉ(→≧→)",
+          "feel": "a hand in front, right arrow eyes + greater or equal mouth",
+          "feelZh": "前面一只手，右箭头眼 + 大等号嘴"
+        },
+        {
+          "face": "(→≦→)？",
+          "feel": "a question mark after, right arrow eyes + less or equal mouth",
+          "feelZh": "后面问号，右箭头眼 + 小等号嘴"
+        },
+        {
+          "face": "ﾉ(→<→)",
+          "feel": "a hand in front, right arrow eyes + less mouth",
+          "feelZh": "前面一只手，右箭头眼 + 小于嘴"
+        },
+        {
+          "face": "(→＞→)？",
+          "feel": "a question mark after, right arrow eyes + fullwidth greater mouth",
+          "feelZh": "后面问号，右箭头眼 + 全角大于嘴"
+        },
+        {
+          "face": "(？→.→)",
+          "feel": "a question mark in front, right arrow eyes + dot mouth",
+          "feelZh": "前面问号，右箭头眼 + 点嘴"
+        },
+        {
+          "face": "(→..→)？",
+          "feel": "a question mark after, right arrow eyes + two dots mouth",
+          "feelZh": "后面问号，右箭头眼 + 双点嘴"
+        },
+        {
+          "face": "(？｢_｢)",
+          "feel": "a question mark in front, corner bracket eyes + flat mouth",
+          "feelZh": "前面问号，角括号眼 + 平嘴嘴"
+        },
+        {
+          "face": "(｢＿｢)？",
+          "feel": "a question mark after, corner bracket eyes + fullwidth flat mouth",
+          "feelZh": "后面问号，角括号眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(？｢．｢)",
+          "feel": "a question mark in front, corner bracket eyes + fullwidth period mouth",
+          "feelZh": "前面问号，角括号眼 + 全角句点嘴"
+        },
+        {
+          "face": "(｢ω｢)？",
+          "feel": "a question mark after, corner bracket eyes + omega mouth",
+          "feelZh": "后面问号，角括号眼 + ω嘴"
+        },
+        {
+          "face": "(？｢△｢)",
+          "feel": "a question mark in front, corner bracket eyes + up triangle mouth",
+          "feelZh": "前面问号，角括号眼 + 上三角嘴"
+        },
+        {
+          "face": "(｢Д｢)！",
+          "feel": "an exclamation after, corner bracket eyes + cyrillic de capital mouth",
+          "feelZh": "后面叹号，角括号眼 + Д嘴"
+        },
+        {
+          "face": "(？｢∀｢)",
+          "feel": "a question mark in front, corner bracket eyes + for all mouth",
+          "feelZh": "前面问号，角括号眼 + ∀嘴"
+        },
+        {
+          "face": "(｢З｢)！",
+          "feel": "an exclamation after, corner bracket eyes + cyrillic ze mouth",
+          "feelZh": "后面叹号，角括号眼 + З嘴"
+        },
+        {
+          "face": "(？｢ﾊ｢)",
+          "feel": "a question mark in front, corner bracket eyes + halfwidth tsu mouth",
+          "feelZh": "前面问号，角括号眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(｢ノ｢)！",
+          "feel": "an exclamation after, corner bracket eyes + katakana no mouth",
+          "feelZh": "后面叹号，角括号眼 + ノ嘴"
+        },
+        {
+          "face": "(つ｢o｢)",
+          "feel": "a hiragana tsu in front, corner bracket eyes + round mouth",
+          "feelZh": "前面小つ，角括号眼 + 圆嘴"
+        },
+        {
+          "face": "(｢O｢)！",
+          "feel": "an exclamation after, corner bracket eyes + wide round mouth",
+          "feelZh": "后面叹号，角括号眼 + 大圆嘴"
+        },
+        {
+          "face": "(つ｢w｢)",
+          "feel": "a hiragana tsu in front, corner bracket eyes + latin w mouth",
+          "feelZh": "前面小つ，角括号眼 + w嘴"
+        },
+        {
+          "face": "(｢ε｢)！",
+          "feel": "an exclamation after, corner bracket eyes + epsilon mouth",
+          "feelZh": "后面叹号，角括号眼 + ε嘴"
+        },
+        {
+          "face": "(つ｢≧｢)",
+          "feel": "a hiragana tsu in front, corner bracket eyes + greater or equal mouth",
+          "feelZh": "前面小つ，角括号眼 + 大等号嘴"
+        },
+        {
+          "face": "(｢≦｢)ﾉ",
+          "feel": "a hand pushing after, corner bracket eyes + less or equal mouth",
+          "feelZh": "后面推开的手，角括号眼 + 小等号嘴"
+        },
+        {
+          "face": "(つ｢<｢)",
+          "feel": "a hiragana tsu in front, corner bracket eyes + less mouth",
+          "feelZh": "前面小つ，角括号眼 + 小于嘴"
+        },
+        {
+          "face": "(｢＞｢)ﾉ",
+          "feel": "a hand pushing after, corner bracket eyes + fullwidth greater mouth",
+          "feelZh": "后面推开的手，角括号眼 + 全角大于嘴"
+        },
+        {
+          "face": "(つ｢.｢)",
+          "feel": "a hiragana tsu in front, corner bracket eyes + dot mouth",
+          "feelZh": "前面小つ，角括号眼 + 点嘴"
+        },
+        {
+          "face": "(｢..｢)ﾉ",
+          "feel": "a hand pushing after, corner bracket eyes + two dots mouth",
+          "feelZh": "后面推开的手，角括号眼 + 双点嘴"
+        },
+        {
+          "face": "(ヾΘ_Θ)",
+          "feel": "a drunk mark in front, theta eyes + flat mouth",
+          "feelZh": "前面叹号，Θ眼 + 平嘴嘴"
+        },
+        {
+          "face": "(Θ＿Θ)ﾉ",
+          "feel": "a hand pushing after, theta eyes + fullwidth flat mouth",
+          "feelZh": "后面推开的手，Θ眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(ヾΘ．Θ)",
+          "feel": "a drunk mark in front, theta eyes + fullwidth period mouth",
+          "feelZh": "前面叹号，Θ眼 + 全角句点嘴"
+        },
+        {
+          "face": "(ΘωΘ)ﾉ",
+          "feel": "a hand pushing after, theta eyes + omega mouth",
+          "feelZh": "后面推开的手，Θ眼 + ω嘴"
+        },
+        {
+          "face": "(ヾΘ△Θ)",
+          "feel": "a drunk mark in front, theta eyes + up triangle mouth",
+          "feelZh": "前面叹号，Θ眼 + 上三角嘴"
+        },
+        {
+          "face": "(ΘДΘ);",
+          "feel": "a sweat after, theta eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，Θ眼 + Д嘴"
+        },
+        {
+          "face": "(ヾΘ∀Θ)",
+          "feel": "a drunk mark in front, theta eyes + for all mouth",
+          "feelZh": "前面叹号，Θ眼 + ∀嘴"
+        },
+        {
+          "face": "(ΘЗΘ);",
+          "feel": "a sweat after, theta eyes + cyrillic ze mouth",
+          "feelZh": "后面一滴汗，Θ眼 + З嘴"
+        },
+        {
+          "face": "(ヾΘﾊΘ)",
+          "feel": "a drunk mark in front, theta eyes + halfwidth tsu mouth",
+          "feelZh": "前面叹号，Θ眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(ΘノΘ);",
+          "feel": "a sweat after, theta eyes + katakana no mouth",
+          "feelZh": "后面一滴汗，Θ眼 + ノ嘴"
+        },
+        {
+          "face": "(｀;ΘoΘ)",
+          "feel": "a sweat drop in front, theta eyes + round mouth",
+          "feelZh": "前面一滴汗，Θ眼 + 圆嘴"
+        },
+        {
+          "face": "(ΘOΘ);",
+          "feel": "a sweat after, theta eyes + wide round mouth",
+          "feelZh": "后面一滴汗，Θ眼 + 大圆嘴"
+        },
+        {
+          "face": "(｀;ΘwΘ)",
+          "feel": "a sweat drop in front, theta eyes + latin w mouth",
+          "feelZh": "前面一滴汗，Θ眼 + w嘴"
+        },
+        {
+          "face": "(ΘεΘ);",
+          "feel": "a sweat after, theta eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，Θ眼 + ε嘴"
+        },
+        {
+          "face": "(｀;Θ≧Θ)",
+          "feel": "a sweat drop in front, theta eyes + greater or equal mouth",
+          "feelZh": "前面一滴汗，Θ眼 + 大等号嘴"
+        },
+        {
+          "face": "(Θ≦Θ)｀;",
+          "feel": "a sweat drop after, theta eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，Θ眼 + 小等号嘴"
+        },
+        {
+          "face": "(｀;Θ<Θ)",
+          "feel": "a sweat drop in front, theta eyes + less mouth",
+          "feelZh": "前面一滴汗，Θ眼 + 小于嘴"
+        },
+        {
+          "face": "(Θ＞Θ)｀;",
+          "feel": "a sweat drop after, theta eyes + fullwidth greater mouth",
+          "feelZh": "后面一滴汗，Θ眼 + 全角大于嘴"
+        },
+        {
+          "face": "(｀;Θ.Θ)",
+          "feel": "a sweat drop in front, theta eyes + dot mouth",
+          "feelZh": "前面一滴汗，Θ眼 + 点嘴"
+        },
+        {
+          "face": "(Θ..Θ)｀;",
+          "feel": "a sweat drop after, theta eyes + two dots mouth",
+          "feelZh": "后面一滴汗，Θ眼 + 双点嘴"
+        },
+        {
+          "face": "(Θ…Θ)つ",
+          "feel": "a hiragana tsu after, theta eyes + ellipsis mouth",
+          "feelZh": "后面小つ，Θ眼 + 省略嘴"
         },
         {
           "face": "(Σ＿Σ)｀;",
@@ -781,84 +3526,389 @@
           "feelZh": "后面一滴汗，Σ眼 + 全角平嘴嘴"
         },
         {
-          "face": "ﾉ(ΣдΣ)",
-          "feel": "a hand in front, sigma capital eyes + cyrillic de mouth",
-          "feelZh": "前面一只手，Σ眼 + д嘴"
+          "face": "(Σ。Σ)つ",
+          "feel": "a hiragana tsu after, sigma capital eyes + ideographic full stop mouth",
+          "feelZh": "后面小つ，Σ眼 + 句点嘴"
         },
         {
-          "face": "(つΣoΣ)",
-          "feel": "a hiragana tsu in front, sigma capital eyes + round mouth",
-          "feelZh": "前面小つ，Σ眼 + 圆嘴"
+          "face": "(ΣωΣ)｀;",
+          "feel": "a sweat drop after, sigma capital eyes + omega mouth",
+          "feelZh": "后面一滴汗，Σ眼 + ω嘴"
         },
         {
-          "face": "(｀;Σ≦Σ)",
-          "feel": "a sweat drop in front, sigma capital eyes + less or equal mouth",
-          "feelZh": "前面一滴汗，Σ眼 + 小等号嘴"
+          "face": "(Σ▽Σ)つ",
+          "feel": "a hiragana tsu after, sigma capital eyes + down triangle mouth",
+          "feelZh": "后面小つ，Σ眼 + 下三角嘴"
         },
         {
-          "face": "(Σ..Σ)ﾟ;",
-          "feel": "a half sweat after, sigma capital eyes + two dots mouth",
-          "feelZh": "后面半滴汗，Σ眼 + 双点嘴"
+          "face": "(ΣДΣ)｀;",
+          "feel": "a sweat drop after, sigma capital eyes + cyrillic de capital mouth",
+          "feelZh": "后面一滴汗，Σ眼 + Д嘴"
         },
         {
-          "face": "($▽$)？",
-          "feel": "a question mark after, dollar eyes + down triangle mouth",
-          "feelZh": "后面问号，$眼 + 下三角嘴"
+          "face": "(ΣдΣ)つ",
+          "feel": "a hiragana tsu after, sigma capital eyes + cyrillic de mouth",
+          "feelZh": "后面小つ，Σ眼 + д嘴"
         },
         {
-          "face": "($ﾊ$)ﾉ",
-          "feel": "a hand pushing after, dollar eyes + halfwidth tsu mouth",
-          "feelZh": "后面推开的手，$眼 + 半角ツ嘴"
+          "face": "ყ(ΣЗΣ)",
+          "feel": "a georgian mark in front, sigma capital eyes + cyrillic ze mouth",
+          "feelZh": "前面格鲁吉亚记号，Σ眼 + З嘴"
         },
         {
-          "face": "($ε$)！",
-          "feel": "an exclamation after, dollar eyes + epsilon mouth",
-          "feelZh": "后面叹号，$眼 + ε嘴"
+          "face": "(ΣツΣ)つ",
+          "feel": "a hiragana tsu after, sigma capital eyes + katakana tsu mouth",
+          "feelZh": "后面小つ，Σ眼 + ツ嘴"
         },
         {
-          "face": "($v$)？",
-          "feel": "a question mark after, dollar eyes + latin v mouth",
-          "feelZh": "后面问号，$眼 + v嘴"
+          "face": "ყ(ΣノΣ)",
+          "feel": "a georgian mark in front, sigma capital eyes + katakana no mouth",
+          "feelZh": "前面格鲁吉亚记号，Σ眼 + ノ嘴"
         },
         {
-          "face": "(#．#)ﾟ;",
-          "feel": "a half sweat after, hash eyes + fullwidth period mouth",
-          "feelZh": "后面半滴汗，#眼 + 全角句点嘴"
+          "face": "(ΣﾝΣ)つ",
+          "feel": "a hiragana tsu after, sigma capital eyes + halfwidth no mouth",
+          "feelZh": "后面小つ，Σ眼 + 半角ノ嘴"
         },
         {
-          "face": "(#З#)！",
-          "feel": "an exclamation after, hash eyes + cyrillic ze mouth",
-          "feelZh": "后面叹号，#眼 + З嘴"
+          "face": "ყ(ΣOΣ)",
+          "feel": "a georgian mark in front, sigma capital eyes + wide round mouth",
+          "feelZh": "前面格鲁吉亚记号，Σ眼 + 大圆嘴"
         },
         {
-          "face": "(#ﾟ#)！",
-          "feel": "an exclamation after, hash eyes + halfwidth circle mouth",
-          "feelZh": "后面叹号，#眼 + 半角圆嘴"
+          "face": "(ΣﾟΣ)ﾟ;",
+          "feel": "a half sweat after, sigma capital eyes + halfwidth circle mouth",
+          "feelZh": "后面半滴汗，Σ眼 + 半角圆嘴"
         },
         {
-          "face": "(#<#)？",
-          "feel": "a question mark after, hash eyes + less mouth",
-          "feelZh": "后面问号，#眼 + 小于嘴"
+          "face": "ყ(ΣεΣ)",
+          "feel": "a georgian mark in front, sigma capital eyes + epsilon mouth",
+          "feelZh": "前面格鲁吉亚记号，Σ眼 + ε嘴"
         },
         {
-          "face": "(@＿@)つ",
-          "feel": "a hiragana tsu after, at sign eyes + fullwidth flat mouth",
-          "feelZh": "后面小つ，@眼 + 全角平嘴嘴"
+          "face": "(ΣμΣ)ﾟ;",
+          "feel": "a half sweat after, sigma capital eyes + mu mouth",
+          "feelZh": "后面半滴汗，Σ眼 + μ嘴"
         },
         {
-          "face": "(@д@)？",
-          "feel": "a question mark after, at sign eyes + cyrillic de mouth",
-          "feelZh": "后面问号，@眼 + д嘴"
+          "face": "ყ(Σ≦Σ)",
+          "feel": "a georgian mark in front, sigma capital eyes + less or equal mouth",
+          "feelZh": "前面格鲁吉亚记号，Σ眼 + 小等号嘴"
         },
         {
-          "face": "(@o@)！",
-          "feel": "an exclamation after, at sign eyes + round mouth",
-          "feelZh": "后面叹号，@眼 + 圆嘴"
+          "face": "(Σ>Σ)ﾟ;",
+          "feel": "a half sweat after, sigma capital eyes + greater mouth",
+          "feelZh": "后面半滴汗，Σ眼 + 大于嘴"
         },
         {
-          "face": "(@≦@)！",
-          "feel": "an exclamation after, at sign eyes + less or equal mouth",
-          "feelZh": "后面叹号，@眼 + 小等号嘴"
+          "face": "ﾉ(Σ＞Σ)",
+          "feel": "a hand in front, sigma capital eyes + fullwidth greater mouth",
+          "feelZh": "前面一只手，Σ眼 + 全角大于嘴"
+        },
+        {
+          "face": "(ΣvΣ)ﾟ;",
+          "feel": "a half sweat after, sigma capital eyes + latin v mouth",
+          "feelZh": "后面半滴汗，Σ眼 + v嘴"
+        },
+        {
+          "face": "ﾉ(Σ..Σ)",
+          "feel": "a hand in front, sigma capital eyes + two dots mouth",
+          "feelZh": "前面一只手，Σ眼 + 双点嘴"
+        },
+        {
+          "face": "(Σ…Σ)ﾟ;",
+          "feel": "a half sweat after, sigma capital eyes + ellipsis mouth",
+          "feelZh": "后面半滴汗，Σ眼 + 省略嘴"
+        },
+        {
+          "face": "ყ($＿$)",
+          "feel": "a georgian mark in front, dollar eyes + fullwidth flat mouth",
+          "feelZh": "前面格鲁吉亚记号，$眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "($。$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + ideographic full stop mouth",
+          "feelZh": "后面半滴汗，$眼 + 句点嘴"
+        },
+        {
+          "face": "ყ($ω$)",
+          "feel": "a georgian mark in front, dollar eyes + omega mouth",
+          "feelZh": "前面格鲁吉亚记号，$眼 + ω嘴"
+        },
+        {
+          "face": "($▽$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + down triangle mouth",
+          "feelZh": "后面半滴汗，$眼 + 下三角嘴"
+        },
+        {
+          "face": "ყ($Д$)",
+          "feel": "a georgian mark in front, dollar eyes + cyrillic de capital mouth",
+          "feelZh": "前面格鲁吉亚记号，$眼 + Д嘴"
+        },
+        {
+          "face": "($д$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + cyrillic de mouth",
+          "feelZh": "后面半滴汗，$眼 + д嘴"
+        },
+        {
+          "face": "ﾉ($З$)",
+          "feel": "a hand in front, dollar eyes + cyrillic ze mouth",
+          "feelZh": "前面一只手，$眼 + З嘴"
+        },
+        {
+          "face": "($ツ$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + katakana tsu mouth",
+          "feelZh": "后面半滴汗，$眼 + ツ嘴"
+        },
+        {
+          "face": "ﾉ($ノ$)",
+          "feel": "a hand in front, dollar eyes + katakana no mouth",
+          "feelZh": "前面一只手，$眼 + ノ嘴"
+        },
+        {
+          "face": "($ﾝ$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + halfwidth no mouth",
+          "feelZh": "后面半滴汗，$眼 + 半角ノ嘴"
+        },
+        {
+          "face": "ყ($O$)",
+          "feel": "a georgian mark in front, dollar eyes + wide round mouth",
+          "feelZh": "前面格鲁吉亚记号，$眼 + 大圆嘴"
+        },
+        {
+          "face": "($ﾟ$)つ",
+          "feel": "a hiragana tsu after, dollar eyes + halfwidth circle mouth",
+          "feelZh": "后面小つ，$眼 + 半角圆嘴"
+        },
+        {
+          "face": "($ε$);",
+          "feel": "a sweat after, dollar eyes + epsilon mouth",
+          "feelZh": "后面一滴汗，$眼 + ε嘴"
+        },
+        {
+          "face": "(｀;$≧$)",
+          "feel": "a sweat drop in front, dollar eyes + greater or equal mouth",
+          "feelZh": "前面一滴汗，$眼 + 大等号嘴"
+        },
+        {
+          "face": "($≦$);",
+          "feel": "a sweat after, dollar eyes + less or equal mouth",
+          "feelZh": "后面一滴汗，$眼 + 小等号嘴"
+        },
+        {
+          "face": "(ヾ$<$)",
+          "feel": "a drunk mark in front, dollar eyes + less mouth",
+          "feelZh": "前面叹号，$眼 + 小于嘴"
+        },
+        {
+          "face": "($＞$)ﾉ",
+          "feel": "a hand pushing after, dollar eyes + fullwidth greater mouth",
+          "feelZh": "后面推开的手，$眼 + 全角大于嘴"
+        },
+        {
+          "face": "(？$.$)",
+          "feel": "a question mark in front, dollar eyes + dot mouth",
+          "feelZh": "前面问号，$眼 + 点嘴"
+        },
+        {
+          "face": "($..$)ﾟ;",
+          "feel": "a half sweat after, dollar eyes + two dots mouth",
+          "feelZh": "后面半滴汗，$眼 + 双点嘴"
+        },
+        {
+          "face": "ყ(#_#)",
+          "feel": "a georgian mark in front, hash eyes + flat mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + 平嘴嘴"
+        },
+        {
+          "face": "(#＿#)つ",
+          "feel": "a hiragana tsu after, hash eyes + fullwidth flat mouth",
+          "feelZh": "后面小つ，#眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(#．#)｀;",
+          "feel": "a sweat drop after, hash eyes + fullwidth period mouth",
+          "feelZh": "后面一滴汗，#眼 + 全角句点嘴"
+        },
+        {
+          "face": "(#ω#)つ",
+          "feel": "a hiragana tsu after, hash eyes + omega mouth",
+          "feelZh": "后面小つ，#眼 + ω嘴"
+        },
+        {
+          "face": "ყ(#△#)",
+          "feel": "a georgian mark in front, hash eyes + up triangle mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + 上三角嘴"
+        },
+        {
+          "face": "(#Д#)つ",
+          "feel": "a hiragana tsu after, hash eyes + cyrillic de capital mouth",
+          "feelZh": "后面小つ，#眼 + Д嘴"
+        },
+        {
+          "face": "ყ(#∀#)",
+          "feel": "a georgian mark in front, hash eyes + for all mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + ∀嘴"
+        },
+        {
+          "face": "(#З#)つ",
+          "feel": "a hiragana tsu after, hash eyes + cyrillic ze mouth",
+          "feelZh": "后面小つ，#眼 + З嘴"
+        },
+        {
+          "face": "ყ(#ﾊ#)",
+          "feel": "a georgian mark in front, hash eyes + halfwidth tsu mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + 半角ツ嘴"
+        },
+        {
+          "face": "(#ノ#)ﾟ;",
+          "feel": "a half sweat after, hash eyes + katakana no mouth",
+          "feelZh": "后面半滴汗，#眼 + ノ嘴"
+        },
+        {
+          "face": "ყ(#o#)",
+          "feel": "a georgian mark in front, hash eyes + round mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + 圆嘴"
+        },
+        {
+          "face": "(｀;#ﾟ#)",
+          "feel": "a sweat drop in front, hash eyes + halfwidth circle mouth",
+          "feelZh": "前面一滴汗，#眼 + 半角圆嘴"
+        },
+        {
+          "face": "(#w#)ﾉ",
+          "feel": "a hand pushing after, hash eyes + latin w mouth",
+          "feelZh": "后面推开的手，#眼 + w嘴"
+        },
+        {
+          "face": "(ヾ#μ#)",
+          "feel": "a drunk mark in front, hash eyes + mu mouth",
+          "feelZh": "前面叹号，#眼 + μ嘴"
+        },
+        {
+          "face": "(#≧#);",
+          "feel": "a sweat after, hash eyes + greater or equal mouth",
+          "feelZh": "后面一滴汗，#眼 + 大等号嘴"
+        },
+        {
+          "face": "(ヾ#>#)",
+          "feel": "a drunk mark in front, hash eyes + greater mouth",
+          "feelZh": "前面叹号，#眼 + 大于嘴"
+        },
+        {
+          "face": "(#<#)！",
+          "feel": "an exclamation after, hash eyes + less mouth",
+          "feelZh": "后面叹号，#眼 + 小于嘴"
+        },
+        {
+          "face": "(？#v#)",
+          "feel": "a question mark in front, hash eyes + latin v mouth",
+          "feelZh": "前面问号，#眼 + v嘴"
+        },
+        {
+          "face": "(#.#)ﾟ;",
+          "feel": "a half sweat after, hash eyes + dot mouth",
+          "feelZh": "后面半滴汗，#眼 + 点嘴"
+        },
+        {
+          "face": "ყ(#…#)",
+          "feel": "a georgian mark in front, hash eyes + ellipsis mouth",
+          "feelZh": "前面格鲁吉亚记号，#眼 + 省略嘴"
+        },
+        {
+          "face": "(｀;@＿@)",
+          "feel": "a sweat drop in front, at sign eyes + fullwidth flat mouth",
+          "feelZh": "前面一滴汗，@眼 + 全角平嘴嘴"
+        },
+        {
+          "face": "(@。@)｀;",
+          "feel": "a sweat drop after, at sign eyes + ideographic full stop mouth",
+          "feelZh": "后面一滴汗，@眼 + 句点嘴"
+        },
+        {
+          "face": "(｀;@ω@)",
+          "feel": "a sweat drop in front, at sign eyes + omega mouth",
+          "feelZh": "前面一滴汗，@眼 + ω嘴"
+        },
+        {
+          "face": "(@▽@)｀;",
+          "feel": "a sweat drop after, at sign eyes + down triangle mouth",
+          "feelZh": "后面一滴汗，@眼 + 下三角嘴"
+        },
+        {
+          "face": "(@△@)つ",
+          "feel": "a hiragana tsu after, at sign eyes + up triangle mouth",
+          "feelZh": "后面小つ，@眼 + 上三角嘴"
+        },
+        {
+          "face": "(@д@)｀;",
+          "feel": "a sweat drop after, at sign eyes + cyrillic de mouth",
+          "feelZh": "后面一滴汗，@眼 + д嘴"
+        },
+        {
+          "face": "(@∀@)つ",
+          "feel": "a hiragana tsu after, at sign eyes + for all mouth",
+          "feelZh": "后面小つ，@眼 + ∀嘴"
+        },
+        {
+          "face": "(@ツ@)｀;",
+          "feel": "a sweat drop after, at sign eyes + katakana tsu mouth",
+          "feelZh": "后面一滴汗，@眼 + ツ嘴"
+        },
+        {
+          "face": "(@ﾊ@)つ",
+          "feel": "a hiragana tsu after, at sign eyes + halfwidth tsu mouth",
+          "feelZh": "后面小つ，@眼 + 半角ツ嘴"
+        },
+        {
+          "face": "ყ(@ﾝ@)",
+          "feel": "a georgian mark in front, at sign eyes + halfwidth no mouth",
+          "feelZh": "前面格鲁吉亚记号，@眼 + 半角ノ嘴"
+        },
+        {
+          "face": "(｀;@O@)",
+          "feel": "a sweat drop in front, at sign eyes + wide round mouth",
+          "feelZh": "前面一滴汗，@眼 + 大圆嘴"
+        },
+        {
+          "face": "(@ﾟ@);",
+          "feel": "a sweat after, at sign eyes + halfwidth circle mouth",
+          "feelZh": "后面一滴汗，@眼 + 半角圆嘴"
+        },
+        {
+          "face": "(つ@ε@)",
+          "feel": "a hiragana tsu in front, at sign eyes + epsilon mouth",
+          "feelZh": "前面小つ，@眼 + ε嘴"
+        },
+        {
+          "face": "(@μ@)ﾉ",
+          "feel": "a hand pushing after, at sign eyes + mu mouth",
+          "feelZh": "后面推开的手，@眼 + μ嘴"
+        },
+        {
+          "face": "(ヾ@≦@)",
+          "feel": "a drunk mark in front, at sign eyes + less or equal mouth",
+          "feelZh": "前面叹号，@眼 + 小等号嘴"
+        },
+        {
+          "face": "(@>@)！",
+          "feel": "an exclamation after, at sign eyes + greater mouth",
+          "feelZh": "后面叹号，@眼 + 大于嘴"
+        },
+        {
+          "face": "(？@＞@)",
+          "feel": "a question mark in front, at sign eyes + fullwidth greater mouth",
+          "feelZh": "前面问号，@眼 + 全角大于嘴"
+        },
+        {
+          "face": "(@v@)ﾟ;",
+          "feel": "a half sweat after, at sign eyes + latin v mouth",
+          "feelZh": "后面半滴汗，@眼 + v嘴"
+        },
+        {
+          "face": "ყ(@..@)",
+          "feel": "a georgian mark in front, at sign eyes + two dots mouth",
+          "feelZh": "前面格鲁吉亚记号，@眼 + 双点嘴"
         }
       ]
     }

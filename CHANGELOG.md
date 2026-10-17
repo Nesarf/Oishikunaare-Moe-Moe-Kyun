@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.25.0 - 2026-10-16
+
+- **The library is 10273 faces now, ten times what it was.** Fourteen moods at a ceiling of 780 each; calm
+  (775) and classic (138) take their whole pool, everything else fills. The generator promises ten thousand
+  now instead of one thousand, and `--check` keeps the committed files honest.
+- Two new passes feed the two thin categories: calm gets a quiet-eyes family with soft tails, tired gets a
+  second family of dozing marks, so neither is the short one any more.
+- The hand-written classic pool goes from 66 to 138: long composed faces with layered marks, one-line action
+  faces, and the kinds of shape a person actually types. Seven candidates were refused by the gates - six
+  because the judge cannot see them (a frame like a corner-bracket pair or a bear face), one because it
+  carried U+261E, which the emoji ban refuses outright.
+- **A sixth gate: no shipped face may carry anything the emoji ban refuses.** That one U+261E face was the
+  proof - a palette that ships something using it would earn an emoji reminder for using a face from the
+  palette.
+- The per-category quota is a ceiling rather than a promise: a hand-written category can never reach a
+  combinatorial one, and exiting over that made the build refuse for no reason a reader would care about.
+  Short pools are taken whole and reported.
+- The prompt's pointer to the library changed with the size: read one mood file, never the whole set (the
+  whole set is 1.73 MB, a mood file about a tenth of that). Both READMEs carry the new counts and the
+  measured figure for the annotations (133361 characters of Chinese notes).
+- The split-file size assertion moves from 60 KB to 200 KB, because a mood now really is that big; the
+  prompt still takes a sample (140 faces by default), so this is only the cost of reading a whole mood on
+  purpose.
 ## 0.24.1 - 2026-10-16
 
 - **The holder name is unified to Nesarf_Mollor, and the licence text here already moved with it**

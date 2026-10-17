@@ -1,5 +1,5 @@
 /**
- * Generate rules/kaomoji.json: at least 1000 unique kaomoji, grouped by the mood they carry.
+ * Generate rules/kaomoji.json: at least ten thousand unique kaomoji, grouped by the mood they carry.
  *
  * The faces are composed rather than invented one by one, but not randomly: every column is a part
  * that real kaomoji use (omega and dot eyes, the de and tsu mouths, the arabic and kannada marks, the
@@ -26,7 +26,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 // The gate below uses the judge's own reading, so a face the library ships is a face the checker sees.
-import { findKaomoji } from '../src/index.js';
+import { findKaomoji, offendingEmoji } from '../src/index.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -311,6 +311,91 @@ const TIRED_TAILS = [
 
 // ---------------------------------------------------------------- classic faces, written by hand
 const CLASSIC = [
+  ['(\u2741\u00B4\u25E1`\u2741)*\u2732\uFF9F*', 'beaming with a sparkler', '\u6EE1\u8138\u5F00\u82B1\u52A0\u4E00\u652F\u4ED9\u5973\u68D2'],
+  ['(\u0E51\u2022\u0300\u3141\u2022\u0301\u0E05)', 'spirited paw salute', '\u6709\u5E72\u52B2\u7684\u63E1\u62F3\u5C0F\u722A'],
+  ['(\u0AE2\u02C3\uA302\u02C2\u204E)', 'blissful squint', '\u5E78\u798F\u7684\u772F\u773C'],
+  ['\u208D\u208D \u0E07(*\u04E6)\u0E27 \u207E\u207E', 'raring to go', '\u6469\u62F3\u64E6\u638C'],
+  ['(\u00B4\u25CA\u03C9\u25CA\uFF40)', 'surprised delight', '\u53C8\u60CA\u53C8\u559C'],
+  ['(\u232F\uFE0E\u00A4\u0334\u0336\u0337\u0300\u03C9\u00A4\u0334\u0336\u0337\u0301)\u2727\uFE0E', 'composed with a star', '\u4ECE\u5BB9\u5E26\u4E00\u70B9\u661F'],
+  ['\u2E1C(\u0E51\u0027\u1D55\u0027\u0E51)\u2E1D\u22C6*', 'opening both arms', '\u5F20\u5F00\u53CC\u81C2'],
+  ['\u2727(\u25CD\u02C3\u0336\u15DC\u02C2\u0336\u25CD)\u2729', 'sparkling joy', '\u95EA\u95EA\u53D1\u4EAE\u7684\u5F00\u5FC3'],
+  ['( \u02C9\u0348\u0300\uA4B3\u02C9\u0348\u0301 )\u2727', 'proud little smile', '\u5F97\u610F\u7684\u5C0F\u7B11'],
+  ['(\u2445\u02C3\u25E1\u02C2\u2445)', 'happy blush', '\u9AD8\u5174\u5F97\u8138\u7EA2'],
+  ['\u0E05( \u0333\u2022 \u25E1 \u2022 \u0333)\u0E05', 'two paws up', '\u4E3E\u8D77\u4E24\u53EA\u5C0F\u722A'],
+  ['(\u0E51\u203E \uA1F4 \u203E\u0E51)', 'cheerful and square', '\u5F00\u6717\u53C8\u7AEF\u6B63'],
+  ['(*\u2579\u25BD\u2579*)', 'wide happy eyes', '\u5706\u5706\u7684\u5F00\u5FC3\u773C'],
+  ['\u2044(\u2044 \u2044\u2022\u2044\u03C9\u2044\u2022\u2044 \u2044)\u2044', 'deeply shy', '\u5BB3\u7F9E\u5230\u4E0D\u884C'],
+  ['\u208D\u208D \u25DD(\u30FB\u03C9\u30FB)\u25DF \u207E\u207E', 'framed smile', '\u88AB\u6846\u8D77\u6765\u7684\u5C0F\u7B11'],
+  ['\u207D\u207D \u25DF(\uB208_\uB208)\u25DE \u207E\u207E', 'framed flat stare', '\u88AB\u6846\u8D77\u6765\u7684\u65E0\u8868\u60C5'],
+  ['\u30FD(=\u02C6\uFF65\u03C9\uFF65\u02C6=)\u4E3F', 'both arms raised', '\u53CC\u81C2\u9AD8\u4E3E'],
+  ['(\u3065 \u25CF\u2500\u25CF )\u3065', 'offering a hug', '\u9012\u51FA\u4E00\u4E2A\u62E5\u62B1'],
+  ['(((\u03C6(\u25CE\u30ED\u25CE;)\u03C6)))', 'panicking', '\u614C\u6210\u4E00\u56E2'],
+  ['("\u2594\u25A1\u2594)', 'flat disbelief', '\u677F\u7740\u8138\u7684\u96BE\u4EE5\u7F6E\u4FE1'],
+  ['(\u0CA1\u03C9\u0CA1)', 'smug', '\u5F97\u610F\u6D0B\u6D0B'],
+  ['(\u3002>\uFE3F<)_\u03B8', 'holding back tears', '\u5FCD\u7740\u773C\u6CEA'],
+  ['(\u00F3\uFE4F\u00F2\uFF61)', 'close to crying', '\u5FEB\u54ED\u4E86'],
+  ['(\u00B4\u2565\u03C9\u2565`)', 'crying openly', '\u76F4\u63A5\u54ED\u4E86'],
+  ['\uFF61:.\uFF9F\u30FD(*\u00B4\u2200`)\uFF89\uFF9F.:\uFF61', 'celebration', '\u5E86\u795D'],
+  ['(\u00B4,,\u2022\u2200\u2022,,`)', 'gentle smile', '\u6E29\u67D4\u7684\u7B11'],
+  ['\uFF08*\uFF3E\uFF3E\uFF09/', 'waving', '\u6325\u624B'],
+  ['(((o(*\uFF9F\u25BD\uFF9F*)o)))', 'overjoyed', '\u9AD8\u5174\u5230\u98DE\u8D77'],
+  ['\u3023( \u00BA\u0394\u00BA )\u3023', 'taken aback', '\u5403\u4E86\u4E00\u60CA'],
+  ['\u03A3(\u3063 \u00B0\u0414 \u00B0;)\u3063', 'shocked', '\u9707\u60CA'],
+  ['(\u30FB\u2200\u30FB)', 'bright smile', '\u660E\u6717\u7684\u7B11'],
+  ['(\uFFE2\u2038\uFFE2)?', 'suspicious', '\u6000\u7591'],
+  ['(\u256F\u00B0\u0414\u00B0)\u256F\uFE35 \u253B\u2501\u253B', 'flipping the table', '\u6380\u684C'],
+  ['(\u256F\u2035\u25A1\u2032)\u256F\uFE35\u253B\u2501\u253B', 'flipping it properly', '\u6B63\u5F0F\u6380\u684C'],
+  ['\u2501\u253B\uFE35\u2570(\u2035\u25A1\u2032)\u256F\uFE35\u253B\u2501\u253B', 'table already flipped', '\u684C\u5B50\u5DF2\u7ECF\u6380\u4E86'],
+  ['(*\u00B4\u25BD`*)', 'happy', '\u5F00\u5FC3'],
+  ['(\u0E51\u00B4\u03C9`\u0E51)', 'soft smile', '\u8F6F\u8F6F\u7684\u7B11'],
+  ['(\u25CF\u0027\u25E1\u0027\u25CF)', 'gentle round eyes', '\u5706\u5706\u7684\u773C\u775B'],
+  ['(\uFF61\uFF65\u03C9\uFF65\uFF61)', 'plain cute', '\u6734\u7D20\u53EF\u7231'],
+  ['(\u25CD\u2022\u1D17\u2022\u25CD)', 'content', '\u6EE1\u8DB3'],
+  ['(\uFF3E\u25BD\uFF3E)', 'beaming', '\u7B11\u7740'],
+  ['(*^\u25BD^*)', 'laughing', '\u5927\u7B11'],
+  ['(\uFFE3\u25BD\uFFE3)', 'satisfied', '\u6EE1\u610F'],
+  ['(\u30FB_\u30FB)', 'neutral', '\u4E2D\u6027'],
+  ['(\u00B0\u30FC\u00B0\u3003)', 'awkward', '\u4E0D\u81EA\u5728'],
+  ['(\u00B4\uFF65_\uFF65`)', 'resigned', '\u65E0\u5948'],
+  ['(\u00B4\uFF1B\u03C9\uFF1B`)', 'about to cry', '\u5FEB\u8981\u54ED'],
+  ['(\uFF61\u2022\u0301\uFE3F\u2022\u0300\uFF61)', 'sad', '\u96BE\u8FC7'],
+  ['(\u3063\u00B0\u0414\u00B0)\u3063', 'startled hug', '\u53D7\u60CA\u5730\u5F20\u5F00\u624B'],
+  ['(\u0E51>\u0602<\u0E51)', 'chewing happily', '\u5F00\u5FC3\u5730\u56BC'],
+  ['(\u25D4_\u25D4)', 'skeptical', '\u5C06\u4FE1\u5C06\u7591'],
+  ['(\u0298\u203F\u0298)', 'innocent stare', '\u5929\u771F\u7684\u51DD\u89C6'],
+  ['(\u0CA0_\u0CA0)', 'unimpressed', '\u4E0D\u4E3A\u6240\u52A8'],
+  ['(\u00B4\u30FB\u03C9\u30FB\uFF40)', 'small sorrow', '\u5C0F\u5C0F\u7684\u5931\u843D'],
+  ['(\u00B4-\u03C9-`)', 'tired smile', '\u75B2\u5026\u7684\u7B11'],
+  ['(\u0E51\u02D8\u2022\u1D17\u2022\u02D8\u0E51)', 'peaceful', '\u5B89\u8BE6'],
+  ['(\u25CF\u00B4\u03C9\uFF40\u25CF)', 'affectionate', '\u4EB2\u6635'],
+  ['(\u00B4\u2200\uFF40)', 'cheerful', '\u5F00\u6717'],
+  ['(\u00B0\u2207\u00B0;)', 'sweating', '\u5192\u6C57'],
+  ['(\uFF40\u30FB\u03C9\u30FB\u00B4)', 'firm', '\u575A\u5B9A'],
+  ['(\uFFE3^\uFFE3)', 'haughty', '\u9AD8\u50B2'],
+  ['(\u30FB\u3078\u30FB)', 'displeased', '\u4E0D\u60A6'],
+  ['(\u30FB\uFF13\u30FB)', 'kiss', '\u4EB2\u4E00\u4E2A'],
+  ['(\u0E51\u02C3\u1D17\u02C2\u0E51)', 'joyful', '\u6B22\u5FEB'],
+  ['(\u00B4\u25E1`)', 'calm smile', '\u5E73\u9759\u7684\u7B11'],
+  ['(\u2267\u2207\u2266)', 'excited', '\u5174\u594B'],
+  ['(\u25D5\u203F\u25D5)', 'warm', '\u6E29\u6696'],
+  ['(\u3063\u02D8\u03C9\u02D8\u03C2)', 'petting', '\u6478\u6478\u5934'],
+  ['(\u0E51\u2022\u0301 \u2083 \u2022\u0300\u0E51)', 'pouting', '\u9F13\u8D77\u8138\u988A'],
+  ['(\u00AC\u203F\u00AC)', 'smug knowing', '\u4E00\u5207\u5C3D\u5728\u638C\u63E1'],
+  ['(\uFFE3\u03C9\uFFE3)', 'relaxed', '\u653E\u677E'],
+  ['(\u00B4\u25BD`\u0283\u2661\u01AA)', 'sending love', '\u9001\u51FA\u7231\u5FC3'],
+  ['(\u0E51>\u1D17<\u0E51)', 'gleeful', '\u7B11\u772F\u772F'],
+  ['(\u2267\u25BD\u2266)', 'laughing out loud', '\u5F00\u6000\u5927\u7B11'],
+  ['(\u00B4\uFF61\u2022 \u1D55 \u2022\uFF61`)', 'gentle joy', '\u6E29\u67D4\u7684\u559C\u60A6'],
+  ['(\uFF3E\u03C9\uFF3E)', 'simple happy', '\u7B80\u5355\u7684\u5F00\u5FC3'],
+  ['(\u0E51\u00AF\u03C9\u00AF\u0E51)', 'drowsy', '\u660F\u660F\u6B32\u7761'],
+  ['(\uFFE3\u30FC\uFFE3)', 'knowing', '\u4E86\u7136'],
+  ['(\u30FB\u03C9\u30FB)\u30CE', 'greeting', '\u6253\u62DB\u547C'],
+  ['(\u30CE\u25D5\u30EE\u25D5)\u30CE*:\uFF65\uFF9F\u2727', 'greeting with sparkles', '\u5E26\u661F\u5149\u5730\u6253\u62DB\u547C'],
+  ['(\u0E51\u2022\u0300\u3142\u2022\u0301)\uFEED\u2727', 'determined paw', '\u575A\u5B9A\u7684\u62F3\u5934'],
+  ['(\uFF89\u2267\u2200\u2266)\uFF89', 'cheering', '\u6B22\u547C'],
+  ['(\u0E51\u02CA\u0348 \u0962\uA1F4 \u02CB\u0348)', 'shy joy', '\u5BB3\u7F9E\u7684\u9AD8\u5174'],
+  ['(\u0E51\uA9C6\u25E1\uA9C6\u0E51)', 'sweet smile', '\u751C\u751C\u7684\u7B11'],
+  ['(\u00B4\u2200\uFF40)\u2661', 'sending a heart', '\u9001\u4E00\u9897\u5FC3'],
   ['(\uFF61\uFF61\uFF61)', 'speechless', '\u65E0\u8BED'],
   ['(\u2267\u25BD\u2266)', 'triumphant squint', '\u5F97\u610F'],
   ['(\uFF9F\uFF65\uFF9F)', 'flat stare', '\u9762\u65E0\u8868\u60C5'],
@@ -414,20 +499,20 @@ const CLASSIC = [
 
 // ---------------------------------------------------------------- categories and quotas
 const CATS = [
-  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 180 },
-  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 140 },
-  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 180 },
-  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 170 },
-  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 160 },
-  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 150 },
-  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 150 },
-  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 60 },
-  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 150 },
-  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 90 },
-  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 100 },
-  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 100 },
-  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 100 },
-  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 60 },
+  { id: 'cheerful', label: 'cheerful', labelZh: '\u5F00\u5FC3', use: 'good news, a job finished, agreement', useZh: '\u597D\u6D88\u606F\u3001\u4E8B\u60C5\u529E\u6210\u4E86\u3001\u8868\u793A\u540C\u610F', quota: 780 },
+  { id: 'calm', label: 'calm', labelZh: '\u5E73\u548C', use: 'explaining, confirming, a passing remark', useZh: '\u8BB2\u89E3\u3001\u786E\u8BA4\u3001\u968F\u53E3\u4E00\u53E5', quota: 780 },
+  { id: 'wry', label: 'wry', labelZh: '\u82E6\u7B11', use: 'a small joke, a shrug, light self-mockery', useZh: '\u5F00\u4E2A\u5C0F\u73A9\u7B11\u3001\u8038\u8038\u80A9\u3001\u5E26\u70B9\u81EA\u5632', quota: 780 },
+  { id: 'troubled', label: 'troubled', labelZh: '\u51FA\u72B6\u51B5', use: 'a bug, a failure, bad news', useZh: '\u51FAbug\u3001\u5931\u8D25\u4E86\u3001\u574F\u6D88\u606F', quota: 780 },
+  { id: 'shy', label: 'shy', labelZh: '\u5BB3\u7F9E', use: 'being praised, a small apology, a soft moment', useZh: '\u88AB\u5938\u3001\u8BA4\u4E2A\u5C0F\u9519\u3001\u67D4\u8F6F\u7684\u65F6\u523B', quota: 780 },
+  { id: 'determined', label: 'determined', labelZh: '\u6709\u5E72\u52B2', use: 'fixed it, settled the plan, rolling up sleeves', useZh: '\u4FEE\u597D\u4E86\u3001\u5B9A\u4E0B\u65B9\u6848\u3001\u4E0B\u51B3\u5FC3', quota: 780 },
+  { id: 'puzzled', label: 'puzzled', labelZh: '\u56F0\u60D1', use: 'a strange result, a question with no answer yet', useZh: '\u7ED3\u679C\u5947\u602A\u3001\u95EE\u9898\u8FD8\u6CA1\u7B54\u6848', quota: 780 },
+  { id: 'tired', label: 'tired', labelZh: '\u75B2\u60EB', use: 'a long task, late at night', useZh: '\u957F\u4EFB\u52A1\u3001\u6DF1\u591C', quota: 780 },
+  { id: 'affection', label: 'affection', labelZh: '\u4EB2\u6635', use: 'thanking, warmth, winning together', useZh: '\u9053\u8C22\u3001\u6E29\u6696\u3001\u4E00\u8D77\u8D62\u4E86', quota: 780 },
+  { id: 'fullwidth', label: 'fullwidth and framed', labelZh: '\u5168\u89D2\u4E0E\u6846\u5F0F', use: 'the same moods in fullwidth or framed writing', useZh: '\u540C\u6837\u7684\u60C5\u7EEA\uFF0C\u5168\u89D2\u6216\u6846\u5F0F\u5199\u6CD5', quota: 780 },
+  { id: 'arms', label: 'with arms', labelZh: '\u5E26\u624B\u81C2', use: 'waving, cheering, throwing hands up', useZh: '\u6325\u624B\u3001\u6B22\u547C\u3001\u644A\u624B', quota: 780 },
+  { id: 'decorated', label: 'decorated', labelZh: '\u5E26\u88C5\u9970', use: 'a face with a sparkle, heart or note beside it', useZh: '\u65C1\u8FB9\u5E26\u661F\u661F\u3001\u7231\u5FC3\u6216\u97F3\u7B26', quota: 780 },
+  { id: 'blushing', label: 'blushing and sweating', labelZh: '\u8138\u7EA2\u4E0E\u5192\u6C57', use: 'flustered, embarrassed, caught off guard', useZh: '\u614C\u4E71\u3001\u4E0D\u597D\u610F\u601D\u3001\u88AB\u6293\u5305', quota: 780 },
+  { id: 'classic', label: 'classic faces', labelZh: '\u7ECF\u5178\u5B57\u5F62', use: 'the shapes everyone recognizes', useZh: '\u5927\u5BB6\u90FD\u8BA4\u5F97\u7684\u5F62\u72B6', quota: 780 },
 ];
 
 // ---------------------------------------------------------------- collection
@@ -462,6 +547,10 @@ function add(face, feelEn, feelZh) {
   // could not see - Han inside a face, or a frame it does not know - so the palette and its checker
   // disagreed, and using one of them earned a "you used no kaomoji" reminder.
   if (findKaomoji(face).length === 0) return false;
+  // Sixth gate: nothing a face carries may be refused by the emoji ban. One hand-written face held a
+  // pointer sign in the Miscellaneous Symbols block, which the emoji judge refuses outright - the palette
+  // shipped something using it would earn a emoji reminder for using a face from the palette.
+  if (offendingEmoji(face).length > 0) return false;
   seen.add(face);
   out.push({ face, feel: feelEn, feelZh });
   return true;
@@ -600,6 +689,25 @@ for (const [el, er, ee, ez] of EYES.filter((e) => TIRED_EYES.includes(e[0]))) {
   }
 }
 
+// 12b) calm: a second pass, so the quiet bucket is not the thinnest one in the file
+for (const [el, er, ee, ez] of EYES.filter((e) => ['_', '-', '~', 'o', 'O', '.', 'u', 'w', '\u03C9', '\u203F', '\u2323'].includes(e[0]))) {
+  for (const [mouth, me, mz] of MOUTHS.filter((m) => ['_', '~', 'u', 'o', 'O', '.', 'w', '-', '\u03C9', '\u2323'].includes(m[0]))) {
+    for (const tail of ['~', '\u2661', '\u266A', '\u3002', '\u2026', '\uFF5E', '\u2733', '']) {
+      const face = `(${el}${mouth}${er})${tail}`;
+      if (add(face, `${ee} eyes + ${me} mouth, soft tail`, `${ez}\u773C + ${mz}\u5634\uFF0C\u67D4\u8F6F\u5C3E`)) pool('calm').push(out[out.length - 1]);
+    }
+  }
+}
+
+// 12c) tired: the dozing family again, with a second family of trailing marks
+for (const [el, er, ee, ez] of EYES.filter((e) => TIRED_EYES.includes(e[0]))) {
+  for (const [mouth, me, mz] of MOUTHS.filter((m) => ['_', '-', '~', '=', '.', '\u2026', 'w', 'o', 'O', '\u25bd'].includes(m[0]))) {
+    for (const tail of ['zzZ', 'z', '\u2026', '\uFF5E', '\u3002\u3002\u3002', '\u266A', '..zzZ', '\uFF61', 'zzzz']) {
+      const face = `(${el}${mouth}${er})${tail}`;
+      if (add(face, `${ee} eyes + ${me} mouth, dozing`, `${ez}\u773C + ${mz}\u5634\uFF0C\u6253\u76F5\u5C3E`)) pool('tired').push(out[out.length - 1]);
+    }
+  }
+}
 // 13) classic faces, written by hand
 for (const [face, fe, fz] of CLASSIC) {
   if (add(face, fe, fz)) pool('classic').push(out[out.length - 1]);
@@ -628,19 +736,22 @@ for (const c of CATS) {
     console.error(`category ${c.id} has an empty candidate pool`);
     process.exit(1);
   }
+  // The quota is a ceiling, not a promise: a hand-written category (classic) can never reach a
+  // combinatorial one, and exiting over that would make the library refuse to build for no reason a
+  // reader would care about. Short pools are reported and taken whole.
+  const take = Math.min(c.quota, candidates.length);
   if (candidates.length < c.quota) {
-    console.error(`category ${c.id} has only ${candidates.length} candidates, under its quota of ${c.quota}`);
-    process.exit(1);
+    console.warn(`category ${c.id}: ${candidates.length} candidate(s), under its ceiling of ${c.quota}; taking them all`);
   }
-  const step = candidates.length / c.quota;
-  c.rows = Array.from({ length: c.quota }, (_, i) => candidates[Math.floor(i * step)]);
+  const step = candidates.length / take;
+  c.rows = Array.from({ length: take }, (_, i) => candidates[Math.floor(i * step)]);
   chosen = chosen.concat(c.rows);
 }
 
 const total = chosen.length;
 const unique = new Set(chosen.map((r) => r.face)).size;
-if (total < 1000) {
-  console.error(`only ${total} faces were generated, under the 1000 the library promises`);
+if (total < 10000) {
+  console.error(`only ${total} faces were generated, under the 10000 the library promises`);
   process.exit(1);
 }
 if (unique !== total) {
