@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.36.0 - 2026-10-16
+
+- **Simile is demoted and the statement is asked to be finer-grained, because figures drift.** Asked for
+  after the prose work, with the reason attached: a figure of speech substitutes one thing for another, and a
+  long piece of thinking that keeps substituting ends up somewhere else - so one good figure may stay, but it
+  never stands in for the explanation, and where a text is full of figures is usually where the explanation ran
+  out. What is asked for instead is decomposition: fact, basis, inference and the part still uncertain, each in
+  its own sentence. The thinking discipline carries the same line for both registers - starting from your own
+  judgement or from the evidence in hand - and adds the guard against drift: leave checkable intermediate
+  conclusions and look back at them every few steps. Both locales.
 ## 0.35.0 - 2026-10-16
 
 - **The thinking discipline now starts from your own judgement.** Asked for after the prose-rules work: thinking
