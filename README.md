@@ -560,3 +560,21 @@ character, so the audit and the hook describe one system.
 ## License
 
 CZGD-PL-1.1 (Cheese Gyudon Public Licence). See [LICENSE](LICENSE) and [NOTICE](NOTICE). Releases published under MIT stay available under MIT.
+
+## What it can and cannot do
+
+This is a layer of **rules and self-checks**, not a hard language constraint. Being exact about the difference
+matters more than sounding capable:
+
+- The rule text is rebuilt on every step, so a config change or a new locale takes effect on the next step
+  without restarting the host.
+- The self-check runs four judgements each step (judgement glyphs, the kaomoji floor, emoji, thinking language)
+  and escalates through three tiers at ten, fifty and two hundred.
+- Three levers wait at the turn boundary - a banned glyph, a missing face, an emoji - and they share one
+  once-per-turn ledger, so whichever fires first claims the turn and they cannot stack.
+- A fourth lever watches what a write puts into a file.
+- It **cannot stop** a model from breaking a rule: the host has no writable outbound hook, and
+  `agent/assistant-stream` observes frames without the power to rewrite them. These are steers and reminders,
+  not an interceptor.
+- The only hard interception in the house concerns the shape of the messages a plugin writes into a session,
+  and that belongs to `dsh-prestep-audit`, not to this layer.

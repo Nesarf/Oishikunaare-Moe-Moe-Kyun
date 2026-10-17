@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.40.0 - 2026-10-16
+
+- **Both READMEs now say what the layer can and cannot do.** A short section states the honest boundary: the
+  rule text is rebuilt every step, four judgements run each step and escalate through three tiers, three levers
+  wait at the turn boundary and share one once-per-turn ledger, a fourth watches what a write puts into a file -
+  and none of that can stop a model, because the host has no writable outbound hook and
+  `agent/assistant-stream` observes without the power to rewrite. The only hard interception in the house
+  concerns the shape of the messages a plugin writes, and that belongs to `dsh-prestep-audit`.
 ## 0.39.0 - 2026-10-16
 
 - **The Japanese rule text is at full length now.** The first pass fitted the four blocks into about half the
