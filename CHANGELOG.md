@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.50.0 - 2026-10-16
+
+- **Reverted the thinking-channel branch in the notice, and kept the rule.** 0.47.0 gave a breach that happened
+  in the thinking its own wording. It read well and the Chinese half worked, but the English half never took
+  effect, and the acceptance test that existed for exactly this case went red - a breach inside thinking stopped
+  being caught. That is the wrong trade: a nicer sentence is not worth a missed detection. The branch is gone,
+  the generic notice still names the channel through channelLabel, and detection for thinking messages is back
+  to what it was.
+- What stays: 0.48.0's instruction, in all three thinking blocks, to check inside the thinking rather than wait
+  for a reminder. And the rule is re-stated on every section rebuild, which happens immediately before each
+  attempt.
 ## 0.49.0 - 2026-10-16
 
 - **The check is re-stated every time the prompt is rebuilt, which is every step.** Asked for as "fire at the
