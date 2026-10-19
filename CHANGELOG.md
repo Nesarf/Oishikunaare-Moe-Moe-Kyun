@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.44.0 - 2026-10-16
+
+- **An anti-stall rule in all three thinking blocks.** The failure it names is a specific one: step after step
+  of "let me..." with nothing actually done. A rule that only forbids the shape is not much use, so this one
+  says what to do instead - act if the thing can be done, ask one clear question if it cannot - and calls the
+  alternative by its name: a stall costs the same as a wrong answer and produces nothing.
+## 0.43.0 - 2026-10-16
+
+- **The prompt now carries the session's own breach history.** Every notice so far arrived after the reply had
+  gone out, which is why the same fault could repeat five times: at writing time the model had no memory of
+  being caught. The plugin now keeps a per-session tally of the four rule kinds (judgement glyphs, kaomoji,
+  thinking language, emoji) and appends a short line to the rules section - which is rebuilt every step - saying
+  how many times this session has breached and what the last breach was. It lands *before* the next answer is
+  written, which is the only point where the reminder can still change anything.
+- Recording is wired at all five notice sites; a session with no breaches appends nothing, so the section stays
+  byte-identical for well-behaved sessions.
+## 0.42.0 - 2026-10-16
+
+- **The symbol ladder has no ceiling, and a streak dimension now exists.** Two gaps were found by reading
+  the code against this very session: the ladder stopped at 200, after which a session that kept offending
+  received no reminder at all - the opposite of what a ladder is for - and nothing tracked *consecutive*
+  breaches, so a run of five steps in a row was indistinguishable from five scattered ones. The ladder now
+  continues at 800, 3200, 12800 and 51200, and a session that breaches on five steps running gets a
+  dedicated notice that asks for the *habit* to change rather than the one reply; it fires on every
+  breaching step from five onward, and a clean step resets it.
+- The glyph judge, the streak notice text and the wiring were each checked separately; the end-to-end
+  behaviour needs a real session that breaches five steps running.
 ## 0.41.0 - 2026-10-16
 
 - **The rule text now carries a measured length scale, in all three languages.** From an analysis of the
