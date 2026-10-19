@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.45.0 - 2026-10-16
+
+- **A rule against turning a rule into a ritual.** Found in this very session: the habit of prefixing every
+  thinking block with the same bracketed self-reminder ("thinking: Chinese, prose only"). It carried no new
+  information, cost context on every step, and is the same failure the anti-stall rule names - a repeated
+  formula standing in for thought. The thinking blocks now say it plainly: repeating the same self-reminder
+  is not thinking, it is discipline turned into ritual, and a phrase repeated many times reads as noise.
 ## 0.44.0 - 2026-10-16
 
 - **An anti-stall rule in all three thinking blocks.** The failure it names is a specific one: step after step
