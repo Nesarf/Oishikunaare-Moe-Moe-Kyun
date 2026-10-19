@@ -343,7 +343,7 @@ const recordViolation = (sessionId, kind) => {
   VIOLATION_HISTORY.set(sessionId, entry);
 };
 
-const violationSummary = () => {
+export const violationSummary = () => {
   if (VIOLATION_HISTORY.size === 0) return '';
   let newest = null;
   for (const entry of VIOLATION_HISTORY.values()) {

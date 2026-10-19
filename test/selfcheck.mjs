@@ -1777,3 +1777,19 @@ check('a turn that ends carrying an emoji earns one more pass', () => {
   const quiet = { session: { id: 'emoji-2', deriveMessages: () => clean }, steer: () => {} };
   assert.equal(mod.makeEmojiSteerDecider({ enabled: true, max: 1, resolve })({ agent: quiet, turn: 1 }), null, 'a clean turn is left alone');
 });
+check('the prompt carries the breach history a session carries', async () => {
+  const CHECK = String.fromCodePoint(0x2713);
+  const breach = (id) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'bad ' + CHECK }] });
+  const hook = mod.makeSelfCheckHook({
+    max: 3, kaomoji: false, emoji: false,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+  });
+  assert.equal(mod.violationSummary(), '', 'a session with no breaches carries no history');
+  const step = hook({ agent: { session: { id: 'history-demo' }, id: 'a1' }, messages: [breach('h1')] }, async () => ({ kind: 'enter', messages: [breach('h1')] }));
+  await step;
+  const summary = mod.violationSummary();
+  assert.ok(summary.includes('HISTORY'), 'the summary names itself');
+  assert.ok(summary.includes('1 symbol'), 'it counts the breach');
+  assert.ok(summary.includes('judgement glyphs'), 'and names the most recent kind');
+  assert.equal(mod.judgeAuthoredText(summary).length, 0, 'and carries no banned glyph itself');
+});

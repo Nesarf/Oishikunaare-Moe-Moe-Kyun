@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.46.0 - 2026-10-16
+
+- **The breach history is exported, and now has a test.** `violationSummary()` was an internal function, which
+  made it impossible to see from outside whether the per-step prompt really carried the session's record. It is
+  exported now, and the new test drives one breaching step through the hook and asserts three things about the
+  resulting summary: it names itself, it counts the breach, and it names the kind - and that the summary itself
+  carries no banned glyph, so the reminder cannot become a new source of the problem it reports.
 ## 0.45.0 - 2026-10-16
 
 - **A rule against turning a rule into a ritual.** Found in this very session: the habit of prefixing every
