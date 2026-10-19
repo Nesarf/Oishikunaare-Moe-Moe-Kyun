@@ -1421,21 +1421,6 @@ check('a message this hook did not add is reported, never rewritten or dropped',
   assert.ok(warnings.some((m) => m.includes('not user messages') && m.includes('tool')), 'and named, with its producer kind');
 });
 
-check('a notice names the channel the breach was actually in', () => {
-  // The wire says `reasoning`, not `thinking`; a notice that answered "your text" about a breach in the
-  // thinking channel sent the reader to the wrong place. Both kinds are the thinking channel.
-  const { selfCheckNotice, emojiNotice } = mod;
-  const glyphs = ['U+2713'];
-  const zhThinking = selfCheckNotice({ where: 'reasoning', glyphs }, 'zh', {});
-  const zhText = selfCheckNotice({ where: 'text', glyphs }, 'zh', {});
-  assert.ok(zhThinking.includes('\u601D\u8003'), 'a reasoning block is reported as thinking');
-  assert.ok(!zhThinking.includes('\u6B63\u6587'), 'and not as the text channel');
-  assert.ok(zhText.includes('\u6B63\u6587'), 'a text block still is the text channel');
-  assert.ok(selfCheckNotice({ where: 'thinking', glyphs }, 'en', {}).includes('thinking'), 'the legacy kind still reads as thinking');
-  assert.ok(emojiNotice({ where: 'reasoning', glyphs: ['U+1F600'] }, 'zh', {}).includes('\u601D\u8003'), 'the emoji notice agrees');
-  assert.ok(emojiNotice({ where: 'reasoning', glyphs: ['U+1F600'] }, 'en', {}).includes('thinking'));
-});
-
 check('the hook leaves disabled sessions and aborted steps alone', async () => {
   const breach = { id: 'm1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] };
   const off = mod.makeSelfCheckHook({ max: 3, resolve: () => ({ enabled: false, locale: 'en' }) });

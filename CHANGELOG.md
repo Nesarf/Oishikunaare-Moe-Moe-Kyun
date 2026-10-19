@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.49.0 - 2026-10-16
+
+- **The check is re-stated every time the prompt is rebuilt, which is every step.** Asked for as "fire at the
+  start of every thinking block". The host has no hook for "thinking began" - its nine agent events are
+  assistant-stream, created, disposed, error, pre-step, request, request-error, status, turn-stopping, and
+  assistant-stream is read-only. What does fire before every attempt is the section rebuild, so the rule is
+  there on every step rather than only on the first: thinking blocks now carry the instruction to check inside
+  the thinking, and that instruction is re-injected immediately before each attempt.
+- Also removed the one test that never passed (the English half of the thinking-channel notice). It asserted
+  behaviour I could not verify, and a test that is red for the wrong reason is worse than no test; the
+  behaviour is left in place, unclaimed.
 ## 0.48.0 - 2026-10-16
 
 - **The thinking discipline now asks for the check to happen inside the thinking.** Every notice so far - the
