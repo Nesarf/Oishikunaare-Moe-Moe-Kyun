@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.48.0 - 2026-10-16
+
+- **The thinking discipline now asks for the check to happen inside the thinking.** Every notice so far - the
+  per-step one, the ladder, the streak, the channel-specific wording - arrives after the text exists. Asking
+  for a check "before writing" still leaves a gap, because the glyph appears *while* writing. So the thinking
+  blocks now say it plainly: if a judgement glyph is about to come out mid-thought, switch to words right there
+  and do not wait for the reminder after the reply.
 ## 0.47.0 - 2026-10-16
 
 - **A breach in the thinking channel is named as such.** The generic notice spoke about "your previous reply",
