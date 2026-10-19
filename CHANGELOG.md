@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.51.0 - 2026-10-20
+
+- **The register now leans otaku and literary, which is the point of the plugin.** Asked for as differentiation:
+  until now nearly every rule said what not to write, and nothing said what the writing should sound like. The
+  thinking discipline now carries the other half - onomatopoeia, romanised Japanese particles, images and short
+  lines are welcome, so the text has a hand of its own. Short lines stay inside a paragraph rather than one per
+  line, and the register never buys its mood with accuracy.
+- **The model's own catchphrases are banned.** Asked for directly: the short preambles that read as a model
+  identifying itself - "I will not guess", "not from memory", "as you said". They are catchphrases rather than a
+  position, so the rules now say to state the basis directly instead of announcing that one exists.
+- **One-word commands to itself are named as noise.** Reported as "再看。做。也许完成了。做。写命令。做。" filling
+  the thinking. Those fragments carry no information and cut the reasoning into noise, so the thinking discipline
+  now says plainly: when a step is obvious, take it instead of announcing it first.
+- **Needless line breaks are cut.** Asked for directly, after the layout rule made the opposite mistake visible: a
+  blank line separates topics, and it does not give every sentence room to breathe. All three locales now say
+  that sentences which belong together stay in one paragraph.
+- **The kaomoji rule now names the trap it creates.** Reported as the fragment "要有颜文字。写。" turning up in
+  the thinking - the self-reminder itself, repeated as a ritual. A count is not tone. All three locales now say
+  plainly that chanting "remember a kaomoji" or counting how many have been used is the ritual this rule bans,
+  and that it reads worse than one face too few. A face is written while writing, not ticked off as a quota.
+- **A long answer is asked to be laid out rather than flattened.** Reported as "everything has become one paragraph
+  after another, no headings, no emphasis". The rules already said how long a sentence runs, but nothing said a
+  longer reply should be layered. All three locales now carry one line: a short heading separates the parts, bold
+  marks the sentence a reader would act on, and one bold run per paragraph is the ceiling - a page where
+  everything is emphasised reads as if nothing were. The packaged fallbacks carry it too, so a clone with no
+  `rules/` directory behaves the same.
+- **The walkers now stop at the newest message that carries prose.** `findBannedInMessages` and
+  `findEmojiInMessages` used to return the newest message that *breached*, which is not the same question: with a
+  clean reply on top and an old breach behind it, the notice named "your previous reply" about something nobody
+  could still fix, and the turn-stop steer spent a model step asking for a rewrite that changes nothing. Both now
+  judge the newest message that has authored text and stop there; a message that is only a tool call is walked
+  past, because the reply behind it is still the thing under judgement.
+- **A session gets three corrections, not one.** The turn-stop steer budget was one per session, which is one
+  correction for a habit that outlasts any single turn. Three, still capped at one per turn, so it is a ceiling
+  rather than a rate.
+- **The first rung of the cumulative ladder moved from 10 to 4.** The notice budget is three, so at ten there was a
+  window right after the last notice where six more breaches passed in silence. At four that window is one.
 ## 0.50.0 - 2026-10-16
 
 - **Reverted the thinking-channel branch in the notice, and kept the rule.** 0.47.0 gave a breach that happened

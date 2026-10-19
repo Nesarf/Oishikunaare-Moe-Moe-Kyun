@@ -374,6 +374,33 @@ check('a breach in the newest assistant message is found; tool and user messages
   assert.equal(mod.findBannedInMessages(undefined), null);
 });
 
+check('the walk stops at the newest message that carries prose', () => {
+  const at = (id, text, kind = 'text') => ({
+    id,
+    role: 'assistant',
+    source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' },
+    content: [{ type: kind, text }],
+  });
+  // A clean reply behind a breach: the breach was already answered for, so a notice that named it
+  // would be pointing at the wrong reply, and a steer would spend a step rewriting nothing.
+  assert.equal(mod.findBannedInMessages([at('a', `counted ${CHECK}`), at('b', 'clean now')]), null);
+  // A tool call is not a reply. The prose behind it is still the one under judgement, because that is
+  // the thing the rule reads and the thing the reader can still fix.
+  const callOnly = {
+    id: 'c',
+    role: 'assistant',
+    source: { kind: 'model' },
+    content: [{ type: 'tool-call', name: 'read', arguments: { file_path: 'x.md' } }],
+  };
+  const behind = mod.findBannedInMessages([at('a', `counted ${CHECK}`), callOnly]);
+  assert.ok(behind, 'the reply behind a tool call is still judged');
+  assert.deepEqual(behind.glyphs, ['U+2713']);
+  // The same rule for emoji, because it is the same walk.
+  const EMOJI = String.fromCodePoint(0x1f600);
+  assert.equal(mod.findEmojiInMessages([at('a', `smiled ${EMOJI}`), at('b', 'plain now')]), null);
+  assert.ok(mod.findEmojiInMessages([at('a', `smiled ${EMOJI}`), callOnly]), 'and the emoji walk agrees');
+});
+
 check('the notice names code points and never prints the glyph', () => {
   const zh = mod.selfCheckNotice({ where: 'text', glyphs: ['U+2713'] }, 'zh');
   const en = mod.selfCheckNotice({ where: 'thinking', glyphs: ['U+2717'] }, 'en');
