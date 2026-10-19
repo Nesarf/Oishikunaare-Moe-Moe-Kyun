@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.47.0 - 2026-10-16
+
+- **A breach in the thinking channel is named as such.** The generic notice spoke about "your previous reply",
+  which is the wrong shape when the glyph was in the thinking: thinking is not the reply. It now has its own
+  wording - the channel is named, and the notice says why it still counts: thinking does not reach the reader
+  as prose, but it is read back from the transcript, so it is output too.
 ## 0.46.0 - 2026-10-16
 
 - **The breach history is exported, and now has a test.** `violationSummary()` was an internal function, which
