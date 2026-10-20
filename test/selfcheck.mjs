@@ -1269,14 +1269,14 @@ check('the preset prewarm degrades instead of throwing, whatever the registry do
   const agent = { id: 'a1', ctx: {} };
   // No registry at all: a deployment without a roster. This is the case that must not throw, because
   // the call site is an `agent/created` listener and an exception there fails the agent's creation.
-  assert.deepEqual(await mod.prewarmPreset({ presets: undefined, agent }), { id: undefined, persona: null, available: false });
-  assert.deepEqual(await mod.prewarmPreset({ presets: null, agent: null }), { id: undefined, persona: null, available: false });
+  assert.deepEqual(await mod.prewarmPreset({ presets: undefined, agent }), { id: undefined, persona: null, available: false, how: 'none' });
+  assert.deepEqual(await mod.prewarmPreset({ presets: null, agent: null }), { id: undefined, persona: null, available: false, how: 'none' });
 
   // A registry that composes nothing for this agent, and one whose composition lookup throws.
-  assert.deepEqual(await mod.prewarmPreset({ presets: { composedPreset: () => undefined }, agent }), { id: undefined, persona: null, available: true });
+  assert.deepEqual(await mod.prewarmPreset({ presets: { composedPreset: () => undefined }, agent }), { id: undefined, persona: null, available: true, how: 'none' });
   assert.deepEqual(
     await mod.prewarmPreset({ presets: { composedPreset: () => { throw new Error('no standing mount'); } }, agent }),
-    { id: undefined, persona: null, available: true },
+    { id: undefined, persona: null, available: true, how: 'none' },
     'a composition lookup that throws is a lookup that answers nothing',
   );
 
@@ -1286,6 +1286,7 @@ check('the preset prewarm degrades instead of throwing, whatever the registry do
   assert.equal(warm.id, 'redipaloynz');
   assert.ok(warm.persona.includes('be gentle'), 'the persona text is kept as it arrived');
   assert.equal(warm.available, true);
+  assert.equal(warm.how, 'document', 'and the source is named, so the notice can say which claim it is making');
 
   // A preset deleted between boot and creation rejects; the identity survives and the warning is said.
   const seen = [];
@@ -1294,8 +1295,53 @@ check('the preset prewarm degrades instead of throwing, whatever the registry do
     agent,
     warn: (m) => seen.push(m),
   });
-  assert.deepEqual(rejected, { id: 'gone', persona: null, available: true }, 'the id is still worth having');
+  assert.deepEqual(rejected, { id: 'gone', persona: null, available: true, how: 'none' }, 'the id is still worth having');
   assert.ok(seen.some((m) => m.includes('not-found')), 'and the reason is reported rather than swallowed');
+});
+
+check('a preset declaration gives up its persona, block scalar or one line', () => {
+  // CRLF on purpose: this machine's preset files are written on Windows, and a `.` that refuses the
+  // carriage return is exactly why the persona read as empty until it was normalised.
+  const block = 'x: 1\r\n- id: persona\r\n  name: dsh-persona\r\n  config:\r\n    prefix: |-\r\n      be gentle\r\n      and quiet\r\n- id: other\r\n  config: {}\r\n';
+  assert.equal(mod.personaFromPresetFile(block), 'be gentle\nand quiet');
+  assert.equal(mod.personaFromPresetFile('- id: persona\n  config:\n    prefix: a single line\n'), 'a single line');
+  assert.equal(mod.personaFromPresetFile('- id: other\n  config:\n    prefix: nope\n'), '', 'only the persona entry counts');
+  assert.equal(mod.personaFromPresetFile(''), '');
+  assert.equal(mod.personaFromPresetFile('nothing here'), '');
+});
+
+check('the preset is read off the disk when the registry cannot give it', async () => {
+  const root = path.join(ROOT, 'test', '.tmp-presets');
+  fs.rmSync(root, { recursive: true, force: true });
+  fs.mkdirSync(path.join(root, 'alpha'), { recursive: true });
+  fs.mkdirSync(path.join(root, 'beta'), { recursive: true });
+  fs.writeFileSync(path.join(root, 'alpha', 'agent.cordis.yml'), '- id: persona\r\n  config:\r\n    prefix: |-\r\n      alpha speaks softly\r\n', 'utf8');
+  fs.writeFileSync(path.join(root, 'beta', 'persona.md'), 'beta is the curated copy\n', 'utf8');
+  try {
+    assert.equal(mod.readPresetPersonaFromDisk('alpha', root).text, 'alpha speaks softly');
+    assert.equal(mod.readPresetPersonaFromDisk('beta', root).text, 'beta is the curated copy\n'.trim(), 'persona.md wins when a preset carries one');
+    assert.deepEqual(mod.readPresetPersonaFromDisk('missing', root), { text: '', file: '' });
+
+    // The registry is present but its document read fails: the files still say what the agent is.
+    const warm = await mod.prewarmPreset({
+      presets: { composedPreset: () => 'alpha', readDocument: async () => { throw new Error('agent-preset/not-found'); } },
+      agent: { id: 'a9', ctx: {} },
+      presetRoot: root,
+    });
+    assert.deepEqual(warm, { id: 'alpha', persona: 'alpha speaks softly', available: true, how: 'file' });
+
+    // No roster at all, but the session header still names the preset: read that one's files.
+    const headed = await mod.prewarmPreset({
+      presets: null,
+      agent: { id: 'a10', session: { header: { agentPreset: 'beta' } } },
+      presetRoot: root,
+    });
+    assert.equal(headed.id, 'beta');
+    assert.equal(headed.persona, 'beta is the curated copy');
+    assert.equal(headed.how, 'file');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
 });
 
 check('the id falls back to the projection, then to the session header', async () => {
@@ -1456,6 +1502,48 @@ check('with no registry the voice still works, and the rules are untouched', asy
   assert.ok(out.messages[0].content[0].text.includes('\u8BED\u6C14\u9002\u914D'));
   assert.ok(seen.some((m) => m.includes('rotated')), 'and the log says it was rotated rather than mapped');
   assert.ok(!seen.some((m) => m.includes('mapped by preset')), 'a mapping that cannot be keyed to a preset is not used');
+});
+
+check('the first step waits for a prewarm that is still in flight', async () => {
+  // The failure this pins down: `agent/created` awaits a document read while the first pre-step is
+  // already running, so a synchronous cache lookup at that moment finds nothing and composes the
+  // persona-less wording for an agent that has a perfectly good persona one tick later.
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  let settled = false;
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    moe: true,
+    voices,
+    resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
+    // A promise, exactly what `apply()` hands over while the prewarm is pending.
+    presetVoice: () => new Promise((resolve) => {
+      setTimeout(() => {
+        settled = true;
+        resolve({ id: 'redipaloynz', persona: '\u4F60\u662F\u4E00\u4E2A\u6E29\u67D4\u7684\u5C11\u5973', available: true, how: 'file' });
+      }, 5);
+    }),
+    voiceOptions: () => ({ voice: 'auto', byPreset: null, signals: null }),
+  });
+  const messages = [mk('\u505A\u4E2A\u4E1C\u897F')];
+  const out = await hook({ agent: { session: { id: 'race' }, id: 'agent-3' }, messages }, async () => ({ kind: 'enter', messages }));
+  assert.equal(settled, true, 'the hook waited for the answer rather than reading an empty cache');
+  const notice = out.messages[0].content[0].text;
+  assert.ok(notice.includes('\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A'), 'and composed the wording for an agent with a character');
+  assert.ok(notice.includes('redipaloynz'), 'naming the preset it read');
+});
+
+check('the notice says what was read, so the two claims stay apart', () => {
+  const voice = { id: 'gentle', label: '\u6E29\u67D4', markers: ['\u5440'] };
+  const own = mod.voiceNotice('zh', voice, { own: true, reading: { id: 'redipaloynz', chars: 3152, how: 'file' } });
+  assert.ok(own.includes('redipaloynz'), 'a persona notice names the preset');
+  assert.ok(own.includes('3152'), 'and how much text was read');
+  const bare = mod.voiceNotice('zh', voice, { own: false, reading: { id: 'sayori', chars: 0, how: 'none' } });
+  assert.ok(bare.includes('\u6CA1\u8BFB\u5230\u672C\u4F1A\u8BDD\u7684\u8BBE\u5B9A'), 'a notice with no persona says so');
+  assert.equal(bare.includes('sayori'), false, 'and does not pretend it read one');
+  const silent = mod.voiceNotice('zh', voice, { own: false });
+  assert.equal(silent.includes('\u6CA1\u8BFB\u5230'), false, 'a caller that says nothing about the reading gets no claim');
+  assert.equal(mod.judgeAuthoredText(own + bare).length, 0, 'neither form carries a banned glyph');
 });
 
 check('a preset mapping takes effect on the next step, with no restart', async () => {

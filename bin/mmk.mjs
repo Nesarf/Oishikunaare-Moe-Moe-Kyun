@@ -33,7 +33,7 @@ import {
 import { readTranscript } from '../src/transcripts.mjs';
 import { audit, partsFromMessages } from '../src/audit.mjs';
 import { upsertBlock, wireTargets } from '../src/wire.mjs';
-import { accentFor, briefRules, readAccentTable } from '../src/index.js';
+import { accentFor, briefRules, presetRootOf, readAccentTable, readPresetPersonaFromDisk } from '../src/index.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const USAGE = `mmk - moe house rules, harness free
@@ -48,6 +48,7 @@ commands
   notice                render the notice for a named finding
   voice                 decide which voice a preset or a persona speaks in
   accent                pick the accent a persona suits (--persona-text or --persona-file)
+  persona               read one preset's persona off the disk, and what MMK would choose from it
   review                judge a transcript's newest authored message
   audit                 count what a whole transcript carries, per channel
 
@@ -73,6 +74,12 @@ notice
   --kind <symbol|emoji|kaomoji>
   --glyphs <U+2713,U+2714>   code points the finding names
   --sentences <n> --faces <n>  kaomoji counts, for --kind kaomoji
+
+voice / accent / persona
+  --preset <id>         the preset to ask about (name it, or give a persona file instead)
+  --persona-text <s>    the persona text itself
+  --persona-file <path> read the persona from this file
+  --presets <dir>       where the presets live (default: $DSH_HOME/.agent-presets)
 
 audit
   --transcript <path>   measure this transcript (--format as for review)
@@ -276,6 +283,27 @@ if (command === 'accent') {
   else out(`${chosen.id} (${chosen.label}) - ${chosen.feel}`);
   process.exit(0);
 }
+if (command === 'persona') {
+  // What the plugin would read for one preset, without a host: the same disk reader the prewarm falls
+  // back to, then the same matchers. It answers "can MMK see this agent's setting at all" from a shell,
+  // which is the question a notice can only answer after a session has already started.
+  const id = value('preset');
+  if (id === undefined) fail('persona needs --preset <id>');
+  const root = value('presets');
+  const found = readPresetPersonaFromDisk(id, root);
+  const table = readAccentTable(path.join(HERE, '..', 'rules', 'accents'), state.locale);
+  const accent = found.text === '' ? null : accentFor(found.text, table.accents);
+  const speech = voiceFor({ preset: id, persona: found.text === '' ? undefined : found.text, state });
+  if (has('json')) {
+    json({ preset: id, presetRoot: presetRootOf(root), chars: found.text.length, file: found.file, accent, voice: speech });
+  } else {
+    out(`preset ${id}: ${found.text === '' ? 'no persona found on disk' : `${found.text.length} characters read from ${found.file}`}`);
+    out(`voice ${speech.id === null ? `none (${speech.how})` : `${speech.id} (${speech.how})`}`);
+    out(accent === null ? 'accent: none fits this persona' : `accent: ${accent.id} (${accent.label}) - ${accent.feel}`);
+  }
+  process.exit(found.text === '' ? 3 : 0);
+}
+
 if (command === 'review') {
   const file = value('transcript') ?? value('file');
   if (file === undefined) fail('review needs --transcript <path>');

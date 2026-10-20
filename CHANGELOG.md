@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.52.0 - 2026-10-21
+
+- **A session's persona is now actually read, not only offered.** Investigated after a session whose own
+  setting was plainly present still got the persona-less wording ("this conversation your voice is ..."). Two
+  separate faults, both fixed here. The first is a race: `agent/created` awaits the document read while the
+  first pre-step is already running, and that step is the one that composes the voice notice, so a synchronous
+  cache lookup found nothing. The hook now waits for the prewarm that is already in flight.
+- **A preset is read off the disk when the registry cannot answer.** The registry dump can be unavailable - no
+  roster, a service in another realm, a read that rejects - and the plugin used to conclude from that the agent
+  had no persona. It now falls back to the preset's own files: `persona.md` when a preset carries one, otherwise
+  the `- id: persona` entry of `agent.cordis.yml`. A deployment with no registry at all is covered too, by
+  reading the preset the session header names. The new `how` field says which source actually answered -
+  `document`, `file` or `none` - because the three lead to different claims in the copy.
+- **The persona is extracted from a declaration or from its dump, without a YAML dependency.** One reader does
+  both, block scalar or single line. It normalises CRLF first: a carriage return is not matched by `.`, and the
+  preset files on this machine are written on Windows, which is why the persona read as empty until it was fixed.
+- **The voice notice now says what was read.** A log line answered that question where the reader was not
+  looking; the notice answers it on the line they do see - the preset id and how many characters, or a plain
+  sentence saying no setting was found and the choice is the plugin's own. The two promises used to look
+  identical, and the difference matters.
+- **`mmk persona --preset <id>` answers the same question from a shell.** It reads one preset's persona off the
+  disk, then runs the same voice and accent matchers, so "can MMK see this agent's setting at all" can be asked
+  before a session has started rather than inferred from a notice afterwards.
+
 ## 0.51.0 - 2026-10-20
 
 - **`auto` no longer goes silent when it cannot infer.** An agent with no persona and no voice words in
