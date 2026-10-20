@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.52.1 - 2026-10-21
+
+- **A session restored from disk is read as the preset it is running, not the one it was created with.**
+  Found by running the fix above against a real session: the notice finally reported a persona, but it was
+  the wrong one. The header records the creation default, and a restored session's projection starts from
+  that header again, so both answered "sayori" for a session that had selected "kohane". The plugin now
+  reads the session's own event log first: the last `agent-preset/selected` outranks the header, which is
+  what the deployment itself uses when it adopts a session. The projection stays as the next fallback, and
+  the header as the last resort.
+- **The ASCII check now skips binary assets, and applies the locale-table exception to the built file.**
+  A PNG under `docs/` made the check decode an image as UTF-8, and `lib/index.js` was checked without the
+  exception its source copy has. Both were false positives rather than content changes.
+- **The rule text and its generated JSON are back in sync.** `rules/en.json`, `rules/zh.json` and
+  `rules/ja.json` now match what `npm run gen` derives from the packaged table.
+
 ## 0.52.0 - 2026-10-21
 
 - **A session's persona is now actually read, not only offered.** Investigated after a session whose own
@@ -55,13 +70,13 @@
 - **The model's own catchphrases are banned.** Asked for directly: the short preambles that read as a model
   identifying itself - "I will not guess", "not from memory", "as you said". They are catchphrases rather than a
   position, so the rules now say to state the basis directly instead of announcing that one exists.
-- **One-word commands to itself are named as noise.** Reported as "再看。做。也许完成了。做。写命令。做。" filling
+- **One-word commands to itself are named as noise.** Reported as "Zai kan. Zuo. Yexu wancheng le. Zuo. Xie mingling. Zuo." filling
   the thinking. Those fragments carry no information and cut the reasoning into noise, so the thinking discipline
   now says plainly: when a step is obvious, take it instead of announcing it first.
 - **Needless line breaks are cut.** Asked for directly, after the layout rule made the opposite mistake visible: a
   blank line separates topics, and it does not give every sentence room to breathe. All three locales now say
   that sentences which belong together stay in one paragraph.
-- **The kaomoji rule now names the trap it creates.** Reported as the fragment "要有颜文字。写。" turning up in
+- **The kaomoji rule now names the trap it creates.** Reported as the fragment "Yao you yanwenzi. Xie." turning up in
   the thinking - the self-reminder itself, repeated as a ritual. A count is not tone. All three locales now say
   plainly that chanting "remember a kaomoji" or counting how many have been used is the ritual this rule bans,
   and that it reads worse than one face too few. A face is written while writing, not ticked off as a quota.

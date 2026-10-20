@@ -1366,6 +1366,63 @@ check('the id falls back to the projection, then to the session header', async (
   assert.equal(survived.id, 'still-here');
 });
 
+check('a selection recorded in the session outranks its creation header', async () => {
+  // The bug this pins down: a session created under one preset and switched to another keeps the
+  // creation value in its header, and a restored session's projection is initialised from that
+  // header again - so both fell back to the preset the session was born with and the voice notice
+  // named the wrong agent. The session's own log is the durable record of what was selected.
+  const events = [
+    { type: 'session' },
+    { type: 'agent-preset/selected', data: { agentPreset: 'kohane' } },
+    { type: 'turn/start', data: { turn: 1 } },
+    { type: 'agent-preset/selected', data: { agentPreset: 'sayori' } },
+    { type: 'agent-preset/selected', data: { agentPreset: 'kohane' } },
+  ];
+  const presets = {
+    composedPreset: () => undefined,
+    readDocument: async (id) => ({ agentPreset: id, content: '  - id: persona\n    config:\n      prefix: be gentle\n' }),
+  };
+  const warm = await mod.prewarmPreset({
+    presets,
+    agent: {
+      id: 'sel1',
+      ctx: { get: () => undefined },
+      session: { header: { agentPreset: 'sayori' }, seq: events.length, eventAt: (seq) => events[seq] },
+    },
+  });
+  assert.equal(warm.id, 'kohane', 'the last selection wins, not the header the session was created with');
+  assert.equal(warm.persona, 'be gentle');
+
+  // No selection in the log: the header is still the answer.
+  const silent = await mod.prewarmPreset({
+    presets,
+    agent: {
+      id: 'sel2',
+      ctx: { get: () => undefined },
+      session: { header: { agentPreset: 'from-header' }, seq: 1, eventAt: () => ({ type: 'session' }) },
+    },
+  });
+  assert.equal(silent.id, 'from-header', 'a session that never selected keeps its header');
+
+  // A log that cannot be read is not a failed creation.
+  const thrown = await mod.prewarmPreset({
+    presets,
+    agent: {
+      id: 'sel3',
+      ctx: { get: () => undefined },
+      session: { header: { agentPreset: 'from-header' }, seq: 3, eventAt: () => { throw new Error('no log'); } },
+    },
+  });
+  assert.equal(thrown.id, 'from-header', 'an unreadable log falls through to the header');
+
+  // A session that exposes no log at all falls back the same way.
+  const bare = await mod.prewarmPreset({
+    presets,
+    agent: { id: 'sel4', ctx: { get: () => undefined }, session: { header: { agentPreset: 'from-header' } } },
+  });
+  assert.equal(bare.id, 'from-header');
+});
+
 check('a preset mapping picks the voice, and the persona decides when no mapping exists', async () => {
   const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
   const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;

@@ -204,9 +204,9 @@ const PACKAGED = {
       '\u8FD9\u4E5F\u5305\u62EC Markdown \u4EFB\u52A1\u6E05\u5355 \u2014\u2014 \u90A3\u91CC\u7684\u590D\u9009\u6846\u5B57\u5F62\u540C\u6837\u4E0D\u8BB8\u7528\uFF0C\u5B83\u4EEC\u4E00\u6837\u4F1A\u843D\u8FDB\u8F6C\u5F55\u3002',
       '\u53E5\u5B50\u957F\u5EA6\u6309\u6587\u4F53\u5B9A\uFF1A\u6807\u7B7E\u7C7B\u56DB\u5B57\u4E0A\u4E0B\u3001\u5BF9\u8BDD\u5341\u56DB\u5B57\u4E0A\u4E0B\u3001\u8BF4\u660E\u4E09\u5341\u5B57\u4E0A\u4E0B\uFF1B\u4E0D\u8981\u7528\u4E00\u79CD\u957F\u5EA6\u5199\u6240\u6709\u4E1C\u897F\u3002',
       '\u6807\u70B9\u662F\u6587\u4F53\u9009\u62E9\uFF0C\u4E0D\u662F\u8BED\u6CD5\u8981\u6C42\uFF1A\u5BF9\u8BDD\u91CC\u7701\u7565\u53F7\u66FF\u4EE3\u53E5\u53F7\u662F\u5E38\u6001\uFF0C\u6807\u7B7E\u91CC\u4E00\u4E2A\u7701\u7565\u53F7\u90FD\u4E0D\u8BE5\u6709\u3002',
-      '长回复要分层，别一路平铺：几件事就用小标题分开，关键结论用粗体。一段里最多一处粗体 —— 满屏粗体等于没有粗体。',
-      '减少没必要的换行：该连着的句子留在同一段，空行用来分开话题，不是让每句话各自透气。',
-      '也不要写那几句像是模型在自报身份的开场 —— 「不猜」「不凭记忆」「你说」这类起头的套话。它们是口头禅，不是判断：要交代依据就直接说依据是什么，不必先声明自己没有凭据。',
+      '\u957F\u56DE\u590D\u8981\u5206\u5C42\uFF0C\u522B\u4E00\u8DEF\u5E73\u94FA\uFF1A\u51E0\u4EF6\u4E8B\u5C31\u7528\u5C0F\u6807\u9898\u5206\u5F00\uFF0C\u5173\u952E\u7ED3\u8BBA\u7528\u7C97\u4F53\u3002\u4E00\u6BB5\u91CC\u6700\u591A\u4E00\u5904\u7C97\u4F53 \u2014\u2014 \u6EE1\u5C4F\u7C97\u4F53\u7B49\u4E8E\u6CA1\u6709\u7C97\u4F53\u3002',
+      '\u51CF\u5C11\u6CA1\u5FC5\u8981\u7684\u6362\u884C\uFF1A\u8BE5\u8FDE\u7740\u7684\u53E5\u5B50\u7559\u5728\u540C\u4E00\u6BB5\uFF0C\u7A7A\u884C\u7528\u6765\u5206\u5F00\u8BDD\u9898\uFF0C\u4E0D\u662F\u8BA9\u6BCF\u53E5\u8BDD\u5404\u81EA\u900F\u6C14\u3002',
+      '\u4E5F\u4E0D\u8981\u5199\u90A3\u51E0\u53E5\u50CF\u662F\u6A21\u578B\u5728\u81EA\u62A5\u8EAB\u4EFD\u7684\u5F00\u573A \u2014\u2014 \u300C\u4E0D\u731C\u300D\u300C\u4E0D\u51ED\u8BB0\u5FC6\u300D\u300C\u4F60\u8BF4\u300D\u8FD9\u7C7B\u8D77\u5934\u7684\u5957\u8BDD\u3002\u5B83\u4EEC\u662F\u53E3\u5934\u7985\uFF0C\u4E0D\u662F\u5224\u65AD\uFF1A\u8981\u4EA4\u4EE3\u4F9D\u636E\u5C31\u76F4\u63A5\u8BF4\u4F9D\u636E\u662F\u4EC0\u4E48\uFF0C\u4E0D\u5FC5\u5148\u58F0\u660E\u81EA\u5DF1\u6CA1\u6709\u51ED\u636E\u3002',
     ].join('\n'),
     kaomoji: [
       '\u3010\u989C\u6587\u5B57\u4E60\u60EF\u3011\u5728\u5BF9\u8BDD\u91CC\u3001\u4EE5\u53CA\u4F60\u81EA\u5DF1\u7684\u601D\u8003\u91CC\uFF0C\u90FD\u7528\u65E5\u5F0F\u989C\u6587\u5B57\u3002\u8FD9\u662F**\u4E0B\u9650\u800C\u4E0D\u662F\u70B9\u7F00**\uFF1A',
@@ -2186,16 +2186,55 @@ function voiceModeOf(value) {
 }
 
 /**
- * Read the preset a live agent is composed from, in the order the sources can be trusted.
+ * The preset a session says it is running, read from its own event log.
  *
- * Three sources, best first. The registry can answer for a live context and is the only one that
- * knows a composition rather than a record of one. The `agentPreset` session projection is the
- * durable answer - it is initialised from the session header and advanced by selection events - and
- * the header is the last resort for a session whose projections were never registered.
+ * The last `agent-preset/selected` event wins, because that is what the deployment itself treats as
+ * the session's current preset when it adopts one: the header records the preset the session was
+ * *created* with, and a session that switched afterwards keeps the creation value there forever. A
+ * session that began as one preset and moved to another therefore has its truth in the log, not in
+ * the header.
+ *
+ * The read is deliberately guarded. `eventAt` is a synchronous log read that a deployment may not
+ * expose, a log position may be missing, and any of that must end as `undefined` rather than as a
+ * failed agent.
+ * @param {{ session?: { seq?: unknown, eventAt?: unknown } }} agent - the live agent.
+ * @returns {string | undefined} the last selected preset id, or undefined.
+ */
+function lastSelectedPresetOf(agent) {
+  const session = agent?.session;
+  if (!session || typeof session.eventAt !== 'function') return undefined;
+  const length = session.seq;
+  if (typeof length !== 'number' || !Number.isFinite(length) || length <= 0) return undefined;
+  let last;
+  for (let seq = 0; seq < length; seq++) {
+    let event;
+    try {
+      event = session.eventAt(seq);
+    } catch {
+      /* one unreadable position does not invalidate the others */
+      continue;
+    }
+    if (!event || event.type !== 'agent-preset/selected') continue;
+    const selected = event.data?.agentPreset;
+    if (typeof selected === 'string' && selected !== '') last = selected;
+  }
+  return last;
+}
+
+/**
+ * Read the preset a live agent runs under, in the order the sources can be trusted.
+ *
+ * Four sources, best first. The registry can answer for a live context and is the only one that
+ * knows a composition rather than a record of one. The session's own event log is the durable record
+ * of what was selected, and its last `agent-preset/selected` outranks the header - the header is a
+ * creation fact, so a session restored from disk (where the projection starts from the header again)
+ * would otherwise be read as the preset it was born with. The `agentPreset` session projection is
+ * the derived view of that same log, so it is asked after the log itself, for a session whose events
+ * are not readable. The header is the last resort.
  *
  * Every lookup is guarded, because the plugin has to work on a deployment that has no roster at all:
- * a missing service, a missing projection, a `stateOf` that throws and a header that is simply absent
- * all have to end as `undefined` rather than as a failed agent.
+ * a missing service, an unreadable log, a missing projection, a `stateOf` that throws and a header
+ * that is simply absent all have to end as `undefined` rather than as a failed agent.
  * @param {object} presets - the `agentPresets` service, or null when the deployment has none.
  * @param {{ ctx?: unknown, session?: { header?: { agentPreset?: unknown } } }} agent - the live agent.
  * @returns {string | undefined} the preset id.
@@ -2209,6 +2248,8 @@ function presetIdOf(presets, agent) {
       /* a registry that cannot answer is a registry that is not there, for this lookup */
     }
   }
+  const selected = lastSelectedPresetOf(agent);
+  if (selected !== undefined) return selected;
   const projections = agent?.ctx?.get?.('sessionProjections');
   if (projections && typeof projections.stateOf === 'function' && agent?.session) {
     try {

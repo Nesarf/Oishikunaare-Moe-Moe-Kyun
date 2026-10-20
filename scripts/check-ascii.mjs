@@ -30,14 +30,19 @@ const LOCALIZED_DOC = path.join(ROOT, 'README.zh-CN.md');
 const ESCAPE_REGION_FILE = path.join(ROOT, 'src', 'index.js');
 
 /** Line range of the PACKAGED locale table, the one region allowed to hold escape sequences. */
-function escapeRegion() {
-  const lines = fs.readFileSync(ESCAPE_REGION_FILE, 'utf8').split('\n');
+function escapeRegion(file) {
+  const lines = fs.readFileSync(file, 'utf8').split('\n');
   const start = lines.findIndex((l) => l.includes('const PACKAGED = {'));
   const end = lines.findIndex((l, i) => i > start && /^};/.test(l));
   return start < 0 || end < 0 ? null : { start: start + 1, end: end + 1 };
 }
 
-const region = escapeRegion();
+const region = escapeRegion(ESCAPE_REGION_FILE);
+// The generated artifact is the source verbatim behind a three-line banner (scripts/build.mjs), so the
+// same table sits in it at a shifted line number. Giving it the same exception keeps the rule applied
+// to the same text; without it every localized line would be reported twice, once per copy.
+const BUILT_FILE = path.join(ROOT, 'lib', 'index.js');
+const builtRegion = fs.existsSync(BUILT_FILE) ? escapeRegion(BUILT_FILE) : null;
 const isNonAscii = (ch) => ch.codePointAt(0) > 0x7f;
 const describe = (ch) => `"${ch}" U+${ch.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')}`;
 
@@ -52,7 +57,8 @@ function scanFile(file) {
   const lines = fs.readFileSync(file, 'utf8').split('\n');
   const findings = [];
   lines.forEach((line, index) => {
-    const inRegion = rel === 'src/index.js' && region && index + 1 >= region.start && index + 1 <= region.end;
+    const fileRegion = rel === 'src/index.js' ? region : (rel === 'lib/index.js' ? builtRegion : null);
+    const inRegion = fileRegion !== null && index + 1 >= fileRegion.start && index + 1 <= fileRegion.end;
     for (const ch of line) {
       if (!isNonAscii(ch)) continue;
       if (inRegion) continue;
@@ -62,13 +68,26 @@ function scanFile(file) {
   return findings;
 }
 
+/** Whether a file is binary, judged from a small prefix. Binary assets are not text, so the rule
+ *  does not apply to them; the prefix read keeps a multi-megabyte image from being decoded as UTF-8. */
+function isBinary(file) {
+  const fd = fs.openSync(file, 'r');
+  try {
+    const buf = Buffer.alloc(8192);
+    const read = fs.readSync(fd, buf, 0, buf.length, 0);
+    return buf.subarray(0, read).includes(0);
+  } finally {
+    fs.closeSync(fd);
+  }
+}
+
 /** Walk the repository, skipping VCS and installed trees. */
 function walk(dir, out = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     if (SKIP_DIRS.has(entry.name)) continue;
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full, out);
-    else out.push(full);
+    else if (!isBinary(full)) out.push(full);
   }
   return out;
 }

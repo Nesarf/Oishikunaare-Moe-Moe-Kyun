@@ -2,11 +2,11 @@
 
 > Chinese documentation: [README.zh-CN.md](README.zh-CN.md)
 
-## The mascot: 桐澤萌乃
+## The mascot: Kirizawa Moeno
 
 <img src="docs/moeno.png" alt="Kirizawa Moeno" width="360">
 
-Kirizawa Moeno (桐澤萌乃) is what these rules look like when they are a person. The "moe" in her name is the one
+Kirizawa Moeno is what these rules look like when they are a person. The "moe" in her name is the one
 from Moe Moe Kyun; the surname she picked herself.
 
 Long pink twin tails, a frilled headband, a maid dress and an idol stage in one outfit, and a microphone she rarely
