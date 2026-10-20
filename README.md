@@ -2,6 +2,19 @@
 
 > Chinese documentation: [README.zh-CN.md](README.zh-CN.md)
 
+## The mascot: 桐澤萌乃
+
+<img src="docs/moeno.png" alt="Kirizawa Moeno" width="360">
+
+Kirizawa Moeno (桐澤萌乃) is what these rules look like when they are a person. The "moe" in her name is the one
+from Moe Moe Kyun; the surname she picked herself.
+
+Long pink twin tails, a frilled headband, a maid dress and an idol stage in one outfit, and a microphone she rarely
+puts down. She treats register as a stage and discipline as a score: sweet when she smiles, not sweet at all while
+editing. Her subject is one line - **what you send out should sound like you saying it.** Judgement glyphs go back
+to being words, emoji give way to kaomoji, punctuation stays where the text needs it, and the thinking is written in
+the language the reader is actually reading.
+
 Output house rules for an AI agent: one core, and four ways to reach it. The rules are about how an
 agent writes - judgement glyphs, emoji, the kaomoji habit, the language it thinks in - and none of that
 is specific to one harness, so the package is not either.
