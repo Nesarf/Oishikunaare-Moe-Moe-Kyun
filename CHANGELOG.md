@@ -2,6 +2,10 @@
 
 ## 0.51.0 - 2026-10-20
 
+- **An agent with no persona is still given a manner, by the plugin.** The accent used to be chosen only when the
+  agent had a persona of its own, so a plain agent got a voice and nothing else. Now the voice that was chosen names
+  the accent out of MMK own table (gentle to warm, composed to measured, and so on), and the notice says which path
+  it took: matched against the agent own words, or picked by the plugin.
 - **A run of breaches is now named as a run.** Two earlier attempts to wire this in emptied every notice, because
   both of them added to the message list. This one changes only the text a notice already carried: from the third
   consecutive reply that carries the glyphs, the notice adds a sentence saying so, and a clean reply resets the

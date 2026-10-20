@@ -686,6 +686,39 @@ check('the hook names a thinking drift, once, and stays quiet for an English rea
   const silent = await off({ agent: { session: { id: 'lang4' } }, messages }, async () => ({ kind: 'enter', messages }));
   assert.equal(hasNotice(silent), false, 'language:false means silence about the drift');
 });
+check('an agent without a persona still gets a manner, chosen by the plugin', async () => {
+  // Two paths, reported as two different sentences. With a persona the accent is matched against the
+  // agent's own words; without one there are no words to match, so the plugin picks from the voice it
+  // was already told to use. The half that used to be missing is the second one.
+  const voices = JSON.parse(fs.readFileSync(path.join(ROOT, 'rules', 'voices', 'zh.json'), 'utf8')).voices;
+  const run = async (persona) => {
+    const hook = mod.makeSelfCheckHook({
+      max: 5,
+      kaomoji: false,
+      emoji: false,
+      language: false,
+      moe: true,
+      voice: 'gentle',
+      voices,
+      // The persona reaches the hook through this callback, the same way a live host supplies it.
+      presetVoice: () => (persona === undefined ? {} : { id: 'p1', persona }),
+      resolve: () => ({ enabled: true, locale: 'zh' }),
+    });
+    const messages = [{ id: 'u1', role: 'user', content: [{ type: 'text', text: '\u4F60\u597D' }] }];
+    const result = await hook({ agent: { session: { id: 'accent-' + Math.random() } }, messages }, async () => ({ kind: 'enter', messages }));
+    return result.messages[0]?.content?.[0]?.text ?? '';
+  };
+
+  const bare = await run();
+  assert.ok(bare.includes('\u6E29\u6696'), 'a gentle voice with no persona is given the warm accent by the plugin');
+
+  // A persona that names a different manner wins over the voice, because the agent's own words are the
+  // stronger signal - that is what the persona path is for.
+  const withPersona = await run('\u4F60\u662F\u4E00\u4E2A\u51B7\u9759\u7684\u5B66\u8005\uFF0C\u8BF4\u8BDD\u4E25\u8C28\u3002');
+  assert.ok(withPersona.includes('\u5B66\u8005'), 'a scholar persona is matched to the scholarly accent');
+  assert.ok(!withPersona.includes('\u6E29\u6696'), 'and the voice default does not survive on top of it');
+});
+
 check('a run of face-less replies is counted, and never by counting structure', () => {
   const mk = (text) => ({ role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text }] });
   const face = '(\u30fb\u03c9\u30fb)';

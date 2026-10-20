@@ -689,6 +689,23 @@ export function accentFor(persona, accents) {
 }
 
 /**
+ * The accent MMK picks when the agent has no persona of its own.
+ *
+ * An agent with a persona gets an accent matched against its own words; one without a persona still
+ * needs a manner, and the voice that was chosen is what names it. This table is MMK's own choice, not
+ * something read from the agent - which is the whole difference between the two paths, and the reason
+ * the notice says which one it took.
+ */
+const ACCENT_BY_VOICE = {
+  gentle: 'warm',
+  spirited: 'breezy',
+  composed: 'measured',
+  timid: 'tender',
+  prickly: 'sly',
+  elegant: 'old-noble',
+};
+
+/**
  * Render the moe block: what the layer is, how far it may go, and the marker sets it may draw on.
  *
  * The wording separates the feeling from the ornament on purpose. The failure mode of a layer like this
@@ -2308,17 +2325,23 @@ export function voiceNotice(locale, voice, options = {}) {
   const accentCues = accent !== null && Array.isArray(accent.cues) && accent.cues.length > 0
     ? accent.cues.slice(0, 2).join('; ')
     : markers;
+  // An accent the plugin picked still has to reach the words, or the choice is only a log line. With a
+  // persona the accent replaces the voice label; without one there is no label to replace, so it rides
+  // alongside the markers as a lean.
+  const lean = accent !== null && !own && accentLabel !== ''
+    ? (lang === 'zh' ? `\uFF0C\u8BED\u6C14\u504F${accentLabel}` : lang === 'ja' ? `\u3001${accentLabel}\u5BC4\u308A` : `, leaning ${accentLabel}`)
+    : '';
   if (lang === 'zh') {
     if (own) {
       return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u5728\u4F60\u81EA\u5DF1\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A\uFF0C\u52A0\u5165\u4E00\u70B9 ${accentLabel} \u8981\u7D20\u7684\u611F\u89C9\uFF08${accentCues}\uFF09\uFF1B\u6CE8\u610F\u4E0D\u8981\u548C\u4F60\u672C\u8EAB\u7684\u6027\u683C\u4E0E\u4F5C\u98CE\u6709\u592A\u5927\u51FA\u5165\u3002\u4E00\u76F4\u4FDD\u6301\u8FD9\u4E2A\u611F\u89C9\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
     }
-    return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u8FD9\u4E2A\u4F1A\u8BDD\u91CC\u4F60\u7684\u58F0\u97F3\u6863\u5B9A\u4E3A ${voice?.id} (${label})\uFF1A${markers}\u3002\u4E00\u76F4\u7528\u5B83\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
+    return `\u3010\u840C\u00B7\u8BED\u6C14\u9002\u914D\u3011\u8FD9\u4E2A\u4F1A\u8BDD\u91CC\u4F60\u7684\u58F0\u97F3\u6863\u5B9A\u4E3A ${voice?.id} (${label})\uFF1A${markers}${lean}\u3002\u4E00\u76F4\u7528\u5B83\uFF0C\u4E0D\u8981\u8F6E\u6362\uFF1B\u4E5F\u4E0D\u8981\u53EA\u628A\u5B83\u5F53\u53E5\u5C3E\u8D34\u4E0A\u53BB\uFF0C\u5B83\u662F\u8BF4\u8BDD\u7684\u65B9\u5F0F\u3002\u62A5\u9519\u4E0E\u4E25\u8083\u7ED3\u8BBA\u65C1\u8FB9\u4E0D\u7528\u3002\u672C\u6761\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
   }
   if (lang === 'ja') {
     if (own) {
       return `\u3010\u840C\u3048\u30FB\u58F0\u306E\u8ABF\u6574\u3011\u3042\u306A\u305F\u81EA\u8EAB\u306E\u6027\u683C\u3068\u7269\u8FBA\u306E\u4E0A\u306B\u3001 ${voice?.id} (${label}) \u306E\u8981\u7D20\u3092\u5C11\u3057\u3060\u3051\u611F\u3058\u3055\u305B\u3066\u304F\u3060\u3055\u3044\uFF08${accentCues}\uFF09\u3002\u305F\u3060\u3057\u3001\u3042\u306A\u305F\u672C\u6765\u306E\u6027\u683C\u3068\u7269\u8FBA\u304B\u3089\u5927\u304D\u304F\u96E2\u308C\u306A\u3044\u3088\u3046\u306B\u3002\u305D\u306E\u611F\u3058\u3092\u4E00\u8CAB\u3057\u3066\u4FDD\u3061\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
     }
-    return `\u3010\u840C\u3048\u00B7\u58F0\u306E\u8ABF\u6574\u3011\u3053\u306E\u4F1A\u8A71\u3067\u306E\u3042\u306A\u305F\u306E\u58F0\u306F ${voice?.id} (${label})\u3002\u4F7F\u3046\u8A9E\u5C3E\u30FB\u64EC\u97F3\uFF1A${markers}\u3002\u4E00\u8CAB\u3057\u3066\u4F7F\u3044\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
+    return `\u3010\u840C\u3048\u00B7\u58F0\u306E\u8ABF\u6574\u3011\u3053\u306E\u4F1A\u8A71\u3067\u306E\u3042\u306A\u305F\u306E\u58F0\u306F ${voice?.id} (${label})\u3002\u4F7F\u3046\u8A9E\u5C3E\u30FB\u64EC\u97F3\uFF1A${markers}${lean}\u3002\u4E00\u8CAB\u3057\u3066\u4F7F\u3044\u3001\u30ED\u30FC\u30C6\u30FC\u30B7\u30E7\u30F3\u3057\u306A\u3044\u3002\u6587\u672B\u306B\u8CBC\u308B\u3060\u3051\u306E\u98FE\u308A\u306B\u3057\u306A\u3044\u3002\u30A8\u30E9\u30FC\u3068\u91CD\u3044\u7D50\u8A9E\u306E\u6A2A\u3067\u306F\u4F7F\u308F\u306A\u3044\u3002\u8FD4\u4E8B\u4E0D\u8981\u3002`;
   }
   if (own) {
     return `MOE VOICE - on top of your own character and manner, let a touch of ${accentLabel} come`
@@ -2327,7 +2350,7 @@ export function voiceNotice(locale, voice, options = {}) {
       + ' is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is'
       + ' needed.';
   }
-  return `MOE VOICE - this conversation: ${voice?.id} (${label}). Markers: ${markers}. Keep the same voice throughout, do not rotate it, and do not treat it as a suffix to staple on - it is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is needed.`;
+  return `MOE VOICE - this conversation: ${voice?.id} (${label}). Markers: ${markers}${lean}. Keep the same voice throughout, do not rotate it, and do not treat it as a suffix to staple on - it is how you speak. None of it beside an error or a serious conclusion. No reply to this notice is needed.`;
 }
 
 /**
@@ -2521,12 +2544,17 @@ export function makeSelfCheckHook(options) {
             // touch of the voice on top of itself whatever picked the id (a mapping, an inference, a pin);
             // a standard agent with no persona of its own is simply given one.
             const ownPersona = typeof preset?.persona === 'string' && preset.persona.trim() !== '';
-            // The accent is chosen from the agent's own persona, and only when it has one: an agent with no
-            // character of its own gets the voice as given, and an agent with one gets a touch picked out of
-            // the pool by matching the persona against each accent's signals.
-            const accents = ownPersona ? readAccentTable(path.join(HERE, '..', 'rules', 'accents'), state.locale, options.warn).accents : [];
-            const accent = ownPersona ? accentFor(preset?.persona, accents) : null;
-            if (accent !== null) options.log?.(`session ${sessionId}: accent ${accent.id} chosen from the persona`);
+            // Two paths, and they are deliberately different sentences. An agent with a persona gets an
+            // accent matched against its own words - the agent's character decides. An agent without one
+            // still needs a manner, so the voice that was already chosen names it, out of MMK's own
+            // table: the plugin decides, and the log says so rather than blurring the two.
+            const accents = readAccentTable(path.join(HERE, '..', 'rules', 'accents'), state.locale, options.warn).accents;
+            const accent = ownPersona
+              ? accentFor(preset?.persona, accents)
+              : (accents.find((entry) => entry?.id === ACCENT_BY_VOICE[engine.id]) ?? null);
+            if (accent !== null) options.log?.(ownPersona
+              ? `session ${sessionId}: accent ${accent.id} chosen from the persona`
+              : `session ${sessionId}: accent ${accent.id} chosen by MMK for voice ${engine.id}`);
             notices.push(voiceNotice(state.locale, localised ?? engine.chosen, { own: ownPersona, accent }));
             const how = engine.how === 'mapped'
               ? `mapped by preset ${preset.id}`
