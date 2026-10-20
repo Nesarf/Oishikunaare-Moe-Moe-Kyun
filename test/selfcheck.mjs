@@ -442,6 +442,35 @@ check('the hook injects one notice per breach, and respects its budget', async (
   assert.equal(clean.messages.length, 1);
 });
 
+check('a run of breaches is counted, and named as a run', async () => {
+  // The budget is generous on purpose: this case is about the run, not about the budget. Two previous
+  // attempts to wire a run counter into the notice chain emptied every notice instead - so the counter
+  // here adds nothing to the message list, only a sentence to the text it was already sending.
+  const hook = mod.makeSelfCheckHook({
+    max: 9,
+    kaomoji: false,
+    emoji: false,
+    language: false,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+  });
+  const breach = (id) => ({ id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: `bad ${CHECK}` }] });
+  const step = (messages) => hook({ agent: { session: { id: 'run-1' } }, messages }, async () => ({ kind: 'enter', messages }));
+
+  const first = await step([breach('r1')]);
+  assert.equal(first.messages.length, 2, 'the first breach is still notified');
+  assert.ok(!first.messages[0].content[0].text.includes('in a row'), 'a first breach is not a run');
+
+  await step([breach('r1'), breach('r2')]);
+  const third = await step([breach('r1'), breach('r2'), breach('r3')]);
+  assert.equal(third.messages.length, 4, 'the third breach still gets its own notice');
+  assert.ok(third.messages[0].content[0].text.includes('in a row'), 'and it says the breaches have not stopped');
+
+  // A clean reply ends the run: the next breach starts over at one.
+  await step([breach('r1'), breach('r2'), breach('r3'), { id: 'ok', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'clean now' }] }]);
+  const after = await step([breach('r1'), breach('r2'), breach('r3'), { id: 'ok', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'clean now' }] }, breach('r4')]);
+  assert.ok(!after.messages[0].content[0].text.includes('in a row'), 'a clean reply resets the run');
+});
+
 check('the strict judge is seeded from what the plugin actually ships', () => {
   const categories = mod.normalizeLibrary(JSON.parse(fs.readFileSync(SHIPPED, 'utf8')));
   const zh = mod.packagedRules('zh').rules;

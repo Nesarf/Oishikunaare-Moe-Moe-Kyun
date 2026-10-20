@@ -2,6 +2,14 @@
 
 ## 0.51.0 - 2026-10-20
 
+- **A run of breaches is now named as a run.** Two earlier attempts to wire this in emptied every notice, because
+  both of them added to the message list. This one changes only the text a notice already carried: from the third
+  consecutive reply that carries the glyphs, the notice adds a sentence saying so, and a clean reply resets the
+  count. The new case in `test/selfcheck.mjs` pins all three states - first breach, third in a row, and the reset.
+- **The history paragraph in the prompt is the session's own.** `violationSummary()` used to report whichever
+  session had breached last, which on a second conversation meant reading someone else's count. It now takes a
+  session id, and the section passes the one the context names, so the paragraph above the rules is always this
+  session's history.
 - **The CLI can audit a whole transcript.** Asked for so the session measurement was one command away:
   `mmk audit --transcript <path>` counts what a session carries, per channel - prose, thinking and tool
   arguments - with the kaomoji floor alongside. The counting moved out of `scripts/audit-session.mjs` into
