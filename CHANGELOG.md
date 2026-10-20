@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.53.0 - 2026-10-21
+
+- **The plugin shows its own icon in the DSH plugin list.** The harness reads a relative `icon` path
+  from `package.json`, resolves it against the manifest directory and carries it as a data URL - PNG,
+  SVG, JPEG or WebP, at most 256 KiB. `icon.png` is the mascot's own icon art from the illustration
+  library, downscaled to 256 square to stay inside that budget. No client-side code was needed: the
+  field is the whole feature.
+
 ## 0.52.1 - 2026-10-21
 
 - **A session restored from disk is read as the preset it is running, not the one it was created with.**
