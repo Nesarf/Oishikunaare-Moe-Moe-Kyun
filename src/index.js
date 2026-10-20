@@ -2532,7 +2532,10 @@ export function makeSelfCheckHook(options) {
             : (() => {
               const mode = voiceModeOf(live.voice);
               const inferred = mode === 'auto' ? resolveVoiceForSession(preset, messages, live.signals) : null;
-              const id = inferred !== null ? inferred.id : mode;
+              // `auto` that cannot infer would otherwise keep the id "auto", find no entry and go silent -
+              // an agent with no persona and no signals would get no voice at all. It falls through to the
+              // rotation instead, which is what "MMK picks" means when the agent gives it nothing to read.
+              const id = inferred !== null ? inferred.id : (mode === 'auto' ? 'rotate' : mode);
               const chosen = id === 'rotate' ? rotateVoice(sessionId, table) : entryFor(id);
               if (chosen === null) return null;
               return { chosen, id: chosen.id, how: inferred !== null ? inferred.how : (id === 'rotate' ? 'rotated' : 'pinned') };

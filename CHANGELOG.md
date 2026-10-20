@@ -2,6 +2,10 @@
 
 ## 0.51.0 - 2026-10-20
 
+- **`auto` no longer goes silent when it cannot infer.** An agent with no persona and no voice words in
+  the conversation used to get no voice at all, which is the opposite of what a plugin asked to pick one should
+  do. It now falls through to the rotation, so `moeVoice: auto` means "read the agent first, pick for it
+  otherwise".
 - **An agent with no persona is still given a manner, by the plugin.** The accent used to be chosen only when the
   agent had a persona of its own, so a plain agent got a voice and nothing else. Now the voice that was chosen names
   the accent out of MMK own table (gentle to warm, composed to measured, and so on), and the notice says which path

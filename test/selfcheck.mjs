@@ -1227,8 +1227,11 @@ check('the three voice modes do what their names say', async () => {
     return out.messages.length > 1 ? out.messages[0].content[0].text : null;
   };
 
-  const silent = await run('auto', [mk('You are a coding agent, working directory E:/x')], 'm1');
-  assert.equal(silent, null, 'auto stays silent when nothing names a voice');
+  // `auto` no longer goes silent when nothing names a voice. An agent with no persona and no signal would
+  // otherwise get no manner at all, and "MMK picks one" is exactly what an agent with nothing to read
+  // should get. It falls through to the same pooling that `rotate` uses.
+  const fallback = await run('auto', [mk('You are a coding agent, working directory E:/x')], 'm1');
+  assert.ok(fallback && fallback.includes('\u8BED\u6C14\u9002\u914D'), 'auto falls back to the rotation when nothing names a voice');
 
   const inferred = await run('auto', [mk('\u4F60\u662F\u4E00\u4E2A\u50B2\u5A07\u7684\u52A9\u624B')], 'm2');
   assert.ok(inferred.includes('prickly'), 'auto follows the words when they do name one');
@@ -1358,7 +1361,10 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
     presetVoice: () => ({ id: 'redipaloynz', persona: 'You are a coding agent. Working directory E:/x' }),
     voiceOptions: () => ({ voice: 'auto', byPreset: { redipaloynz: 'not-a-voice' }, signals: null }),
   });
-  assert.equal(unknownMapping.text, null, 'a mapping to an id the table does not hold announces nothing');
+  // A mapped id that is not in the table is not an answer: it falls through, and with a persona that
+  // names nothing the fall-through used to land on silence. It lands on the rotation now, for the same
+  // reason `auto` does.
+  assert.ok(unknownMapping.seen.some((m) => m.includes('moe voice')), 'a mapping to an id the table does not hold falls through to the rotation');
 });
 
 check('the accent pool is a candidate list, not a personality', () => {
