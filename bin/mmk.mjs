@@ -31,6 +31,7 @@ import {
   voiceFor,
 } from '../src/portable.mjs';
 import { readTranscript } from '../src/transcripts.mjs';
+import { audit, partsFromMessages } from '../src/audit.mjs';
 import { upsertBlock, wireTargets } from '../src/wire.mjs';
 import { accentFor, briefRules, readAccentTable } from '../src/index.js';
 
@@ -48,6 +49,7 @@ commands
   voice                 decide which voice a preset or a persona speaks in
   accent                pick the accent a persona suits (--persona-text or --persona-file)
   review                judge a transcript's newest authored message
+  audit                 count what a whole transcript carries, per channel
 
 common options
   --locale <zh|ja|en>   rules and notice language (default: from config, else en)
@@ -71,6 +73,10 @@ notice
   --kind <symbol|emoji|kaomoji>
   --glyphs <U+2713,U+2714>   code points the finding names
   --sentences <n> --faces <n>  kaomoji counts, for --kind kaomoji
+
+audit
+  --transcript <path>   measure this transcript (--format as for review)
+  the totals name prose, thinking and tool arguments separately, and exit 3 means glyphs were found
 `;
 
 const argv = process.argv.slice(2);
@@ -292,6 +298,43 @@ if (command === 'review') {
     else for (const notice of review.notices) out(notice);
   }
   process.exit(review.notices.length > 0 ? 3 : 0);
+}
+
+if (command === 'audit') {
+  // The whole transcript, not its newest message: what the rules add up to over a session is a
+  // different question from whether the last reply would be refused, and it is the one a person asks
+  // after a long conversation has gone wrong in a way the per-step notices did not stop.
+  const file = value('transcript') ?? value('file');
+  if (file === undefined) fail('audit needs --transcript <path>');
+  const read = readTranscript(file, value('format') ?? 'auto');
+  const report = audit(partsFromMessages(read.messages));
+  const carried = report.bannedInProse + report.bannedInThinking + report.bannedWritten;
+  if (has('json')) {
+    json({
+      file,
+      format: read.format,
+      messages: read.messages.length,
+      sentences: report.sentences,
+      kaomoji: report.kaomoji,
+      perKaomoji: report.perKaomoji,
+      floorMet: report.floorMet,
+      proseParts: report.messages,
+      parts: report.parts,
+      banned: { prose: report.bannedInProse, quoted: report.bannedQuoted, thinking: report.bannedInThinking, written: report.bannedWritten },
+      codes: [...new Set(report.rows.flatMap((row) => row.codes))],
+      note: read.note,
+    });
+  } else if (!has('quiet')) {
+    out(`file: ${file} (${read.format})   messages: ${read.messages.length}   authored parts: ${report.parts}`);
+    out('');
+    out(`total: ${report.sentences} sentences / ${report.kaomoji} kaomoji -> one per ${report.perKaomoji ?? 'n/a'} (floor: five)`);
+    out(`       floor met in ${report.floorMet}/${report.messages} prose part(s)`);
+    out(`       banned code points: ${report.bannedInProse} in prose, ${report.bannedQuoted} inside quoted code,`);
+    out(`                           ${report.bannedInThinking} in thinking, ${report.bannedWritten} written through a tool call`);
+    const codes = [...new Set(report.rows.flatMap((row) => row.codes))];
+    if (codes.length > 0) out(`       code points seen: ${codes.join(', ')}`);
+  }
+  process.exit(carried > 0 ? 3 : 0);
 }
 
 fail(`unknown command "${command}" (try --help)`);

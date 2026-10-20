@@ -2,6 +2,11 @@
 
 ## 0.51.0 - 2026-10-20
 
+- **The CLI can audit a whole transcript.** Asked for so the session measurement was one command away:
+  `mmk audit --transcript <path>` counts what a session carries, per channel - prose, thinking and tool
+  arguments - with the kaomoji floor alongside. The counting moved out of `scripts/audit-session.mjs` into
+  `src/audit.mjs`, so the script, the CLI and the tests read the same numbers instead of keeping three copies
+  that could drift apart. Exit 3 means glyphs were found, like the rest of the CLI.
 - **The register now leans otaku and literary, which is the point of the plugin.** Asked for as differentiation:
   until now nearly every rule said what not to write, and nothing said what the writing should sound like. The
   thinking discipline now carries the other half - onomatopoeia, romanised Japanese particles, images and short
