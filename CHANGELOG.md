@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.53.1 - 2026-10-21
+
+- **The first step now reads the preset the session actually selected.** The harness creates an agent
+  under the default preset and adopts the session's choice afterwards, so `agent/created` - where the
+  prewarm runs - still sees the creation default. The first step is the first moment both are settled,
+  and it now re-reads the session's log there: a preset that differs from the prewarmed one is read
+  again instead of being described by the default. Same fault as 0.52.1, one layer later.
+
 ## 0.53.0 - 2026-10-21
 
 - **The plugin shows its own icon in the DSH plugin list.** The harness reads a relative `icon` path

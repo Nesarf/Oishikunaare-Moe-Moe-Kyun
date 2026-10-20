@@ -1423,6 +1423,35 @@ check('a selection recorded in the session outranks its creation header', async 
   assert.equal(bare.id, 'from-header');
 });
 
+check('the first step reads the selection the prewarm could not see yet', async () => {
+  // The harness creates an agent under the default preset and adopts the session's choice afterwards,
+  // so `agent/created` sees the creation default while the session's log already names another. The
+  // first step is the first moment both are settled, and it is the step that writes the notice.
+  const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
+  const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;
+  const events = [
+    { type: 'session' },
+    { type: 'agent-preset/selected', data: { agentPreset: 'kohane' } },
+  ];
+  const hook = mod.makeSelfCheckHook({
+    max: 3,
+    moe: true,
+    voices,
+    voice: 'rotate',
+    presets: {
+      readDocument: async (id) => ({ agentPreset: id, content: `  - id: persona\n    config:\n      prefix: persona of ${id}\n` }),
+    },
+    presetVoice: async () => ({ id: 'sayori', persona: 'the creation default', available: true, how: 'file' }),
+    voiceOptions: () => ({ voice: 'rotate', byPreset: null, signals: null }),
+    resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' }, voiceMarkers: undefined }),
+  });
+  const agent = { id: 'corr-1', session: { id: 'corr-1', seq: events.length, eventAt: (seq) => events[seq] } };
+  const out = await hook({ agent, messages: [mk('do the thing')] }, async () => ({ kind: 'enter', messages: [mk('do the thing')] }));
+  const notice = out.messages[0].content[0].text;
+  assert.ok(notice.includes('kohane'), 'the notice names the preset the session selected');
+  assert.equal(notice.includes('sayori'), false, 'and does not name the creation default it was prewarmed with');
+});
+
 check('a preset mapping picks the voice, and the persona decides when no mapping exists', async () => {
   const mk = (text) => ({ source: { kind: 'user' }, content: [{ type: 'text', text }] });
   const voices = mod.readVoiceTable(path.join(ROOT, 'rules', 'voices'), 'zh').voices;

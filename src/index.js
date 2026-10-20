@@ -2408,6 +2408,38 @@ export function readPresetPersonaFromDisk(id, root) {
  * @param {(message: string) => void} [options.warn] - warning sink.
  * @returns {Promise<{ id?: string, persona: string | null, available: boolean, how: string }>} the cache entry.
  */
+/**
+ * Read one preset's persona for a known identity: the registry's dump first, the preset's files second.
+ *
+ * The dump is narrowed to its persona entry so a tool description mentioning a manner word cannot
+ * outvote the character itself; a document that cannot be read, or a deployment without a registry,
+ * falls back to `persona.md` and then to the `- id: persona` entry of `agent.cordis.yml`. `how` names
+ * the source that answered, because a notice that says where its text came from is one a reader can
+ * check against the preset directory.
+ * @param {object | null} presets - the `agentPresets` service.
+ * @param {string} id - the preset identity.
+ * @param {string} [presetRoot] - where the presets live, when the default is not it.
+ * @param {(message: string) => void} [warn] - warning sink.
+ * @returns {Promise<{ id: string, persona: string | null, available: boolean, how: string }>} the reading.
+ */
+export async function presetPersonaOf(presets, id, presetRoot, warn = () => {}) {
+  if (presets && typeof presets.readDocument === 'function') {
+    try {
+      const document = await presets.readDocument(id);
+      const content = typeof document?.content === 'string' ? document.content : '';
+      if (content !== '') {
+        const narrowed = personaFromPresetFile(content);
+        return { id, persona: narrowed === '' ? content : narrowed, available: true, how: 'document' };
+      }
+    } catch (error) {
+      warn(`preset ${id}: its document could not be read (${error?.message ?? error}); falling back to the preset files`);
+    }
+  }
+  const found = readPresetPersonaFromDisk(id, presetRoot);
+  if (found.text !== '') return { id, persona: found.text, available: true, how: 'file' };
+  return { id, persona: null, available: presets !== null, how: 'none' };
+}
+
 export async function prewarmPreset(options) {
   const presets = options?.presets ?? null;
   const agent = options?.agent ?? null;
@@ -2432,25 +2464,7 @@ export async function prewarmPreset(options) {
   }
   const id = presetIdOf(presets, agent);
   if (id === undefined) return { id: undefined, persona: null, available: true, how: 'none' };
-  if (typeof presets.readDocument !== 'function') {
-    const found = fromDisk(id);
-    return found === null
-      ? { id, persona: null, available: true, how: 'none' }
-      : { id, persona: found.text, available: true, how: 'file' };
-  }
-  try {
-    const document = await presets.readDocument(id);
-    const content = typeof document?.content === 'string' ? document.content : '';
-    if (content !== '') {
-      const narrowed = personaFromPresetFile(content);
-      return { id, persona: narrowed === '' ? content : narrowed, available: true, how: 'document' };
-    }
-  } catch (error) {
-    warn(`preset ${id}: its document could not be read (${error?.message ?? error}); falling back to the preset files`);
-  }
-  const found = fromDisk(id);
-  if (found !== null) return { id, persona: found.text, available: true, how: 'file' };
-  return { id, persona: null, available: true, how: 'none' };
+  return presetPersonaOf(presets, id, options?.presetRoot, warn);
 }
 
 /**
@@ -2737,7 +2751,15 @@ export function makeSelfCheckHook(options) {
           // Awaited, because the prewarm runs from `agent/created` and this is the first step: reading the
           // cache synchronously here is what made every first-session notice claim the agent had no
           // persona. The callback returns either the cached entry or the promise still in flight.
-          const preset = (await presetVoiceOf(input?.agent)) ?? {};
+          const warm = (await presetVoiceOf(input?.agent)) ?? {};
+          // The prewarm runs from `agent/created`, but the preset is chosen after that: the harness
+          // creates an agent under the default and then adopts the session's choice, which appends its
+          // `agent-preset/selected` event. So the first step re-reads the session log, and a preset that
+          // differs from the prewarmed one is read again rather than described by the creation default.
+          const liveId = lastSelectedPresetOf(input?.agent);
+          const preset = liveId !== undefined && liveId !== warm.id
+            ? await presetPersonaOf(options.presets ?? null, liveId, options.presetRoot, options.warn ?? (() => {}))
+            : warm;
           const live = voiceOptionsOf() ?? {};
           const mapped = preset?.id !== undefined && live.byPreset && typeof live.byPreset === 'object'
             ? entryFor(voiceModeOf(live.byPreset[preset.id]))
@@ -3060,6 +3082,10 @@ export function apply(ctx, config) {
       }
     });
     const hook = makeSelfCheckHook({
+      // The first step re-reads the session's own selection (the prewarm runs before the harness
+      // adopts it), so the hook needs the same roster and preset directory the prewarm used.
+      presets,
+      presetRoot: first.presetRoot,
       max,
       // The ladder keeps a long session from going quiet while the breaches continue; `symbolLadder: []`
       // turns it off and leaves the plain budget in charge. The first rung sits at four rather than ten
