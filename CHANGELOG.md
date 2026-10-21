@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.54.0 - 2026-10-22
+
+- **The strict allow-list judge is now the default.** `selfCheckMode` defaults to `"allow"`: only the
+  standing textual blocks, the plugin's own rules and palette, and whatever `allowExtra` names are
+  admitted; anything else is refused without needing a line in the ban list to name it. The older
+  reading stays one setting away - `selfCheckMode: "deny"` names the judgement-mark family and lets
+  the rest through. A deployment that relied on the old default should set it explicitly.
+- **The packaged rule text now says which judge runs.** The ban list is still written as what is
+  banned, because a reader can act on a ban; the sentence that called an allow-list "the honest next
+  step" now states that the judge is an allow-list, so the text and the behaviour do not disagree.
+- **The allow-list seeds itself from what the plugin ships.** `deriveAllowedCodePoints` runs on every
+  resolve, so the rules, the palette and a face added at runtime are admitted without an `allowExtra`
+  entry; a look-alike is refused while a face the plugin itself ships is not.
+
 ## 0.53.1 - 2026-10-21
 
 - **The first step now reads the preset the session actually selected.** The harness creates an agent

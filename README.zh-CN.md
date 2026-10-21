@@ -282,8 +282,8 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
   都会重读，改完不用重启。细节见上面「语气是怎么定下来的」那一节。
 - `enabled: false` 让这条 section 变空，什么都不注入。
 - `selfCheck`（默认开）与 `selfCheckMax`（默认 3）控制下面的自检。
-- `selfCheckMode`：`"deny"`（默认）点名对错标记那一族、其余放行；`"allow"` 只允许明确的文本类区块、
-  其余一律拒绝。`allowExtra` 用来把字符或码位加进允许列表。
+- `selfCheckMode`：`"allow"`（默认）只允许明确的文本类区块、其余一律拒绝；`"deny"` 点名对错标记那一族、
+  其余放行。`allowExtra` 用来把字符或码位加进允许列表。
 
 ### 颜文字库
 

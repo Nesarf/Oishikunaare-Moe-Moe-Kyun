@@ -247,7 +247,7 @@ check('allow-list mode notices a glyph the deny list never named', async () => {
   const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${SPARKLES}` }])];
   // The emoji check has its own, correct opinion about a sparkle, and the kaomoji rule its own about
   // a face-less sentence. This case is about the symbol judge, so both are switched off.
-  const off = await runStep(makeHost(), messages, { locale: 'zh', emojiCheck: false, kaomojiCheck: false });
+  const off = await runStep(makeHost(), messages, { locale: 'zh', emojiCheck: false, kaomojiCheck: false, selfCheckMode: 'deny' });
   assert.equal(noticeOf(off.decision), undefined, 'the deny list never names this one, so deny mode is silent');
   const on = await runStep(host, messages, { locale: 'zh', emojiCheck: false, kaomojiCheck: false, selfCheckMode: 'allow' });
   const notice = noticeOf(on.decision);
@@ -282,7 +282,7 @@ check('switching the judge mid-session takes effect on the next step', async () 
   const host = makeHost();
   // The emoji and kaomoji checks belong to other cases; here either would answer first and hide the
   // judge switch this case is about.
-  const home = tempHome({ locale: 'zh', emojiCheck: false, kaomojiCheck: false });
+  const home = tempHome({ locale: 'zh', selfCheckMode: 'deny', emojiCheck: false, kaomojiCheck: false });
   const file = path.join(home, 'agent-house-rules.json');
   mod.apply(host.ctx, { home, shippedLibrary: SHIPPED });
   const messages = [assistant('m1', [{ type: 'text', text: `shipped it ${SPARKLES}` }])];

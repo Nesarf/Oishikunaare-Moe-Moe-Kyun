@@ -338,8 +338,8 @@ required - with no file at all the rules above are injected in English.
 - `selfCheck` (default true) and `selfCheckMax` (default 3) control the self-check below.
 - `emojiCheck` (default true), `emojiCheckMax` (default 2) and `emojiAllowExtra` control the emoji
   ban and its notice budget.
-- `selfCheckMode`: `"deny"` (default) names the judgement-mark family and lets the rest through;
-  `"allow"` permits only plainly-textual blocks and refuses everything else. `allowExtra` names
+- `selfCheckMode`: `"allow"` (default) permits only plainly-textual blocks and refuses everything
+  else; `"deny"` names the judgement-mark family and lets the rest through. `allowExtra` names
   characters or code points the allow-list should also accept.
 
 ### The kaomoji library
