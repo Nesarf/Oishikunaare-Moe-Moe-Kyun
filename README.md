@@ -342,8 +342,8 @@ required - with no file at all the rules above are injected in English.
   else; `"deny"` names the judgement-mark family and lets the rest through. `allowExtra` names
   characters or code points the allow-list should also accept.
 - `ticksCheck` (default true), `ticksFloor` (default 5) and `ticksCheckMax` (default 2) control the
-  thinking-habit notice: a thinking block carrying five or more bare one-word command lines ("do.",
-  "write.", "look.") is answered once on the next step.
+  thinking-habit notice: a run of five or more bare one-word command lines ("do.", "write.", "look.")
+  in one thinking block is answered once on the next step. A line carrying a sentence ends the run.
 
 ### The kaomoji library
 

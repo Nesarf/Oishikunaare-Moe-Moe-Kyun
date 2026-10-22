@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.55.1 - 2026-10-22
+
+- **The thinking-habit criterion counts a run, not a block total.** Measured against 52 sessions and
+  10965 thinking blocks on this machine, the whole-block count flagged 144 blocks; the strict run flags
+  60, and the 84 it drops are the passages that quoted the habit rather than performed it ("the user
+  said 'kaomoji. write.'"). A line that carries a sentence ends the run; a nearly empty fragment does
+  not. The floor stays five.
+
 ## 0.55.0 - 2026-10-22
 
 - **A thinking block made of bare commands is now noticed.** The prompt has always asked an agent not
