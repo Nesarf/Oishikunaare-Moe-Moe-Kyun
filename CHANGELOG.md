@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.55.0 - 2026-10-22
+
+- **A thinking block made of bare commands is now noticed.** The prompt has always asked an agent not
+  to urge itself with "do.", "write." or "look."; nothing could count it. A new criterion reads the
+  newest reply's thinking, counts whole lines that say nothing but one of those words, and at five or
+  more puts one soft notice in front of the next step - write the decision, not the order. The notice
+  is per block and budgeted (`ticksCheckMax`, default 2), with `ticksCheck: false` to turn it off and
+  `ticksFloor` (default 5) to move the threshold.
+
 ## 0.54.0 - 2026-10-22
 
 - **The strict allow-list judge is now the default.** `selfCheckMode` defaults to `"allow"`: only the

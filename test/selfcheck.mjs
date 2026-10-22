@@ -656,6 +656,62 @@ check('the thinking-language judge needs both sides to be worth a claim', () => 
   for (const text of [zhNotice, zhThird, enNotice]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
 });
 
+// The thinking habit: a block made of bare one-word commands. The rule text always named it; this is
+// the first criterion that can count it, and the first notice that answers it on the next step.
+check('the bare-command counter reads only lines that say nothing', () => {
+  const tick = '\u505a\u3002';
+  assert.equal(mod.countTickSentences(Array.from({ length: 5 }, () => tick).join('\n')), 5, 'five bare lines');
+  assert.equal(mod.countTickSentences(Array.from({ length: 4 }, () => tick).join('\n')), 4, 'four bare lines');
+  assert.equal(mod.countTickSentences('\u65f6\u95f4\uff1a\u5feb\u3002'), 0, 'a line with content is not a tick');
+  assert.equal(mod.countTickSentences(tick + '\u5199\u3002\u518d\u770b\u3002'), 3, 'one line can carry three');
+  assert.equal(mod.countTickSentences(''), 0, 'empty text counts nothing');
+});
+
+check('the thinking-habit notice names the shape and never a banned glyph', () => {
+  const zh = mod.ticksNotice(6, 'zh', { attempt: 1 });
+  const en = mod.ticksNotice(6, 'en', { attempt: 1 });
+  assert.ok(zh.includes('\u601d\u8003\u4e60\u60ef'), 'zh names the habit');
+  assert.ok(zh.includes('6'), 'and the count');
+  assert.ok(en.includes('THINKING HABIT') && en.includes('No reply to this notice is needed'));
+  for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
+});
+
+check('the hook reminds after five bare commands, once per block, within its budget', async () => {
+  const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
+  const assistant = (id, count) => ({
+    id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' },
+    content: [{ type: 'thinking', text: block(count) }, { type: 'text', text: 'checked the port.' }],
+  });
+  const hook = mod.makeSelfCheckHook({
+    max: 3, ticks: true, ticksFloor: 5, ticksMax: 2, emoji: false, kaomoji: false,
+    resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
+  });
+  const step = (messages, sid) => hook({ agent: { session: { id: sid } }, messages }, async () => ({ kind: 'enter', messages }));
+  const has = (result) => result.messages.some((message) => (message.content?.[0]?.text ?? '').includes('THINKING HABIT'));
+
+  const five = await step([assistant('b1', 5)], 'tick1');
+  assert.ok(has(five), 'five bare commands earn one notice');
+  assert.equal(five.messages.length, 2, 'and it sits in front of the next step');
+  const again = await step([assistant('b1', 5)], 'tick1');
+  assert.equal(has(again), false, 'the same block is not judged twice');
+
+  const four = await step([assistant('b2', 4)], 'tick2');
+  assert.equal(has(four), false, 'four stays under the floor');
+
+  const second = await step([assistant('b3', 5)], 'tick1');
+  assert.ok(has(second), 'a new block earns the second notice');
+  const third = await step([assistant('b4', 5)], 'tick1');
+  assert.equal(has(third), false, 'and the budget stops the third');
+
+  const off = mod.makeSelfCheckHook({
+    max: 3, ticks: false, emoji: false, kaomoji: false,
+    resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
+  });
+  const quietMessages = [assistant('b5', 6)];
+  const quiet = await off({ agent: { session: { id: 'tick3' } }, messages: quietMessages }, async () => ({ kind: 'enter', messages: quietMessages }));
+  assert.equal(has(quiet), false, 'ticksCheck:false means silence about the habit');
+});
+
 check('the hook names a thinking drift, once, and stays quiet for an English reader', async () => {
   const reasoning = [{ type: 'reasoning', text: 'Let me think about what the operator asked: the port check comes first, then the pid comparison, and only then a decision about restarting. This block is deliberately long enough for the judge to have an opinion about its language, because a short one would be ignored.' }];
   const assistant = { id: 'a1', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [...reasoning, { type: 'text', text: 'checked the port.' }] };

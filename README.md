@@ -341,6 +341,9 @@ required - with no file at all the rules above are injected in English.
 - `selfCheckMode`: `"allow"` (default) permits only plainly-textual blocks and refuses everything
   else; `"deny"` names the judgement-mark family and lets the rest through. `allowExtra` names
   characters or code points the allow-list should also accept.
+- `ticksCheck` (default true), `ticksFloor` (default 5) and `ticksCheckMax` (default 2) control the
+  thinking-habit notice: a thinking block carrying five or more bare one-word command lines ("do.",
+  "write.", "look.") is answered once on the next step.
 
 ### The kaomoji library
 

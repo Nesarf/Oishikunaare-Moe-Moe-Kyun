@@ -284,6 +284,8 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 - `selfCheck`（默认开）与 `selfCheckMax`（默认 3）控制下面的自检。
 - `selfCheckMode`：`"allow"`（默认）只允许明确的文本类区块、其余一律拒绝；`"deny"` 点名对错标记那一族、
   其余放行。`allowExtra` 用来把字符或码位加进允许列表。
+- `ticksCheck`（默认开）、`ticksFloor`（默认 5）与 `ticksCheckMax`（默认 2）控制思考习惯提醒：
+  一段思考里出现 5 次以上「做。」「写。」「再看。」这类单字命令句时，下一次回复会得到一次提醒。
 
 ### 颜文字库
 
