@@ -673,6 +673,8 @@ check('the strict run counts only consecutive bare commands, not quotations', ()
   assert.equal(run('\u518d\u770b\u8fdb\u5ea6\u3002\n\u505a\u3002\n\u7528\u540c\u6837\u7684\u5feb\u901f\u68c0\u67e5\u3002\n\u505a\u3002\n\u52a0\u4e0a\u65f6\u95f4\u3002\n\u505a\u3002\n\u5199\u3002\n\u505a\u3002'), 5, 'short content lines carry the run');
   assert.equal(run('\u7528\u6237\u8bf4\u300c\u8981\u6709\u989c\u6587\u5b57\u3002\u5199\u3002\u300d\u8fd9\u53e5\u8bdd\u5728\u5f15\u7528\u91cc\u3002\n\u7136\u540e\u6211\u7ee7\u7eed\u5206\u6790\u8fd9\u4e00\u6bb5\u8bdd\u662f\u5b8c\u6574\u7684\u53e5\u5b50\uff0c\u8db3\u591f\u957f\uff0c\u4f1a\u628a\u8fde\u7eed\u6bb5\u65ad\u5f00\u3002'), 0, 'a quotation is not a run');
   assert.equal(run('\u505a\u3002\u505a\u3002\u505a\u3002\u505a\u3002\u505a\u3002'), 5, 'one line can carry five');
+  const found = mod.findThinkingTicks([{ id: 'x', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: '\u505a\u3002\n\u505a\u3002\n\u505a\u3002\n\u505a\u3002\n\u505a\u3002' }] }]);
+  assert.ok(found && found.head.includes('\u505a'), 'the finding carries a head for the log');
 });
 
 check('the thinking-habit notice names the shape and never a banned glyph', () => {

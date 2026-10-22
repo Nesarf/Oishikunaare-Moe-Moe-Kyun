@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.55.2 - 2026-10-22
+
+- **The thinking-habit notice leaves a log line worth reading a week later.** The log entry now carries
+  the first 80 characters of the offending thinking block, with whitespace collapsed, so a review can
+  tell a real spiral from a quotation without replaying the session. No rule changes.
+
 ## 0.55.1 - 2026-10-22
 
 - **The thinking-habit criterion counts a run, not a block total.** Measured against 52 sessions and

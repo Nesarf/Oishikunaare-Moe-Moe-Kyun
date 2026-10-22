@@ -1443,6 +1443,9 @@ export function countTickSentences(text) {
  */
 const TICK_BREAK_CHARS = 15;
 
+/** How much of the offending block the log keeps: enough to recognise the passage, short enough to stay a line. */
+const TICK_HEAD_CHARS = 80;
+
 /**
  * @param {string} text - the thinking text.
  * @returns {number} the longest consecutive run of bare command lines.
@@ -1486,6 +1489,7 @@ export function findThinkingTicks(messages) {
     if (!isAuthoredMessage(message)) continue;
     if (!Array.isArray(message.content)) return null;
     let best = 0;
+    let head = '';
     for (const part of message.content) {
       if (!part || typeof part !== 'object') continue;
       const kind = typeof part.type === 'string' ? part.type : '';
@@ -1493,11 +1497,14 @@ export function findThinkingTicks(messages) {
       const text = typeof part.text === 'string' ? part.text : (typeof part.content === 'string' ? part.content : '');
       if (text === '') continue;
       const run = tickRunLength(text);
-      if (run > best) best = run;
+      if (run > best) {
+        best = run;
+        head = text.replace(/\s+/g, ' ').trim().slice(0, TICK_HEAD_CHARS);
+      }
     }
     if (best === 0) return null;
     const id = typeof message.id === 'string' ? message.id : 'msg';
-    return { count: best, key: `${id}:ticks:${best}` };
+    return { count: best, key: `${id}:ticks:${best}`, head };
   }
   return null;
 }
@@ -2892,7 +2899,7 @@ export function makeSelfCheckHook(options) {
             tickCounts.set(sessionId, used + 1);
             recordViolation(sessionId, 'ticks');
             notices.push(ticksNotice(ticks.count, state.locale, { attempt: used + 1 }));
-            options.log?.(`session ${sessionId}: thinking-habit notice ${used + 1}/${budget} at ${ticks.count} bare command line(s)`);
+            options.log?.(`session ${sessionId}: thinking-habit notice ${used + 1}/${budget} at ${ticks.count} bare command line(s): ${ticks.head}`);
           }
         }
       }
