@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.55.3 - 2026-10-22
+
+- **The thinking-habit count strips quotations before it counts.** A run of bare commands breaks on a
+  long line, and a real spiral puts long fragments between its orders ("full run (heavy takes six
+  minutes - background)."), so the run silently passed it. The notice now counts every bare command
+  line with quoted and parenthesised passages removed: a quotation is somebody else's words and no
+  longer counts, a long aside no longer hides the repetition. Same floor of five, same budget.
+
 ## 0.55.2 - 2026-10-22
 
 - **The thinking-habit notice leaves a log line worth reading a week later.** The log entry now carries

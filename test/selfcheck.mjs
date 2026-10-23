@@ -677,6 +677,15 @@ check('the strict run counts only consecutive bare commands, not quotations', ()
   assert.ok(found && found.head.includes('\u505a'), 'the finding carries a head for the log');
 });
 
+check('a quotation is stripped before counting, and a long fragment does not save it', () => {
+  const quote = '\u7528\u6237\u8bf4\u300c\u8981\u6709\u989c\u6587\u5b57\u3002\u5199\u3002\u300d\u8fd9\u53e5\u8bdd\u5728\u5f15\u7528\u91cc\u3002';
+  assert.equal(mod.countTickSentences(quote), 1, 'the raw counter sees the word inside the quotation');
+  assert.equal(mod.countTicksWithoutQuotes(quote), 0, 'the stripped counter does not');
+  const long = '\u5168\u91cf\uff08heavy \u4f1a 6 \u5206\u949f \u2014\u2014 \u540e\u53f0\uff09\u3002\n\u8dd1\u3002\n\u65f6\u95f4\u7d27\u3002\u8dd1\u3002\n\u5168\u91cf\uff08heavy \u4f1a 6 \u5206\u949f \u2014\u2014 \u540e\u53f0\uff09\u3002\n\u8dd1\u3002\n\u65f6\u95f4\u7d27\u3002\u8dd1\u3002\n\u8dd1\u3002\n\u65f6\u95f4\u7d27\u3002\u8dd1\u3002';
+  assert.ok(mod.tickRunLength(long) < 5, 'the strict run breaks on the long parenthesised lines');
+  assert.ok(mod.countTicksWithoutQuotes(long) >= 5, 'the stripped count still sees the orders');
+});
+
 check('the thinking-habit notice names the shape and never a banned glyph', () => {
   const zh = mod.ticksNotice(6, 'zh', { attempt: 1 });
   const en = mod.ticksNotice(6, 'en', { attempt: 1 });

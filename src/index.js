@@ -1474,6 +1474,44 @@ export function tickRunLength(text) {
 }
 
 /**
+ * Text with quoted and parenthesised passages removed, so a quotation is not read as the author's own
+ * command.
+ *
+ * The second shape of the habit puts long lines between the bare ones ("full run (heavy takes six
+ * minutes - background)."), and a run that breaks on those misses it. What cannot be allowed is
+ * counting a quoted fragment ("the user said 'write.'"), so the passages that are somebody else's
+ * words are stripped before the count, and the count itself is what triggers.
+ */
+function stripQuoted(text) {
+  let out = text;
+  for (let round = 0; round < 3; round += 1) {
+    const before = out;
+    out = out
+      .replace(/\u300c[^\u300d\n]*\u300d/g, ' ')
+      .replace(/\u300e[^\u300f\n]*\u300f/g, ' ')
+      .replace(/\u201c[^\u201d\n]*\u201d/g, ' ')
+      .replace(/"[^"\n]*"/g, ' ')
+      .replace(/\uff08[^\uff09\n]*\uff09/g, ' ')
+      .replace(/\([^)\n]*\)/g, ' ');
+    if (out === before) break;
+  }
+  return out;
+}
+
+/**
+ * Count bare command lines with quoted and parenthesised passages left out.
+ *
+ * Measured on this machine's session library, the whole-block count flagged 144 blocks and the strict
+ * run flagged 60; the 84 the run dropped included real spirals whose bare lines had long fragments
+ * between them, so the count of the stripped text is what the notice now uses.
+ * @param {string} text - the thinking text.
+ * @returns {number} how many bare command lines remain after the quotations are removed.
+ */
+export function countTicksWithoutQuotes(text) {
+  return countTickSentences(stripQuoted(text));
+}
+
+/**
  * Find the newest authored message whose thinking is made of bare commands.
  *
  * Only the newest reply is looked at, for the same reason the symbol check does: an older block was
@@ -1496,9 +1534,9 @@ export function findThinkingTicks(messages) {
       if (kind !== 'thinking' && kind !== 'reasoning') continue;
       const text = typeof part.text === 'string' ? part.text : (typeof part.content === 'string' ? part.content : '');
       if (text === '') continue;
-      const run = tickRunLength(text);
-      if (run > best) {
-        best = run;
+      const count = countTicksWithoutQuotes(text);
+      if (count > best) {
+        best = count;
         head = text.replace(/\s+/g, ' ').trim().slice(0, TICK_HEAD_CHARS);
       }
     }
