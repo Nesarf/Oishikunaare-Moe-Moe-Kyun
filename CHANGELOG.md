@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.55.4 - 2026-10-22
+
+- **The thinking-habit floor drops from five to three.** Three bare command lines already read as a
+  passage stuck on the same order, and five left the shorter spirals in place. `ticksFloor` still
+  moves it, and `ticksCheckMax` (default 2) still caps the notices per session.
+
 ## 0.55.3 - 2026-10-22
 
 - **The thinking-habit count strips quotations before it counts.** A run of bare commands breaks on a

@@ -695,38 +695,38 @@ check('the thinking-habit notice names the shape and never a banned glyph', () =
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
 });
 
-check('the hook reminds after five bare commands, once per block, within its budget', async () => {
+check('the hook reminds after three bare commands, once per block, within its budget', async () => {
   const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
   const assistant = (id, count) => ({
     id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' },
     content: [{ type: 'thinking', text: block(count) }, { type: 'text', text: 'checked the port.' }],
   });
   const hook = mod.makeSelfCheckHook({
-    max: 3, ticks: true, ticksFloor: 5, ticksMax: 2, emoji: false, kaomoji: false,
+    max: 3, ticks: true, ticksMax: 2, emoji: false, kaomoji: false,
     resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
   });
   const step = (messages, sid) => hook({ agent: { session: { id: sid } }, messages }, async () => ({ kind: 'enter', messages }));
   const has = (result) => result.messages.some((message) => (message.content?.[0]?.text ?? '').includes('THINKING HABIT'));
 
-  const five = await step([assistant('b1', 5)], 'tick1');
-  assert.ok(has(five), 'five bare commands earn one notice');
-  assert.equal(five.messages.length, 2, 'and it sits in front of the next step');
-  const again = await step([assistant('b1', 5)], 'tick1');
+  const three = await step([assistant('b1', 3)], 'tick1');
+  assert.ok(has(three), 'three bare commands earn one notice');
+  assert.equal(three.messages.length, 2, 'and it sits in front of the next step');
+  const again = await step([assistant('b1', 3)], 'tick1');
   assert.equal(has(again), false, 'the same block is not judged twice');
 
-  const four = await step([assistant('b2', 4)], 'tick2');
-  assert.equal(has(four), false, 'four stays under the floor');
+  const two = await step([assistant('b2', 2)], 'tick2');
+  assert.equal(has(two), false, 'two stays under the floor');
 
-  const second = await step([assistant('b3', 5)], 'tick1');
+  const second = await step([assistant('b3', 3)], 'tick1');
   assert.ok(has(second), 'a new block earns the second notice');
-  const third = await step([assistant('b4', 5)], 'tick1');
+  const third = await step([assistant('b4', 3)], 'tick1');
   assert.equal(has(third), false, 'and the budget stops the third');
 
   const off = mod.makeSelfCheckHook({
     max: 3, ticks: false, emoji: false, kaomoji: false,
     resolve: () => ({ enabled: true, locale: 'en', judge: { mode: 'deny' } }),
   });
-  const quietMessages = [assistant('b5', 6)];
+  const quietMessages = [assistant('b5', 4)];
   const quiet = await off({ agent: { session: { id: 'tick3' } }, messages: quietMessages }, async () => ({ kind: 'enter', messages: quietMessages }));
   assert.equal(has(quiet), false, 'ticksCheck:false means silence about the habit');
 });

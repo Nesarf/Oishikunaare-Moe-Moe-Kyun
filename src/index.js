@@ -2928,7 +2928,7 @@ export function makeSelfCheckHook(options) {
       // count at which the repetition reads as a tic rather than as one terse step.
       if (options.ticks) {
         const ticks = findThinkingTicks(messages);
-        const floor = Number.isFinite(options.ticksFloor) && options.ticksFloor > 1 ? Math.floor(options.ticksFloor) : 5;
+        const floor = Number.isFinite(options.ticksFloor) && options.ticksFloor > 1 ? Math.floor(options.ticksFloor) : 3;
         if (ticks !== null && ticks.count >= floor && !notified.has(ticks.key)) {
           notified.add(ticks.key);
           const used = tickCounts.get(sessionId) ?? 0;
@@ -3300,10 +3300,10 @@ export function apply(ctx, config) {
       kaomoji: initial.kaomojiCheck !== false,
       kaomojiFloor: typeof initial.kaomojiFloor === 'number' ? initial.kaomojiFloor : 3,
       kaomojiMax: typeof initial.kaomojiCheckMax === 'number' ? initial.kaomojiCheckMax : 5,
-      // The thinking habit: bare one-word commands repeated in a block. Five is the floor named for it;
-      // `ticksCheck: false` turns the notice off and `ticksCheckMax` caps the notices per session.
+      // The thinking habit: bare one-word commands repeated in a block. Three is the floor named for
+      // it; `ticksCheck: false` turns the notice off and `ticksCheckMax` caps the notices per session.
       ticks: initial.ticksCheck !== false,
-      ticksFloor: typeof initial.ticksFloor === 'number' ? initial.ticksFloor : 5,
+      ticksFloor: typeof initial.ticksFloor === 'number' ? initial.ticksFloor : 3,
       ticksMax: typeof initial.ticksCheckMax === 'number' ? initial.ticksCheckMax : 2,
       emoji: initial.emojiCheck !== false,
       emojiMax: typeof initial.emojiCheckMax === 'number' ? initial.emojiCheckMax : 2,
