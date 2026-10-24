@@ -664,6 +664,7 @@ check('the bare-command counter reads only lines that say nothing', () => {
   assert.equal(mod.countTickSentences(Array.from({ length: 4 }, () => tick).join('\n')), 4, 'four bare lines');
   assert.equal(mod.countTickSentences('\u65f6\u95f4\uff1a\u5feb\u3002'), 0, 'a line with content is not a tick');
   assert.equal(mod.countTickSentences(tick + '\u5199\u3002\u518d\u770b\u3002'), 3, 'one line can carry three');
+  assert.equal(mod.countTickSentences('\u597d\u3002\n\u5feb\u3002\n\u7b80\u77ed\u3002\n\u884c\u3002\n\u53ef\u4ee5\u3002'), 5, 'good, fast, brief, fine and okay count too');
   assert.equal(mod.countTickSentences(''), 0, 'empty text counts nothing');
 });
 

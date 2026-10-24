@@ -1407,6 +1407,9 @@ export function findBannedInToolCalls(messages, judgeOptions = {}) {
 const TICK_COMMANDS = new Set([
   '\u505a', '\u5199', '\u6539', '\u770b', '\u518d\u770b', '\u67e5', '\u8dd1',
   '\u8bd5', '\u8bfb', '\u627e', '\u60f3', '\u9a8c', '\u6d4b',
+  // The same nudge in a different register: not a verb, still one word standing where a decision
+  // should be. "time: fast." was the sample that named them.
+  '\u597d', '\u5feb', '\u7b80\u77ed', '\u884c', '\u53ef\u4ee5',
 ]);
 
 /**

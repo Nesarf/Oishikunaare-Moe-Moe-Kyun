@@ -343,9 +343,9 @@ required - with no file at all the rules above are injected in English.
   characters or code points the allow-list should also accept.
 - `ticksCheck` (default true), `ticksFloor` (default 3), `ticksWindow` (default 10) and
   `ticksCheckMax` (default 2) control the thinking-habit notice: three or more bare one-word command
-  lines ("do.", "write.", "look.") inside any ten consecutive paragraphs is answered once on the next
-  step. Quoted and parenthesised passages are stripped before the count, so a quotation is not read
-  as an order.
+  lines ("do.", "write.", "look.", "good.", "fast.", "brief.") inside any ten consecutive paragraphs
+  is answered once on the next step. Quoted and parenthesised passages are stripped before the
+  count, so a quotation is not read as an order.
 
 ### The kaomoji library
 

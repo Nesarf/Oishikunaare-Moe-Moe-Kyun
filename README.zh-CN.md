@@ -286,7 +286,7 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
   其余放行。`allowExtra` 用来把字符或码位加进允许列表。
 - `ticksCheck`（默认开）、`ticksFloor`（默认 3）、`ticksWindow`（默认 10）与 `ticksCheckMax`（默认 2）
   控制思考习惯提醒：去掉引号与括号内的文字后，任意连续 10 个段落里出现 3 次以上「做。」「写。」
-  「再看。」这类单字命令句时，下一次回复会得到一次提醒。引用别人的话不算。
+  「再看。」「好。」「快。」「简短。」这类单字命令句时，下一次回复会得到一次提醒。引用别人的话不算。
 
 ### 颜文字库
 

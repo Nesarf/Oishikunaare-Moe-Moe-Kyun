@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.55.6 - 2026-10-22
+
+- **The command vocabulary grows beyond verbs.** "good.", "fast.", "brief.", "fine." and "okay." now
+  count as bare commands too: they are the same one-word nudge in a different register. The sample
+  that named them read "time: fast." between orders. The floor and the window are unchanged.
+
 ## 0.55.5 - 2026-10-22
 
 - **The thinking-habit floor is now measured inside a window.** Three bare command lines within any
