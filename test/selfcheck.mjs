@@ -695,6 +695,15 @@ check('the thinking-habit notice names the shape and never a banned glyph', () =
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
 });
 
+check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
+  const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
+  const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);
+  const far = '\u8dd1\u3002\n\n' + filler(10) + '\n\n\u505a\u3002\n\n\u5199\u3002';
+  assert.equal(mod.maxTicksInWindow(close), 3, 'three orders inside ten paragraphs');
+  assert.ok(mod.maxTicksInWindow(far) < 3, 'orders scattered beyond the window do not sum');
+  assert.equal(mod.maxTicksInWindow(close, 3), 3, 'a window of three sees all three');
+});
+
 check('the hook reminds after three bare commands, once per block, within its budget', async () => {
   const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
   const assistant = (id, count) => ({

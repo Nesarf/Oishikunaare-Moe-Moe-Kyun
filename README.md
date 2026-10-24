@@ -341,10 +341,11 @@ required - with no file at all the rules above are injected in English.
 - `selfCheckMode`: `"allow"` (default) permits only plainly-textual blocks and refuses everything
   else; `"deny"` names the judgement-mark family and lets the rest through. `allowExtra` names
   characters or code points the allow-list should also accept.
-- `ticksCheck` (default true), `ticksFloor` (default 3) and `ticksCheckMax` (default 2) control the
-  thinking-habit notice: three or more bare one-word command lines ("do.", "write.", "look.") in one
-  thinking block is answered once on the next step. Quoted and parenthesised passages are stripped
-  before the count, so a quotation is not read as an order.
+- `ticksCheck` (default true), `ticksFloor` (default 3), `ticksWindow` (default 10) and
+  `ticksCheckMax` (default 2) control the thinking-habit notice: three or more bare one-word command
+  lines ("do.", "write.", "look.") inside any ten consecutive paragraphs is answered once on the next
+  step. Quoted and parenthesised passages are stripped before the count, so a quotation is not read
+  as an order.
 
 ### The kaomoji library
 

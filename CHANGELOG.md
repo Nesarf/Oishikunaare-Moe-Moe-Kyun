@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.55.5 - 2026-10-22
+
+- **The thinking-habit floor is now measured inside a window.** Three bare command lines within any
+  ten consecutive paragraphs (blank lines separate paragraphs) is what fires; the same three spread
+  across a long block no longer do. Quoted and parenthesised passages are still stripped first.
+  `ticksWindow` (default 10) moves the window, `ticksFloor` (default 3) the floor.
+
 ## 0.55.4 - 2026-10-22
 
 - **The thinking-habit floor drops from five to three.** Three bare command lines already read as a
