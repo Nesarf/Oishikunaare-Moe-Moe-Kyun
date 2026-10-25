@@ -34,6 +34,7 @@ import { readTranscript } from '../src/transcripts.mjs';
 import { audit, partsFromMessages } from '../src/audit.mjs';
 import { upsertBlock, wireTargets } from '../src/wire.mjs';
 import { accentFor, briefRules, presetRootOf, readAccentTable, readPresetPersonaFromDisk } from '../src/index.js';
+import { applyExpand, clientCandidate, guessDshRoot, revertExpand } from '../src/client-patch.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const USAGE = `mmk - moe house rules, harness free
@@ -51,6 +52,7 @@ commands
   persona               read one preset's persona off the disk, and what MMK would choose from it
   review                judge a transcript's newest authored message
   audit                 count what a whole transcript carries, per channel
+  expand                patch the installed DSH transcript so every disclosure starts open
 
 common options
   --locale <zh|ja|en>   rules and notice language (default: from config, else en)
@@ -84,6 +86,11 @@ voice / accent / persona
 audit
   --transcript <path>   measure this transcript (--format as for review)
   the totals name prose, thinking and tool arguments separately, and exit 3 means glyphs were found
+
+expand
+  --dsh <path>          the DeepSeek Harness package root (default: guessed)
+  --revert              put the original client back
+  the patch targets DeepSeek Harness; a DSH upgrade replaces the package, so run it again
 `;
 
 const argv = process.argv.slice(2);
@@ -363,6 +370,29 @@ if (command === 'audit') {
     if (codes.length > 0) out(`       code points seen: ${codes.join(', ')}`);
   }
   process.exit(carried > 0 ? 3 : 0);
+}
+
+if (command === 'expand') {
+  // The transcript's disclosures are React-local state inside another package, so the only lever is
+  // the installed bundle: this rewrites the two defaults, keeps the original beside it, and reverts
+  // from that copy. It is DeepSeek Harness-specific on purpose and says so.
+  const root = value('dsh') ?? guessDshRoot();
+  if (root === undefined || root === null) fail('expand found no DSH installation; pass --dsh <path to the DeepSeek Harness package>');
+  const file = clientCandidate(root);
+  if (!fs.existsSync(file)) fail(`expand found no chat client at ${file}`);
+  const result = has('revert') ? revertExpand(file) : applyExpand(file);
+  const failed = result.failed === true;
+  if (has('json')) json({ command: has('revert') ? 'revert' : 'apply', file, ...result });
+  else {
+    out(`file: ${file}`);
+    if (failed) out(has('revert') ? 'revert failed: no backup beside the client' : 'patch failed: this client does not carry the expected defaults');
+    else if (result.already) out('already open by default: nothing to change');
+    else if (result.reverted) out('reverted: the original client is back');
+    else out('patched: disclosures now start open');
+    if (result.backup) out(`backup: ${result.backup}`);
+    if (!failed && !has('revert')) out('refresh the browser; a DSH upgrade replaces the package, so run this again');
+  }
+  process.exit(failed ? 2 : 0);
 }
 
 fail(`unknown command "${command}" (try --help)`);

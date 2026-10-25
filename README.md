@@ -563,6 +563,20 @@ character, so the audit and the hook describe one system.
   real steps are driven through. It is what proves a breach on a step turns into a notice reaching
   the model - against the built artifact, so it proves the build too. Both run in `npm run verify`.
 
+## Expanding the DSH transcript
+
+The transcript's disclosures - assistant reasoning, process groups, multi-line command cards - are
+React-local state inside `dsh-client-ui-chat`, so a host-side plugin cannot open them. `mmk expand`
+rewrites the two defaults in the installed bundle instead, keeps the original beside it, and can put
+it back:
+
+    mmk expand --dsh <path to the @deepseek-ai/dsh package>
+    mmk expand --dsh <path> --revert
+
+Without `--dsh` it guesses (APPDATA/npm, then `./node_modules`). The command is DeepSeek
+Harness-specific on purpose: on a host without that package it names the path it looked for. A DSH
+upgrade replaces the package, so run the command again after upgrading, and refresh the browser.
+
 ## Notes
 
 - Windows and Linux take the same path: the plugin touches nothing platform-specific.

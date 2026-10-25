@@ -1,6 +1,18 @@
 # Changelog
 
-## 0.55.6 - 2026-10-22
+## 0.56.0 - 2026-10-25
+
+- **`mmk expand` opens the transcript by default.** The transcript's disclosures (assistant reasoning,
+  process groups, multi-line command cards) are React-local state inside `dsh-client-ui-chat`; a
+  host-side plugin cannot change another package's component state, so the command rewrites the two
+  defaults in the installed bundle, keeps the original beside it as `client.js.orig`, and reverts from
+  that copy. `--dsh <path>` names the package root; without it the common layouts are tried. A DSH
+  upgrade replaces the package, so the command is re-run after upgrading.
+- **The expand path is tested.** `test/client-patch.mjs` builds a fixture from the exact strings,
+  patches it, checks the idempotent second run, reverts, and checks that a missing backup fails rather
+  than guessing.
+
+## 0.55.6 - 2026-10-25
 
 - **The command vocabulary grows beyond verbs.** "good.", "fast.", "brief.", "fine." and "okay." now
   count as bare commands too: they are the same one-word nudge in a different register. The sample
