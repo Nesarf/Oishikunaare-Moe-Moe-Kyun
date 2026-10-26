@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.56.1 - 2026-10-25
+
+- **The thinking-habit count covers the whole block again.** The ten-paragraph window measured the
+  layout rather than the habit: a long block of short lines split on blank lines made the window miss
+  the passages it exists to notice. One thinking block is now one passage, counted with quoted and
+  parenthesised passages stripped, and the floor stays three. `ticksWindow` is gone from the
+  configuration; `countTicksWithoutQuotes` and `maxTicksInWindow` both remain exported for measuring.
+
 ## 0.56.0 - 2026-10-25
 
 - **`mmk expand` opens the transcript by default.** The transcript's disclosures (assistant reasoning,

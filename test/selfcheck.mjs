@@ -705,6 +705,14 @@ check('the thinking-habit window counts nearby paragraphs, not the whole block',
   assert.equal(mod.maxTicksInWindow(close, 3), 3, 'a window of three sees all three');
 });
 
+check('the notice counts the whole thinking block, not a paragraph window', () => {
+  const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
+  const far = '\u8dd1\u3002\n\n' + filler(10) + '\n\n\u505a\u3002\n\n\u5199\u3002';
+  assert.ok(mod.countTicksWithoutQuotes(far) >= 3, 'three orders in one block count even when spread');
+  const found = mod.findThinkingTicks([{ id: 'w', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: far }] }]);
+  assert.ok(found && found.count >= 3, 'and the finding reports them');
+});
+
 check('the hook reminds after three bare commands, once per block, within its budget', async () => {
   const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
   const assistant = (id, count) => ({
