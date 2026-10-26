@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.58.1 - 2026-10-26
+
+- **The rule text now asks for the medium-long range where a chain of reasoning is carried.** Whole
+  sentences joined into a paragraph, not one claim per line: fragments read as urgency, a paragraph
+  reads as thought. Both the English and the Chinese rule tables carry it, so the generated rules JSON
+  ships the same line.
+
 ## 0.58.0 - 2026-10-26
 
 - **A standing reminder rides every thinking step.** When the habitual-command check finds nothing to
