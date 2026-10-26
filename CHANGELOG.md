@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.58.0 - 2026-10-26
+
+- **A standing reminder rides every thinking step.** When the habitual-command check finds nothing to
+  report, the step still carries one short line: write the decision, not a bare command, and a
+  one-line fragment is noise rather than thinking. The longer notice still fires when a block does
+  contain the pattern; the reminder is the guard in between. It costs one line per step and can be
+  turned off with `ticksCheck: false`.
+
 ## 0.57.0 - 2026-10-26
 
 - **The moe layer names the attributes a persona already carries.** `rules/attributes/zh.json` ships 140

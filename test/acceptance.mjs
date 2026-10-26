@@ -158,7 +158,7 @@ check('a real step carrying a breach gets a notice in front of the messages', as
   const messages = [assistant('m1', [{ type: 'text', text: `all good ${CHECK}` }])];
   // The subject here is the symbol notice; the kaomoji rule has its own case, and a one-sentence
   // reply with no face would otherwise add a second notice to this step.
-  const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false });
+  const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false, ticksCheck: false });
   const notice = noticeOf(decision);
   assert.ok(notice, 'a notice should reach the model');
   assert.equal(decision.messages[0], notice, 'and it should be first');
@@ -209,7 +209,7 @@ check('a clean step is left exactly as it was', async () => {
     assistant('m1', [{ type: 'text', text: 'pass / fail, no marks here' }]),
     assistant('m2', [{ type: 'thinking', text: 'nothing to report' }]),
   ];
-  const { decision } = await runStep(host, messages, { locale: 'zh' });
+  const { decision } = await runStep(host, messages, { locale: 'zh', ticksCheck: false });
   assert.equal(noticeOf(decision), undefined);
   assert.deepEqual(decision.messages, messages);
 });
@@ -314,7 +314,7 @@ check('the kaomoji reminder reaches the model on a real step', async () => {
   const host = makeHost();
   const bare = '\u7B2C\u4E00\u53E5\u3002\u7B2C\u4E8C\u53E5\u3002\u7B2C\u4E09\u53E5\u3002\u7B2C\u56DB\u53E5\u3002\u7B2C\u4E94\u53E5\u3002\u7B2C\u516D\u53E5\u3002';
   const messages = [assistant('m1', [{ type: 'text', text: bare }])];
-  const { decision } = await runStep(host, messages, { locale: 'en' });
+  const { decision } = await runStep(host, messages, { locale: 'en', ticksCheck: false });
   const kaomojiNotice = (decision?.messages ?? []).find((m) => m?.content?.[0]?.text?.includes('KAOMOJI HABIT'));
   assert.ok(kaomojiNotice, 'a shortage should produce its own notice');
   assert.equal(decision.messages[0], kaomojiNotice, 'and reach the model ahead of the conversation');

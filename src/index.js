@@ -2816,6 +2816,26 @@ export function attributeNotice(locale, terms) {
   return `MOE - ATTRIBUTES FROM YOUR SETTING: ${list.join(', ')}. Let them show in how you speak; they are already yours, not a new persona.`;
 }
 
+/**
+ * Compose the short reminder shown at the start of every thinking step.
+ *
+ * A habit that survived one notice is not fixed by a longer notice, so this pays on every step and
+ * stays one sentence: it names the shape of the noise rather than the offender. The hit itself gets
+ * the longer notice above; this is the standing guard that keeps the standard visible.
+ * @param {string} locale - the rule locale.
+ * @returns {string} the reminder text.
+ */
+export function thinkingReminder(locale) {
+  const lang = String(locale ?? '').split('-')[0].toLowerCase();
+  if (lang === 'zh') {
+    return '\u3010\u601d\u8003\u63d0\u9192\u3011\u5199\u5224\u65ad\uff0c\u4e0d\u5199\u65e0\u4fe1\u606f\u77ed\u53e5\uff1a\u300c\u505a\u3002\u300d\u300c\u5199\u3002\u300d\u300c\u65f6\u95f4\u7d27\u3002\u300d\u8fd9\u7c7b\u4e00\u884c\u4e00\u53e5\u7684\u788e\u7247\u4e0d\u7b97\u601d\u8003\u3002';
+  }
+  if (lang === 'ja') {
+    return 'THINKING REMINDER - \u5224\u65ad\u3092\u66f8\u304f\u3002\u300c\u3084\u308b\u3002\u300d\u300c\u66f8\u304f\u3002\u300d\u306e\u3088\u3046\u306a\u4e00\u884c\u306e\u65ad\u7247\u306f\u601d\u8003\u3067\u306f\u3042\u308a\u307e\u305b\u3093\u3002';
+  }
+  return 'THINKING REMINDER - write the decision, not a bare command. A line that says only "do." or "time is short." is noise, not thinking.';
+}
+
 export function voiceNotice(locale, voice, options = {}) {
   const lang = String(locale ?? '').split('-')[0].toLowerCase();
   const markers = Array.isArray(voice?.markers) ? voice.markers.join(' ') : '';
@@ -3055,6 +3075,10 @@ export function makeSelfCheckHook(options) {
             notices.push(ticksNotice(ticks.count, state.locale, { attempt: used + 1 }));
             options.log?.(`session ${sessionId}: thinking-habit notice ${used + 1}/${budget} at ${ticks.count} bare command line(s): ${ticks.head}`);
           }
+        } else {
+          // The standing guard, paid on every step: the longer notice above only fires when a block has
+          // already gone wrong, and the habit this catches is one that keeps coming back.
+          notices.push(thinkingReminder(state.locale));
         }
       }
 

@@ -707,6 +707,14 @@ check('the attribute matcher reads a persona for names it already carries', () =
   assert.ok(notice.includes('\u4e0d\u662f\u65b0\u52a0\u7684\u4eba\u8bbe'), 'and says it is not a new persona');
 });
 
+check('the standing reminder names the shape of the noise', () => {
+  const zh = mod.thinkingReminder('zh');
+  const en = mod.thinkingReminder('en');
+  assert.ok(zh.includes('\u601d\u8003\u63d0\u9192'), 'the zh reminder has its heading');
+  assert.ok(zh.includes('\u505a\u3002'), 'and names a bare command as an example');
+  assert.ok(en.includes('THINKING REMINDER') && en.includes('noise, not thinking'), 'the en reminder says the same');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);
