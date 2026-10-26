@@ -74,7 +74,7 @@ Four rules ship today.
    writer asking for lines, which is honoured. Decoration is carved out - a heart, a note, a star, a
    sparkle, a flower - so the ban admits exactly the code points the loaded palette uses.
 3. **Kaomoji habit** - Japanese-style emoticons in conversation and in the agent's own thinking, at a
-   floor rather than as garnish: at least one per three sentences, and any reply of two sentences or
+   floor rather than as garnish: at least one per the configured floor (three by default), and any reply of two sentences or
    more carries one. Aim above the floor. Faces rotate rather than repeat, and places that take none
    take none - a stack trace, a table of numbers, a serious conclusion. The self-check counts the
    **reply text** only, and the notice says so in one clause: the rule asks for the habit in thinking
@@ -536,7 +536,8 @@ of the newest reply and reminds when the floor is missed, or when the same face 
   full of tables does not become unwinnable by arithmetic.
 - The wording is softer than the symbol notice, because a shortage is a slipped habit and not a breach.
 - `kaomojiCheck: false` turns it off; `kaomojiCheckMax` (default 1) sets the reminder budget;
-  `kaomojiFloor` (default 5) is the sentences per face.
+  `kaomojiFloor` (default 3) is the sentences per face, and the rule text and the notice both quote
+  whatever number the configuration holds.
 - The thinking-language notice is the same shape - soft, once per drift, budgeted: `languageCheck: false`
   turns it off and `languageCheckMax` (default 3) is the per-session budget. It only speaks when both
   sides are worth a claim: at least 120 letters of thinking, and a reader who mostly writes Chinese or

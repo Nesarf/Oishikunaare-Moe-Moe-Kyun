@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.58.2 - 2026-10-26
+
+- **The kaomoji floor is now one number, quoted everywhere it appears.** The rule text carried a
+  literal "per three sentences" while the judge read `kaomojiFloor` (five on this machine), so the
+  model was measured against a number the rule never mentioned. The rule text now carries
+  `{KAOMOJI_FLOOR}` and the resolver fills in the configured value; the notice interpolates
+  `verdict.floor`; the README states the real default (3) instead of 5.
+
 ## 0.58.1 - 2026-10-26
 
 - **The rule text now asks for the medium-long range where a chain of reasoning is carried.** Whole
