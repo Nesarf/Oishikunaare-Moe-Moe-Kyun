@@ -176,6 +176,17 @@ messages, user-visible strings, test failure text. Where it does not: code itsel
 arguments, API names, schema fields, data keys), and anywhere beside an error, a stack trace, a serious
 conclusion, a security warning, machine output, or something a reader will execute directly.
 
+### The attribute table
+
+`rules/attributes/<locale>.json` holds the vocabulary of moe attributes: 140 groups, 2829 names,
+extracted from the Chinese wiki's moe-attribute template. On the first step of a session that has a
+persona, the plugin matches those names against the persona text (longest first, at least two
+characters, at most eight) and, when anything matches, adds one notice naming them.
+
+The notice says what the match is not: a second persona. A matched word is something the setting
+already says, so the ask is to lean into it rather than to perform a label. `rules/culture/<locale>.json`
+carries 500 ACG culture terms (34 with a gloss) as reference data; it is read by nobody yet.
+
 ### How the voice is chosen, and where the preset comes in
 
 Three layers, highest first, and the log line always says which one answered:

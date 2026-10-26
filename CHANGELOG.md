@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.57.0 - 2026-10-26
+
+- **The moe layer names the attributes a persona already carries.** `rules/attributes/zh.json` ships 140
+  groups and 2829 attribute names extracted from the Chinese wiki's moe-attribute template. On the
+  first step of a session with a persona, the plugin matches the persona text against that vocabulary
+  (longest first, two characters minimum, eight at most) and adds one notice naming the hits - the
+  wording says they are already in the setting rather than a new persona. The table is data, so it can
+  be extended without touching code.
+- **`rules/culture/zh.json` carries 500 ACG culture terms** (34 with a gloss) as reference data. It is
+  not injected yet.
+- **The matcher is tested**: `matchMoeTerms` hits longest-first, ignores an empty persona, and the
+  notice says what the match is not.
+
 ## 0.56.1 - 2026-10-25
 
 - **The thinking-habit count covers the whole block again.** The ten-paragraph window measured the

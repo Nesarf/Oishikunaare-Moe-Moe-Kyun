@@ -696,6 +696,17 @@ check('the thinking-habit notice names the shape and never a banned glyph', () =
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'a notice never carries a banned glyph');
 });
 
+check('the attribute matcher reads a persona for names it already carries', () => {
+  const names = ['\u50b2\u5a07', '\u5929\u7136\u5446', '\u8179\u9ed1', '\u4e09\u65e0'];
+  const persona = '\u5979\u662f\u4e2a\u50b2\u5a07\u7684\u5b69\u5b50\uff0c\u6709\u65f6\u5929\u7136\u5446\u3002';
+  assert.deepEqual(mod.matchMoeTerms(persona, names), ['\u5929\u7136\u5446', '\u50b2\u5a07'], 'hits come longest first');
+  assert.deepEqual(mod.matchMoeTerms('', names), [], 'empty persona matches nothing');
+  assert.deepEqual(mod.matchMoeTerms('nothing here', names), [], 'a persona without the words matches nothing');
+  const notice = mod.attributeNotice('zh', ['\u50b2\u5a07', '\u8179\u9ed1']);
+  assert.ok(notice.includes('\u50b2\u5a07'), 'the notice names the attribute');
+  assert.ok(notice.includes('\u4e0d\u662f\u65b0\u52a0\u7684\u4eba\u8bbe'), 'and says it is not a new persona');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);
