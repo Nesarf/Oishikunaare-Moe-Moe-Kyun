@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.60.0 - 2026-10-27
+
+- **The reminder table grew to 504 lines, and the draw is random.** A hundred lines is still a loop a
+  long session notices; each line is now a whole thought - a diagnosis and what to write instead -
+  and the standing reminder picks one at random, never the same one twice in a row. The file is
+  checked for size, uniqueness, the heading, and the wrap-around.
+
 ## 0.59.0 - 2026-10-27
 
 - **The standing reminder rotates through 100 lines.** One sentence on every step is read as

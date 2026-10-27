@@ -716,13 +716,14 @@ check('the standing reminder names the shape of the noise', () => {
   assert.ok(en.includes('THINKING REMINDER') && en.includes('noise, not thinking'), 'the en reminder says the same');
 });
 
-check('the standing reminder rotates through the shipped table', () => {
+check('the standing reminder draws from a table of at least 500 lines', () => {
   const dir = path.join(ROOT, 'rules', 'reminders');
   const lines = mod.readReminderLines(dir, 'zh');
-  assert.ok(lines.length >= 100, `the table should ship at least 100 lines, found ${lines.length}`);
+  assert.ok(lines.length >= 500, `the table should ship at least 500 lines, found ${lines.length}`);
+  assert.equal(new Set(lines).size, lines.length, 'and none of them repeat');
   const first = mod.thinkingReminder('zh', 0, lines);
   const second = mod.thinkingReminder('zh', 1, lines);
-  assert.notEqual(first, second, 'two steps should not read the same sentence');
+  assert.notEqual(first, second, 'two different indexes read two different sentences');
   assert.ok(first.startsWith('\u3010\u601d\u8003\u63d0\u9192\u3011'), 'the heading stays');
   assert.equal(mod.thinkingReminder('zh', lines.length, lines), first, 'the table wraps around');
 });
