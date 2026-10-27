@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.59.0 - 2026-10-27
+
+- **The standing reminder rotates through 100 lines.** One sentence on every step is read as
+  background noise by the tenth turn - the reminder fatigue the plugin exists to prevent. The table at
+  `rules/reminders/zh.json` now ships 100 whole thoughts, one per step, wrapping around; a locale
+  without a table keeps the built-in line. `thinkingReminder` gained an index and an optional table,
+  and the table is checked (100 lines, consecutive steps differ, the table wraps).
+
 ## 0.58.3 - 2026-10-27
 
 - **The habit scan reads the whole conversation.** It used to look only at the newest reply, so a
