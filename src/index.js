@@ -1561,13 +1561,14 @@ export function maxTicksInWindow(text, window = TICK_WINDOW) {
  */
 export function findThinkingTicks(messages) {
   if (!Array.isArray(messages)) return null;
-  for (let index = messages.length - 1; index >= 0; index -= 1) {
-    const message = messages[index];
+  // The whole conversation, not its newest reply: a spiral that happened twenty messages ago is still
+  // the habit this check exists for, and reading only the tail made the check miss it every time. The
+  // notice budget and the key set keep one block from being reported twice.
+  let best = null;
+  for (const message of messages) {
     if (!message || typeof message !== 'object') continue;
     if (!isAuthoredMessage(message)) continue;
-    if (!Array.isArray(message.content)) return null;
-    let best = 0;
-    let head = '';
+    if (!Array.isArray(message.content)) continue;
     for (const part of message.content) {
       if (!part || typeof part !== 'object') continue;
       const kind = typeof part.type === 'string' ? part.type : '';
@@ -1575,16 +1576,17 @@ export function findThinkingTicks(messages) {
       const text = typeof part.text === 'string' ? part.text : (typeof part.content === 'string' ? part.content : '');
       if (text === '') continue;
       const count = countTicksWithoutQuotes(text);
-      if (count > best) {
-        best = count;
-        head = text.replace(/\s+/g, ' ').trim().slice(0, TICK_HEAD_CHARS);
-      }
+      if (count === 0) continue;
+      if (best !== null && count <= best.count) continue;
+      const id = typeof message.id === 'string' ? message.id : 'msg';
+      best = {
+        count,
+        key: `${id}:ticks:${count}`,
+        head: text.replace(/\s+/g, ' ').trim().slice(0, TICK_HEAD_CHARS),
+      };
     }
-    if (best === 0) return null;
-    const id = typeof message.id === 'string' ? message.id : 'msg';
-    return { count: best, key: `${id}:ticks:${best}`, head };
   }
-  return null;
+  return best;
 }
 
 /**
@@ -2943,6 +2945,9 @@ export function noticeMessage(text) {
  */
 const OBSERVE_WINDOW = 60;
 
+/** How far back the habit scan reads the whole session; the cap keeps a very long session cheap. */
+const TICK_SCAN_LIMIT = 2000;
+
 /**
  * The messages the self-check judges: the conversation, not this step's inbox.
  *
@@ -3071,7 +3076,12 @@ export function makeSelfCheckHook(options) {
       // moves nothing. One notice per offending block, and the budget is per session. The floor is the
       // count at which the repetition reads as a tic rather than as one terse step.
       if (options.ticks) {
-        const ticks = findThinkingTicks(messages);
+        // The whole conversation, not this step's window: a spiral twenty messages back is still the
+        // habit this guards, and reading only the tail missed it every time. Capped so a very long
+        // session does not pay a full scan on every step.
+        const full = typeof input?.agent?.session?.deriveMessages === 'function' ? input.agent.session.deriveMessages() : null;
+        const scan = Array.isArray(full) && full.length > 0 ? full.slice(-TICK_SCAN_LIMIT) : messages;
+        const ticks = findThinkingTicks(scan);
         const floor = Number.isFinite(options.ticksFloor) && options.ticksFloor > 1 ? Math.floor(options.ticksFloor) : 3;
         if (ticks !== null && ticks.count >= floor && !notified.has(ticks.key)) {
           notified.add(ticks.key);

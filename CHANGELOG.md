@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.58.3 - 2026-10-27
+
+- **The habit scan reads the whole conversation.** It used to look only at the newest reply, so a
+  dense block twenty messages back was never reported - measured on a real long session: no
+  thinking-habit notice in 1761 records while the habit was plainly there. The scan now walks every
+  authored thinking block in the session, capped at the last 2000 messages, and reports the worst one;
+  the per-session budget and the key set still keep one block from being told twice.
+
 ## 0.58.2 - 2026-10-26
 
 - **The kaomoji floor is now one number, quoted everywhere it appears.** The rule text carried a

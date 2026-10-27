@@ -733,6 +733,18 @@ check('the notice counts the whole thinking block, not a paragraph window', () =
   assert.ok(found && found.count >= 3, 'and the finding reports them');
 });
 
+check('the habit scan reads the whole conversation, not just its newest reply', () => {
+  const dense = Array.from({ length: 4 }, () => '\u505a\u3002').join('\n');
+  const history = [
+    { id: 'old', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: dense }] },
+    { id: 'new', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: 'now I check the port and decide.' }] },
+  ];
+  const found = mod.findThinkingTicks(history);
+  assert.ok(found, 'a dense block from earlier is still the habit');
+  assert.ok(found.count >= 3, 'and its count travels with it');
+  assert.deepEqual(mod.findThinkingTicks([history[1]]), null, 'a clean conversation reports nothing');
+});
+
 check('the hook reminds after three bare commands, once per block, within its budget', async () => {
   const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
   const assistant = (id, count) => ({
