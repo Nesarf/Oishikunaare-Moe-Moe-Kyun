@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.60.1 - 2026-10-28
+
+- **Two guards against the in-context habit.** A long conversation teaches its own style back: even
+  with the length rule in the prompt, a session full of one-line thinking keeps producing one-line
+  thinking. The rule text now says the short thinking already in the conversation is the old habit,
+  not an example, and each new passage starts from one complete judgement; the reminder table gained
+  21 lines that name that habit directly.
+
 ## 0.60.0 - 2026-10-27
 
 - **The reminder table grew to 504 lines, and the draw is random.** A hundred lines is still a loop a
