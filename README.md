@@ -274,6 +274,13 @@ of the reasoning channel in real transcripts, because prose in a prompt is not e
 baseline on the machine this was written on: 3.3% CJK against 96.7% Latin over 306 sessions and 52,376
 reasoning messages.
 
+`npm run bench:rules` measures that same channel against the rules themselves: how many reasoning blocks
+carry a banned judgement glyph, how dense that is per thousand characters, and how many blocks reach the
+bare-command floor. Baseline on this machine (the five largest sessions, 18,062 blocks): 40.8% of blocks
+carried at least one banned glyph at 0.31 per thousand characters, and 4.0% reached the floor of three
+bare commands. Run it before a rule change and after it on the same window - the number is the only
+evidence that the wording did anything.
+
 One rule separates the two halves, and it is not a style preference: **judging and sending are
 different jobs**. `src/portable.mjs` never writes anything - no message is appended, no transcript is
 edited, no file is created. An adapter that puts a notice into a conversation carries that risk

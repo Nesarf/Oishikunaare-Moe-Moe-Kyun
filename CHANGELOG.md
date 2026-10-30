@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.61.0 - 2026-10-29
+
+- **The thinking channel has a bench now.** `npm run bench:rules` reads real session artifacts through
+  the same reader the judges use and reports what the reasoning channel actually looks like: block
+  count, average length, the share carrying a banned judgement glyph, glyph density per thousand
+  characters, and the share at the bare-command floor. Baseline on this machine (the five largest
+  sessions, 18,062 blocks): 40.8% of blocks carried at least one banned glyph at 0.31 per thousand
+  characters, and 4.0% reached the floor of three bare commands. The point is a before/after number for
+  a wording change, not a score.
+
 ## 0.60.1 - 2026-10-28
 
 - **Two guards against the in-context habit.** A long conversation teaches its own style back: even
