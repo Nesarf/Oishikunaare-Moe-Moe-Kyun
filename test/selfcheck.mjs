@@ -1119,6 +1119,8 @@ check('the symbol ladder notice reports accumulation, not repetition', () => {
   assert.ok(zh.includes('2') && en.includes('ladder reminder 2'), 'and which step of the ladder this is');
   assert.ok(zh.includes(finding.glyphs[0]) && en.includes(finding.glyphs[0]), 'and name the code points');
   assert.ok(zh.length < 400 && en.length < 400, 'short enough that the extra reminder stays cheap');
+  assert.ok(zh.includes('\u4E3B\u8981\u6F0F\u70B9'), 'a block carrying the two commonest glyphs says so');
+  assert.ok(en.includes('main leak'), 'in both locales');
   for (const text of [zh, en]) assert.deepEqual(mod.offendingGlyphs(text), [], 'and carry no banned glyph themselves');
 });
 

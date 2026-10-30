@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.61.1 - 2026-10-29
+
+- **The symbol ladder names the two glyphs that carry most breaches.** The bench over 18,062 reasoning
+  blocks showed 40.8% carrying a banned glyph, and nine in ten of the hits were U+2713 or U+2717 - so
+  the leak is not the table, it is that habit. When either appears in a finding, the ladder notice now
+  says those two are the most frequent on this machine and are the main leak, instead of naming the code
+  points and leaving it there.
+
 ## 0.61.0 - 2026-10-29
 
 - **The thinking channel has a bench now.** `npm run bench:rules` reads real session artifacts through

@@ -2106,12 +2106,20 @@ export function symbolLadderNotice(finding, tally, tier, locale) {
     : locale === 'zh'
       ? `\uFF08${shown} \u7B49 ${list.length} \u4E2A\uFF09`
       : ` (${shown} and ${list.length - 4} more)`;
+  // The two glyphs that carry most of the breaches on this machine. Naming them turns a generic
+  // reminder into one that points at the actual habit, which is the only kind worth repeating.
+  const hot = list.filter((glyph) => glyph === 'U+2713' || glyph === 'U+2717');
+  const hotText = hot.length === 0
+    ? ''
+    : locale === 'zh'
+      ? '\u8FD9\u4E24\u4E2A\u7801\u4F4D\u662F\u8FD9\u53F0\u673A\u5668\u4E0A\u51FA\u73B0\u6700\u591A\u7684\u4E24\u4E2A\uFF0C\u5B83\u4EEC\u5C31\u662F\u4E3B\u8981\u6F0F\u70B9\u3002'
+      : ' Those two are the most frequent and the main leak.';
   if (locale === 'zh') {
-    return `\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u00B7\u7D2F\u8BA1\u3011\u8FD9\u4E00\u4F1A\u8BDD\u91CC\u8FD9\u7C7B\u5B57\u5F62\u7D2F\u8BA1\u5DF2\u51FA\u73B0 ${tally} \u4E2A\uFF0C\u73B0\u5728\u662F\u7B2C ${tier} \u6863\u63D0\u9192${named}\u3002\u63A5\u4E0B\u6765\u7684\u8F93\u51FA\u8BF7\u6539\u7528\u7EAF\u6587\u5B57\u8868\u8FBE\uFF08\u901A\u8FC7 / \u4E0D\u901A\u8FC7\u3001\u6210\u529F / \u5931\u8D25\uFF09\uFF0C\u601D\u8003\u91CC\u540C\u6837\u4E0D\u8981\u7528\uFF1B\u5DF2\u7ECF\u5199\u8FDB\u53BB\u7684\u6539\u4E0D\u4E86\uFF0C\u80FD\u6539\u7684\u662F\u63A5\u4E0B\u6765\u7684\u3002\u672C\u63D0\u9192\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
+    return `\u3010\u8F93\u51FA\u7B26\u53F7\u7EAA\u5F8B\u00B7\u7D2F\u8BA1\u3011\u8FD9\u4E00\u4F1A\u8BDD\u91CC\u8FD9\u7C7B\u5B57\u5F62\u7D2F\u8BA1\u5DF2\u51FA\u73B0 ${tally} \u4E2A\uFF0C\u73B0\u5728\u662F\u7B2C ${tier} \u6863\u63D0\u9192${named}\u3002${hotText}\u63A5\u4E0B\u6765\u7684\u8F93\u51FA\u8BF7\u6539\u7528\u7EAF\u6587\u5B57\u8868\u8FBE\uFF08\u901A\u8FC7 / \u4E0D\u901A\u8FC7\u3001\u6210\u529F / \u5931\u8D25\uFF09\uFF0C\u601D\u8003\u91CC\u540C\u6837\u4E0D\u8981\u7528\uFF1B\u5DF2\u7ECF\u5199\u8FDB\u53BB\u7684\u6539\u4E0D\u4E86\uFF0C\u80FD\u6539\u7684\u662F\u63A5\u4E0B\u6765\u7684\u3002\u672C\u63D0\u9192\u4E0D\u9700\u8981\u56DE\u5E94\u3002`;
   }
   return `OUTPUT SYMBOL DISCIPLINE - cumulative. This session has now carried ${tally} of these glyphs, and`
-    + ` this is ladder reminder ${tier}${named}. Write them as words from here on (pass / fail, works /`
-    + ' broken), in your thinking as well: what is already written stays, what comes next does not have to.'
+    + ` this is ladder reminder ${tier}${named}.${hotText} Write them as words from here on (pass / fail, works /`
+    + ' broken), in thinking too: what is written stays, what comes next need not.'
     + ' No reply to this reminder is needed.';
 }
 

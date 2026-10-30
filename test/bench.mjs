@@ -81,6 +81,7 @@ const files = collect(SESSIONS)
   .map((entry) => entry.file);
 
 const stats = { blocks: 0, chars: 0, withSymbols: 0, glyphHits: 0, withTicks: 0 };
+const glyphCounts = new Map();
 let read = 0;
 let failed = 0;
 
@@ -103,6 +104,7 @@ for (const file of files) {
     if (glyphs.length > 0) {
       stats.withSymbols += 1;
       stats.glyphHits += glyphs.length;
+      for (const glyph of glyphs) glyphCounts.set(glyph, (glyphCounts.get(glyph) ?? 0) + 1);
     }
     if (mod.countTicksWithoutQuotes(text) >= TICK_FLOOR) stats.withTicks += 1;
   }
@@ -120,6 +122,10 @@ const report = {
     share: Number(share(stats.withSymbols, stats.blocks).toFixed(4)),
     glyphs: stats.glyphHits,
     perKilo: stats.chars === 0 ? 0 : Number(((stats.glyphHits * 1000) / stats.chars).toFixed(2)),
+    top: [...glyphCounts.entries()]
+      .sort((left, right) => right[1] - left[1])
+      .slice(0, 10)
+      .map(([glyph, count]) => ({ glyph, count })),
   },
   ticks: {
     floor: TICK_FLOOR,
@@ -137,6 +143,7 @@ if (AS_JSON) {
     `${read}/${report.sessions.found} session(s) read, ${failed} unreadable`,
     `reasoning blocks: ${report.blocks}, average ${report.avgChars} chars`,
     `blocks with a banned glyph: ${report.symbols.blocks} (${pct(report.symbols.share)}), ${report.symbols.perKilo} per 1k chars`,
+    `top glyphs: ${report.symbols.top.map((entry) => `${entry.glyph} x${entry.count}`).join(', ') || 'none'}`,
     `blocks at the bare-command floor (${TICK_FLOOR}): ${report.ticks.blocks} (${pct(report.ticks.share)})`,
     '',
   ].join('\n'));
