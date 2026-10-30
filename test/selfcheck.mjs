@@ -759,6 +759,18 @@ check('the script table catches a Traditional drift and leaves Simplified alone'
   assert.ok(mod.scriptNotice('en', 4, ['\u9019']).includes('SCRIPT'), 'and the English one does too');
 });
 
+check('the tail check catches a block that stops on a bare word', () => {
+  const collapsed = mod.judgeTailCollapse('This step reads the port and the log.\n\u597D\u3002');
+  assert.equal(collapsed.collapsed, true, 'a block ending on one word is caught');
+  assert.equal(collapsed.tail, '\u597D', 'and the word is reported');
+  const full = mod.judgeTailCollapse('This step reads the port and the log, then decides.');
+  assert.equal(full.collapsed, false, 'a full last sentence passes');
+  const numbered = mod.judgeTailCollapse('\u5269 3 \u4E2A\u3002');
+  assert.equal(numbered.collapsed, false, 'a word carrying a number is information, not a shrug');
+  assert.ok(mod.tailNotice('zh', '\u597D').includes('\u7ED3\u5C3E'), 'the notice names the tail rule');
+  assert.ok(mod.tailNotice('en', 'done').includes('THINKING TAIL'), 'and the English one does too');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);

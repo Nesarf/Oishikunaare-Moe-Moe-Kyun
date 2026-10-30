@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.64.0 - 2026-10-29
+
+- **A thinking block that ends on a bare word now gets its own notice.** A new session has no fragmented
+  history to imitate, so the habit check saw nothing - and the thinking still ended on one word.
+  `judgeTailCollapse` reads the newest reasoning block and flags a last sentence of four characters or
+  fewer with no digit in it; the notice names the word and says what the last line should carry. It is
+  gated on the block not already being fragmented (that gets the ticks notice instead) and budgeted once
+  per session by `tailCheckMax`.
+
 ## 0.63.0 - 2026-10-29
 
 - **One script per text.** A Simplified conversation kept producing reasoning that slid into Traditional
