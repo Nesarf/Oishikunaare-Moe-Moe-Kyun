@@ -728,6 +728,23 @@ check('the standing reminder draws from a table of at least 500 lines', () => {
   assert.equal(mod.thinkingReminder('zh', lines.length, lines), first, 'the table wraps around');
 });
 
+check('the habit pool exists, does not overlap the general table, and is counted', () => {
+  const dir = path.join(ROOT, 'rules', 'reminders');
+  const general = mod.readReminderLines(dir, 'zh');
+  const habit = mod.readHabitLines(dir, 'zh');
+  assert.ok(habit.length >= 20, `the habit pool should ship at least 20 lines, found ${habit.length}`);
+  assert.deepEqual(habit.filter((line) => general.includes(line)), [], 'and no line sits in both pools');
+  const fragmented = [
+    { id: 'a', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: '\u505a\u3002\n\u5199\u3002\n\u518d\u770b\u3002' }] },
+    { id: 'b', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: '\u505a\u3002\n\u5199\u3002\n\u518d\u770b\u3002' }] },
+    { id: 'c', role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: 'This step reads the port, then the log, then decides whether to roll back.' }] },
+  ];
+  const stats = mod.thinkingHabitStats(fragmented);
+  assert.equal(stats.blocks, 3, 'every reasoning block is counted');
+  assert.equal(stats.fragmented, 2, 'and only the blocks reaching the floor count as fragmented');
+  assert.ok(stats.share > 0.6, 'so the share is the number the hook branches on');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);

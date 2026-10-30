@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.62.0 - 2026-10-29
+
+- **The standing reminder picks its pool from the conversation.** A session that has already produced
+  hundreds of one-line thinking blocks keeps producing them, and a line drawn for the average session
+  lands as noise. The 20 habit lines moved out of the general table into
+  `rules/reminders/zh-habit.json`, and the hook now measures the share of fragmented blocks across the
+  whole conversation: at 25% or more it draws from the habit pool instead of the general table, so the
+  reminder names the drift this session actually has. `npm run bench:rules` reports the same share, so
+  the threshold is a number a rule change can be judged against.
+
 ## 0.61.3 - 2026-10-29
 
 - **The brief no longer promises a floor of three.** It is re-injected into AGENTS.md on every step, and
