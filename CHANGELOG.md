@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.65.0 - 2026-10-29
+
+- **The Japanese rules caught up.** The thinking-language block shipped 13 lines while the Chinese one
+  had 21 and the English 35: the medium-long clause, the anti-habit clause, the one-script clause and the
+  tail clause were missing from it. All four are there now, so a Japanese reader gets the same rules the
+  other two locales carry instead of an older subset.
+
 ## 0.64.0 - 2026-10-29
 
 - **A thinking block that ends on a bare word now gets its own notice.** A new session has no fragmented
