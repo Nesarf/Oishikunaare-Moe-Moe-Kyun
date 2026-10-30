@@ -1,0 +1,6 @@
+{
+  "locale": "zh",
+  "version": 1,
+  "note": "Traditional-only characters: each one has a distinct Simplified form, so a Simplified conversation that carries three or more of them in one thinking block is thinking in Traditional. Kept small on purpose - a character that is identical in both scripts would make the check fire on ordinary Simplified prose.",
+  "chars": "這個們來說過為時樣點裡開關實現進動從會經應該還讓給與並於後學覺頭體數總處記認識讀寫聽講辦邊間東車馬長門風飛飯隻麼幾嗎誰雖無還沒錢發華藝術樂書畫詩詞語聲音義務責任問題答覆聯繫關係歷史傳記經典禮儀節慶歲時季節溫暖涼熱凍結冰霜雪雨雲霧露珠寶石金屬銀銅鐵錫鉛汞酸鹼鹽糖油醋醬湯粥麵餃餅糕點茶葉藥方診療醫院護士醫生疼痛癢痠麻痺傷痕疤痕癒合復健營養維生素蛋白質脂肪碳水化合物纖維素礦物質"
+}

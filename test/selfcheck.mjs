@@ -745,6 +745,20 @@ check('the habit pool exists, does not overlap the general table, and is counted
   assert.ok(stats.share > 0.6, 'so the share is the number the hook branches on');
 });
 
+check('the script table catches a Traditional drift and leaves Simplified alone', () => {
+  const dir = path.join(ROOT, 'rules', 'scripts');
+  const chars = mod.readScriptChars(dir, 'zh');
+  assert.ok(chars.length >= 100, `the table should ship its characters, found ${chars.length}`);
+  const drifted = mod.judgeScriptDrift('\u9019\u500B\u554F\u984C\u8981\u5148\u770B\u65E5\u8A8C\uFF0C\u518D\u6C7A\u5B9A\u600E\u9EBC\u6539\u3002', chars);
+  assert.ok(drifted.hits >= 3, 'a Traditional sentence is caught');
+  assert.ok(drifted.sample.length > 0, 'and a few characters are named');
+  const plain = mod.judgeScriptDrift('\u8FD9\u4E2A\u95EE\u9898\u8981\u5148\u770B\u65E5\u5FD7\uFF0C\u518D\u51B3\u5B9A\u600E\u4E48\u6539\u3002', chars);
+  assert.equal(plain.hits, 0, 'Simplified text does not trip it');
+  const notice = mod.scriptNotice('zh', 4, ['\u9019']);
+  assert.ok(notice.includes('\u7B80\u7E41'), 'the notice names the rule');
+  assert.ok(mod.scriptNotice('en', 4, ['\u9019']).includes('SCRIPT'), 'and the English one does too');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);

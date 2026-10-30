@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.63.0 - 2026-10-29
+
+- **One script per text.** A Simplified conversation kept producing reasoning that slid into Traditional
+  characters, and the thinking-language rule said "Chinese" without saying which script. The rule now
+  says it plainly, and a new check reads the newest thinking block against `rules/scripts/zh-hant.json` -
+  a table of Traditional-only characters, each with a distinct Simplified form. Three or more in one
+  block is a drift the reader has to transliterate, so a budgeted notice names the count and the
+  characters. `scriptCheck: false` turns it off; `scriptCheckMax` (default 2) caps it per session.
+
 ## 0.62.0 - 2026-10-29
 
 - **The standing reminder picks its pool from the conversation.** A session that has already produced
