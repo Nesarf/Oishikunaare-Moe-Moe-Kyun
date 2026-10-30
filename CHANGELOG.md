@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.61.3 - 2026-10-29
+
+- **The brief no longer promises a floor of three.** It is re-injected into AGENTS.md on every step, and
+  it said "one per three sentences" while the configured floor on this machine is five - the same number
+  that was already fixed in the rule text and the notice in 0.58.2. Both locales now say the density
+  follows the configuration (three by default), and the AGENTS.md block on this machine was rewritten
+  with `mmk wire agents-md-brief --write`.
+
 ## 0.61.2 - 2026-10-29
 
 - **One medium-long clause, not two.** 0.58.1 put it in the symbol block and 0.60.1 added a near
