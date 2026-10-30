@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.61.2 - 2026-10-29
+
+- **One medium-long clause, not two.** 0.58.1 put it in the symbol block and 0.60.1 added a near
+  identical one in the thinking-language block, so every prompt carried the same instruction twice with
+  a different punctuation mark. It now lives only in the thinking-language block, next to the anti-habit
+  line it belongs with; the symbol block keeps the length rule and the style rules only.
+
 ## 0.61.1 - 2026-10-29
 
 - **The symbol ladder names the two glyphs that carry most breaches.** The bench over 18,062 reasoning
