@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.67.0 - 2026-10-29
+
+- **The rules moved to the end of the prompt, and the first turn gets an opening line.** A section that
+  sits right after the persona competes with everything the conversation has already said; the same text
+  at `order: 10250` lands next to the newest message, which is as close as a prompt section can get to
+  the answer being written. The first authored turn now receives an opening line in place of a drawn
+  reminder: that is the one moment a reminder still outranks the examples, and it costs no extra message.
+
 ## 0.66.0 - 2026-10-29
 
 - **A clock on yourself is a detected habit now.** An agent that tells itself time is short or the budget

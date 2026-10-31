@@ -42,8 +42,15 @@ export const name = 'oishikunaare-moe-moe-kyun';
 /** The prompt registry this row contributes to. */
 export const inject = ['systemPrompt'];
 
-/** Section placement: right after the persona, ahead of every tool description. */
-const SECTION_ORDER = 50;
+/**
+ * Section placement: last, after the deployment persona suffix.
+ *
+ * The house rules are prose in the prompt, and prose that sits far from the point of generation loses
+ * to the examples that surround it. Putting the section at the very end places it next to the newest
+ * message, which is the closest a prompt section can get to the answer being written. The cost is one
+ * prompt-cache miss per rollout, because the assembly order changes.
+ */
+const SECTION_ORDER = 10250;
 
 /** Stable section name, so a composition can find or replace it. */
 const SECTION_NAME = 'oishikunaare-moe-moe-kyun';
@@ -3173,6 +3180,24 @@ export function pressureNotice(locale, hits, found) {
     + ' No reply to this notice is needed.';
 }
 
+/**
+ * Compose the notice paid on the first authored turn.
+ *
+ * A conversation teaches its own style back: the shape of the first few thinking blocks is what the
+ * later hundreds imitate, and by then no reminder outweighs the example. So the cheapest moment to
+ * say what the shape should be is before there is any of it.
+ * @param {string} locale - the rule locale.
+ * @returns {string} the notice text.
+ */
+export function openingNotice(locale) {
+  if (locale === 'zh') {
+    return '\u3010\u4F1A\u8BDD\u5F00\u5934\u3011\u8FD9\u662F\u5934\u51E0\u8F6E\uFF0C\u6B64\u523B\u5199\u4E0B\u7684\u601D\u8003\u4F1A\u6210\u4E3A\u540E\u9762\u51E0\u767E\u8F6E\u7684\u8303\u4F8B\uFF1A\u5199\u5B8C\u6574\u7684\u5224\u65AD\uFF0C\u4E0D\u5199\u788E\u7247\uFF1B\u7ED3\u5C3E\u4E5F\u5199\u6210\u4E00\u53E5\u3002\u5F00\u5934\u5B9A\u8C03\uFF0C\u540E\u9762\u5F88\u96BE\u6539\u3002';
+  }
+  return 'OPENING - the first few turns set the pattern for the rest of this session: write complete'
+    + ' judgements rather than fragments, and end on a sentence. Whatever shape these blocks take, the'
+    + ' hundreds that follow will take it too.';
+}
+
 export function voiceNotice(locale, voice, options = {}) {
   const lang = String(locale ?? '').split('-')[0].toLowerCase();
   const markers = Array.isArray(voice?.markers) ? voice.markers.join(' ') : '';
@@ -3339,6 +3364,8 @@ export function makeSelfCheckHook(options) {
   const tailCounts = new Map();
   // And for the pressure notice: an agent that tells itself time is short trades correctness for speed.
   const pressureCounts = new Map();
+  // The opening notice fires once per session, on the first authored turn, and never again.
+  const openingSent = new Set();
   const voiced = new Set();
   const emojiCounts = new Map();
   const kaomojiMax = Number.isFinite(options.kaomojiMax) && options.kaomojiMax >= 0 ? Math.floor(options.kaomojiMax) : 1;
@@ -3447,7 +3474,15 @@ export function makeSelfCheckHook(options) {
             if (lines.length > 1 && pick === last) pick = (pick + 1) % lines.length;
             reminderTurns.set(sessionId, pick);
           }
-          notices.push(thinkingReminder(state.locale, pick, lines));
+          // The first authored turn is where a conversation learns its style back, so that one step gets
+          // the opening line instead of a drawn reminder - same slot, no extra notice.
+          const authored = Array.isArray(messages) ? messages.filter((message) => message?.role === 'assistant').length : 0;
+          if (options.opening !== false && !openingSent.has(sessionId) && authored <= 1) {
+            openingSent.add(sessionId);
+            notices.push(openingNotice(state.locale));
+          } else {
+            notices.push(thinkingReminder(state.locale, pick, lines));
+          }
         }
       }
 
