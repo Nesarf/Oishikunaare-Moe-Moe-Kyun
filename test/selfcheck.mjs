@@ -771,6 +771,17 @@ check('the tail check catches a block that stops on a bare word', () => {
   assert.ok(mod.tailNotice('en', 'done').includes('THINKING TAIL'), 'and the English one does too');
 });
 
+check('the pressure check catches a block that put a clock on itself', () => {
+  const dir = path.join(ROOT, 'rules', 'pressure');
+  const phrases = mod.readPressurePhrases(dir, 'zh');
+  assert.ok(phrases.length >= 10, `the list should ship its phrases, found ${phrases.length}`);
+  const pressed = mod.judgePressure('\u65F6\u95F4\u5F88\u7D27\uFF0C\u5FEB\u70B9\u505A\u5B8C\u3002', phrases);
+  assert.ok(pressed.hits >= 1, 'a claim about time is caught');
+  assert.deepEqual(mod.judgePressure('This step reads the port, then decides.', phrases), { hits: 0, found: [] }, 'ordinary prose is left alone');
+  assert.ok(mod.pressureNotice('zh', 2, ['\u65F6\u95F4\u5F88\u7D27']).includes('\u538B\u529B'), 'the notice names the rule');
+  assert.ok(mod.pressureNotice('en', 2, ['time']).includes('PRESSURE'), 'and the English one does too');
+});
+
 check('the thinking-habit window counts nearby paragraphs, not the whole block', () => {
   const filler = (n) => Array.from({ length: n }, (_, i) => '\u8bf4\u660e\u7b2c ' + (i + 1) + ' \u6bb5\u3002').join('\n\n');
   const close = '\u8dd1\u3002\n\n\u505a\u3002\n\n\u5199\u3002\n\n' + filler(8);

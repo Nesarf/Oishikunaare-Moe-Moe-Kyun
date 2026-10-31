@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.66.0 - 2026-10-29
+
+- **A clock on yourself is a detected habit now.** An agent that tells itself time is short or the budget
+  is tight starts optimising for finishing instead of for being right, and the claim is never checked
+  against anything. `rules/pressure/zh.json` ships the phrases, `judgePressure` counts them in the newest
+  reasoning block, and at two occurrences a notice says the standard is correct rather than finished.
+  `thinkingLanguage` carries the same rule in all three locales.
+
 ## 0.65.0 - 2026-10-29
 
 - **The Japanese rules caught up.** The thinking-language block shipped 13 lines while the Chinese one

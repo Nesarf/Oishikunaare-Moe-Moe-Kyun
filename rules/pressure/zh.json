@@ -1,0 +1,22 @@
+{
+  "locale": "zh",
+  "version": 1,
+  "note": "Pressure phrases: an agent that tells itself time or budget is short starts optimising for finishing rather than for being right. Each entry is a phrase rather than a single character, because the words time and budget on their own are ordinary nouns - it is the claim about them that becomes a shackle.",
+  "phrases": [
+    "时间很紧",
+    "时间紧",
+    "时间不够",
+    "时间有限",
+    "没时间",
+    "来不及",
+    "赶不上",
+    "争分夺秒",
+    "预算紧张",
+    "预算紧",
+    "预算不够",
+    "预算有限",
+    "成本有限",
+    "先赶出来",
+    "凑合一下"
+  ]
+}
