@@ -141,8 +141,13 @@ async function runStep(host, messages, config, options = {}) {
 }
 
 /** Does this decision send a self-check notice to the model? */
-const noticeOf = (decision) => (decision?.messages ?? []).find((m) => m?.content?.[0]?.text?.includes('SELF-CHECK')
-  || m?.content?.[0]?.text?.includes('\u81ea\u68c0'));
+// The notices now land after the step, so the one under test is the LAST matching message, not the
+// first: several kinds of notice can share a step, and the order inside the batch is the plugin's.
+const noticeOf = (decision) => {
+  const hits = (decision?.messages ?? []).filter((m) => m?.content?.[0]?.text?.includes('SELF-CHECK')
+    || m?.content?.[0]?.text?.includes('\u81ea\u68c0'));
+  return hits.length === 0 ? undefined : hits[hits.length - 1];
+};
 
 check('the plugin registers on agent/pre-step at mount', async () => {
   const host = makeHost();
@@ -161,7 +166,7 @@ check('a real step carrying a breach gets a notice in front of the messages', as
   const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false, ticksCheck: false });
   const notice = noticeOf(decision);
   assert.ok(notice, 'a notice should reach the model');
-  assert.equal(decision.messages[0], notice, 'and it should be first');
+  assert.equal(decision.messages[decision.messages.length - 1], notice, 'and it should be last');
   assert.ok(notice.content[0].text.includes('U+2713'), 'naming the code point');
   assert.equal(decision.messages.length, messages.length + 1, 'history is added to, never rewritten');
 });
@@ -179,7 +184,7 @@ check("the check reads the session, not the step's inbox", async () => {
   const { decision } = await runStep(host, inbox, { locale: 'zh' }, { history });
   const notice = noticeOf(decision);
   assert.ok(notice, 'a breach only the session can see still has to be noticed');
-  assert.equal(decision.messages[0], notice, 'and still lands in front of the step');
+  assert.equal(decision.messages[decision.messages.length - 1], notice, 'and lands after the step, closest to the reply');
   // The judged list is the conversation, but the *returned* list is the step: the host records every
   // returned message as a `user/message` event verbatim, so handing the conversation back copies the
   // system prompt and the agent's own replies into the log under a user envelope, and the session
@@ -317,7 +322,7 @@ check('the kaomoji reminder reaches the model on a real step', async () => {
   const { decision } = await runStep(host, messages, { locale: 'en', ticksCheck: false });
   const kaomojiNotice = (decision?.messages ?? []).find((m) => m?.content?.[0]?.text?.includes('KAOMOJI HABIT'));
   assert.ok(kaomojiNotice, 'a shortage should produce its own notice');
-  assert.equal(decision.messages[0], kaomojiNotice, 'and reach the model ahead of the conversation');
+  assert.equal(decision.messages[decision.messages.length - 1], kaomojiNotice, 'and reach the model after the conversation');
 });
 
 check('switching the kaomoji check off leaves the floor unmentioned', async () => {

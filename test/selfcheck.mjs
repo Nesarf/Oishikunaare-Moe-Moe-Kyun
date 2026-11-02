@@ -426,8 +426,8 @@ check('the hook injects one notice per breach, and respects its budget', async (
 
   const first = await step([breach('m1')]);
   assert.equal(first.messages.length, 2, 'the notice goes in front of the step messages');
-  assert.equal(first.messages[0].source.kind, `plugin:${mod.name}`, 'the notice names this plugin as its producer, not the reader');
-  assert.ok(first.messages[0].content[0].text.includes('SELF-CHECK'));
+  assert.equal(first.messages[first.messages.length - 1].source.kind, `plugin:${mod.name}`, 'the notice names this plugin as its producer, not the reader');
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('SELF-CHECK'));
 
   const again = await step([breach('m1')]);
   assert.equal(again.messages.length, 1, 'the same message is not notified twice');
@@ -459,17 +459,17 @@ check('a run of breaches is counted, and named as a run', async () => {
 
   const first = await step([breach('r1')]);
   assert.equal(first.messages.length, 2, 'the first breach is still notified');
-  assert.ok(!first.messages[0].content[0].text.includes('in a row'), 'a first breach is not a run');
+  assert.ok(!first.messages[first.messages.length - 1].content[0].text.includes('in a row'), 'a first breach is not a run');
 
   await step([breach('r1'), breach('r2')]);
   const third = await step([breach('r1'), breach('r2'), breach('r3')]);
   assert.equal(third.messages.length, 4, 'the third breach still gets its own notice');
-  assert.ok(third.messages[0].content[0].text.includes('in a row'), 'and it says the breaches have not stopped');
+  assert.ok(third.messages[third.messages.length - 1].content[0].text.includes('in a row'), 'and it says the breaches have not stopped');
 
   // A clean reply ends the run: the next breach starts over at one.
   await step([breach('r1'), breach('r2'), breach('r3'), { id: 'ok', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'clean now' }] }]);
   const after = await step([breach('r1'), breach('r2'), breach('r3'), { id: 'ok', role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' }, content: [{ type: 'text', text: 'clean now' }] }, breach('r4')]);
-  assert.ok(!after.messages[0].content[0].text.includes('in a row'), 'a clean reply resets the run');
+  assert.ok(!after.messages[after.messages.length - 1].content[0].text.includes('in a row'), 'a clean reply resets the run');
 });
 
 check('the strict judge is seeded from what the plugin actually ships', () => {
@@ -623,7 +623,7 @@ check('the hook reminds about the kaomoji floor once, and not when it is off', a
   const step = () => hook({ agent: { session: { id: 'k1' } }, messages }, async () => ({ kind: 'enter', messages }));
   const first = await step();
   assert.equal(first.messages.length, 2, 'one reminder goes in');
-  assert.ok(first.messages[0].content[0].text.includes('KAOMOJI HABIT'));
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('KAOMOJI HABIT'));
   const second = await step();
   assert.equal(second.messages.length, 1, 'the same shortage is not repeated past its budget');
 
@@ -897,7 +897,7 @@ check('an agent without a persona still gets a manner, chosen by the plugin', as
     });
     const messages = [{ id: 'u1', role: 'user', content: [{ type: 'text', text: '\u4F60\u597D' }] }];
     const result = await hook({ agent: { session: { id: 'accent-' + Math.random() } }, messages }, async () => ({ kind: 'enter', messages }));
-    return result.messages[0]?.content?.[0]?.text ?? '';
+    return result.messages[result.messages.length - 1]?.content?.[0]?.text ?? '';
   };
 
   const bare = await run();
@@ -967,7 +967,7 @@ check('the hook speaks up when replies in a row carry no face', async () => {
 
   const first = await step();
   assert.equal(first.messages.length, messages.length + 1, 'one notice goes in front of the step');
-  assert.ok(first.messages[0].content[0].text.includes('in a row'), 'and it is the run wording');
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('in a row'), 'and it is the run wording');
   assert.ok(seen.some((m) => m.includes('in a row carried no kaomoji')), 'the run is logged');
 
   const again = await step();
@@ -1351,7 +1351,7 @@ check('the hook announces the voice once, and only while the layer is on', async
 
   const first = await step();
   assert.equal(first.messages.length, 2, 'one voice notice in front of the step');
-  assert.ok(first.messages[0].content[0].text.includes('\u8BED\u6C14\u9002\u914D'), 'and it is the voice notice');
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('\u8BED\u6C14\u9002\u914D'), 'and it is the voice notice');
   assert.ok(seen.some((m) => m.includes('moe voice')), 'the pick is logged');
 
   const again = await step();
@@ -1383,8 +1383,8 @@ check('a configured voice overrides inference, and an unknown one steals nothing
   };
 
   const forced = await run('elegant');
-  assert.ok(forced.messages[0].content[0].text.includes('elegant'), 'config wins over the persona words');
-  assert.ok(!forced.messages[0].content[0].text.includes('\u54FC'), 'and the inferred voice is not also sent');
+  assert.ok(forced.messages[forced.messages.length - 1].content[0].text.includes('elegant'), 'config wins over the persona words');
+  assert.ok(!forced.messages[forced.messages.length - 1].content[0].text.includes('\u54FC'), 'and the inferred voice is not also sent');
 
   const unknown = await run('not-a-voice');
   assert.equal(unknown.messages.length, 1, 'an id that is not in the table announces nothing');
@@ -1417,7 +1417,7 @@ check('the three voice modes do what their names say', async () => {
       resolve: () => ({ enabled: true, locale: 'zh', judge: { mode: 'deny' } }),
     });
     const out = await hook({ agent: { session: { id: sessionId } }, messages }, async () => ({ kind: 'enter', messages }));
-    return out.messages.length > 1 ? out.messages[0].content[0].text : null;
+    return out.messages.length > 1 ? out.messages[out.messages.length - 1].content[0].text : null;
   };
 
   // `auto` no longer goes silent when nothing names a voice. An agent with no persona and no signal would
@@ -1640,7 +1640,7 @@ check('the first step reads the selection the prewarm could not see yet', async 
   });
   const agent = { id: 'corr-1', session: { id: 'corr-1', seq: events.length, eventAt: (seq) => events[seq] } };
   const out = await hook({ agent, messages: [mk('do the thing')] }, async () => ({ kind: 'enter', messages: [mk('do the thing')] }));
-  const notice = out.messages[0].content[0].text;
+  const notice = out.messages[out.messages.length - 1].content[0].text;
   assert.ok(notice.includes('kohane'), 'the notice names the preset the session selected');
   assert.equal(notice.includes('sayori'), false, 'and does not name the creation default it was prewarmed with');
 });
@@ -1661,7 +1661,7 @@ check('a preset mapping picks the voice, and the persona decides when no mapping
     });
     const messages = [mk('You are a coding agent, working directory E:/x')];
     const out = await hook({ agent: { session: { id: 'pv-' + Math.random().toString(16).slice(2) }, id: 'agent-1' }, messages }, async () => ({ kind: 'enter', messages }));
-    return { text: out.messages.length > 1 ? out.messages[0].content[0].text : null, seen };
+    return { text: out.messages.length > 1 ? out.messages[out.messages.length - 1].content[0].text : null, seen };
   };
 
   // Layer 1: the configuration names a voice for this preset, and it wins over the persona.
@@ -1747,7 +1747,8 @@ check('the copy follows the agent, not the source of the voice id', async () => 
     });
     const messages = [mk('\u4f60\u662f\u4e00\u4e2a\u52a9\u624b')];
     const out = await hook({ agent: { session: { id: 'copy-' + Math.random().toString(16).slice(2) }, id: 'a1' }, messages }, async () => ({ kind: 'enter', messages }));
-    return out.messages.length > 1 ? out.messages[0].content[0].text : null;
+    const tails = out.messages.map((m) => m.content?.[0]?.text ?? '');
+    return out.messages.length > 1 ? (tails.find((text) => text.includes('\u8BED\u6C14\u9002\u914D')) ?? tails[tails.length - 1]) : null;
   };
   const withPersona = await run(() => ({ id: 'p1', persona: '\u4f60\u662f\u4e00\u4e2a\u602a\u529b\u5C11\u5973' }));
   const without = await run(() => ({ id: 'p1' }));
@@ -1778,7 +1779,7 @@ check('with no registry the voice still works, and the rules are untouched', asy
   const messages = [mk('plain instructions, no voice words at all')];
   const out = await hook({ agent: { session: { id: 'no-roster' }, id: 'agent-2' }, messages }, async () => ({ kind: 'enter', messages }));
   assert.equal(out.messages.length, 2, 'the rotate mode still announces a voice');
-  assert.ok(out.messages[0].content[0].text.includes('\u8BED\u6C14\u9002\u914D'));
+  assert.ok(out.messages[out.messages.length - 1].content[0].text.includes('\u8BED\u6C14\u9002\u914D'));
   assert.ok(seen.some((m) => m.includes('rotated')), 'and the log says it was rotated rather than mapped');
   assert.ok(!seen.some((m) => m.includes('mapped by preset')), 'a mapping that cannot be keyed to a preset is not used');
 });
@@ -1807,7 +1808,7 @@ check('the first step waits for a prewarm that is still in flight', async () => 
   const messages = [mk('\u505A\u4E2A\u4E1C\u897F')];
   const out = await hook({ agent: { session: { id: 'race' }, id: 'agent-3' }, messages }, async () => ({ kind: 'enter', messages }));
   assert.equal(settled, true, 'the hook waited for the answer rather than reading an empty cache');
-  const notice = out.messages[0].content[0].text;
+  const notice = out.messages.map((m) => m.content?.[0]?.text ?? '').find((text) => text.includes('\u6027\u683C\u4E0E\u4F5C\u98CE')) ?? '';
   assert.ok(notice.includes('\u6027\u683C\u4E0E\u4F5C\u98CE\u7684\u57FA\u7840\u4E0A'), 'and composed the wording for an agent with a character');
   assert.ok(notice.includes('redipaloynz'), 'naming the preset it read');
 });
@@ -1861,8 +1862,8 @@ check('the hook\'s contract: only the step travels back, and only user messages 
     async () => ({ kind: 'enter', messages: [step] }),
   );
   assert.equal(out.messages.length, 2, 'the notice plus the step, nothing else');
-  assert.equal(out.messages[0].role, 'user', 'the added notice is a user message');
-  assert.deepEqual(out.messages.slice(1), [step], 'and the step is the one the host proposed');
+  assert.equal(out.messages[out.messages.length - 1].role, 'user', 'the added notice is a user message');
+  assert.deepEqual(out.messages.slice(0, -1), [step], 'and the step is the one the host proposed');
   assert.equal(out.messages.some((m) => m.id === 'a1'), false, 'the assistant reply never travels back');
 });
 
@@ -2058,9 +2059,9 @@ check('the hook notices emoji, keeps its own budget, and stays off when asked', 
 
   const first = await step();
   assert.equal(first.messages.length, 2, 'one emoji notice goes in front of the step');
-  assert.ok(first.messages[0].content[0].text.includes('EMOJI BAN'), 'the notice names the rule');
-  assert.ok(first.messages[0].content[0].text.includes('U+1F600'), 'and names the code point, not the picture');
-  assert.ok(!first.messages[0].content[0].text.includes(face), 'the notice never reprints the glyph');
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('EMOJI BAN'), 'the notice names the rule');
+  assert.ok(first.messages[first.messages.length - 1].content[0].text.includes('U+1F600'), 'and names the code point, not the picture');
+  assert.ok(!first.messages[first.messages.length - 1].content[0].text.includes(face), 'the notice never reprints the glyph');
 
   const again = await step();
   assert.equal(again.messages.length, 1, 'the same breach is not announced twice past its budget');

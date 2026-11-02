@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.68.0 - 2026-10-29
+
+- **The notice lands after the step, and a short request no longer implies a short answer.** Every notice
+  the hook adds now goes after the step's own messages, so it is the last thing read before the reply -
+  the closest a hook can get to the thought about to begin. Separately, a one-word request ("continue",
+  "go") used to pull the thinking down to its length: the rule text now says length follows the content,
+  and ten reminder lines carry the same point.
+
 ## 0.67.0 - 2026-10-29
 
 - **The rules moved to the end of the prompt, and the first turn gets an opening line.** A section that
