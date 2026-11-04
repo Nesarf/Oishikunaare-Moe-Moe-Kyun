@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.68.1 - 2026-11-02
+
+- **The README, the package description and the repository topics say what the package now is.** Ten
+  versions of rules were added without the front matter following: the README still listed seven CLI
+  commands (there are eleven) and described four rules, and the package description stopped at the glyph
+  ban, emoji, kaomoji and the thinking language. Both now name the shape rules as well, and the
+  repository carries `thinking`, `writing` and `system-prompt` topics.
+
 ## 0.68.0 - 2026-10-29
 
 - **The notice lands after the step, and a short request no longer implies a short answer.** Every notice

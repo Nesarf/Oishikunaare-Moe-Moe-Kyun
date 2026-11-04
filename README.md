@@ -16,12 +16,14 @@ to being words, emoji give way to kaomoji, punctuation stays where the text need
 the language the reader is actually reading.
 
 Output house rules for an AI agent: one core, and four ways to reach it. The rules are about how an
-agent writes - judgement glyphs, emoji, the kaomoji habit, the language it thinks in - and none of that
-is specific to one harness, so the package is not either.
+agent writes - judgement glyphs, emoji, the kaomoji habit, the language it thinks in, and the shape of
+the thinking itself (a length floor, one script per text, a sentence at the end rather than a word, no
+clock on itself, and a short request that does not shorten the answer) - and none of that is specific
+to one harness, so the package is not either.
 
 | entry | what it is | how it is wired |
 | --- | --- | --- |
-| **CLI** `mmk` | `rules`, `lib`, `check`, `notice`, `voice`, `review`, `wire` | a shell, a git hook, CI, or a person asking whether a line would be refused. Exit 3 means a breach |
+| **CLI** `mmk` | `rules`, `lib`, `check`, `notice`, `voice`, `accent`, `persona`, `review`, `audit`, `expand`, `wire` | a shell, a git hook, CI, or a person asking whether a line would be refused. Exit 3 means a breach |
 | **MCP server** | `mmk_rules`, `mmk_check`, `mmk_notice` and the `mmk://rules` resource | any MCP client, no assumption about which agent is on the other side |
 | **Claude Code hook** | corrects a breach while the turn is still open | `Stop` answers `{"decision":"block","reason":<notice>}`, `UserPromptSubmit` and `SessionStart` attach context |
 | **DSH plugin** | one global system prompt section for a whole profile | mounted once by the roster, so it reaches every preset, workspace, conversation and subagent |
