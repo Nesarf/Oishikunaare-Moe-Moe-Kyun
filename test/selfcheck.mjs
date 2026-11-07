@@ -2177,9 +2177,13 @@ check('the prompt block honours its ceiling and still names the file', () => {
   assert.ok(capped.includes('X:/kaomoji.json'), 'the file path is always named, so the rest is reachable');
   const tail = /not shown \((\d+) more\)/.exec(capped);
   assert.ok(tail, 'the tail is counted rather than silently dropped');
-  assert.equal(Number(tail[1]), total - 40, 'the count says how many were left out');
+  // The quota is shared across moods now, so a cap of 40 shows two per category rather than filling
+  // the first one: the left-out count and the line count both follow from that split.
+  const perGroup = Math.max(1, Math.floor(40 / normalized.length));
+  const shownByCap = perGroup * normalized.length;
+  assert.equal(Number(tail[1]), total - shownByCap, 'the count says how many were left out');
   assert.ok(!capped.includes('full set ('), 'a capped block does not claim to be the full set');
-  assert.equal(capped.split('\n').length, 3, 'a tight ceiling is a heading, the first category, and the tally');
+  assert.equal(capped.split('\n').length, normalized.length + 2, 'a tight ceiling is a heading, one line per category, and the tally');
 
   const whole = mod.renderKaomojiLibrary(normalized, 'X:/kaomoji.json', { locale: 'en', max: total });
   assert.ok(whole.includes('full set (' + total + ' faces)'), 'a ceiling that fits everything says so');

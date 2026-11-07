@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.68.2 - 2026-11-02
+
+- **The palette block shows every mood, not just the first one.** With a single ceiling the first
+  category of a large library swallowed every slot: the block was sixty faces of one mood, and the
+  complex moods - arms, decoration, framed, classic - never appeared at all, so nobody wrote them. The
+  quota is now split across moods, and each mood contributes its longest faces first. On this machine
+  the block went from 60 faces of one mood to 4 faces of each of 14 moods, complex ones included.
+
 ## 0.68.1 - 2026-11-02
 
 - **The README, the package description and the repository topics say what the package now is.** Ten

@@ -784,6 +784,11 @@ export function renderKaomojiLibrary(categories, file, options) {
   const lines = [heading];
   let shown = 0;
   const omitted = [];
+  // The quota is shared across moods, not spent on the first one: with a single `max`, the first
+  // category of a large library swallowed every slot, so the complex moods (arms, decoration, framed)
+  // never appeared in the prompt at all - and a face nobody sees is a face nobody writes.
+  const groups = categories.filter((category) => Array.isArray(category.faces) && category.faces.length > 0);
+  const per = groups.length === 0 ? max : Math.max(1, Math.floor(max / groups.length));
   for (const category of categories) {
     const faces = Array.isArray(category.faces) ? category.faces : [];
     const label = labelOf(category);
@@ -792,12 +797,15 @@ export function renderKaomojiLibrary(categories, file, options) {
       shown += faces.length;
       continue;
     }
-    const room = max - shown;
+    const room = Math.min(per, max - shown);
     if (room <= 0) {
       omitted.push(`${label}: ${faces.length}`);
       continue;
     }
-    const take = faces.slice(0, room);
+    // Longest first inside a mood: a complex face is the shape worth showing, and the head of a
+    // generated mood is usually its shortest entries.
+    const longest = [...faces].sort((left, right) => String(right?.face ?? '').length - String(left?.face ?? '').length);
+    const take = longest.slice(0, room);
     if (faces.length > take.length) omitted.push(`${label}: ${faces.length - take.length}`);
     shown += take.length;
     const rendered = take.map((entry) => `${entry?.face ?? ''}${feelOf(entry) ? ` (${feelOf(entry)})` : ''}`);
