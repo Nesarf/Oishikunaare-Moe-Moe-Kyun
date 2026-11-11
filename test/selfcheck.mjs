@@ -759,6 +759,25 @@ check('the script table catches a Traditional drift and leaves Simplified alone'
   assert.ok(mod.scriptNotice('en', 4, ['\u9019']).includes('SCRIPT'), 'and the English one does too');
 });
 
+check('a Japanese line is not counted as a Traditional drift', () => {
+  const dir = path.join(ROOT, 'rules', 'scripts');
+  const chars = mod.readScriptChars(dir, 'zh');
+  const japanese = '\u69CB\u9020\u306E\u8A18\u53F7\u306B\u30EC\u30A4\u30A2\u30A6\u30C8\u3092\u8CA0\u308F\u305B\u306A\u3044\u3002';
+  assert.equal(mod.judgeScriptDrift(japanese, chars).hits, 0, 'kana marks the line as Japanese');
+  const mixed = '\u9019\u500B\u554F\u984C\u8981\u5148\u770B\u65E5\u8A8C\u3002\n' + japanese;
+  assert.ok(mod.judgeScriptDrift(mixed, chars).hits >= 3, 'while a Traditional line beside it still counts');
+});
+
+check('the repeat check catches a symbol used as a divider', () => {
+  const divider = mod.judgeRepeatGlyph('first line\n++++++\nsecond line');
+  assert.equal(divider.hits, 1, 'a row of the same mark is a divider');
+  assert.equal(divider.symbol, '+', 'and the mark is reported');
+  assert.equal(mod.judgeRepeatGlyph('a then b, then c').hits, 0, 'ordinary prose is left alone');
+  assert.equal(mod.judgeRepeatGlyph('wait... then continue').hits, 0, 'an ellipsis is punctuation, not a divider');
+  assert.ok(mod.repeatNotice('zh', 1, '#').includes('\u7B26\u53F7'), 'the notice names the rule');
+  assert.ok(mod.repeatNotice('en', 1, '#').includes('REPEAT'), 'and the English one does too');
+});
+
 check('the tail check catches a block that stops on a bare word', () => {
   const collapsed = mod.judgeTailCollapse('This step reads the port and the log.\n\u597D\u3002');
   assert.equal(collapsed.collapsed, true, 'a block ending on one word is caught');

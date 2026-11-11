@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.69.0 - 2026-11-02
+
+- **A repeated symbol is judged as layout, and a Japanese line no longer counts as a script drift.**
+  Three or more of the same mark in a row is decoration, so `judgeRepeatGlyph` counts those runs - an
+  ellipsis and a dashed rule are exempt - and a budgeted notice says a symbol is not a divider. And
+  `judgeScriptDrift` now skips every line carrying kana: the plugin's own Japanese rule text was being
+  reported to its author as Traditional Chinese.
+
 ## 0.68.2 - 2026-11-02
 
 - **The palette block shows every mood, not just the first one.** With a single ceiling the first
