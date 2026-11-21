@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.70.0 - 2026-11-02
+
+- **The kaomoji rule asks for range, not just presence.** With the block fixed to show every mood, the
+  remaining pull was toward the shortest shape - two marks for the eyes, one for the mouth - because that
+  is the cheapest one to write. The rule text now says a face has a range too, and that when a feeling
+  carries weight the longer shapes (arms, decoration, a sweat drop) say more. All three locales carry it.
+
 ## 0.69.0 - 2026-11-02
 
 - **A repeated symbol is judged as layout, and a Japanese line no longer counts as a script drift.**
