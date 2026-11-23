@@ -11,11 +11,12 @@
 粉色的长双马尾、荷叶边的发带，女仆裙和偶像舞台穿在同一套衣服上，手里总握着一根麦克风。她把语体当舞台，把纪律当谱面 —— 笑起来是甜的，改稿的时候一点都不甜。她管的事只有一件：**说出去的话，要像你说的话。** 对错标记退回成文字，emoji 换成颜文字，句读留在文字需要它的地方，思考也用读者正在读的那种语言来写。
 
 给 AI agent 的输出纪律（house rules）：**一个内核，四条入口**。这些纪律讲的是 agent 怎么写东西 ——
-对错标记符号、emoji、颜文字习惯、思考用什么语言 —— 它们本来就不属于某一个宿主，所以这个包也不属于。
+对错标记符号、emoji、颜文字习惯、思考用什么语言，以及思考本身的形状（推理时倾向中长、一篇文章一种字形、
+结尾要成句而不是一个词、不给自己套时钟，一句短请求也不把回答压短）—— 它们本来就不属于某一个宿主，所以这个包也不属于。
 
 | 入口 | 是什么 | 怎么接 |
 | --- | --- | --- |
-| **CLI** `mmk` | `rules`、`lib`、`check`、`notice`、`voice`、`review`、`wire` | shell、git hook、CI，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规 |
+| **CLI** `mmk` | `rules`、`lib`、`check`、`notice`、`voice`、`accent`、`persona`、`review`、`audit`、`expand`、`wire` | shell、git hook、CI，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规 |
 | **MCP server** | `mmk_rules`、`mmk_check`、`mmk_notice` 三个工具 + `mmk://rules` 资源 | 任何会说 MCP 的客户端，不假设对面是哪一个 agent |
 | **Claude Code 钩子** | 在回合还开着的时候就纠正 | `Stop` 回 `{"decision":"block","reason":<通知>}`，`UserPromptSubmit` 与 `SessionStart` 附带上下文 |
 | **DSH 插件** | 给整个 profile 一条全局 system prompt section | 由 roster 只挂载一次，覆盖全部 preset、工作区、新会话与 subagent |
@@ -204,7 +205,7 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 | 入口 | 怎么用 | 给谁用 |
 | --- | --- | --- |
-| CLI | `mmk rules`、`mmk check --text "…"`、`mmk review --transcript <文件>`、`mmk accent --persona-text "…"`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk notice`、`mmk voice`、`mmk accent --persona-text "…"`、`mmk persona`、`mmk review --transcript <文件>`、`mmk audit`、`mmk expand`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
 | 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
@@ -221,6 +222,10 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 `npm run bench:thinking` 是「思考语言纪律」的另一半：它实测真实记录里 reasoning 通道的文字构成，
 因为提示词里的散文不算证据。写它那台机器上的第一条基线：306 条会话、52376 条带 reasoning 的消息，
 **CJK 3.3% / 拉丁 96.7%**。
+
+`npm run bench:rules` 拿同一个通道去量纪律本身：多少块思考带着被禁的对错字形、密度多大、多少块到了
+单字命令的下限。本机基线（五个最大的会话，18062 块）：40.8% 的块带过被禁字形（每千字 0.31 个），
+4.0% 的块达到三次单字命令的下限。改规则前后各跑一次、同一个窗口，数字才是措辞有没有用的证据。
 
 两边分开的规则只有一条，而且它不是风格偏好：**判断和送达是两件事**。
 `src/portable.mjs` 什么都不写 —— 不追加消息、不改记录、不建文件。往会话里放提醒的风险由做这件事的
@@ -363,6 +368,15 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
   同一个字形连着用、以及**连着几条回复一个都没有**。最后那种是实测里真正的病根：整个会话里 207 条
   回复只有 4 条达标，最近 25 条是 40 句配 0 个字形——短回复被当成了例外。这条提醒会直说这件事，
   而不是再念一遍下限算术。
+- 思考的形状各有判据。**碎片**（单字命令句）扫整个会话、取最密的一块，三次起报，每会话预算两次；
+  **结尾塌缩**（思考停在一个词上）只查最新一块，四字以内且无数字才算，每会话一次；**简繁**在简体
+  对话里查最新一块，带三个以上繁体专用字就报，含假名的行跳过，因为引日文不算串；**压力**查
+  「时间很紧」「来不及」这类短语，命中两处报一次，因为它把标准从做对换成做完；**符号复读**查同一
+  符号连续三个以上，报一次。
+- 每步提醒从一张 514 句的表随机抽，不连抽同一句；当会话历史里碎片块超过四分之一，改从 20 句的
+  惯性池抽，提醒匹配问题而不是匹配平均值。第一条作者轮拿到的是一句开场定调：开头几轮写下的形状，
+  就是后面几百轮的范本。
+- 颜文字块跨情绪组轮询，每组按字形长度从长到短取，复杂字形不再被第一组吃光配额。
 
 ### 两个判据各自怎么处理例外，以及严格判据怎么给自己播种
 

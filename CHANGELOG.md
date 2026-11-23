@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.71.1 - 2026-11-02
+
+- **The Chinese README caught up.** It listed four of the eleven CLI commands and described four rules out
+  of the current set. It now carries the full command list, the shape rules, the bench:rules baseline, and
+  the newer judges: fragments, tail, script, pressure, repeat, the habit pool, the opening line, and the
+  per-mood palette split.
+
 ## 0.71.0 - 2026-11-02
 
 - **The opening line settles the face shape too.** A new conversation still reached for the smallest
