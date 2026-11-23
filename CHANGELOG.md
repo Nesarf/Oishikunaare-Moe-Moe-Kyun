@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.71.0 - 2026-11-02
+
+- **The opening line settles the face shape too.** A new conversation still reached for the smallest
+  two-mark face as its default, even with every mood present in the palette block and a range clause in
+  the rule: the pattern is set in the first few turns, and the opening notice only spoke about the
+  thinking. It now says the kaomoji shape settles there as well - the smallest shape should not become
+  the default, and a feeling that carries weight deserves arms, decoration or a sweat drop.
+
 ## 0.70.0 - 2026-11-02
 
 - **The kaomoji rule asks for range, not just presence.** With the block fixed to show every mood, the
