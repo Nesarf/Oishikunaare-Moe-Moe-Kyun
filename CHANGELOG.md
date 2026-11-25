@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.71.2 - 2026-11-26
+
+- **The client patch reads the bundle shape it actually met, and the minified anchors are tested.** A
+  later DSH ships the chat client minified, so `applyExpand` grew a second anchor pair; a bundle that
+  matches only half of a pair (one spaced anchor, one minified one) is reported as a failure and left
+  untouched rather than half-rewritten. `isOpenByDefault` had kept asking for the spaced card opener
+  alone, which made a second run on an already-patched minified bundle report `failed` instead of
+  `already`; it now reads the marker in whichever shape the build uses. `test/client-patch.mjs` covers
+  the minified round trip (including that second run), the mixed-anchor case, and a bundle carrying
+  neither shape - all four failures that must leave no backup behind. Verified by breaking the marker
+  check on purpose: the new assertion goes red on the minified path and nowhere else.
+
 ## 0.71.1 - 2026-11-02
 
 - **The Chinese README caught up.** It listed four of the eleven CLI commands and described four rules out

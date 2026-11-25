@@ -83,7 +83,13 @@ export function guessDshRoot() {
 
 /** Whether this bundle already carries the default-open patch. */
 export function isOpenByDefault(text) {
-  return text.includes('collapsedVersions') && text.includes(NEW_CARD.split('\n')[1]);
+  if (!text.includes('collapsedVersions')) return false;
+  // The marker has to be read in the shape the build actually uses: a minified bundle never carries
+  // the spaced card opener, so asking only for that one made a second run report a failure instead of
+  // "already patched".
+  const openedSpaced = NEW_CARD.split('\n')[1];
+  const openedMin = NEW_CARD_MIN.slice(NEW_CARD_MIN.indexOf('const[expanded'));
+  return text.includes(openedSpaced) || text.includes(openedMin);
 }
 
 /**
@@ -95,13 +101,19 @@ export function isOpenByDefault(text) {
 export function applyExpand(file) {
   const text = fs.readFileSync(file, 'utf8');
   if (isOpenByDefault(text)) return { already: true, changed: false, backup: null };
-  if (!text.includes(OLD_DISCLOSURE) || !text.includes(OLD_CARD)) {
-    return { already: false, changed: false, backup: null, failed: true };
-  }
+  // The bundle ships in two shapes: the spaced build this patch was first written against, and the
+  // minified one a later DSH produces. Both are tried, spaced first, so an upgrade does not silently
+  // turn the patch into a no-op.
+  const sets = [
+    { disclosure: OLD_DISCLOSURE, card: OLD_CARD, nextDisclosure: NEW_DISCLOSURE, nextCard: NEW_CARD },
+    { disclosure: OLD_DISCLOSURE_MIN, card: OLD_CARD_MIN, nextDisclosure: NEW_DISCLOSURE_MIN, nextCard: NEW_CARD_MIN },
+  ];
+  const hit = sets.find((set) => text.includes(set.disclosure) && text.includes(set.card));
+  if (hit === undefined) return { already: false, changed: false, backup: null, failed: true };
   const backup = `${file}.orig`;
   if (!fs.existsSync(backup)) fs.copyFileSync(file, backup);
-  let next = text.replace(OLD_DISCLOSURE, NEW_DISCLOSURE);
-  next = next.replace(OLD_CARD, NEW_CARD);
+  let next = text.replace(hit.disclosure, hit.nextDisclosure);
+  next = next.replace(hit.card, hit.nextCard);
   fs.writeFileSync(file, next, 'utf8');
   return { already: false, changed: true, backup };
 }
@@ -114,10 +126,24 @@ export function revertExpand(file) {
   return { reverted: true, backup };
 }
 
+// The same two edits against the minified bundle a later DSH ships: no indentation, no spaces around
+// the operators. Kept as a second anchor pair rather than a regex so a mismatch fails loudly.
+const OLD_DISCLOSURE_MIN = 'function useDisclosure(version=0){const[expandedVersion,setExpandedVersion]=(0,react.useState)(null);return{expanded:expandedVersion===version,setExpanded:(0,react.useCallback)(open=>{setExpandedVersion(open?version:null)},[version]),toggle:(0,react.useCallback)(()=>{setExpandedVersion(previous=>previous===version?null:version)},[version])}}';
+
+const NEW_DISCLOSURE_MIN = 'function useDisclosure(version=0){const[collapsedVersions,setCollapsedVersions]=(0,react.useState)(()=>new Set());const collapsed=collapsedVersions.has(version);return{expanded:!collapsed,setExpanded:(0,react.useCallback)(open=>{setCollapsedVersions(previous=>{const next=new Set(previous);if(open)next.delete(version);else next.add(version);return next})},[version]),toggle:(0,react.useCallback)(()=>{setCollapsedVersions(previous=>{const next=new Set(previous);if(next.has(version))next.delete(version);else next.add(version);return next})},[version])}}';
+
+const OLD_CARD_MIN = 'GenericCommandCard=(0,react.memo)(function GenericCommandCard({node,t,runningSummary}){const[expanded,setExpanded]=(0,react.useState)(false);';
+
+const NEW_CARD_MIN = 'GenericCommandCard=(0,react.memo)(function GenericCommandCard({node,t,runningSummary}){const[expanded,setExpanded]=(0,react.useState)(true);';
+
 /** The exact strings this patch replaces, exported so a test can build a fixture from them. */
 export const EXPAND_STRINGS = Object.freeze({
   oldDisclosure: OLD_DISCLOSURE,
   newDisclosure: NEW_DISCLOSURE,
   oldCard: OLD_CARD,
   newCard: NEW_CARD,
+  oldDisclosureMin: OLD_DISCLOSURE_MIN,
+  newDisclosureMin: NEW_DISCLOSURE_MIN,
+  oldCardMin: OLD_CARD_MIN,
+  newCardMin: NEW_CARD_MIN,
 });
