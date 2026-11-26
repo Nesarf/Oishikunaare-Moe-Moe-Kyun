@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.81.2 - 2026-11-27
+
+- **The Japanese rule text carried three replacement characters.** The source held
+  `\u3059\uFFFD\uFFFD\uFFFD\u3050` where the sentence should read "sugu" - two kana with three holes
+  between them - so every Japanese build shipped a visible break in the middle of a word. It reads
+  `\u3059\u3050` now.
+- **Nothing was looking for it, and the reasons are structural.** `check-ascii` exempts `rules/*.json`
+  wholesale, because those files exist to hold non-ASCII text. `gen-rules-json --check` compares the
+  generator's output against the file the generator wrote last time, so a wrong code point in the source
+  is faithfully regenerated on every run and reported as "in sync". The new check refuses U+FFFD in
+  every built locale and in all three shipped JSON files.
+- **How it was found: scanning what a host actually injects** for leftovers - a concatenation operator,
+  an unexpanded `${`, `undefined`, a replacement character - across three locales and three notice
+  kinds. The first run of that scan looked at one locale three times, because `--locale` moves only the
+  notice wording while the rule text follows the configuration file; a scan has to show its own
+  coverage or a false clean looks exactly like a real one. The two bugs before this were the same
+  shape: text arriving with something extra, and no assertion asking about extras.
+- `gen-rules-json` no longer calls a character count "bytes" - it prints both.
+
 ## 0.81.1 - 2026-11-27
 
 - **The English corpus brief carried the builder's own punctuation.** The head was written with a quote

@@ -110,6 +110,24 @@ check('buildRules text never carries a banned glyph (en and zh)', () => {
   }
 });
 
+// A replacement character is what a broken code point becomes, and it renders as a visible hole inside
+// a word. The Japanese rule text shipped three in a row - the source carried \uFFFD where "sugu"
+// belonged - and nothing was watching for it: check-ascii exempts rules/*.json wholesale, and the
+// generator only compares its own output against the file it wrote last time.
+check('no built rule text carries a replacement character', () => {
+  for (const locale of ['en', 'zh', 'ja', '']) {
+    const built = mod.buildRules({ userConfig: { locale }, loadRulesFile: () => null });
+    const holes = [...built.text.matchAll(/\uFFFD/g)].length;
+    assert.equal(holes, 0, `locale ${locale} carries ${holes} replacement character(s)`);
+  }
+  // The shipped JSON is read by other tools as well as by this build, so it is checked on its own.
+  for (const locale of ['en', 'zh', 'ja']) {
+    const json = fs.readFileSync(path.join(ROOT, 'rules', `${locale}.json`), 'utf8');
+    const holes = [...json.matchAll(/\uFFFD/g)].length;
+    assert.equal(holes, 0, `rules/${locale}.json carries ${holes} replacement character(s)`);
+  }
+});
+
 check('locale selection prefers exact, then language, then default', () => {
   assert.equal(mod.packagedRules('zh').locale, 'zh');
   assert.equal(mod.packagedRules('zh-CN').locale, 'zh');

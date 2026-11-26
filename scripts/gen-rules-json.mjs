@@ -55,7 +55,9 @@ for (const locale of locales) {
     continue;
   }
   fs.writeFileSync(file, wanted, 'utf8');
-  console.log(`wrote rules/${locale}.json (${wanted.length} bytes)`);
+  // `.length` counts UTF-16 code units, not bytes: a Chinese character is one of the former and three
+  // of the latter, so the old line reported 4087 where the file on disk was 10403.
+  console.log(`wrote rules/${locale}.json (${Buffer.byteLength(wanted, 'utf8')} bytes, ${wanted.length} chars)`);
 }
 
 if (checkMode) {
