@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.76.0 - 2026-11-26
+
+- **The corpora are in front of the model on every step.** Until now a shipped corpus was mostly a file:
+  `formula.json` was read only by `mmk check --against`, `quotes.json` by nothing at all, and one line
+  from `exemplars.json` appeared only after the formula notice had already fired. `renderCorpusBrief`
+  now puts the measured shape of both books and three of their lines into the rules block on every step,
+  rotating on the same clock as the palette. It runs about 250 to 350 characters, and
+  `corpusBrief: false` turns it off.
+- Quotes no longer come from prefaces and afterwords. A line from a preface describes the book, so
+  quoting it as an example of how the prose moves teaches the wrong thing; footnote lines that open
+  with a bracketed note marker are dropped for the same reason. Genji keeps 161 lines and the Suzumiya
+  series 240, and the brief quotes each book before quoting either of them twice.
+
+## 0.75.3 - 2026-11-26
+
+- The Japanese copy of the length line went into `bannedSymbols` instead of `thinkingLanguage`, which
+  put a rule about length inside the block about judgement marks. All three locales now carry it in
+  `thinkingLanguage`, which is where the other rules about how much to write already live.
+
 ## 0.75.2 - 2026-11-26
 
 - **A rule line saying that length is not the goal.** The rules already said length follows the content;

@@ -93,8 +93,21 @@ function sentences(text) {
   return parts;
 }
 
+// Chapters that talk about the book rather than belong to it: prefaces, afterwords, editorial notes and
+// image pages. A line from one of those describes the work, so quoting it as an example of how the
+// prose moves teaches the wrong thing - it was measurable in the first run of the brief.
+const META_EXACT = ['\u524D\u8A00', '\u8BD1\u5E8F', '\u63D2\u56FE', '\u9644\u5F55', '\u7D22\u5F15'];
+const META_PARTS = ['\u540E\u8BB0', '\u89E3\u8BF4', '\u8BD1\u540E'];
+
+function isMeta(name) {
+  if (META_EXACT.includes(name)) return true;
+  return META_PARTS.some((part) => name.includes(part));
+}
+
 function pickQuotes(name, body) {
-  const list = sentences(body).filter((s) => s.length >= 12 && s.length <= 80);
+  // Footnote and translator's note lines start with a bracketed marker; they explain the text rather
+  // than belonging to it, so they are not an example of how it moves.
+  const list = sentences(body).filter((s) => s.length >= 12 && s.length <= 80 && !s.startsWith('\uFF08\u6CE8') && !s.startsWith('(\u6CE8'));
   if (list.length === 0) return [];
   const opening = list[0];
   const closing = list[list.length - 1];
@@ -217,7 +230,7 @@ for (const file of files) {
     tail: text.slice(-40),
   });
   full += block;
-  for (const q of pickQuotes(name, text)) quotes.push(q);
+  for (const q of (isMeta(name) ? [] : pickQuotes(name, text))) quotes.push(q);
   for (const e of pickExemplars(name, text)) exemplars.push(e);
   if (text !== '') perChapter.push({ n, volume, name, ...proportions(text) });
 }

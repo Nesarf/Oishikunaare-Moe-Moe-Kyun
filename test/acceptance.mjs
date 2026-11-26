@@ -693,6 +693,23 @@ check('the palette always offers one of the most complex faces', async () => {
   assert.ok(seen, 'the longest face of a mood appears within the first twenty seeds');
 });
 
+// The corpora are a reference rather than a download: the shape they measured and a rotating handful
+// of their lines ride with the rules, so the way those books look at things is in front of the model.
+check('the corpus brief carries the measured shape and lines from both books', async () => {
+  const dir = path.join(ROOT, 'rules', 'corpus');
+  const genji = mod.readCorpus(dir, 'genji');
+  const suzumiya = mod.readCorpus(dir, 'suzumiya');
+  assert.ok(genji !== null && genji.chars > 100000, 'the Genji record reads');
+  assert.ok(suzumiya !== null && suzumiya.quotes.length > 50, 'the Suzumiya record carries lines');
+  assert.equal(mod.readCorpus(dir, 'no-such-book'), null, 'an unknown book reads as null');
+  const brief = mod.renderCorpusBrief([genji, suzumiya], { locale: 'en', seed: 0, samples: 3 });
+  assert.ok(brief.includes('CORPUS'), 'the block has a heading');
+  assert.ok(brief.includes('sentence median'), 'the measured shape is named');
+  assert.ok(genji.quotes.some((quote) => brief.includes(quote)), 'Genji is quoted');
+  assert.ok(suzumiya.quotes.some((quote) => brief.includes(quote)), 'and so is Suzumiya');
+  assert.equal(mod.renderCorpusBrief([], { locale: 'en' }), '', 'no books, no block');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

@@ -644,6 +644,15 @@ is what keeps a prompt prefix cacheable. The other half is `judgeFaceRepeat`: a 
 face twice, or carries one over from the reply before it, gets a notice. Two per session, and
 `faceCheck: false` turns it off.
 
+### The corpora ride with the rules
+
+A corpus that only exists as a file nobody reads is a download, not a reference. Every step now carries
+a short block - `renderCorpusBrief` - with what the two books measured (sentence and paragraph medians,
+dialogue share, stock phrase counts) and three lines kept from them, rotating on the same clock as the
+palette. It is 250 to 350 characters, `corpusBrief: false` turns it off, and `corpusSamples` sets how
+many lines ride along. The quotes come from the prose, not from prefaces, afterwords or footnotes: a
+line from a preface describes the book instead of showing how it moves.
+
 ## Notes
 
 - Windows and Linux take the same path: the plugin touches nothing platform-specific.
