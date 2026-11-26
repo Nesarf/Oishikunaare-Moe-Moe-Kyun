@@ -4424,6 +4424,13 @@ export function apply(ctx, config) {
   // list stay live, which is the part that matters while editing.
   const initial = readJson(configFile) ?? {};
   const libraryFiles = libraryPaths(initial.kaomojiLibrary, shippedLibrary);
+  // The long faces ship beside the composed library: rules/kaomoji.json stops at 17 characters because it
+  // is built by combining columns, and these are the twenty-to-forty character ones it has no room for.
+  // They are appended only while the library itself is on, so `kaomojiLibrary: false` still means off.
+  if (libraryFiles.length > 0) {
+    const longFaces = path.join(HERE, '..', 'rules', 'kaomoji-long.json');
+    if (fs.existsSync(longFaces) && !libraryFiles.includes(longFaces)) libraryFiles.push(longFaces);
+  }
 
   // The text is a function, not a string: the prompt registry evaluates it on every model step, so a
   // configuration or library edit lands at the next step of every running session without a restart.

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.77.0 - 2026-11-26
+
+- **A mood for the faces the composed library cannot hold.** `rules/kaomoji.json` is built by combining
+  columns, so it stops at 17 characters and most of its faces are five to seven: the palette had no way
+  to offer a long shape at all. `rules/kaomoji-long.json` now carries 233 faces of ten to thirty-nine
+  characters, loaded beside the composed library as one extra mood (the elaborate one) and left out
+  when `kaomojiLibrary` is off. The source is the MIT-licensed `rime_kaomoji_dict` collection, filtered:
+  rows carrying Chinese words, sentences or pinyin were dropped, because a face is marks and kana rather
+  than a caption, and paths and stray fragments went with them. The check runs in six layers - strip a
+  pinyin prefix, drop any row with a Chinese character, drop Chinese punctuation, require ten characters,
+  deduplicate, then drop paths, URLs and bracketless fragments - and the 233 rows that survived contain
+  no Chinese character at all.
+- The palette block now measures 17,237 characters at a quota of 700 - twenty-eight faces per mood,
+  thirty-three for the long one - which is the cost of carrying both libraries at once.
+
 ## 0.76.0 - 2026-11-26
 
 - **The corpora are in front of the model on every step.** Until now a shipped corpus was mostly a file:
