@@ -3558,8 +3558,11 @@ export function renderCorpusBrief(records, options) {
   const newline = String.fromCharCode(10);
   const head = locale === 'zh'
     ? `\u3010\u8BED\u6599\u00B7\u884C\u6587\u3011${figures.join('\u3002')}\u3002\n\u8FD9\u91CC\u7684\u6570\u5B57\u662F\u4E24\u672C\u4E66\u91CF\u51FA\u6765\u7684\u5F62\u72B6\uFF0C\u5B66\u7684\u662F\u5B83\u4EEC\u770B\u4E1C\u897F\u7684\u65B9\u5F0F\uFF1A`
-    : `CORPUS - HOW THE PROSE MOVES. ${figures.join('. ')}. These are measurements of two books. What'
-      + ' to take from them is the way they look at things:`;
+    // The first line closes with a backtick, not a quote mark. Written as a quote, the template literal
+    // runs past the newline, and the concatenation operator plus its opening quote land inside the
+    // prompt: the block read "two books. What'" then a line beginning "+ ' to take from them".
+    : `CORPUS - HOW THE PROSE MOVES. ${figures.join('. ')}. These are measurements of two books. What`
+      + ' to take from them is the way they look at things:';
   const tail = locale === 'zh'
     ? '\u53E5\u5B50\u53EF\u4EE5\u957F\u53EF\u4EE5\u77ED\uFF0C\u4F46\u6BCF\u4E00\u53E5\u8981\u843D\u5728\u5177\u4F53\u7684\u4E1C\u897F\u4E0A\u3002'
     : 'A sentence can run long or short; every one of them should land on something concrete.';

@@ -707,6 +707,14 @@ check('the corpus brief carries the measured shape and lines from both books', a
   assert.ok(brief.includes('sentence median'), 'the measured shape is named');
   assert.ok(genji.quotes.some((quote) => brief.includes(quote)), 'Genji is quoted');
   assert.ok(suzumiya.quotes.some((quote) => brief.includes(quote)), 'and so is Suzumiya');
+  // What must not be in it: the builder's own punctuation. The English head was written with a quote
+  // mark where a backtick belonged, so the template literal ran past the newline and shipped
+  // "two books. What'" followed by a line beginning "+ ' to take from them" - to the model, on every
+  // step. Every assertion above still passed, because they all ask whether the right text arrived.
+  for (const text of [brief, mod.renderCorpusBrief([genji, suzumiya], { locale: 'zh', seed: 0, samples: 3 })]) {
+    assert.ok(!text.includes("+ '"), 'no concatenation operator reaches the prompt');
+    assert.ok(!/\n\s*\+\s/u.test(text), 'no continuation line opens with a plus');
+  }
   assert.equal(mod.renderCorpusBrief([], { locale: 'en' }), '', 'no books, no block');
 });
 

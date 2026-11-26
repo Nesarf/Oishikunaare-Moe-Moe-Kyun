@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.81.1 - 2026-11-27
+
+- **The English corpus brief carried the builder's own punctuation.** The head was written with a quote
+  mark where a backtick belonged, so the template literal ran past the newline and every English step
+  was told: `These are measurements of two books. What'` followed by a line beginning
+  `+ ' to take from them is the way they look at things:`. The Chinese branch is one complete template
+  and was never affected.
+- **Four assertions covered this block and all four passed the whole time**, because every one of them
+  asks whether the right text arrived - the heading, the measured shape, a line from each book. None
+  asked what must not arrive. The new check refuses a concatenation operator and a continuation line in
+  both locales, which is the same shape of gap the thinking-habit notice had.
+
 ## 0.81.0 - 2026-11-27
 
 - **The thinking-habit notice could fire once in a session and then never again.** `findThinkingTicks`
