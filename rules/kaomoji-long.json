@@ -1,7 +1,7 @@
 {
   "locale": "zh",
-  "source": "https://github.com/aoguai/rime_kaomoji_dict (data/*.txt), MIT",
-  "note": "Faces too long for the composed library: the largest is 39 characters and most are over twenty, where rules/kaomoji.json tops out at 17. Rows carrying Chinese words, sentences or pinyin were dropped - a face is marks and kana, not a caption.",
+  "source": "https://github.com/aoguai/rime_kaomoji_dict (data/*.txt), MIT; iFlytek input method APK (com.iflytek.inputmethod), assets/symbol/emoticon.ini",
+  "note": "Faces too long or too specific for the composed library: the rime collection supplies the elaborate mood, and the iFlytek package supplies mood groups of its own. Every row passed the same filter - no emoji, no judgement glyph, no Chinese word or sentence, ten characters or more.",
   "categories": [
     {
       "id": "elaborate",
@@ -708,6 +708,195 @@
         },
         {
           "face": "ヾ(′▽｀* )ノ~"
+        }
+      ]
+    },
+    {
+      "id": "ifly-cheer",
+      "label": "ifly-cheer",
+      "labelZh": "开心·讯飞",
+      "use": "good news, a job finished",
+      "useZh": "好消息、事情办成了",
+      "faces": [
+        {
+          "face": "(´,,•∀•,,`)"
+        },
+        {
+          "face": "((((っ´θ`)っ"
+        },
+        {
+          "face": "*´∀`)´∀`)*´∀`)*´∀`)"
+        },
+        {
+          "face": "(o>ε(o>ｕ(≧∩≦)"
+        },
+        {
+          "face": "└(^^*)┐ ┌(*^^)┘"
+        },
+        {
+          "face": "＼（＾∀＾）メ（＾∀＾）ノ"
+        }
+      ]
+    },
+    {
+      "id": "ifly-cute",
+      "label": "ifly-cute",
+      "labelZh": "卖萌·讯飞",
+      "use": "being cute on purpose",
+      "useZh": "故意卖萌",
+      "faces": [
+        {
+          "face": "（ ’ - ’ * )"
+        },
+        {
+          "face": "⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄"
+        },
+        {
+          "face": "(⁄ ⁄•⁄ω⁄•⁄ ⁄)"
+        }
+      ]
+    },
+    {
+      "id": "ifly-wry",
+      "label": "ifly-wry",
+      "labelZh": "无语·讯飞",
+      "use": "speechless, a small joke",
+      "useZh": "无语、开个小玩笑",
+      "faces": [
+        {
+          "face": "(/\"≡ _ ≡)="
+        },
+        {
+          "face": "...( ＿ ＿)ノ｜"
+        },
+        {
+          "face": "＼(-___________-;)／"
+        }
+      ]
+    },
+    {
+      "id": "ifly-sad",
+      "label": "ifly-sad",
+      "labelZh": "伤心·讯飞",
+      "use": "bad news, a loss",
+      "useZh": "坏消息、失落",
+      "faces": [
+        {
+          "face": ".·´¯`(>▂<)´¯`·."
+        },
+        {
+          "face": "(━┳━ _ ━┳━)"
+        },
+        {
+          "face": "_(´_`」 ∠)_"
+        },
+        {
+          "face": "┗┻━(・8・)┻┛"
+        },
+        {
+          "face": "( *^-^)ρ(*╯^╰)"
+        },
+        {
+          "face": "( ′ 3`) sigh~"
+        }
+      ]
+    },
+    {
+      "id": "ifly-shock",
+      "label": "ifly-shock",
+      "labelZh": "震惊·讯飞",
+      "use": "a surprise, something frightening",
+      "useZh": "意外、吓一跳",
+      "faces": [
+        {
+          "face": "┐(T.T ) ( T.T) ノ"
+        },
+        {
+          "face": "(・∀・(・∀・(・∀・*)"
+        }
+      ]
+    },
+    {
+      "id": "ifly-angry",
+      "label": "ifly-angry",
+      "labelZh": "发怒·讯飞",
+      "use": "annoyance, a complaint",
+      "useZh": "恼火、抱怨",
+      "faces": [
+        {
+          "face": "┳━┳ノ(°_°ノ)"
+        },
+        {
+          "face": "z(-_-z)).....((s-_-)s"
+        },
+        {
+          "face": "＼(゜ロ＼)(／ロ゜)／"
+        }
+      ]
+    },
+    {
+      "id": "ifly-action",
+      "label": "ifly-action",
+      "labelZh": "文字颜·讯飞",
+      "use": "a running gag written out",
+      "useZh": "写成一串的动作梗",
+      "faces": [
+        {
+          "face": "(/ω＼*)……… (/ω•＼*)"
+        },
+        {
+          "face": "ヘ( ^o^)ノ＼(^_^ )"
+        },
+        {
+          "face": "＼（＾∀＾）メ（＾∀＾）ノ"
+        },
+        {
+          "face": "ε=ε=ε=┏(゜ロ゜;)┛"
+        },
+        {
+          "face": "233333333333333"
+        }
+      ]
+    },
+    {
+      "id": "ifly-tired",
+      "label": "ifly-tired",
+      "labelZh": "躺倒·讯飞",
+      "use": "exhausted, lying down",
+      "useZh": "累了、摊平",
+      "faces": [
+        {
+          "face": "_(´_`」 ∠)_"
+        },
+        {
+          "face": "_(√ ζ ε:)_"
+        },
+        {
+          "face": "__(°ω°」∠)_"
+        },
+        {
+          "face": "(((((└(:D」┌)┘)))))))"
+        },
+        {
+          "face": "┏( .-. ┏ ) ┓"
+        },
+        {
+          "face": "[(－－)]..zzZ"
+        },
+        {
+          "face": "(´〜｀*) zzz"
+        },
+        {
+          "face": "(:3[________]"
+        },
+        {
+          "face": "(_ _)ヾ(‘ロ‘)"
+        },
+        {
+          "face": "(+.+)(-.-)(_ _) ..zzZZ もうだめ"
+        },
+        {
+          "face": "(+.+)(-.-)(_ _) ..zzZZ もうだめ"
         }
       ]
     }

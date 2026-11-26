@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.77.1 - 2026-11-26
+
+- **The iFlytek input method's kaomoji library, unpacked and merged.** The Android package carries 1370
+  faces in fourteen mood groups at `assets/symbol/emoticon.ini`. Thirty-nine of them survive the same
+  filter the rime collection goes through - no emoji, no judgement glyph, no Chinese word or sentence, ten
+  characters or more - and they now sit beside the elaborate mood as eight groups of their own: cheer,
+  cute, wry, sad, shock, angry, action, and tired. The animal and food groups were left out, and the
+  `Emoticon` section turned out to list the other section names rather than faces.
+- That filter is severe on this source: 1370 rows in, 60 out of the Chinese check, and 645 dropped by
+  the judgement-glyph check alone, because the packaged faces lean on check marks, root signs and
+  multiplication signs. What the package adds is shape MMK had none of - a bear, a shrug, a face lying
+  down - not volume.
+
 ## 0.77.0 - 2026-11-26
 
 - **A mood for the faces the composed library cannot hold.** `rules/kaomoji.json` is built by combining
