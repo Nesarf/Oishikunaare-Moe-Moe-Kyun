@@ -1,0 +1,195 @@
+{
+  "title": "Oishikunaare-Moe-Moe-Kyun - the output-discipline prompt layer",
+  "goals": [
+    {
+      "id": "rules-core",
+      "title": "The rule text, in three locales, and the generator that keeps them apart",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "src/index.js",
+        "rules/en.json",
+        "rules/zh.json",
+        "rules/ja.json",
+        "scripts/gen-rules-json.mjs"
+      ],
+      "verifiedBy": [
+        "test/selfcheck.mjs",
+        "scripts/check-ascii.mjs"
+      ]
+    },
+    {
+      "id": "palette",
+      "title": "The kaomoji palette: the composed library, the long faces, and what the prompt pays for each",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "src/index.js",
+        "rules/kaomoji.json",
+        "rules/kaomoji-long.json",
+        "rules/kaomoji",
+        "scripts/gen-kaomoji.mjs"
+      ],
+      "verifiedBy": [
+        "test/acceptance.mjs",
+        "test/selfcheck.mjs"
+      ]
+    },
+    {
+      "id": "drawings-optional",
+      "title": "A mood of drawings stays out of the palette unless kaomojiDrawings asks for it, and takes no quota while it is out",
+      "scope": "task",
+      "status": "done",
+      "parent": "palette",
+      "after": [
+        "palette"
+      ],
+      "touches": [
+        "src/index.js",
+        "rules/kaomoji-long.json",
+        "test/acceptance.mjs",
+        "README.md",
+        "README.zh-CN.md"
+      ],
+      "verifiedBy": [
+        "test/acceptance.mjs"
+      ]
+    },
+    {
+      "id": "selfcheck",
+      "title": "The self-check hook and its judges: judgement glyphs, emoji, faces, thinking language, stock phrases, bare commands",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "src/index.js",
+        "rules/reminders",
+        "rules/formula",
+        "rules/pressure",
+        "rules/culture"
+      ],
+      "verifiedBy": [
+        "test/selfcheck.mjs"
+      ]
+    },
+    {
+      "id": "ticks-newest",
+      "title": "The thinking-habit notice names the newest spiral that crosses the floor, not the largest one in the session",
+      "scope": "task",
+      "status": "done",
+      "parent": "selfcheck",
+      "after": [
+        "selfcheck"
+      ],
+      "touches": [
+        "src/index.js",
+        "test/selfcheck.mjs"
+      ],
+      "verifiedBy": [
+        "test/selfcheck.mjs"
+      ]
+    },
+    {
+      "id": "corpora",
+      "title": "Both books measured and quoted on every step, without a preface line being mistaken for prose",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "scripts/gen-corpus.mjs",
+        "src/index.js"
+      ],
+      "verifiedBy": [
+        "test/acceptance.mjs"
+      ]
+    },
+    {
+      "id": "moe-voice",
+      "title": "The moe voice layer: three languages, preset mapping, accents, and a personality that is read rather than assigned",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "rules/voices",
+        "rules/accents",
+        "rules/attributes",
+        "src/index.js",
+        "scripts/gen-voices.mjs"
+      ],
+      "verifiedBy": [
+        "test/selfcheck.mjs"
+      ]
+    },
+    {
+      "id": "entries",
+      "title": "Four entries over one core: the CLI, the MCP server, the Claude Code hook and the DSH plugin",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [],
+      "touches": [
+        "bin/mmk.mjs",
+        "adapters/mcp.mjs",
+        "adapters/claude-code.mjs",
+        "src/portable.mjs",
+        "src/client-patch.mjs",
+        "src/wire.mjs"
+      ],
+      "verifiedBy": [
+        "test/portable.mjs",
+        "test/adapters.mjs",
+        "test/client-patch.mjs"
+      ]
+    },
+    {
+      "id": "audit",
+      "title": "Measure a real transcript channel by channel, from the session log rather than from the plugin",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [
+        "entries"
+      ],
+      "touches": [
+        "src/audit.mjs",
+        "src/transcripts.mjs",
+        "scripts/audit-session.mjs"
+      ],
+      "verifiedBy": [
+        "test/portable.mjs"
+      ]
+    },
+    {
+      "id": "release",
+      "title": "Build, version, changelog and both READMEs stay in step on every release",
+      "scope": "project",
+      "status": "active",
+      "parent": null,
+      "after": [
+        "rules-core",
+        "palette",
+        "selfcheck"
+      ],
+      "touches": [
+        "scripts/build.mjs",
+        "scripts/check-version.mjs",
+        "scripts/check-ascii.mjs",
+        "package.json",
+        "CHANGELOG.md",
+        "README.md",
+        "README.zh-CN.md"
+      ],
+      "verifiedBy": [
+        "scripts/check-version.mjs",
+        "scripts/check-ascii.mjs"
+      ]
+    }
+  ]
+}
