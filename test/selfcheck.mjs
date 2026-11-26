@@ -830,6 +830,27 @@ check('the habit scan reads the whole conversation, not just its newest reply', 
   assert.deepEqual(mod.findThinkingTicks([history[1]]), null, 'a clean conversation reports nothing');
 });
 
+// Every test above feeds one message at a time, which is exactly why this went unnoticed: with a single
+// block, "the largest" and "the newest" are the same block. A real session passes all of its history at
+// once, and there the largest block is almost always the opening spiral - its key never changes, so the
+// notice fires once and every later spiral is silently held back by the key set.
+check('the newest spiral is the finding, not the largest one from earlier', () => {
+  const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
+  const message = (id, count) => ({ id, role: 'assistant', source: { kind: 'model' }, content: [{ type: 'thinking', text: block(count) }] });
+  const history = [message('opening', 50), message('middle', 4), message('now', 6)];
+  const found = mod.findThinkingTicks(history);
+  assert.ok(found.key.startsWith('now:'), 'the newest offending block is the one named');
+  assert.equal(found.count, 6, 'with its own count, not the opening block\'s');
+  assert.notEqual(found.key, mod.findThinkingTicks([history[0]]).key, 'so a later spiral is not mistaken for the first');
+  // Nothing newer reaches the floor: the old spiral is still the finding, so an early lapse is answered
+  // once even when the session has since settled down.
+  const stale = mod.findThinkingTicks([message('opening', 50), message('then', 1)]);
+  assert.ok(stale.key.startsWith('opening:'), 'an early spiral is still named when nothing newer qualifies');
+  // The floor travels in: a caller that raises it gets no finding from a block that only just qualified.
+  assert.equal(mod.findThinkingTicks([message('only', 3)], 5).count, 3, 'the block is returned regardless');
+  assert.equal(mod.findThinkingTicks([message('only', 3)], 5).key.startsWith('only:'), true, 'the floor does not hide it from the caller');
+});
+
 check('the hook reminds after three bare commands, once per block, within its budget', async () => {
   const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
   const assistant = (id, count) => ({

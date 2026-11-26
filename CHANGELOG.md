@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.81.0 - 2026-11-27
+
+- **The thinking-habit notice could fire once in a session and then never again.** `findThinkingTicks`
+  picked the *largest* block in the conversation rather than the newest one that crossed the floor. In a
+  long session the largest block is almost always the opening spiral, so its key never changed, the
+  `notified` set held it forever, and every later spiral was skipped in silence. Measured on a real
+  993-message session: 227 blocks at or over the floor, and the finding it returned was the first one
+  every time. The function now returns the newest qualifying block; an early spiral is still named when
+  nothing newer qualifies, and the floor travels in as an argument so the finder and the caller read the
+  same number.
+- **Why it survived: every test fed it one message at a time.** With a single block, "largest" and
+  "newest" are the same block, so the bug was invisible from inside the test suite. The new check passes
+  a three-message history whose opening block is the largest, and asserts that the newest one is named.
+
 ## 0.80.0 - 2026-11-27
 
 - **Drawings are out of the palette unless asked for.** A mood can be marked `optional`, and
