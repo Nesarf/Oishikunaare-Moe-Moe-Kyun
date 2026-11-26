@@ -566,7 +566,10 @@ const VOICE_DIR = 'voices';
 /** Shipped moe intensities. `off` (the default) leaves the layer out entirely. */
 const MOE_LEVELS = ['off', 'soft', 'full'];
 
-const DEFAULT_KAOMOJI_MAX = 140;
+// How many faces each mood contributes to the block. The cap exists because the library is nineteen
+// thousand faces and a prompt cannot carry them; it is not a token-saving measure, so it is per mood
+// rather than a fixed total - a new mood should not thin every other mood's slice.
+const DEFAULT_KAOMOJI_PER_MOOD = 20;
 /** Opening of the library block, in each shipped locale's language. */
 const LIBRARY_HEADING = {
   en: 'KAOMOJI LIBRARY. Faces by the mood they carry; this is a palette to draw from, not a list to recite.',
@@ -803,7 +806,9 @@ export function renderKaomojiLibrary(categories, file, options) {
     : category.label ?? category.id);
   const useOf = (category) => (locale === 'zh' && typeof category.useZh === 'string' ? category.useZh : category.use ?? '');
   const feelOf = (entry) => (locale === 'zh' && typeof entry?.feelZh === 'string' && entry.feelZh !== '' ? entry.feelZh : entry?.feel ?? '');
-  const max = Number.isFinite(options.max) && options.max > 0 ? Math.floor(options.max) : DEFAULT_KAOMOJI_MAX;
+  const max = Number.isFinite(options.max) && options.max > 0
+    ? Math.floor(options.max)
+    : DEFAULT_KAOMOJI_PER_MOOD * Math.max(1, categories.length);
   const total = categories.reduce((n, c) => n + (Array.isArray(c.faces) ? c.faces.length : 0), 0);
   const heading = total === 0
     ? LIBRARY_HEADING_PATHS[locale]
@@ -830,17 +835,23 @@ export function renderKaomojiLibrary(categories, file, options) {
       continue;
     }
     // Longest first inside a mood: a complex face is the shape worth showing, and the head of a
-    // generated mood is usually its shortest entries. The window then starts somewhere inside the
-    // longer half, chosen by a seed: without it the same four faces are printed on every step forever,
-    // and a palette that never moves is how one face becomes a habit - the moe version of the same
-    // stock phrase the formula rule exists to catch.
+    // generated mood is usually its shortest entries. The window then starts somewhere, chosen by a
+    // seed: without it the same four faces are printed on every step forever, and a palette that never
+    // moves is how one face becomes a habit - the moe version of the stock phrase.
+    //
+    // The head is always represented. A window that lands anywhere in the mood with equal odds would
+    // reach the longest faces about once in seven hundred steps, which is the same as never: the
+    // elaborate shapes - arms, decoration, the classic ones with stacked marks - would be shipped and
+    // unread. One slot is taken from the top twentieth and the rest are drawn from the whole mood.
     const longest = [...faces].sort((left, right) => String(right?.face ?? '').length - String(left?.face ?? '').length);
-    const span = Math.max(1, Math.floor(longest.length / 2));
-    const start = span === 0 ? 0 : Math.abs(Math.trunc(seed)) % span;
-    const take = [];
-    for (let step = 0; step < Math.min(room, longest.length); step += 1) {
-      take.push(longest[(start + step) % longest.length]);
+    const headSpan = Math.max(1, Math.floor(longest.length / 20));
+    const picks = new Set([Math.abs(Math.trunc(seed)) % headSpan]);
+    let cursor = 1;
+    while (picks.size < Math.min(room, longest.length) && cursor <= longest.length * 2) {
+      picks.add((Math.abs(Math.trunc(seed)) + cursor * 13) % longest.length);
+      cursor += 1;
     }
+    const take = [...picks].sort((a, b) => a - b).map((index) => longest[index]);
     if (faces.length > take.length) omitted.push(`${label}: ${faces.length - take.length}`);
     shown += take.length;
     const rendered = take.map((entry) => `${entry?.face ?? ''}${feelOf(entry) ? ` (${feelOf(entry)})` : ''}`);
@@ -917,7 +928,7 @@ export function makeRulesResolver(options) {
       const rendered = assembled.enabled && user.kaomojiLibrary !== false
         ? renderKaomojiLibrary(library, options.shippedLibrary, {
           locale: assembled.locale,
-          max: typeof user.kaomojiLibraryMax === 'number' ? user.kaomojiLibraryMax : DEFAULT_KAOMOJI_MAX,
+          max: typeof user.kaomojiLibraryMax === 'number' ? user.kaomojiLibraryMax : undefined,
           collapse: user.kaomojiLibrary === 'collapse' || user.kaomojiLibraryCollapse === true,
           // Rotating the palette is what keeps a palette from becoming a habit. The slice changes on a
           // clock rather than on every step on purpose: a text that changes each step cannot be cached

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.75.1 - 2026-11-26
+
+- **The palette carries more of the library.** The block was capped at 140 faces - ten per mood - which
+  is a token-saving habit rather than a limit the prompt requires. The cap is now twenty per mood,
+  computed from the number of moods (`DEFAULT_KAOMOJI_PER_MOOD`) so a new mood does not thin every other
+  mood's slice; `kaomojiLibraryMax` still overrides it. For the shipped library the block grows from
+  about 3.8k to 7.5k characters.
+- **The most complex face of a mood is always in the slice.** The rotating window drew with equal odds
+  across a whole mood, so the longest faces - arms, decoration, the classic ones with stacked marks -
+  came up about once in seven hundred steps, which is the same as never. One slot now comes from the top
+  twentieth of each mood and the rest from anywhere in it.
+- A self-check case asserted that the English rendering carries no U+3010. A kaomoji may legitimately
+  contain that bracket, so the case now asserts on the Chinese heading instead of on the bracket.
+
 ## 0.75.0 - 2026-11-26
 
 - **The palette moves, and a reply is judged for leaning on one face.** `renderKaomojiLibrary` used to

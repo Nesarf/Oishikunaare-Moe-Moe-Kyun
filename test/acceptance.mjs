@@ -678,6 +678,21 @@ check('the palette moves with the seed and stays still without one', async () =>
   assert.ok(mod.renderSeedOf('hour') > 0, 'a clock moves it');
 });
 
+check('the palette always offers one of the most complex faces', async () => {
+  const parsed = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const categories = Array.isArray(parsed) ? parsed : (parsed.categories ?? []);
+  const mood = categories.find((category) => Array.isArray(category.faces) && category.faces.length > 20);
+  assert.ok(mood, 'the shipped library has moods to draw from');
+  const sorted = [...mood.faces].sort((left, right) => [...String(right.face)].length - [...String(left.face)].length);
+  const longest = String(sorted[0].face);
+  let seen = false;
+  for (let seed = 0; seed < 20 && !seen; seed += 1) {
+    const block = mod.renderKaomojiLibrary([mood], SHIPPED, { locale: 'en', max: 3, seed });
+    if (block.includes(longest)) seen = true;
+  }
+  assert.ok(seen, 'the longest face of a mood appears within the first twenty seeds');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

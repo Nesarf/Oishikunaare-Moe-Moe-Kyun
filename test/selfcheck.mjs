@@ -1963,9 +1963,12 @@ check('a config file on disk reaches the section, and survives further edits', (
   mod.apply(ctx, { home });
   const read = () => seen.sections[0].text({});
   assert.ok(read().includes('APPENDED'));
-  assert.ok(read().includes('\u3010'));
+  assert.ok(read().includes('\u989C\u6587\u5B57\u5E93'), 'the Chinese heading is rendered');
   fs.writeFileSync(file, JSON.stringify({ locale: 'en' }), 'utf8');
-  assert.ok(!read().includes('\u3010'), 'switching locale should drop the Chinese text');
+  // The heading, not the bracket: a kaomoji can legitimately contain U+3010 (the left corner bracket -
+  // the shipped library has faces like that), so asserting on the bracket would fail on a library that
+  // is working correctly. The Chinese heading is what only the Chinese rendering carries.
+  assert.ok(!read().includes('\u989C\u6587\u5B57\u5E93'), 'switching locale should drop the Chinese heading');
   assert.ok(!read().includes('APPENDED'), 'and drop an override that is no longer configured');
   fs.rmSync(home, { recursive: true, force: true });
 });
