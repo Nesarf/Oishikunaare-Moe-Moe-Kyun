@@ -514,6 +514,12 @@ npm run audit:session -- --json      # 机器可读
     mmk check --text "…" --style --against genji  同样的数字，摆在书的旁边
     mmk audit --transcript <文件> --style        一整场会话的形状
 
+### 让调色板动起来
+
+固定送哪几个颜文字的规则，会把一盘颜料变成四个字。库块现在从一个会走动的种子开始取窗口——`kaomojiRotate`：默认六小时换一次，也可选 `hour`、`day`、`off`——于是不同会话、不同日子看到的脸不一样，而同一场会话内文本保持稳定，prompt 前缀才缓存得住。
+
+另一半是 `judgeFaceRepeat`：一段回复里同一个脸用了两次，或者把上一段用过的脸又带过来，就会收到一条通知。每场两次，`faceCheck: false` 可关。
+
 ## 说明
 
 - Windows 与 Linux 走同一条路径，插件不碰任何平台专有面。

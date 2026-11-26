@@ -652,6 +652,32 @@ check('the shape measure reads the same fields the corpora measure', async () =>
   assert.equal(mod.readBaseline(path.join(ROOT, 'rules', 'corpus'), 'no-such-book'), null, 'an unknown book has no baseline');
 });
 
+// The face rule: a palette becomes a habit when one face is used twice in a reply, or carried over
+// from the reply before it. The rotation moves what is offered; the judge catches what is written.
+check('the face judge catches a repeated face and one carried over', async () => {
+  const text = '\u597D\u7684 (o_o) \u90A3\u5C31\u8FD9\u6837 (>_<) \u518D\u6765\u4E00\u6B21 (o_o)';
+  assert.deepEqual(mod.facesIn(text), ['(o_o)', '(>_<)', '(o_o)'], 'the faces, in order');
+  const finding = mod.judgeFaceRepeat(text, ['(>_<)']);
+  assert.deepEqual(finding.repeated, [{ face: '(o_o)', count: 2 }], 'the repeated face and its count');
+  assert.deepEqual(finding.carriedOver, ['(>_<)'], 'the face carried over from the reply before it');
+  const clean = mod.judgeFaceRepeat('only one (^_^)', ['(o_o)']);
+  assert.deepEqual(clean.repeated, [], 'one face is not a repeat');
+  assert.deepEqual(clean.carriedOver, [], 'a different face is not carried over');
+  assert.ok(mod.faceRepeatNotice('en', finding).includes('MOE FORMULA'), 'the notice names the rule');
+});
+
+check('the palette moves with the seed and stays still without one', async () => {
+  const parsed = JSON.parse(fs.readFileSync(SHIPPED, 'utf8'));
+  const categories = Array.isArray(parsed) ? parsed : (parsed.categories ?? []);
+  const first = mod.renderKaomojiLibrary(categories, SHIPPED, { locale: 'en', max: 42, seed: 0 });
+  const moved = mod.renderKaomojiLibrary(categories, SHIPPED, { locale: 'en', max: 42, seed: 11 });
+  const again = mod.renderKaomojiLibrary(categories, SHIPPED, { locale: 'en', max: 42, seed: 11 });
+  assert.notEqual(first, moved, 'a different seed prints a different slice');
+  assert.equal(moved, again, 'the same seed prints the same slice, so a prompt prefix stays cacheable');
+  assert.equal(mod.renderSeedOf('off'), 0, 'off freezes the palette at the fixed head');
+  assert.ok(mod.renderSeedOf('hour') > 0, 'a clock moves it');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

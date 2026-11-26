@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.75.0 - 2026-11-26
+
+- **The palette moves, and a reply is judged for leaning on one face.** `renderKaomojiLibrary` used to
+  sort each mood by length and print the head of it forever, so the same four faces were offered on
+  every step of every session. The window now starts at a seed, which moves on a clock
+  (`kaomojiRotate`: six hours by default, `hour`, `day`, or `off`) and stays still in between - a text
+  that changes every step cannot be cached as a prompt prefix, and that cost is paid on every turn.
+- **`judgeFaceRepeat`** catches the other half of the habit: one face used twice in a reply, or a face
+  carried over from the reply before it. `facesIn` finds faces by shape - a bracketed run of marks -
+  instead of comparing against the 19000 shipped ones, so an invented face is still counted. Two
+  notices per session, off with `faceCheck: false`.
+
 ## 0.74.0 - 2026-11-26
 
 - **The formula rule: a self-check for the habit the corpora exist to correct.** `rules/formula/zh.json`

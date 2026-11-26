@@ -635,6 +635,15 @@ reply's prose, not its thinking: thinking has rules of its own, and the two do n
     mmk check --text "..." --style --against genji the same numbers beside a book's
     mmk audit --transcript <file> --style          the shape of a whole session
 
+### The palette moves too
+
+A rule that fixes which face is offered turns a palette into four faces. The library block now starts its
+window at a seed that moves on a clock - `kaomojiRotate`: six hours by default, or `hour`, `day`, `off` -
+so different sessions and different days see different faces while one session keeps a stable text, which
+is what keeps a prompt prefix cacheable. The other half is `judgeFaceRepeat`: a reply that uses the same
+face twice, or carries one over from the reply before it, gets a notice. Two per session, and
+`faceCheck: false` turns it off.
+
 ## Notes
 
 - Windows and Linux take the same path: the plugin touches nothing platform-specific.
