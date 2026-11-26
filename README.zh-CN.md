@@ -304,6 +304,19 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 - `ticksCheck`（默认开）、`ticksFloor`（默认 3）与 `ticksCheckMax`（默认 2）控制思考习惯提醒：
   去掉引号与括号内的文字后，一段思考里出现 3 次以上「做。」「写。」「再看。」「好。」「快。」
   「简短。」这类单字命令句时，下一次回复会得到一次提醒。引用别人的话不算。
+  `ticksWindow`（默认 10）是它的窗口：按连续段落看，不是整块求和。
+- 另有四条「形状」检查，各自一个开关与一个预算，默认全开：`scriptCheck` / `scriptCheckMax`（默认 2）
+  抓简繁混写与繁体漂移；`tailCheck` / `tailCheckMax`（默认 1）抓停在一个裸词上的段落结尾；
+  `pressureCheck` / `pressureCheckMax`（默认 1）抓把时间压力写进思考的句子；
+  `repeatCheck` / `repeatCheckMax`（默认 1）抓拿同一个符号当分隔线。
+  `faceCheckMax`（默认 2）是顔文字重复那条的预算，开关与判据见下面「自检」一节。
+- `formulaCheck`（默认开）、`formulaCheckMax`（默认 2）、`formulaMinStock`（默认 3）与
+  `formulaMinAdversative`（默认 2）控制套语与对偶句式那条：前者是几个套语算一段，后者是几组
+  「不是……而是……」算一段。`formulaCorpus`（默认 `genji`）决定提醒里举的例子从哪本书来，
+  也可填 `suzumiya`。
+- `emojiSteer`（默认**关**）与 `emojiSteerMax`（默认 1）：emoji 的 steer 杠杆。打开后，一条带着
+  emoji 的回复会被打回重写一次 —— 与 `kaomojiSteer` 同理，默认关是因为 steer 要多花一次模型步。
+- `presetRoot`：预设文件所在的目录，用来读某个 preset 的 persona；不填就用宿主默认的位置。
 
 ### 颜文字库
 

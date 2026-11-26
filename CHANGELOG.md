@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.84.0 - 2026-11-27
+
+- **Eighteen configuration keys were read on every step and documented nowhere.** Measured by extracting
+  every `initial.*` and `user.*` key from the source and looking for each one in both READMEs: the whole
+  shape-check family (`scriptCheck`, `tailCheck`, `pressureCheck`, `repeatCheck` and their budgets), the
+  stock-phrase thresholds (`formulaMinStock`, `formulaMinAdversative`, `formulaCorpus`), `emojiSteer`
+  with its budget, `ticksWindow`, `faceCheckMax` and `presetRoot` had no mention in either language. A
+  setting nobody can find is a feature nobody turns on.
+- **Both READMEs describe them now**, in the same list as the other settings, with the defaults read off
+  the code rather than guessed: budgets of 2, 1, 1, 1 and 2; thresholds of 3 stock phrases and 2
+  adversative pairs; `formulaCorpus` defaulting to `genji`; the emoji steer off by default for the same
+  reason the kaomoji one is.
+- **A check keeps it from drifting back.** `every configuration key the code reads appears in both
+  READMEs` extracts the keys from the source and asserts each appears in each README. It also asserts
+  that its own extraction found at least forty keys, because a regex that quietly stopped matching would
+  otherwise report a clean sweep over an empty set.
+
 ## 0.83.1 - 2026-11-27
 
 - **The standing history quotes the passage, not only its count.** `findThinkingTicks` has always

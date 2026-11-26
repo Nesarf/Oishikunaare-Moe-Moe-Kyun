@@ -372,6 +372,23 @@ required - with no file at all the rules above are injected in English.
   thinking-habit notice: three or more bare one-word command lines ("do.", "write.", "look.", "good.",
   "fast.", "brief.") in one thinking block is answered once on the next step. Quoted and
   parenthesised passages are stripped before the count, so a quotation is not read as an order.
+  `ticksWindow` (default 10) is that notice's window: it reads consecutive paragraphs rather than
+  summing the whole block.
+- Four more shape checks, each with a switch and a budget, all on by default: `scriptCheck` /
+  `scriptCheckMax` (default 2) catches a Traditional/Simplified drift; `tailCheck` / `tailCheckMax`
+  (default 1) catches a passage that stops on a bare word; `pressureCheck` / `pressureCheckMax`
+  (default 1) catches a clock put on the text ("time is short" and its relatives); `repeatCheck` /
+  `repeatCheckMax` (default 1) catches one symbol used as a divider. `faceCheckMax` (default 2) is the
+  budget for the repeated-face notice, whose switch and reading are in "The self-check" below.
+- `formulaCheck` (default true), `formulaCheckMax` (default 2), `formulaMinStock` (default 3) and
+  `formulaMinAdversative` (default 2) control the stock-phrase notice: how many stock phrases, and how
+  many "not X but Y" pairs, make a passage formulaic. `formulaCorpus` (default `genji`) picks which
+  book the reminder quotes its example from; `suzumiya` works too.
+- `emojiSteer` (default off) and `emojiSteerMax` (default 1): the steer lever for emoji. Turned on, a
+  reply carrying one is sent back once to be rewritten - off by default for the same reason as
+  `kaomojiSteer`, because a steer costs an extra model step.
+- `presetRoot`: where the preset files live, used to read one preset's persona. Absent, the host's
+  default location is used.
 
 ### The kaomoji library
 

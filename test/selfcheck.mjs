@@ -2331,6 +2331,22 @@ check('a spiral reaches the standing history, not only the one-off notice', asyn
   assert.ok(after.includes('\u505a'), 'and they are the words it actually wrote');
 });
 
+// A configuration key no README mentions is a feature nobody can turn on. This found eighteen of them
+// at once: the whole shape-check family (script, tail, pressure, repeat), the stock-phrase thresholds,
+// the emoji steer and the preset root were all read on every step and documented nowhere.
+check('every configuration key the code reads appears in both READMEs', () => {
+  const source = fs.readFileSync(path.join(ROOT, 'src', 'index.js'), 'utf8');
+  const keys = new Set([...source.matchAll(/(?:initial|user)\.([a-zA-Z][a-zA-Z0-9]*)/g)].map((match) => match[1]));
+  // The extraction is the fragile part, so it is checked itself: a regex that stopped matching would
+  // otherwise report a clean sweep over an empty set.
+  assert.ok(keys.size >= 40, `the extraction found only ${keys.size} keys, so the result cannot be trusted`);
+  for (const readme of ['README.md', 'README.zh-CN.md']) {
+    const text = fs.readFileSync(path.join(ROOT, readme), 'utf8');
+    const missing = [...keys].filter((key) => !text.includes(key)).sort();
+    assert.deepEqual(missing, [], `${readme} never mentions: ${missing.join(', ')}`);
+  }
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();
