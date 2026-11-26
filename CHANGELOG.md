@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.82.0 - 2026-11-27
+
+- **A hygiene check over the text a host actually injects.** `test/hygiene.mjs` walks the rule section
+  and the palette block in all three shipped locales, plus one notice of each kind, and refuses a fixed
+  list of leftovers: a concatenation operator, an unexpanded `${`, `undefined`, `NaN`, a stringified
+  object, an unreplaced upper-case placeholder, a replacement character, trailing whitespace. It joins
+  `npm run verify` and CI, because the three defects it exists for all shipped - and every one of them
+  passed a suite that asked only whether the right text had arrived.
+- **The check asserts its own coverage.** `--locale` moves only the notice wording while the rule text
+  follows the configuration file, so a scan that trusts it reads one locale repeatedly and reports the
+  others clean. Each locale gets a configuration file of its own, and two locales producing
+  byte-identical rule text fails the run. That assertion is precisely what the first version of this
+  scan lacked.
+
 ## 0.81.2 - 2026-11-27
 
 - **The Japanese rule text carried three replacement characters.** The source held

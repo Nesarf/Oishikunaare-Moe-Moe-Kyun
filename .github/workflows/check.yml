@@ -48,3 +48,7 @@ jobs:
         run: node test/adapters.mjs
       - name: Client patch
         run: node test/client-patch.mjs
+      # The text a host injects, walked in every locale for the leftovers three bugs of one shape
+      # shipped: a concatenation operator, an unexpanded placeholder, a replacement character.
+      - name: Hygiene of the injected text
+        run: node test/hygiene.mjs
