@@ -18,14 +18,33 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       # No install step: this plugin has no dependencies, and the point of CI here is to prove the
-      # invariants hold on a machine that never had a node_modules directory.
+      # invariants hold on a machine that never had a node_modules directory. That claim is only tested
+      # if the portability checks run, so they are part of this list rather than left to `npm run verify`
+      # on a developer machine that does have one.
       - name: ASCII invariant
         run: node scripts/check-ascii.mjs
+      - name: Portability (no harness, no install)
+        run: node scripts/check-portable.mjs
       - name: Version sync
         run: node scripts/check-version.mjs
+      # Every generated file is checked against the source it comes from. Without this, a source edit
+      # that never ran its generator is found by `npm run verify` on one machine and by nobody else.
+      - name: Generated files are in sync
+        run: |
+          node scripts/gen-rules-json.mjs --check
+          node scripts/gen-kaomoji.mjs --check
+          node scripts/gen-voices.mjs --check
+          node scripts/gen-corpus.mjs --check
+          node scripts/gen-corpus.mjs --book suzumiya --check
       - name: lib/index.js is not stale
         run: node scripts/build.mjs --check
       - name: Selfcheck
         run: node test/selfcheck.mjs
       - name: Acceptance harness
         run: node test/acceptance.mjs
+      - name: Portable suite
+        run: node test/portable.mjs
+      - name: Adapter fixtures
+        run: node test/adapters.mjs
+      - name: Client patch
+        run: node test/client-patch.mjs
