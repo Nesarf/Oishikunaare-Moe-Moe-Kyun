@@ -2325,6 +2325,10 @@ check('a spiral reaches the standing history, not only the one-off notice', asyn
   assert.ok(after.includes('2 spiral'), 'a spiral past the notice budget is still counted');
   assert.ok(after.includes('thinking that moved nothing'), 'and the most recent kind is named, not guessed');
   assert.ok(!after.includes('an emoji'), 'a spiral is never described as an emoji');
+  // The passage is quoted back, because "twice" is a statistic and the words are the thing it can
+  // recognise in the next block it writes.
+  assert.ok(after.includes('It opened with:'), 'the opening words of the passage are quoted back');
+  assert.ok(after.includes('\u505a'), 'and they are the words it actually wrote');
 });
 
 for (const { label, fn } of pending) {

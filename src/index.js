@@ -383,10 +383,13 @@ export function briefRules(locale) {
 // entry: it is rebuilt every step, so the summary reaches the model before it writes, not after.
 const VIOLATION_HISTORY = new Map();
 
-const recordViolation = (sessionId, kind) => {
+const recordViolation = (sessionId, kind, detail = '') => {
   const entry = VIOLATION_HISTORY.get(sessionId) ?? { symbols: 0, kaomoji: 0, language: 0, emoji: 0, ticks: 0, last: '' };
   entry[kind] = (entry[kind] ?? 0) + 1;
   entry.last = kind;
+  // The opening words of the offending passage, when the caller has them. A count says how often; the
+  // words say what it looked like, and a reader can hold those up against what it is about to write.
+  if (typeof detail === 'string' && detail !== '') entry.lastDetail = detail;
   entry.at = Date.now();
   VIOLATION_HISTORY.set(sessionId, entry);
 };
@@ -427,12 +430,18 @@ export const violationSummary = (sessionId) => {
     : entry.last === 'language' ? 'the wrong thinking language'
     : entry.last === 'ticks' ? 'thinking that moved nothing'
     : 'an emoji';
-  return [
+  const lines = [
     '',
     'HISTORY - this session has already breached the rules ' + parts.join(', ') + ' time(s).',
     'The most recent breach was ' + kind + ', and it was caught after the reply had gone out.',
-    'That is the reason to check before writing rather than after: what is already written cannot be fixed.',
-  ].join(String.fromCharCode(10));
+  ];
+  // The passage's own opening words, when there are any. "Three times" is a statistic about the session;
+  // these are the words it actually wrote, which is the part it can recognise and stop repeating.
+  if (typeof entry.lastDetail === 'string' && entry.lastDetail !== '') {
+    lines.push('It opened with: ' + entry.lastDetail);
+  }
+  lines.push('That is the reason to check before writing rather than after: what is already written cannot be fixed.');
+  return lines.join(String.fromCharCode(10));
 };
 export function packagedRules(wanted) {
   const want = String(wanted ?? '').trim();
@@ -4047,7 +4056,7 @@ export function makeSelfCheckHook(options) {
           // purpose - a notice repeated in the same words is the noise it exists to reduce - but the
           // count in the prompt section is read on every step, and a session that has spent its
           // notices is exactly the one whose count needs to keep rising.
-          recordViolation(sessionId, 'ticks');
+          recordViolation(sessionId, 'ticks', ticks.head);
           const used = tickCounts.get(sessionId) ?? 0;
           const budget = Number.isFinite(options.ticksMax) && options.ticksMax >= 0 ? Math.floor(options.ticksMax) : 2;
           if (used < budget) {

@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.83.1 - 2026-11-27
+
+- **The standing history quotes the passage, not only its count.** `findThinkingTicks` has always
+  returned the opening eighty characters of the offending block; they went to the log and stopped
+  there. The prompt section carries them now, on a line after the count: `It opened with: ...`. "Twice"
+  is a statistic about a session, while the words are the part a reader can recognise in the block it
+  is about to write.
+- **Two obvious-looking signals were measured and rejected first.** "No tool calls in recent steps" does
+  not separate a spiral at all: across this machine's own transcript (1152 authored messages), messages
+  carrying bare commands average 1.09 tool calls and messages without them average 1.10, and 88 of the
+  90 messages with ten or more bare commands were calling tools at the same time. "A high share of bare
+  lines" does not separate it either: the bare-command share of thinking lines has a median of 5%, a
+  99th percentile of 52% and a maximum of 65%, so no message resembles a block of pure commands - the
+  spiral in question was twenty lines of reasoning with a dozen commands mixed in. What was actually
+  missing is that the count never reached the prompt at all, which 0.83.0 fixed.
+
 ## 0.83.0 - 2026-11-27
 
 - **A spiral now reaches the standing history, not only a one-off notice.** The prompt section already
