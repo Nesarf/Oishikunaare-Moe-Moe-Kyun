@@ -352,6 +352,11 @@ required - with no file at all the rules above are injected in English.
   too if you want both.
 - `kaomojiLibraryMax` caps how many faces reach the prompt (default 140).
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
+- `kaomojiDrawings: true` spreads the two drawing moods marked `optional` in
+  `rules/kaomoji-long.json` into the prompt as well - braille art and line drawings, both multi-line.
+  **Off by default**: those are pictures rather than faces, seven to thirteen rows each, and at the
+  default quota they took three quarters of the block. Measured on the shipped library, 4218 of 5913
+  characters were drawings while all nine face moods together came to 1449.
 - `moeVoiceByPreset: { "redipaloynz": "gentle" }` names a moe voice for one agent preset. The mapping is
   re-read on every step, so adding it needs no restart. See "How the voice is chosen" above.
 - `enabled: false` empties the section, so nothing is injected.
@@ -380,6 +385,15 @@ shape. The shipped file holds **19600 faces** across 14 moods, and one invariant
 extend it: **every face must be one the judge can see** (`findKaomoji`, the same reading the floor uses).
 The generator enforces that by importing the judge, and a test asserts it - because 100 entries used to
 ship blind, which turned "use a face from the palette" into "you used no kaomoji" for those faces.
+
+The long-face library `rules/kaomoji-long.json` holds what will not fit on one line, and its filter
+carries one clause the one above does not: **it takes Japanese kaomoji by default**. Brackets or Japanese
+marks around a pair of eyes and a mouth, kana taking part in the shape - that is what gets in. Chinese
+words, English labels, years and greetings, and the Western `:-)` family do not: those are captions with
+a face attached, and a caption goes stale. A multi-line drawing may enter the library, but it is **a
+picture, not a face**, and it has to be marked `optional` - otherwise it spends its full height on every
+step. Measured, twenty-seven braille drawings were 4218 of the block's 5913 characters, against 1449 for
+the nine face moods together. Only faces print by default; `kaomojiDrawings: true` spreads the drawings.
 
 ```json
 {

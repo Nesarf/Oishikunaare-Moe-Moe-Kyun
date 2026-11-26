@@ -710,6 +710,47 @@ check('the corpus brief carries the measured shape and lines from both books', a
   assert.equal(mod.renderCorpusBrief([], { locale: 'en' }), '', 'no books, no block');
 });
 
+// A graphic kaomoji is a drawing, several lines tall. Folding one into the row would flatten the drawing
+// and cut the block at an arbitrary point, so the renderer prints it under the row instead.
+check('a multi-line face keeps its shape instead of being folded into the row', async () => {
+  const drawn = '/\\ _ /\\ =-\n( \u2022\u03C9\u2022 \x27 ) =- \u30B9\u30BF\u30C3';
+  const block = mod.renderKaomojiLibrary(
+    [{ id: 'g', label: 'g', labelZh: 'G', use: 'x', useZh: 'x', faces: [{ face: drawn }] }],
+    'x',
+    { locale: 'en', max: 3, seed: 0 },
+  );
+  const lines = block.split('\n');
+  const row = lines.find((line) => line.startsWith('g ['));
+  assert.ok(row !== undefined, 'the mood row is printed');
+  assert.ok(!row.includes('\u30B9\u30BF\u30C3'), 'the drawing is not folded into that row');
+  assert.ok(lines.some((line) => line.trim() === '/\\ _ /\\ =-'), 'its first line stands on its own');
+  assert.ok(lines.some((line) => line.includes('\u30B9\u30BF\u30C3')), 'and its last line too');
+});
+
+// An optional mood holds drawings rather than faces. It stays in the library but out of the palette
+// unless asked for, and the easy half to miss is the quota: moods are divided into `max`, so a drawing
+// mood that is merely skipped in the loop still takes a share away from every face beside it. The test
+// gives four faces and a max of four, so a hidden mood that kept its share would leave two unprinted.
+check('an optional mood stays out of the palette and takes no quota with it', async () => {
+  const categories = [
+    { id: 'faces', label: 'faces', labelZh: 'F', use: 'x', useZh: 'x', faces: [{ face: '(aa)' }, { face: '(bb)' }, { face: '(cc)' }, { face: '(dd)' }] },
+    { id: 'art', label: 'art', labelZh: 'A', use: 'y', useZh: 'y', optional: true, faces: [{ face: 'row-one\nrow-two' }] },
+  ];
+  const normalized = mod.normalizeLibrary({ categories });
+  assert.equal(normalized.find((category) => category.id === 'art')?.optional, true, 'the marker survives normalization');
+  assert.equal(normalized.find((category) => category.id === 'faces')?.optional, false, 'a plain mood is not optional');
+
+  const off = mod.renderKaomojiLibrary(categories, 'x', { locale: 'en', max: 4, seed: 0 });
+  assert.ok(off.includes('faces ['), 'the face mood is printed');
+  assert.ok(!off.includes('art ['), 'the drawing mood is not');
+  assert.ok(!off.includes('row-one'), 'and none of its lines are');
+  assert.ok(off.includes('(cc)') && off.includes('(dd)'), 'the whole face mood still fits, so the hidden mood took no quota');
+
+  const on = mod.renderKaomojiLibrary(categories, 'x', { locale: 'en', max: 4, seed: 0, drawings: true });
+  assert.ok(on.includes('art ['), 'asking for drawings brings the mood back');
+  assert.ok(on.split('\n').some((line) => line.trim() === 'row-two'), 'and it prints line by line');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

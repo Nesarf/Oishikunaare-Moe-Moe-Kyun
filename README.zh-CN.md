@@ -291,6 +291,9 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
   给路径或路径数组 = 用你自己的库。**给数组是替换内置库**，想两个都要就把内置路径也写进数组。
 - `kaomojiLibraryMax` 限制进入提示词的颜文字数量（默认 140）。
 - `kaomojiLibraryCollapse: true` 让每类压成一行，更省。
+- `kaomojiDrawings: true` 把 `rules/kaomoji-long.json` 里标了 `optional` 的那两类「画」也铺进提示词
+  （点阵画与线条画，都是多行）。**默认不出**：那是画不是脸，每张七到十三行，按默认配额铺开要吃掉
+  整块的四分之三 —— 实测全量 5913 字符里 4218 是它们，九个颜文字类合起来才 1449。
 - `moeVoiceByPreset: { "redipaloynz": "gentle" }` 给某一个 agent 预设指定萌语气。这份映射每个模型步
   都会重读，改完不用重启。细节见上面「语气是怎么定下来的」那一节。
 - `enabled: false` 让这条 section 变空，什么都不注入。
@@ -328,6 +331,13 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 量级参考：19600 个字形的中文注解约 13 万字符 —— 这正是上限存在的理由：默认的 140 个约占 2400 字符。
 库本身由 `scripts/gen-kaomoji.mjs` 生成（`npm run gen:kaomoji`），四道闸门保证质量：跨类唯一、
 长度窗口、至少含一个非 ASCII 字符、括号配对。
+
+长脸库 `rules/kaomoji-long.json` 收的是「一行放不下的脸」，它的判据比上面多一条：**默认只收日式颜文字**。
+括号或日式符号包住眼与嘴、假名参与构图，这叫收。中文词句、英文标签、年份与问候语、西式笑脸（`:-)` 那一族）
+不收 —— 那些是配了一张脸的说明文字，标签一过时就整条作废。多行的点阵画与线条画可以进库，
+但那是**画不是脸**，必须标 `optional: true`，否则它会按自己的高度吃掉整块提示词：
+实测 27 张点阵画占了 5913 字符里的 4218，九个颜文字类合起来才 1449。默认渲染只出脸，
+`kaomojiDrawings: true` 才把画铺开。
 
 ### 自检：有牙齿的那一层
 

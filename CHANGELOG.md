@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.80.0 - 2026-11-27
+
+- **Drawings are out of the palette unless asked for.** A mood can be marked `optional`, and
+  `renderKaomojiLibrary` now divides its quota over the moods that will actually print. Measured on the
+  shipped library, the braille mood of twenty-seven pictures was 4218 of the block's 5913 characters
+  while the nine face moods together came to 1449: three quarters of a text that exists to build a
+  kaomoji habit was being spent on pictures. Nothing was deleted - all 301 faces stay in the file and
+  nine moods print by default - and `kaomojiDrawings: true` puts the drawings back.
+- **The quota is the half worth a test.** Skipping a mood in the print loop is not enough, because the
+  per-mood share is `max / moods`: a drawing mood that is only skipped still takes a slice away from
+  every face beside it. The new acceptance check gives four faces and a maximum of four, so a hidden
+  mood that kept its share would leave two of them unprinted.
+
+## 0.79.0 - 2026-11-27
+
+- **A mood for drawings made of braille dots.** `rules/kaomoji-long.json` gains `brailleart`, a mood for
+  pictures assembled out of U+2800 to U+28FF: twenty-seven of them, seven to thirteen rows tall, and not
+  one of them fits on a single line. They are drawings rather than faces, and the mood exists because no
+  single-line mood can hold one - each is printed line by line under its row, which is the shape 0.78.0
+  taught the palette to keep. The `graphic` mood gains one more drawing from the same source, eight rows
+  of box characters that the table stores with no name at all.
+- **The rows were on the phone, not in the package.** The vendor assembles its graphic emoticons from
+  something it never ships - the APK carries 1370 single-line faces and no drawing at all - and the rows
+  live in `online_graphic_emoticon_table` inside
+  `/data/data/com.iflytek.inputmethod/databases/ime_cache.db`. 143 rows came out of that table, 34
+  survived the emoji and judgement-glyph filter, and 28 survived a second pass that also drops Latin runs
+  of three or more letters and any digit: a drawing captioned 2025 or QWQ is a picture with a label
+  attached, and the label is the part that goes stale. Six more were held back by eye rather than by rule;
+  two of those were flagged only by a digit match. They stay out: a pair of pictures does not justify
+  another pass over the vendor table, and the library is not short of shapes.
+
+## 0.78.0 - 2026-11-26
+
+- **Multi-line faces keep their shape.** The palette joined every face into one row, which flattened a
+  drawing to a single line and cut the block at an arbitrary point. A face that carries line breaks is
+  now printed under its mood row, indented, exactly as it was stored.
+- **A graphic mood, seeded from the vendor panel.** `rules/kaomoji-long.json` gains a `graphic` mood for
+  faces drawn out of marks and several lines tall. The first one is a rabbit mid-jump with the jump
+  sound written beside it and speed lines on the right, read off the iFlytek panel on the user's own
+  phone. That data is not in the APK: 1370 single-line faces ship in `assets/symbol/emoticon.ini`, while
+  the graphic ones are assembled by the client from something it does not package.
+
 ## 0.77.2 - 2026-11-26
 
 - The eight moods taken from the iFlytek package no longer carry a source suffix in their labels. The

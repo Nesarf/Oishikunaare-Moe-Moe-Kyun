@@ -613,6 +613,10 @@ export function normalizeLibrary(parsed) {
       labelZh: typeof category.labelZh === 'string' ? category.labelZh : '',
       use: typeof category.use === 'string' ? category.use : '',
       useZh: typeof category.useZh === 'string' ? category.useZh : '',
+      // A mood of drawings rather than faces. It stays in the library but out of the palette unless
+      // asked for: a multi-line picture costs its full height on every step, and a drawing is not the
+      // habit this palette exists to feed.
+      optional: category.optional === true,
       faces,
     });
   }
@@ -792,7 +796,7 @@ export function renderSeedOf(rotation) {
  * while a text that never moves at all is how four faces become the only four anybody writes.
  * @param {Array<{ id?: unknown, label?: unknown, use?: unknown, faces?: unknown }>} categories - normalized categories.
  * @param {string} file - path of the library file, named in the rendered text.
- * @param {{ locale?: string, max?: number, collapse?: boolean, seed?: number }} options - rendering options.
+ * @param {{ locale?: string, max?: number, collapse?: boolean, seed?: number, drawings?: boolean }} options - rendering options.
  * @returns {string} the block, or an empty string when there is nothing to render.
  */
 
@@ -802,6 +806,15 @@ export function renderKaomojiLibrary(categories, file, options) {
   // takes a window from inside the longer half, so the palette changes over time without ever showing
   // the shortest faces first.
   const seed = Number.isFinite(options.seed) ? options.seed : 0;
+  // A mood may be marked optional: drawings rather than faces, which stay in the library but out of the
+  // palette unless `drawings` asks for them. The quota is shared across moods, so one optional mood does
+  // not merely add its own height - it also takes a share away from every face mood beside it. Measured
+  // on the shipped library, the braille mood of 27 pictures was 4218 of the block's 5913 characters, and
+  // the nine face moods together came to 1449. A palette that spends three quarters of itself on
+  // drawings is not building the habit it exists to build.
+  const visible = options.drawings === true
+    ? categories
+    : categories.filter((category) => category.optional !== true);
   // A library may carry localized labels beside the English ones; the zh rendering prefers them.
   const labelOf = (category) => (locale === 'zh' && typeof category.labelZh === 'string' && category.labelZh !== ''
     ? category.labelZh
@@ -810,8 +823,8 @@ export function renderKaomojiLibrary(categories, file, options) {
   const feelOf = (entry) => (locale === 'zh' && typeof entry?.feelZh === 'string' && entry.feelZh !== '' ? entry.feelZh : entry?.feel ?? '');
   const max = Number.isFinite(options.max) && options.max > 0
     ? Math.floor(options.max)
-    : DEFAULT_KAOMOJI_PER_MOOD * Math.max(1, categories.length);
-  const total = categories.reduce((n, c) => n + (Array.isArray(c.faces) ? c.faces.length : 0), 0);
+    : DEFAULT_KAOMOJI_PER_MOOD * Math.max(1, visible.length);
+  const total = visible.reduce((n, c) => n + (Array.isArray(c.faces) ? c.faces.length : 0), 0);
   const heading = total === 0
     ? LIBRARY_HEADING_PATHS[locale]
     : (options.collapse ? LIBRARY_HEADING_COMPACT : LIBRARY_HEADING)[locale];
@@ -821,9 +834,9 @@ export function renderKaomojiLibrary(categories, file, options) {
   // The quota is shared across moods, not spent on the first one: with a single `max`, the first
   // category of a large library swallowed every slot, so the complex moods (arms, decoration, framed)
   // never appeared in the prompt at all - and a face nobody sees is a face nobody writes.
-  const groups = categories.filter((category) => Array.isArray(category.faces) && category.faces.length > 0);
+  const groups = visible.filter((category) => Array.isArray(category.faces) && category.faces.length > 0);
   const per = groups.length === 0 ? max : Math.max(1, Math.floor(max / groups.length));
-  for (const category of categories) {
+  for (const category of visible) {
     const faces = Array.isArray(category.faces) ? category.faces : [];
     const label = labelOf(category);
     if (options.collapse) {
@@ -856,8 +869,21 @@ export function renderKaomojiLibrary(categories, file, options) {
     const take = [...picks].sort((a, b) => a - b).map((index) => longest[index]);
     if (faces.length > take.length) omitted.push(`${label}: ${faces.length - take.length}`);
     shown += take.length;
-    const rendered = take.map((entry) => `${entry?.face ?? ''}${feelOf(entry) ? ` (${feelOf(entry)})` : ''}`);
-    lines.push(`${label} [${useOf(category)}]: ${rendered.join('  ')}`);
+    // A face can carry line breaks - the graphic kaomoji are drawings made of marks, and their shape is
+    // the whole point. Joining one into the row would fold the drawing into a single line and cut the
+    // block, so they are printed under the row instead, indented, exactly as they were stored.
+    const single = [];
+    const drawn = [];
+    for (const entry of take) {
+      const face = entry?.face ?? '';
+      const feel = feelOf(entry) ? ` (${feelOf(entry)})` : '';
+      if (face.includes('\n')) drawn.push(`${face}${feel}`);
+      else single.push(`${face}${feel}`);
+    }
+    lines.push(`${label} [${useOf(category)}]: ${single.join('  ')}`);
+    for (const drawing of drawn) {
+      for (const line of drawing.split('\n')) lines.push(`  ${line}`);
+    }
   }
   lines.push(omitted.length > 0
     ? `not shown (${total - shown} more): ${omitted.join('; ')} - the rest is in ${file}, and one mood per file - a large mood in parts - sits in the kaomoji/ directory beside it. Read one part, never the whole library: the whole set is past three megabytes and a part is about a tenth of that.`
@@ -936,6 +962,9 @@ export function makeRulesResolver(options) {
           // clock rather than on every step on purpose: a text that changes each step cannot be cached
           // as a prompt prefix, and the cost of that is paid on every turn of every session.
           seed: renderSeedOf(user.kaomojiRotate),
+          // Drawings are off by default. The palette is there to keep a kaomoji habit, and a habit is
+          // built from faces; a mood of pictures spends its height on every step instead.
+          drawings: user.kaomojiDrawings === true,
         })
         : '';
       // The corpora are a reference rather than a download: their measured shape and a rotating handful
