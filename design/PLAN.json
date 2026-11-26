@@ -167,6 +167,26 @@
       ]
     },
     {
+      "id": "hygiene",
+      "title": "The injected text is walked for leftovers in every locale, and the scan proves its own coverage",
+      "scope": "project",
+      "status": "done",
+      "parent": null,
+      "after": [
+        "rules-core",
+        "palette",
+        "selfcheck"
+      ],
+      "touches": [
+        "test/hygiene.mjs",
+        "src/index.js",
+        "package.json"
+      ],
+      "verifiedBy": [
+        "test/hygiene.mjs"
+      ]
+    },
+    {
       "id": "release",
       "title": "Build, version, changelog and both READMEs stay in step on every release",
       "scope": "project",
@@ -175,7 +195,8 @@
       "after": [
         "rules-core",
         "palette",
-        "selfcheck"
+        "selfcheck",
+        "hygiene"
       ],
       "touches": [
         "scripts/build.mjs",
