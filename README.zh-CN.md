@@ -289,7 +289,8 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
   理由见上面第 4 条，要拿掉它只有 `enabled: false`。
 - `kaomojiLibrary` 选颜文字库：`true`/不填 = 内置库，`false` = 不带库，
   给路径或路径数组 = 用你自己的库。**给数组是替换内置库**，想两个都要就把内置路径也写进数组。
-- `kaomojiLibraryMax` 限制进入提示词的颜文字数量（默认 140）。
+- `kaomojiLibraryMax` 限制进入提示词的颜文字数量。**缺省时没有固定数字**：每个可见心情取 20 个，
+  所以总数随心情数走 —— 当前 23 个可见心情算出上限 460，实际印出 339 张，因为有几个心情本来就不足 20 条。
 - `kaomojiLibraryCollapse: true` 让每类压成一行，更省。
 - `kaomojiDrawings: true` 把 `rules/kaomoji-long.json` 里标了 `optional` 的那两类「画」也铺进提示词
   （点阵画与线条画，都是多行）。**默认不出**：那是画不是脸，每张七到十三行，按默认配额铺开要吃掉
@@ -328,7 +329,8 @@ dsh plugin --profile web update github:Nesarf_Mollor/Oishikunaare-Moe-Moe-Kyun
 
 提示词不是免费的，所以渲染器按类别顺序取到 `kaomojiLibraryMax` 就停，剩下的只报数目不铺开 ——
 这样前缀稳定，也让提示词前缀可缓存；库文件路径始终写在块里，想要剩下的可以自己去读。
-量级参考：19600 个字形的中文注解约 13 万字符 —— 这正是上限存在的理由：默认的 140 个约占 2400 字符。
+量级参考：19600 个字形的中文注解约 13 万字符 —— 这正是上限存在的理由：当前默认配置实际印出
+339 张脸，约 8700 字符。
 库本身由 `scripts/gen-kaomoji.mjs` 生成（`npm run gen:kaomoji`），四道闸门保证质量：跨类唯一、
 长度窗口、至少含一个非 ASCII 字符、括号配对。
 

@@ -759,6 +759,36 @@ check('an optional mood stays out of the palette and takes no quota with it', as
   assert.ok(on.split('\n').some((line) => line.trim() === 'row-two'), 'and it prints line by line');
 });
 
+// The README quoted "default 140" for years. It was true once, when there were seven moods; the default
+// is twenty per visible mood, and both the mood count and the text size grew while the sentence stayed.
+// A number in a document is a claim, so it is measured here and compared, rather than trusted.
+check('both READMEs quote the palette ceiling the build actually prints', async () => {
+  const read = (file) => mod.normalizeLibrary(JSON.parse(fs.readFileSync(path.join(ROOT, 'rules', file), 'utf8')));
+  const all = [...read('kaomoji.json'), ...read('kaomoji-long.json')];
+  const visible = all.filter((category) => category.optional !== true);
+  const total = visible.reduce((n, category) => n + category.faces.length, 0);
+  // A fixed short name, not the absolute path: the path is printed into the block ("the rest is in
+  // ..."), so measuring with this machine's path would make the documented number depend on where the
+  // package happens to be installed.
+  const text = mod.renderKaomojiLibrary(all, 'rules/kaomoji.json', { locale: 'zh', seed: 0 });
+  const omitted = text.match(/not shown \((\d+) more\)/);
+  const shown = omitted ? total - Number(omitted[1]) : total;
+  const chars = Math.round(text.length / 100) * 100;
+
+  assert.ok(shown > 0, 'the palette prints something at all');
+  const zh = fs.readFileSync(path.join(ROOT, 'README.zh-CN.md'), 'utf8');
+  const en = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');
+  // The Chinese sentences are escapes, not literals: this tree is ASCII-only by check-ascii.
+  assert.ok(zh.includes(`${shown} \u5F20\u8138`), `README.zh-CN.md should say ${shown} faces, which is what prints`);
+  assert.ok(zh.includes(`\u7EA6 ${chars} \u5B57\u7B26`), `README.zh-CN.md should say about ${chars} characters`);
+  assert.ok(en.includes(`${shown} faces`), `README.md should say ${shown} faces, which is what prints`);
+  assert.ok(en.includes(`about ${chars} characters`), `README.md should say about ${chars} characters`);
+  // The stale number itself, refused by name so a reflow cannot bring it back.
+  for (const text of [zh, en]) {
+    assert.ok(!/default 140|\u9ED8\u8BA4 140/.test(text), 'the old "140" default is gone from both READMEs');
+  }
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

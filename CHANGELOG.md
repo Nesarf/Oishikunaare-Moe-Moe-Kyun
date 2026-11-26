@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.82.1 - 2026-11-27
+
+- **Both READMEs quoted a palette ceiling that had not been true for years.** They said "default 140".
+  The default is twenty per visible mood: twenty-three visible moods give a ceiling of 460 and print 339
+  faces, about 8700 characters - not the "about 2400" the same paragraph claimed. The 140 was correct
+  when there were seven moods; the mood count and the text size both grew while the sentence stayed.
+- **Those numbers are measured now rather than trusted.** A new acceptance check renders the palette the
+  way the build does, counts what it prints, and refuses a README that disagrees with it - and rejects
+  the old "140" by name, so a reflow cannot quietly bring it back. The check renders with a fixed short
+  library name rather than this machine's absolute path, because the path is printed into the block:
+  measuring with a real path would make the documented figure depend on where the package is installed.
+- The other defaults in both READMEs were checked against the code and all agree - `kaomojiCheckMax` 5,
+  `ticksCheckMax` 2, `languageCheckMax` 3, `selfCheckMax` 3, `ticksFloor` 3, both steer maxima 1.
+
 ## 0.82.0 - 2026-11-27
 
 - **A hygiene check over the text a host actually injects.** `test/hygiene.mjs` walks the rule section

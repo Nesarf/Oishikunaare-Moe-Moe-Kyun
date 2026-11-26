@@ -350,7 +350,9 @@ required - with no file at all the rules above are injected in English.
 - `kaomojiLibrary` picks the palette: `true`/absent for the shipped library, `false` to leave it out,
   a path or a list of paths for your own. **A list replaces the shipped file** - name the shipped path
   too if you want both.
-- `kaomojiLibraryMax` caps how many faces reach the prompt (default 140).
+- `kaomojiLibraryMax` caps how many faces reach the prompt. **There is no fixed default**: absent, it is
+  twenty per visible mood, so the total follows the mood count - twenty-three visible moods give a
+  ceiling of 460 and print 339, because a few moods hold fewer than twenty faces.
 - `kaomojiLibraryCollapse: true` keeps each category on one line, which is cheaper.
 - `kaomojiDrawings: true` spreads the two drawing moods marked `optional` in
   `rules/kaomoji-long.json` into the prompt as well - braille art and line drawings, both multi-line.
@@ -408,7 +410,7 @@ The prompt is not free, so the renderer takes faces in category order up to `kao
 counts the rest instead of printing them - a stable prefix, which also keeps the prompt prefix
 cacheable. The file path is always named, so an agent that wants the remainder can read it. For scale:
 the Chinese rendering of all 19600 faces runs past 130 000 characters, which is exactly why the
-ceiling exists: the default 140 carries about 2400 characters of palette.
+ceiling exists: the current default prints 339 faces, about 8700 characters of palette.
 
 ### The self-check: rules with teeth
 
