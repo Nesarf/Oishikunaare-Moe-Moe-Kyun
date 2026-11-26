@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.75.2 - 2026-11-26
+
+- **A rule line saying that length is not the goal.** The rules already said length follows the content;
+  they now also say that cutting a useful passage to be short is a loss. It ships in all three locales:
+  a long passage that decides something earns its characters, while a dozen short lines that decide
+  nothing do not, and neither does the same sentence said again in other words.
+- The palette quota stays where 0.75.1 put it - twenty faces per mood - because that cap exists for the
+  size of the block, not to save tokens, and the kaomoji floor is a minimum rather than a budget.
+
 ## 0.75.1 - 2026-11-26
 
 - **The palette carries more of the library.** The block was capped at 140 faces - ten per mood - which
