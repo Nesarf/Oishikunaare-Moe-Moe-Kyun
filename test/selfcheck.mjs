@@ -2347,6 +2347,23 @@ check('every configuration key the code reads appears in both READMEs', () => {
   }
 });
 
+// The README does not repeat the CLI reference, it points at it - which is the right call, because a
+// second copy of thirty-one options would drift from the first. That pointer is then the only way a
+// reader reaches twenty of them, so it is worth a check of its own, and the pointer has to be true.
+check('both READMEs point at mmk --help, and that command answers', async () => {
+  for (const readme of ['README.md', 'README.zh-CN.md']) {
+    const text = fs.readFileSync(path.join(ROOT, readme), 'utf8');
+    assert.ok(text.includes('mmk --help'), `${readme} never points at mmk --help`);
+  }
+  const { execFileSync } = await import('node:child_process');
+  const help = execFileSync(process.execPath, [path.join(ROOT, 'bin', 'mmk.mjs'), '--help'], {
+    encoding: 'utf8',
+    maxBuffer: 4 * 1024 * 1024,
+  });
+  assert.ok(help.includes('commands'), 'the command it points at really prints a command list');
+  assert.ok(help.includes('--locale'), 'and the common options with it');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

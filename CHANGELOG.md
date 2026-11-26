@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.84.1 - 2026-11-27
+
+- **The READMEs listed a dozen CLI commands and never said where the rest were.** Both name every
+  subcommand - twelve of twelve, measured against `mmk --help` - but of the thirty-one options they
+  mention thirteen and eleven respectively, and neither pointed at the command that lists all of them.
+  Copying the reference into the README would only create a second copy to drift from the first, so the
+  fix is one pointer: the CLI row now says the list is the common path rather than the whole of it.
+- Nothing was added to the eighteen settings documented in 0.84.0; a configuration key and a CLI flag
+  are different things, and only the first needs the README to be the authoritative source.
+- A check keeps the pointer honest: both READMEs must contain `mmk --help`, and running it must really
+  print a command list with the common options.
+
 ## 0.84.0 - 2026-11-27
 
 - **Eighteen configuration keys were read on every step and documented nowhere.** Measured by extracting
