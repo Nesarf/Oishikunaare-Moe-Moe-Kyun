@@ -2261,17 +2261,6 @@ check('the prompt block honours its ceiling and still names the file', () => {
   assert.ok(!compact.includes('(upturned)') && !compact.includes(' eyes + '), 'and none of the annotations');
 });
 
-for (const { label, fn } of pending) {
-  try {
-    await fn();
-    console.log(`pass  ${label}`);
-  } catch (error) {
-    failures++;
-    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
-  }
-}
-console.log(`\n${failures === 0 ? 'all checks pass' : failures + ' check(s) failed'}`);
-process.exit(failures === 0 ? 0 : 1);
 
 check('a turn that ends carrying an emoji earns one more pass', () => {
   const emoji = String.fromCodePoint(0x1F600);
@@ -2297,12 +2286,55 @@ check('the prompt carries the breach history a session carries', async () => {
     max: 3, kaomoji: false, emoji: false,
     resolve: () => ({ enabled: true, locale: 'en' }),
   });
-  assert.equal(mod.violationSummary(), '', 'a session with no breaches carries no history');
+  // An explicit id, never the global fallback: the history map is module state that other cases in
+  // this file have already written to, so asserting "it is empty" without naming a session is really
+  // asserting something about whichever case ran last. This is also why the case had to be moved above
+  // the runner - it had never executed, and a test that never runs cannot fail.
+  assert.equal(mod.violationSummary('history-demo'), '', 'a session with no breaches carries no history');
   const step = hook({ agent: { session: { id: 'history-demo' }, id: 'a1' }, messages: [breach('h1')] }, async () => ({ kind: 'enter', messages: [breach('h1')] }));
   await step;
-  const summary = mod.violationSummary();
+  const summary = mod.violationSummary('history-demo');
   assert.ok(summary.includes('HISTORY'), 'the summary names itself');
   assert.ok(summary.includes('1 symbol'), 'it counts the breach');
   assert.ok(summary.includes('judgement glyphs'), 'and names the most recent kind');
   assert.equal(mod.judgeAuthoredText(summary).length, 0, 'and carries no banned glyph itself');
 });
+
+// A spiral used to earn a notice and nothing else. The other four kinds each keep a standing count in
+// the prompt section, printed on every step; a session that spent its two notices on spirals went
+// silent about them afterwards, which is exactly the session that needed to keep hearing it. The count
+// now rises whether or not a notice is still affordable.
+check('a spiral reaches the standing history, not only the one-off notice', async () => {
+  const block = (count) => Array.from({ length: count }, () => '\u505a\u3002').join('\n');
+  const assistant = (id, count) => ({
+    id, role: 'assistant', source: { kind: 'model', provider: 'deepseek-official', model: 'deepseek-flash' },
+    content: [{ type: 'thinking', text: block(count) }, { type: 'text', text: 'checked the port.' }],
+  });
+  const hook = mod.makeSelfCheckHook({
+    max: 3, ticks: true, ticksMax: 1, emoji: false, kaomoji: false,
+    resolve: () => ({ enabled: true, locale: 'en' }),
+  });
+  const step = (messages, sid) => hook({ agent: { session: { id: sid } }, messages }, async () => ({ kind: 'enter', messages }));
+
+  await step([assistant('sp1', 4)], 'spiral-demo');
+  assert.ok(mod.violationSummary('spiral-demo').includes('1 spiral'), 'the first spiral is counted');
+
+  // The budget is one notice, so the second block finds it spent and earns no message at all.
+  await step([assistant('sp2', 5)], 'spiral-demo');
+  const after = mod.violationSummary('spiral-demo');
+  assert.ok(after.includes('2 spiral'), 'a spiral past the notice budget is still counted');
+  assert.ok(after.includes('thinking that moved nothing'), 'and the most recent kind is named, not guessed');
+  assert.ok(!after.includes('an emoji'), 'a spiral is never described as an emoji');
+});
+
+for (const { label, fn } of pending) {
+  try {
+    await fn();
+    console.log(`pass  ${label}`);
+  } catch (error) {
+    failures++;
+    console.log(`FAIL  ${label}\n      ${String(error.message).split('\n')[0]}`);
+  }
+}
+console.log(`\n${failures === 0 ? 'all checks pass' : failures + ' check(s) failed'}`);
+process.exit(failures === 0 ? 0 : 1);

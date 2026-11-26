@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.83.0 - 2026-11-27
+
+- **A spiral now reaches the standing history, not only a one-off notice.** The prompt section already
+  carries a per-session count for judgement glyphs, a missing kaomoji, the wrong thinking language and
+  emoji - printed on every step, no budget, no extra message. Thinking that moved nothing was the one
+  kind with only a notice: two per session, after which the habit went unmentioned for the rest of the
+  session. `recordViolation(sessionId, 'ticks')` was already being called there, but `violationSummary`
+  never read the field, so the count was recorded and thrown away. It is read now, and recorded whether
+  or not a notice is still affordable - the session that has spent its notices is exactly the one whose
+  count needs to keep rising.
+- **The summary also mis-named it.** The chain that reports "the most recent breach was ..." ended in a
+  bare `an emoji` fallback, so a session whose last breach was a spiral was told it had written an emoji.
+  That branch names the spiral now.
+- **Two test cases had never run at all.** `check()` queues a function and the runner walks that queue;
+  two cases sat below `process.exit()`, so they were queued after the queue had been walked - not
+  failing, not passing, never executed. One of them asserted an empty breach history through the global
+  fallback, which cannot hold once any earlier case has recorded one; it names its own session now.
+  Both run, and a real defect in the summary turned up on the first run.
+
 ## 0.82.1 - 2026-11-27
 
 - **Both READMEs quoted a palette ceiling that had not been true for years.** They said "default 140".
