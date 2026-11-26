@@ -587,6 +587,71 @@ check('adding the mapping mid-session lands on the next step, with no restart', 
   }
 });
 
+// The formula rule: a stock phrase lets a sentence avoid looking at anything. The judge counts those
+// phrases and the paired construction, the notice names them, and the notice carries one line from the
+// shipped pool that does the opposite - a shape to copy rather than a rule to obey.
+check('the formula judge counts stock phrases and the paired construction', async () => {
+  const words = mod.readFormulaWords(path.join(ROOT, 'rules', 'formula'), 'zh');
+  assert.ok(words.stock.length > 0, 'the shipped word list should not be empty');
+  const concrete = '\u4ED6\u628A\u4F1E\u6536\u8D77\u6765\uFF0C\u9760\u5728\u95E8\u8FB9\uFF0C\u96E8\u987A\u7740\u4F1E\u9AA8\u5F80\u4E0B\u6EF4\u3002';
+  const leaning = '\u8FD9\u4E00\u5207\u4E0D\u7981\u8BA9\u4EBA\u60F3\u8D77\u4ECE\u524D\uFF0C\u4EFF\u4F5B\u65F6\u95F4\u4ECE\u672A\u8D70\u8FDC\u3002\u4E0D\u662F\u56DE\u5FC6\uFF0C\u800C\u662F\u73B0\u5B9E\u3002';
+  const a = mod.judgeFormulaic(concrete, words);
+  const b = mod.judgeFormulaic(leaning, words);
+  assert.equal(a.stock, 0, 'a sentence with a concrete thing in it carries no stock phrase');
+  assert.equal(a.adversative, 0, 'and no paired construction');
+  assert.ok(b.stock >= 2, `the leaning sentence should be counted, got ${b.stock}`);
+  assert.equal(b.adversative, 1, 'the pair is counted once, not twice');
+  assert.deepEqual(mod.judgeFormulaic('', words), { stock: 0, found: [], adversative: 0, chars: 0 }, 'an empty text has nothing to count');
+});
+
+check('the formula notice names the phrases and carries a line that does the opposite', async () => {
+  const words = mod.readFormulaWords(path.join(ROOT, 'rules', 'formula'), 'zh');
+  const pool = mod.readExemplars(path.join(ROOT, 'rules', 'corpus', 'genji', 'exemplars.json'));
+  assert.ok(pool.length > 50, 'the exemplar pool ships beside the corpus');
+  const finding = mod.judgeFormulaic('\u8FD9\u4E00\u5207\u4E0D\u7981\u8BA9\u4EBA\u60F3\u8D77\u4ECE\u524D\uFF0C\u4EFF\u4F5B\u65F6\u95F4\u4ECE\u672A\u8D70\u8FDC\u3002\u4E0D\u662F\u56DE\u5FC6\uFF0C\u800C\u662F\u73B0\u5B9E\u3002', words);
+  const text = mod.formulaicNotice('zh', finding, mod.pickExemplar(pool, 0));
+  assert.ok(text.includes(String(finding.stock)), 'the notice says how many');
+  assert.ok(finding.found.every((phrase) => text.includes(phrase)), 'and which phrases');
+  assert.ok(text.includes(pool[0]), 'and carries one exemplar line');
+  assert.ok(mod.formulaicNotice('en', finding, '').includes('FORMULA'), 'the English notice is the same rule in English');
+  assert.equal(mod.pickExemplar(pool, 0), pool[0], 'the pick is stable for a given counter');
+  assert.equal(mod.pickExemplar(pool, pool.length), pool[0], 'and wraps around');
+  assert.equal(mod.pickExemplar([], 3), '', 'an empty pool yields nothing rather than throwing');
+});
+
+check('a step that leans on stock phrases gets the formula notice', async () => {
+  const host = makeHost();
+  const leaned = '\u8FD9\u4E00\u5207\u4E0D\u7981\u8BA9\u4EBA\u60F3\u8D77\u4ECE\u524D\uFF0C\u4EFF\u4F5B\u65F6\u95F4\u4ECE\u672A\u8D70\u8FDC\uFF0C\u4F3C\u4E4E\u4E00\u5207\u90FD\u8FD8\u6765\u5F97\u53CA\u3002\u4E0D\u662F\u56DE\u5FC6\uFF0C\u800C\u662F\u73B0\u5B9E\u3002\u6240\u4EE5\u6211\u51B3\u5B9A\u6539\u53D8\u3002';
+  const messages = [assistant('m1', [{ type: 'text', text: leaned }])];
+  const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false, ticksCheck: false });
+  const notice = noticeOf(decision);
+  assert.ok(notice, 'a notice should reach the model');
+  const text = notice.content[0].text;
+  assert.ok(text.includes('\u516B\u80A1'), 'and it should be the formula notice');
+  assert.ok(text.includes('\u5957\u8BED'), 'naming what it counted');
+});
+
+check('switching the formula check off leaves the step untouched', async () => {
+  const host = makeHost();
+  const leaned = '\u8FD9\u4E00\u5207\u4E0D\u7981\u8BA9\u4EBA\u60F3\u8D77\u4ECE\u524D\uFF0C\u4EFF\u4F5B\u65F6\u95F4\u4ECE\u672A\u8D70\u8FDC\uFF0C\u4F3C\u4E4E\u4E00\u5207\u90FD\u8FD8\u6765\u5F97\u53CA\u3002\u4E0D\u662F\u56DE\u5FC6\uFF0C\u800C\u662F\u73B0\u5B9E\u3002\u6240\u4EE5\u6211\u51B3\u5B9A\u6539\u53D8\u3002';
+  const messages = [assistant('m1', [{ type: 'text', text: leaned }])];
+  const { decision } = await runStep(host, messages, { locale: 'zh', kaomojiCheck: false, ticksCheck: false, formulaCheck: false });
+  assert.equal(noticeOf(decision), undefined, 'no notice when the check is off');
+});
+
+check('the shape measure reads the same fields the corpora measure', async () => {
+  const shape = mod.measureShape('\u4ED6\u628A\u4F1E\u6536\u8D77\u6765\uFF0C\u9760\u5728\u95E8\u8FB9\u3002\u96E8\u987A\u7740\u4F1E\u9AA8\u5F80\u4E0B\u6EF4\uFF0C\u4E00\u6EF4\u4E00\u6EF4\u3002');
+  assert.ok(shape !== null, 'a sentence has a shape');
+  assert.equal(shape.sentences, 2, 'and it counts two sentences');
+  assert.ok(shape.sentenceMedian > 0 && shape.sentenceMedian <= shape.sentenceMax, 'the median sits inside the range');
+  assert.equal(shape.dialogueShare, 0, 'no quotation marks, no dialogue share');
+  assert.equal(mod.measureShape(''), null, 'an empty text has no shape');
+  assert.deepEqual(mod.splitSentences('\u4E00\u3002\u4E8C\uFF01\u4E09'), ['\u4E00\u3002', '\u4E8C\uFF01', '\u4E09'], 'the splitter keeps each ender with its sentence');
+  const baseline = mod.readBaseline(path.join(ROOT, 'rules', 'corpus'), 'genji');
+  assert.ok(baseline !== null && baseline.book.chars > 1000, 'the shipped baseline reads back');
+  assert.equal(mod.readBaseline(path.join(ROOT, 'rules', 'corpus'), 'no-such-book'), null, 'an unknown book has no baseline');
+});
+
 for (const { label, fn } of pending) {
   try {
     await fn();

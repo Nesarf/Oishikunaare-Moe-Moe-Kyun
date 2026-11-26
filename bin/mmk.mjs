@@ -33,7 +33,7 @@ import {
 import { readTranscript } from '../src/transcripts.mjs';
 import { audit, partsFromMessages } from '../src/audit.mjs';
 import { upsertBlock, wireTargets } from '../src/wire.mjs';
-import { accentFor, briefRules, presetRootOf, readAccentTable, readPresetPersonaFromDisk } from '../src/index.js';
+import { accentFor, briefRules, judgeFormulaic, measureShape, presetRootOf, readAccentTable, readBaseline, readFormulaWords, readPresetPersonaFromDisk } from '../src/index.js';
 import { applyExpand, clientCandidate, guessDshRoot, revertExpand } from '../src/client-patch.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -53,6 +53,7 @@ commands
   review                judge a transcript's newest authored message
   audit                 count what a whole transcript carries, per channel
   expand                patch the installed DSH transcript so every disclosure starts open
+  corpus                read the shipped text corpus (list chapters, print one, pick lines, search)
 
 common options
   --locale <zh|ja|en>   rules and notice language (default: from config, else en)
@@ -71,6 +72,8 @@ check / review
   --floor <n>           kaomoji sentences per face (default 3)
   --attempt <n>         which reminder this is, for the notice wording
   --quiet               print nothing; the exit code carries the answer
+  --style               also print the shape: sentence and paragraph medians, dialogue share, pairs
+  --against <book>      compare that shape with a shipped corpus (genji, suzumiya)
 
 notice
   --kind <symbol|emoji|kaomoji>
@@ -85,12 +88,22 @@ voice / accent / persona
 
 audit
   --transcript <path>   measure this transcript (--format as for review)
+  --style               measure the whole transcript's prose the way a step notice does
   the totals name prose, thinking and tool arguments separately, and exit 3 means glyphs were found
 
 expand
   --dsh <path>          the DeepSeek Harness package root (default: guessed)
   --revert              put the original client back
   the patch targets DeepSeek Harness; a DSH upgrade replaces the package, so run it again
+
+corpus
+  --book <name>         which shipped corpus to read (default: genji)
+  --chapter <n>         print that chapter's text
+  --excerpt <n>         print the three lines picked for that chapter
+  --find <text>         report every chapter carrying this text, with the line around it
+  --formula             print the measured proportions: the shape a formulaic voice is missing
+  --exemplars [n]       print the lines that already write that way (all of them, or chapter n)
+  the text itself is one file with a character offset per chapter, so nothing is loaded twice
 `;
 
 const argv = process.argv.slice(2);
@@ -236,10 +249,29 @@ if (command === 'lib') {
 }
 
 if (command === 'check') {
-  const findings = judgeText(inputText(), state, floor);
+  const text = inputText();
+  const findings = judgeText(text, state, floor);
   const clean = findings.glyphs.length === 0 && findings.emoji.length === 0 && findings.kaomoji.bare !== true;
+  // The shape report answers a different question from the verdict: not "would this be refused" but
+  // "what does this look like next to a book". Both are printed in one call because a person holding
+  // a draft wants the answer once.
+  const against = value('against');
+  const shape = has('style') || against !== undefined ? measureShape(text) : null;
+  const words = shape === null ? { stock: [] } : readFormulaWords(path.join(HERE, '..', 'rules', 'formula'), state.locale);
+  const leaned = shape === null || words.stock.length === 0 ? null : judgeFormulaic(text, words);
+  const baseline = against === undefined ? null : readBaseline(path.join(HERE, '..', 'rules', 'corpus'), against);
   if (has('json')) {
-    json({ clean, locale: state.locale, glyphs: findings.glyphs, emoji: findings.emoji, kaomoji: { ...findings.kaomoji, floor, sentences: findings.kaomoji.sentences }, notices: noticesFor(findings, state, { attempt: number('attempt', 1) }) });
+    json({
+      clean,
+      locale: state.locale,
+      glyphs: findings.glyphs,
+      emoji: findings.emoji,
+      kaomoji: { ...findings.kaomoji, floor, sentences: findings.kaomoji.sentences },
+      shape,
+      leaned,
+      baseline,
+      notices: noticesFor(findings, state, { attempt: number('attempt', 1) }),
+    });
   } else if (!has('quiet')) {
     if (clean) out('clean');
     else {
@@ -247,6 +279,23 @@ if (command === 'check') {
       if (findings.emoji.length > 0) out(`emoji: ${findings.emoji.join(', ')}`);
       if (findings.kaomoji.bare === true) out(`kaomoji: ${findings.kaomoji.faces} face(s) in ${findings.kaomoji.sentences} sentence(s), floor ${floor}`);
       for (const notice of noticesFor(findings, state, { attempt: number('attempt', 1) })) out(`\n${notice}`);
+    }
+    if (shape !== null) {
+      out('');
+      out(`shape: ${shape.chars} characters, ${shape.sentences} sentences, ${shape.paragraphs} paragraphs`);
+      out(`  sentence median ${shape.sentenceMedian}, p90 ${shape.sentenceP90}, longest ${shape.sentenceMax}`);
+      out(`  paragraph median ${shape.paragraphMedian}, dialogue ${shape.dialogueShare}%, stacked commas ${shape.commaStackedShare}%`);
+      out(`  possessive per 1000 ${shape.dePer1000}, exclamation per 1000 ${shape.exclaimPer1000}, "not X but Y" ${shape.adversativePairs}`);
+      if (leaned !== null) {
+        const named = leaned.found.length === 0 ? '' : ` (${leaned.found.join(', ')})`;
+        out(`  stock phrases ${leaned.stock}${named}`);
+      }
+      if (baseline !== null) {
+        out(`  against ${against}: sentence median ${baseline.book.sentenceMedian}, paragraph median ${baseline.book.paragraphMedian},`
+          + ` stock ${baseline.book.stockPhrases} in ${baseline.book.chars}, pairs ${baseline.book.adversativePairs}`);
+      } else if (against !== undefined) {
+        out(`  against ${against}: not shipped`);
+      }
     }
   }
   process.exit(clean ? 0 : 3);
@@ -344,6 +393,17 @@ if (command === 'audit') {
   const read = readTranscript(file, value('format') ?? 'auto');
   const report = audit(partsFromMessages(read.messages));
   const carried = report.bannedInProse + report.bannedInThinking + report.bannedWritten;
+  // The same measurement the step-side notice uses, over the whole transcript. This is how one run is
+  // compared with the run before it, which is the only way to see whether the habit is moving at all.
+  const authoredProse = read.messages
+    .filter((message) => message && message.role === 'assistant' && Array.isArray(message.content))
+    .flatMap((message) => message.content)
+    .filter((part) => part && part.type === 'text' && typeof part.text === 'string')
+    .map((part) => part.text)
+    .join('\n');
+  const shape = has('style') ? measureShape(authoredProse) : null;
+  const formulaWords = shape === null ? { stock: [] } : readFormulaWords(path.join(HERE, '..', 'rules', 'formula'), state.locale);
+  const leaned = shape === null || formulaWords.stock.length === 0 ? null : judgeFormulaic(authoredProse, formulaWords);
   if (has('json')) {
     json({
       file,
@@ -357,6 +417,8 @@ if (command === 'audit') {
       parts: report.parts,
       banned: { prose: report.bannedInProse, quoted: report.bannedQuoted, thinking: report.bannedInThinking, written: report.bannedWritten },
       codes: [...new Set(report.rows.flatMap((row) => row.codes))],
+      shape,
+      leaned,
       note: read.note,
     });
   } else if (!has('quiet')) {
@@ -368,6 +430,14 @@ if (command === 'audit') {
     out(`                           ${report.bannedInThinking} in thinking, ${report.bannedWritten} written through a tool call`);
     const codes = [...new Set(report.rows.flatMap((row) => row.codes))];
     if (codes.length > 0) out(`       code points seen: ${codes.join(', ')}`);
+    if (shape !== null) {
+      out('');
+      out(`style: ${shape.chars} characters, ${shape.sentences} sentences, ${shape.paragraphs} paragraphs`);
+      out(`       sentence median ${shape.sentenceMedian}, p90 ${shape.sentenceP90}`);
+      out(`       paragraph median ${shape.paragraphMedian}, dialogue ${shape.dialogueShare}%, stacked commas ${shape.commaStackedShare}%`);
+      out(`       possessive per 1000 ${shape.dePer1000}, exclamation per 1000 ${shape.exclaimPer1000}, pairs ${shape.adversativePairs}`);
+      if (leaned !== null) out(`       stock phrases ${leaned.stock}`);
+    }
   }
   process.exit(carried > 0 ? 3 : 0);
 }
@@ -393,6 +463,120 @@ if (command === 'expand') {
     if (!failed && !has('revert')) out('refresh the browser; a DSH upgrade replaces the package, so run this again');
   }
   process.exit(failed ? 2 : 0);
+}
+
+if (command === 'corpus') {
+  // The corpus is shipping data, not a rule: it is read here so a person or a program can quote the
+  // tale without shipping a second copy of the text. One file plus offsets, so a chapter costs a
+  // slice rather than a parse.
+  const book = value('book') ?? 'genji';
+  const dir = path.join(HERE, '..', 'rules', 'corpus', book);
+  const manifestFile = path.join(dir, 'manifest.json');
+  if (!fs.existsSync(manifestFile)) fail(`corpus "${book}" is not shipped (expected ${manifestFile})`);
+  const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'));
+  const fullFile = path.join(HERE, '..', manifest.file);
+  if (!fs.existsSync(fullFile)) fail(`corpus "${book}" names ${manifest.file}, which is missing`);
+  const full = () => fs.readFileSync(fullFile, 'utf8');
+
+  const chapterNo = number('chapter', Number.NaN);
+  const excerptNo = number('excerpt', Number.NaN);
+  const needle = value('find');
+
+  const findChapter = (n) => {
+    const row = manifest.table.find((entry) => entry.n === n);
+    if (row === undefined) fail(`no chapter ${n} in ${book} (1..${manifest.chapters})`);
+    return row;
+  };
+
+  if (Number.isFinite(chapterNo)) {
+    const row = findChapter(chapterNo);
+    // The block starts with its own `=== name ===` marker so a reader of the raw file can find it;
+    // a caller that asked for chapter N already knows which one it is, so the marker is dropped here.
+    const block = full().slice(row.offset, row.offset + row.length);
+    const text = block.replace(/^=== [^\n]*===\s*\n+/, '').trim();
+    if (has('json')) json({ book, chapter: row.n, name: row.name, chars: row.chars, text });
+    else out(text);
+    process.exit(0);
+  }
+
+  if (Number.isFinite(excerptNo)) {
+    const row = findChapter(excerptNo);
+    const quotesFile = path.join(dir, 'quotes.json');
+    const quotes = fs.existsSync(quotesFile) ? JSON.parse(fs.readFileSync(quotesFile, 'utf8')) : { quotes: [] };
+    const picked = quotes.quotes.filter((q) => q.chapter === row.name).map((q) => q.text);
+    if (has('json')) json({ book, chapter: row.n, name: row.name, quotes: picked });
+    else for (const line of picked) out(`- ${line}`);
+    process.exit(0);
+  }
+
+  // The corpus exists to teach a habit, so the two useful readings are the measured shape and the pool
+  // of lines that already write that way - not a wall of story.
+  if (has('formula')) {
+    const file = path.join(dir, 'formula.json');
+    if (!fs.existsSync(file)) fail(`corpus "${book}" ships no formula.json (run: npm run gen:corpus)`);
+    const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+    if (has('json')) json({ book, ...doc });
+    else {
+      out(`${book}: ${doc.book.chars} characters, ${doc.book.sentences} sentences, ${doc.book.paragraphs} paragraphs`);
+      for (const [key, value] of Object.entries(doc.book)) {
+        if (key === 'chars' || key === 'sentences' || key === 'paragraphs') continue;
+        out(`  ${key.padEnd(20)} ${String(value).padStart(8)}   ${doc.fields[key] ?? ''}`);
+      }
+    }
+    process.exit(0);
+  }
+
+  if (has('exemplars')) {
+    const file = path.join(dir, 'exemplars.json');
+    if (!fs.existsSync(file)) fail(`corpus "${book}" ships no exemplars.json (run: npm run gen:corpus)`);
+    const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const exemplarNo = number('exemplars', Number.NaN);
+    const wanted = Number.isFinite(exemplarNo) ? findChapter(exemplarNo).name : undefined;
+    const picked = wanted === undefined ? doc.exemplars : doc.exemplars.filter((e) => e.chapter === wanted);
+    if (has('json')) json({ book, chapter: wanted ?? null, count: picked.length, exemplars: picked });
+    else for (const e of picked) { out(e.chapter); out(`  ${e.text}`); out(''); }
+    process.exit(0);
+  }
+
+  if (needle !== undefined) {
+    const text = full();
+    const hits = [];
+    const table = manifest.table;
+    for (let i = 0; i < table.length; i += 1) {
+      const row = table[i];
+      const next = table[i + 1];
+      const start = row.offset;
+      const end = next === undefined ? text.length : next.offset;
+      const slice = text.slice(start, end);
+      let at = slice.indexOf(needle);
+      let count = 0;
+      const context = [];
+      while (at !== -1) {
+        count += 1;
+        if (context.length < 2) context.push(slice.slice(Math.max(0, at - 22), at + needle.length + 22).replace(/\s+/g, ' '));
+        at = slice.indexOf(needle, at + needle.length);
+      }
+      if (count > 0) hits.push({ chapter: row.n, name: row.name, count, context });
+    }
+    if (has('json')) json({ book, needle, chapters: hits.length, hits });
+    else if (hits.length === 0) out(`no hit for "${needle}" in ${book}`);
+    else {
+      out(`${hits.length} chapter(s) carry "${needle}" (${hits.reduce((s, h) => s + h.count, 0)} occurrence(s))`);
+      for (const h of hits) {
+        out(`  ${String(h.chapter).padStart(3, '0')} ${h.name}  x${h.count}`);
+        for (const c of h.context) out(`      ...${c}...`);
+      }
+    }
+    process.exit(hits.length > 0 ? 0 : 3);
+  }
+
+  if (has('json')) json({ book, title: manifest.title, author: manifest.author, translator: manifest.translator, source: manifest.source, chapters: manifest.chapters, chars: manifest.chars, table: manifest.table });
+  else {
+    out(`${manifest.title} ${manifest.author} / ${manifest.translator}  (${manifest.chapters} chapters, ${manifest.chars} characters)`);
+    out(`source: ${manifest.source}`);
+    for (const row of manifest.table) out(`  ${String(row.n).padStart(3, '0')}  ${row.name.padEnd(18, ' ')} ${String(row.chars).padStart(7, ' ')} chars`);
+  }
+  process.exit(0);
 }
 
 fail(`unknown command "${command}" (try --help)`);

@@ -23,7 +23,7 @@ to one harness, so the package is not either.
 
 | entry | what it is | how it is wired |
 | --- | --- | --- |
-| **CLI** `mmk` | `rules`, `lib`, `check`, `notice`, `voice`, `accent`, `persona`, `review`, `audit`, `expand`, `wire` | a shell, a git hook, CI, or a person asking whether a line would be refused. Exit 3 means a breach |
+| **CLI** `mmk` | `rules`, `lib`, `check`, `notice`, `voice`, `accent`, `persona`, `review`, `audit`, `expand`, `wire`, `corpus` | a shell, a git hook, CI, or a person asking whether a line would be refused. Exit 3 means a breach |
 | **MCP server** | `mmk_rules`, `mmk_check`, `mmk_notice` and the `mmk://rules` resource | any MCP client, no assumption about which agent is on the other side |
 | **Claude Code hook** | corrects a breach while the turn is still open | `Stop` answers `{"decision":"block","reason":<notice>}`, `UserPromptSubmit` and `SessionStart` attach context |
 | **DSH plugin** | one global system prompt section for a whole profile | mounted once by the roster, so it reaches every preset, workspace, conversation and subagent |
@@ -596,6 +596,44 @@ it back:
 Without `--dsh` it guesses (APPDATA/npm, then `./node_modules`). The command is DeepSeek
 Harness-specific on purpose: on a host without that package it names the path it looked for. A DSH
 upgrade replaces the package, so run the command again after upgrading, and refresh the browser.
+
+## Reading the shipped corpus
+
+The package ships one text corpus, and `mmk corpus` reads it without loading anything twice: the tale is
+one file, and `manifest.json` carries a character offset per chapter, so asking for chapter 44 is a slice
+rather than a parse.
+
+    mmk corpus                  every chapter: number, name, characters
+    mmk corpus --chapter 44     that chapter's text
+    mmk corpus --excerpt 44     the three lines picked for it
+    mmk corpus --find <phrase>  which chapters carry a phrase, with the line around it
+    mmk corpus --json           the same, machine-readable
+
+The text is *The Tale of Genji* in Feng Zikai's Chinese rendering, crawled from `99csw.com/book/2540`
+on 2026-11-26: 57 entries and 764,108 characters, with the "Kumogakure" chapter kept as the title-only
+scroll it is in the received text. `rules/corpus/genji/` holds `full.txt`, `manifest.json` and
+`quotes.json`; `scripts/gen-corpus.mjs` rebuilds all three from a directory of per-chapter files, and
+`npm run check:generated` fails when they drift from it.
+
+A second book ships beside it: `rules/corpus/suzumiya/` carries the Haruhi Suzumiya series (16 volumes,
+104 entries, 1,469,947 characters) in the same shape, and `mmk corpus --book suzumiya` reads it. The
+generator takes `--book genji|suzumiya`, and `--check` compares both. Two books are worth the space
+because the measurements compare: Genji uses the "not X but Y" construction 13 times and stock openers
+519 times in 764,108 characters, while this series reaches 155 and 1,587 in 1,469,947 - one habit looks
+at a thing, the other reaches for a phrase.
+
+## Catching the habit
+
+The corpora are not decoration: the step hook counts the moves they measure. `rules/formula/zh.json`
+holds the stock openers in two groups - the general idioms and the conversation-shaped ones - plus the
+paired "not X but Y" construction. Past three phrases or two pairs in one reply, the session gets a
+notice that names the phrases it found and carries one line from the exemplar pool, because a line with
+a concrete thing in it is a shape to copy while "avoid cliches" is only a rule to obey. It reads the
+reply's prose, not its thinking: thinking has rules of its own, and the two do not share a budget.
+
+    mmk check --text "..." --style                 shape of a draft
+    mmk check --text "..." --style --against genji the same numbers beside a book's
+    mmk audit --transcript <file> --style          the shape of a whole session
 
 ## Notes
 

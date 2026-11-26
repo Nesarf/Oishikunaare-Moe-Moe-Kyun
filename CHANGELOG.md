@@ -1,5 +1,41 @@
 # Changelog
 
+## 0.74.0 - 2026-11-26
+
+- **The formula rule: a self-check for the habit the corpora exist to correct.** `rules/formula/zh.json`
+  lists the stock openers and the paired "not X but Y" construction in two groups - the general idioms
+  and the conversation-shaped ones - and the step hook counts them in the reply's prose rather than in
+  thinking, which already has rules of its own. Past three phrases or two pairs, a session gets one
+  notice naming which ones it found, and that notice carries a line from the shipped exemplar pool: a
+  shape to copy instead of a rule to obey. Two per session, off with `formulaCheck: false`.
+- **`mmk check --style`** prints the same shape the corpora measure - sentence and paragraph medians,
+  dialogue share, stacked commas, possessive and exclamation density, pairs - and `--against genji`
+  puts those numbers beside a book's. `mmk audit --style` measures a whole transcript the same way,
+  which is how one run gets compared with the run before it.
+
+## 0.73.0 - 2026-11-26
+
+- **A second corpus, and the generator takes a book by name.** `rules/corpus/suzumiya/` ships the
+  Haruhi Suzumiya series - 16 volumes, 104 entries, 1,469,947 characters - in the same five-file shape
+  as the Genji corpus: the text plus per-chapter offsets, three picked lines per chapter, a pool of
+  exemplars, and the measured proportions. `scripts/gen-corpus.mjs --book genji|suzumiya` builds
+  either one, `--check` compares both, and `mmk corpus --book suzumiya` reads it. Two books make the
+  measurements comparable: Genji reaches the "not X but Y" construction 13 times in 764,108 characters
+  and the stock openers 519 times; this series reaches 155 and 1,587 in 1,469,947. That gap is the
+  difference between a habit of looking at a thing and a habit of reaching for a phrase.
+
+## 0.72.0 - 2026-11-26
+
+- **The package ships a corpus, and `mmk corpus` reads it.** `rules/corpus/genji/` holds one text file
+  plus a manifest of character offsets per chapter, so `--chapter 44` is a slice rather than a parse;
+  `--excerpt` returns the three lines the generator picked for that chapter, `--find` reports which
+  chapters carry a phrase together with the line around it, and `--json` gives the same in machine form.
+  The text is *The Tale of Genji* in Feng Zikai's Chinese rendering - 57 entries, 764,108 characters,
+  with the "Kumogakure" chapter kept as the title-only scroll the received text has it.
+  `scripts/gen-corpus.mjs` rebuilds the three data files from a directory of per-chapter files and joins
+  `check:generated`, so a hand-edited copy is caught the same way the other generated data is; a machine
+  without the source text reports a skip rather than a failure.
+
 ## 0.71.2 - 2026-11-26
 
 - **The client patch reads the bundle shape it actually met, and the minified anchors are tested.** A

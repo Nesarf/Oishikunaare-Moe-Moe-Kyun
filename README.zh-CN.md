@@ -16,7 +16,7 @@
 
 | 入口 | 是什么 | 怎么接 |
 | --- | --- | --- |
-| **CLI** `mmk` | `rules`、`lib`、`check`、`notice`、`voice`、`accent`、`persona`、`review`、`audit`、`expand`、`wire` | shell、git hook、CI，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规 |
+| **CLI** `mmk` | `rules`、`lib`、`check`、`notice`、`voice`、`accent`、`persona`、`review`、`audit`、`expand`、`wire`、`corpus` | shell、git hook、CI，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规 |
 | **MCP server** | `mmk_rules`、`mmk_check`、`mmk_notice` 三个工具 + `mmk://rules` 资源 | 任何会说 MCP 的客户端，不假设对面是哪一个 agent |
 | **Claude Code 钩子** | 在回合还开着的时候就纠正 | `Stop` 回 `{"decision":"block","reason":<通知>}`，`UserPromptSubmit` 与 `SessionStart` 附带上下文 |
 | **DSH 插件** | 给整个 profile 一条全局 system prompt section | 由 roster 只挂载一次，覆盖全部 preset、工作区、新会话与 subagent |
@@ -205,7 +205,7 @@ docstring、README 与报告的行文、commit message、用户可见的字符�
 
 | 入口 | 怎么用 | 给谁用 |
 | --- | --- | --- |
-| CLI | `mmk rules`、`mmk check --text "…"`、`mmk notice`、`mmk voice`、`mmk accent --persona-text "…"`、`mmk persona`、`mmk review --transcript <文件>`、`mmk audit`、`mmk expand`、`mmk wire <target>` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
+| CLI | `mmk rules`、`mmk check --text "…"`、`mmk notice`、`mmk voice`、`mmk accent --persona-text "…"`、`mmk persona`、`mmk review --transcript <文件>`、`mmk audit`、`mmk expand`、`mmk wire <target>`、`mmk corpus` | shell、git hook、CI 步骤，或者只是想确认「这句话会不会被拒」的人。退出码 3 表示有违规，调用方不必去解析文本。`mmk rules --format md` 与 `mmk wire <target>` 直接产出可粘贴的段落 |
 | MCP server | `node adapters/mcp.mjs`（或 `npm run mcp`） | 任何会说 MCP 的客户端：`mmk_rules` 取纪律段、`mmk_check` 判一段草稿、`mmk_notice` 渲染一条提醒。这里不假设对面是哪一个 agent |
 | Claude Code 钩子 | `node adapters/claude-code.mjs`（或 `npm run claude-code --print-config`） | 不只是规则，而是「纠正」：`Stop` 时若有违规，回 `{"decision":"block","reason":<通知>}`；`UserPromptSubmit` 与 `SessionStart` 回 `hookSpecificOutput.additionalContext`。每会话限一次、任何异常一律放行、由自己引发的 stop 绝不会再被拦 |
 | 模块 | `import { resolveState, judgeText } from 'oishikunaare-moe-moe-kyun/portable'` | 自己写适配器的人。DSH 插件、CLI、MCP server、钩子全都薄薄地架在这一个文件上 |
@@ -491,6 +491,28 @@ npm run audit:session -- --json      # 机器可读
 - `test/acceptance.mjs` 按宿主的运行方式跑插件：一个精简但忠实的事件派发器（处理器用 `ctx.on` 注册、
   通过 `next()` 链式传递），`apply()` 把它挂上去，然后真的驱动若干步。它证明的是「某一步上出现违规，
   会变成一条抵达模型的通知」—— 而且跑的是构建产物，所以顺带证明构建。两者都在 `npm run verify` 里。
+
+## 读取随包的语料
+
+包里随一处语料，`mmk corpus` 直接读它，而且不重复加载：全书是一个文件，`manifest.json` 里记着每一回在文件中的字符偏移，所以取第四十四回只是一次切片。
+
+    mmk corpus                  列出全部回目：序号、回名、字数
+    mmk corpus --chapter 44     打印该回正文
+    mmk corpus --excerpt 44     打印该回挑出的三行
+    mmk corpus --find 薰大将    查哪几回出现这个词，并给出上下文
+    mmk corpus --json           同样的内容，机器可读
+
+语料是《源氏物语》丰子恺译本，2026-11-26 抓自 99csw.com/book/2540：57 个条目、764108 字；第四十一回「云隐」按传本只存题名。`rules/corpus/genji/` 下是 `full.txt`、`manifest.json` 与 `quotes.json`，`scripts/gen-corpus.mjs` 能从按回切分的目录重建这三份文件，`npm run check:generated` 会在它们与源不一致时报错。
+
+另有一本同形制的语料：`rules/corpus/suzumiya/` 是《凉宫春日系列》（16 卷、104 条、1469947 字），用 `mmk corpus --book suzumiya` 读取。生成器按 `--book genji|suzumiya` 选书，`--check` 两本都核。放两本的理由是数字能对照：源氏物语在 764108 字里出现「不是……而是」13 次、套语 519 次，凉宫在 1469947 字里是 155 次与 1587 次；前者习惯看眼前的事物，后者习惯伸手去抓现成的话。
+
+## 抓住那个习惯
+
+语料不是摆设：每一步的钩子会去数它们量过的那几样东西。`rules/formula/zh.json` 把套语分两组——通用语（不禁、仿佛）与对话腔专用（值得注意的是、总的来说），外加「不是……而是」这个配对句式。一段回复里超过三处套语或两处配对，这一场就会收到一条通知：点出命中的是哪几个词，并附上范例池里的一句。带具体物件的句子是可以照着写的形状，「少用套话」只是一条要遵守的规则。判据读的是回复正文，不读思考——思考已经有自己的规则，两边不共用一个预算。
+
+    mmk check --text "…" --style                 一段草稿的形状
+    mmk check --text "…" --style --against genji  同样的数字，摆在书的旁边
+    mmk audit --transcript <文件> --style        一整场会话的形状
 
 ## 说明
 

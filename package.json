@@ -1,7 +1,7 @@
 {
   "name": "oishikunaare-moe-moe-kyun",
   "displayName": "Oishikunaare-Moe-Moe-Kyun",
-  "version": "0.71.2",
+  "version": "0.74.0",
   "description": "Output house rules for an AI agent - no check-mark or cross glyphs, no emoji, a kaomoji habit, the language it thinks in, and the shape of the thinking (a length floor, one script per text, a sentence at the end, no clock on itself) - with an optional tri-lingual moe voice layer. One core, four entries: a CLI (mmk), an MCP server, a Claude Code hook, and a DeepSeek Harness plugin that reaches every preset, workspace and subagent from one global prompt section.",
   "keywords": [
     "house-rules",
@@ -61,7 +61,7 @@
     "check:ascii": "node scripts/check-ascii.mjs",
     "check:portable": "node scripts/check-portable.mjs",
     "check:version": "node scripts/check-version.mjs",
-    "check:generated": "npm run gen:rules -- --check && npm run gen:kaomoji -- --check && npm run gen:voices -- --check",
+    "check:generated": "npm run gen:rules -- --check && npm run gen:kaomoji -- --check && npm run gen:voices -- --check && node scripts/gen-corpus.mjs --check && node scripts/gen-corpus.mjs --book suzumiya --check",
     "prepublishOnly": "npm run verify",
     "verify": "npm run check:ascii && npm run check:portable && npm run check:version && npm run check:generated && npm run build && npm run selfcheck && npm run acceptance && npm run test:portable && npm run test:adapters && npm run test:client-patch",
     "acceptance": "node test/acceptance.mjs",
@@ -75,7 +75,8 @@
     "bench:rules": "node test/bench.mjs",
     "audit:session": "node scripts/audit-session.mjs",
     "check:text": "node scripts/check-text.mjs",
-    "gen:voices": "node scripts/gen-voices.mjs"
+    "gen:voices": "node scripts/gen-voices.mjs",
+    "gen:corpus": "node scripts/gen-corpus.mjs"
   },
   "license": "SEE LICENSE IN LICENSE",
   "publishConfig": {
