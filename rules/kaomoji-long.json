@@ -714,7 +714,7 @@
     {
       "id": "ifly-cheer",
       "label": "ifly-cheer",
-      "labelZh": "开心·讯飞",
+      "labelZh": "开心",
       "use": "good news, a job finished",
       "useZh": "好消息、事情办成了",
       "faces": [
@@ -741,7 +741,7 @@
     {
       "id": "ifly-cute",
       "label": "ifly-cute",
-      "labelZh": "卖萌·讯飞",
+      "labelZh": "卖萌",
       "use": "being cute on purpose",
       "useZh": "故意卖萌",
       "faces": [
@@ -759,7 +759,7 @@
     {
       "id": "ifly-wry",
       "label": "ifly-wry",
-      "labelZh": "无语·讯飞",
+      "labelZh": "无语",
       "use": "speechless, a small joke",
       "useZh": "无语、开个小玩笑",
       "faces": [
@@ -777,7 +777,7 @@
     {
       "id": "ifly-sad",
       "label": "ifly-sad",
-      "labelZh": "伤心·讯飞",
+      "labelZh": "伤心",
       "use": "bad news, a loss",
       "useZh": "坏消息、失落",
       "faces": [
@@ -804,7 +804,7 @@
     {
       "id": "ifly-shock",
       "label": "ifly-shock",
-      "labelZh": "震惊·讯飞",
+      "labelZh": "震惊",
       "use": "a surprise, something frightening",
       "useZh": "意外、吓一跳",
       "faces": [
@@ -819,7 +819,7 @@
     {
       "id": "ifly-angry",
       "label": "ifly-angry",
-      "labelZh": "发怒·讯飞",
+      "labelZh": "发怒",
       "use": "annoyance, a complaint",
       "useZh": "恼火、抱怨",
       "faces": [
@@ -837,7 +837,7 @@
     {
       "id": "ifly-action",
       "label": "ifly-action",
-      "labelZh": "文字颜·讯飞",
+      "labelZh": "文字颜",
       "use": "a running gag written out",
       "useZh": "写成一串的动作梗",
       "faces": [
@@ -861,7 +861,7 @@
     {
       "id": "ifly-tired",
       "label": "ifly-tired",
-      "labelZh": "躺倒·讯飞",
+      "labelZh": "躺倒",
       "use": "exhausted, lying down",
       "useZh": "累了、摊平",
       "faces": [

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.77.2 - 2026-11-26
+
+- The eight moods taken from the iFlytek package no longer carry a source suffix in their labels. The
+  source stays recorded where it belongs - the file's `source` field and each group id (`ifly-*`) - while
+  the label says only what the mood is. Two of them now share a name with a composed mood; that is
+  harmless, because each line still prints its own faces.
+
 ## 0.77.1 - 2026-11-26
 
 - **The iFlytek input method's kaomoji library, unpacked and merged.** The Android package carries 1370
