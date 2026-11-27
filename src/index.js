@@ -4507,6 +4507,13 @@ export function apply(ctx, config) {
       ctx.systemPrompt.section({
         name: SECTION_NAME,
         order: SECTION_ORDER,
+        // The body is house-rule prose plus the kaomoji library, and that library contains
+        // literal runs of braces (a face such as `{{{>_<}}}` or a long decorated one). The
+        // prompt registry resolves `{{name}}` placeholders in every interpolating section and
+        // treats a stray `{{` followed by a later `}}` as a malformed reference, which failed
+        // the whole step with "malformed prompt variable reference". Nothing here is a prompt
+        // variable, so the section renders literally instead.
+        interpolate: false,
         text: (context) => {
           const built = resolve();
           if (!built.enabled) return '';
